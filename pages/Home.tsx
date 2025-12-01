@@ -6,6 +6,8 @@ import GlassCard from '../components/GlassCard';
 import SEO from '../components/SEO';
 import Snowstorm from '../components/Snowstorm';
 import HeroHUD from '../components/HeroHUD';
+// 1. IMPORT THE ENGINE
+import KnowledgeEngine from '../components/KnowledgeEngine';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +19,6 @@ const Home: React.FC = () => {
     // Generate random weather on mount
     const wind = Math.floor(Math.random() * 31) + 10; // 10 to 40
     // Inverse correlation: Higher wind = Lower temp
-    // Base temp -15. Max wind (40) -> -25. Min wind (10) -> -15.
     // Formula: -15 - ((wind - 10) / 30) * 10
     const temp = Math.round(-15 - ((wind - 10) / 30) * 10);
 
@@ -25,7 +26,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#0B1D35]">
       <SEO
         title="Nerd with Nart"
         description="ออกแบบสถาปัตยกรรมทางการเงิน (Financial Architecture) และวางแผนประกันชีวิตเชิงระบบ เพื่อปกป้องความมั่งคั่งด้วย Logic ไม่ใช่อารมณ์"
@@ -53,8 +54,6 @@ const Home: React.FC = () => {
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D35]/70 via-transparent to-[#0B1D35]/30"></div>
-
-          {/* Mist Animation (Optional CSS enhancement would go here) */}
         </div>
 
         {/* Content */}
@@ -75,10 +74,7 @@ const Home: React.FC = () => {
             transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
             className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6 font-['Prompt']"
           >
-            {/* Top Line: Now uses the same Gradient + Shadow as the bottom */}
             การเงินไม่ใช่การ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">วิ่งระยะสั้น...</span><br />
-
-            {/* Bottom Line: Unchanged */}
             แต่คือการ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">ปีนสู่ยอดเขา</span>
           </motion.h1>
 
@@ -110,8 +106,6 @@ const Home: React.FC = () => {
               </button>
             </div>
           </motion.div>
-
-
         </div>
 
         {/* Scroll Indicator */}
@@ -128,7 +122,12 @@ const Home: React.FC = () => {
         </motion.div>
       </section>
 
-      {/* --- BENTO GRID SECTION --- */}
+      {/* --- 2. KNOWLEDGE ENGINE SECTION (INJECTED) --- */}
+      <section className="relative z-20 w-full bg-gradient-to-b from-[#0B1D35] via-[#0B1D35] to-[#0f2645]">
+        <KnowledgeEngine />
+      </section>
+
+      {/* --- 3. BENTO GRID SECTION (EVERGREEN TOOLS) --- */}
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-24">
         <div className="flex items-end justify-between mb-8">
           <div>
