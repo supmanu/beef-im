@@ -75,10 +75,10 @@ const Home: React.FC = () => {
             transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
             className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6 font-['Prompt']"
           >
-            {/* Top Line: Soft "Building Shade" shadow */}
-            การเงินไม่ใช่การ<span className="drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">วิ่งระยะสั้น...</span><br />
+            {/* Top Line: Now uses the same Gradient + Shadow as the bottom */}
+            การเงินไม่ใช่การ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">วิ่งระยะสั้น...</span><br />
 
-            {/* Bottom Line: Same shadow for consistency + Gradient */}
+            {/* Bottom Line: Unchanged */}
             แต่คือการ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">ปีนสู่ยอดเขา</span>
           </motion.h1>
 
