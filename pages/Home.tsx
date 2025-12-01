@@ -62,7 +62,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-bold tracking-widest mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
@@ -72,17 +72,17 @@ const Home: React.FC = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
             className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6 font-['Prompt']"
           >
-            การเงินไม่ใช่การวิ่งระยะสั้น...<br />
+            การเงินไม่ใช่การ<span className="text-shadow-strong">วิ่งระยะสั้น...</span><br />
             แต่คือการ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">ปีนสู่ยอดเขา</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
             className="text-lg md:text-xl text-gray-300 max-w-2xl font-light mb-10 leading-relaxed"
           >
             วางแผนมรดกและสุขภาพด้วย 'ระบบ' ที่ทนทานต่อทุกสภาพอากาศ <br />
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4"
           >
             {/* Search / Action Bar */}
