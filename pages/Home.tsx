@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Shield, Download, Map, TrendingUp } from 'lucide-react';
+import { ArrowRight, Shield, Download, Map, TrendingUp, ArrowDown } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import GlassCard from '../components/GlassCard';
 import SEO from '../components/SEO';
@@ -44,8 +44,8 @@ const Home: React.FC = () => {
           <Snowstorm windIntensity={weather.wind} />
           <HeroHUD temperature={weather.temp} windSpeed={weather.wind} />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/80 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D35]/90 via-transparent to-[#0B1D35]/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D35]/70 via-transparent to-[#0B1D35]/30"></div>
 
           {/* Mist Animation (Optional CSS enhancement would go here) */}
         </div>
@@ -99,6 +99,19 @@ const Home: React.FC = () => {
                 <ArrowRight size={20} />
               </button>
             </div>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.5, duration: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+          >
+            <span className="text-[#F59E0B] text-[10px] font-bold tracking-[0.2em] uppercase opacity-80">
+              Descent to Basecamp
+            </span>
+            <ArrowDown className="text-white animate-bounce" size={20} />
           </motion.div>
         </div>
       </section>
