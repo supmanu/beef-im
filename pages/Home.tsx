@@ -35,12 +35,19 @@ const Home: React.FC = () => {
       <section className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <motion.img
-            src="https://picsum.photos/id/1036/1920/1080"
-            alt="Mountain Expedition"
-            className="w-full h-full object-cover opacity-60"
-            style={{ scale }}
-          />
+          <motion.div
+            initial={{ scale: 1.2, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <motion.img
+              src="https://picsum.photos/id/1036/1920/1080"
+              alt="Mountain Expedition"
+              className="w-full h-full object-cover opacity-60"
+              style={{ scale }}
+            />
+          </motion.div>
           <Snowstorm windIntensity={weather.wind} />
           <HeroHUD temperature={weather.temp} windSpeed={weather.wind} />
           {/* Gradient Overlay */}
@@ -101,19 +108,21 @@ const Home: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 3.5, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-          >
-            <span className="text-[#F59E0B] text-[10px] font-bold tracking-[0.2em] uppercase opacity-80">
-              Descent to Basecamp
-            </span>
-            <ArrowDown className="text-white animate-bounce" size={20} />
-          </motion.div>
+
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3.5, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+        >
+          <span className="text-slate-400 text-[10px] font-bold tracking-[0.2em] uppercase opacity-50">
+            Descent to Basecamp
+          </span>
+          <ArrowDown className="text-slate-400 opacity-50 animate-bounce" size={20} />
+        </motion.div>
       </section>
 
       {/* --- BENTO GRID SECTION --- */}
