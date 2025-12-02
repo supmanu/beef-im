@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // CHANGED
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -8,13 +8,12 @@ import ArticleView from './pages/ArticleView';
 import Tools from './pages/Tools';
 import Manifesto from './pages/Manifesto';
 import Contact from './pages/Contact';
-// 1. Import the Scroll Handler
 import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
-      {/* 2. Activate it inside the Router */}
+    // CHANGED: Switched to BrowserRouter for SEO-friendly URLs
+    <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen bg-[#0B1D35] text-slate-200 font-sans selection:bg-[#F59E0B] selection:text-[#0B1D35]">
         <Navbar />
@@ -30,7 +29,7 @@ const App: React.FC = () => {
         </main>
         <Footer />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
