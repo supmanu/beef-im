@@ -1,88 +1,97 @@
-import React from 'react';
-import { FileText, Lock, Download, CheckSquare, Table } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Shield, Download, FileText, Calculator } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
-import { Tool } from '../types';
+import { request } from 'graphql-request';
+import { GET_TOOLS } from '../queries';
 
-const tools: Tool[] = [
-  {
-    id: 't1',
-    title: 'Unit-Linked Fee Calculator 2024',
-    description: 'ตาราง Excel สำหรับคำนวณ Cost of Insurance และค่าธรรมเนียมบริหารกรมธรรม์ระยะยาว',
-    type: 'XLS',
-    downloadUrl: '#',
-    isLocked: false
-  },
-  {
-    id: 't2',
-    title: 'Medical Audit Checklist',
-    description: 'รายการเอกสารที่ต้องเตรียมเมื่อโดนตรวจสอบประวัติสุขภาพย้อนหลัง',
-    type: 'CHECKLIST',
-    downloadUrl: '#',
-    isLocked: false
-  },
-  {
-    id: 't3',
-    title: 'Advanced Estate Structuring Kit',
-    description: 'พิมพ์เขียวสำหรับจัดโครงสร้างภาษีมรดกสำหรับทรัพย์สินเกิน 100 ล้านบาท',
-    type: 'PDF',
-    downloadUrl: '#',
-    isLocked: true
-  }
-];
+const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
+
+// Map string names to Lucide Components
+const iconMap: Record<string, any> = {
+  shield: Shield,
+  download: Download,
+  file: FileText,
+  calculator: Calculator,
+  default: FileText
+};
 
 const Tools: React.FC = () => {
-  const getIcon = (type: Tool['type']) => {
-    switch(type) {
-      case 'XLS': return <Table size={24} className="text-green-400" />;
-      case 'CHECKLIST': return <CheckSquare size={24} className="text-[#F59E0B]" />;
-      default: return <FileText size={24} className="text-blue-400" />;
-    }
+  const [tools, setTools] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTools = async () => {
+      try {
+        const data: any = await request(HYGRAPH_ENDPOINT, GET_TOOLS);
+        setTools(data.tools);
+      } catch (error) {
+        console.error("Armory Offline:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTools();
+  }, []);
+
+  // Helper to format file size
+  const formatSize = (bytes: number) => {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
   };
 
   return (
-    <div className="pt-32 pb-20 px-6 max-w-5xl mx-auto min-h-screen">
-       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <h1 className="text-4xl font-bold text-white mb-2">The Armory</h1>
-            <p className="text-gray-400">
-               เครื่องมือที่ผ่านการทดสอบในสนามจริง สำหรับการวางแผนที่แม่นยำ
-            </p>
-          </div>
-          <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400">
-             Total Assets: {tools.length} Items
-          </div>
-       </div>
+    <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+      <div className="text-center mb-16">
+        <span className="text-[#F59E0B] font-bold tracking-widest text-xs mb-4 block uppercase">The Armory</span>
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-['Prompt']">Gear Check</h1>
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light">
+          Essential documents, checklists, and calculators for your financial ascent.
+        </p>
+      </div>
 
-       <div className="space-y-4">
-         {tools.map((tool) => (
-           <GlassCard key={tool.id} className="p-6 flex flex-col sm:flex-row items-start sm:items-center gap-6 group">
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10 group-hover:border-[#F59E0B]/30 transition-colors">
-                {getIcon(tool.type)}
-              </div>
-              
-              <div className="flex-1">
-                 <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-lg font-bold text-white">{tool.title}</h3>
-                    {tool.isLocked && <Lock size={14} className="text-red-400" />}
-                 </div>
-                 <p className="text-gray-400 text-sm">{tool.description}</p>
-              </div>
+      {loading ? (
+        <div className="text-center text-slate-500 font-mono animate-pulse">Loading Equipment...</div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {tools.map((tool) => {
+            const IconComponent = iconMap[tool.icon] || iconMap.default;
 
-              <div className="w-full sm:w-auto">
-                 {tool.isLocked ? (
-                   <button className="w-full sm:w-auto px-6 py-2 rounded-lg border border-white/10 text-gray-500 text-sm font-medium cursor-not-allowed bg-white/5">
-                     Restricted Access
-                   </button>
-                 ) : (
-                   <button className="w-full sm:w-auto px-6 py-2 rounded-lg bg-[#F59E0B] text-[#0B1D35] text-sm font-bold hover:bg-[#d97706] transition-colors flex items-center justify-center gap-2">
-                     <Download size={16} />
-                     <span>Download {tool.type}</span>
-                   </button>
-                 )}
-              </div>
-           </GlassCard>
-         ))}
-       </div>
+            return (
+              <GlassCard key={tool.id} className="p-8 flex flex-col items-start group">
+                <div className="w-12 h-12 rounded-xl bg-[#F59E0B]/10 flex items-center justify-center text-[#F59E0B] mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <IconComponent size={24} />
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#F59E0B] transition-colors">
+                  {tool.title}
+                </h3>
+
+                <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-1">
+                  {tool.description}
+                </p>
+
+                <div className="w-full pt-6 border-t border-white/5 flex items-center justify-between">
+                  <span className="text-xs font-mono text-gray-500">
+                    {tool.file.mimeType.split('/')[1].toUpperCase()} • {formatSize(tool.file.size)}
+                  </span>
+
+                  <a
+                    href={tool.file.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm font-bold text-[#F59E0B] hover:text-white transition-colors"
+                  >
+                    <Download size={16} /> Download
+                  </a>
+                </div>
+              </GlassCard>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

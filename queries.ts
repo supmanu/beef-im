@@ -1,46 +1,91 @@
 import { gql } from 'graphql-request';
 
-export const GET_LATEST_POSTS = gql`
-  query GetLatestPosts {
-    posts(orderBy: releaseDate_DESC, first: 10) {
+// --- 1. FOR THE ARCHIVE GRID (Articles.tsx) ---
+export const GET_ARCHIVE = gql`
+  query GetArchive {
+    # Fetch Categories for the Filter Bar
+    categories {
+      id
+      name
+      slug
+      color
+    }
+
+    # Fetch Posts for the Grid
+    posts(orderBy: releaseDate_DESC, first: 100) {
       id
       title
       slug
       releaseDate
-      type    # QuickMagnet, DeepDive, etc.
-      tone    # T1, T2, etc.
-      
-      # 1. THE TOP BUN (Component)
-      openingHook {
-        ... on SinekHook {
-          variant
-          beliefStatement
-          alienationStatement
-          invitationStatement
-        }
+      coverImage {
+        url
       }
-
-      # 2. THE MEAT (Rich Text)
+      categories {
+        name
+        slug
+        color
+      }
       content {
-        raw  # Required for the Rich Text Renderer
+        text # We fetch Text to calculate reading time & preview
       }
+    }
+  }
+`;
 
-      # 3. THE BOTTOM BUN (Component)
-      theVerdict {
-        ... on VerdictBlock {
-          emoji
-          command
-          linkUrl
+// --- 2. FOR THE SINGLE ARTICLE READER (ArticleView.tsx) ---
+export const GET_POST_BY_SLUG = gql`
+  query GetPostBySlug($slug: String!) {
+    post(where: { slug: $slug }) {
+      id
+      title
+      releaseDate
+      coverImage {
+        url
+      }
+      categories {
+        name
+        slug
+        color
+      }
+      content {
+        raw # Required for the Rich Text Renderer
+        text # Used for reading time calculation
+        
+        # ⚠️ CRITICAL UPDATE: Fetch Embedded Models (Dividers & Images)
+        references {
+          ... on Divider {
+            id
+          }
+          ... on Asset {
+            id
+            url
+            mimeType
+          }
         }
       }
-
-      # 4. THE REFERENCES
       citations {
         sourceName
         publisher
         year
-        tier
         url
+        tier
+      }
+    }
+  }
+`;
+
+// --- 3. FOR THE TOOLS / GEAR CHECK (Tools.tsx) ---
+export const GET_TOOLS = gql`
+  query GetTools {
+    tools {
+      id
+      title
+      description
+      icon
+      file {
+        url
+        size
+        mimeType
       }
     }
   }

@@ -1,103 +1,146 @@
 import { useEffect, useState } from 'react';
 import { request } from 'graphql-request';
-import { RichText } from '@graphcms/rich-text-react-renderer';
-import { GET_LATEST_POSTS } from '../queries'; // Ensure this path matches where you put queries.ts
-import { SinekHook } from './SinekHook';
-import { VerdictBlock } from './VerdictBlock';
+import { GET_ARCHIVE } from '../queries';
+import { ArrowRight } from 'lucide-react';
 
-// Configure your endpoint from .env
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
+
+// Map Hygraph color strings to Tailwind classes
+// UPDATED: All specific colors now align with the Teal/Cyan aesthetic where appropriate
+const colorMap: Record<string, string> = {
+    emerald: 'bg-[#2bb1bb]/10 text-[#2bb1bb] border-[#2bb1bb]/20', // Health = Teal
+    amber: 'bg-amber-500/10 text-amber-500 border-amber-500/20',   // Wealth = Gold
+    blue: 'bg-blue-500/10 text-blue-500 border-blue-500/20',       // Legacy = Blue
+    slate: 'bg-slate-500/10 text-slate-400 border-slate-500/20',   // Perspective = Slate
+    default: 'bg-gray-500/10 text-gray-400 border-gray-500/20'
+};
 
 export default function KnowledgeEngine() {
     const [posts, setPosts] = useState<any[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
+    const [filter, setFilter] = useState('all');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchData = async () => {
             try {
-                const data: any = await request(HYGRAPH_ENDPOINT, GET_LATEST_POSTS);
+                const data: any = await request(HYGRAPH_ENDPOINT, GET_ARCHIVE);
                 setPosts(data.posts);
+                setCategories(data.categories);
             } catch (error) {
-                console.error("Engine Failure:", error);
+                console.error("Archive Offline:", error);
             } finally {
                 setLoading(false);
             }
         };
-        fetchPosts();
+        fetchData();
     }, []);
 
+    const filteredPosts = filter === 'all'
+        ? posts
+        : posts.filter(post => post.categories.some((c: any) => c.slug === filter));
+
     if (loading) return (
-        <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
+        <div className="flex justify-center py-32">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#2bb1bb]"></div>
         </div>
     );
 
     return (
-        <div className="max-w-4xl mx-auto px-6 py-24 relative z-10">
-            {posts.map((post) => (
-                <article key={post.id} className="mb-40 relative">
+        <div className="max-w-7xl mx-auto px-6 py-24">
 
-                    {/* Vertical Timeline Line (Visual Connector) */}
-                    <div className="absolute left-0 md:-left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-800 to-transparent hidden md:block"></div>
+            {/* HEADER & FILTER BAR */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/5 pb-8">
+                <div>
+                    <h2 className="text-3xl font-bold text-white mb-2 font-['Prompt']">
+                        คลังความรู้ <span className="text-[#2bb1bb] text-lg font-normal">(The Archive)</span>
+                    </h2>
+                    <p className="text-slate-400">บันทึกการเดินทางและองค์ความรู้ที่รวบรวมจากการทำงานจริง</p>
+                </div>
 
-                    {/* HEADER */}
-                    <header className="mb-12 text-center max-w-2xl mx-auto">
-                        <div className="flex items-center justify-center gap-3 mb-6">
-                            <span className="px-3 py-1 bg-slate-800 border border-slate-700 text-emerald-400 text-xs font-mono rounded tracking-widest uppercase">
-                                {post.type}
-                            </span>
-                            <span className="text-slate-600 text-xs font-mono">•</span>
-                            <span className="text-slate-500 text-xs font-mono uppercase">
-                                {post.releaseDate ? new Date(post.releaseDate).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Unscheduled'}
-                            </span>
-                        </div>
+                {/* Filter Buttons */}
+                <div className="flex flex-wrap gap-2">
+                    <button
+                        onClick={() => setFilter('all')}
+                        className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${filter === 'all'
+                                ? 'bg-white text-[#0B1D35] font-bold border-white scale-105'
+                                : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                            }`}
+                    >
+                        All
+                    </button>
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.id}
+                            onClick={() => setFilter(cat.slug)}
+                            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${filter === cat.slug
+                                    ? 'bg-[#2bb1bb] text-white border-[#2bb1bb] shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
+                                    : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                                }`}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
+            </div>
 
-                        <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
-                            {post.title}
-                        </h1>
+            {/* POSTS GRID */}
+            {filteredPosts.length === 0 ? (
+                <div className="text-center py-20 border border-dashed border-slate-800 rounded-xl bg-[#0f2645]/50">
+                    <p className="text-slate-500">No signals found in this sector.</p>
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredPosts.map((post) => (
+                        <article key={post.id} className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden hover:border-[#2bb1bb]/50 transition-all hover:shadow-2xl hover:-translate-y-1 flex flex-col h-full cursor-pointer">
 
-                        {/* Tone Indicator */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-slate-800 backdrop-blur-sm">
-                            <div className={`w-2 h-2 rounded-full ${post.tone === 'T2_Guardian' ? 'bg-red-500 animate-pulse' : 'bg-blue-500'}`}></div>
-                            <span className="text-xs text-slate-400 font-mono uppercase">{post.tone?.replace('_', ' ') || 'T1 TEACHER'}</span>
-                        </div>
-                    </header>
+                            {/* Image */}
+                            <div className="h-48 overflow-hidden relative bg-slate-900">
+                                {post.coverImage ? (
+                                    <img
+                                        src={post.coverImage.url}
+                                        alt={post.title}
+                                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-slate-700 font-mono text-xs">NO VISUAL</div>
+                                )}
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0f2645] to-transparent opacity-90"></div>
 
-                    {/* 1. THE TOP BUN (HOOK) - Validated via Sandwich Architecture */}
-                    {post.openingHook && <SinekHook data={post.openingHook} />}
+                                {/* Category Badge */}
+                                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                                    {post.categories.map((cat: any) => (
+                                        <span key={cat.slug} className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded backdrop-blur-md border ${colorMap[cat.color] || colorMap.default}`}>
+                                            {cat.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
 
-                    {/* 2. THE MEAT (BODY) - Rich Text */}
-                    <div className="prose prose-invert prose-lg max-w-none text-slate-300 prose-headings:text-white prose-a:text-emerald-400 prose-strong:text-white prose-blockquote:border-l-emerald-500 prose-blockquote:bg-slate-900/50 prose-blockquote:py-2 prose-blockquote:pr-2">
-                        <RichText content={post.content.raw} />
-                    </div>
+                            {/* Content */}
+                            <div className="p-6 flex-1 flex flex-col">
+                                <div className="text-xs text-slate-500 font-mono mb-3 flex items-center gap-2">
+                                    <span>{new Date(post.releaseDate).toLocaleDateString('en-GB')}</span>
+                                    <span>•</span>
+                                    <span>{Math.ceil(post.content.text.split(' ').length / 200)} min read</span>
+                                </div>
 
-                    {/* 3. THE BOTTOM BUN (VERDICT) - Validated via Sandwich Architecture */}
-                    {post.theVerdict && <VerdictBlock data={post.theVerdict} />}
+                                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#2bb1bb] transition-colors font-['Prompt'] leading-snug">
+                                    {post.title}
+                                </h3>
 
-                    {/* 4. FOOTER (CITATIONS) - Automated Source of Truth */}
-                    {post.citations && post.citations.length > 0 && (
-                        <footer className="mt-16 pt-8 border-t border-slate-800/50">
-                            <h4 className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">
-                                <span className="text-emerald-500">📚</span> Primary Sources (Verified)
-                            </h4>
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {post.citations.map((cite: any, idx: number) => (
-                                    <li key={idx} className="bg-black/30 p-4 rounded border border-slate-800 hover:border-slate-700 transition-colors">
-                                        <div className="flex items-start justify-between mb-1">
-                                            <span className="text-sm text-slate-200 font-medium">{cite.sourceName}</span>
-                                            {cite.tier === 1 && <span className="text-[10px] bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded border border-amber-500/20">TIER 1</span>}
-                                        </div>
-                                        <div className="text-xs text-slate-500 font-mono">
-                                            {cite.publisher} • {cite.year}
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </footer>
-                    )}
+                                <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-1 font-['Sarabun']">
+                                    {post.content.text.substring(0, 120)}...
+                                </p>
 
-                </article>
-            ))}
+                                <div className="flex items-center gap-2 text-[#2bb1bb] text-sm font-bold group-hover:translate-x-2 transition-transform mt-auto">
+                                    READ ANALYSIS <ArrowRight size={16} />
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

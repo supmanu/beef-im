@@ -131,7 +131,9 @@ const Home: React.FC = () => {
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-24">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-white mb-2">The Gear Check</h2>
+            <h2 className="text-3xl font-bold text-white mb-2 font-['Prompt']">
+              คลังเครื่องมือ <span className="text-[#F59E0B] text-lg font-normal">(The Armory)</span>
+            </h2>
             <p className="text-gray-400">อุปกรณ์และแผนที่สำหรับการเดินทางไกล</p>
           </div>
         </div>

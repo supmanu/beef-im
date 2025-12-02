@@ -18,7 +18,8 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/articles" element={<Articles />} />
-            <Route path="/articles/:id" element={<ArticleView />} />
+            {/* UPDATE: Changed :id to :slug for SEO friendly links */}
+            <Route path="/articles/:slug" element={<ArticleView />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/manifesto" element={<Manifesto />} />
             <Route path="/contact" element={<Contact />} />
