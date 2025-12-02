@@ -1,55 +1,84 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface SEOProps {
   title: string;
   description: string;
   image?: string;
-  type?: string;
+  slug?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  author?: string;
 }
 
-const SEO: React.FC<SEOProps> = ({ 
-  title, 
-  description, 
-  image = '/og-image-default.jpg', 
-  type = 'website' 
-}) => {
-  useEffect(() => {
-    // 1. Update Title
-    document.title = title;
+export default function SEO({
+  title,
+  description,
+  // TODO: Replace this default image with a real URL from your Hygraph assets later
+  image = 'https://media.graphassets.com/YOUR_DEFAULT_IMAGE_ID',
+  slug = '',
+  type = 'website',
+  publishedTime,
+  author = 'Nerd with Nart'
+}: SEOProps) {
 
-    // 2. Helper to efficiently update or create meta tags
-    const updateMeta = (name: string, content: string, attribute: 'name' | 'property' = 'name') => {
-      // Remove existing tag to prevent duplicates (simple cleanup)
-      const existingSelector = `meta[${attribute}="${name}"]`;
-      const existingTag = document.querySelector(existingSelector);
-      if (existingTag) {
-        existingTag.setAttribute('content', content);
-      } else {
-        const tag = document.createElement('meta');
-        tag.setAttribute(attribute, name);
-        tag.setAttribute('content', content);
-        document.head.appendChild(tag);
+  const siteUrl = 'https://nerdwithnart.com';
+  const fullUrl = `${siteUrl}${slug}`;
+  const fullTitle = `${title} | Nerd with Nart`;
+
+  // GEO SIGNAL: JSON-LD Structured Data for AI Authority
+  const structuredData = type === 'article' ? {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "image": [image],
+    "datePublished": publishedTime,
+    "author": [{
+      "@type": "Person",
+      "name": author,
+      "url": siteUrl
+    }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nerd with Nart",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`
       }
-    };
+    },
+    "description": description
+  } : {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": siteUrl,
+    "name": "Nerd with Nart",
+    "description": description
+  };
 
-    // 3. Update Standard Meta
-    updateMeta('description', description);
-    
-    // 4. Update Open Graph
-    updateMeta('og:title', title, 'property');
-    updateMeta('og:description', description, 'property');
-    updateMeta('og:image', image, 'property');
-    updateMeta('og:type', type, 'property');
-    
-    // 5. Update Twitter Card
-    updateMeta('twitter:card', 'summary_large_image', 'name');
-    updateMeta('twitter:title', title, 'name');
-    updateMeta('twitter:description', description, 'name');
-    updateMeta('twitter:image', image, 'name');
+  return (
+    <Helmet>
+      {/* Standard Metadata */}
+      <title>{fullTitle}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={fullUrl} />
 
-  }, [title, description, image, type]);
+      {/* Open Graph / Facebook / Line */}
+      <meta property="og:type" content={type} />
+      <meta property="og:url" content={fullUrl} />
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={image} />
 
-  return null;
-};
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
 
-export default SEO;
+      {/* GEO / AI Signal */}
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
+    </Helmet>
+  );
+}

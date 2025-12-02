@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Shield, Download, Map, TrendingUp, ArrowDown } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import GlassCard from '../components/GlassCard';
-import SEO from '../components/SEO';
+import SEO from '../components/SEO'; // <--- 1. IMPORT SEO
 import Snowstorm from '../components/Snowstorm';
 import HeroHUD from '../components/HeroHUD';
-// 1. IMPORT THE ENGINE
 import KnowledgeEngine from '../components/KnowledgeEngine';
 
 const Home: React.FC = () => {
@@ -16,20 +15,18 @@ const Home: React.FC = () => {
   const scale = useTransform(scrollY, [0, 500], [1, 1.15]);
 
   useEffect(() => {
-    // Generate random weather on mount
-    const wind = Math.floor(Math.random() * 31) + 10; // 10 to 40
-    // Inverse correlation: Higher wind = Lower temp
-    // Formula: -15 - ((wind - 10) / 30) * 10
+    const wind = Math.floor(Math.random() * 31) + 10;
     const temp = Math.round(-15 - ((wind - 10) / 30) * 10);
-
     setWeather({ temp, wind });
   }, []);
 
   return (
     <div className="w-full bg-[#0B1D35]">
+      {/* 2. INJECT SIGNALS */}
       <SEO
-        title="Nerd with Nart"
-        description="ออกแบบสถาปัตยกรรมทางการเงิน (Financial Architecture) และวางแผนประกันชีวิตเชิงระบบ เพื่อปกป้องความมั่งคั่งด้วย Logic ไม่ใช่อารมณ์"
+        title="Basecamp"
+        description="Data. Logic. Legacy. Designing financial architecture and insurance systems for the sophisticated investor."
+        slug="/"
       />
 
       {/* --- HERO SECTION --- */}
@@ -51,7 +48,6 @@ const Home: React.FC = () => {
           </motion.div>
           <Snowstorm windIntensity={weather.wind} />
           <HeroHUD temperature={weather.temp} windSpeed={weather.wind} />
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/60 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D35]/70 via-transparent to-[#0B1D35]/30"></div>
         </div>
@@ -94,7 +90,6 @@ const Home: React.FC = () => {
             transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            {/* Search / Action Bar */}
             <div className="flex-1 max-w-md h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center px-2 pl-6 transition-colors focus-within:bg-white/10 focus-within:border-white/30">
               <input
                 type="text"
@@ -108,7 +103,6 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -131,16 +125,13 @@ const Home: React.FC = () => {
       <section className="relative z-20 max-w-7xl mx-auto px-6 py-24">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-white mb-2 font-['Prompt']">
-              คลังเครื่องมือ <span className="text-[#F59E0B] text-lg font-normal">(The Armory)</span>
-            </h2>
+            <h2 className="text-3xl font-bold text-white mb-2">The Gear Check</h2>
             <p className="text-gray-400">อุปกรณ์และแผนที่สำหรับการเดินทางไกล</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
-
-          {/* Card 1: Core Mechanisms (Top Left - Wide) */}
+          {/* ... (Kept Bento Grid same as before for brevity) ... */}
           <GlassCard className="col-span-1 md:col-span-2 p-8 flex flex-col justify-between relative group">
             <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
               <Map size={32} className="text-white" />
@@ -154,7 +145,6 @@ const Home: React.FC = () => {
                 โครงสร้างพื้นฐานที่จำเป็นก่อนเริ่มออกเดินทาง เจาะลึกกลไกการทำงานของเครื่องมือทางการเงิน
               </p>
             </div>
-
             <div className="mt-8 flex flex-wrap gap-3">
               {['COI Structures', 'Estate Planning', 'Tax Efficiency'].map(tag => (
                 <span key={tag} className="px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default">
@@ -162,7 +152,6 @@ const Home: React.FC = () => {
                 </span>
               ))}
             </div>
-
             <div
               className="mt-6 flex items-center gap-2 text-[#2bb1bb] hover:text-[#3ce2ee] cursor-pointer transition-colors w-fit"
               onClick={() => navigate('/articles')}
@@ -172,7 +161,6 @@ const Home: React.FC = () => {
             </div>
           </GlassCard>
 
-          {/* Card 2: Featured Case (Right - Tall) */}
           <GlassCard
             className="col-span-1 row-span-2 relative group h-[400px] md:h-auto"
             onClick={() => navigate('/articles')}
@@ -183,7 +171,6 @@ const Home: React.FC = () => {
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/50 to-transparent"></div>
-
             <div className="absolute bottom-0 left-0 p-8 w-full">
               <span className="px-2 py-1 bg-[#F59E0B] text-[#0B1D35] text-xs font-bold rounded mb-3 inline-block">
                 CASE #005
@@ -200,7 +187,6 @@ const Home: React.FC = () => {
             </div>
           </GlassCard>
 
-          {/* Card 3: Audit Gear (Bottom Left - Wide) */}
           <GlassCard className="col-span-1 md:col-span-2 p-8 relative overflow-hidden flex flex-row items-center justify-between">
             <div className="relative z-10 max-w-sm">
               <div className="flex items-center gap-2 text-[#F59E0B] text-xs font-bold tracking-widest mb-3">
@@ -218,13 +204,10 @@ const Home: React.FC = () => {
                 <span>Download Kit</span>
               </button>
             </div>
-
-            {/* Visual Decorative */}
             <div className="absolute right-0 top-0 h-full w-1/2 opacity-20 pointer-events-none">
               <div className="w-full h-full bg-[url('https://picsum.photos/id/199/600/400')] bg-cover bg-center grayscale mix-blend-overlay"></div>
             </div>
           </GlassCard>
-
         </div>
       </section>
     </div>
