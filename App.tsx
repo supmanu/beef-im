@@ -8,17 +8,20 @@ import ArticleView from './pages/ArticleView';
 import Tools from './pages/Tools';
 import Manifesto from './pages/Manifesto';
 import Contact from './pages/Contact';
+// 1. Import the Scroll Handler
+import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   return (
     <HashRouter>
+      {/* 2. Activate it inside the Router */}
+      <ScrollToTop />
       <div className="min-h-screen bg-[#0B1D35] text-slate-200 font-sans selection:bg-[#F59E0B] selection:text-[#0B1D35]">
         <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/articles" element={<Articles />} />
-            {/* UPDATE: Changed :id to :slug for SEO friendly links */}
             <Route path="/articles/:slug" element={<ArticleView />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/manifesto" element={<Manifesto />} />

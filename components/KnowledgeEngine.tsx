@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 import { request } from 'graphql-request';
 import { GET_ARCHIVE } from '../queries';
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
-// Map Hygraph color strings to Tailwind classes
-// UPDATED: All specific colors now align with the Teal/Cyan aesthetic where appropriate
+// TEAL PROTOCOL LOCKED
 const colorMap: Record<string, string> = {
     emerald: 'bg-[#2bb1bb]/10 text-[#2bb1bb] border-[#2bb1bb]/20', // Health = Teal
-    amber: 'bg-amber-500/10 text-amber-500 border-amber-500/20',   // Wealth = Gold
+    amber: 'bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20',   // Wealth = Orange
     blue: 'bg-blue-500/10 text-blue-500 border-blue-500/20',       // Legacy = Blue
     slate: 'bg-slate-500/10 text-slate-400 border-slate-500/20',   // Perspective = Slate
     default: 'bg-gray-500/10 text-gray-400 border-gray-500/20'
 };
 
 export default function KnowledgeEngine() {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState<any[]>([]);
     const [categories, setCategories] = useState<any[]>([]);
     const [filter, setFilter] = useState('all');
@@ -49,7 +50,7 @@ export default function KnowledgeEngine() {
     return (
         <div className="max-w-7xl mx-auto px-6 py-24">
 
-            {/* HEADER & FILTER BAR */}
+            {/* HEADER */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/5 pb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-white mb-2 font-['Prompt']">
@@ -92,7 +93,12 @@ export default function KnowledgeEngine() {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredPosts.map((post) => (
-                        <article key={post.id} className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden hover:border-[#2bb1bb]/50 transition-all hover:shadow-2xl hover:-translate-y-1 flex flex-col h-full cursor-pointer">
+                        <article
+                            key={post.id}
+                            onClick={() => navigate(`/articles/${post.slug}`)}
+                            // UPDATED CLASSNAME: Subtler Shadow + Semi-Transparent Border
+                            className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#2bb1bb]/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] flex flex-col h-full cursor-pointer"
+                        >
 
                             {/* Image */}
                             <div className="h-48 overflow-hidden relative bg-slate-900">
@@ -125,6 +131,7 @@ export default function KnowledgeEngine() {
                                     <span>{Math.ceil(post.content.text.split(' ').length / 200)} min read</span>
                                 </div>
 
+                                {/* Title Hovers Teal */}
                                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#2bb1bb] transition-colors font-['Prompt'] leading-snug">
                                     {post.title}
                                 </h3>
@@ -133,7 +140,8 @@ export default function KnowledgeEngine() {
                                     {post.content.text.substring(0, 120)}...
                                 </p>
 
-                                <div className="flex items-center gap-2 text-[#2bb1bb] text-sm font-bold group-hover:translate-x-2 transition-transform mt-auto">
+                                {/* Link Stays Orange */}
+                                <div className="flex items-center gap-2 text-[#F59E0B] text-sm font-bold group-hover:translate-x-2 transition-transform mt-auto">
                                     READ ANALYSIS <ArrowRight size={16} />
                                 </div>
                             </div>
