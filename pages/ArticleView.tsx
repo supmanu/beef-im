@@ -5,6 +5,7 @@ import { request } from 'graphql-request';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { GET_POST_BY_SLUG } from '../queries';
 import SEO from '../components/SEO';
+import ShareNode from '../components/ShareNode';
 
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
@@ -239,6 +240,9 @@ const ArticleView: React.FC = () => {
             </ul>
           </div>
         )}
+
+        {/* Social Sharing Node */}
+        <ShareNode title={post.title} slug={slug || ''} />
 
         {/* Footer Navigation */}
         <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
