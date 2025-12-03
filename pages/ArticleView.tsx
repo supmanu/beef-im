@@ -110,6 +110,12 @@ const ArticleView: React.FC = () => {
                     font-['Sarabun'] 
                     leading-loose 
                     
+                    /* GLOBAL IMAGE ROUNDING */
+                    prose-img:rounded-2xl
+                    prose-img:shadow-lg
+                    prose-img:border
+                    prose-img:border-white/10
+
                     /* 1. HEADINGS (H2/H3) */
                     prose-headings:font-['Prompt'] 
                     prose-headings:text-white
@@ -165,7 +171,12 @@ const ArticleView: React.FC = () => {
                 ),
                 Asset: ({ mimeType, url, altText }: any) => (
                   <div className="my-8">
-                    <img src={url} alt={altText || 'Article Image'} className="w-full rounded-lg border border-white/10" />
+                    <img
+                      src={url}
+                      alt={altText || 'Article Image'}
+                      // 🚨 CRITICAL CHANGE: Increased rounding to rounded-2xl
+                      className="w-full rounded-2xl border border-white/10"
+                    />
                   </div>
                 )
               }
@@ -197,8 +208,10 @@ const ArticleView: React.FC = () => {
 
                 return (
                   <Wrapper key={idx} {...props}>
-                    <span className="text-[#F59E0B] font-bold">[{idx + 1}]</span>
-                    <span className={`font-medium ${hasUrl ? 'text-white group-hover:text-[#2bb1bb] transition-colors' : 'text-white'}`}>
+                    {/* 🚨 CRITICAL CHANGE 1: Increased size/boldness on Citation Index */}
+                    <span className="text-[#F59E0B] font-extrabold text-sm">[{idx + 1}]</span>
+                    {/* 🚨 CRITICAL CHANGE 2: Enforced bolding on Source Name */}
+                    <span className={`font-bold ${hasUrl ? 'text-gray-300 group-hover:text-[#2bb1bb] transition-colors' : 'text-gray-300'}`}>
                       {cite.sourceName}
                     </span>
                     <span className="hidden sm:inline text-gray-600">—</span>
