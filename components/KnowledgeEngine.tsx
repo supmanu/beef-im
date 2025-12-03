@@ -138,12 +138,9 @@ export default function KnowledgeEngine() {
 
                                 <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-1 font-['Sarabun']">
                                     {post.content.text
-                                        // 1. Replace literal "\n" (escaped newlines) with a space
-                                        .replace(/\\n/g, ' ')
-                                        // 2. Replace actual newlines with a space
-                                        .replace(/\n/g, ' ')
-                                        // 3. Collapse multiple resulting spaces into a single space
-                                        .replace(/\s+/g, ' ')
+                                        .split('\\n').join(' ') // Aggressive split/join for literal escaped newlines
+                                        .split('\n').join(' ')  // Aggressive split/join for actual newlines
+                                        .replace(/\s+/g, ' ')   // Collapse spaces
                                         .trim()
                                         .substring(0, 120)}...
                                 </p>

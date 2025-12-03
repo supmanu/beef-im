@@ -201,6 +201,9 @@ const ArticleView: React.FC = () => {
           />
         </div>
 
+        {/* Social Sharing Node */}
+        <ShareNode title={post.title} slug={slug || ''} />
+
         {/* Citations Footer (Smart Links) */}
         {post.citations.length > 0 && (
           <div className="mt-16 pt-8 border-t border-white/10">
@@ -240,9 +243,6 @@ const ArticleView: React.FC = () => {
             </ul>
           </div>
         )}
-
-        {/* Social Sharing Node */}
-        <ShareNode title={post.title} slug={slug || ''} />
 
         {/* Footer Navigation */}
         <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
