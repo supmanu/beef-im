@@ -64,8 +64,8 @@ export default function KnowledgeEngine() {
                     <button
                         onClick={() => setFilter('all')}
                         className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${filter === 'all'
-                                ? 'bg-white text-[#0B1D35] font-bold border-white scale-105'
-                                : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                            ? 'bg-white text-[#0B1D35] font-bold border-white scale-105'
+                            : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
                             }`}
                     >
                         All
@@ -75,8 +75,8 @@ export default function KnowledgeEngine() {
                             key={cat.id}
                             onClick={() => setFilter(cat.slug)}
                             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${filter === cat.slug
-                                    ? 'bg-[#2bb1bb] text-white border-[#2bb1bb] shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
-                                    : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                                ? 'bg-[#2bb1bb] text-white border-[#2bb1bb] shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
+                                : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
                                 }`}
                         >
                             {cat.name}
@@ -137,7 +137,12 @@ export default function KnowledgeEngine() {
                                 </h3>
 
                                 <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-1 font-['Sarabun']">
-                                    {post.content.text.substring(0, 120)}...
+                                    {post.content.text
+                                        // 1. Replace all newlines with a space
+                                        .replace(/\n/g, ' ')
+                                        // 2. Collapse multiple resulting spaces into a single space
+                                        .replace(/\s+/g, ' ')
+                                        .substring(0, 120)}...
                                 </p>
 
                                 {/* Link Stays Orange */}
