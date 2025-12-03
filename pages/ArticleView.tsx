@@ -4,13 +4,14 @@ import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { request } from 'graphql-request';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { GET_POST_BY_SLUG } from '../queries';
-import SEO from '../components/SEO'; // <--- 1. IMPORT SEO
 
+// NOTE: In a flat structure, we import from '../queries' to reach the root folder
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
+// Map Categories to Badge Colors
 const colorMap: Record<string, string> = {
-  emerald: 'text-emerald-400 border-emerald-500/30 bg-emerald-900/30',
-  amber: 'text-amber-400 border-amber-500/30 bg-amber-900/30',
+  emerald: 'text-[#10b981] border-[#10b981]/30 bg-[#10b981]/10',
+  amber: 'text-[#F59E0B] border-[#F59E0B]/30 bg-[#F59E0B]/10',
   blue: 'text-blue-400 border-blue-500/30 bg-blue-900/30',
   slate: 'text-slate-400 border-slate-500/30 bg-slate-900/30',
   default: 'text-gray-400 border-gray-500/30 bg-gray-900/30'
@@ -54,19 +55,12 @@ const ArticleView: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
-      {/* 2. DYNAMIC SEO SIGNALS */}
-      <SEO
-        title={post.title}
-        description={post.content.text.substring(0, 160) + "..."} // Auto-Excerpt
-        image={post.coverImage?.url}
-        slug={`/articles/${slug}`}
-        type="article"
-        publishedTime={post.releaseDate}
-      />
-
+      {/* Progress/Status Bar Visual (Teal for Logic) */}
       <div className="fixed top-0 left-0 h-1 bg-[#2bb1bb]/50 w-full z-40"></div>
 
       <article className="max-w-3xl mx-auto px-6">
+
+        {/* Navigation */}
         <button
           onClick={() => navigate('/articles')}
           className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8 text-sm font-medium tracking-wide"
@@ -75,6 +69,7 @@ const ArticleView: React.FC = () => {
           BACK TO ARCHIVE
         </button>
 
+        {/* Header Section */}
         <header className="mb-12 border-b border-white/10 pb-12">
           <div className="flex flex-wrap items-center gap-3 mb-6">
             {post.categories.map((cat: any) => (
@@ -93,7 +88,9 @@ const ArticleView: React.FC = () => {
           </h1>
 
           <div className="flex items-center gap-3">
+            {/* Author Avatar */}
             <div className="w-12 h-12 rounded-full bg-gray-700 overflow-hidden border-2 border-white flex items-center justify-center">
+              {/* Replace text with <img src="..." /> if you have a photo URL */}
               <span className="text-lg font-bold text-[#F59E0B]">N</span>
             </div>
             <div>
@@ -105,15 +102,58 @@ const ArticleView: React.FC = () => {
           </div>
         </header>
 
+        {/* --- THE CONTENT ENGINE (Rich Text) --- */}
         <div className="
-                    prose prose-lg prose-invert max-w-none text-gray-300 font-['Sarabun'] leading-loose 
-                    prose-headings:font-['Prompt'] prose-headings:text-white prose-headings:mt-12 prose-headings:mb-6
-                    prose-a:text-[#F59E0B] prose-a:no-underline prose-a:border-b prose-a:border-[#F59E0B]/50 prose-a:transition-colors hover:prose-a:text-[#F59E0B]/80
-                    prose-blockquote:border-l-4 prose-blockquote:border-[#2bb1bb] prose-blockquote:text-gray-200 prose-blockquote:bg-[#2bb1bb]/10 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:my-8
-                    prose-h4:text-[#2bb1bb] prose-h4:text-xs prose-h4:font-bold prose-h4:uppercase prose-h4:tracking-widest prose-h4:mb-2 prose-h4:mt-10
-                    prose-hr:border-[#2bb1bb]/30 prose-hr:my-12
+                    prose prose-lg prose-invert 
+                    max-w-none 
+                    text-gray-300 
+                    font-['Sarabun'] 
+                    leading-loose 
+                    
+                    /* 1. HEADINGS (H2/H3) */
+                    prose-headings:font-['Prompt'] 
+                    prose-headings:text-white
+                    prose-headings:mt-12
+                    prose-headings:mb-6
+                    
+                    /* 2. LINKS */
+                    prose-a:text-[#F59E0B] 
+                    prose-a:no-underline
+                    prose-a:border-b
+                    prose-a:border-[#F59E0B]/50
+                    prose-a:transition-colors
+                    hover:prose-a:text-[#F59E0B]/80
+                    
+                    /* 3. BLOCKQUOTES */
+                    prose-blockquote:border-l-4
+                    prose-blockquote:border-[#2bb1bb] 
+                    prose-blockquote:text-gray-200
+                    prose-blockquote:bg-[#2bb1bb]/10
+                    prose-blockquote:py-4
+                    prose-blockquote:px-6
+                    prose-blockquote:rounded-r-lg
+                    prose-blockquote:not-italic
+                    prose-blockquote:my-8
+
+                    /* 4. H4 HEADERS - Logic Labels */
+                    prose-h4:text-[#2bb1bb]
+                    prose-h4:text-xs
+                    prose-h4:font-bold
+                    prose-h4:uppercase
+                    prose-h4:tracking-widest
+                    prose-h4:mb-2
+                    prose-h4:mt-10
+                    
+                    /* 5. HR (Horizontal Rule) */
+                    prose-hr:border-[#2bb1bb]/30
+                    prose-hr:my-12
+
+                    /* 6. LISTS */
                     prose-li:marker:text-[#F59E0B]
-                    prose-strong:text-white prose-strong:font-bold
+                    
+                    /* 7. STRONG */
+                    prose-strong:text-white
+                    prose-strong:font-bold
                 ">
           <RichText
             content={post.content.raw}
@@ -133,24 +173,45 @@ const ArticleView: React.FC = () => {
           />
         </div>
 
+        {/* Citations Footer (Smart Links) */}
         {post.citations.length > 0 && (
           <div className="mt-16 pt-8 border-t border-white/10">
-            <h4 className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">
-              <BookOpen size={14} /> Primary Sources
+            {/* UPDATED: Thai Header + Prompt Font */}
+            <h4 className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 font-['Prompt']">
+              {/* Icon is now Teal (#2bb1bb) to signal "Verified Source" */}
+              <BookOpen size={14} className="text-[#2bb1bb]" />
+              เอกสารอ้างอิง (Primary Sources)
             </h4>
             <ul className="space-y-2">
-              {post.citations.map((cite: any, idx: number) => (
-                <li key={idx} className="text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                  <span className="text-[#F59E0B] font-bold">[{idx + 1}]</span>
-                  <span className="text-white font-medium">{cite.sourceName}</span>
-                  <span className="hidden sm:inline text-gray-600">—</span>
-                  <span className="text-gray-500">{cite.publisher} ({cite.year})</span>
-                </li>
-              ))}
+              {post.citations.map((cite: any, idx: number) => {
+                const hasUrl = !!cite.url;
+                const Wrapper = hasUrl ? 'a' : 'div';
+                const props = hasUrl ? {
+                  href: cite.url,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 hover:border-[#2bb1bb]/50 hover:bg-[#2bb1bb]/5 transition-all cursor-pointer group block w-full text-left"
+                } : {
+                  className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 block w-full text-left"
+                };
+
+                return (
+                  <Wrapper key={idx} {...props}>
+                    <span className="text-[#F59E0B] font-bold">[{idx + 1}]</span>
+                    <span className={`font-medium ${hasUrl ? 'text-white group-hover:text-[#2bb1bb] transition-colors' : 'text-white'}`}>
+                      {cite.sourceName}
+                    </span>
+                    <span className="hidden sm:inline text-gray-600">—</span>
+                    <span className="text-gray-500">{cite.publisher} ({cite.year})</span>
+                    {hasUrl && <span className="text-slate-600 group-hover:text-[#2bb1bb] ml-auto">↗</span>}
+                  </Wrapper>
+                );
+              })}
             </ul>
           </div>
         )}
 
+        {/* Footer Navigation */}
         <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-gray-500 text-sm">End of transmission.</p>
           <button
