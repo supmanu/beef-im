@@ -96,7 +96,6 @@ export default function KnowledgeEngine() {
                         <article
                             key={post.id}
                             onClick={() => navigate(`/articles/${post.slug}`)}
-                            // UPDATED CLASSNAME: Subtler Shadow + Semi-Transparent Border
                             className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#2bb1bb]/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] flex flex-col h-full cursor-pointer"
                         >
 
@@ -131,21 +130,20 @@ export default function KnowledgeEngine() {
                                     <span>{Math.ceil(post.content.text.split(' ').length / 200)} min read</span>
                                 </div>
 
-                                {/* Title Hovers Teal */}
                                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#2bb1bb] transition-colors font-['Prompt'] leading-snug">
                                     {post.title}
                                 </h3>
 
+                                {/* 🚨 DEEP SANITATION PATCH ACTIVE HERE */}
                                 <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-1 font-['Sarabun']">
                                     {post.content.text
-                                        .split('\\n').join(' ') // Aggressive split/join for literal escaped newlines
-                                        .split('\n').join(' ')  // Aggressive split/join for actual newlines
-                                        .replace(/\s+/g, ' ')   // Collapse spaces
-                                        .trim()
+                                        .replace(/\\n/g, ' ') // Strip literal "\n" strings
+                                        .replace(/\n/g, ' ')  // Strip real newlines
+                                        .replace(/\s+/g, ' ') // Collapse double spaces
+                                        .trim()               // Clean edges
                                         .substring(0, 120)}...
                                 </p>
 
-                                {/* Link Stays Orange */}
                                 <div className="flex items-center gap-2 text-[#F59E0B] text-sm font-bold group-hover:translate-x-2 transition-transform mt-auto">
                                     READ ANALYSIS <ArrowRight size={16} />
                                 </div>

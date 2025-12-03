@@ -201,8 +201,8 @@ const ArticleView: React.FC = () => {
           />
         </div>
 
-        {/* Social Sharing Node */}
-        <ShareNode title={post.title} slug={slug || ''} />
+        {/* 🚨 MOVED UP: SHARE NODE (Capture High Dopamine) */}
+        {post && <ShareNode title={post.title} slug={slug!} />}
 
         {/* Citations Footer (Smart Links) */}
         {post.citations.length > 0 && (
