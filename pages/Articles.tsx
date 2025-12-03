@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, Calendar, ChevronRight, Search, X, ArrowRight } from 'lucide-react';
+import { Clock, Search, X, ArrowRight } from 'lucide-react'; // Removed Calendar/ChevronRight if unused
 import { request } from 'graphql-request';
 import { GET_ARCHIVE } from '../queries';
 
@@ -84,8 +84,8 @@ const Articles: React.FC = () => {
             <button
               onClick={() => setSelectedCategory(null)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${selectedCategory === null
-                  ? 'bg-white text-[#0B1D35] font-bold border-white scale-105'
-                  : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                ? 'bg-white text-[#0B1D35] font-bold border-white scale-105'
+                : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
                 }`}
             >
               All
@@ -95,8 +95,8 @@ const Articles: React.FC = () => {
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.slug)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${selectedCategory === cat.slug
-                    ? 'bg-[#2bb1bb] text-white border-[#2bb1bb] shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
-                    : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                  ? 'bg-[#2bb1bb] text-white border-[#2bb1bb] shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
+                  : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
                   }`}
               >
                 {cat.name}
@@ -113,7 +113,6 @@ const Articles: React.FC = () => {
             <article
               key={article.id}
               onClick={() => navigate(`/articles/${article.slug}`)}
-              // 👇 THIS IS THE LINE YOU WERE LOOKING FOR 👇
               className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#2bb1bb]/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] flex flex-col h-full cursor-pointer"
             >
               <div className="h-48 overflow-hidden relative bg-slate-900">
@@ -147,8 +146,14 @@ const Articles: React.FC = () => {
                   {article.title}
                 </h3>
 
+                {/* 🚨 DEEP SANITATION PATCH: APPLIED TO ARCHIVE GRID */}
                 <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1 font-['Sarabun'] line-clamp-3">
-                  {article.content.text}
+                  {article.content.text
+                    .replace(/\\n/g, ' ') // Strip literal "\n"
+                    .replace(/\n/g, ' ')  // Strip real newlines
+                    .replace(/\s+/g, ' ') // Collapse spaces
+                    .trim()               // Clean start/end
+                    .substring(0, 120)}...
                 </p>
 
                 <div className="flex items-center gap-2 text-[#F59E0B] text-sm font-bold tracking-wide group-hover:translate-x-2 transition-transform mt-auto">
