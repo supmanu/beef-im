@@ -4,9 +4,12 @@ import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { request } from 'graphql-request';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { GET_POST_BY_SLUG } from '../queries';
+import SEO from '../components/SEO';
 
-// NOTE: In a flat structure, we import from '../queries' to reach the root folder
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
+
+// 📸 AUTHOR AVATAR (Hardcoded for Phase 4)
+const AVATAR_URL = "https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmiq5wff81fd707plg0f2l2y4";
 
 // Map Categories to Badge Colors
 const colorMap: Record<string, string> = {
@@ -55,6 +58,16 @@ const ArticleView: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
+      {/* SEO SIGNALS */}
+      <SEO
+        title={post.title}
+        description={post.content.text.substring(0, 160) + "..."}
+        image={post.coverImage?.url}
+        slug={`/articles/${slug}`}
+        type="article"
+        publishedTime={post.releaseDate}
+      />
+
       {/* Progress/Status Bar Visual (Teal for Logic) */}
       <div className="fixed top-0 left-0 h-1 bg-[#2bb1bb]/50 w-full z-40"></div>
 
@@ -90,8 +103,11 @@ const ArticleView: React.FC = () => {
           <div className="flex items-center gap-3">
             {/* Author Avatar */}
             <div className="w-12 h-12 rounded-full bg-gray-700 overflow-hidden border-2 border-white flex items-center justify-center">
-              {/* Replace text with <img src="..." /> if you have a photo URL */}
-              <span className="text-lg font-bold text-[#F59E0B]">N</span>
+              <img
+                src={AVATAR_URL}
+                alt="Nerd with Nart"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <div className="text-white text-sm font-bold">Nerd with Nart</div>
@@ -104,63 +120,63 @@ const ArticleView: React.FC = () => {
 
         {/* --- THE CONTENT ENGINE (Rich Text) --- */}
         <div className="
-                    prose prose-lg prose-invert 
-                    max-w-none 
-                    text-gray-300 
-                    font-['Sarabun'] 
-                    leading-loose 
-                    
-                    /* GLOBAL IMAGE ROUNDING */
-                    prose-img:rounded-2xl
-                    prose-img:shadow-lg
-                    prose-img:border
-                    prose-img:border-white/10
+            prose prose-lg prose-invert 
+            max-w-none 
+            text-gray-300 
+            font-['Sarabun'] 
+            leading-loose 
+            
+            /* GLOBAL IMAGE ROUNDING */
+            prose-img:rounded-2xl
+            prose-img:shadow-lg
+            prose-img:border
+            prose-img:border-white/10
 
-                    /* 1. HEADINGS (H2/H3) */
-                    prose-headings:font-['Prompt'] 
-                    prose-headings:text-white
-                    prose-headings:mt-12
-                    prose-headings:mb-6
-                    
-                    /* 2. LINKS */
-                    prose-a:text-[#F59E0B] 
-                    prose-a:no-underline
-                    prose-a:border-b
-                    prose-a:border-[#F59E0B]/50
-                    prose-a:transition-colors
-                    hover:prose-a:text-[#F59E0B]/80
-                    
-                    /* 3. BLOCKQUOTES */
-                    prose-blockquote:border-l-4
-                    prose-blockquote:border-[#2bb1bb] 
-                    prose-blockquote:text-gray-200
-                    prose-blockquote:bg-[#2bb1bb]/10
-                    prose-blockquote:py-4
-                    prose-blockquote:px-6
-                    prose-blockquote:rounded-r-lg
-                    prose-blockquote:not-italic
-                    prose-blockquote:my-8
+            /* 1. HEADINGS (H2/H3) */
+            prose-headings:font-['Prompt'] 
+            prose-headings:text-white
+            prose-headings:mt-12
+            prose-headings:mb-6
+            
+            /* 2. LINKS */
+            prose-a:text-[#F59E0B] 
+            prose-a:no-underline
+            prose-a:border-b
+            prose-a:border-[#F59E0B]/50
+            prose-a:transition-colors
+            hover:prose-a:text-[#F59E0B]/80
+            
+            /* 3. BLOCKQUOTES */
+            prose-blockquote:border-l-4
+            prose-blockquote:border-[#2bb1bb] 
+            prose-blockquote:text-gray-200
+            prose-blockquote:bg-[#2bb1bb]/10
+            prose-blockquote:py-4
+            prose-blockquote:px-6
+            prose-blockquote:rounded-r-lg
+            prose-blockquote:not-italic
+            prose-blockquote:my-8
 
-                    /* 4. H4 HEADERS - Logic Labels */
-                    prose-h4:text-[#2bb1bb]
-                    prose-h4:text-xs
-                    prose-h4:font-bold
-                    prose-h4:uppercase
-                    prose-h4:tracking-widest
-                    prose-h4:mb-2
-                    prose-h4:mt-10
-                    
-                    /* 5. HR (Horizontal Rule) */
-                    prose-hr:border-[#2bb1bb]/30
-                    prose-hr:my-12
+            /* 4. H4 HEADERS - Logic Labels */
+            prose-h4:text-[#2bb1bb]
+            prose-h4:text-xs
+            prose-h4:font-bold
+            prose-h4:uppercase
+            prose-h4:tracking-widest
+            prose-h4:mb-2
+            prose-h4:mt-10
+            
+            /* 5. HR (Horizontal Rule) */
+            prose-hr:border-[#2bb1bb]/30
+            prose-hr:my-12
 
-                    /* 6. LISTS */
-                    prose-li:marker:text-[#F59E0B]
-                    
-                    /* 7. STRONG */
-                    prose-strong:text-white
-                    prose-strong:font-bold
-                ">
+            /* 6. LISTS */
+            prose-li:marker:text-[#F59E0B]
+            
+            /* 7. STRONG */
+            prose-strong:text-white
+            prose-strong:font-bold
+          ">
           <RichText
             content={post.content.raw}
             references={post.content.references}
@@ -174,7 +190,7 @@ const ArticleView: React.FC = () => {
                     <img
                       src={url}
                       alt={altText || 'Article Image'}
-                      // 🚨 CRITICAL CHANGE: Increased rounding to rounded-2xl
+                      // Redundant here due to prose-img global, but kept for safety
                       className="w-full rounded-2xl border border-white/10"
                     />
                   </div>
