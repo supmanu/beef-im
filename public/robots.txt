@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.nerdwithnart.com/sitemap.xml
+Sitemap: https://nerdwithnart.com/sitemap.xml
