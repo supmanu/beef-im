@@ -66,7 +66,6 @@ export const GET_POST_BY_SLUG = gql`
       citations {
         sourceName
         publisher
-        year
         url
         tier
       }

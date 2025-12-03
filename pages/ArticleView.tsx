@@ -188,7 +188,7 @@ const ArticleView: React.FC = () => {
         {post.citations.length > 0 && (
           <div className="mt-16 pt-8 border-t border-white/10">
             {/* UPDATED: Thai Header + Prompt Font */}
-            <h4 className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 font-['Prompt']">
+            <h4 className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 font-['Prompt']">
               {/* Icon is now Teal (#2bb1bb) to signal "Verified Source" */}
               <BookOpen size={14} className="text-[#2bb1bb]" />
               เอกสารอ้างอิง (Primary Sources)
@@ -211,11 +211,11 @@ const ArticleView: React.FC = () => {
                     {/* 🚨 CRITICAL CHANGE 1: Increased size/boldness on Citation Index */}
                     <span className="text-[#F59E0B] font-extrabold text-sm">[{idx + 1}]</span>
                     {/* 🚨 CRITICAL CHANGE 2: Enforced bolding on Source Name */}
-                    <span className={`font-bold ${hasUrl ? 'text-gray-300 group-hover:text-[#2bb1bb] transition-colors' : 'text-gray-300'}`}>
+                    <span className={`font-bold ${hasUrl ? 'text-gray-400 group-hover:text-[#2bb1bb] transition-colors' : 'text-gray-400'}`}>
                       {cite.sourceName}
                     </span>
                     <span className="hidden sm:inline text-gray-600">—</span>
-                    <span className="text-gray-500">{cite.publisher} ({cite.year})</span>
+                    <span className="text-gray-500">{cite.publisher}</span>
                     {hasUrl && <span className="text-slate-600 group-hover:text-[#2bb1bb] ml-auto">↗</span>}
                   </Wrapper>
                 );
