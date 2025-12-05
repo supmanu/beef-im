@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FacebookShareButton, LineShareButton, LinkedinShareButton } from 'react-share';
-import { Facebook, Linkedin, Link as LinkIcon, Check, Send } from 'lucide-react';
+import { Facebook, Linkedin, Link as LinkIcon, Check } from 'lucide-react';
 
 interface ShareNodeProps {
     title: string;
@@ -21,15 +21,30 @@ const ShareNode: React.FC<ShareNodeProps> = ({ title, slug }) => {
     const btnClass = "w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 transition-all duration-300 hover:scale-110 hover:border-[#F59E0B]/50 hover:text-white hover:bg-[#F59E0B]/10 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)]";
 
     return (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-8 my-12 border-t border-b border-white/10 bg-[#0f2645]/30 rounded-xl px-8">
+        <div className="
+            /* MOBILE LAYOUT: Sticky Bottom */
+            fixed bottom-0 left-0 w-full z-50 
+            bg-[#0F2440]/90 backdrop-blur-md 
+            border-t border-teal-500/30 
+            p-4 
+            flex justify-between items-center
+            
+            /* DESKTOP LAYOUT: Floating Pill */
+            md:static md:w-auto 
+            md:bg-[#0B1D35] 
+            md:border md:border-teal-500 
+            md:rounded-full 
+            md:px-8 md:py-4 
+            md:hover:shadow-[0_0_20px_rgba(43,177,187,0.2)] 
+            md:transition-shadow
+            md:flex-col md:gap-4 md:items-center
+            md:mx-auto md:my-12
+        ">
 
             {/* Label */}
-            <div className="flex flex-col items-center sm:items-start">
-                <span className="text-[#2bb1bb] text-[10px] font-bold uppercase tracking-[0.2em] font-['Prompt'] mb-1">
-                    Transmit Data
-                </span>
-                <span className="text-slate-400 text-sm font-light">
-                    Share this intelligence with your network.
+            <div className="flex flex-col items-start md:items-center">
+                <span className="text-amber-500 text-xs font-bold uppercase tracking-widest font-['Prompt'] leading-none">
+                    TRANSMIT DATA
                 </span>
             </div>
 
@@ -43,15 +58,11 @@ const ShareNode: React.FC<ShareNodeProps> = ({ title, slug }) => {
                     </div>
                 </FacebookShareButton>
 
-                {/* LINE (Custom Icon) */}
+                {/* LINE (Official Green #06C755) */}
                 <LineShareButton url={url} title={title} className="group">
                     <div className={btnClass} title="Share to LINE">
-                        <svg
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="w-[18px] h-[18px]"
-                        >
-                            <path d="M21.35 11.1h-.17c-.3-5-4.43-9-9.48-9-5.3 0-9.6 4.07-9.6 9.07 0 4.5 3.46 8.27 8.08 8.95.53.12 1.25.35 1.44.8.1.28.06.67-.03 1.05-.13.56-.6 2.22-.7 2.7-.1.46.23.68.6.36.43-.36 3.6-3.1 4.92-4.22 3.1-2.4 4.88-4.72 4.94-9.7z" />
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-[#06C755]">
+                            <path d="M22 10.8c0-4.8-5.3-8.8-12-8.8S2 6 2 10.8c0 4.2 3.8 7.8 9 8.6.4.1.9.3 1 .9.1.5.1.8 0 1-.2 1.3-1.6 3.4-1.6 3.4s-.1.6.4.6.8-.5 3.3-2.7c2.3-2 6.6-2.2 6.6-2.2 4.3-.6 7.3-4.5 7.3-9.6z" />
                         </svg>
                     </div>
                 </LineShareButton>
