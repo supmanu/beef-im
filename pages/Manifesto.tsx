@@ -35,7 +35,7 @@ const Manifesto = () => {
       {/* Image Layer (Placeholder URL - User to replace) */}
       <div
         className="fixed inset-0 z-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: "url('https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit8t8in13t807nzx2v9h79z')" }}
+        style={{ backgroundImage: "url('https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit9qvyx13ln07pjg8ad4u8t')" }}
       ></div>
 
       {/* Black Overlay for Readability */}
