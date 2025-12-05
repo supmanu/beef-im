@@ -89,3 +89,20 @@ export const GET_TOOLS = gql`
     }
   }
 `;
+
+// --- 4. FOR THE SEARCH INDEX (Fuse.js) ---
+export const GET_SEARCH_INDEX = gql`
+  query GetSearchIndex {
+    posts(first: 100) {
+      id
+      title
+      slug
+      categories {
+        name
+      }
+      content {
+        text
+      }
+    }
+  }
+`;

@@ -8,11 +8,14 @@ import Snowstorm from '../components/Snowstorm';
 import HeroHUD from '../components/HeroHUD';
 import KnowledgeEngine from '../components/KnowledgeEngine';
 
+import { useSearchModal } from '../context/SearchContext';
+
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [weather, setWeather] = useState({ temp: -15, wind: 20 });
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 500], [1, 1.15]);
+  const { openSearch } = useSearchModal();
 
   useEffect(() => {
     const wind = Math.floor(Math.random() * 31) + 10;
@@ -24,7 +27,7 @@ const Home: React.FC = () => {
     <div className="w-full bg-[#0B1D35]">
       {/* 2. INJECT SIGNALS */}
       <SEO
-        title="Financial Strategy & Insurance"
+        title="Financial Strategy"
         description="Data. Logic. Legacy. Designing financial architecture and insurance systems for the sophisticated investor."
         slug="/"
       />
@@ -40,7 +43,7 @@ const Home: React.FC = () => {
             className="absolute inset-0 w-full h-full"
           >
             <motion.img
-              src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit0zifi0zi607pjkz9li6cq"
+              src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit33qbm10wh07nz61n3l18i"
               alt="Mountain Expedition"
               className="w-full h-full object-cover opacity-60"
               style={{ scale }}
@@ -90,11 +93,15 @@ const Home: React.FC = () => {
             transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <div className="flex-1 max-w-md h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center px-2 pl-6 transition-colors focus-within:bg-white/10 focus-within:border-white/30">
+            <div
+              className="flex-1 max-w-md h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center px-2 pl-6 transition-colors hover:bg-white/10 hover:border-white/30 cursor-pointer"
+              onClick={openSearch}
+            >
               <input
                 type="text"
+                readOnly
                 placeholder="ค้นหา Unit-Linked, COI, หรือ แผนเกษียณ..."
-                className="bg-transparent border-none outline-none text-white placeholder-gray-400 flex-1 text-sm h-full"
+                className="bg-transparent border-none outline-none text-white placeholder-gray-400 flex-1 text-sm h-full cursor-pointer pointer-events-none"
               />
               <button className="h-10 w-10 rounded-full bg-[#F59E0B] hover:bg-[#d97706] flex items-center justify-center text-[#0B1D35] transition-colors">
                 <ArrowRight size={20} />
@@ -137,7 +144,7 @@ const Home: React.FC = () => {
               <img
                 src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qaew10q007nzdhsh86ra"
                 alt="Core Mechanisms"
-                className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay"
+                className="w-full h-full object-cover object-right-bottom opacity-40 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/80 to-transparent"></div>
             </div>
@@ -176,7 +183,7 @@ const Home: React.FC = () => {
             <img
               src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qacu106807pjid7pu2iy"
               alt="Medical Audit"
-              className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+              className="absolute inset-0 w-full h-full object-cover object-[30%_20%] opacity-60 group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/50 to-transparent"></div>
             <div className="absolute bottom-0 left-0 p-8 w-full">
@@ -195,7 +202,7 @@ const Home: React.FC = () => {
             </div>
           </GlassCard>
 
-          <GlassCard className="col-span-1 md:col-span-2 p-8 relative overflow-hidden flex flex-row items-center justify-between">
+          <GlassCard className="col-span-1 md:col-span-2 p-8 relative overflow-hidden flex flex-row items-center justify-between group">
             <div className="relative z-10 max-w-sm">
               <div className="flex items-center gap-2 text-[#F59E0B] text-xs font-bold tracking-widest mb-3">
                 <Shield size={14} /> ARMORY
@@ -213,7 +220,7 @@ const Home: React.FC = () => {
               </button>
             </div>
             <div className="absolute right-0 top-0 h-full w-1/2 opacity-20 pointer-events-none">
-              <div className="w-full h-full bg-[url('https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qags106f07pjena59ajv')] bg-cover bg-center grayscale mix-blend-overlay"></div>
+              <div className="w-full h-full bg-[url('https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qags106f07pjena59ajv')] bg-cover bg-bottom grayscale mix-blend-overlay group-hover:scale-105 transition-transform duration-700"></div>
             </div>
           </GlassCard>
         </div>

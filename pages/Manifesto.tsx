@@ -1,49 +1,163 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Brain, ShieldAlert, MountainSnow, ChevronDown, Plus } from 'lucide-react';
+import ParticleBackground from '../components/ParticleBackground'; // ADJUST PATH IF NEEDED
 
-const Manifesto: React.FC = () => {
+// CONTENT DATA (The Soul)
+const coreValues = [
+  {
+    id: 'data',
+    title: 'Data over Emotion',
+    icon: Brain,
+    desc: 'เราขจัด ความไม่สมมาตรของข้อมูล (Information Asymmetry) ด้วยตัวเลขและสถิติ เพื่อให้คุณตัดสินใจบนความจริง ไม่ใช่ความกลัว'
+  },
+  {
+    id: 'risk',
+    title: 'Risk First',
+    icon: ShieldAlert,
+    desc: 'เหมือนที่ Ed Viesturs กล่าวไว้: "การขึ้นสู่ยอดเขาเป็นทางเลือก แต่การกลับลงมาคือข้อบังคับ" (Getting down is mandatory) เราปิดประตูความเสี่ยงก่อนที่จะเริ่มลงทุนเสมอ'
+  },
+  {
+    id: 'long',
+    title: 'The Long Game',
+    icon: MountainSnow,
+    desc: 'ความมั่งคั่งไม่ใช่การวิ่งระยะสั้น (Sprint) แต่คือการรักษาสถานะให้ยืนระยะได้นานที่สุด (Endurance) เพื่อชัยชนะที่ยั่งยืน'
+  }
+];
+
+const Manifesto = () => {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
   return (
-    <div className="pt-32 pb-20 px-6 min-h-screen flex justify-center">
-       <div className="max-w-3xl w-full">
-          <span className="text-[#F59E0B] font-bold tracking-widest text-xs mb-4 block uppercase">The Philosophy</span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-12 leading-tight">
-            The Summit doesn't care about your speed.
-          </h1>
-          
-          <div className="space-y-8 text-lg text-gray-300 font-light leading-relaxed font-['Sarabun']">
-             <p>
-               <strong className="text-white font-bold">ผมเรียนรู้เรื่อง Compounding ไม่ใช่ในห้องเรียน...</strong><br/>
-               แต่บนยอดเขา ท่ามกลางอากาศที่เบาบาง ทุกก้าวที่เดินขึ้นไปสอนให้รู้ว่า พลังที่ยิ่งใหญ่ที่สุดไม่ใช่แรงระเบิดในช่วงแรก 
-               แต่คือความสม่ำเสมอในการรักษาระดับออกซิเจนในเลือด
-             </p>
-             <hr className="border-white/10 w-24" />
-             <p>
-               การเงินก็เช่นกัน เรามักหลงใหลในผลตอบแทนระยะสั้นที่หวือหวา แต่ลืมสร้าง "ฐาน" (Basecamp) 
-               ที่แข็งแกร่งพอจะรับมือกับพายุเศรษฐกิจที่ไม่คาดฝัน
-             </p>
-             <p>
-               ที่ <span className="text-white font-bold">Nerd with Nart</span> เราไม่ได้ขายตั๋วทางลัดสู่ความรวย 
-               แต่เรามอบเครื่องมือ แผนที่ และเข็มทิศ ให้คุณเดินถึงยอดเขา... อย่างปลอดภัย
-             </p>
+    <div className="relative min-h-screen bg-[#0B1D35] text-white overflow-hidden pt-24 px-6 pb-20">
+      {/* 1. BACKGROUND: Constellation Effect */}
+      <ParticleBackground />
+
+      {/* Background Gradient for Depth */}
+      <div className="fixed inset-0 bg-gradient-to-b from-[#0B1D35] via-transparent to-[#0B1D35] z-0 pointer-events-none" />
+
+      <div className="relative z-10 max-w-4xl mx-auto space-y-16">
+
+        {/* 2. NARRATIVE HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center space-y-6"
+        >
+          <div className="inline-block px-3 py-1 border border-amber-500/30 rounded-full bg-amber-500/10 mb-4">
+            <span className="text-amber-500 text-xs font-bold tracking-[0.2em]">THE PHILOSOPHY</span>
           </div>
 
-          <div className="mt-16 p-8 bg-[#F59E0B]/10 border border-[#F59E0B]/20 rounded-2xl">
-             <h3 className="text-xl font-bold text-[#F59E0B] mb-4">Our Core Values</h3>
-             <ul className="space-y-4">
-               <li className="flex items-start gap-3">
-                 <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] mt-2.5"></span>
-                 <span className="text-gray-300"><strong className="text-white">Data over Emotion:</strong> ตัดสินใจด้วยตัวเลข ไม่ใช่ความรู้สึก</span>
-               </li>
-               <li className="flex items-start gap-3">
-                 <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] mt-2.5"></span>
-                 <span className="text-gray-300"><strong className="text-white">Risk First:</strong> มองหาความเสี่ยงก่อนผลตอบแทนเสมอ</span>
-               </li>
-               <li className="flex items-start gap-3">
-                 <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] mt-2.5"></span>
-                 <span className="text-gray-300"><strong className="text-white">Long Game:</strong> เราเล่นเกมยาว เพื่อชัยชนะที่ยั่งยืน</span>
-               </li>
-             </ul>
+          <h1 className="text-4xl md:text-6xl font-prompt font-bold leading-tight">
+            The Summit doesn't care <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
+              about your speed.
+            </span>
+          </h1>
+
+          <p className="font-sarabun text-xl text-slate-400 italic">
+            "We Do Not Convince. We Confirm."
+          </p>
+
+          <div className="max-w-2xl mx-auto space-y-6 text-slate-300 font-sarabun text-lg leading-relaxed text-left md:text-center pt-8">
+            <p>
+              ผมเรียนรู้เรื่อง Compounding ไม่ใช่ในห้องเรียน... แต่บนยอดเขา ท่ามกลางอากาศที่เบาบาง
+              ทุกก้าวที่เดินขึ้นไปสอนให้รู้ว่า พลังที่ยิ่งใหญ่ที่สุดไม่ใช่แรงระเบิดในช่วงแรก
+              แต่คือความสม่ำเสมอในการรักษาระดับออกซิเจนในเลือด
+            </p>
+            <p>
+              ที่ <strong className="text-white">Nerd with Nart</strong> เราไม่ได้ขายตั๋วทางลัดสู่ความรวย
+              แต่เรามอบเครื่องมือ แผนที่ และเข็มทิศ ให้คุณเดินถึงยอดเขา... อย่างปลอดภัย
+            </p>
           </div>
-       </div>
+        </motion.div>
+
+        {/* 3. THE HOLOGRAPHIC MONOLITH */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="relative bg-[#0F2440]/60 backdrop-blur-md rounded-3xl border border-teal-500/20 overflow-hidden shadow-2xl"
+        >
+          {/* HUD Decorations */}
+          <div className="absolute top-4 left-4 text-teal-500/20"><Plus size={16} /></div>
+          <div className="absolute top-4 right-4 text-teal-500/20"><Plus size={16} /></div>
+          <div className="absolute bottom-4 left-4 text-teal-500/20"><Plus size={16} /></div>
+          <div className="absolute bottom-4 right-4 text-teal-500/20"><Plus size={16} /></div>
+
+          <div className="divide-y divide-teal-500/10">
+            {coreValues.map((item, index) => {
+              const isActive = activeCard === index;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  className={`relative cursor-pointer transition-colors duration-300 ${isActive ? 'bg-teal-900/20' : 'hover:bg-white/5'}`}
+                  onClick={() => setActiveCard(isActive ? null : index)}
+                  onMouseEnter={() => setActiveCard(index)} // Optional: Hover to open
+                  layout
+                >
+                  {/* Active Indicator Line */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeLine"
+                      className="absolute left-0 top-0 bottom-0 w-1 bg-amber-500"
+                    />
+                  )}
+
+                  <div className="p-6 md:p-8 flex items-start gap-6">
+                    {/* ICON */}
+                    <div className={`mt-1 transition-colors duration-300 ${isActive ? 'text-amber-500' : 'text-slate-500'}`}>
+                      <item.icon size={32} strokeWidth={1.5} />
+                    </div>
+
+                    {/* TEXT CONTENT */}
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center mb-2">
+                        <h3 className={`text-xl font-prompt font-bold transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-300'}`}>
+                          {item.title}
+                        </h3>
+                        <ChevronDown
+                          size={20}
+                          className={`text-slate-500 transition-transform duration-300 ${isActive ? 'rotate-180 text-amber-500' : ''}`}
+                        />
+                      </div>
+
+                      <AnimatePresence>
+                        {isActive && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="font-sarabun text-slate-300 pt-2 leading-relaxed">
+                              {item.desc}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* 4. FOOTER QUOTE */}
+        <div className="text-center pb-12 opacity-40 hover:opacity-100 transition-opacity duration-500">
+          <img
+            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Compass.png"
+            alt="Compass"
+            className="w-12 h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition-all duration-500"
+          />
+          <p className="font-prompt text-sm tracking-widest">EST. 2025 • BASECAMP</p>
+        </div>
+
+      </div>
     </div>
   );
 };
