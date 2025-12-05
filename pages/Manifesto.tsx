@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, ShieldAlert, MountainSnow, ChevronDown, Plus } from 'lucide-react';
-import ParticleBackground from '../components/ParticleBackground'; // ADJUST PATH IF NEEDED
+import { Brain, ShieldAlert, MountainSnow, ChevronDown, Plus, Compass } from 'lucide-react';
+import ParticleBackground from '../components/ParticleBackground';
 
 // CONTENT DATA (The Soul)
 const coreValues = [
@@ -29,12 +29,22 @@ const Manifesto = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   return (
+    // 1. BACKGROUND LAYER FIX
     <div className="relative min-h-screen bg-[#0B1D35] text-white overflow-hidden pt-24 px-6 pb-20">
-      {/* 1. BACKGROUND: Constellation Effect */}
-      <ParticleBackground />
 
-      {/* Background Gradient for Depth */}
-      <div className="fixed inset-0 bg-gradient-to-b from-[#0B1D35] via-transparent to-[#0B1D35] z-0 pointer-events-none" />
+      {/* Image Layer (Placeholder URL - User to replace) */}
+      <div
+        className="fixed inset-0 z-0 bg-cover bg-center opacity-40"
+        style={{ backgroundImage: "url('https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit8t8in13t807nzx2v9h79z')" }}
+      ></div>
+
+      {/* Black Overlay for Readability */}
+      <div className="fixed inset-0 z-0 bg-black/60"></div>
+
+      {/* Constellation Effect (On top of image/overlay) */}
+      <div className="relative z-0">
+        <ParticleBackground />
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto space-y-16">
 
@@ -95,7 +105,7 @@ const Manifesto = () => {
                   key={item.id}
                   className={`relative cursor-pointer transition-colors duration-300 ${isActive ? 'bg-teal-900/20' : 'hover:bg-white/5'}`}
                   onClick={() => setActiveCard(isActive ? null : index)}
-                  onMouseEnter={() => setActiveCard(index)} // Optional: Hover to open
+                  onMouseEnter={() => setActiveCard(index)}
                   layout
                 >
                   {/* Active Indicator Line */}
@@ -147,14 +157,10 @@ const Manifesto = () => {
           </div>
         </motion.div>
 
-        {/* 4. FOOTER QUOTE */}
-        <div className="text-center pb-12 opacity-40 hover:opacity-100 transition-opacity duration-500">
-          <img
-            src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Compass.png"
-            alt="Compass"
-            className="w-12 h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition-all duration-500"
-          />
-          <p className="font-prompt text-sm tracking-widest">EST. 2025 • BASECAMP</p>
+        {/* 4. FOOTER QUOTE (Fixed) */}
+        <div className="text-center pb-12 opacity-60 hover:opacity-100 transition-opacity duration-500">
+          <Compass size={48} strokeWidth={1} className="mx-auto mb-4 text-slate-600" />
+          <p className="font-prompt text-sm tracking-widest text-slate-400">BASECAMP • BANGKOK</p>
         </div>
 
       </div>
