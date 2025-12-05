@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     <div className="w-full bg-[#0B1D35]">
       {/* 2. INJECT SIGNALS */}
       <SEO
-        title="Basecamp"
+        title="Financial Strategy & Insurance"
         description="Data. Logic. Legacy. Designing financial architecture and insurance systems for the sophisticated investor."
         slug="/"
       />
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
             className="absolute inset-0 w-full h-full"
           >
             <motion.img
-              src="https://picsum.photos/id/1036/1920/1080"
+              src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit0zifi0zi607pjkz9li6cq"
               alt="Mountain Expedition"
               className="w-full h-full object-cover opacity-60"
               style={{ scale }}
@@ -132,11 +132,19 @@ const Home: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
           {/* ... (Kept Bento Grid same as before for brevity) ... */}
-          <GlassCard className="col-span-1 md:col-span-2 p-8 flex flex-col justify-between relative group">
-            <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity">
+          <GlassCard className="col-span-1 md:col-span-2 p-8 flex flex-col justify-between relative group overflow-hidden">
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qaew10q007nzdhsh86ra"
+                alt="Core Mechanisms"
+                className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/80 to-transparent"></div>
+            </div>
+            <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity z-10">
               <Map size={32} className="text-white" />
             </div>
-            <div>
+            <div className="relative z-10">
               <div className="flex items-center gap-2 text-[#F59E0B] text-xs font-bold tracking-widest mb-3">
                 <Map size={14} /> NAVIGATION
               </div>
@@ -145,7 +153,7 @@ const Home: React.FC = () => {
                 โครงสร้างพื้นฐานที่จำเป็นก่อนเริ่มออกเดินทาง เจาะลึกกลไกการทำงานของเครื่องมือทางการเงิน
               </p>
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 relative z-10">
               {['COI Structures', 'Estate Planning', 'Tax Efficiency'].map(tag => (
                 <span key={tag} className="px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default">
                   {tag}
@@ -153,7 +161,7 @@ const Home: React.FC = () => {
               ))}
             </div>
             <div
-              className="mt-6 flex items-center gap-2 text-[#2bb1bb] hover:text-[#3ce2ee] cursor-pointer transition-colors w-fit"
+              className="mt-6 flex items-center gap-2 text-[#2bb1bb] hover:text-[#3ce2ee] cursor-pointer transition-colors w-fit relative z-10"
               onClick={() => navigate('/articles')}
             >
               <span className="text-sm font-medium">Browse Full Archive</span>
@@ -166,7 +174,7 @@ const Home: React.FC = () => {
             onClick={() => navigate('/articles')}
           >
             <img
-              src="https://picsum.photos/id/1000/600/1000"
+              src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qacu106807pjid7pu2iy"
               alt="Medical Audit"
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
             />
@@ -205,7 +213,7 @@ const Home: React.FC = () => {
               </button>
             </div>
             <div className="absolute right-0 top-0 h-full w-1/2 opacity-20 pointer-events-none">
-              <div className="w-full h-full bg-[url('https://picsum.photos/id/199/600/400')] bg-cover bg-center grayscale mix-blend-overlay"></div>
+              <div className="w-full h-full bg-[url('https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qags106f07pjena59ajv')] bg-cover bg-center grayscale mix-blend-overlay"></div>
             </div>
           </GlassCard>
         </div>

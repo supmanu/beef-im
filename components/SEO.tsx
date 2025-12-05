@@ -24,7 +24,7 @@ export default function SEO({
 
   const siteUrl = 'https://nerdwithnart.com';
   const fullUrl = `${siteUrl}${slug}`;
-  const fullTitle = `${title} | Nerd with Nart`;
+  const fullTitle = slug === '/' ? `Nerd with Nart | ${title}` : `${title} | Nerd with Nart`;
 
   // GEO SIGNAL: JSON-LD Structured Data for AI Authority
   const structuredData = type === 'article' ? {
@@ -66,6 +66,7 @@ export default function SEO({
       <meta property="og:type" content={type} />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:title" content={fullTitle} />
+      <meta property="og:site_name" content="Nerd with Nart" />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
 
