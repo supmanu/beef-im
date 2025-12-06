@@ -1,47 +1,86 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, MessageCircle, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-brand-dark border-t border-brand-teal/20 py-16 mt-20 relative z-10">
       <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
 
-        {/* 1. Brand Identity */}
+        {/* 1. BRAND IDENTITY */}
         <h2 className="text-2xl font-bold font-['Prompt'] tracking-widest text-white mb-2">
           NERD WITH NART
         </h2>
-        <p className="text-xs font-bold text-brand-amber tracking-widest mb-8">
+        <p className="text-xs font-bold text-brand-amber tracking-widest mb-10">
           DATA • LOGIC • LEGACY
         </p>
 
-        {/* 2. Social Connection (The Bridge) */}
-        <div className="flex gap-6 mb-10">
+        {/* 2. SOCIAL CONNECTION (Official Assets) */}
+        <div className="flex gap-5 mb-12 items-center">
+
+          {/* FACEBOOK (Official Blue) */}
           <a
             href="https://www.facebook.com/nerdwithnart"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 bg-white/5 rounded-full text-slate-400 hover:text-white hover:bg-brand-amber transition-all duration-300 group"
+            className="p-3 bg-white/5 rounded-full hover:bg-[#1877F2]/20 transition-all duration-300 group"
+            aria-label="Facebook"
           >
-            <Facebook size={20} className="group-hover:scale-110 transition-transform" />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"
+              alt="Facebook"
+              className="w-6 h-6 opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+            />
           </a>
-          {/* Inactive Channels */}
-          <div className="p-3 bg-white/5 rounded-full text-slate-700 cursor-not-allowed">
-            <MessageCircle size={20} />
-          </div>
-          <div className="p-3 bg-white/5 rounded-full text-slate-700 cursor-not-allowed">
-            <Linkedin size={20} />
-          </div>
+
+          {/* LINE (Official Green - Optically Adjusted) */}
+          <a
+            href="#"
+            className="p-3 bg-white/5 rounded-full hover:bg-[#00C300]/20 transition-all duration-300 group cursor-not-allowed"
+            aria-label="LINE"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+              alt="LINE"
+              className="w-7 h-7 -mt-0.5 opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+            />
+          </a>
+
+          {/* LINKEDIN (Official Blue) */}
+          <a
+            href="#"
+            className="p-3 bg-white/5 rounded-full hover:bg-[#0A66C2]/20 transition-all duration-300 group cursor-not-allowed"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg"
+              alt="LinkedIn"
+              className="w-6 h-6 opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+            />
+          </a>
+
+           {/* X / TWITTER (Official Black/White) */}
+           <a
+            href="#"
+            className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 group cursor-not-allowed"
+            aria-label="X"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg"
+              alt="X"
+              className="w-5 h-5 opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300 invert dark:invert-0"
+            />
+          </a>
+
         </div>
 
-        {/* 3. The Credentials (Subtle Authority) */}
-        <div className="mb-8 text-center">
+        {/* 3. THE CREDENTIALS (Subtle Authority - Text Only) */}
+        <div className="mb-10 text-center">
           <p className="text-brand-teal/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase select-none">
             MDRT • COT • Fiduciary Standard • IC License
           </p>
         </div>
 
-        {/* 4. Navigation (Clean) */}
+        {/* 4. NAVIGATION (Clean) */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-bold tracking-widest uppercase mb-10 text-slate-500">
           <Link to="/" className="hover:text-brand-teal transition-colors">Home</Link>
           <Link to="/articles" className="hover:text-brand-teal transition-colors">Articles</Link>
@@ -49,7 +88,7 @@ const Footer: React.FC = () => {
           <Link to="/contact" className="hover:text-brand-teal transition-colors">Contact</Link>
         </div>
 
-        {/* 5. Disclaimer & Copyright */}
+        {/* 5. DISCLAIMER & COPYRIGHT */}
         <div className="max-w-2xl text-center border-t border-white/5 pt-8">
           <p className="text-slate-600 text-[10px] leading-relaxed mb-4">
             Unit-Linked & Investment products involve risk. Past performance does not guarantee future results.
