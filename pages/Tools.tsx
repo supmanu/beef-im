@@ -3,6 +3,7 @@ import { Shield, Download, FileText, Calculator } from 'lucide-react';
 import { request } from 'graphql-request';
 import { GET_TOOLS } from '../queries';
 import { LogicEngineScene } from '../components/LogicEngine';
+import SEO from '../components/SEO';
 
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
@@ -53,6 +54,11 @@ export default function ToolsPage() {
 
   return (
     <div className="relative min-h-screen bg-slate-900 overflow-hidden">
+      <SEO
+        title="The Armory"
+        description="Essential documents, checklists, and calculators for your financial ascent."
+        image="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit9qvyx13ln07pjg8ad4u8t"
+      />
 
       {/* BACKGROUND ENGINE */}
       <div className="fixed inset-0 z-0">
