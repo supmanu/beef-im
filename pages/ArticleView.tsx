@@ -21,6 +21,23 @@ const colorMap: Record<string, string> = {
   default: 'text-gray-400 border-gray-500/30 bg-gray-900/30'
 };
 
+// --- HELPER COMPONENT FOR CITATIONS ---
+const ContentInternals = ({ node }: { node: any }) => (
+  <>
+    <div className="flex items-center gap-2 mb-3">
+      <span className="px-2 py-0.5 rounded bg-[#2bb1bb]/10 text-[#2bb1bb] text-xs font-bold uppercase tracking-wider border border-[#2bb1bb]/20">
+        Verified Source
+      </span>
+    </div>
+    <div className="font-mono text-[#2bb1bb] font-bold text-lg mb-2">
+      {node.sourceName}
+    </div>
+    <p className="text-slate-400 text-sm leading-relaxed">
+      {node.publisher}
+    </p>
+  </>
+);
+
 const ArticleView: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -195,55 +212,47 @@ const ArticleView: React.FC = () => {
               ),
               bold: ({ children }) => <strong className="font-bold text-teal-200">{children}</strong>,
 
-              // 2. EMBEDDED BLOCKS (The Critical Part)
+              // 2. EMBEDDED BLOCKS
               embed: {
-                // CITATION RENDERER
-                Citation: ({ id, sourceName, publisher, citationUrl }: any) => {
-                  const isClickable = !!citationUrl;
-                  const Wrapper = isClickable ? 'a' : 'div';
-                  // Calculate Index based on post.citations
-                  const index = post?.citations?.findIndex((c: any) => c.id === id) + 1 || 0;
-                  const bigNumber = index > 0 ? index : '';
-
-                  const wrapperProps = isClickable
-                    ? {
-                      href: citationUrl,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      className: "flex gap-4 my-10 p-6 bg-slate-800/80 border border-[#2bb1bb]/30 rounded-xl shadow-lg backdrop-blur-sm hover:scale-[1.01] transition-transform cursor-pointer group"
-                    }
-                    : {
-                      className: "flex gap-4 my-10 p-6 bg-slate-800/80 border border-[#2bb1bb]/30 rounded-xl shadow-lg backdrop-blur-sm"
-                    };
+                // NEW SAFER CITATION RENDERER
+                Citation: (node: any) => {
+                  // Re-calculate basic index for big number
+                  const citations = post?.citations || [];
+                  let matchIndex = citations.findIndex((c: any) => c.id === node.id);
+                  if (matchIndex === -1 && node.sourceName) {
+                    matchIndex = citations.findIndex((c: any) => c.sourceName === node.sourceName);
+                  }
+                  const bigNumber = matchIndex !== -1 ? matchIndex + 1 : 1; // Default to 1 if missing for visual safety
 
                   return (
-                    // @ts-ignore
-                    <Wrapper {...wrapperProps}>
-                      {/* BIG NUMBER LEFT */}
-                      {bigNumber && (
-                        <div className="text-5xl font-bold text-[#2bb1bb]/20 font-mono -mt-2">
-                          {bigNumber}
-                        </div>
-                      )}
-
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="px-2 py-0.5 rounded bg-[#2bb1bb]/20 text-[#2bb1bb] text-xs font-bold uppercase tracking-wider">
-                            Verified Source
-                          </span>
-                        </div>
-
-                        {/* SOURCE NAME */}
-                        <div className="font-mono text-[#2bb1bb] font-bold text-lg mb-1 group-hover:underline decoration-[#2bb1bb]/50 underline-offset-4">
-                          {sourceName}
-                        </div>
-
-                        {/* PUBLISHER */}
-                        <div className="text-slate-400 text-sm">
-                          {publisher}
-                        </div>
+                    <div className="flex gap-6 my-12 items-start group">
+                      {/* 1. THE BIG NUMBER (Static Left Column) */}
+                      <div className="hidden sm:block text-[#2bb1bb]/40 font-mono font-bold select-none pt-2">
+                        <span className="text-4xl">[</span>
+                        <sup className="text-2xl">{bigNumber}</sup>
+                        <span className="text-4xl">]</span>
                       </div>
-                    </Wrapper>
+
+                      {/* 2. THE CONTENT BOX (Right Column) */}
+                      <div className="flex-1">
+                        {node.citationUrl ? (
+                          // CLICKABLE VERSION
+                          <a
+                            href={node.citationUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block p-6 bg-slate-800/50 border-l-4 border-[#2bb1bb] rounded-r-xl shadow-lg backdrop-blur-sm hover:scale-[1.01] hover:bg-slate-800/80 transition-all cursor-pointer"
+                          >
+                            <ContentInternals node={node} />
+                          </a>
+                        ) : (
+                          // STATIC VERSION
+                          <div className="p-6 bg-slate-800/50 border-l-4 border-[#2bb1bb] rounded-r-xl shadow-lg backdrop-blur-sm">
+                            <ContentInternals node={node} />
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   );
                 },
 
