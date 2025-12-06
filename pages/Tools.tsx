@@ -55,7 +55,7 @@ export default function ToolsPage() {
     <div className="relative min-h-screen bg-slate-900 overflow-hidden">
 
       {/* BACKGROUND ENGINE */}
-      <div className="absolute inset-0 z-0">
+      <div className="fixed inset-0 z-0">
         <LogicEngineScene />
       </div>
 
