@@ -86,6 +86,9 @@ export const GET_TOOLS = gql`
         size
         mimeType
       }
+      categories {
+        color
+      }
     }
   }
 `;

@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Download, FileText, Calculator } from 'lucide-react';
-import GlassCard from '../components/GlassCard';
 import { request } from 'graphql-request';
 import { GET_TOOLS } from '../queries';
 import { LogicEngineScene } from '../components/LogicEngine';
 
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
+
+// 1. DEFINE THE COLOR MAP (The Paintbrush)
+const colorMap: Record<string, string> = {
+  emerald: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
+  amber: 'text-amber-400 bg-amber-400/10 border-amber-400/20',
+  rose: 'text-rose-400 bg-rose-400/10 border-rose-400/20',
+  blue: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+  slate: 'text-slate-400 bg-slate-400/10 border-slate-400/20',
+};
 
 // Map string names to Lucide Components
 const iconMap: Record<string, any> = {
@@ -16,7 +24,7 @@ const iconMap: Record<string, any> = {
   default: FileText
 };
 
-const Tools: React.FC = () => {
+export default function ToolsPage() {
   const [tools, setTools] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,69 +52,78 @@ const Tools: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#0B1D35] overflow-hidden">
+    <div className="relative min-h-screen bg-slate-900 overflow-hidden">
 
-      {/* 1. LAYER 0: THE LOGIC ENGINE (Visual Backdrop) */}
-      <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
+      {/* BACKGROUND ENGINE */}
+      <div className="absolute inset-0 z-0">
         <LogicEngineScene />
       </div>
 
-      {/* 2. LAYER 1: GRADIENT OVERLAY (Readability) */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-[#0B1D35]/90 via-[#0B1D35]/70 to-[#0B1D35]/90 pointer-events-none"></div>
+      <div className="relative z-10 container mx-auto px-4 py-24">
 
-      {/* 3. LAYER 2: CONTENT (Interactive) */}
-      <div className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-[#F59E0B] font-bold tracking-widest text-xs mb-4 block uppercase">The Armory</span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-['Prompt']">Gear Check</h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light">
-            Essential documents, checklists, and calculators for your financial ascent.
+        {/* IMPROVED HEADER UI */}
+        <header className="text-center mb-20 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 mb-6 backdrop-blur-sm">
+            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            <span className="text-xs font-mono text-slate-300 tracking-widest uppercase">The Armory</span>
+          </div>
+
+          <h1 className="text-6xl md:text-7xl font-bold text-white tracking-tight mb-6">
+            Gear <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">Check</span>
+          </h1>
+
+          <p className="text-lg text-slate-400 leading-relaxed">
+            We do not guess. We verify. <br className="hidden md:block" />
+            Essential instruments derived from the central logic core.
           </p>
-        </div>
+        </header>
 
+        {/* TOOL GRID */}
         {loading ? (
           <div className="text-center text-slate-500 font-mono animate-pulse">Loading Equipment...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {tools.map((tool) => {
+              // 2. RESOLVE COLORS DYNAMICALLY
+              // Default to 'amber' if no color found
+              const colorKey = tool.categories?.[0]?.color || 'amber';
+              const themeClasses = colorMap[colorKey] || colorMap.amber;
               const IconComponent = iconMap[tool.icon] || iconMap.default;
 
               return (
-                <GlassCard key={tool.id} className="p-8 flex flex-col items-start group">
-                  <div className="w-12 h-12 rounded-xl bg-[#F59E0B]/10 flex items-center justify-center text-[#F59E0B] mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent size={24} />
+                <div key={tool.id} className="group relative bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-8 hover:border-slate-600 transition-all duration-300 hover:-translate-y-1">
+
+                  {/* ICON BADGE - DYNAMIC COLOR */}
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-6 ${themeClasses} transition-colors`}>
+                    <IconComponent size={28} />
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#F59E0B] transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
                     {tool.title}
                   </h3>
 
-                  <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-1">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-8 min-h-[80px]">
                     {tool.description}
                   </p>
 
-                  <div className="w-full pt-6 border-t border-white/5 flex items-center justify-between">
-                    <span className="text-xs font-mono text-gray-500">
-                      {tool.file.mimeType.split('/')[1].toUpperCase()} • {formatSize(tool.file.size)}
+                  <div className="w-full pt-6 border-t border-slate-800/50 flex items-center justify-between">
+                    <span className="text-xs font-mono text-slate-500">
+                      {tool.file?.mimeType?.split('/')[1]?.toUpperCase()} • {formatSize(tool.file?.size || 0)}
                     </span>
 
-                    <a
-                      href={tool.file.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm font-bold text-[#F59E0B] hover:text-white transition-colors"
-                    >
-                      <Download size={16} /> Download
+                    {/* BUTTON - Matches the Icon Theme */}
+                    <a href={tool.file?.url} target="_blank" rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider ${themeClasses.split(' ')[0]} hover:opacity-80 transition-opacity`}>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                      Download
                     </a>
                   </div>
-                </GlassCard>
-              );
+                </div>
+              )
             })}
           </div>
         )}
       </div>
     </div>
   );
-};
-
-export default Tools;
+}
