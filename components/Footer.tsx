@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
         {/* 2. SOCIAL CONNECTION (Official Assets) */}
         <div className="flex gap-5 mb-12 items-center">
 
-          {/* FACEBOOK (Official Blue) */}
+          {/* FACEBOOK */}
           <a
             href="https://www.facebook.com/nerdwithnart"
             target="_blank"
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
             />
           </a>
 
-          {/* LINE (Official Green - Optically Adjusted) */}
+          {/* LINE */}
           <a
             href="#"
             className="p-3 bg-white/5 rounded-full hover:bg-[#00C300]/20 transition-all duration-300 group cursor-not-allowed"
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             />
           </a>
 
-          {/* LINKEDIN (Official Blue) */}
+          {/* LINKEDIN */}
           <a
             href="#"
             className="p-3 bg-white/5 rounded-full hover:bg-[#0A66C2]/20 transition-all duration-300 group cursor-not-allowed"
@@ -58,8 +58,8 @@ const Footer: React.FC = () => {
             />
           </a>
 
-           {/* X / TWITTER (Official Black/White) */}
-           <a
+          {/* X / TWITTER */}
+          <a
             href="#"
             className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all duration-300 group cursor-not-allowed"
             aria-label="X"
@@ -73,26 +73,27 @@ const Footer: React.FC = () => {
 
         </div>
 
-        {/* 3. THE CREDENTIALS (Subtle Authority - Text Only) */}
-        <div className="mb-10 text-center">
-          <p className="text-brand-teal/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase select-none">
-            MDRT • COT • Fiduciary Standard • IC License
+        {/* 3. THAI-FIRST NAVIGATION (85/15 Rule) */}
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-bold tracking-wide mb-10 text-slate-400 font-['Prompt']">
+          <Link to="/" className="hover:text-brand-teal transition-colors">หน้าหลัก</Link>
+          <Link to="/articles" className="hover:text-brand-teal transition-colors">คลังความรู้</Link>
+          <Link to="/tools" className="hover:text-brand-teal transition-colors">คลังเครื่องมือ</Link>
+          <Link to="/manifesto" className="hover:text-brand-teal transition-colors">จุดยืน</Link>
+          <Link to="/contact" className="hover:text-brand-teal transition-colors">ติดต่อ</Link>
+        </div>
+
+        {/* 4. THE MANIFESTO TAGLINE (English - Legacy Quant Voice) */}
+        <div className="mb-10 text-center max-w-2xl px-4">
+          <p className="text-brand-teal/90 text-sm md:text-base font-['Sarabun'] leading-relaxed italic">
+            "We don't sell shortcuts to wealth. <br className="hidden md:block" />
+            We provide the <span className="text-brand-amber font-bold not-italic">map</span> and the <span className="text-brand-amber font-bold not-italic">compass</span> for a safe ascent."
           </p>
         </div>
 
-        {/* 4. NAVIGATION (Clean) */}
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-bold tracking-widest uppercase mb-10 text-slate-500">
-          <Link to="/" className="hover:text-brand-teal transition-colors">Home</Link>
-          <Link to="/articles" className="hover:text-brand-teal transition-colors">Articles</Link>
-          <Link to="/tools" className="hover:text-brand-teal transition-colors">Tools</Link>
-          <Link to="/contact" className="hover:text-brand-teal transition-colors">Contact</Link>
-        </div>
-
-        {/* 5. DISCLAIMER & COPYRIGHT */}
-        <div className="max-w-2xl text-center border-t border-white/5 pt-8">
-          <p className="text-slate-600 text-[10px] leading-relaxed mb-4">
-            Unit-Linked & Investment products involve risk. Past performance does not guarantee future results.
-            All content is for educational purposes only.
+        {/* 5. EDUCATIONAL DISCLAIMER (Short & Clean) */}
+        <div className="max-w-3xl text-center border-t border-white/5 pt-8 px-4">
+          <p className="text-slate-600 text-[10px] leading-relaxed mb-4 font-['Sarabun']">
+            เนื้อหาทั้งหมดจัดทำขึ้นเพื่อการศึกษาและวิเคราะห์กลไกทางการเงินเท่านั้น มิใช่คำแนะนำทางการเงินหรือการชี้ชวนให้ลงทุน
           </p>
           <p className="text-slate-700 text-[10px]">
             © {new Date().getFullYear()} Nerd with Nart. All Rights Reserved.
