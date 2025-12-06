@@ -96,7 +96,7 @@ const ShareNode: React.FC<ShareNodeProps> = ({ title, slug }) => {
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
                         alt="LINE"
-                        className="w-6 h-6 opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                        className="w-7 h-7 -mt-0.5 opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
                     />
                 </a>
 
