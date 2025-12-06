@@ -62,7 +62,7 @@ const ShareNode: React.FC<ShareNodeProps> = ({ title, slug }) => {
             {/* Label */}
             <div className="flex flex-col items-start md:items-center">
                 <span className="text-amber-500 text-xs font-bold uppercase tracking-widest font-['Prompt'] leading-none">
-                    TRANSMIT DATA
+                    SHARE INTELLIGENCE
                 </span>
             </div>
 
