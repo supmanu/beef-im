@@ -45,7 +45,7 @@ const ArticleView: React.FC = () => {
 
   if (loading) return <div className="min-h-screen pt-40 text-center text-slate-500 font-mono animate-pulse">Decrypting...</div>;
 
-  if (!post) {
+  if (!post || !post.content) {
     return (
       <div className="min-h-screen flex items-center justify-center text-white bg-[#0B1D35]">
         <div className="text-center">
@@ -64,9 +64,7 @@ const ArticleView: React.FC = () => {
         title={post.title}
         description={post.content.text.substring(0, 160) + "..."}
         image={post.coverImage?.url}
-        slug={`/articles/${slug}`}
-        type="article"
-        publishedTime={post.releaseDate}
+        url={window.location.href}
       />
 
       {/* Progress/Status Bar Visual (Teal for Logic) */}
@@ -180,23 +178,95 @@ const ArticleView: React.FC = () => {
           ">
           <RichText
             content={post.content.raw}
-            references={post.content.references}
+            references={post.content.references || []}
             renderers={{
+              // 1. STANDARD BLOCKS
+              p: ({ children }) => <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>,
+              h1: ({ children }) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
+              h2: ({ children }) => <h2 className="text-3xl font-bold text-[#2bb1bb] mt-16 mb-8">{children}</h2>,
+              h3: ({ children }) => <h3 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h3>,
+              ul: ({ children }) => <ul className="list-disc list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
+              li: ({ children }) => <li className="pl-2">{children}</li>,
+              blockquote: ({ children }) => (
+                <blockquote className="border-l-4 border-amber-500 pl-6 py-2 my-10 bg-slate-800/30 italic text-slate-200 text-xl rounded-r-lg">
+                  {children}
+                </blockquote>
+              ),
+              bold: ({ children }) => <strong className="font-bold text-teal-200">{children}</strong>,
+
+              // 2. EMBEDDED BLOCKS (The Critical Part)
               embed: {
-                Divider: () => (
-                  <hr className="my-12 border-0 h-px bg-gradient-to-r from-transparent via-[#2bb1bb]/50 to-transparent" />
-                ),
-                Asset: ({ mimeType, url, altText }: any) => (
-                  <div className="my-8">
+                // CITATION RENDERER
+                Citation: ({ id, sourceName, publisher, citationUrl }: any) => {
+                  const isClickable = !!citationUrl;
+                  const Wrapper = isClickable ? 'a' : 'div';
+                  // Calculate Index based on post.citations
+                  const index = post?.citations?.findIndex((c: any) => c.id === id) + 1 || 0;
+                  const bigNumber = index > 0 ? index : '';
+
+                  const wrapperProps = isClickable
+                    ? {
+                      href: citationUrl,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      className: "flex gap-4 my-10 p-6 bg-slate-800/80 border border-[#2bb1bb]/30 rounded-xl shadow-lg backdrop-blur-sm hover:scale-[1.01] transition-transform cursor-pointer group"
+                    }
+                    : {
+                      className: "flex gap-4 my-10 p-6 bg-slate-800/80 border border-[#2bb1bb]/30 rounded-xl shadow-lg backdrop-blur-sm"
+                    };
+
+                  return (
+                    // @ts-ignore
+                    <Wrapper {...wrapperProps}>
+                      {/* BIG NUMBER LEFT */}
+                      {bigNumber && (
+                        <div className="text-5xl font-bold text-[#2bb1bb]/20 font-mono -mt-2">
+                          {bigNumber}
+                        </div>
+                      )}
+
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="px-2 py-0.5 rounded bg-[#2bb1bb]/20 text-[#2bb1bb] text-xs font-bold uppercase tracking-wider">
+                            Verified Source
+                          </span>
+                        </div>
+
+                        {/* SOURCE NAME */}
+                        <div className="font-mono text-[#2bb1bb] font-bold text-lg mb-1 group-hover:underline decoration-[#2bb1bb]/50 underline-offset-4">
+                          {sourceName}
+                        </div>
+
+                        {/* PUBLISHER */}
+                        <div className="text-slate-400 text-sm">
+                          {publisher}
+                        </div>
+                      </div>
+                    </Wrapper>
+                  );
+                },
+
+                // IMAGE (ASSET) RENDERER
+                Asset: ({ url, mimeType, altText }: any) => (
+                  <div className="my-12">
                     <img
                       src={url}
-                      alt={altText || 'Article Image'}
-                      // Redundant here due to prose-img global, but kept for safety
-                      className="w-full rounded-2xl border border-white/10"
+                      alt={altText || 'Article visual'}
+                      className="w-full rounded-2xl shadow-2xl border border-slate-700/50"
+                      loading="lazy"
                     />
                   </div>
-                )
-              }
+                ),
+                // DIVIDER RENDERER
+                Divider: () => (
+                  <div className="my-16 flex items-center justify-center gap-4 opacity-30">
+                    <div className="h-px w-24 bg-[#2bb1bb]"></div>
+                    <div className="w-2 h-2 rounded-full bg-[#2bb1bb]"></div>
+                    <div className="h-px w-24 bg-[#2bb1bb]"></div>
+                  </div>
+                ),
+              },
             }}
           />
         </div>

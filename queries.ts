@@ -61,9 +61,16 @@ export const GET_POST_BY_SLUG = gql`
             url
             mimeType
           }
+          ... on Citation {
+            id
+            sourceName
+            publisher
+            citationUrl: url
+          }
         }
       }
       citations {
+        id
         sourceName
         publisher
         url
