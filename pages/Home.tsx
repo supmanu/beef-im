@@ -61,9 +61,9 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-bold tracking-widest mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+            <span className="w-2 h-2 rounded-full bg-brand-amber"></span>
             ALT: 24,500 FT
           </motion.div>
 
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
             className="text-lg md:text-xl text-gray-300 max-w-2xl font-light mb-10 leading-relaxed"
           >
             วางแผนมรดกและสุขภาพด้วย 'ระบบ' ที่ทนทานต่อทุกสภาพอากาศ <br />
-            <span className="text-sm font-medium text-[#2bb1bb] hover:text-[#3ce2ee] transition-colors duration-300 cursor-default">Design your financial oxygen for the death zone.</span>
+            <span className="text-sm font-medium text-brand-teal hover:text-brand-teal/80 transition-colors duration-300 cursor-default">Design your financial oxygen for the death zone.</span>
           </motion.p>
 
           <motion.div
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
                 placeholder="ค้นหา Unit-Linked, COI, หรือ แผนเกษียณ..."
                 className="bg-transparent border-none outline-none text-white placeholder-gray-400 flex-1 text-sm h-full cursor-pointer pointer-events-none"
               />
-              <button className="h-10 w-10 rounded-full bg-[#F59E0B] hover:bg-[#d97706] flex items-center justify-center text-[#0B1D35] transition-colors">
+              <button className="h-10 w-10 rounded-full bg-brand-amber hover:bg-brand-amber/80 flex items-center justify-center text-brand-dark transition-colors">
                 <ArrowRight size={20} />
               </button>
             </div>
@@ -144,7 +144,7 @@ const Home: React.FC = () => {
               <img
                 src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qaew10q007nzdhsh86ra"
                 alt="Core Mechanisms"
-                className="w-full h-full object-cover object-right-bottom opacity-40 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay"
+                className="w-full h-full object-cover object-right-bottom opacity-40 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay rounded-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/80 to-transparent"></div>
             </div>
@@ -152,7 +152,7 @@ const Home: React.FC = () => {
               <Map size={32} className="text-white" />
             </div>
             <div className="relative z-10">
-              <div className="flex items-center gap-2 text-[#F59E0B] text-xs font-bold tracking-widest mb-3">
+              <div className="flex items-center gap-2 text-brand-amber text-xs font-bold tracking-widest mb-3">
                 <Map size={14} /> NAVIGATION
               </div>
               <h3 className="text-3xl font-bold text-white mb-4">Core Mechanisms</h3>
@@ -168,7 +168,7 @@ const Home: React.FC = () => {
               ))}
             </div>
             <div
-              className="mt-6 flex items-center gap-2 text-[#2bb1bb] hover:text-[#3ce2ee] cursor-pointer transition-colors w-fit relative z-10"
+              className="mt-6 flex items-center gap-2 text-brand-teal hover:text-brand-teal/80 cursor-pointer transition-colors w-fit relative z-10"
               onClick={() => navigate('/articles')}
             >
               <span className="text-sm font-medium">Browse Full Archive</span>
@@ -183,11 +183,11 @@ const Home: React.FC = () => {
             <img
               src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit2qacu106807pjid7pu2iy"
               alt="Medical Audit"
-              className="absolute inset-0 w-full h-full object-cover object-[30%_20%] opacity-60 group-hover:scale-105 transition-transform duration-700"
+              className="absolute inset-0 w-full h-full object-cover object-[30%_20%] opacity-60 group-hover:scale-105 transition-transform duration-700 rounded-2xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/50 to-transparent"></div>
             <div className="absolute bottom-0 left-0 p-8 w-full">
-              <span className="px-2 py-1 bg-[#F59E0B] text-[#0B1D35] text-xs font-bold rounded mb-3 inline-block">
+              <span className="px-2 py-1 bg-brand-amber text-brand-dark text-xs font-bold rounded mb-3 inline-block">
                 CASE #005
               </span>
               <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
@@ -196,7 +196,7 @@ const Home: React.FC = () => {
               <p className="text-gray-300 text-sm mb-4 line-clamp-2">
                 ถอดบทเรียนการเคลมสินไหมสุขภาพ และการรับมือกับการตรวจสอบประวัติ
               </p>
-              <div className="flex items-center gap-2 text-[#F59E0B] text-sm group-hover:translate-x-2 transition-transform">
+              <div className="flex items-center gap-2 text-brand-amber text-sm group-hover:translate-x-2 transition-transform">
                 Read Analysis <TrendingUp size={16} />
               </div>
             </div>
@@ -204,7 +204,7 @@ const Home: React.FC = () => {
 
           <GlassCard className="col-span-1 md:col-span-2 p-8 relative overflow-hidden flex flex-row items-center justify-between group">
             <div className="relative z-10 max-w-sm">
-              <div className="flex items-center gap-2 text-[#F59E0B] text-xs font-bold tracking-widest mb-3">
+              <div className="flex items-center gap-2 text-brand-amber text-xs font-bold tracking-widest mb-3">
                 <Shield size={14} /> ARMORY
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">Audit Gear & Checklists</h3>
@@ -213,7 +213,7 @@ const Home: React.FC = () => {
               </p>
               <button
                 onClick={() => navigate('/tools')}
-                className="flex items-center gap-2 bg-[#F59E0B] hover:bg-[#d97706] text-[#0B1D35] font-bold py-3 px-6 rounded-full transition-colors"
+                className="flex items-center gap-2 bg-brand-amber hover:bg-brand-amber/80 text-brand-dark font-bold py-3 px-6 rounded-full transition-colors"
               >
                 <Download size={18} />
                 <span>Download Kit</span>

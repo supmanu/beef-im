@@ -6,37 +6,23 @@ import { RichText } from '@graphcms/rich-text-react-renderer';
 import { GET_POST_BY_SLUG } from '../queries';
 import SEO from '../components/SEO';
 import ShareNode from '../components/ShareNode';
+// ✅ IMPORTING THE CLEAN RENDERERS
+import { ArticleCitation, ArticleAsset, ArticleDivider } from '../components/RefactoredRenderers';
 
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
 // 📸 AUTHOR AVATAR (Hardcoded for Phase 4)
 const AVATAR_URL = "https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmiq5wff81fd707plg0f2l2y4";
 
-// Map Categories to Badge Colors
+// ✅ FIXED: Map Categories to Badge Colors (Teal Protocol Enforced)
+// Removed duplicate keys. 'emerald' is now strictly Teal #2bb1bb.
 const colorMap: Record<string, string> = {
-  emerald: 'text-[#10b981] border-[#10b981]/30 bg-[#10b981]/10',
-  amber: 'text-[#F59E0B] border-[#F59E0B]/30 bg-[#F59E0B]/10',
+  emerald: 'text-brand-teal border-brand-teal/30 bg-brand-teal/10',
+  amber: 'text-brand-amber border-brand-amber/30 bg-brand-amber/10',
   blue: 'text-blue-400 border-blue-500/30 bg-blue-900/30',
   slate: 'text-slate-400 border-slate-500/30 bg-slate-900/30',
   default: 'text-gray-400 border-gray-500/30 bg-gray-900/30'
 };
-
-// --- HELPER COMPONENT FOR CITATIONS ---
-const ContentInternals = ({ node }: { node: any }) => (
-  <>
-    <div className="flex items-center gap-2 mb-3">
-      <span className="px-2 py-0.5 rounded bg-[#2bb1bb]/10 text-[#2bb1bb] text-xs font-bold uppercase tracking-wider border border-[#2bb1bb]/20">
-        Verified Source
-      </span>
-    </div>
-    <div className="font-mono text-[#2bb1bb] font-bold text-lg mb-2">
-      {node.sourceName}
-    </div>
-    <p className="text-slate-400 text-sm leading-relaxed">
-      {node.publisher}
-    </p>
-  </>
-);
 
 const ArticleView: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -68,7 +54,7 @@ const ArticleView: React.FC = () => {
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-2">Signal Lost</h2>
           <p className="text-gray-400 mb-4">The requested archive does not exist.</p>
-          <button onClick={() => navigate('/articles')} className="text-[#F59E0B] hover:underline">Return to Base</button>
+          <button onClick={() => navigate('/articles')} className="text-brand-amber hover:underline">Return to Base</button>
         </div>
       </div>
     );
@@ -85,7 +71,7 @@ const ArticleView: React.FC = () => {
       />
 
       {/* Progress/Status Bar Visual (Teal for Logic) */}
-      <div className="fixed top-0 left-0 h-1 bg-[#2bb1bb]/50 w-full z-40"></div>
+      <div className="fixed top-0 left-0 h-1 bg-brand-teal/50 w-full z-40"></div>
 
       <article className="max-w-3xl mx-auto px-6">
 
@@ -155,39 +141,39 @@ const ArticleView: React.FC = () => {
             prose-headings:mb-6
             
             /* 2. LINKS */
-            prose-a:text-[#F59E0B] 
+            prose-a:text-brand-amber
             prose-a:no-underline
             prose-a:border-b
-            prose-a:border-[#F59E0B]/50
+            prose-a:border-brand-amber/50
             prose-a:transition-colors
-            hover:prose-a:text-[#F59E0B]/80
+            hover:prose-a:text-brand-amber/80
             
-            /* 3. BLOCKQUOTES */
+            /* 3. BLOCKQUOTES (Teal Protocol) */
             prose-blockquote:border-l-4
-            prose-blockquote:border-[#2bb1bb] 
+            prose-blockquote:border-brand-teal
             prose-blockquote:text-gray-200
-            prose-blockquote:bg-[#2bb1bb]/10
+            prose-blockquote:bg-brand-teal/10
             prose-blockquote:py-4
             prose-blockquote:px-6
             prose-blockquote:rounded-r-lg
             prose-blockquote:not-italic
             prose-blockquote:my-8
 
-            /* 4. H4 HEADERS - Logic Labels */
-            prose-h4:text-[#2bb1bb]
+            /* 4. H4 HEADERS - Logic Labels (Teal) */
+            prose-h4:text-brand-teal
             prose-h4:text-xs
             prose-h4:font-bold
             prose-h4:uppercase
             prose-h4:tracking-widest
             prose-h4:mb-2
             prose-h4:mt-10
-            
+
             /* 5. HR (Horizontal Rule) */
-            prose-hr:border-[#2bb1bb]/30
+            prose-hr:border-brand-teal/30
             prose-hr:my-12
 
             /* 6. LISTS */
-            prose-li:marker:text-[#F59E0B]
+            prose-li:marker:text-brand-amber
             
             /* 7. STRONG */
             prose-strong:text-white
@@ -200,87 +186,29 @@ const ArticleView: React.FC = () => {
               // 1. STANDARD BLOCKS
               p: ({ children }) => <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>,
               h1: ({ children }) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
-              h2: ({ children }) => <h2 className="text-3xl font-bold text-[#2bb1bb] mt-16 mb-8">{children}</h2>,
+              h2: ({ children }) => <h2 className="text-3xl font-bold text-brand-teal mt-16 mb-8">{children}</h2>,
               h3: ({ children }) => <h3 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h3>,
               ul: ({ children }) => <ul className="list-disc list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ul>,
               ol: ({ children }) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
               li: ({ children }) => <li className="pl-2">{children}</li>,
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-amber-500 pl-6 py-2 my-10 bg-slate-800/30 italic text-slate-200 text-xl rounded-r-lg">
+                <blockquote className="border-l-4 border-brand-teal pl-6 py-2 my-10 bg-brand-teal/10 italic text-slate-200 text-xl rounded-r-lg">
                   {children}
                 </blockquote>
               ),
-              bold: ({ children }) => <strong className="font-bold text-teal-200">{children}</strong>,
+              bold: ({ children }) => <strong className="font-bold text-brand-teal">{children}</strong>,
 
-              // 2. EMBEDDED BLOCKS
+              // 2. EMBEDDED BLOCKS - ✅ CLEANED UP
               embed: {
-                // NEW SAFER CITATION RENDERER
-                Citation: (node: any) => {
-                  // Re-calculate basic index for big number
-                  const citations = post?.citations || [];
-                  let matchIndex = citations.findIndex((c: any) => c.id === node.id);
-                  if (matchIndex === -1 && node.sourceName) {
-                    matchIndex = citations.findIndex((c: any) => c.sourceName === node.sourceName);
-                  }
-                  const bigNumber = matchIndex !== -1 ? matchIndex + 1 : 1; // Default to 1 if missing for visual safety
-
-                  return (
-                    <div className="flex gap-6 my-12 items-start group">
-                      {/* 1. THE BIG NUMBER (Static Left Column) */}
-                      <div className="hidden sm:block text-[#2bb1bb]/40 font-mono font-bold select-none pt-2">
-                        <span className="text-4xl">[</span>
-                        <sup className="text-2xl">{bigNumber}</sup>
-                        <span className="text-4xl">]</span>
-                      </div>
-
-                      {/* 2. THE CONTENT BOX (Right Column) */}
-                      <div className="flex-1">
-                        {node.citationUrl ? (
-                          // CLICKABLE VERSION
-                          <a
-                            href={node.citationUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block p-6 bg-slate-800/50 border-l-4 border-[#2bb1bb] rounded-r-xl shadow-lg backdrop-blur-sm hover:scale-[1.01] hover:bg-slate-800/80 transition-all cursor-pointer"
-                          >
-                            <ContentInternals node={node} />
-                          </a>
-                        ) : (
-                          // STATIC VERSION
-                          <div className="p-6 bg-slate-800/50 border-l-4 border-[#2bb1bb] rounded-r-xl shadow-lg backdrop-blur-sm">
-                            <ContentInternals node={node} />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                },
-
-                // IMAGE (ASSET) RENDERER
-                Asset: ({ url, mimeType, altText }: any) => (
-                  <div className="my-12">
-                    <img
-                      src={url}
-                      alt={altText || 'Article visual'}
-                      className="w-full rounded-2xl shadow-2xl border border-slate-700/50"
-                      loading="lazy"
-                    />
-                  </div>
-                ),
-                // DIVIDER RENDERER
-                Divider: () => (
-                  <div className="my-16 flex items-center justify-center gap-4 opacity-30">
-                    <div className="h-px w-24 bg-[#2bb1bb]"></div>
-                    <div className="w-2 h-2 rounded-full bg-[#2bb1bb]"></div>
-                    <div className="h-px w-24 bg-[#2bb1bb]"></div>
-                  </div>
-                ),
+                Citation: (props: any) => <ArticleCitation {...props} citations={post?.citations} />,
+                Asset: ArticleAsset,
+                Divider: ArticleDivider,
               },
             }}
           />
         </div>
 
-        {/* 🚨 MOVED UP: SHARE NODE (Capture High Dopamine) */}
+        {/* 🚨 SHARE NODE (Capture High Dopamine) */}
         {post && <ShareNode title={post.title} slug={slug!} />}
 
         {/* Citations Footer (Smart Links) */}
@@ -289,7 +217,7 @@ const ArticleView: React.FC = () => {
             {/* UPDATED: Thai Header + Prompt Font */}
             <h4 className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 font-['Prompt']">
               {/* Icon is now Teal (#2bb1bb) to signal "Verified Source" */}
-              <BookOpen size={14} className="text-[#2bb1bb]" />
+              <BookOpen size={14} className="text-brand-teal" />
               เอกสารอ้างอิง (Primary Sources)
             </h4>
             <ul className="space-y-2">
@@ -300,22 +228,22 @@ const ArticleView: React.FC = () => {
                   href: cite.url,
                   target: "_blank",
                   rel: "noopener noreferrer",
-                  className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 hover:border-[#2bb1bb]/50 hover:bg-[#2bb1bb]/5 transition-all cursor-pointer group block w-full text-left"
+                  className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 hover:border-brand-teal/50 hover:bg-brand-teal/5 transition-all cursor-pointer group block w-full text-left"
                 } : {
                   className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 block w-full text-left"
                 };
 
                 return (
                   <Wrapper key={idx} {...props}>
-                    {/* 🚨 CRITICAL CHANGE 1: Increased size/boldness on Citation Index */}
-                    <span className="text-[#F59E0B] font-extrabold text-sm">[{idx + 1}]</span>
-                    {/* 🚨 CRITICAL CHANGE 2: Enforced bolding on Source Name */}
-                    <span className={`font-bold ${hasUrl ? 'text-gray-400 group-hover:text-[#2bb1bb] transition-colors' : 'text-gray-400'}`}>
+                    {/* Index: Amber (Action) */}
+                    <span className="text-brand-amber font-extrabold text-sm">[{idx + 1}]</span>
+                    {/* Source Name: Hover to Teal */}
+                    <span className={`font-bold ${hasUrl ? 'text-gray-400 group-hover:text-brand-teal transition-colors' : 'text-gray-400'}`}>
                       {cite.sourceName}
                     </span>
                     <span className="hidden sm:inline text-gray-600">—</span>
                     <span className="text-gray-500">{cite.publisher}</span>
-                    {hasUrl && <span className="text-slate-600 group-hover:text-[#2bb1bb] ml-auto">↗</span>}
+                    {hasUrl && <span className="text-slate-600 group-hover:text-brand-teal ml-auto">↗</span>}
                   </Wrapper>
                 );
               })}

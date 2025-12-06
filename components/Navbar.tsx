@@ -75,11 +75,11 @@ const Navbar: React.FC = () => {
                   to={link.path}
                   className="group flex flex-col items-center"
                 >
-                  <span className={`text-base font-bold font-['Prompt'] transition-colors ${isActive ? 'text-[#F59E0B]' : 'text-slate-200 group-hover:text-[#F59E0B]'
+                  <span className={`text-base font-bold font-['Prompt'] transition-colors ${isActive ? 'text-brand-amber' : 'text-slate-200 group-hover:text-brand-amber'
                     }`}>
                     {link.name}
                   </span>
-                  <span className={`text-[10px] font-mono uppercase tracking-wide transition-colors ${isActive ? 'text-[#F59E0B]/60' : 'text-slate-500 group-hover:text-[#F59E0B]/70'
+                  <span className={`text-[10px] font-mono uppercase tracking-wide transition-colors ${isActive ? 'text-brand-amber/60' : 'text-slate-500 group-hover:text-brand-amber/70'
                     }`}>
                     {link.sub}
                   </span>
@@ -99,12 +99,12 @@ const Navbar: React.FC = () => {
 
           {/* COMPASS (Far Right) */}
           <div
-            className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm group hover:border-[#F59E0B]/50 transition-colors"
+            className="hidden lg:flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm group hover:border-brand-amber/50 transition-colors"
             title="Navigation Online"
           >
             <Compass
               size={20}
-              className="text-slate-400 group-hover:text-[#F59E0B] transition-colors"
+              className="text-slate-400 group-hover:text-brand-amber transition-colors"
               style={{ transform: `rotate(${compassRotation}deg)` }}
             />
           </div>
@@ -112,14 +112,14 @@ const Navbar: React.FC = () => {
           {/* MOBILE ACTIONS */}
           <div className="flex items-center gap-4 lg:hidden ml-auto">
             <button
-              className="text-white hover:text-[#F59E0B] transition-colors"
+              className="text-white hover:text-brand-amber transition-colors"
               onClick={openSearch}
             >
               <Search size={24} />
             </button>
 
             <button
-              className="text-white hover:text-[#F59E0B] transition-colors"
+              className="text-white hover:text-brand-amber transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -138,14 +138,14 @@ const Navbar: React.FC = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <div className="flex flex-col gap-1">
-                  <span className="text-white font-bold font-['Prompt'] text-xl group-hover:text-[#F59E0B] transition-colors">
+                  <span className="text-white font-bold font-['Prompt'] text-xl group-hover:text-brand-amber transition-colors">
                     {link.name}
                   </span>
-                  <span className="text-slate-500 text-xs font-mono uppercase tracking-widest group-hover:text-[#F59E0B]/70 transition-colors">
+                  <span className="text-slate-500 text-xs font-mono uppercase tracking-widest group-hover:text-brand-amber/70 transition-colors">
                     {link.sub}
                   </span>
                 </div>
-                <span className="text-slate-600 group-hover:text-[#F59E0B] transition-transform group-hover:translate-x-2">→</span>
+                <span className="text-slate-600 group-hover:text-brand-amber transition-transform group-hover:translate-x-2">→</span>
               </Link>
             ))}
           </div>

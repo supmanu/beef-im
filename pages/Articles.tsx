@@ -8,8 +8,8 @@ const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
 // TEAL PROTOCOL LOCKED
 const colorMap: Record<string, string> = {
-  emerald: 'bg-[#2bb1bb]/10 text-[#2bb1bb] border-[#2bb1bb]/20',
-  amber: 'bg-[#F59E0B]/10 text-[#F59E0B] border-[#F59E0B]/20',
+  emerald: 'bg-brand-teal/10 text-brand-teal border-brand-teal/20',
+  amber: 'bg-brand-amber/10 text-brand-amber border-brand-amber/20',
   blue: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
   slate: 'bg-slate-500/10 text-slate-400 border-slate-500/20',
   default: 'bg-gray-500/10 text-gray-400 border-gray-500/20'
@@ -54,7 +54,7 @@ const Articles: React.FC = () => {
       <div className="mb-12 space-y-8">
         <div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-['Prompt']">
-            คลังความรู้ <span className="text-[#2bb1bb] text-lg font-normal">(The Archive)</span>
+            คลังความรู้ <span className="text-brand-teal text-lg font-normal">(The Archive)</span>
           </h1>
           <p className="text-slate-400 max-w-2xl text-lg font-light">
             บันทึกการเดินทางและองค์ความรู้ที่รวบรวมจากการทำงานจริง
@@ -69,7 +69,7 @@ const Articles: React.FC = () => {
               placeholder="Search intelligence..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0B1D35]/50 border border-white/10 rounded-full py-3 pl-12 pr-4 text-white focus:outline-none focus:border-[#2bb1bb]/50 focus:ring-1 focus:ring-[#2bb1bb]/50 transition-all placeholder:text-gray-600"
+              className="w-full bg-[#0B1D35]/50 border border-white/10 rounded-full py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-teal/50 focus:ring-1 focus:ring-brand-teal/50 transition-all placeholder:text-gray-600"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
             {searchQuery && (
@@ -84,8 +84,8 @@ const Articles: React.FC = () => {
             <button
               onClick={() => setSelectedCategory(null)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${selectedCategory === null
-                ? 'bg-white text-[#0B1D35] font-bold border-white scale-105'
-                : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                ? 'bg-white text-brand-dark font-bold border-white scale-105'
+                : 'bg-transparent text-slate-400 border-slate-700 hover:border-brand-teal hover:text-brand-teal hover:bg-brand-teal/10'
                 }`}
             >
               All
@@ -95,8 +95,8 @@ const Articles: React.FC = () => {
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.slug)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border ${selectedCategory === cat.slug
-                  ? 'bg-[#2bb1bb] text-white border-[#2bb1bb] shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
-                  : 'bg-transparent text-slate-400 border-slate-700 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:bg-[#2bb1bb]/10'
+                  ? 'bg-brand-teal text-white border-brand-teal shadow-[0_0_15px_rgba(43,177,187,0.3)] font-bold scale-105'
+                  : 'bg-transparent text-slate-400 border-slate-700 hover:border-brand-teal hover:text-brand-teal hover:bg-brand-teal/10'
                   }`}
               >
                 {cat.name}
@@ -113,7 +113,7 @@ const Articles: React.FC = () => {
             <article
               key={article.id}
               onClick={() => navigate(`/articles/${article.slug}`)}
-              className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#2bb1bb]/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] flex flex-col h-full cursor-pointer"
+              className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-brand-teal/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] flex flex-col h-full cursor-pointer"
             >
               <div className="h-48 overflow-hidden relative bg-slate-900">
                 {article.coverImage ? (
@@ -142,7 +142,7 @@ const Articles: React.FC = () => {
                   <span>{Math.ceil(article.content.text.split(' ').length / 200)} min read</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-3 leading-snug font-['Prompt'] group-hover:text-[#2bb1bb] transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3 leading-snug font-['Prompt'] group-hover:text-brand-teal transition-colors">
                   {article.title}
                 </h3>
 
@@ -156,7 +156,7 @@ const Articles: React.FC = () => {
                     .substring(0, 120)}...
                 </p>
 
-                <div className="flex items-center gap-2 text-[#F59E0B] text-sm font-bold tracking-wide group-hover:translate-x-2 transition-transform mt-auto">
+                <div className="flex items-center gap-2 text-brand-amber text-sm font-bold tracking-wide group-hover:translate-x-2 transition-transform mt-auto">
                   READ ANALYSIS
                   <ArrowRight size={16} />
                 </div>
@@ -167,7 +167,7 @@ const Articles: React.FC = () => {
       ) : (
         <div className="text-center py-20 border border-dashed border-slate-800 rounded-xl bg-[#0B1D35]/50">
           <p className="text-gray-500 text-lg">No signals found matching your parameters.</p>
-          <button onClick={() => { setSearchQuery(''); setSelectedCategory(null); }} className="mt-4 text-[#F59E0B] hover:underline">Reset Filters</button>
+          <button onClick={() => { setSearchQuery(''); setSelectedCategory(null); }} className="mt-4 text-brand-amber hover:underline">Reset Filters</button>
         </div>
       )}
     </div>
