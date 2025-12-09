@@ -70,14 +70,18 @@ export const ArticleAsset = ({ url, mimeType, altText }: any) => (
 );
 
 // --- RENDERER: Divider ---
-// --- RENDERER: Divider ---
-export const ArticleDivider = ({ isInvisible }: { isInvisible?: boolean }) => {
-    // 👻 MODE: Invisible Spacer (Just height, no line)
-    if (isInvisible) {
+export const ArticleDivider = ({ isInvisible, variant }: { isInvisible?: boolean; variant?: string }) => {
+    // 🚨 PRIORITY CHECK: If the Boolean Switch is ON, render Air.
+    if (isInvisible === true) {
         return <div className="h-16 w-full" aria-hidden="true" />;
     }
 
-    // 🛡️ MODE: Standard Divider (Teal Ghost Line)
+    // Fallback for the Variant method (just in case)
+    if (variant === 'Invisible' || variant === 'Invisible Spacer') {
+        return <div className="h-16 w-full" aria-hidden="true" />;
+    }
+
+    // 🛡️ DEFAULT: Render the Teal Ghost Line
     return (
         <div className="py-12 flex items-center justify-center">
             {/* Gradient Line: Transparent -> Teal -> Transparent */}
