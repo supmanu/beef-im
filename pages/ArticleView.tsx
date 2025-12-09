@@ -222,7 +222,7 @@ const ArticleView: React.FC = () => {
 
         {/* Citations Footer (Smart Links) */}
         {post.citations.length > 0 && (
-          <div className="mt-16 pt-8 border-t border-brand-teal/30 origin-left">
+          <div className="mt-16 pt-8 border-t-2 border-brand-teal opacity-100 origin-left">
             {/* UPDATED: Thai Header + Prompt Font */}
             <h4 className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 font-['Prompt']">
               {/* Icon is now Teal (#2bb1bb) to signal "Verified Source" */}
