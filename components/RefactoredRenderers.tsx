@@ -70,10 +70,10 @@ export const ArticleAsset = ({ url, mimeType, altText }: any) => (
 );
 
 // --- RENDERER: Divider ---
+// --- RENDERER: Divider ---
 export const ArticleDivider = () => (
-    <div className="my-16 flex items-center justify-center gap-4 opacity-30">
-        <div className="h-px w-24 bg-[#2bb1bb]"></div>
-        <div className="w-2 h-2 rounded-full bg-[#2bb1bb]"></div>
-        <div className="h-px w-24 bg-[#2bb1bb]"></div>
+    <div className="py-12 flex items-center justify-center">
+        {/* Gradient Line: Transparent -> Teal -> Transparent */}
+        <div className="h-[1px] w-3/4 max-w-2xl bg-gradient-to-r from-transparent via-brand-teal/40 to-transparent"></div>
     </div>
 );
