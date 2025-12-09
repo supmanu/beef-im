@@ -211,7 +211,7 @@ const ArticleView: React.FC = () => {
               embed: {
                 Citation: (props: any) => <ArticleCitation {...props} citations={post?.citations} />,
                 Asset: ArticleAsset,
-                Divider: ArticleDivider,
+                Divider: (props: any) => <ArticleDivider isInvisible={props.isInvisible} />,
               },
             }}
           />

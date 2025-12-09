@@ -56,6 +56,7 @@ export const GET_POST_BY_SLUG = gql`
         references(first: 100) {
           ... on Divider {
             id
+            isInvisible
           }
           ... on Asset {
             id
