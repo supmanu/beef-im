@@ -71,9 +71,17 @@ export const ArticleAsset = ({ url, mimeType, altText }: any) => (
 
 // --- RENDERER: Divider ---
 // --- RENDERER: Divider ---
-export const ArticleDivider = () => (
-    <div className="py-12 flex items-center justify-center">
-        {/* Gradient Line: Transparent -> Teal -> Transparent */}
-        <div className="h-[1px] w-3/4 max-w-2xl bg-gradient-to-r from-transparent via-brand-teal/40 to-transparent"></div>
-    </div>
-);
+export const ArticleDivider = ({ isInvisible }: { isInvisible?: boolean }) => {
+    // 👻 MODE: Invisible Spacer (Just height, no line)
+    if (isInvisible) {
+        return <div className="h-16 w-full" aria-hidden="true" />;
+    }
+
+    // 🛡️ MODE: Standard Divider (Teal Ghost Line)
+    return (
+        <div className="py-12 flex items-center justify-center">
+            {/* Gradient Line: Transparent -> Teal -> Transparent */}
+            <div className="h-[1px] w-3/4 max-w-2xl bg-gradient-to-r from-transparent via-brand-teal/40 to-transparent"></div>
+        </div>
+    );
+};
