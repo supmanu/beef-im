@@ -158,6 +158,8 @@ const ArticleView: React.FC = () => {
             prose-blockquote:rounded-r-lg
             prose-blockquote:not-italic
             prose-blockquote:my-8
+            prose-blockquote:before:content-none
+            prose-blockquote:after:content-none
 
             /* 4. H4 HEADERS - Logic Labels (Teal) */
             prose-h4:text-brand-teal
