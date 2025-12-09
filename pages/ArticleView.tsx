@@ -194,7 +194,14 @@ const ArticleView: React.FC = () => {
               ol: ({ children }) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
               li: ({ children }) => <li className="pl-2">{children}</li>,
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-brand-teal pl-6 py-2 my-10 bg-brand-teal/10 italic text-slate-200 text-xl rounded-r-lg">
+                <blockquote className="
+                  border-l-4 border-brand-teal pl-6 py-2 my-10 
+                  bg-brand-teal/10 italic text-slate-200 text-xl rounded-r-lg 
+                  
+                  /* 🛡️ NUCLEAR QUOTE REMOVAL */
+                  before:content-none after:content-none 
+                  [&_p]:before:content-none [&_p]:after:content-none
+                ">
                   {children}
                 </blockquote>
               ),
