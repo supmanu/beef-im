@@ -52,6 +52,7 @@ export const GET_POST_BY_SLUG = gql`
         text # Used for reading time calculation
         
         # ⚠️ CRITICAL UPDATE: Fetch Embedded Models (Dividers & Images)
+        # @note: Limit increased to 100 to ensure late-loading Dividers appear
         references(first: 100) {
           ... on Divider {
             id
