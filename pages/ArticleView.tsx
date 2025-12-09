@@ -193,7 +193,6 @@ const ArticleView: React.FC = () => {
               ul: ({ children }) => <ul className="list-disc list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ul>,
               ol: ({ children }) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
               li: ({ children }) => <li className="pl-2">{children}</li>,
-              hr: ArticleDivider,
               blockquote: ({ children }) => (
                 <blockquote className="
                   border-l-4 border-brand-teal pl-6 py-2 my-10 

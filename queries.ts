@@ -52,7 +52,7 @@ export const GET_POST_BY_SLUG = gql`
         text # Used for reading time calculation
         
         # ⚠️ CRITICAL UPDATE: Fetch Embedded Models (Dividers & Images)
-        references {
+        references(first: 100) {
           ... on Divider {
             id
           }
