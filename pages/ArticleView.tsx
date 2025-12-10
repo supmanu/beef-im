@@ -191,7 +191,7 @@ const ArticleView: React.FC = () => {
             renderers={{
               // 1. STANDARD BLOCKS
               p: ({ children }) => {
-                // 🛠️ SHORTCODE INJECTION LOGIC
+                // 🛠️ SHORTCODE INJECTION LOGIC (CTO NUCLEAR FIX)
                 // Helper to recursively extract text from React Children
                 const getText = (node: React.ReactNode): string => {
                   if (typeof node === 'string') return node;
@@ -205,22 +205,21 @@ const ArticleView: React.FC = () => {
                   return "";
                 };
 
-                const text = getText(children).trim();
+                const textContent = getText(children);
 
-                // 🛠️ DEBUG LOG (Remove after verification)
-                if (text.includes('[TOOL')) {
-                  console.log("DEBUG: Potential Shortcode Detected:", `"${text}"`);
+                // DEBUG: Verify what we are actually receiving
+                if (textContent.includes("TOOL:")) {
+                  console.log("DEBUG: Found Potential Tool:", `"${textContent}"`);
                 }
 
-                // Regex: RELAXED to find the pattern anywhere in the string.
-                // This fixes issues with hidden spaces, &nbsp;, or trailing newlines.
-                const match = text.match(/\[TOOL:([A-Z_]+)\]/);
+                // Regex to find [TOOL:KEY] (Relaxed)
+                const match = textContent.match(/\[TOOL:([A-Z_]+)\]/);
 
                 if (match) {
-                  console.log("DEBUG: Shortcode Matched!", match[1]);
                   const toolKey = match[1];
+                  console.log("DEBUG: Rendering Tool:", toolKey);
                   return (
-                    <div className="my-16">
+                    <div className="my-8 tool-container">
                       <ToolLoader toolName={toolKey} />
                     </div>
                   );
