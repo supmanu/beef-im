@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Download, FileText, Calculator } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { request } from 'graphql-request';
 import { GET_TOOLS } from '../queries';
 import { LogicEngineScene } from '../components/LogicEngine';
@@ -29,7 +29,7 @@ const iconMap: Record<string, any> = {
 };
 
 // Cinematic Entrance
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -40,12 +40,12 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 40, damping: 10 }
+    transition: { type: "spring" as const, stiffness: 40, damping: 10 }
   }
 };
 

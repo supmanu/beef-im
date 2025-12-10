@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface HeroHUDProps {
     temperature: number;
@@ -16,14 +16,14 @@ const HeroHUD: React.FC<HeroHUDProps> = ({ temperature, windSpeed }) => {
     ];
 
     // 2. ANIMATION VARIANTS (Clean separation of logic)
-    const container = {
+    const container: Variants = {
         hidden: {},
         visible: { transition: { staggerChildren: 0.2, delayChildren: 2.2 } }
     };
 
-    const item = {
+    const item: Variants = {
         hidden: { opacity: 0, x: 20 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+        visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
     };
 
     return (

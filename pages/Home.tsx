@@ -29,7 +29,6 @@ const Home: React.FC = () => {
       <SEO
         title="Financial Strategy"
         description="Data. Logic. Legacy. Designing financial architecture and insurance systems for the sophisticated investor."
-        slug="/"
       />
 
       {/* --- HERO SECTION --- */}
@@ -39,7 +38,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ scale: 1.2, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 2.5, ease: "easeOut" }}
+            transition={{ duration: 2.5, ease: "easeOut" as const }}
             className="absolute inset-0 w-full h-full"
           >
             <motion.img
@@ -60,7 +59,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" as const }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-brand-amber"></span>
@@ -70,7 +69,7 @@ const Home: React.FC = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" as const }}
             className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6 font-['Prompt']"
           >
             การเงินไม่ใช่การ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">วิ่งระยะสั้น...</span><br />
@@ -80,7 +79,7 @@ const Home: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" as const }}
             className="text-lg md:text-xl text-gray-300 max-w-2xl font-light mb-10 leading-relaxed"
           >
             วางแผนมรดกและสุขภาพด้วย 'ระบบ' ที่ทนทานต่อทุกสภาพอากาศ <br />
@@ -90,7 +89,7 @@ const Home: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" as const }}
             className="flex flex-col sm:flex-row gap-4"
           >
             <div

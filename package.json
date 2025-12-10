@@ -25,12 +25,15 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-helmet-async": "^2.0.5",
+    "react-is": "^19.2.1",
     "react-router-dom": "^7.9.6",
     "react-share": "^5.2.2",
+    "recharts": "^3.5.1",
     "three": "^0.181.2"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@types/recharts": "^1.8.29",
     "@vitejs/plugin-react": "^5.0.0",
     "dotenv": "^17.2.3",
     "typescript": "~5.8.2",
