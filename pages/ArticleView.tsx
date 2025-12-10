@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 import ShareNode from '../components/ShareNode';
 // ✅ IMPORTING THE CLEAN RENDERERS
 import { ArticleCitation, ArticleAsset, ArticleDivider } from '../components/RefactoredRenderers';
+import ToolLoader from '../components/tools/ToolLoader';
 
 const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
 
@@ -22,6 +23,11 @@ const colorMap: Record<string, string> = {
   blue: 'text-blue-400 border-blue-500/30 bg-blue-900/30',
   slate: 'text-slate-400 border-slate-500/30 bg-slate-900/30',
   default: 'text-gray-400 border-gray-500/30 bg-gray-900/30'
+};
+
+// 🛠️ TOOL REGISTRY MAPPING
+const ARTICLE_TOOLS: Record<string, string> = {
+  'dynasty-strategy-generational-wealth': 'DYNASTY_SIM',
 };
 
 const ArticleView: React.FC = () => {
@@ -59,6 +65,9 @@ const ArticleView: React.FC = () => {
       </div>
     );
   }
+
+  // 🛠️ DETERMINE ACTIVE TOOL
+  const toolKey = ARTICLE_TOOLS[post.slug];
 
   return (
     <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
@@ -216,6 +225,13 @@ const ArticleView: React.FC = () => {
             }}
           />
         </div>
+
+        {/* 🛠️ DYNAMIC TOOL INJECTION (Registry Pattern) */}
+        {toolKey && (
+          <div className="my-16">
+            <ToolLoader toolName={toolKey} />
+          </div>
+        )}
 
         {/* 🚨 SHARE NODE (Capture High Dopamine) */}
         {post && <ShareNode title={post.title} slug={slug!} />}
