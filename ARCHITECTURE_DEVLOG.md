@@ -1,0 +1,36 @@
+# 🏗️ NERD WITH NART: FRONTEND ARCHITECTURE LOG
+
+## 1. Project Structure
+**Status:** ✅ Active
+**Type:** FLAT (No `src` folder)
+**Root:**
+- `components/` (UI & Tools)
+- `pages/` (Views)
+- `library/` (Helper logic)
+
+## 2. The Tool Registry Pattern
+**Location:** `components/tools/`
+**Logic:**
+- **Registry (`registry.tsx`):** Maps string keys (e.g., `'DYNASTY_SIM'`) to React Components.
+- **Loader (`ToolLoader.tsx`):** Universal component that renders tools based on the key.
+- **Library (`library/`):** Where individual tool components live (e.g., `components/tools/library/DynastySimulator.tsx`).
+
+## 3. Shortcode Injection Engine
+**Location:** `pages/ArticleView.tsx` (Rich Text p-renderer)
+**Trigger:** `[TOOL:KEY]` inside Hygraph content.
+**Mechanism:**
+- Splits raw content string by Regex.
+- Injects `<ToolLoader />` at the split point.
+- **Crucial Fix:** Uses a recursive `getText()` helper in `ArticleView.tsx` to flatten nested Hygraph objects (The "Diamond-Drill Fix").
+
+## 4. Current Active Tools
+- **`DYNASTY_SIM`**: The Dynasty Calculator.
+  - **Path:** `components/tools/library/DynastySimulator.tsx`
+  - **Features:** 100M preset, Manual Age Input, Teal Protocol UI.
+
+## 5. Design System (Teal Protocol)
+- **Primary:** `#2bb1bb` (Teal)
+- **Action:** `#F59E0B` (Amber)
+
+---
+**Protocol:** Update this file whenever architecture changes.
