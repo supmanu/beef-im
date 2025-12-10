@@ -198,19 +198,20 @@ const ArticleView: React.FC = () => {
 
 
 
-                // Helper to recursively extract text from React Children (DIAMOND-DRILL FIX)
-                const getText = (node: any): string => {
-                  if (!node) return '';
+                // Helper to recursively extract text from React Children (DIAMOND-DRILL FIX v2 - Safe Mode)
+                const getText = (node: any, depth = 0): string => {
+                  if (!node || depth > 10) return ''; // Depth limit to prevent infinite recursion
                   if (typeof node === 'string') return node;
-                  if (Array.isArray(node)) return node.map(getText).join('');
+                  if (typeof node === 'number') return String(node);
+                  if (Array.isArray(node)) return node.map(n => getText(n, depth + 1)).join('');
 
                   // 1. Handle React Elements (recursive)
-                  if (node.props && node.props.children) return getText(node.props.children);
+                  if (node.props && node.props.children) return getText(node.props.children, depth + 1);
 
                   // 2. Handle Hygraph Text Nodes
                   if (node.text) return node.text;
 
-                  // 3. Fallback for other objects (try to find value)
+                  // 3. Fallback
                   return '';
                 };
 
