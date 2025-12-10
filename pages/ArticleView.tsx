@@ -207,12 +207,17 @@ const ArticleView: React.FC = () => {
 
                 const text = getText(children).trim();
 
-                // Regex: Allow for potential surrounding whitespace which trim() usually handles,
-                // but we also check if the text *contains* the shortcode to be safe.
-                // However, we only want to replace if the paragraph is *essentially* the shortcode.
-                const match = text.match(/^\[TOOL:([A-Z_]+)\]$/);
+                // 🛠️ DEBUG LOG (Remove after verification)
+                if (text.includes('[TOOL')) {
+                  console.log("DEBUG: Potential Shortcode Detected:", `"${text}"`);
+                }
+
+                // Regex: RELAXED to find the pattern anywhere in the string.
+                // This fixes issues with hidden spaces, &nbsp;, or trailing newlines.
+                const match = text.match(/\[TOOL:([A-Z_]+)\]/);
 
                 if (match) {
+                  console.log("DEBUG: Shortcode Matched!", match[1]);
                   const toolKey = match[1];
                   return (
                     <div className="my-16">
