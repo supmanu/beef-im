@@ -192,15 +192,25 @@ const ArticleView: React.FC = () => {
               // 1. STANDARD BLOCKS
               p: ({ children }) => {
                 // 🛠️ SHORTCODE INJECTION LOGIC
-                // Check if the paragraph text matches "[TOOL:KEY]"
-                // We attempt to reconstruct the text from children if possible, 
-                // but usually the shortcode will be a single text node.
-                let text = "";
-                React.Children.forEach(children, child => {
-                  if (typeof child === 'string') text += child;
-                });
+                // Helper to recursively extract text from React Children
+                const getText = (node: React.ReactNode): string => {
+                  if (typeof node === 'string') return node;
+                  if (typeof node === 'number') return String(node);
+                  if (React.isValidElement(node) && node.props.children) {
+                    return React.Children.toArray(node.props.children).map(getText).join('');
+                  }
+                  if (Array.isArray(node)) {
+                    return node.map(getText).join('');
+                  }
+                  return "";
+                };
 
-                const match = text.trim().match(/^\[TOOL:([A-Z_]+)\]$/);
+                const text = getText(children).trim();
+
+                // Regex: Allow for potential surrounding whitespace which trim() usually handles,
+                // but we also check if the text *contains* the shortcode to be safe.
+                // However, we only want to replace if the paragraph is *essentially* the shortcode.
+                const match = text.match(/^\[TOOL:([A-Z_]+)\]$/);
 
                 if (match) {
                   const toolKey = match[1];
