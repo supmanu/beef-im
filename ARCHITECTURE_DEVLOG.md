@@ -44,5 +44,15 @@
   - **Route:** `/tools`
   - **Purpose:** Central hub showcased all registered tools (`ToolLoader`).
 
+## 7. Contact Page Architecture
+- **Component:** `pages/Contact.tsx`
+- **Integrations:** Web3Forms (Email), Official LINE Logo (Asset Swap).
+- **Copy:** "OFFICIAL CHANNEL" (Professional Standard).
+
+## 8. Design Decision Record (2025-12-10)
+- **Experiment:** "Antigravity Azure" (`#3B82F6`) vs "Electric Cyan" (`#06b6d4`) vs "Teal" (`#2bb1bb`).
+- **Verdict:** **KEEP TEAL**.
+- **Reason:** Fits "Financial Architect" persona. Avoids "Tech Demo" or "Generic SaaS" vibes.
+
 ---
 **Protocol:** Update this file whenever architecture changes.
