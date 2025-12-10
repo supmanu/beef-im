@@ -63,78 +63,7 @@ const ArticleView: React.FC = () => {
     );
   }
 
-  // 🛠️ DEFINING CUSTOM RENDERERS SEPARATELY (Force Connection)
-  const customRenderers = {
-    // 1. STANDARD BLOCKS
-    p: ({ children }: any) => {
-      // 🛠️ SHORTCODE INJECTION LOGIC (CTO NUCLEAR FIX)
 
-      // LOG ENTRY
-      // console.log("DEBUG: P Renderer CALLED");
-
-      // Helper to recursively extract text from React Children
-      const getText = (node: React.ReactNode): string => {
-        if (typeof node === 'string') return node;
-        if (typeof node === 'number') return String(node);
-        if (React.isValidElement(node) && node.props.children) {
-          return React.Children.toArray(node.props.children).map(getText).join('');
-        }
-        if (Array.isArray(node)) {
-          return node.map(getText).join('');
-        }
-        return "";
-      };
-
-      const textContent = getText(children);
-
-      // DEBUG: Verify what we are actually receiving
-      if (textContent.includes("TOOL:")) {
-        console.log("DEBUG: Found Potential Tool:", `"${textContent}"`);
-      }
-
-      // Regex to find [TOOL:KEY] (Relaxed)
-      const match = textContent.match(/\[TOOL:([A-Z_]+)\]/);
-
-      if (match) {
-        const toolKey = match[1];
-        console.log("DEBUG: Rendering Tool:", toolKey);
-        return (
-          <div className="my-8 tool-container">
-            <ToolLoader toolName={toolKey} />
-          </div>
-        );
-      }
-
-      // Default Rendering
-      return <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>;
-    },
-    h1: ({ children }: any) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
-    h2: ({ children }: any) => <h2 className="text-3xl font-bold text-brand-teal mt-16 mb-8">{children}</h2>,
-    h3: ({ children }: any) => <h3 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h3>,
-    ul: ({ children }: any) => <ul className="list-disc list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ul>,
-    ol: ({ children }: any) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
-    li: ({ children }: any) => <li className="pl-2">{children}</li>,
-    blockquote: ({ children }: any) => (
-      <blockquote className="
-        border-l-4 border-brand-teal pl-6 py-2 my-10 
-        bg-brand-teal/10 italic text-slate-200 text-xl rounded-r-lg 
-        
-        /* 🛡️ NUCLEAR QUOTE REMOVAL */
-        before:content-none after:content-none 
-        [&_p]:before:content-none [&_p]:after:content-none
-      ">
-        {children}
-      </blockquote>
-    ),
-    bold: ({ children }: any) => <strong className="font-bold text-brand-teal">{children}</strong>,
-
-    // 2. EMBEDDED BLOCKS - ✅ CLEANED UP
-    embed: {
-      Citation: (props: any) => <ArticleCitation {...props} citations={post?.citations} />,
-      Asset: ArticleAsset,
-      Divider: (props: any) => <ArticleDivider isInvisible={props.isInvisible} variant={props.variant} />,
-    },
-  };
 
 
   return (
@@ -258,10 +187,81 @@ const ArticleView: React.FC = () => {
             prose-strong:text-white
             prose-strong:font-bold
           ">
+          {console.log("DEBUG: Raw Content structure:", post.content.raw)}
           <RichText
             content={post.content.raw}
             references={post.content.references || []}
-            renderers={customRenderers}
+            renderers={{
+              // 1. STANDARD BLOCKS
+              p: ({ children }) => {
+                // 🛠️ SHORTCODE INJECTION LOGIC (CTO NUCLEAR FIX)
+
+                // LOG ENTRY - FORCE ENABLED
+                console.log("DEBUG: P Renderer CALLED");
+
+                // Helper to recursively extract text from React Children
+                const getText = (node: React.ReactNode): string => {
+                  if (typeof node === 'string') return node;
+                  if (typeof node === 'number') return String(node);
+                  if (React.isValidElement(node) && node.props.children) {
+                    return React.Children.toArray(node.props.children).map(getText).join('');
+                  }
+                  if (Array.isArray(node)) {
+                    return node.map(getText).join('');
+                  }
+                  return "";
+                };
+
+                const textContent = getText(children);
+
+                // DEBUG: Verify what we are actually receiving
+                if (textContent.includes("TOOL:")) {
+                  console.log("DEBUG: Found Potential Tool:", `"${textContent}"`);
+                }
+
+                // Regex to find [TOOL:KEY] (Relaxed)
+                const match = textContent.match(/\[TOOL:([A-Z_]+)\]/);
+
+                if (match) {
+                  const toolKey = match[1];
+                  console.log("DEBUG: Rendering Tool:", toolKey);
+                  return (
+                    <div className="my-8 tool-container">
+                      <ToolLoader toolName={toolKey} />
+                    </div>
+                  );
+                }
+
+                // Default Rendering
+                return <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>;
+              },
+              h1: ({ children }) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
+              h2: ({ children }) => <h2 className="text-3xl font-bold text-brand-teal mt-16 mb-8">{children}</h2>,
+              h3: ({ children }) => <h3 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h3>,
+              ul: ({ children }) => <ul className="list-disc list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
+              li: ({ children }) => <li className="pl-2">{children}</li>,
+              blockquote: ({ children }) => (
+                <blockquote className="
+                  border-l-4 border-brand-teal pl-6 py-2 my-10 
+                  bg-brand-teal/10 italic text-slate-200 text-xl rounded-r-lg 
+                  
+                  /* 🛡️ NUCLEAR QUOTE REMOVAL */
+                  before:content-none after:content-none 
+                  [&_p]:before:content-none [&_p]:after:content-none
+                ">
+                  {children}
+                </blockquote>
+              ),
+              bold: ({ children }) => <strong className="font-bold text-brand-teal">{children}</strong>,
+
+              // 2. EMBEDDED BLOCKS - ✅ CLEANED UP
+              embed: {
+                Citation: (props: any) => <ArticleCitation {...props} citations={post?.citations} />,
+                Asset: ArticleAsset,
+                Divider: (props: any) => <ArticleDivider isInvisible={props.isInvisible} variant={props.variant} />,
+              },
+            }}
           />
         </div>
 
