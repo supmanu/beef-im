@@ -199,24 +199,48 @@ const ArticleView: React.FC = () => {
                 // LOG ENTRY - FORCE ENABLED
                 console.log("DEBUG: P Renderer CALLED");
 
-                // Helper to recursively extract text from React Children
-                const getText = (node: React.ReactNode): string => {
+                // Helper to recursively extract text from React Children (DIAMOND-DRILL FIX)
+                const getText = (node: any): string => {
+                  if (!node) return '';
                   if (typeof node === 'string') return node;
-                  if (typeof node === 'number') return String(node);
-                  if (React.isValidElement(node) && node.props.children) {
-                    return React.Children.toArray(node.props.children).map(getText).join('');
-                  }
-                  if (Array.isArray(node)) {
-                    return node.map(getText).join('');
-                  }
-                  return "";
+                  if (Array.isArray(node)) return node.map(getText).join('');
+
+                  // 1. Handle React Elements (recursive)
+                  if (node.props && node.props.children) return getText(node.props.children);
+
+                  // 2. Handle Hygraph Text Nodes
+                  if (node.text) return node.text;
+
+                  // 3. Fallback for other objects (try to find value)
+                  return '';
                 };
 
                 const textContent = getText(children);
 
+                // 🛠️ DEEP INSPECTION LOG (What exactly is React receiving?)
+                // console.log("DEBUG: P Children Structure:", JSON.stringify(children));
+
                 // DEBUG: Verify what we are actually receiving
                 if (textContent.includes("TOOL:")) {
-                  console.log("DEBUG: Found Potential Tool:", `"${textContent}"`);
+                  console.log("DEBUG: Found Potential Tool via getText:", `"${textContent}"`);
+                } else {
+                  // FALLBACK CHECK: Scan the raw JSON of children
+                  const rawJSON = JSON.stringify(children);
+                  if (rawJSON.includes("TOOL:")) {
+                    console.log("DEBUG: Found Potential Tool via JSON SCAN (getText failed):", rawJSON);
+                    // If found in JSON but not getText, our extraction logic is missing a node type.
+                    // We can try to extract it from the JSON match as a backup.
+                    const jsonMatch = rawJSON.match(/\[TOOL:([A-Z_]+)\]/);
+                    if (jsonMatch) {
+                      const toolKey = jsonMatch[1];
+                      console.log("DEBUG: Rendering Tool via JSON Fallback:", toolKey);
+                      return (
+                        <div className="my-8 tool-container">
+                          <ToolLoader toolName={toolKey} />
+                        </div>
+                      );
+                    }
+                  }
                 }
 
                 // Regex to find [TOOL:KEY] (Relaxed)
@@ -232,8 +256,28 @@ const ArticleView: React.FC = () => {
                   );
                 }
 
+                // 🛠️ FALLBACK: Check stringified children for shortcode (for complex structures)
+                const stringifiedChildren = JSON.stringify(children);
+                console.log("DEBUG: Stringified children for fallback scan:", stringifiedChildren);
+                const fallbackMatch = stringifiedChildren.match(/\[TOOL:([A-Z_]+)\]/);
+
+                if (fallbackMatch) {
+                  const toolKey = fallbackMatch[1];
+                  console.log("DEBUG: Rendering Tool (Fallback):", toolKey);
+                  return (
+                    <div className="my-8 tool-container">
+                      <ToolLoader toolName={toolKey} />
+                    </div>
+                  );
+                }
+
                 // Default Rendering
                 return <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>;
+              },
+              // 🛠️ DEBUGGING OTHER POTENTIAL CONTAINERS
+              code: ({ children }) => {
+                console.log("DEBUG: Code Renderer CALLED", children);
+                return <code className="bg-slate-800 px-2 py-1 rounded text-orange-300 font-mono text-sm">{children}</code>;
               },
               h1: ({ children }) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
               h2: ({ children }) => <h2 className="text-3xl font-bold text-brand-teal mt-16 mb-8">{children}</h2>,
