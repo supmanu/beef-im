@@ -33,4 +33,16 @@
 - **Action:** `#F59E0B` (Amber)
 
 ---
+- **`COI_CALC`**: The Unit-Linked Truth Engine (Unit-Linked COI Calculator).
+  - **Path:** `components/tools/library/COICalculator.tsx`
+  - **Features:** Linear Interpolation of TMO 2017 rates, Teal Protocol AreaChart, Safety Disclaimer.
+  - **Trigger:** `[TOOL:COI_CALC]`
+
+## 6. Key Pages
+- **`ToolsPage` (Nerd's Laboratory)**
+  - **Path:** `pages/ToolsPage.tsx`
+  - **Route:** `/tools`
+  - **Purpose:** Central hub showcased all registered tools (`ToolLoader`).
+
+---
 **Protocol:** Update this file whenever architecture changes.
