@@ -127,7 +127,7 @@ export default function COICalculator() {
                 </div>
 
                 {/* --- THE REVEAL (Chart) --- */}
-                <div className="h-[320px] w-full mt-4 min-h-[320px]">
+                <div style={{ width: '100%', height: 320, minHeight: 320 }} className="mt-4">
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
                             <defs>
