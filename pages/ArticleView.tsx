@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
+import { request } from 'graphql-request';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { GET_POST_BY_SLUG } from '../queries';
 import SEO from '../components/SEO';
@@ -69,8 +70,8 @@ const ArticleView: React.FC = () => {
     <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
       {/* SEO SIGNALS (UPDATED) */}
       <SEO
-        title={post.title}
-        description={post.content.text.substring(0, 160) + "..."}
+        title={post.seoTitle || post.title}
+        description={post.seoDescription || post.content.text.substring(0, 160) + "..."}
         image={post.coverImage?.url}
         url={`/articles/${post.slug}`}
         type="article"
