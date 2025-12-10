@@ -1,323 +1,242 @@
-import React, { useState, useMemo } from 'react';
-import { Users, TrendingUp, AlertTriangle, ShieldCheck, User } from 'lucide-react';
+import { useState } from 'react';
 
-/**
- * DYNASTY SIMULATOR (Generic Benchmark Engine)
- * CORE LOGIC:
- * - Uses Industry Standard Whole Life 20-Pay Premium Arrays.
- * - Applies Large Sum Assured Discounts (>250k: -1, >600k: -2).
- * - Compares "Age 5" (Baseline) vs Future Ages.
- * * NOTE: Data is strictly for educational simulation based on 
- * standard actuarial risk curves. No specific brands mentioned.
- */
-
-// --- 1. ACTUARIAL BENCHMARK DATA (Sanitized) ---
-// Source: Standard Market Rates for Non-Par Whole Life 20-Pay
-const GENERIC_WL20_DATA = {
-    male: [
-        12.76, 12.81, 12.98, 13.15, 13.33, 13.53, 13.73, 13.95, 14.18, 14.42, // 0-9
-        14.68, 14.96, 15.23, 15.52, 15.80, 16.09, 16.38, 16.67, 16.97, 17.27, // 10-19
-        17.58, 17.90, 18.23, 18.57, 18.93, 19.31, 19.70, 20.12, 20.56, 21.02, // 20-29
-        21.50, 22.01, 22.55, 23.11, 23.69, 24.30, 24.94, 25.61, 26.31, 27.04, // 30-39
-        27.80, 28.60, 29.44, 30.32, 31.24, 32.20, 33.22, 34.28, 35.40, 36.57, // 40-49
-        37.81, 39.13, 40.51, 41.99, 43.56, 45.25, 47.05, 48.99, 51.08, 53.33, // 50-59
-        55.77, 58.42, 61.29, 64.19, 66.96, 69.89, 71.99, 73.80, 75.13, 76.40  // 60-69
-    ],
-    female: [
-        11.47, 11.47, 11.51, 11.58, 11.68, 11.80, 11.94, 12.10, 12.27, 12.45, // 0-9
-        12.66, 12.87, 13.09, 13.32, 13.56, 13.76, 13.97, 14.19, 14.41, 14.65, // 10-19
-        14.90, 15.15, 15.43, 15.71, 16.00, 16.31, 16.64, 16.98, 17.34, 17.72, // 20-29
-        18.11, 18.53, 18.96, 19.42, 19.90, 20.40, 20.93, 21.48, 22.06, 22.67, // 30-39
-        23.30, 23.96, 24.66, 25.39, 26.15, 26.95, 27.79, 28.68, 29.61, 30.59, // 40-49
-        31.62, 32.72, 33.88, 35.11, 36.41, 37.81, 39.29, 40.89, 42.60, 44.44, // 50-59
-        46.43, 48.59, 50.93, 53.49, 56.27, 59.32, 61.90, 63.61, 64.71, 66.13  // 60-69
-    ]
+// --- 1. ACTUARIAL PROXY DATA (Standard Whole Life 99/20) ---
+const PROXY_RATES: Record<string, Record<number, number>> = {
+    male: {
+        0: 10.5, 5: 11.5, 10: 12.8, 15: 14.2, 20: 15.8,
+        25: 17.5, 30: 20.2, 35: 23.5, 40: 27.8, 45: 33.5,
+        50: 41.2, 55: 50.5, 60: 62.8, 65: 78.5, 70: 98.2
+    },
+    female: {
+        0: 9.5, 5: 10.2, 10: 11.5, 15: 12.8, 20: 14.2,
+        25: 15.8, 30: 17.8, 35: 20.5, 40: 24.2, 45: 28.8,
+        50: 34.5, 55: 42.5, 60: 52.8, 65: 66.5, 70: 84.2
+    }
 };
 
-const DynastySimulator = () => {
-    // --- 2. STATE ---
-    const [sex, setSex] = useState<'male' | 'female'>('male');
-    const [sumAssured, setSumAssured] = useState<number>(1000000); // Default 1M THB
-    const [selectedAge, setSelectedAge] = useState<5 | 25 | 40 | 60>(40);
+const getRate = (gender: 'male' | 'female', age: number) => {
+    const rates = PROXY_RATES[gender];
+    const ages = Object.keys(rates).map(Number).sort((a, b) => a - b);
+    if (rates[age]) return rates[age];
+    const lowerAge = ages.filter(a => a < age).pop() || 0;
+    const upperAge = ages.find(a => a > age) || 70;
+    if (age > 70) return rates[70];
+    const ratio = (age - lowerAge) / (upperAge - lowerAge);
+    return rates[lowerAge] + ratio * (rates[upperAge] - rates[lowerAge]);
+};
 
-    // --- 3. CALCULATION ENGINE (Standard Actuarial Logic) ---
-    const calculatePremium = (targetAge: number) => {
-        // 1. Get Base Rate
-        const rates = GENERIC_WL20_DATA[sex];
-        // Safety check for age range 0-69
-        const safeAge = Math.min(Math.max(targetAge, 0), rates.length - 1);
-        let baseRate = rates[safeAge];
+export default function DynastySimulator() {
+    const [gender, setGender] = useState<'male' | 'female'>('male');
+    const [sumAssured, setSumAssured] = useState<number>(1000000);
+    const [baseAge, setBaseAge] = useState<number>(5);
+    const [compareAge, setCompareAge] = useState<number>(40);
 
-        // 2. Apply Standard Large Sum Discounts
-        // if sum >= 250k -> -1
-        // if sum >= 600k -> -2
-        if (sumAssured >= 600000) {
-            baseRate -= 2.0;
-        } else if (sumAssured >= 250000) {
-            baseRate -= 1.0;
-        }
-
-        // 3. Calculate Annual Premium
-        // Formula: (Rate * Sum) / 1000
-        return (baseRate * sumAssured) / 1000;
-    };
-
-    // --- 4. DERIVED METRICS ---
-    const comparisonData = useMemo(() => {
-        const baselineAge = 5;
-        const premiumBaseline = calculatePremium(baselineAge);
-        const premiumCurrent = calculatePremium(selectedAge);
-
-        // Total Cost (20 Years)
-        const totalCostBaseline = premiumBaseline * 20;
-        const totalCostCurrent = premiumCurrent * 20;
-
-        // Metrics
-        const multiplier = premiumCurrent / premiumBaseline;
-        const lostValue = totalCostCurrent - totalCostBaseline;
-
-        // Active Years (assuming Age 99 maturity)
-        const activeYears = Math.max(0, 99 - (selectedAge + 20));
-
-        return {
-            premiumBaseline,
-            premiumCurrent,
-            totalCostBaseline,
-            totalCostCurrent,
-            multiplier,
-            lostValue,
-            activeYears
-        };
-    }, [sex, sumAssured, selectedAge]);
-
-    // Format Helpers
-    const formatMoney = (val: number) =>
-        val.toLocaleString('th-TH', { maximumFractionDigits: 0 });
-
-    const formatMillions = (val: number) =>
-        (val / 1000000).toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const baseRate = getRate(gender, baseAge);
+    const compareRate = getRate(gender, compareAge);
+    const basePremium = (sumAssured / 1000) * baseRate;
+    const comparePremium = (sumAssured / 1000) * compareRate;
+    const baseTotalCost = basePremium * 20;
+    const compareTotalCost = comparePremium * 20;
+    const wealthLost = compareTotalCost - baseTotalCost;
+    const multiplier = (compareTotalCost / baseTotalCost).toFixed(2);
 
     return (
-        <div className="w-full max-w-4xl mx-auto bg-slate-50 rounded-2xl shadow-sm border border-slate-200 overflow-hidden font-sarabun">
-
+        <div className="w-full max-w-2xl mx-auto my-8 font-sarabun text-slate-700">
             {/* HEADER */}
-            <div className="bg-slate-800 p-6 md:p-8 text-white">
+            <div className="bg-[#1e293b] text-white p-6 rounded-t-2xl border-b-4 border-[#2bb1bb]">
                 <div className="flex items-center gap-3 mb-2">
-                    <ShieldCheck className="text-[#2bb1bb] w-8 h-8" />
-                    <div>
-                        <h2 className="text-xl md:text-2xl font-bold font-prompt text-[#2bb1bb]">
-                            Dynasty Calculator
-                        </h2>
-                        <p className="text-slate-400 text-xs font-mono mt-1 tracking-wider">
-                            WHOLE LIFE 20-PAY • STANDARD ACTUARIAL MODEL
-                        </p>
-                    </div>
+                    <svg className="w-8 h-8 text-[#2bb1bb]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h2 className="text-2xl font-bold font-prompt text-[#2bb1bb]">Dynasty Calculator</h2>
                 </div>
-                <p className="text-slate-300 max-w-2xl">
-                    คำนวณเบี้ยประกันจริง (Real Premium) เปรียบเทียบระหว่างการซื้อให้ "หลาน" (Age 5)
-                    vs "ซื้อให้ตัวเอง" เพื่อดูต้นทุนส่วนเพิ่ม (Opportunity Cost)
+                <p className="text-xs tracking-wider text-slate-400 uppercase font-mono mb-1">
+                    STANDARD ACTUARIAL MODEL • WHOLE LIFE 99/20
+                </p>
+                <p className="text-sm text-slate-300">
+                    ประกันชีวิตแบบตลอดชีพ (Whole Life) ชำระเบี้ย 20 ปี คุ้มครองตลอดชีพถึงอายุ 99 ปี
+                    เปรียบเทียบต้นทุนส่วนเพิ่ม (Opportunity Cost) ของการรอเวลา
                 </p>
             </div>
 
-            <div className="p-6 md:p-8 space-y-8">
+            <div className="bg-white border-x border-b border-slate-200 p-6 rounded-b-2xl shadow-sm space-y-8">
 
-                {/* CONTROLS */}
-                <div className="grid md:grid-cols-2 gap-8">
-                    {/* Left: Inputs */}
-                    <div className="space-y-6">
+                {/* CONTROL SECTION */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-4">
                         <div>
-                            <label className="block text-sm font-bold text-slate-700 mb-2 font-prompt">
-                                เพศผู้เอาประกัน (Gender)
-                            </label>
-                            <div className="flex p-1 bg-white border border-slate-200 rounded-xl">
-                                <button
-                                    onClick={() => setSex('male')}
-                                    className={`flex-1 py-2 rounded-lg font-bold transition-all ${sex === 'male' ? 'bg-[#2bb1bb] text-white shadow-sm' : 'text-slate-500 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    ชาย (Male)
-                                </button>
-                                <button
-                                    onClick={() => setSex('female')}
-                                    className={`flex-1 py-2 rounded-lg font-bold transition-all ${sex === 'female' ? 'bg-[#2bb1bb] text-white shadow-sm' : 'text-slate-500 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    หญิง (Female)
-                                </button>
+                            <label className="block text-sm font-bold text-slate-700 mb-2">เพศผู้เอาประกัน (Gender)</label>
+                            <div className="flex bg-slate-100 rounded-lg p-1">
+                                {['male', 'female'].map((g) => (
+                                    <button
+                                        key={g}
+                                        onClick={() => setGender(g as any)}
+                                        className={`flex-1 py-2 rounded-md text-sm font-bold transition-all ${gender === g
+                                                ? 'bg-[#2bb1bb] text-white shadow-sm'
+                                                : 'text-slate-500 hover:text-slate-700'
+                                            }`}
+                                    >
+                                        {g === 'male' ? 'ชาย (Male)' : 'หญิง (Female)'}
+                                    </button>
+                                ))}
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-bold text-slate-700 mb-2 font-prompt">
-                                ทุนประกันที่ต้องการ (Sum Assured)
-                            </label>
-                            <div className="flex items-center gap-4">
-                                <input
-                                    type="range"
-                                    min={100000}
-                                    max={10000000}
-                                    step={100000}
-                                    value={sumAssured}
-                                    onChange={(e) => setSumAssured(Number(e.target.value))}
-                                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#2bb1bb]"
-                                />
-                                <div className="w-32 px-3 py-2 bg-white border border-slate-200 rounded-lg font-mono text-right font-bold text-slate-700">
-                                    {formatMillions(sumAssured)}M
-                                </div>
+                            <label className="block text-sm font-bold text-slate-700 mb-2">ทุนประกัน (Sum Assured)</label>
+                            <input
+                                type="text"
+                                value={sumAssured.toLocaleString()}
+                                onChange={(e) => {
+                                    const val = Number(e.target.value.replace(/,/g, ''));
+                                    // Cap increased to 500M based on CTO Strategy
+                                    if (!isNaN(val) && val <= 500000000) setSumAssured(val);
+                                }}
+                                className="w-full p-3 text-right text-lg font-bold border border-slate-300 rounded-xl focus:ring-2 focus:ring-[#2bb1bb] focus:outline-none mb-2"
+                            />
+                            {/* Presets Grid - Added 100M */}
+                            <div className="grid grid-cols-4 gap-2">
+                                {[1000000, 10000000, 50000000, 100000000].map(val => (
+                                    <button
+                                        key={val}
+                                        onClick={() => setSumAssured(val)}
+                                        className="text-xs px-1 py-1.5 bg-slate-100 rounded hover:bg-slate-200 text-slate-600 transition-colors"
+                                    >
+                                        {val / 1000000}M
+                                    </button>
+                                ))}
                             </div>
-                            <p className="text-xs text-slate-400 mt-2 text-right">
-                                *คำนวณส่วนลดเบี้ยรายใหญ่ (Large Sum Discount) อัตโนมัติ
-                            </p>
                         </div>
                     </div>
 
-                    {/* Right: Age Selector */}
                     <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-4 font-prompt">
-                            เปรียบเทียบอายุ (Compare Age)
-                        </label>
+                        <label className="block text-sm font-bold text-slate-700 mb-2">เปรียบเทียบอายุ (Compare Age)</label>
                         <div className="grid grid-cols-2 gap-3">
-                            {[5, 25, 40, 60].map((age) => (
-                                <button
-                                    key={age}
-                                    onClick={() => setSelectedAge(age as any)}
-                                    className={`p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-1
-                    ${selectedAge === age
-                                            ? 'border-[#2bb1bb] bg-[#2bb1bb]/5 text-[#2bb1bb]'
-                                            : 'border-slate-100 bg-white text-slate-400 hover:border-slate-300'
-                                        }`}
-                                >
-                                    <span className="text-lg font-bold font-prompt">
-                                        {age === 5 ? 'หลาน (5)' : age === 25 ? 'ลูก (25)' : age === 40 ? 'คุณ (40)' : 'เกษียณ (60)'}
-                                    </span>
-                                    <span className="text-xs font-mono">
-                                        {formatMoney(calculatePremium(age))} /ปี
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="w-full h-px bg-slate-100" />
-
-                {/* RESULTS CARDS */}
-                <div className="grid md:grid-cols-2 gap-6">
-
-                    {/* Card 1: Cost Analysis */}
-                    <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden">
-                        <div className="flex items-center gap-2 mb-6 relative z-10">
-                            <TrendingUp className="w-5 h-5 text-slate-400" />
-                            <h3 className="font-bold font-prompt text-slate-800">ต้นทุนรวม 20 ปี (Total Cost)</h3>
-                        </div>
-
-                        <div className="space-y-6 relative z-10">
-                            {/* Baseline Bar */}
-                            <div>
-                                <div className="flex justify-between text-sm text-slate-500 mb-1">
-                                    <span>หลาน (5 ขวบ)</span>
-                                    <span>{formatMillions(comparisonData.totalCostBaseline)} ล้านบาท</span>
-                                </div>
-                                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                                    <div className="h-full bg-[#2bb1bb]" style={{ width: '100%' }} />
-                                </div>
-                            </div>
-
-                            {/* Current Bar */}
-                            <div>
-                                <div className="flex justify-between text-sm font-bold text-slate-800 mb-1">
-                                    <span>อายุ {selectedAge} ปี (คุณเลือก)</span>
-                                    <span className={selectedAge > 5 ? "text-[#F59E0B]" : "text-[#2bb1bb]"}>
-                                        {formatMillions(comparisonData.totalCostCurrent)} ล้านบาท
-                                    </span>
-                                </div>
-                                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                                    <div
-                                        className={`h-full transition-all duration-500 ${selectedAge > 5 ? 'bg-[#F59E0B]' : 'bg-[#2bb1bb]'}`}
-                                        style={{ width: `${comparisonData.multiplier * 20}%`, maxWidth: '100%' }}
+                            <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <div className="text-xs text-slate-500 mb-1">เริ่มทำให้ (Start For)</div>
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="font-bold text-slate-700">อายุ</span>
+                                    <input
+                                        type="number"
+                                        value={baseAge}
+                                        onChange={(e) => setBaseAge(Number(e.target.value))}
+                                        className="w-12 text-center bg-white border border-slate-300 rounded"
                                     />
                                 </div>
-                                {/* Multiplier Badge */}
-                                {selectedAge > 5 && (
-                                    <p className="text-right text-xs font-bold text-[#F59E0B] mt-1">
-                                        แพงกว่า {comparisonData.multiplier.toFixed(2)}x
-                                    </p>
-                                )}
+                                <div className="text-right font-bold text-[#2bb1bb]">
+                                    {Math.round(basePremium).toLocaleString()} <span className="text-xs font-normal text-slate-500">/ปี</span>
+                                </div>
                             </div>
 
-                            {/* Warning Box */}
-                            {selectedAge > 5 && (
-                                <div className="mt-4 p-4 bg-red-50 rounded-xl border border-red-100 flex gap-3">
-                                    <AlertTriangle className="w-5 h-5 text-red-500 shrink-0" />
-                                    <div>
-                                        <p className="text-red-800 font-bold text-sm font-prompt">ส่วนต่างราคา (Wealth Lost)</p>
-                                        <p className="text-red-600 text-sm">
-                                            เงินหายไป <span className="font-bold text-lg">{formatMoney(comparisonData.lostValue)}</span> บาท
-                                        </p>
-                                    </div>
+                            <div className="p-4 bg-white rounded-xl border-2 border-[#2bb1bb] shadow-sm relative">
+                                <div className="absolute -top-3 -right-2 bg-[#2bb1bb] text-white text-[10px] px-2 py-0.5 rounded-full">
+                                    SELECTED
                                 </div>
-                            )}
+                                <div className="text-xs text-slate-500 mb-1">เทียบกับ (Vs)</div>
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="font-bold text-slate-700">อายุ</span>
+                                    <input
+                                        type="number"
+                                        value={compareAge}
+                                        onChange={(e) => setCompareAge(Number(e.target.value))}
+                                        className="w-12 text-center bg-slate-100 border border-slate-300 rounded font-bold"
+                                    />
+                                </div>
+                                <div className="text-right font-bold text-[#2bb1bb]">
+                                    {Math.round(comparePremium).toLocaleString()} <span className="text-xs font-normal text-slate-500">/ปี</span>
+                                </div>
+                            </div>
+
+                            <button onClick={() => setCompareAge(25)} className="text-xs text-slate-400 hover:text-[#2bb1bb]">Set: 25</button>
+                            <button onClick={() => setCompareAge(40)} className="text-xs text-slate-400 hover:text-[#2bb1bb]">Set: 40</button>
+                            <button onClick={() => setCompareAge(60)} className="text-xs text-slate-400 hover:text-[#2bb1bb]">Set: 60</button>
                         </div>
                     </div>
-
-                    {/* Card 2: Asset Value */}
-                    <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div className="flex items-center gap-2 mb-6">
-                                <Users className="w-5 h-5 text-slate-400" />
-                                <h3 className="font-bold font-prompt text-slate-800">ประสิทธิภาพกองทุน</h3>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4 text-center mb-6">
-                                <div className="p-4 bg-slate-50 rounded-xl">
-                                    <p className="text-slate-500 text-xs mb-1">ระยะเวลาคุ้มครอง</p>
-                                    <p className="text-2xl font-bold font-prompt text-slate-700">99 ปี</p>
-                                </div>
-                                <div className={`p-4 rounded-xl ${selectedAge === 5 ? 'bg-[#2bb1bb]/10' : 'bg-slate-50'}`}>
-                                    <p className={`text-xs mb-1 ${selectedAge === 5 ? 'text-[#2bb1bb]' : 'text-slate-500'}`}>
-                                        ปีที่กองทุนพร้อมใช้
-                                    </p>
-                                    <p className={`text-2xl font-bold font-prompt ${selectedAge === 5 ? 'text-[#2bb1bb]' : 'text-slate-700'}`}>
-                                        {comparisonData.activeYears} ปี
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="bg-slate-50 p-4 rounded-xl text-center">
-                            <p className="text-slate-500 text-sm mb-2">มูลค่ากองทุนส่งต่อ (เมื่อครบสัญญา)</p>
-                            <p className="text-3xl font-bold font-prompt text-[#2bb1bb]">
-                                {formatMillions(sumAssured)} ล้านบาท
-                            </p>
-                            <p className="text-xs text-slate-400 mt-1">
-                                *ปลอดภาษีเงินได้ & ไม่ต้องผ่านกระบวนการมรดก
-                            </p>
-                        </div>
-                    </div>
-
                 </div>
 
-                {/* VERDICT */}
-                <div className={`rounded-xl p-6 border ${selectedAge === 5 ? 'bg-[#2bb1bb]/5 border-[#2bb1bb]/20' : 'bg-orange-50 border-orange-100'}`}>
-                    <div className="flex items-start gap-3">
-                        <User className={`w-6 h-6 shrink-0 ${selectedAge === 5 ? 'text-[#2bb1bb]' : 'text-orange-500'}`} />
-                        <div>
-                            <h4 className={`font-bold font-prompt text-lg mb-1 ${selectedAge === 5 ? 'text-[#2bb1bb]' : 'text-orange-700'}`}>
-                                {selectedAge === 5 ? '✅ Dynasty Mode Activated' : '⚠️ Late Entry Penalty'}
-                            </h4>
-                            <p className="text-slate-700 leading-relaxed text-sm">
-                                {selectedAge === 5
-                                    ? `คุณกำลังซื้อ "ราคาของความเสี่ยงต่ำที่สุด" ในตลาด จ่ายเบี้ยเพียง ${formatMoney(comparisonData.premiumCurrent)}/ปี แต่ได้กองทุน ${formatMillions(sumAssured)}M ที่ดูแลหลานได้นานถึง 74 ปี นี่คือประสิทธิภาพสูงสุดของระบบประกัน`
-                                    : `การเริ่มที่อายุ ${selectedAge} ทำให้ต้นทุนเพิ่มขึ้น ${comparisonData.multiplier.toFixed(1)} เท่า เงินจำนวน ${formatMoney(comparisonData.lostValue)} บาท คือ "ค่าปรับของเวลา" ที่หายไปเฉยๆ โดยไม่ได้ความคุ้มครองเพิ่มขึ้น`
-                                }
-                            </p>
+                {/* RESULTS SECTION */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h3 className="flex items-center gap-2 font-bold text-slate-700 mb-6">
+                            <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            ต้นทุนรวม 20 ปี (Total Cost)
+                        </h3>
+                        <div className="mb-4">
+                            <div className="flex justify-between text-xs mb-1">
+                                <span>เริ่มอายุ {baseAge}</span>
+                                <span>{(baseTotalCost / 1000000).toFixed(2)} ล้านบาท</span>
+                            </div>
+                            <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                <div className="h-full bg-[#2bb1bb] w-full"></div>
+                            </div>
+                        </div>
+                        <div className="mb-6">
+                            <div className="flex justify-between text-xs mb-1 font-bold text-slate-700">
+                                <span>เริ่มอายุ {compareAge}</span>
+                                <span>{(compareTotalCost / 1000000).toFixed(2)} ล้านบาท</span>
+                            </div>
+                            <div className="h-3 bg-slate-200 rounded-full overflow-hidden relative">
+                                <div className="h-full bg-[#F59E0B]" style={{ width: `${Math.min((compareTotalCost / baseTotalCost) * 20, 100)}%` }}></div>
+                            </div>
+                            <div className="text-right text-xs text-[#F59E0B] font-bold mt-1">
+                                แพงกว่า {multiplier}x
+                            </div>
+                        </div>
+                        <div className="bg-red-50 border border-red-100 p-4 rounded-xl flex items-start gap-3">
+                            <svg className="w-6 h-6 text-red-500 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <div>
+                                <div className="font-bold text-red-800 text-sm">ส่วนต่างราคา (Wealth Lost)</div>
+                                <div className="text-red-600 font-prompt text-lg">
+                                    เงินหายไป {Math.round(wealthLost).toLocaleString()} บาท
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col justify-center">
+                        <h3 className="flex items-center gap-2 font-bold text-slate-700 mb-6">
+                            <svg className="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            ประสิทธิภาพกองทุน
+                        </h3>
+
+                        <div className="flex gap-4 mb-6">
+                            <div className="flex-1 bg-white p-3 rounded-xl border border-slate-200 text-center">
+                                <div className="text-xs text-slate-400">ระยะเวลาคุ้มครอง</div>
+                                <div className="font-bold text-slate-700 text-lg">99 ปี</div>
+                            </div>
+                            {/* UPDATED LABEL HERE */}
+                            <div className="flex-1 bg-white p-3 rounded-xl border border-slate-200 text-center">
+                                <div className="text-xs text-slate-400">ระยะเวลาชำระเบี้ย</div>
+                                <div className="font-bold text-slate-700 text-lg">20 ปี</div>
+                            </div>
+                        </div>
+
+                        <div className="bg-[#f0f9fa] border border-[#2bb1bb] border-opacity-30 p-4 rounded-xl text-center">
+                            <div className="text-xs text-slate-500 mb-1">มูลค่ากองทุนส่งต่อ (เมื่อครบสัญญา)</div>
+                            <div className="text-3xl font-bold text-[#2bb1bb] font-prompt">
+                                {(sumAssured / 1000000).toFixed(2)} ล้านบาท
+                            </div>
+                            <div className="text-[10px] text-slate-400 mt-2">
+                                *ปลอดภาษีเงินได้ & ไม่ต้องผ่านกระบวนการมรดก
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* DISCLAIMER */}
+                <div className="bg-amber-50 p-4 rounded-xl border border-amber-100 text-[11px] text-slate-500 leading-relaxed text-center">
+                    ข้อมูลนี้เพื่อการศึกษาเท่านั้น ตัวเลขเบี้ยประกันเป็นประมาณการเพื่อการเปรียบเทียบ (Standard Actuarial Model)
+                    อัตราจริงขึ้นอยู่กับบริษัท อายุ เพศ สุขภาพ และเงื่อนไขของแต่ละกรมธรรม์
+                    ควรขอใบเสนอราคาจริงจากบริษัทประกันก่อนตัดสินใจ
                 </div>
 
             </div>
         </div>
     );
-};
-
-export default DynastySimulator;
+}

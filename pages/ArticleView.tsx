@@ -25,10 +25,7 @@ const colorMap: Record<string, string> = {
   default: 'text-gray-400 border-gray-500/30 bg-gray-900/30'
 };
 
-// 🛠️ TOOL REGISTRY MAPPING
-const ARTICLE_TOOLS: Record<string, string> = {
-  'dynasty-strategy-generational-wealth': 'DYNASTY_SIM',
-};
+
 
 const ArticleView: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -66,8 +63,6 @@ const ArticleView: React.FC = () => {
     );
   }
 
-  // 🛠️ DETERMINE ACTIVE TOOL
-  const toolKey = ARTICLE_TOOLS[post.slug];
 
   return (
     <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
@@ -195,7 +190,30 @@ const ArticleView: React.FC = () => {
             references={post.content.references || []}
             renderers={{
               // 1. STANDARD BLOCKS
-              p: ({ children }) => <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>,
+              p: ({ children }) => {
+                // 🛠️ SHORTCODE INJECTION LOGIC
+                // Check if the paragraph text matches "[TOOL:KEY]"
+                // We attempt to reconstruct the text from children if possible, 
+                // but usually the shortcode will be a single text node.
+                let text = "";
+                React.Children.forEach(children, child => {
+                  if (typeof child === 'string') text += child;
+                });
+
+                const match = text.trim().match(/^\[TOOL:([A-Z_]+)\]$/);
+
+                if (match) {
+                  const toolKey = match[1];
+                  return (
+                    <div className="my-16">
+                      <ToolLoader toolName={toolKey} />
+                    </div>
+                  );
+                }
+
+                // Default Rendering
+                return <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>;
+              },
               h1: ({ children }) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
               h2: ({ children }) => <h2 className="text-3xl font-bold text-brand-teal mt-16 mb-8">{children}</h2>,
               h3: ({ children }) => <h3 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h3>,
@@ -226,12 +244,7 @@ const ArticleView: React.FC = () => {
           />
         </div>
 
-        {/* 🛠️ DYNAMIC TOOL INJECTION (Registry Pattern) */}
-        {toolKey && (
-          <div className="my-16">
-            <ToolLoader toolName={toolKey} />
-          </div>
-        )}
+
 
         {/* 🚨 SHARE NODE (Capture High Dopamine) */}
         {post && <ShareNode title={post.title} slug={slug!} />}

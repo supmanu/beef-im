@@ -38,6 +38,7 @@ export const GET_POST_BY_SLUG = gql`
     post(where: { slug: $slug }) {
       id
       title
+      slug
       releaseDate
       coverImage {
         url
