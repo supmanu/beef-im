@@ -24,12 +24,14 @@ const Contact: React.FC = () => {
                                 <a href="https://lin.ee/YOUR_ID" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group cursor-pointer">
                                     <div className="w-10 h-10 rounded-lg bg-[#06C755]/10 border border-[#06C755]/20 flex items-center justify-center text-[#06C755] shrink-0 group-hover:scale-110 transition-transform">
                                         {/* LINE SVG */}
-                                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                                            <path d="M22 10.8c0-4.8-5.3-8.8-12-8.8S2 6 2 10.8c0 4.2 3.8 7.8 9 8.6.4.1.9.3 1 .9.1.5.1.8 0 1-.2 1.3-1.6 3.4-1.6 3.4s-.1.6.4.6.8-.5 3.3-2.7c2.3-2 6.6-2.2 6.6-2.2 4.3-.6 7.3-4.5 7.3-9.6z" />
-                                        </svg>
+                                        <img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+                                            alt="LINE"
+                                            className="w-7 h-7"
+                                        />
                                     </div>
                                     <div>
-                                        <div className="text-xs font-bold text-[#06C755] uppercase tracking-widest mb-1 group-hover:underline">Secure Channel (LINE)</div>
+                                        <div className="text-xs font-bold text-[#06C755] uppercase tracking-widest mb-1 group-hover:underline">OFFICIAL CHANNEL (LINE)</div>
                                         <div className="text-white font-medium">@nerdwithnart</div>
                                     </div>
                                 </a>

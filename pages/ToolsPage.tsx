@@ -44,8 +44,8 @@ export default function ToolsPage() {
                     <button
                         onClick={() => setActiveTool('COI_CALC')}
                         className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-bold font-prompt text-lg transition-all duration-300 ${activeTool === 'COI_CALC'
-                                ? 'bg-[#2bb1bb] text-white shadow-xl shadow-teal-500/20 scale-105 ring-4 ring-teal-500/10'
-                                : 'bg-white text-slate-500 border border-slate-200 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:-translate-y-1'
+                            ? 'bg-[#3B82F6] text-white shadow-xl shadow-blue-500/20 scale-105 ring-4 ring-blue-500/10'
+                            : 'bg-white text-slate-500 border border-slate-200 hover:border-[#3B82F6] hover:text-[#3B82F6] hover:-translate-y-1'
                             }`}
                     >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,8 +57,8 @@ export default function ToolsPage() {
                     <button
                         onClick={() => setActiveTool('DYNASTY_SIM')}
                         className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-bold font-prompt text-lg transition-all duration-300 ${activeTool === 'DYNASTY_SIM'
-                                ? 'bg-[#2bb1bb] text-white shadow-xl shadow-teal-500/20 scale-105 ring-4 ring-teal-500/10'
-                                : 'bg-white text-slate-500 border border-slate-200 hover:border-[#2bb1bb] hover:text-[#2bb1bb] hover:-translate-y-1'
+                            ? 'bg-[#3B82F6] text-white shadow-xl shadow-blue-500/20 scale-105 ring-4 ring-blue-500/10'
+                            : 'bg-white text-slate-500 border border-slate-200 hover:border-[#3B82F6] hover:text-[#3B82F6] hover:-translate-y-1'
                             }`}
                     >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
