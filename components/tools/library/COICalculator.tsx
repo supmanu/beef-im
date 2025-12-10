@@ -127,7 +127,7 @@ export default function COICalculator() {
                 </div>
 
                 {/* --- THE REVEAL (Chart) --- */}
-                <div className="h-64 w-full mt-4">
+                <div className="h-[320px] w-full mt-4 min-h-[320px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
                             <defs>
@@ -194,13 +194,13 @@ export default function COICalculator() {
                     <p className="font-bold text-slate-700">⚠️ ข้อควรระวัง (Disclaimer):</p>
                     <ul className="list-disc pl-4 space-y-1">
                         <li>
-                            ข้อมูลนี้เป็นการจำลอง <strong className="!text-slate-900">"ต้นทุนความเสี่ยงภัยพื้นฐาน" (Base COI)</strong> ตามตารางมรณะไทยปี 2560 (TMO 2017) ที่ คปภ. กำหนดเพื่อใช้เป็นมาตรฐานอ้างอิงเท่านั้น
+                            ข้อมูลนี้เป็นการจำลอง <strong style={{ color: '#0f172a' }} className="!text-slate-900">"ต้นทุนความเสี่ยงภัยพื้นฐาน" (Base COI)</strong> ตามตารางมรณะไทยปี 2560 (TMO 2017) ที่ คปภ. กำหนดเพื่อใช้เป็นมาตรฐานอ้างอิงเท่านั้น
                         </li>
                         <li>
-                            <strong className="!text-slate-900">อัตราค่าใช้จ่ายจริง (Actual COI) ที่บริษัทประกันเรียกเก็บมักจะสูงกว่านี้</strong> เนื่องจากมีการบวกค่าใช้จ่ายดำเนินงาน (Expense Loading) และความเสี่ยงเฉพาะของพอร์ตโฟลิโอแต่ละบริษัท
+                            <strong style={{ color: '#0f172a' }} className="!text-slate-900">อัตราค่าใช้จ่ายจริง (Actual COI) ที่บริษัทประกันเรียกเก็บมักจะสูงกว่านี้</strong> เนื่องจากมีการบวกค่าใช้จ่ายดำเนินงาน (Expense Loading) และความเสี่ยงเฉพาะของพอร์ตโฟลิโอแต่ละบริษัท
                         </li>
                         <li>
-                            กราฟนี้มีวัตถุประสงค์เพื่อแสดง <strong className="!text-slate-900">"แนวโน้ม (Trend)"</strong> ของต้นทุนที่เพิ่มขึ้นแบบทวีคูณตามอายุ (Exponential Curve) เพื่อประกอบการวางแผนระยะยาว ไม่สามารถใช้อ้างอิงเพื่อคำนวณเบี้ยประกันที่ต้องจ่ายจริงได้
+                            กราฟนี้มีวัตถุประสงค์เพื่อแสดง <strong style={{ color: '#0f172a' }} className="!text-slate-900">"แนวโน้ม (Trend)"</strong> ของต้นทุนที่เพิ่มขึ้นแบบทวีคูณตามอายุ (Exponential Curve) เพื่อประกอบการวางแผนระยะยาว ไม่สามารถใช้อ้างอิงเพื่อคำนวณเบี้ยประกันที่ต้องจ่ายจริงได้
                         </li>
                     </ul>
                 </div>
