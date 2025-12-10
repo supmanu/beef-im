@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 // --- 1. THE TRUTH KERNEL: TMO 2017 (Male) ---
 // Anchor points: Age -> Rate per 1,000 Sum Assured
@@ -47,8 +47,6 @@ export default function COICalculator() {
             projection.push({
                 age,
                 cost: Math.round(annualCost),
-                // Visual Logic: Warning Color if Cost > 50k (arbitrary pain threshold)
-                isHigh: annualCost > 50000
             });
         }
         return projection;
@@ -64,15 +62,17 @@ export default function COICalculator() {
 
             {/* --- HEADER (Teal Protocol) --- */}
             <div className="bg-[#1e293b] text-white p-6 rounded-t-2xl border-b-4 border-[#2bb1bb]">
-                <div className="flex items-center gap-3 mb-2">
-                    <svg className="w-8 h-8 text-[#2bb1bb]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-start gap-4 mb-2">
+                    <svg className="w-8 h-8 text-[#2bb1bb] mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
-                    <h2 className="text-2xl font-bold font-prompt text-[#2bb1bb]">Unit-Linked Truth Engine</h2>
+                    <div>
+                        <h2 className="text-2xl font-bold font-prompt text-[#2bb1bb]">Unit-Linked COI Calculator</h2>
+                        <p className="text-sm text-slate-300 font-sarabun mt-1 leading-relaxed opacity-90">
+                            เครื่องมือจำลองค่าใช้จ่ายความเสี่ยง (Cost of Insurance) ตามตารางมรณะไทย 2560
+                        </p>
+                    </div>
                 </div>
-                <p className="text-xs tracking-wider text-slate-400 uppercase font-mono mb-1">
-                    BASED ON TMO 2017 MORTALITY TABLE
-                </p>
             </div>
 
             <div className="bg-white border-x border-b border-slate-200 p-6 rounded-b-2xl shadow-sm space-y-8">
@@ -135,10 +135,6 @@ export default function COICalculator() {
                                     <stop offset="5%" stopColor="#2bb1bb" stopOpacity={0.8} />
                                     <stop offset="95%" stopColor="#2bb1bb" stopOpacity={0.1} />
                                 </linearGradient>
-                                <linearGradient id="colorDanger" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#F59E0B" stopOpacity={0.8} />
-                                    <stop offset="95%" stopColor="#F59E0B" stopOpacity={0.1} />
-                                </linearGradient>
                             </defs>
                             <XAxis
                                 dataKey="age"
@@ -163,7 +159,6 @@ export default function COICalculator() {
                                 fill="url(#colorCost)"
                                 strokeWidth={3}
                             />
-                            {/* Invisible line to force scale, visualized by ReferenceLine below if needed */}
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
@@ -188,15 +183,26 @@ export default function COICalculator() {
                             </div>
                         </div>
                         {/* Background Icon */}
-                        <svg className="absolute -right-4 -bottom-4 w-24 h-24 text-amber-100 z-0" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="absolute -right-4 -bottom-4 w-24 h-24 text-amber-100 z-0 opacity-50" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12a3 3 0 10-4.24-4.24 3 3 0 004.24 4.24z" clipRule="evenodd" />
                         </svg>
                     </div>
                 </div>
 
-                <div className="text-[11px] text-center text-slate-400">
-                    *คำนวณจากอัตราความเสี่ยงภัยตามตารางมรณะไทย 2560 (TMO 2017) สำหรับเพศชาย
-                    อัตราจริงอาจแตกต่างกันตามบริษัทและแบบประกัน (COI Rate)
+                {/* --- DISCLAIMER FOOTER (Safety First) --- */}
+                <div className="bg-slate-100 p-5 rounded-xl border border-slate-200 text-[11px] text-slate-500 leading-relaxed space-y-2">
+                    <p className="font-bold text-slate-700">⚠️ ข้อควรระวัง (Disclaimer):</p>
+                    <ul className="list-disc pl-4 space-y-1">
+                        <li>
+                            ข้อมูลนี้เป็นการจำลอง <strong>"ต้นทุนความเสี่ยงภัยพื้นฐาน" (Base COI)</strong> ตามตารางมรณะไทยปี 2560 (TMO 2017) ที่ คปภ. กำหนดเพื่อใช้เป็นมาตรฐานอ้างอิงเท่านั้น
+                        </li>
+                        <li>
+                            <strong>อัตราค่าใช้จ่ายจริง (Actual COI) ที่บริษัทประกันเรียกเก็บมักจะสูงกว่านี้</strong> เนื่องจากมีการบวกค่าใช้จ่ายดำเนินงาน (Expense Loading) และความเสี่ยงเฉพาะของพอร์ตโฟลิโอแต่ละบริษัท
+                        </li>
+                        <li>
+                            กราฟนี้มีวัตถุประสงค์เพื่อแสดง <strong>"แนวโน้ม (Trend)"</strong> ของต้นทุนที่เพิ่มขึ้นแบบทวีคูณตามอายุ (Exponential Curve) เพื่อประกอบการวางแผนระยะยาว ไม่สามารถใช้อ้างอิงเพื่อคำนวณเบี้ยประกันที่ต้องจ่ายจริงได้
+                        </li>
+                    </ul>
                 </div>
 
             </div>
