@@ -5,7 +5,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Articles from './pages/Articles';
 import ArticleView from './pages/ArticleView';
-import Tools from './pages/Tools';
+import ToolsPage from './pages/ToolsPage'; // The Nerd's Laboratory (New)
+// import Tools from './pages/Tools'; // The Armory (Old)
 import Manifesto from './pages/Manifesto';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
@@ -37,7 +38,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="/articles/:slug" element={<ArticleView />} />
-              <Route path="/tools" element={<Tools />} />
+              <Route path="/tools" element={<ToolsPage />} />
               <Route path="/manifesto" element={<Manifesto />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
