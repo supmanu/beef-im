@@ -4,7 +4,7 @@ import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { request } from 'graphql-request';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { GET_POST_BY_SLUG } from '../queries';
-import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 import ShareNode from '../components/ShareNode';
 // ✅ IMPORTING THE CLEAN RENDERERS
 import { ArticleCitation, ArticleAsset, ArticleDivider } from '../components/RefactoredRenderers';
@@ -34,14 +34,23 @@ const ArticleView: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("🚀 ArticleView Mounted. Slug:", slug);
+    console.log("🌍 Endpoint:", HYGRAPH_ENDPOINT);
+
     window.scrollTo(0, 0);
     const fetchPost = async () => {
       if (!slug) return;
+      if (!HYGRAPH_ENDPOINT) {
+        console.error("❌ MISSING ENV VAR: VITE_HYGRAPH_ENDPOINT");
+        return;
+      }
       try {
+        console.log("📡 Fetching data...");
         const data: any = await request(HYGRAPH_ENDPOINT, GET_POST_BY_SLUG, { slug });
+        console.log("✅ Data Received:", data);
         setPost(data.post);
       } catch (error) {
-        console.error("Signal Lost:", error);
+        console.error("❌ Signal Lost (GraphQL Error):", error);
       } finally {
         setLoading(false);
       }
@@ -68,14 +77,31 @@ const ArticleView: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
-      {/* SEO SIGNALS (UPDATED) */}
-      <SEO
-        title={post.seoTitle || post.title}
-        description={post.seoDescription || post.content.text.substring(0, 160) + "..."}
-        image={post.coverImage?.url}
-        url={`/articles/${post.slug}`}
-        type="article"
-      />
+      {/* ==================================================================
+          🚀 SEO INJECTION MODULE
+          Direct wire from Hygraph -> HTML Head
+      ================================================================== */}
+      <Helmet>
+        {/* Standard Metadata */}
+        <title>{post.seoTitle || post.title}</title>
+        <meta name="description" content={post.seoDescription || "Data. Logic. Legacy."} />
+        <link rel="canonical" href={`https://nerdwithnart.com/articles/${post.slug}`} />
+
+        {/* Open Graph (Facebook / LinkedIn) */}
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Nerd with Nart" />
+        <meta property="og:title" content={post.seoTitle || post.title} />
+        <meta property="og:description" content={post.seoDescription || "Data. Logic. Legacy."} />
+        <meta property="og:url" content={`https://nerdwithnart.com/articles/${post.slug}`} />
+        {post.coverImage && <meta property="og:image" content={post.coverImage.url} />}
+
+        {/* Twitter Card (X) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.seoTitle || post.title} />
+        <meta name="twitter:description" content={post.seoDescription || "Data. Logic. Legacy."} />
+        {post.coverImage && <meta name="twitter:image" content={post.coverImage.url} />}
+      </Helmet>
+      {/* ================================================================== */}
 
       {/* Progress/Status Bar Visual (Teal for Logic) */}
       <div className="fixed top-0 left-0 h-1 bg-brand-teal/50 w-full z-40"></div>
