@@ -20,16 +20,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const post = await getArticle(slug);
 
-    if (!post) return { title: 'Not Found' };
+    if (!post) {
+        return { title: 'Article Not Found | Nerd with Nart' };
+    }
+
+    // Extract excerpt from content if available
+    const excerpt = post.content?.text || "Data. Logic. Legacy.";
 
     return {
         title: post.seoTitle || post.title,
-        description: post.seoDescription || "Data. Logic. Legacy.",
+        description: post.seoDescription || excerpt,
         openGraph: {
             title: post.seoTitle || post.title,
-            description: post.seoDescription || "Data. Logic. Legacy.",
-            images: post.coverImage ? [post.coverImage.url] : [],
-        }
+            description: post.seoDescription || excerpt,
+            url: `https://nerdwithnart.com/articles/${slug}`,
+            siteName: 'Nerd with Nart',
+            images: [{
+                url: post.coverImage?.url || 'https://nerdwithnart.com/default-og.jpg',
+                width: 1200,
+                height: 630,
+            }],
+            type: 'article',
+            publishedTime: post.publishedAt,
+            authors: ['Nerd with Nart'],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.seoTitle || post.title,
+            description: post.seoDescription || excerpt,
+            images: [post.coverImage?.url || ''],
+        },
     };
 }
 
