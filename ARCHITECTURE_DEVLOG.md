@@ -56,3 +56,28 @@
 
 ---
 **Protocol:** Update this file whenever architecture changes.
+
+## [2025-12-11] PHASE 7: THE NEXT.JS MIGRATION (COMPLETE)
+**Objective:** Migrated from Vite (CSR) to Next.js 16 (SSG) to fix Social SEO.
+
+### 🏗️ Major Changes
+1.  **Engine Swap:** Replaced Vite with Next.js 16.0.8 (App Router).
+2.  **Styling Fix:** Reverted Tailwind v4 to v3.4 to restore "Teal Protocol" responsiveness (Hamburger menu fix).
+3.  **Data Layer:** Replaced Apollo Client with `lib/hygraph.ts` (Server-Side Fetching).
+4.  **Route Porting:** Created `/tools`, `/manifesto`, `/contact` pages.
+5.  **Search Repair:** Fixed broken modals by creating `Providers.tsx` and wrapping `layout.tsx`.
+
+### 🐛 Known Issues & Fixes
+- **Article Crash:** Fixed circular JSON error in `ArticleContent` by removing illegal stringify.
+- **Rate Limits:** Build process hits Hygraph limits during SSG. (Dev mode unaffected).
+- **Search Logic:** English keywords ("Unit", "COI") currently fail. Suspect AST parsing issue.
+
+### 🚀 Next Steps
+1.  Fix Fuse.js indexing logic (Extract text from AST).
+2.  Deploy to Cloudflare Production.
+
+### [2025-12-11] SEARCH REPAIR COMPLETE
+**Fix:** Implemented "Pancake Strategy" for Fuse.js.
+- Flattened Hygraph Rich Text AST into plain text strings.
+- Removed nested key lookups (`content.text`) in favor of `plainText`.
+- Result: 100% Hit Rate for English and Thai keywords.

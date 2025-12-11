@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm install:*)",
+      "Bash(Select-Object LocalPort,State)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(taskkill /F /PID 34236)"
+    ]
+  }
+}
