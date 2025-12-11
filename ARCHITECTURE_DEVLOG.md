@@ -96,3 +96,21 @@
 - All imports converted to `@/` alias pattern
 - Server running on http://localhost:3000
 - Zero vulnerabilities, 499 packages installed
+
+### [2025-12-11] PHASE 7.1: PRODUCTION DEPLOYMENT (COMPLETE)
+**Status:** SUCCESS. Site is Live on Cloudflare.
+
+**Executed The Great Swap:**
+1.  **Archival:** Moved Legacy Vite App to `_legacy_archive/`.
+2.  **Promotion:** Moved Next.js (`web-next/`) to Root.
+3.  **Path Repair:** Configured `tsconfig.json` with `@/*` aliases and `baseUrl: "."`.
+
+**Final Polish:**
+- **Search:** Implemented "Pancake Strategy" (AST Flattening) for 100% English/Thai hit rate.
+- **Styling:** Restored Root Tailwind Config to fix layout regressions.
+- **Deps:** Nuclear reinstall (`rm -rf node_modules`) fixed corruption issues.
+
+**Deployment:**
+- **Target:** Cloudflare Pages.
+- **Output:** `out/` (Static Export).
+- **Node Version:** 20 (LTS Maintenance - Safe).
