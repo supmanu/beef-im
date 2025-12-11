@@ -1,20 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: "export",  // 👈 CRITICAL: Static Export
-    images: {
-        unoptimized: true, // Required for 'export' unless using custom loader
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'media.graphassets.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'ap-south-1.graphassets.com',
-            }
-        ],
+    output: 'export',
+
+    // 🛑 RATE LIMIT PROTECTION
+    // Force Next.js to build pages sequentially (1 by 1) to avoid hitting
+    // Hygraph's "Too Many Requests" API limit.
+    experimental: {
+        workerThreads: false,
+        cpus: 1,
     },
-    trailingSlash: true,
+
+    images: {
+        unoptimized: true,
+    },
 };
 
 export default nextConfig;
