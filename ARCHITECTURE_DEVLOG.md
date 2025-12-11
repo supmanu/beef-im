@@ -81,3 +81,18 @@
 - Flattened Hygraph Rich Text AST into plain text strings.
 - Removed nested key lookups (`content.text`) in favor of `plainText`.
 - Result: 100% Hit Rate for English and Thai keywords.
+
+### [2025-12-11] PRE-DEPLOYMENT POLISH (PHASE 7.1)
+**Status:** READY FOR PRODUCTION.
+**Fixes Applied:**
+1. **Path Repair:** Added `baseUrl` and `paths` to `tsconfig.json` to fix `@/components` resolution.
+2. **Layout Restoration:** Created missing `tailwind.config.ts` and `postcss.config.js` to restore Tailwind CSS processing (fixed "squashed" homepage).
+3. **Dependency Fix:** Nuclear reinstall (`rm -rf node_modules .next package-lock.json && npm install`) to fix corrupted `sucrase` module after directory migration.
+4. **Search Logic:** Confirmed "Context-Aware" behavior (Modal on Home, Filter on Archive).
+
+**Migration Complete:**
+- Legacy Vite system archived to `_legacy_archive/`
+- Next.js 16 application promoted to root directory
+- All imports converted to `@/` alias pattern
+- Server running on http://localhost:3000
+- Zero vulnerabilities, 499 packages installed

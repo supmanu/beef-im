@@ -1,10 +1,12 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { request } from 'graphql-request';
-import { GET_ARCHIVE } from '../queries';
+import { GET_ARCHIVE } from '@/queries';
 import { ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
-const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT;
+const HYGRAPH_ENDPOINT = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT as string;
 
 // TEAL PROTOCOL LOCKED
 const colorMap: Record<string, string> = {
@@ -16,7 +18,7 @@ const colorMap: Record<string, string> = {
 };
 
 export default function KnowledgeEngine() {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [posts, setPosts] = useState<any[]>([]);
     const [categories, setCategories] = useState<any[]>([]);
     const [filter, setFilter] = useState('all');
@@ -95,7 +97,7 @@ export default function KnowledgeEngine() {
                     {filteredPosts.map((post) => (
                         <article
                             key={post.id}
-                            onClick={() => navigate(`/articles/${post.slug}`)}
+                            onClick={() => router.push(`/articles/${post.slug}`)}
                             className="group relative bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#2bb1bb]/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] flex flex-col h-full cursor-pointer"
                         >
 

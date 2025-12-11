@@ -12,7 +12,9 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
-      "Bash(taskkill /F /PID 34236)"
+      "Bash(taskkill /F /PID 34236)",
+      "Bash(ping:*)",
+      "Bash(git add:*)"
     ]
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
@@ -75,11 +75,11 @@ const Footer: React.FC = () => {
 
         {/* 3. THAI-FIRST NAVIGATION (85/15 Rule) */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-bold tracking-wide mb-10 text-slate-400 font-['Prompt']">
-          <Link to="/" className="hover:text-brand-teal transition-colors">หน้าหลัก</Link>
-          <Link to="/articles" className="hover:text-brand-teal transition-colors">คลังความรู้</Link>
-          <Link to="/tools" className="hover:text-brand-teal transition-colors">คลังเครื่องมือ</Link>
-          <Link to="/manifesto" className="hover:text-brand-teal transition-colors">จุดยืน</Link>
-          <Link to="/contact" className="hover:text-brand-teal transition-colors">ติดต่อ</Link>
+          <Link href="/" className="hover:text-brand-teal transition-colors">หน้าหลัก</Link>
+          <Link href="/articles" className="hover:text-brand-teal transition-colors">คลังความรู้</Link>
+          <Link href="/tools" className="hover:text-brand-teal transition-colors">คลังเครื่องมือ</Link>
+          <Link href="/manifesto" className="hover:text-brand-teal transition-colors">จุดยืน</Link>
+          <Link href="/contact" className="hover:text-brand-teal transition-colors">ติดต่อ</Link>
         </div>
 
         {/* 4. THE MANIFESTO TAGLINE (English - Legacy Quant Voice) */}

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 // --- 1. THE TRUTH KERNEL: TMO 2017 (Male) ---
@@ -34,6 +34,13 @@ export default function COICalculator() {
     // --- STATE ---
     const [currentAge, setCurrentAge] = useState<number>(35);
     const [sumAssured, setSumAssured] = useState<number>(1000000); // 1 Million
+    const [mounted, setMounted] = useState(false);
+
+    // Ensure chart renders only on client
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
 
     // --- PROJECTION ENGINE (Next 40 Years) ---
     const data = useMemo(() => {
@@ -128,39 +135,45 @@ export default function COICalculator() {
 
                 {/* --- THE REVEAL (Chart) --- */}
                 <div style={{ width: '100%', height: 320, minHeight: 320 }} className="mt-4">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
-                            <defs>
-                                <linearGradient id="colorCost" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#2bb1bb" stopOpacity={0.8} />
-                                    <stop offset="95%" stopColor="#2bb1bb" stopOpacity={0.1} />
-                                </linearGradient>
-                            </defs>
-                            <XAxis
-                                dataKey="age"
-                                tick={{ fontSize: 12 }}
-                                tickLine={false}
-                                axisLine={false}
-                            />
-                            <YAxis
-                                tick={{ fontSize: 12 }}
-                                tickFormatter={(value) => `${value / 1000}k`}
-                                axisLine={false}
-                                tickLine={false}
-                            />
-                            <Tooltip
-                                formatter={(value: number) => [`฿${value.toLocaleString()}`, 'ค่าความเสี่ยง (COI)']}
-                                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                            />
-                            <Area
-                                type="monotone"
-                                dataKey="cost"
-                                stroke="#2bb1bb"
-                                fill="url(#colorCost)"
-                                strokeWidth={3}
-                            />
-                        </AreaChart>
-                    </ResponsiveContainer>
+                    {mounted ? (
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+                                <defs>
+                                    <linearGradient id="colorCost" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#2bb1bb" stopOpacity={0.8} />
+                                        <stop offset="95%" stopColor="#2bb1bb" stopOpacity={0.1} />
+                                    </linearGradient>
+                                </defs>
+                                <XAxis
+                                    dataKey="age"
+                                    tick={{ fontSize: 12 }}
+                                    tickLine={false}
+                                    axisLine={false}
+                                />
+                                <YAxis
+                                    tick={{ fontSize: 12 }}
+                                    tickFormatter={(value) => `${value / 1000}k`}
+                                    axisLine={false}
+                                    tickLine={false}
+                                />
+                                <Tooltip
+                                    formatter={(value: number) => [`฿${value.toLocaleString()}`, 'ค่าความเสี่ยง (COI)']}
+                                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="cost"
+                                    stroke="#2bb1bb"
+                                    fill="url(#colorCost)"
+                                    strokeWidth={3}
+                                />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-slate-50 text-slate-400 text-sm">
+                            Loading Actuarial Engine...
+                        </div>
+                    )}
                 </div>
 
                 {/* --- THE VERDICT (Summary Box) --- */}

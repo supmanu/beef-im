@@ -1,5 +1,0 @@
-{
-  "name": "Very Simple and Pratical v2.1 - Deployed to GitHub and Netlify",
-  "description": "index.html and vite.config need to be manually edited evertime if AI Studio push the \"preview\" setting to GitHub. Check doc:\nhttps://docs.google.com/document/d/1-ltjvlvwbD4k2k7UnL9xgjLt3yHXMmnfv1hS8LE_WBw/edit?usp=sharing",
-  "requestFramePermissions": []
-}

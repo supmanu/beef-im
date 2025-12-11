@@ -1,71 +1,106 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 import { request } from 'graphql-request';
-import { GET_SEARCH_INDEX } from '../queries';
+import { GET_SEARCH_INDEX } from '@/queries';
 
-const HYGRAPH_ENDPOINT = import.meta.env.VITE_HYGRAPH_ENDPOINT || 'https://api-ap-south-1.hygraph.com/v2/cmio1jnkr03oo06o7af14hqyd/master';
+const HYGRAPH_ENDPOINT = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT || 'https://api-ap-south-1.hygraph.com/v2/cmio1jnkr03oo06o7af14hqyd/master';
 
-interface SearchResult {
-    id: string;
-    title: string;
-    slug: string;
-    categories: { name: string }[];
-    content: { text: string };
+// 1. ROBUST TEXT EXTRACTOR
+function extractText(node: any): string {
+  if (!node) return '';
+  if (typeof node === 'string') return node;
+  if (Array.isArray(node)) return node.map(extractText).join(' ');
+
+  let text = '';
+  if (node.text) text += node.text + ' ';
+  if (node.children && Array.isArray(node.children)) {
+    text += node.children.map(extractText).join(' ');
+  }
+  return text;
 }
 
-export const useSearch = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [posts, setPosts] = useState<SearchResult[]>([]);
-    const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+interface FlattenedArticle {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  plainText: string;
+}
 
-    // Fetch data once on mount
-    useEffect(() => {
-        const fetchSearchIndex = async () => {
-            try {
-                setIsLoading(true);
-                // We use a try-catch block to handle the case where GET_SEARCH_INDEX might not be available yet if queries.ts update failed
-                // But generally we assume the queries are available.
-                const data: any = await request(HYGRAPH_ENDPOINT, GET_SEARCH_INDEX);
-                setPosts(data.posts);
-            } catch (error) {
-                console.error("Failed to fetch search index:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+export function useSearch() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<FlattenedArticle[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [fuse, setFuse] = useState<Fuse<FlattenedArticle> | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-        fetchSearchIndex();
-    }, []);
+  // 2. FETCH & INDEX
+  useEffect(() => {
+    async function initSearch() {
+      if (!HYGRAPH_ENDPOINT) return;
+      try {
+        setIsLoading(true);
+        const data: any = await request(HYGRAPH_ENDPOINT, GET_SEARCH_INDEX);
 
-    // Initialize Fuse
-    const fuse = useMemo(() => {
-        return new Fuse(posts, {
-            keys: ['title', 'content.text', 'categories.name'],
-            threshold: 0.3,
-            includeMatches: true,
-            minMatchCharLength: 2,
+        // 3. FLATTEN THE DATA (The Pancake Strategy)
+        const flattenedDocs = data.posts.map((post: any) => {
+          const rawText = extractText(post.content?.json || post.content);
+          return {
+            id: post.id,
+            title: post.title,
+            slug: post.slug,
+            category: post.categories[0]?.name || 'Article',
+            plainText: rawText // <--- FLATTENED HERE
+          };
         });
-    }, [posts]);
 
-    // Compute Results
-    const results = useMemo(() => {
-        if (!searchTerm) return [];
-        return fuse.search(searchTerm).map(result => ({
-            item: result.item,
-            matches: result.matches
-        }));
-    }, [searchTerm, fuse]);
+        console.log(`[Search Debug] Indexed ${flattenedDocs.length} articles.`);
+        console.log(`[Search Debug] Sample plainText:`, flattenedDocs[0]?.plainText?.substring(0, 200));
 
-    const toggleSearch = () => setIsOpen(prev => !prev);
+        // 4. CONFIGURE FUSE (Simple Keys)
+        const fuseInstance = new Fuse<FlattenedArticle>(flattenedDocs, {
+          keys: [
+            { name: 'title', weight: 2 },
+            { name: 'plainText', weight: 1 }, // <--- SIMPLE KEY
+            { name: 'category', weight: 0.5 }
+          ],
+          threshold: 0.4, // Fuzzy match
+          ignoreLocation: true,
+          includeScore: true
+        });
 
-    return {
-        searchTerm,
-        setSearchTerm,
-        results,
-        isOpen,
-        setIsOpen,
-        toggleSearch,
-        isLoading
-    };
-};
+        setFuse(fuseInstance);
+      } catch (error) {
+        console.error('[Search Debug] Failed to index:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    initSearch();
+  }, []);
+
+  // 5. PERFORM SEARCH
+  useEffect(() => {
+    if (!fuse || !query) {
+      setResults([]);
+      return;
+    }
+    const searchResults = fuse.search(query).map(result => result.item);
+    console.log(`[Search Debug] Searching "${query}" -> Found ${searchResults.length}`);
+    setResults(searchResults);
+  }, [query, fuse]);
+
+  const openSearch = () => setIsSearchOpen(true);
+  const closeSearch = () => setIsSearchOpen(false);
+
+  return {
+    query,
+    setQuery,
+    results,
+    isSearchOpen,
+    openSearch,
+    closeSearch,
+    isLoading
+  };
+}

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { X, Search as SearchIcon, FileText } from 'lucide-react';
 import { useSearch } from '../hooks/useSearch';
 
@@ -9,8 +11,8 @@ interface SearchModalProps {
 }
 
 const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
-    const { searchTerm, setSearchTerm, results, isLoading } = useSearch();
-    const navigate = useNavigate();
+    const { query, setQuery, results, isLoading } = useSearch();
+    const router = useRouter();
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -30,9 +32,9 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     const handleResultClick = (slug: string) => {
-        navigate(`/articles/${slug}`);
+        router.push(`/articles/${slug}`);
         onClose();
-        setSearchTerm(''); // Reset search
+        setQuery(''); // Reset search
     };
 
     // Helper to highlight matching text
@@ -68,8 +70,8 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                         type="text"
                         className="flex-1 bg-transparent border-none outline-none text-xl text-white placeholder-slate-500 font-prompt"
                         placeholder="Search the Archive (e.g. Unit Linked, Tax, Claims)..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
                     />
                     <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
                         <X size={24} />
@@ -82,39 +84,36 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                         <div className="p-8 text-center text-slate-500 font-sarabun">Loading Index...</div>
                     )}
 
-                    {!isLoading && searchTerm && results.length === 0 && (
+                    {!isLoading && query && results.length === 0 && (
                         <div className="p-8 text-center text-slate-500 font-sarabun">
-                            No results found for "{searchTerm}"
+                            No results found for "{query}"
                         </div>
                     )}
 
-                    {!isLoading && !searchTerm && (
+                    {!isLoading && !query && (
                         <div className="p-8 text-center text-slate-600 font-sarabun text-sm">
                             Type to start searching the archives...
                         </div>
                     )}
 
-                    {results.map(({ item }) => (
+                    {results.map((article) => (
                         <div
-                            key={item.id}
-                            onClick={() => handleResultClick(item.slug)}
+                            key={article.id}
+                            onClick={() => handleResultClick(article.slug)}
                             className="group flex flex-col gap-1 p-4 rounded-lg hover:bg-teal-500/10 cursor-pointer transition-colors border border-transparent hover:border-teal-500/20"
                         >
                             <div className="flex items-center gap-2">
                                 <FileText size={16} className="text-slate-500 group-hover:text-amber-500 transition-colors" />
                                 <h4 className="text-lg font-bold font-prompt text-slate-200 group-hover:text-white">
-                                    <HighlightedText text={item.title} highlight={searchTerm} />
+                                    <HighlightedText text={article.title} highlight={query} />
                                 </h4>
-                                {item.categories.map(c => (
-                                    <span key={c.name} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
-                                        {c.name}
-                                    </span>
-                                ))}
+                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
+                                    {article.category}
+                                </span>
                             </div>
 
                             <p className="text-sm text-slate-400 font-sarabun line-clamp-2 pl-6">
-                                {/* Only showing snippet if relevant could be complex, for now just show truncated text */}
-                                {item.content.text ? item.content.text.substring(0, 150) + "..." : "No preview available."}
+                                {article.plainText ? article.plainText.substring(0, 150) + "..." : "No preview available."}
                             </p>
                         </div>
                     ))}

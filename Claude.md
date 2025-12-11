@@ -68,32 +68,38 @@
 
 ---
 
-## 📂 FILE STRUCTURE (Flat Root - No `src/`)
+## 📂 FILE STRUCTURE (CURRENT)
+
+**Note:** Next.js is now at root level. Legacy Vite app archived.
 
 ```
-web-next/
-├── app/                    # Next.js App Router
+nerd-with-nart/             # ROOT (Next.js 16 App)
+├── app/                    # Next.js App Router - The Core
 │   ├── layout.tsx          # Root layout with Providers
 │   ├── page.tsx            # Homepage
 │   ├── articles/           # Article routes
 │   ├── tools/              # Tools page
 │   ├── manifesto/          # Philosophy page
 │   └── contact/            # Contact page
-├── components/             # UI Components (Teal Protocol)
+├── components/             # UI Components - Teal Protocol
 │   ├── Navbar.tsx
 │   ├── SearchModal.tsx
 │   ├── Providers.tsx       # Context wrapper + SearchModal mount
+│   ├── KnowledgeEngine.tsx # Article listing
 │   └── tools/              # Calculator components
-├── hooks/                  # Custom React hooks
+├── hooks/                  # Search & Logic
 │   └── useSearch.ts        # Search engine (Fuse.js + AST extraction)
 ├── context/                # React Context
 │   └── SearchContext.tsx   # Search modal state
-├── lib/                    # Utilities
+├── lib/                    # Hygraph Fetcher & Utils
 │   └── hygraph.ts          # Hygraph client
 ├── queries.ts              # GraphQL queries
-├── tailwind.config.ts      # Tailwind v3 config
-├── postcss.config.js       # PostCSS v3 format
-└── next.config.mjs         # Next.js config (static export)
+├── tailwind.config.ts      # Tailwind v3 config (REQUIRED)
+├── postcss.config.js       # PostCSS config (REQUIRED)
+├── tsconfig.json           # TypeScript config with @/* aliases
+├── next.config.mjs         # Next.js config (static export)
+├── _legacy_archive/        # Old Vite App - DO NOT TOUCH
+└── out/                    # Static Export Output (after build)
 ```
 
 ---

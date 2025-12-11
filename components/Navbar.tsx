@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Compass, Search } from 'lucide-react';
 import { useSearchModal } from '../context/SearchContext';
 
@@ -8,7 +11,7 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [compassRotation, setCompassRotation] = useState(0);
   const { openSearch } = useSearchModal();
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +43,7 @@ const Navbar: React.FC = () => {
           {/* LOGO */}
 
           <Link
-            to="/"
+            href="/"
             className="flex items-center gap-3 cursor-pointer group mr-8"
             onClick={() => setIsMobileMenuOpen(false)}
           >
@@ -67,19 +70,19 @@ const Navbar: React.FC = () => {
           {/* DESKTOP MENU (Centered) */}
           <div className="hidden lg:flex items-center gap-10 flex-1 justify-center">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path));
+              const isActive = pathname === link.path || (link.path !== '/' && pathname.startsWith(link.path));
 
               return (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className="group flex flex-col items-center"
                 >
                   <span className={`text-base font-bold font-['Prompt'] transition-colors ${isActive ? 'text-brand-amber' : 'text-slate-200 group-hover:text-brand-amber'
                     }`}>
                     {link.name}
                   </span>
-                  <span className={`text-[10px] font-mono uppercase tracking-wide transition-colors ${isActive ? 'text-brand-amber/60' : 'text-slate-500 group-hover:text-brand-amber/70'
+                  <span className={`text--[10px] font-mono uppercase tracking-wide transition-colors ${isActive ? 'text-brand-amber/60' : 'text-slate-500 group-hover:text-brand-amber/70'
                     }`}>
                     {link.sub}
                   </span>
@@ -133,7 +136,7 @@ const Navbar: React.FC = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className="py-6 border-b border-white/5 flex items-center justify-between group"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

@@ -5,6 +5,8 @@
  * THEME: Teal Protocol (#2bb1bb) + Amber Action (#F59E0B)
  */
 
+'use client';
+
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Octahedron, Torus, Box, Stars, Environment } from '@react-three/drei';
