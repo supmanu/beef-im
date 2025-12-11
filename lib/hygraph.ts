@@ -1,4 +1,4 @@
-import { GET_ARCHIVE, GET_POST_BY_SLUG, GET_TOOLS } from '../queries';
+import { GET_ARCHIVE, GET_POST_BY_SLUG, GET_TOOLS, GET_FEATURED_POSTS } from '../queries';
 
 const HYGRAPH_ENDPOINT = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT as string;
 
@@ -32,4 +32,9 @@ export async function getArchive() {
 export async function getTools() {
     const data = await fetchHygraph(GET_TOOLS);
     return data.tools;
+}
+
+export async function getFeaturedPosts() {
+    const data = await fetchHygraph(GET_FEATURED_POSTS);
+    return data.posts;
 }

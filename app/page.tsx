@@ -1,5 +1,8 @@
+
 import { Metadata } from 'next';
 import HomeContent from '@/components/HomeContent';
+import FeaturedPosts from '@/components/FeaturedPosts';
+import BentoGrid from '@/components/BentoGrid';
 
 export const metadata: Metadata = {
   title: "Nerd with Nart (เนิร์ดกับนาถ) | Financial Strategy",
@@ -17,5 +20,16 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <HomeContent />;
+  return (
+    <main className="min-h-screen bg-[#0B1D35]">
+      {/* 1. Client-Side Hero Section */}
+      <HomeContent />
+
+      {/* 2. Server-Side Featured Articles (Top 3) */}
+      <FeaturedPosts />
+
+      {/* 3. Static Bento Grid Navigation */}
+      <BentoGrid />
+    </main>
+  );
 }

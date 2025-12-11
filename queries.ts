@@ -121,3 +121,26 @@ export const GET_SEARCH_INDEX = gql`
     }
   }
 `;
+
+// --- 5. FOR THE FEATURED SECTION (TOP 3) ---
+export const GET_FEATURED_POSTS = gql`
+  query GetFeaturedPosts {
+    posts(orderBy: releaseDate_DESC, first: 3) {
+      id
+      title
+      slug
+      releaseDate
+      coverImage {
+        url
+      }
+      categories {
+        name
+        slug
+        color
+      }
+      content {
+        text
+      }
+    }
+  }
+`;
