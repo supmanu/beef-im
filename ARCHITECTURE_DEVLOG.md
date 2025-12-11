@@ -133,3 +133,12 @@
 **Final Status:**
 - **Codebase:** Clean, typed, and production-ready.
 - **Next Task:** Blog Comments feature implementation.
+
+### [2025-12-12] HOMEPAGE V2 & SEO UPGRADE
+**Summary:**
+- Implemented Homepage V2: Hero → Featured Posts (Top 3) → Interactive Bento Grid (Thai).
+- Deployed SEO Infrastructure: `sitemap.ts`, `robots.txt`, and OpenGraph metadata.
+- Published first "Authority Article" structure (New Health Standard).
+
+**Next Task:** Monitor SEO performance and prepare "IRR Calculator" tool.
+**Status:** PRODUCTION STABLE.
