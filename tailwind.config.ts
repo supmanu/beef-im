@@ -19,7 +19,36 @@ export default {
         prompt: ['var(--font-prompt)'],
         sarabun: ['var(--font-sarabun)'],
       },
+      typography: ({ theme }: any) => ({
+        DEFAULT: {
+          css: {
+            // Fix: Force strong tags to be slate-200 (primary text color)
+            strong: {
+              color: theme('colors.slate.200'),
+              fontWeight: '700',
+            },
+            // Links should be teal
+            a: {
+              color: theme('colors.brand.teal'),
+              textDecoration: 'none',
+              fontWeight: '600',
+              '&:hover': {
+                color: theme('colors.brand.amber'),
+              },
+            },
+            // Remove default quote marks from blockquotes
+            'blockquote p:first-of-type::before': {
+              content: 'none',
+            },
+            'blockquote p:last-of-type::after': {
+              content: 'none',
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 } satisfies Config;
