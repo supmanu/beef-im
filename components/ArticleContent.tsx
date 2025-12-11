@@ -122,14 +122,6 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-blockquote:before:content-none
             prose-blockquote:after:content-none
 
-            /* 4. H4 HEADERS - Logic Labels (Teal) */
-            prose-h4:text-brand-teal
-            prose-h4:text-xs
-            prose-h4:font-bold
-            prose-h4:uppercase
-            prose-h4:tracking-widest
-            prose-h4:mb-2
-            prose-h4:mt-10
 
             /* 5. HR (Horizontal Rule) */
             prose-hr:border-brand-teal/30
