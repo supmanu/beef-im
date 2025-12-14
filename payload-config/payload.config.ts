@@ -10,27 +10,10 @@ import { importMap } from '../app/(payload)/admin/importMap';
 
 // 2. IMPORT COLLECTIONS
 import { Categories } from '../collections/Categories';
+import { Posts } from '../collections/Posts';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-const Posts = {
-  slug: 'posts',
-  admin: {
-    useAsTitle: 'title',
-  },
-  fields: [
-    {
-      name: 'title',
-      type: 'text' as const,
-      required: true,
-    },
-    {
-      name: 'content',
-      type: 'textarea' as const,
-    },
-  ],
-};
 
 export default buildConfig({
   // In dev, omit serverURL to let Payload auto-detect. In production, set via env.
