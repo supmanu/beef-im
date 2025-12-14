@@ -142,3 +142,154 @@
 
 **Next Task:** Monitor SEO performance and prepare "IRR Calculator" tool.
 **Status:** PRODUCTION STABLE.
+
+---
+
+## [2025-12-14] PHASE H: THE SOVEREIGN STACK REBOOT (COMPLETE)
+**Mission:** Migrate from Hygraph CMS to Payload 3.0 for full data sovereignty
+**Status:** ✅ ADMIN UI UNLOCKED
+**Stack:** Next.js 16.0.8 + Payload 3.0 + Neon (Postgres) + Vercel
+
+### 1. THE REBOOT STRATEGY
+**Context:** Phase H was a complete architectural reset. We started from the last stable branch and rebuilt the "Sovereign Stack" from scratch to achieve full CMS ownership.
+
+**Nuclear Cleanup:**
+- Deleted `node_modules`, `.next`, and `package-lock.json` to purge legacy dependencies
+- Resolved React 19 vs React 18 conflicts (Next.js 16 default vs Payload 3.0 peer dependency)
+- Removed dead packages like `@payloadcms/bundler-webpack` (doesn't exist in Payload 3.0 + Next.js architecture)
+
+### 2. CRITICAL BLOCKERS ENCOUNTERED
+
+#### A. The Node 24 Incompatibility
+**Problem:** Running Node 24.11.1 instead of the recommended Node 20 LTS
+**Impact:** 
+- `payload generate:importmap` failed with `ERR_MODULE_NOT_FOUND`
+- ESM loader errors prevented CLI tools from working
+- Forced manual creation of all Payload infrastructure files
+
+**Lesson:** Node 24 is "bleeding edge" - stick to Node 20 LTS for Payload 3.0
+
+#### B. The Zombie Config
+**Problem:** Legacy `bundler: webpackBundler()` line survived from Payload 2.0
+**Impact:** Silent build crashes and type errors
+**Fix:** Removed all 2.0-specific bundler references - Next.js handles bundling in 3.0
+
+#### C. The Path Blindness (The "Undefined" Error)
+**Problem:** `payload.config.ts` couldn't auto-discover the manually created `importMap.ts`
+**Error:** `TypeError: Cannot read properties of undefined (reading 'render')`
+**Root Cause:** Payload failed to initialize `payload.admin` object without the import map
+**Diagnosis:** Complex directory structure + Node 24 restrictions broke filesystem lookup
+
+#### D. The Double-URL Glitch
+**Problem:** `PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000` in `.env`
+**Impact:** Payload concatenated the URL twice: `http://localhost:3000http://localhost:3000/admin`
+**Fix:** Set `serverURL: undefined` in development mode to let Payload auto-detect
+
+### 3. THE WINNING SOLUTION
+
+#### The "Hard-Wire" Technique
+**CTO Recommendation:** Stop relying on auto-discovery and force the connection
+**Implementation:**
+```typescript
+// payload-config/payload.config.ts
+import { importMap } from '../app/(payload)/admin/importMap';
+
+export default buildConfig({
+  admin: {
+    importMap, // <--- HARD-WIRED
+  }
+});
+```
+**Result:** Bypassed filesystem lookup failures and Node 24 restrictions
+
+#### Manual Stack Assembly
+Instead of fighting broken CLI tools, we built the stack by hand:
+
+1. **`app/(payload)/admin/[[...segments]]/page.tsx`**
+   - Re-exports `RootPage` from `@payloadcms/next/views`
+   - Uses relative imports (`../../../../payload-config/payload.config`) instead of `@payload-config` alias
+   - Passes `config`, `params`, `searchParams`, and `importMap`
+
+2. **`app/(payload)/api/[...slug]/route.ts`**
+   - Exports REST methods: `GET`, `POST`, `DELETE`, `PATCH`, `PUT`, `OPTIONS`
+   - Uses `@payloadcms/next/routes` handlers
+
+3. **`app/(payload)/layout.tsx`**
+   - Uses Payload's `RootLayout` component
+   - Implements `handleServerFunctions` for server actions
+   - Provides isolated `<html>` and `<body>` for admin panel
+
+4. **`app/(payload)/admin/importMap.ts`**
+   - Manually created empty object: `export const importMap = {}`
+   - Required for Payload admin initialization
+
+### 4. THE DUPLEX LAYOUT STRATEGY
+
+**Problem:** Nested `<html>` tags causing hydration error
+**Cause:** Both root `app/layout.tsx` and Payload's layout rendered `<html><body>`
+
+**Solution - Route Group Isolation:**
+```
+app/
+├── layout.tsx         <-- Pass-through (just returns {children})
+├── (payload)/         <-- Payload Admin (has its own <html><body>)
+│   ├── layout.tsx     
+│   └── admin/
+└── (site)/            <-- Public Website (has its own <html><body>)
+    ├── layout.tsx     
+    └── page.tsx
+```
+
+**Result:**
+- `/admin` → Uses **only** Payload's layout
+- `/` → Uses **only** the Site's layout
+- No nested `<html>` tags!
+
+### 5. FINAL VERDICT & PRODUCTION RULES
+
+**Status:** Admin UI is UNLOCKED at `/admin/create-first-user`
+**Database:** First user successfully created in Neon (Postgres)
+**Deployment:** Ready for Vercel
+
+#### 📜 RULE #1: PIN NODE VERSION
+**Do not use Node 24 for Payload 3.0 production.**
+- Use Node 20 LTS for working CLI tools (`generate:importmap`, `generate:types`)
+- Enforce with `.nvmrc` and `engine-strict=true` in `.npmrc`
+
+#### 📜 RULE #2: NO DEAD CODE
+**Purge before you merge.**
+- Remove all `webpackBundler` references
+- Remove legacy `payload.admin.render()` calls
+- Remove old plugin configs before booting 3.0
+
+#### 📜 RULE #3: EXPLICIT OVER IMPLICIT
+**Don't trust auto-discovery in complex monorepos.**
+- Import files directly instead of relying on filesystem lookup
+- Use TypeScript to validate file existence
+- Hard-wire critical dependencies
+
+#### 📜 RULE #4: USE RELATIVE IMPORTS
+**Bypass Next.js 16 alias resolution bugs.**
+- Use `../../../../payload-config/payload.config` instead of `@payload-config`
+- Documented pattern from previous successful migrations
+
+### 6. TECHNICAL ARTIFACTS CREATED
+
+| File | Purpose |
+|------|---------|
+| `app/(payload)/admin/[[...segments]]/page.tsx` | Admin page using Payload 3.0 pattern |
+| `app/(payload)/layout.tsx` | Isolated layout with RootLayout |
+| `app/(payload)/api/[...slug]/route.ts` | REST API endpoints |
+| `app/(payload)/admin/importMap.ts` | Empty import map (required) |
+| `app/(payload)/custom.scss` | Custom admin styling |
+| `payload-config/payload.config.ts` | Hard-wired config with importMap |
+| `package.json` | Added `@payloadcms/next` and `sass` |
+
+### 7. COMMIT RECORD
+**Hash:** `4493a95`
+**Message:** `fix(layout): Implement Duplex Layout Strategy to resolve Payload HTML collision`
+**Refers to:** System Checkpoint v5.5 (Next.js 16 + Payload 3.0 + Neon + Vercel)
+
+---
+**Mission Complete. The Sovereign Stack is operational.**
+*Signed, Antigravity Agent (Claude Sonnet 4.5)*
