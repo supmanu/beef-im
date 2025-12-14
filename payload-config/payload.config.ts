@@ -8,6 +8,9 @@ import { fileURLToPath } from 'url';
 // We use a relative path to go up one level (..), then into app/(payload)/admin/
 import { importMap } from '../app/(payload)/admin/importMap';
 
+// 2. IMPORT COLLECTIONS
+import { Categories } from '../collections/Categories';
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -43,6 +46,7 @@ export default buildConfig({
   },
   collections: [
     Posts,
+    Categories,
   ],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
