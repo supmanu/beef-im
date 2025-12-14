@@ -11,6 +11,7 @@ import { importMap } from '../app/(payload)/admin/importMap';
 // 2. IMPORT COLLECTIONS
 import { Categories } from '../collections/Categories';
 import { Posts } from '../collections/Posts';
+import { Media } from '../collections/Media';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,6 +31,7 @@ export default buildConfig({
   collections: [
     Posts,
     Categories,
+    Media,
   ],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
