@@ -1,75 +1,53 @@
-// scripts/seed-categories.ts
-// Standalone script to seed the four core categories into Payload CMS
-// Run with: npx tsx scripts/seed-categories.ts
+import 'dotenv/config'; // Required for PAYLOAD_SECRET
+import payload from 'payload';
+import { CollectionSlug } from 'payload/dist/collections/config/types';
 
-import { getPayload } from 'payload';
-import config from '../payload-config/payload.config';
-
-// Core categories from live site (Hygraph)
+// The four core categories from the live site taxonomy
 const categories = [
-    {
-        title: 'สุขภาพและอายุชีพ',
-        slug: 'health',
-    },
-    {
-        title: 'ความมั่งคั่ง',
-        slug: 'wealth',
-    },
-    {
-        title: 'มรดกและภาษี',
-        slug: 'legacy',
-    },
-    {
-        title: 'มุมมอง',
-        slug: 'perspective',
-    },
+    { title: 'สุขภาพและอายุชีพ', slug: 'health' }, // Health
+    { title: 'ความมั่งคั่ง', slug: 'wealth' },       // Wealth
+    { title: 'มรดกและภาษี', slug: 'legacy' },     // Legacy
+    { title: 'มุมมอง', slug: 'perspective' },     // Perspective
 ];
 
-async function seedCategories() {
-    console.log('🌱 Starting category seeding...');
-
+const seedCategories = async () => {
     try {
-        // Initialize Payload
-        const payload = await getPayload({ config });
-        console.log('✅ Payload initialized');
+        console.log('--- Initializing Payload for Seeding ---');
+        await payload.init({
+            secret: process.env.PAYLOAD_SECRET as string,
+            local: true, // Run in local mode for CLI script
+        });
 
-        // Seed each category
+        const categoriesSlug: CollectionSlug = 'categories';
+
+        console.log(`\n--- Starting Seed for ${categoriesSlug} ---`);
         for (const category of categories) {
-            try {
-                // Check if category already exists
-                const existing = await payload.find({
-                    collection: 'categories',
-                    where: {
-                        slug: {
-                            equals: category.slug,
-                        },
-                    },
-                });
+            // 1. Check if the category already exists by slug
+            const existing = await payload.find({
+                collection: categoriesSlug,
+                where: { slug: { equals: category.slug } },
+                limit: 1,
+            });
 
-                if (existing.docs.length > 0) {
-                    console.log(`⏭️  Category "${category.title}" (${category.slug}) already exists, skipping...`);
-                    continue;
-                }
-
-                // Create the category
-                const result = await payload.create({
-                    collection: 'categories',
+            if (existing.docs.length === 0) {
+                // 2. Create the category if it does not exist
+                await payload.create({
+                    collection: categoriesSlug,
                     data: category,
                 });
-
-                console.log(`✅ Created category: "${category.title}" (${category.slug})`);
-            } catch (error) {
-                console.error(`❌ Failed to create category "${category.title}":`, error);
+                console.log(`✅ Created: ${category.title} (${category.slug})`);
+            } else {
+                console.log(`ℹ️ Exists: ${category.title} (${category.slug}) - Skipping.`);
             }
         }
 
-        console.log('\n🎉 Category seeding complete!');
+        console.log('\n--- Category Seeding Complete ---');
         process.exit(0);
+
     } catch (error) {
-        console.error('❌ Seeding failed:', error);
+        console.error('❌ Error during category seeding:', error);
         process.exit(1);
     }
-}
+};
 
-// Execute the seeding
 seedCategories();
