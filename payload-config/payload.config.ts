@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import { importMap } from '../app/(payload)/admin/importMap';
 
 // 2. IMPORT COLLECTIONS
+import { Users } from '../collections/Users';
 import { Categories } from '../collections/Categories';
 import { Posts } from '../collections/Posts';
 import { Media } from '../collections/Media';
@@ -33,6 +34,7 @@ export default buildConfig({
   },
   editor: lexicalEditor({}), // Global default Rich Text editor
   collections: [
+    Users, // Must be first - required for authentication
     Posts,
     Categories,
     Media,
