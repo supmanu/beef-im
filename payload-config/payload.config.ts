@@ -13,6 +13,9 @@ import { Categories } from '../collections/Categories';
 import { Posts } from '../collections/Posts';
 import { Media } from '../collections/Media';
 
+// 3. IMPORT LEXICAL EDITOR
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -28,6 +31,7 @@ export default buildConfig({
       icons: [{ rel: 'icon', url: '/favicon.ico' }],
     },
   },
+  editor: lexicalEditor({}), // Global default Rich Text editor
   collections: [
     Posts,
     Categories,
