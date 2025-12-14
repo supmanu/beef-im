@@ -1,14 +1,68 @@
-import { getArchive } from '@/lib/hygraph';
-import ArchiveListing from '@/components/ArchiveListing';
+import React from 'react';
+import Link from 'next/link';
+import { getLocalPayload } from '../../../lib/payload';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "The Archive | Nerd with Nart",
-    description: "Financial Strategies and Knowledge Base.",
+    title: 'คลังความรู้ (The Archive) - Nerd with Nart',
+    description: 'บันทึกการเดินทางและองค์ความรู้ที่รวบรวมจากการทำงานจริง',
 };
 
 export default async function ArticlesPage() {
-    const data = await getArchive();
+    const payload = await getLocalPayload();
 
-    return <ArchiveListing posts={data.posts} categories={data.categories} />;
+    // Fetch posts from Payload (Diamond Pipe - Zero Latency)
+    const posts = await payload.find({
+        collection: 'posts',
+        sort: '-createdAt',
+    });
+
+    return (
+        <main className="min-h-screen bg-brand-dark text-slate-200 pt-24 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-12">
+                    <h1 className="text-4xl font-bold text-white mb-4 tracking-tight">
+                        คลังความรู้ <span className="text-brand-teal text-2xl font-normal">(The Archive)</span>
+                    </h1>
+                    <p className="text-slate-400 max-w-2xl">
+                        บันทึกการเดินทางและองค์ความรู้ที่รวบรวมจากการทำงานจริง
+                    </p>
+                </div>
+
+                {posts.docs.length === 0 ? (
+                    <div className="p-12 border border-slate-800 rounded-2xl bg-slate-900/50 text-center">
+                        <h3 className="text-xl text-slate-300 font-semibold mb-2">System Reboot in Progress</h3>
+                        <p className="text-slate-500">The library is currently being re-indexed. Check back soon.</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {posts.docs.map((post: any) => (
+                            <Link key={post.id} href={`/articles/${post.id}`} className="group block h-full">
+                                <article className="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden hover:border-brand-teal/50 transition-all duration-300 h-full flex flex-col">
+                                    <div className="aspect-video bg-slate-800 relative overflow-hidden">
+                                        <div className="w-full h-full bg-slate-700 flex items-center justify-center">
+                                            <span className="text-slate-500 text-sm">No Image</span>
+                                        </div>
+                                    </div>
+                                    <div className="p-6 flex flex-col flex-grow">
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <span className="text-xs font-mono text-brand-teal px-2 py-1 rounded-full bg-brand-teal/10 uppercase">
+                                                Article
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white group-hover:text-brand-teal transition-colors mb-3 line-clamp-2">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-slate-400 text-sm line-clamp-3 mb-4 flex-grow">
+                                            {post.content || 'No preview available'}
+                                        </p>
+                                    </div>
+                                </article>
+                            </Link>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </main>
+    );
 }

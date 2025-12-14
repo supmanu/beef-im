@@ -1,6 +1,5 @@
 import 'dotenv/config'; // Required for PAYLOAD_SECRET
 import payload from 'payload';
-import { CollectionSlug } from 'payload/dist/collections/config/types';
 
 // The four core categories from the live site taxonomy
 const categories = [
@@ -18,7 +17,7 @@ const seedCategories = async () => {
             local: true, // Run in local mode for CLI script
         });
 
-        const categoriesSlug: CollectionSlug = 'categories';
+        const categoriesSlug = 'categories';
 
         console.log(`\n--- Starting Seed for ${categoriesSlug} ---`);
         for (const category of categories) {
