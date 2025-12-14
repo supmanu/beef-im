@@ -46,6 +46,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    push: true, // Force schema sync - adds missing columns automatically
   }),
   secret: process.env.PAYLOAD_SECRET || 'YOUR_SECRET_SECRET',
   upload: {
