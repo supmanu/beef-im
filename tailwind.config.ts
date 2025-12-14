@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 export default {
   content: [
@@ -13,6 +14,7 @@ export default {
         brand: {
           teal: '#2bb1bb',
           amber: '#F59E0B',
+          dark: '#0B1D35',
         },
       },
       fontFamily: {
@@ -49,6 +51,6 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    typography, // ESM import instead of require()
   ],
 } satisfies Config;
