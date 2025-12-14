@@ -62,12 +62,13 @@ export const Posts: CollectionConfig = {
                 },
             },
         },
-        {
-            name: 'heroImage',
-            type: 'upload',
-            relationTo: 'media',
-            required: false,
-        },
+        // TODO: Uncomment when Media collection is created
+        // {
+        //     name: 'heroImage',
+        //     type: 'upload',
+        //     relationTo: 'media',
+        //     required: false,
+        // },
         {
             name: 'excerpt',
             type: 'textarea',
