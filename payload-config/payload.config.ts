@@ -1,57 +1,47 @@
-// payload-config/payload.config.ts
-import { buildConfig } from 'payload';
-import { postgresAdapter } from '@payloadcms/db-postgres';
+import { buildConfig } from 'payload'; // ✅ Fixed: Imported directly from 'payload'
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-// 1. IMPORT YOUR MANUAL MAP DIRECTLY
-// We use a relative path to go up one level (..), then into app/(payload)/admin/
-import { importMap } from '../app/(payload)/admin/importMap';
-
-// 2. IMPORT COLLECTIONS
-import { Users } from '../collections/Users';
-import { Categories } from '../collections/Categories';
-import { Posts } from '../collections/Posts';
-import { Media } from '../collections/Media';
-
-// 3. IMPORT LEXICAL EDITOR
+import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+
+// Import your collections
+import { Users } from '../collections/Users';
+import { Posts } from '../collections/Posts';
+import { Categories } from '../collections/Categories';
+import { Media } from '../collections/Media';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
-  // In dev, omit serverURL to let Payload auto-detect. In production, set via env.
-  serverURL: process.env.NODE_ENV === 'production' ? process.env.PAYLOAD_PUBLIC_SERVER_URL : undefined,
   admin: {
-    // 2. HARD-WIRE THE MAP HERE
-    // This tells Payload: "Stop looking. Here is the map."
-    importMap,
-    meta: {
-      titleSuffix: ' | Nerd With Nart',
-      icons: [{ rel: 'icon', url: '/favicon.ico' }],
-    },
+    user: Users.slug,
+    // Note: importMap is now handled automatically via layout.tsx
   },
-  editor: lexicalEditor({}), // Global default Rich Text editor
+  
+  // Keep the editor config
+  editor: lexicalEditor({}), 
+
   collections: [
-    Users, // Must be first - required for authentication
+    Users,
     Posts,
     Categories,
     Media,
   ],
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
+  
+  secret: process.env.PAYLOAD_SECRET || 'YOUR_SECRET_HERE',
+  
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
-    push: true, // Force schema sync - adds missing columns automatically
+    // In production, you might want to disable push and use migrations instead
+    push: true, 
   }),
-  secret: process.env.PAYLOAD_SECRET || 'YOUR_SECRET_SECRET',
-  upload: {
-    limits: {
-      fileSize: 5000000,
-    },
+
+  serverURL: process.env.NODE_ENV === 'production' ? process.env.PAYLOAD_PUBLIC_SERVER_URL : undefined,
+  
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
 });
