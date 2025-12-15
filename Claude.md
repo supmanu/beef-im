@@ -32,20 +32,21 @@
   - Background: `#0B1D35` (Dark) → `brand-dark`
 - **Fonts:** Prompt (Headings), Sarabun (Body)
 
-### 4. Node.js Version (CRITICAL)
-- **Recommended:** Node 20 LTS
-- **Current:** Node 24.11.1 (causes CLI tool failures)
+### 4. Node.js Version (CRITICAL - ENFORCED)
+- **Required:** Node v20.18.0 LTS (Iron) ⚠️ **STRICTLY ENFORCED**
+- **Previous:** Node v24.11.1 (caused CLI tool failures - now removed)
 - **Issue:** Node 24 breaks `payload generate:importmap` and `generate:types`
-- **Action:** Run `nvm use 20` before production deployment
+- **Verification:** Run `node -v` - must show `v20.18.0`
+- **Launch Command:** `npm run dev --webpack` (Turbopack unstable with Payload 3.0)
 
 ---
 
 ## 🛠️ CURRENT STATUS
 
-### ✅ Completed (Phase H)
-- **Payload 3.0 Migration:** Admin UI unlocked at `/admin`
-- **Database:** First user created in Neon Postgres
-- **Route Groups:** Duplex Layout Strategy implemented
+### ✅ Completed (Phase H - OPERATION STABILIZE)
+- **Payload 3.0 Migration:** ✅ COMPLETE - Admin UI fully operational at `/admin`
+- **Database:** ✅ Connected to Neon Postgres, writing correctly
+- **Route Groups:** ✅ Duplex Layout Strategy implemented
   - `(site)` - Public website with own layout
   - `(payload)` - Admin panel with isolated layout
 - **Hard-Wire Pattern:** importMap explicitly imported in config

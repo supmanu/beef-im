@@ -17,7 +17,13 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(claude-mem help:*)",
+      "SlashCommand(/claude-mem help)",
+      "SlashCommand(/claude-mem:*)",
+      "SlashCommand(/save Testing dual-brain architecture - Agent 2B (Claude Code Extension) memory test)",
+      "SlashCommand(/save:*)",
+      "Bash(claude-mem logs:*)"
     ]
   }
 }
