@@ -23,7 +23,8 @@
       "SlashCommand(/claude-mem:*)",
       "SlashCommand(/save Testing dual-brain architecture - Agent 2B (Claude Code Extension) memory test)",
       "SlashCommand(/save:*)",
-      "Bash(claude-mem logs:*)"
+      "Bash(claude-mem logs:*)",
+      "Bash(git mv:*)"
     ]
   }
 }

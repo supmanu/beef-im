@@ -1,4 +1,16 @@
-# 🏗️ NERD WITH NART: FRONTEND ARCHITECTURE LOG
+# 🏗️ NERD WITH NART: MIGRATION HISTORY (ARCHIVED)
+
+> **⚠️ HISTORICAL REFERENCE ONLY**
+>
+> **Status:** Archived on December 15, 2025
+>
+> **Purpose:** Historical record of technical migrations and troubleshooting
+>
+> **For current project state:** See [CLAUDE.md](../CLAUDE.md)
+>
+> **For dual-brain system:** See [DUAL_BRAIN_ARCHITECTURE.md](../DUAL_BRAIN_ARCHITECTURE.md)
+
+---
 
 ## 1. Project Structure
 **Status:** ✅ Active

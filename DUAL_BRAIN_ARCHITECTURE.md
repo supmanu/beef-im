@@ -539,7 +539,7 @@ Consider adding **Agent 2C - "The Researcher"** (optional third brain):
 ## 📚 RELATED DOCUMENTATION
 
 - [CLAUDE.md](./CLAUDE.md) - Main project context for Claude
-- [ARCHITECTURE_DEVLOG.md](./ARCHITECTURE_DEVLOG.md) - Complete migration history
+- [Migration History](./_archive/migration-history.md) - Historical migration logs (Phases A-H)
 - [Claude-mem Documentation](https://github.com/anthropics/claude-mem)
 - [MCP Memory Server](https://github.com/modelcontextprotocol/servers)
 

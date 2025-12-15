@@ -1,10 +1,16 @@
-# 🤖 CLAUDE AGENT CONTEXT (PHASE H COMPLETE)
+# 🤖 CLAUDE AGENT CONTEXT (ACTIVE)
 **Project:** Nerd with Nart - Financial Strategy Platform
 **Stack:** Next.js 16 (App Router) + Tailwind CSS v3 + Payload 3.0 CMS
 **Database:** Neon (Postgres)
 **Deployment:** Vercel (Serverless)
 **Status:** ✅ SOVEREIGN STACK OPERATIONAL
-**Last Updated:** Dec 14, 2025
+**Last Updated:** Dec 15, 2025
+
+> **📚 Documentation Index:**
+> - **Current Stack:** This file (CLAUDE.md)
+> - **Dual-Brain System:** [DUAL_BRAIN_ARCHITECTURE.md](DUAL_BRAIN_ARCHITECTURE.md)
+> - **Quick Reference:** [QUICK_REFERENCE_DUAL_BRAIN.md](QUICK_REFERENCE_DUAL_BRAIN.md)
+> - **Migration History:** [_archive/migration-history.md](_archive/migration-history.md) (Phases A-H)
 
 ---
 
