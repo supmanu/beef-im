@@ -3,6 +3,7 @@
 **Last Updated:** December 17, 2025
 **Status:** 🟢 GREEN - Ready for Migration
 **Agent:** 2A (Technical Lead) → 2B (Product/Planning)
+**Handoff:** Infrastructure Stabilized - Phase II Ready
 
 ---
 
@@ -144,12 +145,50 @@ Before starting the migration work:
 
 ---
 
+## File Map Updates (Housekeeping)
+
+### December 17, 2025 - Root Cleanup
+
+**Critical files moved to `/docs` directory:**
+
+1. **Technical Constitution**
+   - **Old Path:** `AGENT_2A_TECHNICAL_DIRECTIVES.md` (root)
+   - **New Path:** [docs/technical-constitution.md](../docs/technical-constitution.md)
+   - **Significance:** Single Source of Truth for version constraints
+   - **Usage:** Consult before upgrading any dependencies
+
+2. **Token Optimization Backlog**
+   - **Old Path:** `AGENT_2A_TASK.md` (root)
+   - **New Path:** [docs/backlog-token-optimization-task.md](../docs/backlog-token-optimization-task.md)
+   - **Significance:** Low-priority documentation task
+   - **Status:** Saved for later (post-migration)
+
+---
+
 ## Contact Points
 
 **For Technical Questions:** Reference Agent 2A's MCP Memory
 **For Strategic Decisions:** Consult `CLAUDE.md` and `.claude/rules/`
 **For Migration Planning:** This file (`project-status.md`)
+**For Version Constraints:** [docs/technical-constitution.md](../docs/technical-constitution.md)
 
 ---
 
-**Status Summary:** We went from broken to bulletproof. The foundation is solid. Now we march toward full data sovereignty with the Payload migration.
+## Handoff Summary (Agent 2A → Agent 2B)
+
+**Build Status:** 🟢 GREEN
+- Production: Live and stable
+- Engine: Next.js 15.5.9 (LTS) & React 19.0.0 (locked)
+- Security: CVE-2025-66478 & CVE-2025-55184 patched
+- State: "Hybrid" (Payload Admin backend + Hygraph Frontend)
+
+**Next Objective:** Phase II - Frontend Migration
+- Switch article data fetching from Hygraph to Payload
+- Rewire `/articles` and `/articles/[slug]` routes
+- Test and validate content rendering from Payload API
+
+**Foundation Status:** Secure and ready for Phase II execution.
+
+---
+
+**Status Summary:** We went from broken to bulletproof. The foundation is solid. Root directory cleaned. File map updated. Now we march toward full data sovereignty with the Payload migration.
