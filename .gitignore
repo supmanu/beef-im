@@ -43,5 +43,14 @@ next-env.d.ts
 # legacy vite app (archived)
 /_legacy_archive/
 
+
 # Claude Code personal preferences
 CLAUDE.local.md
+
+# Security Scrub
+.env
+.env.local
+.claude/settings.local.json
+node_modules/
+.next/
+build/
