@@ -1,5 +1,6 @@
 import 'dotenv/config'; // Required for PAYLOAD_SECRET
-import payload from 'payload';
+import { getPayload } from 'payload';
+import config from '../payload-config/payload.config';
 
 // The four core categories from the live site taxonomy
 const categories = [
@@ -12,10 +13,7 @@ const categories = [
 const seedCategories = async () => {
     try {
         console.log('--- Initializing Payload for Seeding ---');
-        await payload.init({
-            secret: process.env.PAYLOAD_SECRET as string,
-            local: true, // Run in local mode for CLI script
-        });
+        const payload = await getPayload({ config });
 
         const categoriesSlug = 'categories';
 

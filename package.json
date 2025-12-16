@@ -9,7 +9,9 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:types": "npx -y tsx ./node_modules/payload/bin.js generate:types --config ./payload-config/payload.config.ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@graphcms/rich-text-react-renderer": "^0.6.2",

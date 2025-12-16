@@ -1,0 +1,21 @@
+
+> web-next@0.1.0 generate:types
+> payload generate:types --config ./payload-config/payload.config.ts
+
+C:\Users\supma\Projects\nerd-with-nart\node_modules\undici\lib\web\fetch\webidl.js:13
+  return new TypeError(`${message.header}: ${message.message}`)
+         ^
+
+TypeError: TypeError: Illegal constructor
+    at webidl.errors.exception (C:\Users\supma\Projects\nerd-with-nart\node_modules\undici\lib\web\fetch\webidl.js:13:10)
+    at webidl.illegalConstructor (C:\Users\supma\Projects\nerd-with-nart\node_modules\undici\lib\web\fetch\webidl.js:63:23)
+    at new CacheStorage (C:\Users\supma\Projects\nerd-with-nart\node_modules\undici\lib\web\cache\cachestorage.js:17:14)
+    at Object.<anonymous> (C:\Users\supma\Projects\nerd-with-nart\node_modules\undici\index.js:135:25)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Object.transformer [as .js] (file:///C:/Users/supma/Projects/nerd-with-nart/node_modules/payload/node_modules/tsx/dist/register-CFH5oNdT.mjs:3:1009)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+
+Node.js v20.18.0
