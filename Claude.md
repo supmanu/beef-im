@@ -4,13 +4,22 @@
 **Database:** Neon (Postgres)
 **Deployment:** Vercel (Serverless)
 **Status:** ✅ SOVEREIGN STACK OPERATIONAL
-**Last Updated:** Dec 15, 2025
+**Last Updated:** Dec 16, 2025
 
 > **📚 Documentation Index:**
 > - **Current Stack:** This file (CLAUDE.md)
 > - **Dual-Brain System:** [DUAL_BRAIN_ARCHITECTURE.md](DUAL_BRAIN_ARCHITECTURE.md)
 > - **Quick Reference:** [QUICK_REFERENCE_DUAL_BRAIN.md](QUICK_REFERENCE_DUAL_BRAIN.md)
 > - **Migration History:** [_archive/migration-history.md](_archive/migration-history.md) (Phases A-H)
+> - **Modular Rules:** See `.claude/rules/` for topic-specific patterns
+> - **Token Strategy:** [TOKEN_OPTIMIZATION_GUIDE.md](TOKEN_OPTIMIZATION_GUIDE.md)
+
+> **🧠 Memory System (Agent 2B):**
+> - This CLAUDE.md file provides project-wide context
+> - Use `.claude/rules/*.md` for implementation patterns
+> - Reference files with @-mention syntax (e.g., @package.json)
+> - Edit memory: Run `/memory` command
+> - See [Memory Docs](https://code.claude.com/docs/en/memory)
 
 ---
 
