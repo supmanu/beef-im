@@ -3,7 +3,7 @@ import { CollectionConfig } from 'payload';
 export const Media: CollectionConfig = {
     slug: 'media', // <--- This MUST match relationTo: 'media'
     upload: {
-        staticURL: '/media',
+
         staticDir: 'media',
         imageSizes: [
             {
