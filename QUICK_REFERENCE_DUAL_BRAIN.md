@@ -1,5 +1,8 @@
 # 🧠 DUAL-BRAIN QUICK REFERENCE
 
+**Last Updated:** December 16, 2025
+**Status:** Production Ready
+
 ## Which Agent to Use?
 
 ### 🎯 Agent 2A (Strategist) - Antigravity Chat
@@ -35,7 +38,8 @@
 "Debug this TypeScript error in checkout.tsx"
 "Add validation to the contact form"
 ```
-**Saves Automatically:** No manual action needed
+**Memory:** File-based (CLAUDE.md + .claude/rules/*.md)
+**To Save:** Use `Save?` command at end of session
 
 ---
 

@@ -2,9 +2,9 @@
 
 **Project:** Nerd with Nart - Financial Strategy Platform
 **Document Type:** Strategic Initiative Report
-**Date:** December 15, 2025
+**Date:** December 16, 2025 (Updated)
 **Author:** Development Team (Human + AI Collaboration)
-**Status:** ✅ OPERATIONAL
+**Status:** ✅ PRODUCTION READY
 
 ---
 
@@ -59,23 +59,23 @@ We implemented a **Dual-Brain AI Architecture** to solve critical productivity b
 
 ---
 
-### Agent 2B: The Builder (Session Transcripts + Code Context)
+### Agent 2B: The Builder (File-Based Memory)
 
 **Platform:** Claude Code Extension (VS Code Terminal)
-**Memory Engine:** claude-mem with Chroma vector database
-**Storage:** `C:\Users\supma\.claude-mem\` (local filesystem)
-**Backup:** Rolling archives (automatic compression)
+**Memory Engine:** Built-in Claude Code file-based memory
+**Storage:** `./CLAUDE.md` + `./.claude/rules/*.md` (git-tracked)
+**Backup:** Git repository (version-controlled, team-shared)
 
-**Purpose:** Deep tactical memory optimized for code implementation with full session context.
+**Purpose:** Project-specific tactical memory optimized for implementation patterns and coding conventions.
 
 **Stores:**
-- 💻 File changes (reads, edits, writes)
-- 🔨 Command history (git, npm, build processes)
-- 🐛 Debugging sessions (error traces, fixes)
-- 📝 Implementation details (HOW things were built)
-- 🔄 Workflow patterns (tool usage, sequences)
+- 💻 Implementation patterns (Payload CMS patterns, Next.js conventions)
+- 🔨 Common commands (dev workflows, deployment procedures)
+- 🐛 Error solutions (known issues and fixes)
+- 📝 Code conventions (styling, architecture patterns)
+- 🔄 Team guidelines (documented best practices)
 
-**Query Performance:** 2-5 seconds (semantic vector search)
+**Query Performance:** Instant (loaded at session start)
 
 **Use Cases:**
 - Deep refactoring across multiple files
@@ -119,9 +119,9 @@ Agent 2A memory (50KB strategic decisions):
 ├── "Node 20 LTS required"
 └── "Tailwind v3.4.17 locked"
 
-Agent 2B memory (rolling 30-day tactical archives):
-├── Recent session transcripts (2MB)
-└── Old archives (compressed, offline)
+Agent 2B memory (git-tracked pattern files):
+├── CLAUDE.md (project context, ~10KB)
+└── .claude/rules/*.md (patterns, ~50KB total)
 ```
 **Agent loads 50KB to answer "What's our primary color?"** ✅
 
@@ -129,14 +129,15 @@ Agent 2B memory (rolling 30-day tactical archives):
 
 ### 3. Knowledge Persistence
 
-**Problem:** Critical decisions made during deep implementation sessions (Agent 2B) would disappear after 30 days when archives rolled over.
+**Problem:** Critical strategic decisions made during deep implementation sessions (Agent 2B) need to be preserved permanently.
 
-**Solution:** "Bridge Workflow"
+**Solution:** "Bridge Workflow" with `Save?` command
 1. Complete deep work in Agent 2B
-2. Extract summary: "What did we decide?"
-3. Bridge to Agent 2A: "Save this decision to memory: [summary]"
+2. Run `Save?` command - Agent evaluates what's strategic vs tactical
+3. Agent drafts ready-to-paste commands for both memories
+4. Bridge strategic decisions to Agent 2A manually
 
-**Result:** Strategic knowledge survives forever (cloud-backed), tactical details preserved for 30 days (long enough for context, short enough to stay fast).
+**Result:** Strategic knowledge survives forever (cloud-backed), tactical patterns documented in version-controlled files (team-shared via git).
 
 ### 4. Context Precision
 

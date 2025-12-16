@@ -112,37 +112,33 @@ nerd-with-nart/
 
 ### Agent 2B Configuration (Claude Code Extension)
 
-**Hooks Config:** `C:\Users\supma\.claude\settings.json`
+**Memory Files:**
 
-```json
-{
-  "hooks": {
-    "SessionStart": [{"hooks": [{"type": "command", "command": "C:\\Users\\supma\\.claude-mem\\hooks\\session-start.js", "timeout": 180}]}],
-    "Stop": [{"hooks": [{"type": "command", "command": "C:\\Users\\supma\\.claude-mem\\hooks\\stop.js", "timeout": 60}]}],
-    "UserPromptSubmit": [{"hooks": [{"type": "command", "command": "C:\\Users\\supma\\.claude-mem\\hooks\\user-prompt-submit.js", "timeout": 60}]}],
-    "PostToolUse": [{"hooks": [{"type": "command", "command": "C:\\Users\\supma\\.claude-mem\\hooks\\post-tool-use.js", "timeout": 180}], "matcher": "*"}]
-  }
-}
+```
+nerd-with-nart/
+├── CLAUDE.md                    # Main project context
+├── CLAUDE.local.md              # Personal preferences (gitignored)
+└── .claude/
+    └── rules/
+        ├── payload.md           # Payload CMS patterns
+        ├── nextjs.md            # Next.js conventions
+        ├── deployment.md        # Deployment procedures
+        ├── api-rules.md         # API patterns
+        ├── memory-bridge-workflow.md  # Bridge workflow
+        └── QUICK_COMMANDS.md    # Command cheatsheet
 ```
 
-**Storage Structure:**
-```
-C:\Users\supma\.claude-mem\
-├── archives/       # Compressed session transcripts
-├── backups/        # Backup copies
-├── chroma/         # Vector database (Chroma)
-├── hooks/          # Executable hook scripts
-├── logs/           # Operation logs
-└── trash/          # Smart trash (if enabled)
-```
-
-**Installation:**
+**Usage:**
 ```bash
-npm install -g claude-mem
-claude-mem install  # Select: User scope, Enable Smart Trash
+# Edit memory files
+/memory
+
+# Files auto-load at session start
+# Use @-mention syntax to reference files
+@.claude/rules/payload.md
 ```
 
-**Status:** ✅ Hooks installed, awaiting first session completion for data population
+**Status:** ✅ File-based memory operational, git-tracked
 
 ---
 
@@ -459,12 +455,13 @@ Since the two brains don't sync automatically, **you act as the synapse**:
 **Status:** Known cosmetic issue, doesn't prevent functionality
 **Impact:** None (hooks work regardless)
 
-### "Agent 2B doesn't recall previous session"
+### "Agent 2B doesn't recall previous patterns"
 **Check:**
-1. Did you properly exit previous session? (not force-quit)
-2. Check `C:\Users\supma\.claude-mem\archives\` for session files
-3. Run: `claude-mem status` to verify installation
-4. Check logs: `claude-mem logs`
+1. Are files present in `.claude/rules/`?
+2. Run `/memory` command to verify file contents
+3. Check git status to ensure files are committed
+4. Restart Claude Code session to reload memory
+5. Use `@filename.md` syntax to explicitly reference rule files
 
 ### "Memories aren't syncing between agents"
 **Expected behavior:** They DON'T auto-sync (by design)
@@ -587,108 +584,28 @@ Consider adding **Agent 2C - "The Researcher"** (optional third brain):
 
 ---
 
-## 💾 BACKUP SYSTEM
-
-### Agent 2B Automatic Backup (December 15, 2025)
-
-**Status:** ✅ FULLY CONFIGURED
-
-**Purpose:** Protect Agent 2B's tactical memory (session transcripts + Chroma database) by backing up to Google Drive.
-
-#### Backup Locations
-
-**Source (Local):**
-```
-C:\Users\supma\.claude-mem\
-├── archives/    (session transcripts - CRITICAL)
-└── chroma/      (vector database)
-```
-
-**Destination (Cloud):**
-```
-G:\My Drive\_AI_MEMORY\claude-mem-backup\
-├── archives/         (backed up sessions)
-├── chroma/           (backed up database)
-├── full-backups/     (weekly snapshots)
-└── backup-log.txt    (operation log)
-```
-
-#### Backup Files Created
-
-| File | Location | Purpose |
-|------|----------|---------|
-| backup-agent2b.ps1 | C:\Users\supma\Documents\ | Main backup script |
-| backup-agent2b-manual.bat | C:\Users\supma\Documents\ | Quick launch |
-| Backup Agent 2B shortcut | Desktop | One-click access |
-| BACKUP_SETUP_INSTRUCTIONS.md | C:\Users\supma\Documents\ | Full guide |
-
-#### How to Use
-
-**Manual Backup (Recommended After Important Sessions):**
-1. Double-click "Backup Agent 2B" shortcut on desktop
-2. Wait 30 seconds
-3. Done! ✅
-
-**Automated Backup (Optional - Set It & Forget It):**
-1. Open: `C:\Users\supma\Documents\BACKUP_SETUP_INSTRUCTIONS.md`
-2. Follow "Option 2: Automated Backup" section
-3. Setup Windows Task Scheduler (10 minutes)
-4. Runs every Sunday at 2 AM automatically
-
-#### Backup Features
-
-- ✅ Backs up session archives (Priority 1)
-- ✅ Backs up Chroma vector database (Priority 2)
-- ✅ Creates weekly full snapshots (Sundays)
-- ✅ Auto-cleanup old backups (keeps 4 weeks)
-- ✅ Detailed logging with timestamps
-- ✅ Error handling and recovery
-- ✅ Works offline (syncs when Google Drive reconnects)
-
-#### Recovery Procedure
-
-If PC crashes and you need to restore Agent 2B:
-
-1. Install claude-mem on new PC:
-   ```bash
-   npm install -g claude-mem
-   claude-mem install
-   ```
-
-2. Copy backups from Google Drive:
-   ```powershell
-   xcopy "G:\My Drive\_AI_MEMORY\claude-mem-backup\archives" "C:\Users\supma\.claude-mem\archives" /E /I /Y
-   xcopy "G:\My Drive\_AI_MEMORY\claude-mem-backup\chroma" "C:\Users\supma\.claude-mem\chroma" /E /I /Y
-   ```
-
-3. Start Claude Code, test memory recall
-4. ✅ All sessions restored!
-
----
-
 ## 🚀 NEXT STEPS
 
-### Immediate (This Session)
-1. Complete this session normally to trigger Stop hook
-2. Verify archive files are created
-3. Check Chroma database initialization
-4. Run first backup using desktop shortcut
+### For New Team Members
+1. Review [DUAL_BRAIN_EXECUTIVE_SUMMARY.md](DUAL_BRAIN_EXECUTIVE_SUMMARY.md) for architecture overview
+2. Review [QUICK_REFERENCE_DUAL_BRAIN.md](QUICK_REFERENCE_DUAL_BRAIN.md) for usage guide
+3. Understand when to use Agent 2A (strategic) vs Agent 2B (tactical)
 
-### Next Session
-1. Test memory recall in fresh Claude Code session
-2. Verify session-start hook loads context
-3. Document any additional observations
-4. Verify backup contains session data
+### After Each Session
+1. Run `Save?` command to evaluate what should be preserved
+2. Update `.claude/rules/*.md` files for tactical patterns
+3. Bridge strategic decisions to Agent 2A using provided commands
+4. Commit memory files to git for team sharing
 
-### Ongoing
-1. Run manual backup after important sessions (desktop shortcut)
-2. Optional: Setup automated weekly backups (Task Scheduler)
-3. Monitor backup-log.txt monthly
-4. Use `/save` command for quick strategic saves in Agent 2A
+### Ongoing Maintenance
+1. Weekly review of `.claude/rules/` files for outdated patterns
+2. Promote tactical patterns to strategic rules when appropriate
+3. Keep Agent 2A memory graph clean and focused
+4. Use git history to track memory evolution
 
 ---
 
-**Installation Date:** December 15, 2025
+**Architecture Finalized:** December 16, 2025
 **Verified By:** Claude Code Extension (Agent 2B)
 **Strategic Oversight:** Strategic CTO v6.6.1 (via Agent 2A)
-**Status:** ✅ ARCHITECTURE LOCKED - READY FOR PRODUCTION
+**Status:** ✅ ARCHITECTURE LOCKED - PRODUCTION READY
