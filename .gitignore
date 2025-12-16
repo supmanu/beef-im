@@ -42,3 +42,6 @@ next-env.d.ts
 
 # legacy vite app (archived)
 /_legacy_archive/
+
+# Claude Code personal preferences
+CLAUDE.local.md

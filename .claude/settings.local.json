@@ -24,7 +24,28 @@
       "SlashCommand(/save Testing dual-brain architecture - Agent 2B (Claude Code Extension) memory test)",
       "SlashCommand(/save:*)",
       "Bash(claude-mem logs:*)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"C:\\Users\\supma\\Documents\\backup-agent2b.ps1\")",
+      "Bash(dir \"C:\\Users\\supma\\.claude-mem\\archives\")",
+      "Bash(dir \"C:\\Users\\supma\\.claude-mem\\chroma\")",
+      "Bash(claude-mem:*)",
+      "Bash(dir \"C:\\Users\\supma\\.claude-mem\\logs\")",
+      "Bash(dir \"C:\\Users\\supma\\.claude-mem\" /s /b)",
+      "Bash(node:*)",
+      "Bash(sqlite3:*)",
+      "Bash(claude --version:*)",
+      "Bash(export CLAUDE_MEM_DEBUG=true)",
+      "Bash(where.exe:*)",
+      "Bash(npm view:*)",
+      "Bash(curl:*)",
+      "Skill(claude-mem:troubleshoot)",
+      "Bash(pm2 list:*)",
+      "Bash(dir \"C:\\Users\\supma\\.claude-mem\")",
+      "mcp__plugin_claude-mem_claude-mem-search__search",
+      "Bash(tasklist:*)",
+      "Bash(dir \"C:\\Users\\supma\\.claude-mem\" /b)",
+      "Bash(powershell.exe -Command \"Remove-Item -Path ''C:\\Users\\supma\\.claude-mem'' -Recurse -Force\")",
+      "Bash(powershell.exe:*)"
     ]
   }
 }

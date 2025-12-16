@@ -29,16 +29,57 @@ This project uses a **Dual-Brain AI Architecture** with separated memory systems
 └─────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────┐
-│  AGENT 2B - TACTICAL BRAIN (Session Transcripts)   │
+│  AGENT 2B - TACTICAL BRAIN (File-Based Memory)     │
 │  Claude Code Extension - VS Code Terminal          │
 ├─────────────────────────────────────────────────────┤
-│  Storage: C:\Users\supma\.claude-mem\               │
-│  Engine: claude-mem with Chroma vector DB           │
-│  Type: Session Transcripts & Code Context          │
-│  Content: File changes, commands, code snippets     │
-│  Lifespan: Rolling archives (local)                 │
+│  Storage: ./CLAUDE.md + ./.claude/rules/*.md        │
+│  Engine: Built-in Claude Code Memory (file-based)   │
+│  Type: Project context, patterns, guidelines        │
+│  Content: Implementation patterns, coding rules     │
+│  Lifespan: Version-controlled (git)                 │
 └─────────────────────────────────────────────────────┘
 ```
+
+---
+
+---
+
+## 🎯 FINAL ARCHITECTURE DECISION (Dec 16, 2025)
+
+**After extensive testing, we've finalized Agent 2B's memory approach:**
+
+### ❌ What We Tried (and Why It Failed)
+- **claude-mem npm v3.9.16:** Windows PATH issues, hook failures
+- **claude-mem plugin v7.2.4:** "ProcessTransport is not ready" crashes, Chroma sync failures
+
+### ✅ What We're Using (Production Setup)
+
+**Agent 2B Memory:** Built-in Claude Code file-based memory system
+
+**Why This Works:**
+1. **Zero Dependencies:** No external plugins or servers to maintain
+2. **Version Controlled:** Memory files tracked in git for team collaboration
+3. **Reliable:** No crashes, no complex setup, always available
+4. **Modular:** Organize patterns by topic in `.claude/rules/`
+5. **Portable:** Works on any OS without modification
+
+**Architecture:**
+```
+nerd-with-nart/
+├── CLAUDE.md                    # Main project context (committed)
+├── CLAUDE.local.md              # Personal preferences (gitignored)
+└── .claude/
+    └── rules/
+        ├── payload.md           # CMS-specific patterns
+        ├── nextjs.md            # Next.js conventions
+        └── deployment.md        # Deployment procedures
+```
+
+**Memory Persistence:**
+- **Strategic decisions:** Manually bridge to Agent 2A (Google Drive)
+- **Implementation patterns:** Document in `.claude/rules/`
+- **Project context:** Keep in CLAUDE.md (version-controlled)
+- **Code reference:** Use @-mention for importing files
 
 ---
 
@@ -278,7 +319,7 @@ Gemini (full session) + You take notes manually
 |-------|-------|---------|-------------|
 | **2A-Tactical** | Gemini 2.0 Flash/Pro | Planning, debugging, brainstorming | Google native (temp) |
 | **2A-Strategic** | Claude Sonnet 4.5 | Memory saves, decision extraction | MCP (permanent) |
-| **2B** | Claude Sonnet 4.5 | Deep implementation, file ops | claude-mem (30-day) |
+| **2B** | Claude Sonnet 4.5 | Deep implementation, file ops | File-based (git-tracked) |
 | **2C** | Gemini 2.0 Flash/Pro | Research, multimodal tasks | Google native (isolated) |
 
 ### When to Use Agent 2B (The Builder)
@@ -292,13 +333,14 @@ Gemini (full session) + You take notes manually
 - 📝 File operations: Reading, editing, writing code
 - 🔄 Workflow automation: Git, npm, build processes
 
-**Memory Type:** Automatic (no manual save needed)
+**Memory Type:** File-based (CLAUDE.md + .claude/rules/*.md)
 
-**What Gets Saved Automatically:**
-- Every file you read, edit, or write
-- Every command executed
-- Tool usage patterns
-- Session context and decisions
+**What Gets Saved:**
+- Implementation patterns and coding guidelines
+- Project-specific conventions
+- Common commands and workflows
+- Reference implementations (@-mention syntax)
+- Architecture decisions (manually documented)
 
 ### The "Bridge Workflow"
 
@@ -337,26 +379,26 @@ Since the two brains don't sync automatically, **you act as the synapse**:
 - [x] Write test successful (nerd-memory.json created)
 - [x] Memory persistence confirmed across sessions
 
-### Agent 2B (Builder) - Pending First Session ⏳
-- [x] claude-mem installed globally
-- [x] Hooks configured in settings.json
-- [x] Storage directories created
-- [ ] First session completed (triggers Stop hook)
-- [ ] Chroma database initialized
-- [ ] Archive file created
-- [ ] Memory recall tested in new session
+### Agent 2B (Builder) - File-Based Memory ✅
+- [x] Built-in Claude Code memory (no external dependencies)
+- [x] CLAUDE.md file exists in project root
+- [x] Memory system operational (file-based)
+- [x] Version-controlled via git
+- [ ] Create .claude/rules/ directory for modular patterns
+- [ ] Document implementation patterns as they emerge
 
-### Post-Installation Test Plan
+### Post-Session Workflow
 
-**Test 1: End This Session**
-1. Exit this Claude Code session normally
-2. Check if files appear in `C:\Users\supma\.claude-mem\archives\`
-3. Check if Chroma DB is populated in `C:\Users\supma\.claude-mem\chroma\`
+**After Completing Work in Agent 2B:**
+1. Document new patterns in `.claude/rules/` if significant
+2. Update CLAUDE.md with new commands or conventions
+3. Commit changes to git for team sharing
+4. Bridge strategic decisions to Agent 2A manually
 
-**Test 2: Start New Session**
-1. Open new Claude Code terminal
-2. Ask: "What project am I working on? What architecture do we use?"
-3. Verify it recalls: Nerd with Nart, Dual-Brain Architecture, Node 20.18.0
+**To Access Memory:**
+- Use `/memory` command to edit CLAUDE.md
+- Reference files with @-mention syntax
+- Organize rules by topic in `.claude/rules/`
 
 **Test 3: Cross-Brain Sync**
 1. Make a decision in Agent 2B
@@ -545,22 +587,104 @@ Consider adding **Agent 2C - "The Researcher"** (optional third brain):
 
 ---
 
+## 💾 BACKUP SYSTEM
+
+### Agent 2B Automatic Backup (December 15, 2025)
+
+**Status:** ✅ FULLY CONFIGURED
+
+**Purpose:** Protect Agent 2B's tactical memory (session transcripts + Chroma database) by backing up to Google Drive.
+
+#### Backup Locations
+
+**Source (Local):**
+```
+C:\Users\supma\.claude-mem\
+├── archives/    (session transcripts - CRITICAL)
+└── chroma/      (vector database)
+```
+
+**Destination (Cloud):**
+```
+G:\My Drive\_AI_MEMORY\claude-mem-backup\
+├── archives/         (backed up sessions)
+├── chroma/           (backed up database)
+├── full-backups/     (weekly snapshots)
+└── backup-log.txt    (operation log)
+```
+
+#### Backup Files Created
+
+| File | Location | Purpose |
+|------|----------|---------|
+| backup-agent2b.ps1 | C:\Users\supma\Documents\ | Main backup script |
+| backup-agent2b-manual.bat | C:\Users\supma\Documents\ | Quick launch |
+| Backup Agent 2B shortcut | Desktop | One-click access |
+| BACKUP_SETUP_INSTRUCTIONS.md | C:\Users\supma\Documents\ | Full guide |
+
+#### How to Use
+
+**Manual Backup (Recommended After Important Sessions):**
+1. Double-click "Backup Agent 2B" shortcut on desktop
+2. Wait 30 seconds
+3. Done! ✅
+
+**Automated Backup (Optional - Set It & Forget It):**
+1. Open: `C:\Users\supma\Documents\BACKUP_SETUP_INSTRUCTIONS.md`
+2. Follow "Option 2: Automated Backup" section
+3. Setup Windows Task Scheduler (10 minutes)
+4. Runs every Sunday at 2 AM automatically
+
+#### Backup Features
+
+- ✅ Backs up session archives (Priority 1)
+- ✅ Backs up Chroma vector database (Priority 2)
+- ✅ Creates weekly full snapshots (Sundays)
+- ✅ Auto-cleanup old backups (keeps 4 weeks)
+- ✅ Detailed logging with timestamps
+- ✅ Error handling and recovery
+- ✅ Works offline (syncs when Google Drive reconnects)
+
+#### Recovery Procedure
+
+If PC crashes and you need to restore Agent 2B:
+
+1. Install claude-mem on new PC:
+   ```bash
+   npm install -g claude-mem
+   claude-mem install
+   ```
+
+2. Copy backups from Google Drive:
+   ```powershell
+   xcopy "G:\My Drive\_AI_MEMORY\claude-mem-backup\archives" "C:\Users\supma\.claude-mem\archives" /E /I /Y
+   xcopy "G:\My Drive\_AI_MEMORY\claude-mem-backup\chroma" "C:\Users\supma\.claude-mem\chroma" /E /I /Y
+   ```
+
+3. Start Claude Code, test memory recall
+4. ✅ All sessions restored!
+
+---
+
 ## 🚀 NEXT STEPS
 
 ### Immediate (This Session)
 1. Complete this session normally to trigger Stop hook
 2. Verify archive files are created
 3. Check Chroma database initialization
+4. Run first backup using desktop shortcut
 
 ### Next Session
 1. Test memory recall in fresh Claude Code session
 2. Verify session-start hook loads context
 3. Document any additional observations
+4. Verify backup contains session data
 
 ### Ongoing
-1. Periodically back up `nerd-memory.json` from Google Drive
-2. Monitor `C:\Users\supma\.claude-mem\archives\` growth
-3. Use `/save` command for quick strategic saves in Agent 2A
+1. Run manual backup after important sessions (desktop shortcut)
+2. Optional: Setup automated weekly backups (Task Scheduler)
+3. Monitor backup-log.txt monthly
+4. Use `/save` command for quick strategic saves in Agent 2A
 
 ---
 
