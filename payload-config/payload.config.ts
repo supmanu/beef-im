@@ -3,6 +3,18 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import {
+  BlockquoteFeature,
+  BlocksFeature,
+  CodeBlock,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineToolbarFeature,
+  lexicalHTML,
+  LinkFeature,
+} from '@payloadcms/richtext-lexical';
 import { s3Storage } from '@payloadcms/storage-s3';
 import sharp from 'sharp';
 
@@ -23,7 +35,20 @@ export default buildConfig({
   },
 
   // Keep the editor config
-  editor: lexicalEditor({}),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      EXPERIMENTAL_TableFeature(),
+      BlockquoteFeature(),
+      BlocksFeature({
+        blocks: [CodeBlock()],
+      }),
+      HorizontalRuleFeature(),
+      LinkFeature({
+        enabledCollections: ['articles'],
+      }),
+    ],
+  }),
 
   collections: [
     Users,

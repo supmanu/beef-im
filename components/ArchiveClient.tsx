@@ -24,7 +24,7 @@ interface Article {
     title: string;
     slug: string;
     excerpt?: string;
-    category?: string;
+    category?: Category | Category[] | string;
     coverImage?: {
         url?: string;
     } | string;
@@ -45,7 +45,24 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
 
         // Filter by category
         if (selectedCategory !== 'all') {
-            filtered = filtered.filter(post => post.category === selectedCategory);
+            filtered = filtered.filter(post => {
+                if (!post.category) return false;
+
+                // Handle relationship array
+                if (Array.isArray(post.category)) {
+                    return post.category.some(cat =>
+                        typeof cat === 'object' ? cat.slug === selectedCategory : cat === selectedCategory
+                    );
+                }
+
+                // Handle single relationship object
+                if (typeof post.category === 'object') {
+                    return post.category.slug === selectedCategory;
+                }
+
+                // Handle legacy string format
+                return post.category === selectedCategory;
+            });
         }
 
         // Filter by search query
@@ -126,10 +143,29 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
                         const coverImageUrl = typeof post.coverImage === 'string'
                             ? post.coverImage
                             : post.coverImage?.url;
-                        const category = post.category || 'general';
-                        const categoryLabel = post.category
-                            ? post.category.replace('-', ' ')
-                            : 'General';
+                        // Extract first category from relationship array
+                        let firstCategory: Category | null = null;
+
+                        if (Array.isArray(post.category) && post.category.length > 0) {
+                            const cat = post.category[0];
+                            if (typeof cat === 'object' && cat !== null && 'slug' in cat) {
+                                firstCategory = cat;
+                            }
+                        } else if (typeof post.category === 'object' && post.category !== null && !Array.isArray(post.category)) {
+                            firstCategory = post.category;
+                        }
+
+                        const categorySlug = firstCategory
+                            ? firstCategory.slug
+                            : typeof post.category === 'string'
+                                ? post.category
+                                : 'general';
+
+                        const categoryLabel = firstCategory
+                            ? firstCategory.name
+                            : typeof post.category === 'string'
+                                ? post.category.replace('-', ' ')
+                                : 'General';
 
                         return (
                             <Link key={post.id} href={`/articles/${post.slug}`} className="group block h-full">
@@ -149,7 +185,7 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
                                     </div>
                                     <div className="p-6 flex flex-col flex-grow">
                                         <div className="flex items-center gap-2 mb-3">
-                                            <span className={`text-xs font-mono px-2 py-1 rounded-full uppercase border ${colorMap[category] || colorMap.default}`}>
+                                            <span className={`text-xs font-mono px-2 py-1 rounded-full uppercase border ${colorMap[categorySlug] || colorMap.default}`}>
                                                 {categoryLabel}
                                             </span>
                                         </div>

@@ -252,7 +252,7 @@ export interface Article {
   slug: string;
   publishedDate: string;
   coverImage: number | Media;
-  category: 'deep-dive' | 'quick-magnet' | 'news' | 'case-study';
+  category: (number | Category)[];
   excerpt?: string | null;
   content: {
     root: {

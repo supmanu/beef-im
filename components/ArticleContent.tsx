@@ -27,8 +27,29 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
 
     // Handle Cover Image (R2 or Hygraph Legacy Fallback)
     const coverImageUrl = post.coverImage?.url || post.coverImage;
-    const category = post.category || 'news';
-    const categoryLabel = post.category ? post.category.replace('-', ' ') : 'Article';
+
+    // Extract first category from relationship array
+    let firstCategory = null;
+    if (Array.isArray(post.category) && post.category.length > 0) {
+        const cat = post.category[0];
+        if (typeof cat === 'object' && cat !== null && 'slug' in cat) {
+            firstCategory = cat;
+        }
+    } else if (typeof post.category === 'object' && post.category !== null && !Array.isArray(post.category)) {
+        firstCategory = post.category;
+    }
+
+    const categorySlug = firstCategory
+        ? firstCategory.slug
+        : typeof post.category === 'string'
+            ? post.category
+            : 'news';
+
+    const categoryLabel = firstCategory
+        ? firstCategory.name
+        : typeof post.category === 'string'
+            ? post.category.replace('-', ' ')
+            : 'Article';
 
     return (
         <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
@@ -49,7 +70,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
                 {/* Header Section */}
                 <header className="mb-12 border-b border-white/10 pb-12">
                     <div className="flex flex-wrap items-center gap-3 mb-6">
-                        <span className={`px-3 py-1 text-xs font-bold rounded tracking-widest uppercase border ${colorMap[category] || colorMap.default}`}>
+                        <span className={`px-3 py-1 text-xs font-bold rounded tracking-widest uppercase border ${colorMap[categorySlug] || colorMap.default}`}>
                             {categoryLabel}
                         </span>
                         <span className="w-1 h-1 rounded-full bg-gray-600"></span>
@@ -108,18 +129,18 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-a:transition-colors
             hover:prose-a:text-brand-amber/80
             
-            /* 3. BLOCKQUOTES (Teal Protocol) */
+            /* 3. BLOCKQUOTES (Teal Protocol - Intelligence Box / Calculation Zone) */
             prose-blockquote:border-l-4
             prose-blockquote:border-brand-teal
             prose-blockquote:text-gray-200
-            prose-blockquote:bg-brand-teal/10
-            prose-blockquote:py-4
-            prose-blockquote:px-6
+            prose-blockquote:bg-brand-dark/50
+            prose-blockquote:p-6
             prose-blockquote:rounded-r-lg
             prose-blockquote:not-italic
             prose-blockquote:my-8
             prose-blockquote:before:content-none
             prose-blockquote:after:content-none
+            prose-blockquote:shadow-lg
 
             /* 5. HR (Horizontal Rule) */
             prose-hr:border-brand-teal/30
@@ -131,11 +152,61 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             /* 7. STRONG */
             prose-strong:text-white
             prose-strong:font-bold
+            
+            /* 8. TABLES (Teal Protocol) */
+            prose-table:border-collapse
+            prose-table:border
+            prose-table:border-brand-teal/20
+            prose-table:rounded-lg
+            prose-table:overflow-hidden
+            prose-table:my-8
+            
+            prose-thead:bg-brand-teal/10
+            prose-thead:border-b
+            prose-thead:border-brand-teal/30
+            
+            prose-th:px-4
+            prose-th:py-3
+            prose-th:text-left
+            prose-th:font-bold
+            prose-th:text-white
+            prose-th:border-r
+            prose-th:border-brand-teal/20
+            prose-th:last:border-r-0
+            
+            prose-td:px-4
+            prose-td:py-3
+            prose-td:border-r
+            prose-td:border-brand-teal/10
+            prose-td:last:border-r-0
+            
+            prose-tr:border-b
+            prose-tr:border-brand-teal/10
+            prose-tr:last:border-b-0
+            prose-tbody:prose-tr:hover:bg-white/5
+            prose-tbody:prose-tr:transition-colors
           ">
 
                     {post.content && (
                         <RichText
                             data={post.content}
+                            converters={({ defaultConverters }) => ({
+                                ...defaultConverters,
+                                blocks: {
+                                    Code: ({ node }: { node: any }) => (
+                                        <span className="block my-8 rounded-lg overflow-hidden border border-brand-teal/20 bg-[#1e1e1e] shadow-lg">
+                                            <span className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
+                                                <span className="text-xs font-mono text-gray-400 uppercase">
+                                                    {node.fields.language || 'code'}
+                                                </span>
+                                            </span>
+                                            <span className="block p-4 overflow-x-auto font-mono text-sm text-gray-300 leading-relaxed whitespace-pre">
+                                                <code>{node.fields.code}</code>
+                                            </span>
+                                        </span>
+                                    ),
+                                },
+                            })}
                         />
                     )}
                 </div>

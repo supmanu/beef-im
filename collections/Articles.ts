@@ -40,13 +40,9 @@ export const Articles: CollectionConfig = {
         },
         {
             name: 'category',
-            type: 'select',
-            options: [
-                { label: 'Deep Dive', value: 'deep-dive' },
-                { label: 'Quick Magnet', value: 'quick-magnet' },
-                { label: 'News', value: 'news' },
-                { label: 'Case Study', value: 'case-study' },
-            ],
+            type: 'relationship',
+            relationTo: 'categories',
+            hasMany: true,
             required: true,
         },
         {
