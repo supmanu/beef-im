@@ -127,3 +127,132 @@ PAYLOAD_PUBLIC_SERVER_URL=...
 - **Purpose:** Server-side image resizing and thumbnail generation
 - **Installation:** `npm install sharp`
 - **Note:** Payload will warn if sharp is not installed when image resizing is enabled
+
+## Lexical Editor Enhancements (Phase IV - Intelligence Suite)
+**Location:** Articles collection editor in Payload Admin
+**Status:** Production-ready with Tables, Code Blocks, and Intelligence Boxes
+
+### Enabled Features
+- **Tables:** `EXPERIMENTAL_TableFeature` with Teal Protocol styling (borders, hover effects)
+- **Code Blocks:** `CodeBlockFeature` for syntax-highlighted code snippets
+- **Intelligence Boxes:** Styled blockquotes as "Calculation Zones" (Dark bg, Teal border, shadow)
+- **Rich Formatting:** Lists, links, headings (H1-H6)
+
+### Client-Side Rendering Pattern (`components/ArticleContent.tsx`)
+**Purpose:** Safely convert Lexical JSON to React components with hydration safety
+
+```typescript
+// components/ArticleContent.tsx - Custom Lexical converter
+export default async function ArticleContent({ content }: { content: string }) {
+  const json = JSON.parse(content);
+
+  // Render nodes recursively
+  // - Code blocks: Use <pre><code> (semantic HTML)
+  // - Tables: Use <table> with Teal styling
+  // - Blockquotes: Use <blockquote class="intelligence-box">
+  // - Paragraphs: Use <p> with safe child spans (NOT divs inside p)
+
+  return <div className="prose prose-invert">{renderNodes(json)}</div>;
+}
+```
+
+**Critical:** Avoid divs inside paragraphs - use spans for inline elements to prevent hydration mismatches.
+
+### Text Extraction Utility (`lib/lexical.ts`)
+**Purpose:** Extract plain text and calculate reading time from Lexical JSON
+
+```typescript
+// lib/lexical.ts
+export function extractTextFromLexical(content: string): string {
+  const json = JSON.parse(content);
+  // Recursively extract text from all nodes
+  // Returns plain text (no HTML)
+}
+
+export function calculateReadTime(text: string): number {
+  // Average: 200 words per minute
+  const wordCount = text.split(/\s+/).length;
+  return Math.ceil(wordCount / 200);
+}
+```
+
+**Usage:** Homepage featured articles display "X min read" + excerpt.
+
+### Integration Pattern (Server-Side)
+```typescript
+// app/(site)/articles/page.tsx
+const articles = await getSovereignArticles();
+articles.map(article => ({
+  ...article,
+  excerpt: extractTextFromLexical(article.content).slice(0, 200),
+  readTime: calculateReadTime(extractTextFromLexical(article.content)),
+}));
+```
+
+### Styling Override (`app/globals.css`)
+```css
+/* Intelligence Boxes */
+blockquote {
+  background-color: #0B1D35;     /* brand-dark */
+  border-left: 4px solid #2bb1bb; /* brand-teal */
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Code Blocks */
+pre {
+  background-color: #1a2a3a;
+  border: 1px solid #2bb1bb;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+table th, table td {
+  border: 1px solid #2bb1bb;
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: rgba(43, 177, 187, 0.1);
+  color: #2bb1bb;
+}
+
+table tr:hover {
+  background-color: rgba(43, 177, 187, 0.05);
+}
+```
+
+### Admin Configuration Pattern
+```typescript
+// payload-config/collections/Articles.ts
+const articlesField: Field = {
+  name: 'content',
+  type: 'richText',
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      EXPERIMENTAL_TableFeature(),
+      CodeBlockFeature(),
+    ],
+  }),
+};
+```
+
+### Import Map Regeneration
+**When to do:** After adding new Lexical features
+```bash
+npm run build  # Includes: payload generate:importmap
+```
+
+**Why:** Ensures Payload admin UI has access to all custom components at runtime.
