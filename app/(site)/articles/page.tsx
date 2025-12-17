@@ -23,8 +23,8 @@ export default async function ArticlesPage() {
     return (
         <main className="min-h-screen bg-brand-dark text-slate-200 pt-24 px-4 sm:px-6 lg:px-8">
             <ArchiveClient
-                initialPosts={posts}
-                categories={categoriesData.docs}
+                initialPosts={posts as any}
+                categories={categoriesData.docs as any}
             />
         </main>
     );

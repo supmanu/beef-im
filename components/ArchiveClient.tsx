@@ -14,13 +14,13 @@ const colorMap: Record<string, string> = {
 };
 
 interface Category {
-    id: string;
+    id: string | number;
     name: string;
     slug: string;
 }
 
 interface Article {
-    id: string;
+    id: string | number;
     title: string;
     slug: string;
     excerpt?: string;
@@ -91,8 +91,8 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
                 <button
                     onClick={() => setSelectedCategory('all')}
                     className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${selectedCategory === 'all'
-                            ? 'bg-brand-teal text-white'
-                            : 'bg-slate-900/50 text-slate-400 border border-slate-800 hover:border-slate-700'
+                        ? 'bg-brand-teal text-white'
+                        : 'bg-slate-900/50 text-slate-400 border border-slate-800 hover:border-slate-700'
                         }`}
                 >
                     ทั้งหมด (All)
@@ -102,8 +102,8 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
                         key={cat.id}
                         onClick={() => setSelectedCategory(cat.slug)}
                         className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${selectedCategory === cat.slug
-                                ? 'bg-brand-teal text-white'
-                                : 'bg-slate-900/50 text-slate-400 border border-slate-800 hover:border-slate-700'
+                            ? 'bg-brand-teal text-white'
+                            : 'bg-slate-900/50 text-slate-400 border border-slate-800 hover:border-slate-700'
                             }`}
                     >
                         {cat.name}
