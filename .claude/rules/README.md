@@ -38,6 +38,13 @@ Last Updated: December 17, 2025
   - Routing with route groups
   - Data fetching patterns
 
+- **[typescript-patterns.md](./typescript-patterns.md)** ⭐ NEW (Emergency Fix)
+  - Payload CMS ↔ Frontend type alignment
+  - Emergency fix for id mismatch (number vs string)
+  - Long-term type refinement strategy (Phase IV)
+  - Best practices for Payload-generated types
+  - Why `as any` is temporary, not permanent
+
 ### CMS & Storage
 - **[payload.md](./payload.md)** ⭐ UPDATED Phase III
   - Payload 3.0 configuration with Sharp
@@ -182,6 +189,11 @@ Last Updated: December 17, 2025
 ---
 
 ## 🔄 File Update History
+
+**December 17, 2025 (20:45 UTC - Emergency Type Fix + Memory Bridge):**
+- ✅ Updated `project-status.md` (Deployment unblocked + emergency decision log)
+- ✅ Added `typescript-patterns.md` (Type mismatch resolution, Phase IV refinement plan)
+- ✅ Updated `README.md` (TypeScript patterns reference + emergency fix note)
 
 **December 17, 2025 (20:30 UTC - Sovereign Migration Complete):**
 - ✅ Updated `project-status.md` (Phase III → Phase IV roadmap)
