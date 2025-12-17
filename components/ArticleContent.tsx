@@ -154,9 +154,10 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-strong:font-bold
             
             /* 8. TABLES (Teal Protocol) */
-            prose-table:border-collapse
+            prose-table:border-separate
+            prose-table:border-spacing-0
             prose-table:border
-            prose-table:border-brand-teal/20
+            prose-table:border-brand-teal/30
             prose-table:rounded-lg
             prose-table:overflow-hidden
             prose-table:my-8
@@ -194,13 +195,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
                                 ...defaultConverters,
                                 blocks: {
                                     Code: ({ node }: { node: any }) => (
-                                        <span className="block my-8 rounded-lg overflow-hidden border border-brand-teal/20 bg-[#1e1e1e] shadow-lg">
-                                            <span className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
-                                                <span className="text-xs font-mono text-gray-400 uppercase">
-                                                    {node.fields.language || 'code'}
-                                                </span>
-                                            </span>
-                                            <span className="block p-4 overflow-x-auto font-mono text-sm text-gray-300 leading-relaxed whitespace-pre">
+                                        <span className="block my-8 rounded-lg overflow-hidden border border-brand-teal/20 bg-slate-800 shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.2)] p-6">
+                                            <span className="block font-mono text-sm text-slate-200 leading-relaxed whitespace-pre font-normal">
                                                 <code>{node.fields.code}</code>
                                             </span>
                                         </span>

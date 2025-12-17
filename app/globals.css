@@ -58,6 +58,74 @@
   margin-bottom: 2rem !important;
 }
 
+/* SOVEREIGN LEDGER TYPOGRAPHY REFINEMENT */
+/* 1. THE BACKTICK KILLER */
+.prose :where(code)::before,
+.prose :where(code)::after,
+.prose-invert :where(code)::before,
+.prose-invert :where(code)::after {
+  content: none !important;
+}
+
+/* 2. TEXT SIZE & BRIGHTNESS TUNING */
+.prose pre code,
+.prose code {
+  color: #cbd5e1 !important;
+  /* Slate-300 (Softer) */
+  font-size: 1.12em !important;
+  line-height: 1.8 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  font-weight: 400 !important;
+  font-family: 'Fira Code', monospace !important;
+}
+
+/* SOVEREIGN TABLE ENCLOSURE */
+.prose table,
+.prose-invert table {
+  border: 2px solid rgba(45, 212, 191, 0.4) !important;
+  /* Teal border */
+  border-radius: 0.5rem !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: hidden !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Add internal grid lines only */
+.prose th,
+.prose td,
+.prose-invert th,
+.prose-invert td {
+  border-right: 1px solid rgba(45, 212, 191, 0.2) !important;
+  border-bottom: 1px solid rgba(45, 212, 191, 0.2) !important;
+  border-top: none !important;
+  border-left: none !important;
+}
+
+/* Remove right border from last cell in each row */
+.prose th:last-child,
+.prose td:last-child,
+.prose-invert th:last-child,
+.prose-invert td:last-child {
+  border-right: none !important;
+}
+
+/* Remove bottom border from last row */
+.prose tbody tr:last-child td,
+.prose-invert tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Header cells - slightly stronger borders */
+.prose thead th,
+.prose-invert thead th {
+  border-bottom: 1px solid rgba(45, 212, 191, 0.3) !important;
+}
+
 /* Hide default quote marks */
 .prose blockquote p:first-of-type::before,
 .prose-invert blockquote p:first-of-type::before {
