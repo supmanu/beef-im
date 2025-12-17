@@ -25,6 +25,26 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'media.graphassets.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'nerd-with-nart.vercel.app',
+            },
+            {
+                protocol: 'https',
+                hostname: 'assets.nerdwithnart.com',
+            },
+            {
+                protocol: 'https',
+                hostname: '**.r2.dev',
+            },
+            {
+                protocol: 'https',
+                hostname: '**.r2.cloudflarestorage.com',
+            },
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+            },
         ],
     },
 

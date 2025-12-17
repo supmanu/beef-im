@@ -73,7 +73,13 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: true,
+        media: {
+          generateFileURL: (file) => {
+            return process.env.PAYLOAD_PUBLIC_R2_URL
+              ? `${process.env.PAYLOAD_PUBLIC_R2_URL}/${file.filename}`
+              : undefined
+          },
+        },
       },
       bucket: process.env.R2_BUCKET_NAME || 'nwn-assets',
       config: {
