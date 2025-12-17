@@ -3,21 +3,17 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
-import { RichText } from '@graphcms/rich-text-react-renderer';
-import ShareNode from './ShareNode';
-import { ArticleCitation, ArticleAsset, ArticleDivider } from './RefactoredRenderers';
-import ToolLoader from './tools/ToolLoader';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 
-
-// 📸 AUTHOR AVATAR (Hardcoded for Phase 4)
-const AVATAR_URL = "https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmiq5wff81fd707plg0f2l2y4";
+// 📸 SOVEREIGN AVATAR (Now served from local API + R2)
+const AVATAR_URL = "/api/media/file/natapol-supmanu-nerd-with-nart-avatar.png";
 
 // ✅ FIXED: Map Categories to Badge Colors (Teal Protocol Enforced)
 const colorMap: Record<string, string> = {
-    emerald: 'text-brand-teal border-brand-teal/30 bg-brand-teal/10',
-    amber: 'text-brand-amber border-brand-amber/30 bg-brand-amber/10',
-    blue: 'text-blue-400 border-blue-500/30 bg-blue-900/30',
-    slate: 'text-slate-400 border-slate-500/30 bg-slate-900/30',
+    'deep-dive': 'text-brand-teal border-brand-teal/30 bg-brand-teal/10',
+    'quick-magnet': 'text-brand-amber border-brand-amber/30 bg-brand-amber/10',
+    'news': 'text-blue-400 border-blue-500/30 bg-blue-900/30',
+    'case-study': 'text-slate-400 border-slate-500/30 bg-slate-900/30',
     default: 'text-gray-400 border-gray-500/30 bg-gray-900/30'
 };
 
@@ -28,6 +24,11 @@ interface ArticleContentProps {
 const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
 
     if (!post) return null;
+
+    // Handle Cover Image (R2 or Hygraph Legacy Fallback)
+    const coverImageUrl = post.coverImage?.url || post.coverImage;
+    const category = post.category || 'news';
+    const categoryLabel = post.category ? post.category.replace('-', ' ') : 'Article';
 
     return (
         <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
@@ -48,14 +49,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
                 {/* Header Section */}
                 <header className="mb-12 border-b border-white/10 pb-12">
                     <div className="flex flex-wrap items-center gap-3 mb-6">
-                        {post.categories.map((cat: any) => (
-                            <span key={cat.slug} className={`px-3 py-1 text-xs font-bold rounded tracking-widest uppercase border ${colorMap[cat.color] || colorMap.default}`}>
-                                {cat.name}
-                            </span>
-                        ))}
+                        <span className={`px-3 py-1 text-xs font-bold rounded tracking-widest uppercase border ${colorMap[category] || colorMap.default}`}>
+                            {categoryLabel}
+                        </span>
                         <span className="w-1 h-1 rounded-full bg-gray-600"></span>
                         <span className="text-gray-400 text-sm font-mono flex items-center gap-2">
-                            <Clock size={14} /> {Math.ceil(post.content.text.split(' ').length / 200)} min read
+                            <Clock size={14} /> 5 min read
                         </span>
                     </div>
 
@@ -75,7 +74,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
                         <div>
                             <div className="text-white text-sm font-bold">Nerd with Nart</div>
                             <div className="text-gray-500 text-xs flex items-center gap-1">
-                                <Calendar size={10} /> {new Date(post.releaseDate).toLocaleDateString('en-GB')}
+                                <Calendar size={10} /> {new Date(post.publishedDate || post.createdAt).toLocaleDateString('en-GB')}
                             </div>
                         </div>
                     </div>
@@ -122,7 +121,6 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-blockquote:before:content-none
             prose-blockquote:after:content-none
 
-
             /* 5. HR (Horizontal Rule) */
             prose-hr:border-brand-teal/30
             prose-hr:my-12
@@ -135,108 +133,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-strong:font-bold
           ">
 
-                    <RichText
-                        content={post.content.raw}
-                        references={post.content.references || []}
-                        renderers={{
-                            // 1. STANDARD BLOCKS
-                            p: ({ children }) => {
-                                // Helper to recursively extract text from React Children
-                                const getText = (node: any, depth = 0): string => {
-                                    if (!node || depth > 10) return '';
-                                    if (typeof node === 'string') return node;
-                                    if (typeof node === 'number') return String(node);
-                                    if (Array.isArray(node)) return node.map(n => getText(n, depth + 1)).join('');
-                                    if (node.props && node.props.children) return getText(node.props.children, depth + 1);
-                                    if (node.text) return node.text;
-                                    return '';
-                                };
-
-                                const textContent = getText(children);
-
-                                // Regex to find [TOOL:KEY]
-                                const match = textContent.match(/\[TOOL:([A-Z_]+)\]/);
-
-                                if (match) {
-                                    const toolKey = match[1];
-                                    return (
-                                        <div className="my-8 tool-container">
-                                            <ToolLoader toolName={toolKey} />
-                                        </div>
-                                    );
-                                }
-
-                                return <p className="mb-8 text-lg text-slate-300 leading-relaxed">{children}</p>;
-                            },
-
-                            h1: ({ children }) => <h1 className="text-4xl font-bold text-white mt-12 mb-6">{children}</h1>,
-                            h2: ({ children }) => <h2 className="text-3xl font-bold text-brand-teal mt-16 mb-8">{children}</h2>,
-                            h3: ({ children }) => <h3 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h3>,
-                            ul: ({ children }) => <ul className="list-disc list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ul>,
-                            ol: ({ children }) => <ol className="list-decimal list-outside mb-8 ml-6 text-slate-300 space-y-2">{children}</ol>,
-                            li: ({ children }) => <li className="pl-2">{children}</li>,
-                            blockquote: ({ children }) => (
-                                <blockquote className="
-                  border-l-4 border-brand-teal pl-6 py-2 my-10 
-                  bg-brand-teal/10 italic text-slate-200 text-xl rounded-r-lg 
-                  
-                  /* 🛡️ NUCLEAR QUOTE REMOVAL */
-                  before:content-none after:content-none 
-                  [&_p]:before:content-none [&_p]:after:content-none
-                ">
-                                    {children}
-                                </blockquote>
-                            ),
-                            bold: ({ children }) => <strong className="font-bold text-brand-teal">{children}</strong>,
-
-                            // 2. EMBEDDED BLOCKS
-                            embed: {
-                                Citation: (props: any) => <ArticleCitation {...props} citations={post?.citations} />,
-                                Asset: ArticleAsset,
-                                Divider: (props: any) => <ArticleDivider isInvisible={props.isInvisible} variant={props.variant} />,
-                            },
-                        }}
-                    />
+                    {post.content && (
+                        <RichText
+                            data={post.content}
+                        />
+                    )}
                 </div>
-
-                {/* 🚨 SHARE NODE */}
-                {post && <ShareNode title={post.title} slug={post.slug} />}
-
-                {/* Citations Footer */}
-                {post.citations.length > 0 && (
-                    <div className="mt-16 pt-8 border-t-2 border-brand-teal opacity-100 origin-left">
-                        <h4 className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 font-['Prompt']">
-                            <BookOpen size={14} className="text-brand-teal" />
-                            เอกสารอ้างอิง (Primary Sources)
-                        </h4>
-                        <ul className="space-y-2">
-                            {post.citations.map((cite: any, idx: number) => {
-                                const hasUrl = !!cite.url;
-                                const Wrapper = hasUrl ? 'a' : 'div';
-                                const props = hasUrl ? {
-                                    href: cite.url,
-                                    target: "_blank",
-                                    rel: "noopener noreferrer",
-                                    className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 hover:border-brand-teal/50 hover:bg-brand-teal/5 transition-all cursor-pointer group block w-full text-left"
-                                } : {
-                                    className: "text-xs text-gray-400 font-mono bg-black/20 p-3 rounded border border-white/5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 block w-full text-left"
-                                };
-
-                                return (
-                                    <Wrapper key={idx} {...props}>
-                                        <span className="text-brand-amber font-extrabold text-sm">[{idx + 1}]</span>
-                                        <span className={`font-bold ${hasUrl ? 'text-gray-400 group-hover:text-brand-teal transition-colors' : 'text-gray-400'}`}>
-                                            {cite.sourceName}
-                                        </span>
-                                        <span className="hidden sm:inline text-gray-600">—</span>
-                                        <span className="text-gray-500">{cite.publisher}</span>
-                                        {hasUrl && <span className="text-slate-600 group-hover:text-brand-teal ml-auto">↗</span>}
-                                    </Wrapper>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                )}
 
                 {/* Footer Navigation */}
                 <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">

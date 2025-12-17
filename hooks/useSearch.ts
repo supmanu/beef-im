@@ -1,23 +1,5 @@
 import { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
-import { request } from 'graphql-request';
-import { GET_SEARCH_INDEX } from '@/queries';
-
-const HYGRAPH_ENDPOINT = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT || 'https://api-ap-south-1.hygraph.com/v2/cmio1jnkr03oo06o7af14hqyd/master';
-
-// 1. ROBUST TEXT EXTRACTOR
-function extractText(node: any): string {
-  if (!node) return '';
-  if (typeof node === 'string') return node;
-  if (Array.isArray(node)) return node.map(extractText).join(' ');
-
-  let text = '';
-  if (node.text) text += node.text + ' ';
-  if (node.children && Array.isArray(node.children)) {
-    text += node.children.map(extractText).join(' ');
-  }
-  return text;
-}
 
 interface FlattenedArticle {
   id: string;
@@ -34,37 +16,31 @@ export function useSearch() {
   const [fuse, setFuse] = useState<Fuse<FlattenedArticle> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 2. FETCH & INDEX
+  // 1. FETCH & INDEX FROM SOVEREIGN API
   useEffect(() => {
     async function initSearch() {
-      if (!HYGRAPH_ENDPOINT) return;
       try {
         setIsLoading(true);
-        const data: any = await request(HYGRAPH_ENDPOINT, GET_SEARCH_INDEX);
+        // Fetch from our new local API route
+        const res = await fetch('/api/search/index');
 
-        // 3. FLATTEN THE DATA (The Pancake Strategy)
-        const flattenedDocs = data.posts.map((post: any) => {
-          const rawText = extractText(post.content?.json || post.content);
-          return {
-            id: post.id,
-            title: post.title,
-            slug: post.slug,
-            category: post.categories[0]?.name || 'Article',
-            plainText: rawText // <--- FLATTENED HERE
-          };
-        });
+        if (!res.ok) {
+          console.error('[Search] API Error:', res.statusText);
+          return;
+        }
+
+        const flattenedDocs: FlattenedArticle[] = await res.json();
 
         console.log(`[Search Debug] Indexed ${flattenedDocs.length} articles.`);
-        console.log(`[Search Debug] Sample plainText:`, flattenedDocs[0]?.plainText?.substring(0, 200));
 
-        // 4. CONFIGURE FUSE (Simple Keys)
+        // 2. CONFIGURE FUSE
         const fuseInstance = new Fuse<FlattenedArticle>(flattenedDocs, {
           keys: [
             { name: 'title', weight: 2 },
-            { name: 'plainText', weight: 1 }, // <--- SIMPLE KEY
+            { name: 'plainText', weight: 1 },
             { name: 'category', weight: 0.5 }
           ],
-          threshold: 0.4, // Fuzzy match
+          threshold: 0.3, // Slightly tighter threshold
           ignoreLocation: true,
           includeScore: true
         });
@@ -80,7 +56,7 @@ export function useSearch() {
     initSearch();
   }, []);
 
-  // 5. PERFORM SEARCH
+  // 3. PERFORM SEARCH
   useEffect(() => {
     if (!fuse || !query) {
       setResults([]);
