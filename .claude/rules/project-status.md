@@ -1,9 +1,9 @@
 # Project Status: Sovereign Migration Complete
 
-**Last Updated:** December 17, 2025 (20:30 UTC)
-**Status:** 🟢 GREEN - Sovereign Data Bridge Operational
-**Agent:** 2A (Technical Lead) - Sovereign Migration Epoch
-**Handoff:** Full Migration Complete - Ready for Phase IV
+**Last Updated:** December 18, 2025 (Phase IV - Intelligence Suite Complete)
+**Status:** 🟢 PRODUCTION READY - Lexical Editor Intelligence Suite Deployed
+**Agent:** 2A (Technical Lead) - Phase IV Intelligence Suite Epoch
+**Handoff:** Full Sovereign Infrastructure + Intelligence Suite Complete
 
 ---
 
@@ -258,29 +258,61 @@ Before deploying to production:
 - Temporary type casts (`as any`) applied for production stability
 - Files fixed: `ArchiveClient.tsx`, `articles/page.tsx`
 
-**Phase IV Work Completed (December 18):**
+**Phase IV Work Completed (December 18 - Intelligence Suite + Homepage Migration):**
 
-5. **Lexical Editor Intelligence Suite (Task E)**
-   - ✅ Enabled EXPERIMENTAL_TableFeature with Teal Protocol styling
-   - ✅ Integrated CodeBlockFeature for syntax-highlighted code
+5. **Lexical Editor Intelligence Suite (Task E)** ✅ COMPLETE
+   - ✅ Enabled EXPERIMENTAL_TableFeature with Teal Protocol styling (2px teal border, internal grid)
+   - ✅ Integrated CodeBlockFeature for syntax-highlighted code blocks
    - ✅ Created "Intelligence Boxes" (styled blockquotes) for calculation zones
-   - ✅ Fixed import map for new Lexical components
+   - ✅ Fixed import map generation for Lexical components
+   - ✅ Enabled Links & Horizontal Rules for rich formatting
+   - **Table Styling:** Deep Slate borders (#1e293b), subtle internal grid (teal 0.2 opacity)
+   - **Code Block Styling:** Removed language headers, applied pre-wrap for text wrapping
+   - **Blockquote Styling:** Dark background with 4px teal left border, shadow effect
 
-6. **Homepage Rescue & Data Pipeline (Task F)**
-   - ✅ Refactored FeaturedPosts.tsx to use getSovereignArticles (removed Hygraph)
-   - ✅ Created lib/lexical.ts utility for text extraction + reading time calculation
-   - ✅ Implemented ArticleContent.tsx with hydration-safe Lexical rendering
+6. **Homepage Migration & Data Pipeline (Task F)** ✅ COMPLETE
+   - ✅ Refactored FeaturedPosts.tsx to use getSovereignArticles (removed Hygraph dependency)
+   - ✅ Created lib/lexical.ts utility:
+     - `extractTextFromLexical()` - Plain text extraction from Lexical JSON
+     - `calculateReadTime()` - Reading time calculation (200 words/min)
+   - ✅ Implemented ArticleContent.tsx with hydration-safe rendering:
+     - Code blocks use `<pre><code>` semantic HTML
+     - Tables preserve Teal Protocol styling
+     - Blockquotes render as intelligence boxes
+     - No divs inside paragraphs (uses spans only)
    - ✅ Applied Teal Protocol consistency to homepage cards
    - ✅ Zero hydration errors, console is clean
+   - **Data Pipeline:** Articles → Payload → getSovereignArticles → FeaturedPosts → ArticleContent
 
-**Next Objective:** Phase IV.1 - Content Seeding & Polish
-1. Populate Articles collection with production content
-2. Test Lexical features (tables, code blocks, blockquotes) with real data
+7. **Styling Refinement (Task G)** ✅ COMPLETE
+   - ✅ Sovereign Ledger typography refinement applied to code blocks
+     - Font: Fira Code monospace, size 1.12em, line-height 1.8
+     - Color: Slate-300 (#cbd5e1) - softer white
+     - Removed automatic backticks via CSS
+     - Enabled text wrapping to prevent overflow
+   - ✅ Table border architecture:
+     - Outer: 2px teal border with rounded corners (opacity 0.4)
+     - Internal: 1px teal grid (opacity 0.2)
+     - Clean separation: no right border on last column, no bottom border on last row
+     - Header cells: slightly stronger teal border
+
+**Build Status:** ✅ Clean (Exit code: 0)
+**Files Modified:**
+- `payload-config/payload.config.ts` - Lexical features enabled
+- `lib/lexical.ts` - NEW utility for text extraction
+- `components/FeaturedPosts.tsx` - Migrated to Payload
+- `components/ArticleContent.tsx` - Custom Lexical renderer
+- `app/globals.css` - Comprehensive styling updates
+
+**Next Objective:** Phase IV.1 - Content Seeding & Production Deployment
+1. Populate Articles collection with production content (verify metadata)
+2. Test Lexical features with real data (tables, code blocks, blockquotes)
 3. Verify reading time calculations on homepage
 4. Deploy to Vercel and smoke test all features
 5. Monitor for 24 hours post-deployment
 
-**Foundation Status:** Production-ready with Intelligence Suite complete.
+**Foundation Status:** PRODUCTION-READY with Intelligence Suite complete.
+**Ready for:** Content seeding and immediate deployment
 
 ---
 
