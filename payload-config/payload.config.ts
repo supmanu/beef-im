@@ -4,12 +4,14 @@ import { fileURLToPath } from 'url';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { s3Storage } from '@payloadcms/storage-s3';
+import sharp from 'sharp';
 
 // Import your collections
 import { Users } from '../collections/Users';
 import { Posts } from '../collections/Posts';
 import { Categories } from '../collections/Categories';
 import { Media } from '../collections/Media';
+import { Articles } from '../collections/Articles';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -28,7 +30,10 @@ export default buildConfig({
     Posts,
     Categories,
     Media,
+    Articles,
   ],
+
+  sharp,
 
   secret: process.env.PAYLOAD_SECRET || 'YOUR_SECRET_HERE',
 
