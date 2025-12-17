@@ -1,14 +1,24 @@
-# Next.js 16 Conventions
+# Next.js 15 Conventions
 
 ## Build System
-- **Command:** `npm run dev --webpack` (Turbopack disabled for Payload compatibility)
-- **Version:** 16.0.8 with App Router
-- **React:** 19.2.1
+- **Command:** `npm run dev` (Standard build, no special flags needed)
+- **Version:** 15.5.9 LTS with App Router
+- **React:** 19.0.0
 
 ## Node Version (CRITICAL)
 - **Required:** Node v20.18.0 LTS (Iron)
 - **Incompatible:** Node v24+ breaks Payload CLI tools
 - **Check:** Run `node -v` before development
+
+## Module System (Phase II - ESM)
+- **Type:** Native ESM (`"type": "module"` in package.json)
+- **Imports:** Use ES6 import/export syntax throughout
+- **Config Files:** All config files must use ES6 exports
+  - `postcss.config.js`: Use `export default { ... }`
+  - `tailwind.config.ts`: Already ES6
+  - `next.config.mjs`: Already ES6
+- **Benefit:** Fixes Payload CLI tools (`generate:importmap` works correctly)
+- **Note:** CommonJS is NOT supported - all modules must be ESM-compatible
 
 ## Routing
 - Use route groups: `(site)` for public, `(payload)` for admin

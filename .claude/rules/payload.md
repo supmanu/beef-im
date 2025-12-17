@@ -30,7 +30,49 @@ app/
 - Export in `payload.config.ts`
 - Generate types: `npx payload generate:types`
 
-## Storage
+## Storage (Phase II - Sovereign Infrastructure)
 - **Provider:** Cloudflare R2 (S3-compatible)
-- **Plugin:** `@payloadcms/plugin-cloud-storage`
-- **Config:** Set S3 credentials in .env
+- **Plugin:** `@payloadcms/storage-s3` (NOT `@payloadcms/storage-vercel-blob`)
+- **Bucket:** `nwn-assets`
+- **Configuration Pattern:**
+  ```typescript
+  import { s3Storage } from '@payloadcms/storage-s3';
+
+  plugins: [
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.R2_BUCKET_NAME || 'nwn-assets',
+      config: {
+        endpoint: process.env.R2_ENDPOINT,
+        region: process.env.R2_REGION || 'auto',
+        credentials: {
+          accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+        },
+      },
+    }),
+  ]
+  ```
+
+## Environment Variables Required
+```env
+# Cloudflare R2 Storage
+R2_ENDPOINT=https://YOUR_ACCOUNT_ID.r2.cloudflarestorage.com
+R2_ACCESS_KEY_ID=your_access_key
+R2_SECRET_ACCESS_KEY=your_secret_key
+R2_BUCKET_NAME=nwn-assets
+R2_REGION=auto
+
+# Payload Core
+DATABASE_URI=postgresql://...
+PAYLOAD_SECRET=...
+PAYLOAD_PUBLIC_SERVER_URL=...
+```
+
+## Image Optimization
+- **Required Package:** `sharp` (^0.34.5 or higher)
+- **Purpose:** Server-side image resizing and thumbnail generation
+- **Installation:** `npm install sharp`
+- **Note:** Payload will warn if sharp is not installed when image resizing is enabled
