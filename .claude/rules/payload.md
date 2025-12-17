@@ -1,9 +1,17 @@
 # Payload CMS 3.0 Patterns
 
-## Configuration
+## Configuration (Sovereign Migration - Phase III Complete)
 - **Location:** `payload-config/payload.config.ts`
-- **Hard-wire pattern:** Always import `importMap` explicitly (Node 24+ compatibility)
+- **Hard-wire pattern:** Import `sharp` directly for image optimization
+  ```typescript
+  import sharp from 'sharp';
+  export default buildConfig({
+    sharp,  // <-- Critical for image processing
+    // ... rest of config
+  });
+  ```
 - **Relative imports:** Use `../../../../payload-config/payload.config` NOT `@payload-config`
+- **importMap:** Automatically handled via layout.tsx (no longer explicit import needed)
 
 ## Route Groups (Duplex Layout Strategy)
 ```
@@ -29,6 +37,49 @@ app/
 - Define in `payload-config/collections/`
 - Export in `payload.config.ts`
 - Generate types: `npx payload generate:types`
+- **Articles Collection (New):** Supports Lexical editor, categories, publishing status
+
+## Sovereign Data Fetching (Phase III - Zero External Dependencies)
+**Pattern:** Use local Payload API instead of external GraphQL
+
+```typescript
+// lib/payload.ts - Singleton pattern for caching
+import { getPayload } from 'payload';
+import config from '../payload-config/payload.config';
+
+let cachedPayload: Promise<Payload> | null = null;
+
+export const getLocalPayload = async (): Promise<Payload> => {
+    if (!cachedPayload) {
+        cachedPayload = getPayload({ config });
+    }
+    return cachedPayload;
+};
+
+// Fetch published articles (server-side)
+export const getSovereignArticles = async () => {
+    const payload = await getLocalPayload();
+    return payload.find({
+        collection: 'articles',
+        where: { _status: { equals: 'published' } },
+        sort: '-publishedDate',
+        depth: 1,
+    });
+};
+```
+
+**Usage in Server Components:**
+```typescript
+// app/(site)/articles/page.tsx
+const posts = await getSovereignArticles();
+return <ArchiveClient initialPosts={posts.docs} />;
+```
+
+**Benefits:**
+- ✅ Zero external API calls
+- ✅ Data stays within sovereign infrastructure
+- ✅ Faster than GraphQL round-trips
+- ✅ Server-side filtering (only published articles sent to client)
 
 ## Storage (Phase II - Sovereign Infrastructure)
 - **Provider:** Cloudflare R2 (S3-compatible)

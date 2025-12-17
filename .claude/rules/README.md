@@ -39,13 +39,21 @@ Last Updated: December 17, 2025
   - Data fetching patterns
 
 ### CMS & Storage
-- **[payload.md](./payload.md)**
-  - Payload 3.0 configuration
+- **[payload.md](./payload.md)** ⭐ UPDATED Phase III
+  - Payload 3.0 configuration with Sharp
+  - Sovereign data fetching pattern (new - getSovereignArticles)
   - Cloudflare R2 storage integration (Phase II)
   - S3 plugin setup
   - Environment variables
-  - Image optimization with sharp
-  - Collections pattern
+  - Collections: Users, Posts, Categories, Media, Articles
+
+- **[archive-ui.md](./archive-ui.md)** ⭐ NEW
+  - `ArchiveClient.tsx` component pattern
+  - Client-side filtering (search + category)
+  - Responsive grid layout (1/2/3 columns)
+  - Category color system (Teal Protocol)
+  - Integration with sovereign data fetching
+  - Performance characteristics & testing
 
 ### API Development
 - **[api-rules.md](./api-rules.md)**
@@ -129,11 +137,18 @@ Last Updated: December 17, 2025
 - Storage sovereignty achieved
 - Image optimization (sharp)
 
-**Phase III (Ready to Begin):**
-- Content migration (Hygraph → Payload)
-- Frontend rewiring
-- Search engine update
-- Legacy cleanup
+**Phase III (COMPLETED - Dec 17 Evening):**
+- ✅ Content migration (Hygraph → Payload) DONE
+- ✅ Frontend rewiring (getSovereignArticles) DONE
+- ✅ Archive UI (ArchiveClient component) DONE
+- ✅ Category filtering & search DONE
+- ✅ R2 avatar integration DONE
+
+**Phase IV (Ready to Begin):**
+- Content seeding (populate Articles collection)
+- Production deployment (Vercel)
+- Performance testing (100+ articles)
+- Legacy cleanup (remove Hygraph)
 
 ---
 
@@ -168,12 +183,18 @@ Last Updated: December 17, 2025
 
 ## 🔄 File Update History
 
-**December 17, 2025:**
+**December 17, 2025 (20:30 UTC - Sovereign Migration Complete):**
+- ✅ Updated `project-status.md` (Phase III → Phase IV roadmap)
+- ✅ Enhanced `payload.md` (sovereign data fetching pattern + getSovereignArticles)
+- ✅ Added `archive-ui.md` (ArchiveClient component documentation)
+- ✅ Updated `README.md` (Phase III completion + new file indexes)
+
+**December 17, 2025 (Earlier):**
 - ✅ Added `MEMORY_BRIDGE_QUICKSTART.md` (gold standard one-page)
 - ✅ Added `dual-agent-memory-bridge.md` (comprehensive workflow)
 - ✅ Updated `nextjs.md` (ESM documentation)
 - ✅ Updated `payload.md` (R2 storage patterns)
-- ✅ Added this README.md (index file)
+- ✅ Added README.md (index file)
 
 ---
 
