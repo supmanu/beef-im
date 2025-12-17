@@ -28,6 +28,29 @@ export const Media: CollectionConfig = {
         adminThumbnail: 'thumbnail',
         mimeTypes: ['image/*'],
     },
+    hooks: {
+        afterRead: [
+            ({ doc }) => {
+                // Check both possible variable names for safety
+                const publicUrl = process.env.PAYLOAD_PUBLIC_R2_URL || process.env.R2_PUBLIC_URL;
+
+                if (publicUrl && doc.filename) {
+                    // Update main URL with bucket prefix
+                    doc.url = `${publicUrl}/nwn-assets/${doc.filename}`;
+
+                    if (doc.sizes) {
+                        Object.keys(doc.sizes).forEach((size) => {
+                            if (doc.sizes[size] && doc.sizes[size].filename) {
+                                // Update size URLs with bucket prefix
+                                doc.sizes[size].url = `${publicUrl}/nwn-assets/${doc.sizes[size].filename}`;
+                            }
+                        });
+                    }
+                }
+                return doc;
+            }
+        ]
+    },
     access: {
         read: () => true, // Public read
     },
