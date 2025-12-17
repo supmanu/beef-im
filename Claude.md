@@ -1,18 +1,17 @@
 # 🤖 CLAUDE AGENT CONTEXT (ACTIVE)
 **Project:** Nerd with Nart - Financial Strategy Platform
-**Stack:** Next.js 16 (App Router) + Tailwind CSS v3 + Payload 3.0 CMS
+**Stack:** Next.js 15.5.9 (App Router) + Tailwind CSS v3 + Payload 3.0 CMS
 **Database:** Neon (Postgres)
 **Deployment:** Vercel (Serverless)
-**Status:** ✅ SOVEREIGN STACK OPERATIONAL
-**Last Updated:** Dec 16, 2025
+**Status:** 🟢 **PHASE III COMPLETE | PHASE IV READY**
+**Build Status:** ✅ Clean (Exit code: 0) | Ready for deployment
+**Last Updated:** Dec 17, 2025 (20:45 UTC)
 
-> **📚 Documentation Index:**
-> - **Current Stack:** This file (CLAUDE.md)
-> - **Dual-Brain System:** [DUAL_BRAIN_ARCHITECTURE.md](DUAL_BRAIN_ARCHITECTURE.md)
-> - **Quick Reference:** [QUICK_REFERENCE_DUAL_BRAIN.md](QUICK_REFERENCE_DUAL_BRAIN.md)
-> - **Migration History:** [_archive/migration-history.md](_archive/migration-history.md) (Phases A-H)
-> - **Modular Rules:** See `.claude/rules/` for topic-specific patterns
-> - **Token Strategy:** [TOKEN_OPTIMIZATION_GUIDE.md](TOKEN_OPTIMIZATION_GUIDE.md)
+> **📚 DOCUMENTATION INDEX - READ IN THIS ORDER:**
+> 1. **⭐ [PROJECT_BLUEPRINT.md](PROJECT_BLUEPRINT.md)** - Comprehensive single source of truth (start here)
+> 2. **Architecture Details:** This file (CLAUDE.md) - legacy reference
+> 3. **Tactical Patterns:** [.claude/rules/README.md](.claude/rules/README.md) - indexed patterns
+> 4. **Project Status:** [.claude/rules/project-status.md](.claude/rules/project-status.md) - phase tracking
 
 > **🧠 Memory System (Agent 2B):**
 > - This CLAUDE.md file provides project-wide context
@@ -26,17 +25,18 @@
 ## ⚠️ CRITICAL ARCHITECTURE RULES
 
 ### 1. Framework
-- **Next.js:** 16.0.8 (App Router)
-- **React:** 19.2.1
-- **Build Mode:** Webpack enforced (`next dev --webpack`)
+- **Next.js:** 15.5.9 LTS (App Router) ⚠️ NOT 16 (stability over bleeding-edge)
+- **React:** 19.0.0 (native)
+- **Build Mode:** Webpack enforced (`next dev` - Turbopack disabled)
 - **Deployment:** Vercel Serverless Functions
+- **Module System:** Native ESM (Node 20+ compatible)
 
-### 2. CMS Architecture (NEW - Phase H)
-- **CMS:** Payload 3.0 (Self-hosted, full data sovereignty)
-- **Database:** Neon Postgres (Serverless)
-- **Admin UI:** `/admin` (isolated route group)
-- **API:** `/api/*` (REST endpoints via `@payloadcms/next`)
-- **Storage:** Cloudflare R2 (S3-compatible)
+### 2. CMS Architecture (Phase III Complete)
+- **CMS:** Payload 3.0 (Self-hosted, full data sovereignty) ✅ OPERATIONAL
+- **Database:** Neon Postgres (Serverless) ✅ CONNECTED
+- **Admin UI:** `/admin` (isolated route group) ✅ WORKING
+- **Data Source:** Local Payload API (zero external dependencies) ✅ SOVEREIGN
+- **Storage:** Cloudflare R2 (S3-compatible) ✅ INTEGRATED
 
 ### 3. Styling (Teal Protocol)
 - **Engine:** Tailwind CSS v3.4.17 (v3 only - v4 is incompatible)
@@ -56,16 +56,18 @@
 
 ---
 
-## 🛠️ CURRENT STATUS
+## 🛠️ CURRENT STATUS (Phase III Complete)
 
-### ✅ Completed (Phase H - OPERATION STABILIZE)
-- **Payload 3.0 Migration:** ✅ COMPLETE - Admin UI fully operational at `/admin`
-- **Database:** ✅ Connected to Neon Postgres, writing correctly
-- **Route Groups:** ✅ Duplex Layout Strategy implemented
-  - `(site)` - Public website with own layout
-  - `(payload)` - Admin panel with isolated layout
-- **Hard-Wire Pattern:** importMap explicitly imported in config
-- **API Routes:** REST endpoints operational at `/api/*`
+### ✅ Sovereign Infrastructure (Phase III COMPLETE)
+- **Articles Schema:** ✅ Deployed with Lexical editor, categories, publishing status
+- **Sovereign Data Bridge:** ✅ getSovereignArticles() function connects to Neon
+- **Payload 3.0:** ✅ Admin UI fully operational at `/admin`
+- **Database:** ✅ Connected to Neon Postgres, articles fetchable
+- **Route Groups:** ✅ Duplex Layout Strategy isolates `/admin` and `/`
+- **R2 Storage:** ✅ S3-compatible media storage integrated
+- **Sharp Optimization:** ✅ Server-side image processing enabled
+- **Archive UI:** ✅ ArchiveClient component with search/filter
+- **Type Safety:** ✅ Fixed TypeScript mismatch (commit 9b2ab48)
 
 ### ✅ Public Site (Legacy - Still Active)
 - **Pages:** All routes live and functional:
