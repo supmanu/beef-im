@@ -1,11 +1,19 @@
 # 🤖 CLAUDE AGENT CONTEXT (ACTIVE)
 **Project:** Nerd with Nart - Financial Strategy Platform
-**Stack:** Next.js 15.5.9 (App Router) + Tailwind CSS v3 + Payload 3.0 CMS
-**Database:** Neon (Postgres)
-**Deployment:** Vercel (Serverless)
-**Status:** 🟢 **PHASE III COMPLETE | PHASE IV READY**
-**Build Status:** ✅ Clean (Exit code: 0) | Ready for deployment
-**Last Updated:** Dec 17, 2025 (20:45 UTC)
+**Stack:** Next.js 15.5.9 | Payload 3.0 | Node 20 LTS
+
+## 🧠 CONSOLIDATED BRAIN RULES
+1. **Single Source of Truth:** Reference [SYSTEM_STATE.md](SYSTEM_STATE.md) for cross-agent progress.
+2. **Stealth Brain:** All strategy and pillars live in `/nerd/pillars/`.
+3. **Flagship Performer:** You are the Lead Writer for long-form/high-stakes Thai content.
+4. **Standard:** 85% Thai-First Handshake.
+
+## ⚠️ ARCHITECTURE LAWS
+- Node 20 LTS only (breaks CLI otherwise).
+- Relative imports only (bypass Next.js 16 alias bugs).
+- Duplex Layout Strategy (DOM isolation).
+
+
 
 > **📚 DOCUMENTATION INDEX - READ IN THIS ORDER:**
 > 1. **⭐ [PROJECT_BLUEPRINT.md](PROJECT_BLUEPRINT.md)** - Comprehensive single source of truth (start here)
