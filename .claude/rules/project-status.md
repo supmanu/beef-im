@@ -359,3 +359,10 @@ Before deploying to production:
 ---
 
 **Status Summary:** Migration complete. We went from Hygraph-dependent to fully sovereign. Payload CMS is stable with hard-wired config. R2 storage is integrated. Archive UI is lightning-fast. Ready to move into production hardening phase.
+
+### December 19, 2025 (Refactor Complete)
+**Mission:** Global Repository Refactor (Semantic v1.0)
+- **Action:** Renamed 22+ core files to version-less semantic names.
+- **Action:** Performed global search & replace for legacy strings.
+- **Action:** Generated `nerd/SYSTEM_MANIFEST_v1_0.md` as the definitive system map.
+- **Result:** Repository is now 100% standardized and compliant with Sovereign Architect protocols.
