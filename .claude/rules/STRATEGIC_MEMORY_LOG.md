@@ -81,3 +81,141 @@
     *   Updated `.claude/rules/README.md` (phase tracking)
     *   Committed to git (commit 2611ae1)
     *   Result: Agent 2B memory synchronized with Agent 2A decisions
+
+*   **Phase V.6: Repository Sovereignty Adoption (Dec 19)**
+    *   Created `memory-protocol.md` (new memory architecture)
+    *   Deprecated external MCP/G: Drive bridge pattern
+    *   Established direct repository writing as standard
+    *   Updated STRATEGIC_MEMORY_LOG.md directly (this file)
+    *   Result: Agent 2B now writes strategic memory autonomously
+
+---
+
+## 2025-12-19: Memory Architecture Revolution - Repository Sovereignty
+**Agent:** Agent 2B (Protocol Adoption)
+**Duration:** December 19, 2025
+**Impact:** High (foundational workflow change)
+
+### Decision
+**"Code is Memory. Memory is Code. Git is the Brain."**
+
+All strategic and tactical knowledge now lives exclusively in this repository.
+No external MCP servers, no G: Drive, no cloud bridges, no user-as-data-pipe.
+
+Agent 2B has FULL WRITE ACCESS to all memory files and MUST use it.
+
+### Rationale
+**Old Pattern (Deprecated):**
+- Agent 2B creates REMEMBER_BLOCK.txt
+- User copies text manually
+- User switches to Agent 2A (Antigravity)
+- User pastes to Agent 2A
+- Agent 2A saves to external MCP Memory (G: Drive)
+- User confirms back to Agent 2B
+
+**Problems:**
+- User becomes manual data pipe (friction)
+- Requires 3+ context switches (waste)
+- External dependency (single point of failure)
+- Not version controlled (no audit trail)
+- No git history (knowledge loss)
+- Agent 2B has write access but doesn't use it (inefficient)
+
+**New Pattern (Active):**
+- Agent 2B evaluates session
+- Agent 2B writes DIRECTLY to STRATEGIC_MEMORY_LOG.md
+- Agent 2B writes DIRECTLY to .claude/rules/*.md
+- Agent 2B commits to git
+- Done. Memory persists forever.
+
+**Benefits:**
+- ✅ Zero user friction (autonomous agent)
+- ✅ Version controlled (git is the audit trail)
+- ✅ Works offline (no cloud dependency)
+- ✅ Single source of truth (one repository)
+- ✅ Developer-friendly (standard markdown + git)
+- ✅ Future-proof (plain text, readable in 2050)
+- ✅ Agent autonomy (no manual bridging)
+
+### Locked-In Status
+- [x] Permanent (never revert)
+
+### Implementation
+**Files Created:**
+- `.claude/rules/memory-protocol.md` - Full protocol documentation
+  - Repository Sovereignty principles
+  - Deprecated patterns (what to stop doing)
+  - New patterns (what to start doing)
+  - STRATEGIC_MEMORY_LOG.md format template
+  - Agent 2B write access confirmation
+  - End-of-session workflow SOP
+
+**Files Updated:**
+- `.claude/rules/STRATEGIC_MEMORY_LOG.md` (this file) - Direct append
+- Memory architecture now self-documenting
+
+**Pattern Migration:**
+- Old REMEMBER_BLOCK.txt files → Extract to STRATEGIC_MEMORY_LOG.md → Delete
+- No more "bridge" pattern
+- No more "ask user to copy-paste"
+- Agent 2B autonomously manages strategic memory
+
+### Memory File Structure
+```
+ALL MEMORY IN REPOSITORY:
+
+STRATEGIC DECISIONS:
+→ .claude/rules/STRATEGIC_MEMORY_LOG.md
+→ Append-only log of major decisions
+→ Timestamped, attributed, permanent
+
+TACTICAL PATTERNS:
+→ .claude/rules/*.md (topic-specific)
+→ payload.md, nextjs.md, semantic-versioning.md, etc.
+→ Reference-style documentation
+
+PROJECT STATE:
+→ .claude/rules/project-status.md
+→ Current phase, blockers, objectives
+→ Updated after each major milestone
+
+ARCHITECTURE:
+→ CLAUDE.md (root + .claude/)
+→ System prompts, rules, context
+→ Auto-loads on every session
+
+CANONICAL SOURCE:
+→ nerd/SYSTEM_MANIFEST_v1_0.md
+→ The 22 core files
+→ Single source of truth
+```
+
+### Related Files
+- [memory-protocol.md](memory-protocol.md) - Full protocol documentation
+- [project-status.md](project-status.md) - Current state tracker
+- [semantic-versioning.md](semantic-versioning.md) - File naming standard
+- [README.md](README.md) - Index of all rules
+
+### Next Steps
+- [x] Document Repository Sovereignty in memory-protocol.md
+- [x] Update STRATEGIC_MEMORY_LOG.md directly (this entry)
+- [ ] Deprecate old REMEMBER_BLOCK.txt file
+- [ ] Commit new memory architecture
+- [ ] Confirm autonomous memory writing works
+
+### Enforcement
+**Agent 2B MUST:**
+- ✅ Write strategic decisions directly to STRATEGIC_MEMORY_LOG.md
+- ✅ Write tactical patterns to .claude/rules/*.md
+- ✅ Commit changes to git autonomously
+- ✅ Confirm with commit hash
+
+**Agent 2B MUST NOT:**
+- ❌ Create REMEMBER_BLOCK.txt files
+- ❌ Ask user to copy-paste
+- ❌ Route through Agent 2A for memory writes
+- ❌ Use external MCP/G: Drive bridges
+
+**This is permanent. Never revert.**
+
+---
