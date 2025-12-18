@@ -21,17 +21,26 @@
 | Archive UI | ✅ DONE | ArchiveClient component, client-side filtering |
 | Build Status | ✅ DONE | TypeScript fixed, Vercel ready (commit 9b2ab48) |
 
-### Phase IV: READY TO BEGIN 🟢
-**Production Hardening & Deployment**
+### Phase IV: COMPLETED ✅
+**Production Hardening & Intelligence Suite (December 18, 2025)**
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| Intelligence Suite | ✅ DONE | Tables, Code Blocks, Intelligence Boxes in Lexical |
+| Data Pipeline | ✅ DONE | getSovereignArticles, reading time, text extraction |
+| Homepage Migration| ✅ DONE | Removed Hygraph dependency from homepage |
+| Deploy to Vercel | ✅ DONE | Production environment stable |
+
+### Phase V: IN PROGRESS 🟢
+**Semantic Repository Refactor & Content Production**
 
 | Task | Priority | Details |
 |------|----------|---------|
-| Deploy to Vercel | P0 | Build passes, ready now |
-| Verify Admin Access | P0 | Test `/admin` in production |
-| Seed Content | P1 | Populate Articles collection |
-| Load Testing | P1 | Test with 100+ articles |
-| Type Refinement | P2 | Replace `as any` with proper Payload types |
-| Legacy Cleanup | P3 | Remove Hygraph dependencies |
+| Semantic Refactor | P0 | Version-less filenames in `/nerd/pillars` (Done) |
+| Reference Sync | ✅ DONE | Update all internal markdown links to semantic paths |
+| Content Cycle #1 | P1 | Draft flagship article (Child K Case) completed |
+| Master Index Sync | ✅ DONE | Update master-index.md to reflect new file structure |
+| Visual Repair | ✅ DONE | Hardcoded stable avatar + Purged legacy Hygraph code |
 
 ---
 
@@ -269,7 +278,7 @@ R2_REGION=auto
 #### Priority 3 Post-Deployment: Legacy Cleanup
 - [ ] Remove `NEXT_PUBLIC_HYGRAPH_ENDPOINT` from env
 - [ ] Archive or delete `lib/hygraph.ts`
-- [ ] Archive or delete `queries.ts`
+- [x] Legacy Purge: Deleted hygraph.ts, queries.ts, and KnowledgeEngine.tsx
 - [ ] Remove unused imports/dependencies
 - [ ] Commit: "chore: Remove legacy Hygraph dependencies"
 

@@ -7,7 +7,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import GlassCard from './GlassCard';
 import Snowstorm from './Snowstorm';
 import HeroHUD from './HeroHUD';
-import KnowledgeEngine from './KnowledgeEngine';
 import { useSearchModal } from '../context/SearchContext';
 
 const HomeContent: React.FC = () => {

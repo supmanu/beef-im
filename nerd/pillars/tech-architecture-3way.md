@@ -31,7 +31,7 @@
 
 **Architecture Pattern:**
 - Duplex Layout Strategy (DOM isolation)
-- Reference: `ARCHIVE_Layout_Collision_v1_0_FIXED.md`
+- Reference: `tech-archive-layout-fix.md`
 
 ---
 
@@ -270,12 +270,12 @@ If any 🔴 → MUST use PART 3 revised draft
 ☐ Create new Gem: "Gem #4: The Sovereign Auditor v5.4"
 
 ☐ Upload 4 files:
-  ☐ Voice_DNA_Blueprint_v5_2_CORE.md
-  ☐ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-  ☐ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-  ☐ NHES_VII_MASTER_REFERENCE_v1_0.md
+  ☐ voice-dna.md
+  ☐ constitution.md
+  ☐ data-thai-handshake-exceptions.md
+  ☐ data-nhes-vii.md
 
-☐ Paste System Instructions (from GEM4_Sovereign_Auditor_Setup_v5_4_BULLETPROOF.md)
+☐ Paste System Instructions (from instruction-auditor-setup.md)
 
 ☐ Run ALL 11 Test Cases:
   ☐ Test 1: Clean article → All 🟢
@@ -311,7 +311,7 @@ If any 🔴 → MUST use PART 3 revised draft
 
 | Benchmark | Date | Problem | Solution | Reference |
 |-----------|------|---------|----------|-----------|
-| **Layout Collision Fix** | Dec 14, 2025 | Nested `<html>` hydration error | Duplex Layout Strategy | `ARCHIVE_Layout_Collision_v1_0_FIXED.md` |
+| **Layout Collision Fix** | Dec 14, 2025 | Nested `<html>` hydration error | Duplex Layout Strategy | `tech-archive-layout-fix.md` |
 | **Pancake Strategy** | Dec 11, 2025 | Fuse.js failing on Rich Text | AST Flattening | `ARCHITECTURE_DEVLOG.md` |
 | **Node 24 Trap** | Dec 14, 2025 | Payload CLI failures | Enforce Node 20 LTS | `PHASE_H_MISSION_DEBRIEF.md` |
 
@@ -344,7 +344,7 @@ If any 🔴 → MUST use PART 3 revised draft
 
 ---
 
-*ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md*  
+*tech-architecture-3way.md*  
 *Nerd with Nart Content System*  
 *December 14, 2025*  
 *Sovereign Stack Edition — Neon + Vercel + Payload 3.0*  

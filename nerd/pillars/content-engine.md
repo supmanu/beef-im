@@ -1,7 +1,7 @@
-# ⚙️ **PILLAR 3: CONTENT ENGINE MASTER CODES v5.4 SINEK INTEGRATED**
+# ⚙️ **PILLAR 3: CONTENT ENGINE**
 ## **"Daily Execution with Miller-Wit + Sinek Psychology"**
 
-*Aligned with Voice DNA v5.4 (Trinity Upgrade)*
+*Aligned with [Voice DNA](voice-dna.md)*
 **Updated:** November 29, 2025 (Sinek Integration Patch)
 
 ---
@@ -35,8 +35,8 @@ OUTPUT: Ready-to-publish content (0 edits needed)
 
 | Layer | Purpose | File |
 |-------|---------|------|
-| 1: VOICE DNA | WHO you are | Voice_DNA_Blueprint_v5_0_CORE.md |
-| 2: BRAND CONSTITUTION | WHAT you stand for | Brand_Constitution_v4_3_2.md |
+| 1: VOICE DNA | WHO you are | [voice-dna.md](voice-dna.md) |
+| 2: BRAND CONSTITUTION | WHAT you stand for | [constitution.md](constitution.md) |
 | 3: CONTENT ENGINE | HOW you execute | This file |
 
 **Critical Principle:** Layer 3 cannot violate Layer 2. Layer 2 cannot contradict Layer 1.
@@ -410,9 +410,9 @@ Every piece MUST pass ALL 5 gates before publishing.
 
 ### **Before Production:**
 ```
-□ Voice DNA v5.0 accessible
-□ Brand Constitution v4.3.2 accessible
-□ Terminology Cheat Sheet accessible
+□ [Voice DNA](voice-dna.md) accessible
+□ [Brand Constitution](constitution.md) accessible
+□ [Terminology Cheat Sheet](data-terminology.md) accessible
 □ Framework selected
 □ No distractions
 ```
@@ -450,6 +450,6 @@ Every piece MUST pass ALL 5 gates before publishing.
 
 ---
 
-*Content Engine Master Codes v4.5.1 OPTIMIZED*  
-*Aligned with Voice DNA v5.0 + Brand Constitution v4.3.2*  
-*Updated: November 27, 2025*
+*Content Engine*  
+*Aligned with [Voice DNA](voice-dna.md) + [Brand Constitution](constitution.md)*  
+*Updated: December 18, 2025*

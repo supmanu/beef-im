@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { RichText } from '@payloadcms/richtext-lexical/react';
 
-// 📸 SOVEREIGN AVATAR (Now served from local API + R2)
-const AVATAR_URL = "/api/media/file/natapol-supmanu-nerd-with-nart-avatar.png";
+// Temporary Sovereign Override
+const AVATAR_URL = "https://assets.nerdwithnart.com/nwn-assets/natapol-supmanu-nerd-with-nart-avatar.png";
 
 // ✅ FIXED: Map Categories to Badge Colors (Teal Protocol Enforced)
 const colorMap: Record<string, string> = {

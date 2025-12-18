@@ -117,7 +117,7 @@ app/
     └── layout.tsx     
 ```
 - DOM Isolation: Prevents nested <html> hydration errors
-- Reference: `ARCHIVE_Layout_Collision_v1_0_FIXED.md`
+- Reference: `tech-archive-layout-fix.md`
 
 **Hosting & Performance:**
 - Vercel (Serverless Functions for Payload API)
@@ -459,8 +459,8 @@ You (after researching a new content format):
 **Task:** Add "Lemon8 Carousel" format to Content Engine
 
 **Files Affected:**
-- PILLAR_3_Content_Engine_v4_5_1.md → v4.5.2
-- PERFORMER_INSTRUCTIONS_v5_5.md → v5.5.1
+- content-engine.md_v4_5_1.md → v4.5.2
+- instruction-performer.txt_v5_5.md → v5.5.1
 
 **Content Specification:**
 Add new section under "EXTENSION FORMATS":
@@ -781,7 +781,7 @@ VERSION HISTORY
 - ✅ Updated: Hosting from Cloudflare Pages → Vercel (Serverless)
 - ✅ Added: Duplex Layout Strategy documentation
 - ✅ Added: Phase H Critical Rules (Node 20, Webpack mode, etc.)
-- ✅ Added: Reference to ARCHIVE_Layout_Collision_v1_0_FIXED.md
+- ✅ Added: Reference to tech-archive-layout-fix.md
 - ✅ Updated: Example scenarios to reflect new stack
 
 **Breaking Changes:** None (awareness update only)

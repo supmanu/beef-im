@@ -84,7 +84,7 @@
 | **2: HIDDEN COST** | Hook(Victim)→Surface→Compound→Victims→Verdict | 40F/40Fa/20Fu | "How 2% Fees Destroy 40% of Retirement" |
 | **3: SIMPLE SWAP** | Hook(Opportunity)→Trap→Principle→Objections→Verdict | 25F/50Fa/25Fu | "Stop Optimizing Insurance. Start Protecting." |
 
-### **Bridge Selection (from LAB_The_Bridge):**
+### **Bridge Selection (from tech-bridge-lab.md):**
 
 - **Option A:** Complex topic → Use Bridge #001-#025
 - **Option B:** Simple topic → Use Razor (First Principles only)
@@ -296,7 +296,7 @@ Verification must happen in a **SEPARATE AI SESSION** to avoid same-context bias
 | **Thai-First** | ≥85% ratio |
 | **Citations** | PRIMARY sources only |
 
-**See:** `GEM4_Sovereign_Auditor_Setup.md` for Gemini configuration.
+**See:** `instruction-auditor-setup.md.md` for Gemini configuration.
 
 ---
 
@@ -427,6 +427,6 @@ VIRALITY ←┼→ PROTECTION
 
 ---
 
-**Related:** Voice DNA v5.2 CORE | Brand Constitution v4.3.2 | LAB_The_Bridge v4.6.2 | PERFORMER_INSTRUCTIONS v5.5 | NotebookLM_Protocol v4.5
+**Related:** Voice DNA v5.2 CORE | Brand Constitution v4.3.2 | tech-bridge-lab.md v4.6.2 | instruction-performer.txt v5.5 | instruction-notebooklm-protocol.md v4.5
 
 *GSB-KANE ENHANCED DEEP DIVE v4.5.6 OPTIMIZED*

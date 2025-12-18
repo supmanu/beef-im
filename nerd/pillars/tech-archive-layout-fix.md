@@ -250,7 +250,7 @@ This fix took hours to discover but seconds to implement. Documentation prevents
 |------|---------|
 | `ARCHITECTURE_DEVLOG.md` | Full development history |
 | `PHASE_H_MISSION_DEBRIEF.md` | Detailed Phase H documentation |
-| `ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md` | System architecture reference |
+| `tech-architecture-3way.md` | System architecture reference |
 
 ---
 
@@ -268,7 +268,7 @@ If you see any of these symptoms, check for layout collision:
 
 ---
 
-*ARCHIVE_Layout_Collision_v1_0_FIXED.md*  
+*tech-archive-layout-fix.md*  
 *Nerd with Nart System Architecture*  
 *December 14, 2025*  
 *Permanent Fix — Duplex Layout Strategy*

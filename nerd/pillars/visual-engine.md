@@ -10,7 +10,7 @@
 |-------|-------|
 | **Version** | v3.0 |
 | **Status** | Active |
-| **Replaces** | PILLAR_5_Visual_Engine_v2_1_VERIFIED.md |
+| **Replaces** | visual-engine.md_v2_1_VERIFIED.md |
 | **Style Reference** | Namecheap, Headspace, Duolingo (Cute Corporate Vector) |
 | **Tech Stack** | Nano Banana Pro / Gemini Image Generation |
 | **Last Updated** | December 12, 2025 |
@@ -496,13 +496,13 @@ A professional data visualization graphic suitable for a financial report.
 ## 🔗 DEPENDENCIES
 
 This file requires:
-- `Voice_DNA_Blueprint_v5_2_CORE.md` — Brand identity
-- `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` — Laws and bans
-- `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md` — Formatting rules
+- `voice-dna.md` — Brand identity
+- `constitution.md` — Laws and bans
+- `data-thai-handshake-exceptions.md` — Formatting rules
 - `EXTENSION_Lemon8_Carousel_v1_1.md` — Carousel-specific adaptations
 
 This file feeds:
-- `PERFORMER_INSTRUCTIONS_v5_4_SYSTEM_PROMPT.txt` — Visual generation tasks
+- `instruction-performer.txt_v5_4_SYSTEM_PROMPT.txt` — Visual generation tasks
 - `GEM4_SOVEREIGN_AUDITOR_v5_4_SYSTEM_PROMPT.txt` — Visual compliance checks
 
 ---

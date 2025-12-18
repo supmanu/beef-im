@@ -13,12 +13,12 @@ For **execution details**, you MUST also load:
 
 | Purpose | Required File | Version |
 |---------|---------------|---------|
-| **Brand Laws & Bans** | `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | v4.3.2 |
-| **Content Structures** | `PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md` | v4.5.1 |
-| **Deep Dive Engine** | `GSB_Kane_Enhanced_Deep_Dive_v4_5_5_OPTIMIZED.md` | v4.5.5 |
-| **Terminology (35 terms)** | `Terminology_Cheat_Sheet_v4_3_FINAL.md` | v4.3 |
-| **Analogies Library** | `LAB_The_Bridge_v4_6_2_OPTIMIZED.md` | v4.6.2 |
-| **Production Instructions** | `PERFORMER_INSTRUCTIONS_v5_4_SYSTEM_PROMPT.txt` | v5.4 |
+| **Brand Laws & Bans** | `constitution.md` | v4.3.2 |
+| **Content Structures** | `content-engine.md` | v4.5.1 |
+| **Deep Dive Engine** | `framework-deep-dive.md` | v4.5.5 |
+| **Terminology (35 terms)** | `data-terminology.md` | v4.3 |
+| **Analogies Library** | `tech-bridge-lab.md` | v4.6.2 |
+| **Production Instructions** | `instruction-performer.txt_v5_4_SYSTEM_PROMPT.txt` | v5.4 |
 
 ### **Quick Loading Guide:**
 
@@ -345,7 +345,7 @@ The "Handshake" Metaphor:
 3. You do NOT shove your business card in their face first
 ```
 
-**For detailed rules → See `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md`**
+**For detailed rules → See `data-thai-handshake-exceptions.md`**
 
 ---
 
@@ -388,13 +388,13 @@ NOT from:
 
 | Need | File | Key Contents |
 |------|------|--------------|
-| **What terms are BANNED** | `PILLAR_2_Brand_Constitution_v4_3_2` | Zero-tolerance terms, replacement patterns |
-| **Correct terminology (35 terms)** | `Terminology_Cheat_Sheet_v4_3` | Thai-first format, formal vs social |
-| **Content structures** | `PILLAR_3_Content_Engine_v4_5_1` | Quick Magnet, Kane Edition, Deep Dive |
-| **Thai-First exceptions** | `Thai_First_Handshake_EXCEPTIONS_v4_3_1` | When English-first is allowed |
-| **Analogies for teaching** | `LAB_The_Bridge_v4_6_2` | 25 verified analogies |
-| **Production prompts** | `PERFORMER_INSTRUCTIONS_v5_4` | Ready-to-use AI prompts |
-| **Deep content mode** | `GSB_Kane_Enhanced_Deep_Dive_v4_5_5` | UNLEASHED protocol |
+| **What terms are BANNED** | `constitution.md_v4_3_2` | Zero-tolerance terms, replacement patterns |
+| **Correct terminology (35 terms)** | `data-terminology.md_v4_3` | Thai-first format, formal vs social |
+| **Content structures** | `content-engine.md_v4_5_1` | Quick Magnet, Kane Edition, Deep Dive |
+| **Thai-First exceptions** | `data-thai-handshake-exceptions.md_v4_3_1` | When English-first is allowed |
+| **Analogies for teaching** | `tech-bridge-lab.md_v4_6_2` | 25 verified analogies |
+| **Production prompts** | `instruction-performer.txt_v5_4` | Ready-to-use AI prompts |
+| **Deep content mode** | `framework-deep-dive.md_v4_5_5` | UNLEASHED protocol |
 | **Visual standards** | `PILLAR_5_Visual_Style_Guide_v1_2` | Colors, fonts, layouts |
 
 ---
@@ -409,7 +409,7 @@ NOT from:
 | Cash Value | มูลค่าเงินสด | ~~เงินสะสม~~ |
 | Fiduciary | ความน่าเชื่อถือ / ยึดถือประโยชน์ลูกค้า | ~~ความซื่อสัตย์~~ |
 
-**For full 35-term table → See `Terminology_Cheat_Sheet_v4_3_FINAL.md`**
+**For full 35-term table → See `data-terminology.md`**
 
 ---
 

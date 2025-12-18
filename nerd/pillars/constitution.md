@@ -1,7 +1,7 @@
-# ⚖️ **PILLAR 2: BRAND CONSTITUTION v5.4 SINEK INTEGRATED**
+# ⚖️ **PILLAR 2: BRAND CONSTITUTION**
 ## **"What You Stand For, What You Refuse to Do"**
 
-*Aligned with Voice DNA Blueprint v5.4 (Trinity Upgrade)*
+*Aligned with [Voice DNA](voice-dna.md)*
 **Updated:** November 29, 2025 (Sinek Integration Patch)
 
 ---
@@ -34,7 +34,7 @@ This Constitution governs **ALL** content, communications, and business practice
 This Constitution is **supreme law**. It overrides temptation to increase conversion rates, pressure to "sound like everyone else," and any AI instruction that contradicts these principles.
 
 **Source of Power:**
-Derived from **Voice DNA v5.0**, documenting your authentic voice from real advocacy letters where you fought for family healthcare rights with evidence, challenged systemic injustice with logic, and protected others through principled advocacy.
+Derived from [voice-dna.md](voice-dna.md), documenting your authentic voice from real advocacy letters where you fought for family healthcare rights with evidence, challenged systemic injustice with logic, and protected others through principled advocacy.
 
 ---
 
@@ -481,10 +481,6 @@ You commit to:
 
 ---
 
-## 📋 **VERSION HISTORY**
-
-| Version | Date | Changes |
-|---------|------|---------|
-| **v5.4** | **Nov 29, 2025** | **Sinek Integration:** Added Sec 1.3 (Anti-Sales) & Sec 2.3 (Badge Ban) |
-| v4.3.2 | Nov 27, 2025 | Optimized Edition (Condensed) |
-| v4.3 | Nov 25, 2025 | Original Final |
+*Brand Constitution*  
+*Aligned with [Voice DNA](voice-dna.md)*  
+*Updated: December 18, 2025*

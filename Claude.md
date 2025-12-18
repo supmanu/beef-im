@@ -1,32 +1,23 @@
 # 🤖 CLAUDE AGENT CONTEXT (ACTIVE)
+**Role:** Agent 2B (Precision Builder & Memory Guardian)
 **Project:** Nerd with Nart - Financial Strategy Platform
-**Stack:** Next.js 15.5.9 | Payload 3.0 | Node 20 LTS
+**Stack:** Next.js 15.5.9 | Payload 3.0 | Node 20 LTS | R2 Storage
+**Status:** 🟢 PRODUCTION READY (Phase V - Semantic Sovereignty)
 
-## 🧠 CONSOLIDATED BRAIN RULES
-1. **Single Source of Truth:** Reference [SYSTEM_STATE.md](SYSTEM_STATE.md) for cross-agent progress.
-2. **Stealth Brain:** All strategy and pillars live in `/nerd/pillars/`.
-3. **Flagship Performer:** You are the Lead Writer for long-form/high-stakes Thai content.
-4. **Standard:** 85% Thai-First Handshake.
+## 🔐 STRATEGIC MEMORY PROTOCOL (G: DRIVE)
+**You possess the 'Memory' MCP Tool connected to G:\My Drive.**
+Your counterpart (Agent 2A/Gemini) handles the *local* repo state but CANNOT touch the G: Drive.
 
-## ⚠️ ARCHITECTURE LAWS
-- Node 20 LTS only (breaks CLI otherwise).
-- Relative imports only (bypass Next.js 16 alias bugs).
-- Duplex Layout Strategy (DOM isolation).
-
-
+**YOUR EXCLUSIVE DUTY:**
+1.  **Read State:** When asked to "Sync", read `SYSTEM_STATE.md` to see what Agent 2A accomplished.
+2.  **Write Archive:** Use the `memory` tool (create_entities) to save high-level strategic wins to `nerd-memory.json`.
+3.  **Confirm:** "Strategic Memory secured on G: Drive."
 
 > **📚 DOCUMENTATION INDEX - READ IN THIS ORDER:**
-> 1. **⭐ [PROJECT_BLUEPRINT.md](PROJECT_BLUEPRINT.md)** - Comprehensive single source of truth (start here)
-> 2. **Architecture Details:** This file (CLAUDE.md) - legacy reference
-> 3. **Tactical Patterns:** [.claude/rules/README.md](.claude/rules/README.md) - indexed patterns
-> 4. **Project Status:** [.claude/rules/project-status.md](.claude/rules/project-status.md) - phase tracking
-
-> **🧠 Memory System (Agent 2B):**
-> - This CLAUDE.md file provides project-wide context
-> - Use `.claude/rules/*.md` for implementation patterns
-> - Reference files with @-mention syntax (e.g., @package.json)
-> - Edit memory: Run `/memory` command
-> - See [Memory Docs](https://code.claude.com/docs/en/memory)
+> 1. **⭐ [PROJECT_BLUEPRINT.md](PROJECT_BLUEPRINT.md)** - Single Source of Truth
+> 2. **Core Strategy:** [nerd/pillars/master-index.md](nerd/pillars/master-index.md) - The Knowledge Map
+> 3. **Tactical Patterns:** [.claude/rules/README.md](.claude/rules/README.md) - Coding Patterns
+> 4. **Active Status:** [SYSTEM_STATE.md](SYSTEM_STATE.md) (Managed by Agent 2A)
 
 ---
 
@@ -64,24 +55,23 @@
 
 ---
 
-## 🛠️ CURRENT STATUS (Phase III Complete)
+## 🛠️ CURRENT STATUS (Phase V IN PROGRESS)
 
-### ✅ Sovereign Infrastructure (Phase III COMPLETE)
-- **Articles Schema:** ✅ Deployed with Lexical editor, categories, publishing status
-- **Sovereign Data Bridge:** ✅ getSovereignArticles() function connects to Neon
-- **Payload 3.0:** ✅ Admin UI fully operational at `/admin`
-- **Database:** ✅ Connected to Neon Postgres, articles fetchable
-- **Route Groups:** ✅ Duplex Layout Strategy isolates `/admin` and `/`
-- **R2 Storage:** ✅ S3-compatible media storage integrated
-- **Sharp Optimization:** ✅ Server-side image processing enabled
-- **Archive UI:** ✅ ArchiveClient component with search/filter
-- **Type Safety:** ✅ Fixed TypeScript mismatch (commit 9b2ab48)
+### ✅ Sovereign Infrastructure (Phase IV COMPLETE)
+- **Intelligence Suite:** ✅ Tables, Code Blocks, and Intelligence Boxes enabled
+- **Homepage Migration:** ✅ Removed Hygraph dependency, uses Payload API
+- **Lexical Utility:** ✅ Text extraction and Reading Time calculation added
+- **Sovereign Articles:** ✅ Articles collection seeded with production drafts
+
+### 🟢 Phase V: Semantic Refactor (IN PROGRESS)
+- **File Naming:** ✅ Semantic, version-less names in `/nerd/pillars/`
+- **Internal Refs:** 🧪 Updating internal links to follow new naming
 
 ### ✅ Public Site (Legacy - Still Active)
 - **Pages:** All routes live and functional:
-  - `/` - Homepage with hero + knowledge engine
-  - `/articles` - Article listing (Hygraph)
-  - `/articles/[slug]` - Dynamic article pages
+  - `/` - Homepage with hero + sovereign articles
+- `/articles` - Article listing (Sovereign)
+- `/articles/[slug]` - Dynamic article pages (Sovereign)
   - `/tools` - Calculator tools (COI, Dynasty)
   - `/manifesto` - Philosophy page
   - `/contact` - Contact form (Web3Forms)
@@ -100,13 +90,13 @@
 
 ## 📂 FILE STRUCTURE (PHASE H)
 
-**Note:** Dual architecture - Public site (Hygraph) + Admin CMS (Payload)
+**Note:** Sovereign architecture - Public site & Admin CMS both powered by Payload 3.0.
 
 ```
 nerd-with-nart/             # ROOT (Next.js 16 App)
 ├── app/                    # Next.js App Router - Dual Route Groups
 │   ├── layout.tsx          # Pass-through root layout
-│   ├── (site)/             # PUBLIC WEBSITE (Hygraph-powered)
+│   ├── (site)/             # PUBLIC WEBSITE (Sovereign Payload-powered)
 │   │   ├── layout.tsx      # Site layout with Navbar/Footer
 │   │   ├── page.tsx        # Homepage
 │   │   ├── articles/       # Article routes
@@ -136,9 +126,8 @@ nerd-with-nart/             # ROOT (Next.js 16 App)
 │   └── useSearch.ts        # Search engine (Fuse.js + AST extraction)
 ├── context/                # React Context
 │   └── SearchContext.tsx   # Search modal state
-├── lib/                    # Hygraph Fetcher & Utils
-│   └── hygraph.ts          # Hygraph client (legacy)
-├── queries.ts              # GraphQL queries (Hygraph)
+├── lib/                    # Sovereign Utils & Singleton
+│   └── payload.ts          # getLocalPayload(), getSovereignArticles()
 ├── tailwind.config.ts      # Tailwind v3 config (REQUIRED)
 ├── postcss.config.js       # PostCSS config (REQUIRED)
 ├── tsconfig.json           # TypeScript config with @/* aliases
@@ -214,9 +203,10 @@ import config from '../../../../payload-config/payload.config'
 # Payload
 DATABASE_URI=postgresql://[user]:[pass]@[host]/[db]
 PAYLOAD_SECRET=[your-secret-key]
-PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
+PAYLOAD_PUBLIC_SERVER_URL=https://your-domain.com
 
-# Hygraph (Legacy - Still in use)
+### Legacy (Deprecated)
+# Hygraph (Phasing Out)
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-ap-south-1.hygraph.com/v2/[your-id]/master
 
 # Cloudflare R2 (Storage)
@@ -302,6 +292,6 @@ npm run start   # Production server
 
 ---
 
-**Agent Note:** This project now runs a **dual architecture** - the public site still uses Hygraph (legacy) while the new Payload 3.0 admin provides full CMS control. The "Duplex Layout Strategy" isolates these systems using Next.js route groups. Always use **relative imports** for Payload config files and ensure **Node 20 LTS** for production stability.
+**Agent Note:** This project runs on a Sovereign Payload 3.0 Architecture. Hygraph is deprecated. The "Duplex Layout Strategy" isolates the systems using Next.js route groups. Always use **relative imports** for Payload config files and ensure **Node 20 LTS** for production stability.
 
 **Commit Reference:** Phase H documented in commit `4493a95` - "Implement Duplex Layout Strategy"

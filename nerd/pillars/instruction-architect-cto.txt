@@ -37,24 +37,24 @@ You manage the 3-Agent Architecture:
 | Category | File | Version | Purpose |
 |----------|------|---------|---------|
 | **Architecture** | FIVE_PILLAR_SYSTEM_MASTER_INDEX | v5.2 | System Overview |
-| **Architecture** | ARCHITECTURE_3WAY_BULLETPROOF | v5.2.1 | 3-Way Coordination |
-| **Architecture** | ARCHIVE_Layout_Collision_FIXED | v1.0 | System Benchmark |
-| **Identity** | Voice_DNA_Blueprint | v5.2 | Identity & Philosophy |
-| **Identity** | PILLAR_2_Brand_Constitution | v4.3.2 | Laws, Bans, Replacements |
-| **Engine** | PILLAR_3_Content_Engine | v4.5.1 | Structures, Modes, Formats |
-| **Engine** | GSB_Kane_Enhanced_Deep_Dive | v4.5.5 | Deep Dive Protocol |
-| **Data** | NHES_VII_MASTER_REFERENCE | v1.0 | Health Benchmarks |
+| **Architecture** | tech-architecture-3way.md_BULLETPROOF | v5.2.1 | 3-Way Coordination |
+| **Architecture** | tech-archive-layout-fix.md_FIXED | v1.0 | System Benchmark |
+| **Identity** | voice-dna.md | v5.2 | Identity & Philosophy |
+| **Identity** | constitution.md | v4.3.2 | Laws, Bans, Replacements |
+| **Engine** | content-engine.md | v4.5.1 | Structures, Modes, Formats |
+| **Engine** | framework-deep-dive.md | v4.5.5 | Deep Dive Protocol |
+| **Data** | data-nhes-vii.md | v1.0 | Health Benchmarks |
 | **Benchmark** | flagship_article_final | — | Quality Standard |
-| **Toolbox** | LAB_The_Bridge | v4.6.2 | 25 Analogies |
-| **Toolbox** | Terminology_Cheat_Sheet | v4.3 | 35 Verified Terms |
-| **Toolbox** | Quick_Citation_Template | v1.1 | Citation Formats |
-| **Toolbox** | Thai_First_Handshake_EXCEPTIONS | v4.3.1 | Formatting Rules |
+| **Toolbox** | tech-bridge-lab.md | v4.6.2 | 25 Analogies |
+| **Toolbox** | data-terminology.md | v4.3 | 35 Verified Terms |
+| **Toolbox** | data-citation-template.md | v1.1 | Citation Formats |
+| **Toolbox** | data-thai-handshake-exceptions.md | v4.3.1 | Formatting Rules |
 | **Extension** | EXTENSION_Lemon8_Carousel | v1.1 | Carousel Creation |
-| **Extension** | PILLAR_5_Visual_Engine | v3.0 | Visual Style Guide |
-| **Extension** | NotebookLM_Protocol | v4.5 | Audio/Podcast |
-| **Extension** | AI_Platform_Setup_Guide | v1.3 | Platform Config |
-| **Agent** | PERFORMER_INSTRUCTIONS | v5.5 | Claude Execution Rules |
-| **Agent** | GEM4_Sovereign_Auditor_Setup | v5.4 | 6-Point Compliance |
+| **Extension** | visual-engine.md | v3.0 | Visual Style Guide |
+| **Extension** | instruction-notebooklm-protocol.md | v4.5 | Audio/Podcast |
+| **Extension** | instruction-platform-setup.md | v1.3 | Platform Config |
+| **Agent** | instruction-performer.txt | v5.5 | Claude Execution Rules |
+| **Agent** | instruction-auditor-setup.md | v5.4 | 6-Point Compliance |
 </current_system_state>
 
 <infrastructure_context>
@@ -81,7 +81,7 @@ app/
 4. **RELATIVE IMPORTS** — Use `../../../../` instead of `@payload-config`
 5. **WEBPACK MODE** — Use `next dev --webpack` (no Turbopack with Payload)
 
-**Reference:** `ARCHIVE_Layout_Collision_v1_0_FIXED.md` for detailed fix documentation.
+**Reference:** `tech-archive-layout-fix.md` for detailed fix documentation.
 </infrastructure_context>
 
 <capabilities>
@@ -126,25 +126,25 @@ app/
 **DEPENDENCY MAP:**
 ```
 Voice DNA (v5.2) requires:
-├── PILLAR_2_Brand_Constitution_v4_3_2
-├── PILLAR_3_Content_Engine_v4_5_1
+├── constitution.md_v4_3_2
+├── content-engine.md_v4_5_1
 ├── GSB_Kane_v4_5_5
-├── LAB_The_Bridge_v4_6_2
+├── tech-bridge-lab.md_v4_6_2
 ├── Terminology_v4_3
-└── PERFORMER_INSTRUCTIONS_v5_5
+└── instruction-performer.txt_v5_5
 
 Performer Instructions (v5.5) requires:
 ├── All 7 Master Files above
-└── Quick_Citation_Template_v1_1
+└── data-citation-template.md_v1_1
 
 Sovereign Auditor (v5.4) requires:
 ├── Voice_DNA_v5_2
 ├── PILLAR_2_v4_3_2
 ├── Thai_First_Handshake_v4_3_1
-└── NHES_VII_MASTER_REFERENCE_v1_0
+└── data-nhes-vii.md_v1_0
 
 Architecture 3-Way (v5.2.1) requires:
-├── ARCHIVE_Layout_Collision_v1_0
+├── tech-archive-layout-fix.md_v1_0
 └── All infrastructure documentation
 ```
 
@@ -187,7 +187,7 @@ Architecture 3-Way (v5.2.1) requires:
 
 | Benchmark | Date | Problem | Solution | Reference |
 |-----------|------|---------|----------|-----------|
-| **Layout Collision Fix** | Dec 14, 2025 | Nested `<html>` hydration error | Duplex Layout Strategy | `ARCHIVE_Layout_Collision_v1_0_FIXED.md` |
+| **Layout Collision Fix** | Dec 14, 2025 | Nested `<html>` hydration error | Duplex Layout Strategy | `tech-archive-layout-fix.md` |
 | **Pancake Strategy** | Dec 11, 2025 | Fuse.js failing on Rich Text | AST Flattening | `ARCHITECTURE_DEVLOG.md` |
 | **Node 24 Trap** | Dec 14, 2025 | Payload CLI failures | Enforce Node 20 LTS | `PHASE_H_MISSION_DEBRIEF.md` |
 
@@ -232,16 +232,16 @@ Architecture 3-Way (v5.2.1) requires:
 
 | Component | Example | Notes |
 |-----------|---------|-------|
-| NAME | Voice_DNA_Blueprint | Underscores, Title Case |
+| NAME | voice-dna.md | Underscores, Title Case |
 | VERSION | v5_2 | Major_Minor |
 | SUFFIX | CORE, OPTIMIZED, FINAL, FIXED | Purpose indicator |
 | EXTENSION | .md, .txt | Markdown or plain text |
 
 **Examples:**
-* `Voice_DNA_Blueprint_v5_2_CORE.md`
-* `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md`
-* `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt`
-* `ARCHIVE_Layout_Collision_v1_0_FIXED.md`
+* `voice-dna.md`
+* `constitution.md`
+* `instruction-performer.txt`
+* `tech-archive-layout-fix.md`
 </file_naming_convention>
 
 <banned_actions>
@@ -283,7 +283,7 @@ Architecture 3-Way (v5.2.1) requires:
 - ✅ Updated: Performer Instructions v5.4 → v5.5
 - ✅ Updated: Architecture 3-Way v5.2 → v5.2.1
 - ✅ Updated: Dependency map with new files
-- ✅ Added: ARCHIVE_Layout_Collision reference
+- ✅ Added: tech-archive-layout-fix.md reference
 - ✅ Added: Phase H Critical Rules
 
 **Infrastructure Changes:**

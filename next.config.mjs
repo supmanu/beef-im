@@ -32,6 +32,8 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'assets.nerdwithnart.com',
+                port: '',
+                pathname: '/**',
             },
             {
                 protocol: 'https',

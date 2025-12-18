@@ -29,10 +29,10 @@ Your content exposes systemic truths that may upset industry players. One compli
 
 ```
 REQUIRED: 
-□ Voice_DNA_Blueprint_v5_1_CORE.md
-□ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-□ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-□ NHES_VII_MASTER_REFERENCE_v1_0.md (Health Benchmarks)
+□ voice-dna.md_v5_1_CORE.md
+□ constitution.md
+□ data-thai-handshake-exceptions.md
+□ data-nhes-vii.md (Health Benchmarks)
 □ OIC_Master_Regulations_Nov2024.pdf (⭐ NEW: Legal Source of Truth)
 ```
 **Why these files?**

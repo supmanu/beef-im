@@ -41,11 +41,11 @@
 
 **Files to Upload:**
 ```
-✅ Voice_DNA_Blueprint_v5_0_CORE.md
-✅ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-✅ GSB_Kane_Enhanced_Deep_Dive_v4_5_4_OPTIMIZED.md
-✅ LAB_The_Bridge_v4_6_2_OPTIMIZED.md
-✅ Terminology_Cheat_Sheet_v4_3_FINAL.md
+✅ voice-dna.md_v5_0_CORE.md
+✅ constitution.md
+✅ framework-deep-dive.md_v4_5_4_OPTIMIZED.md
+✅ tech-bridge-lab.md
+✅ data-terminology.md
 ```
 
 **System Instructions:**
@@ -73,14 +73,14 @@ Output: Structured research brief with verified data and source citations.
 
 **Files to Upload:**
 ```
-✅ Voice_DNA_Blueprint_v5_0_CORE.md
-✅ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-✅ PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md
-✅ GSB_Kane_Enhanced_Deep_Dive_v4_5_4_OPTIMIZED.md
-✅ LAB_The_Bridge_v4_6_2_OPTIMIZED.md
-✅ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-✅ Quick_Citation_Template_v1_1_OPTIMIZED.md
-✅ Terminology_Cheat_Sheet_v4_3_FINAL.md
+✅ voice-dna.md_v5_0_CORE.md
+✅ constitution.md
+✅ content-engine.md
+✅ framework-deep-dive.md_v4_5_4_OPTIMIZED.md
+✅ tech-bridge-lab.md
+✅ data-thai-handshake-exceptions.md
+✅ data-citation-template.md
+✅ data-terminology.md
 ```
 
 **System Instructions:**
@@ -114,13 +114,13 @@ Output: Complete Blueprint ready for Claude Performer execution.
 
 **Files to Upload (3 ONLY — Lean by Design):**
 ```
-✅ Voice_DNA_Blueprint_v5_0_CORE.md
-✅ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-✅ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
+✅ voice-dna.md_v5_0_CORE.md
+✅ constitution.md
+✅ data-thai-handshake-exceptions.md
 ```
 
 **System Instructions:**
-Copy the FULL system prompt from `GEM4_Sovereign_Auditor_Setup_v5_2_BULLETPROOF.md`
+Copy the FULL system prompt from `instruction-auditor-setup.md_v5_2_BULLETPROOF.md`
 
 **6-Point Compliance System:**
 | Check | Domain | Key Verification |
@@ -152,23 +152,23 @@ Copy the FULL system prompt from `GEM4_Sovereign_Auditor_Setup_v5_2_BULLETPROOF.
 
 **Files to Upload (7 Core):**
 ```
-✅ GSB_Kane_Enhanced_Deep_Dive_v4_5_4_OPTIMIZED.md
-✅ Voice_DNA_Blueprint_v5_0_CORE.md
-✅ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-✅ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-✅ LAB_The_Bridge_v4_6_2_OPTIMIZED.md
-✅ Terminology_Cheat_Sheet_v4_3_FINAL.md
-✅ Quick_Citation_Template_v1_1_OPTIMIZED.md
+✅ framework-deep-dive.md_v4_5_4_OPTIMIZED.md
+✅ voice-dna.md_v5_0_CORE.md
+✅ constitution.md
+✅ data-thai-handshake-exceptions.md
+✅ tech-bridge-lab.md
+✅ data-terminology.md
+✅ data-citation-template.md
 ```
 
 **Optional Files:**
 ```
-□ PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md
+□ content-engine.md
 □ PILLAR_5_Visual_Style_Guide_v1_2_OPTIMIZED.md (if handling visuals)
 ```
 
 **System Instructions:**
-Copy from `PERFORMER_INSTRUCTIONS_v5_2_SYSTEM_PROMPT.txt`
+Copy from `instruction-performer.txt_v5_2_SYSTEM_PROMPT.txt`
 
 **Key Features:**
 - Tone Matrix (T1-T5)
@@ -250,7 +250,7 @@ Optional: Run through Auditor for compliance check
 |------|--------|--------|--------|--------|
 | Voice_DNA_v5_0_CORE | ✅ | ✅ | ✅ | ✅ |
 | PILLAR_2_Constitution | ✅ | ✅ | ✅ | ✅ |
-| PILLAR_3_Content_Engine | — | ✅ | Optional | — |
+| content-engine.md | — | ✅ | Optional | — |
 | GSB_Kane_v4_5_4 | ✅ | ✅ | ✅ | — |
 | LAB_Bridge_v4_6_2 | ✅ | ✅ | ✅ | — |
 | Thai_First_Exceptions | — | ✅ | ✅ | ✅ |
@@ -266,7 +266,7 @@ Optional: Run through Auditor for compliance check
 ```
 □ Create new Project: "Nerd with Nart Performer v5.2"
 □ Upload 7 core files (see list above)
-□ Paste System Instructions from PERFORMER_INSTRUCTIONS_v5_2_SYSTEM_PROMPT.txt
+□ Paste System Instructions from instruction-performer.txt_v5_2_SYSTEM_PROMPT.txt
 □ Test: "Show Menu" → Should display Tone Matrix
 □ Test: "Quick Magnet: ทำไมต้องมีประกัน" → Should produce Thai content
 ```
@@ -275,10 +275,10 @@ Optional: Run through Auditor for compliance check
 ```
 □ Create new Gem: "Gem #4: Sovereign Auditor v5.2"
 □ Upload 3 files ONLY:
-  □ Voice_DNA_Blueprint_v5_0_CORE.md
-  □ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-  □ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-□ Paste System Instructions from GEM4_Sovereign_Auditor_Setup_v5_2_BULLETPROOF.md
+  □ voice-dna.md_v5_0_CORE.md
+  □ constitution.md
+  □ data-thai-handshake-exceptions.md
+□ Paste System Instructions from instruction-auditor-setup.md_v5_2_BULLETPROOF.md
 □ Test: Paste article with intentional error → Should flag it
 ```
 
@@ -314,6 +314,6 @@ Optional: Run through Auditor for compliance check
 
 ---
 
-*AI_Platform_Setup_Guide_v1_3.md*  
+*instruction-platform-setup.md*  
 *Complete Configuration for 3-Way Content Architecture*  
 *November 27, 2025*

@@ -43,7 +43,7 @@ app/
 └── (payload)/         ← Admin panel (own <html><body>)
 ```
 
-**Reference:** `ARCHIVE_Layout_Collision_v1_0_FIXED.md`
+**Reference:** `tech-archive-layout-fix.md`
 
 ### Critical Infrastructure Rules (From Phase H)
 1. **PIN NODE 20** — Do not use Node 24 (breaks Payload CLI)
@@ -89,7 +89,7 @@ app/
 ## 1️⃣ CLAUDE CTO PROJECT (Full Awareness)
 
 ### System Instructions
-Use: `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt`
+Use: `instruction-performer.txt`
 
 ### Knowledge Base Files (~19 Core Files)
 
@@ -97,40 +97,40 @@ Use: `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt`
 | # | File | Version | Purpose |
 |---|------|---------|---------|
 | 1 | `FIVE_PILLAR_SYSTEM_v5_2_MASTER_INDEX.md` | v5.2 | System map — overview of everything |
-| 2 | `ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md` | **v5.2.1** | 3-Way agent coordination |
-| 3 | `Voice_DNA_Blueprint_v5_2_CORE.md` | v5.2 | Identity — WHO we are |
-| 4 | `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | v4.3.2 | Laws — bans & requirements |
-| 5 | `PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md` | v4.5.1 | Content modes (S/A/B/C) |
-| 6 | `ARCHIVE_Layout_Collision_v1_0_FIXED.md` | **v1.0** | **NEW:** System benchmark |
+| 2 | `tech-architecture-3way.md` | **v5.2.1** | 3-Way agent coordination |
+| 3 | `voice-dna.md` | v5.2 | Identity — WHO we are |
+| 4 | `constitution.md` | v4.3.2 | Laws — bans & requirements |
+| 5 | `content-engine.md` | v4.5.1 | Content modes (S/A/B/C) |
+| 6 | `tech-archive-layout-fix.md` | **v1.0** | **NEW:** System benchmark |
 
 #### ⚙️ MAIN PROTOCOL & DATA (3 files)
 | # | File | Version | Purpose |
 |---|------|---------|---------|
-| 7 | `GSB_Kane_Enhanced_Deep_Dive_v4_5_5_OPTIMIZED.md` | v4.5.5 | Deep Dive engine |
-| 8 | `NHES_VII_MASTER_REFERENCE_v1_0.md` | v1.0 | Health data benchmarks |
-| 9 | `flagship_article_final.md` | — | Quality benchmark example |
+| 7 | `framework-deep-dive.md` | v4.5.5 | Deep Dive engine |
+| 8 | `data-nhes-vii.md` | v1.0 | Health data benchmarks |
+| 9 | `data-flagship-article.md` | — | Quality benchmark example |
 
 #### 🧰 EXECUTION TOOLBOX (4 files — for awareness)
 | # | File | Version | Purpose |
 |---|------|---------|---------|
-| 10 | `LAB_The_Bridge_v4_6_2_OPTIMIZED.md` | v4.6.2 | 25 analogies — know what's available |
-| 11 | `Terminology_Cheat_Sheet_v4_3_FINAL.md` | v4.3 | 35 verified terms |
-| 12 | `Quick_Citation_Template_v1_1_OPTIMIZED.md` | v1.1 | Citation formats |
-| 13 | `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md` | v4.3.1 | Formatting rules |
+| 10 | `tech-bridge-lab.md` | v4.6.2 | 25 analogies — know what's available |
+| 11 | `data-terminology.md` | v4.3 | 35 verified terms |
+| 12 | `data-citation-template.md` | v1.1 | Citation formats |
+| 13 | `data-thai-handshake-exceptions.md` | v4.3.1 | Formatting rules |
 
 #### 🚀 EXTENSIONS & CAPABILITIES (4 files — for awareness)
 | # | File | Version | Purpose |
 |---|------|---------|---------|
 | 14 | `EXTENSION_Lemon8_Carousel_v1_1.md` | v1.1 | Carousel creation capability |
-| 15 | `PILLAR_5_Visual_Engine_v3_0_MASTER.md` | **v3.0** | Visual style guide |
-| 16 | `NotebookLM_Protocol_v4_5.md` | v4.5 | Audio/podcast content |
-| 17 | `AI_Platform_Setup_Guide_v1_3.md` | v1.3 | Platform configuration |
+| 15 | `visual-engine.md` | **v3.0** | Visual style guide |
+| 16 | `instruction-notebooklm-protocol.md` | v4.5 | Audio/podcast content |
+| 17 | `instruction-platform-setup.md` | v1.3 | Platform configuration |
 
 #### 🤖 AGENT CONFIGURATIONS (2 files)
 | # | File | Version | Purpose |
 |---|------|---------|---------|
-| 18 | `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt` | **v5.5** | Know what Agent 2 does |
-| 19 | `GEM4_Sovereign_Auditor_Setup_v5_4_BULLETPROOF.md` | v5.4 | Know what Agent 3 does |
+| 18 | `instruction-performer.txt` | **v5.5** | Know what Agent 2 does |
+| 19 | `instruction-auditor-setup.md` | v5.4 | Know what Agent 3 does |
 
 ---
 
@@ -138,14 +138,14 @@ Use: `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt`
 
 | File | Reason |
 |------|--------|
-| `CTO_PROJECT_CONFIG_GUIDE_v5_4_REVISED.md` | **Replaced by v6.6.1** |
-| `ARCHITECTURE_3WAY_v5_2_BULLETPROOF.md` | **Replaced by v5.2.1** |
-| `GEMINI_CTO_v6_6_STRATEGIC_CONSULTANT.txt` | **Replaced by v6.6.1** |
+| `instruction-cto-config.md_v5_4_REVISED.md` | **Replaced by v6.6.1** |
+| `tech-architecture-3way.md_v5_2_BULLETPROOF.md` | **Replaced by v5.2.1** |
+| `instruction-gemini-cto.txt_v6_6_STRATEGIC_CONSULTANT.txt` | **Replaced by v6.6.1** |
 | `Deep_Dive_UNLEASHED_Protocol_v4_3_5.md` | Superseded by GSB_Kane v4.5.5 |
 | `Voice_DNA_v4_3_SUPPLEMENTARY_NOTES.md` | Superseded by v5.2 CORE |
-| `Voice_DNA_Blueprint_v5_1_CORE.md` | Replaced by v5.2 |
-| `GSB_Kane_Enhanced_Deep_Dive_v4_5_4_OPTIMIZED.md` | Replaced by v4.5.5 |
-| `PERFORMER_INSTRUCTIONS_v5_4.md` | **Replaced by v5.5** |
+| `voice-dna.md_v5_1_CORE.md` | Replaced by v5.2 |
+| `framework-deep-dive.md_v4_5_4_OPTIMIZED.md` | Replaced by v4.5.5 |
+| `instruction-performer.txt_v5_4.md` | **Replaced by v5.5** |
 | `NHES_VII_PATCH_HANDOVER_v1.md` | Transition doc — integrated |
 | `NHES_VII_PATCH_PROTOCOL_v2025_11.md` | Superseded by ENHANCED |
 | `NHES_VII_PATCH_PROTOCOL_v2025_11_ENHANCED.md` | Integrated into Master Reference |
@@ -179,34 +179,34 @@ Use: `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt`
 ## 2️⃣ GEMINI CTO (Quick Tasks — 10 File Limit)
 
 ### System Instructions
-Use: `GEMINI_CTO_v6_6_1_STRATEGIC_CONSULTANT.txt`
+Use: `instruction-gemini-cto.txt`
 
 ### Knowledge Base Files (10 Initial)
 
 | # | File | Version | Priority |
 |---|------|---------|----------|
 | 1 | `FIVE_PILLAR_SYSTEM_v5_2_MASTER_INDEX.md` | v5.2 | 🔴 System map |
-| 2 | `ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md` | **v5.2.1** | 🔴 Architecture |
-| 3 | `Voice_DNA_Blueprint_v5_2_CORE.md` | v5.2 | 🔴 Identity |
-| 4 | `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | v4.3.2 | 🔴 Laws |
-| 5 | `PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md` | v4.5.1 | 🟡 Structures |
-| 6 | `GSB_Kane_Enhanced_Deep_Dive_v4_5_5_OPTIMIZED.md` | v4.5.5 | 🟡 Protocol |
-| 7 | `NHES_VII_MASTER_REFERENCE_v1_0.md` | v1.0 | 🔴 Benchmarks |
-| 8 | `Terminology_Cheat_Sheet_v4_3_FINAL.md` | v4.3 | 🟡 Terms |
-| 9 | `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt` | **v5.5** | 🟡 Agent 2 |
-| 10 | `flagship_article_final.md` | — | 🟢 Benchmark |
+| 2 | `tech-architecture-3way.md` | **v5.2.1** | 🔴 Architecture |
+| 3 | `voice-dna.md` | v5.2 | 🔴 Identity |
+| 4 | `constitution.md` | v4.3.2 | 🔴 Laws |
+| 5 | `content-engine.md` | v4.5.1 | 🟡 Structures |
+| 6 | `framework-deep-dive.md` | v4.5.5 | 🟡 Protocol |
+| 7 | `data-nhes-vii.md` | v1.0 | 🔴 Benchmarks |
+| 8 | `data-terminology.md` | v4.3 | 🟡 Terms |
+| 9 | `instruction-performer.txt` | **v5.5** | 🟡 Agent 2 |
+| 10 | `data-flagship-article.md` | — | 🟢 Benchmark |
 
 ### Files to Upload Mid-Conversation (As Needed)
 
 ```
-📎 LAB_The_Bridge_v4_6_2_OPTIMIZED.md — For analogy questions
-📎 Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md — For formatting audits
-📎 Quick_Citation_Template_v1_1_OPTIMIZED.md — For citation audits
-📎 GEM4_Sovereign_Auditor_Setup_v5_4_BULLETPROOF.md — For compliance checks
+📎 tech-bridge-lab.md — For analogy questions
+📎 data-thai-handshake-exceptions.md — For formatting audits
+📎 data-citation-template.md — For citation audits
+📎 instruction-auditor-setup.md — For compliance checks
 📎 EXTENSION_Lemon8_Carousel_v1_1.md — For carousel questions
-📎 PILLAR_5_Visual_Engine_v3_0_MASTER.md — For visual questions
-📎 NotebookLM_Protocol_v4_5.md — For audio/podcast questions
-📎 ARCHIVE_Layout_Collision_v1_0_FIXED.md — For infrastructure debugging
+📎 visual-engine.md — For visual questions
+📎 instruction-notebooklm-protocol.md — For audio/podcast questions
+📎 tech-archive-layout-fix.md — For infrastructure debugging
 ```
 
 ---
@@ -287,13 +287,13 @@ When user asks about capabilities, CTO should know:
 | Capability | File | What It Does |
 |------------|------|--------------|
 | **Carousels** | `EXTENSION_Lemon8_Carousel_v1_1.md` | Multi-slide social content |
-| **Visuals** | `PILLAR_5_Visual_Engine_v3_0_MASTER.md` | Visual style guide + Nart mascot |
-| **Audio/Podcast** | `NotebookLM_Protocol_v4_5.md` | NotebookLM integration |
+| **Visuals** | `visual-engine.md` | Visual style guide + Nart mascot |
+| **Audio/Podcast** | `instruction-notebooklm-protocol.md` | NotebookLM integration |
 | **Deep Dives** | `GSB_Kane_v4_5_5` | Long-form articles |
 | **Quick Magnets** | `PILLAR_3_v4_5_1` | Short-form content |
 | **Kane Editions** | `PILLAR_3_v4_5_1` | Medium analysis pieces |
-| **Analogies** | `LAB_The_Bridge_v4_6_2` | 25 pre-built metaphors |
-| **Infrastructure Debug** | `ARCHIVE_Layout_Collision_v1_0` | Layout collision fix |
+| **Analogies** | `tech-bridge-lab.md_v4_6_2` | 25 pre-built metaphors |
+| **Infrastructure Debug** | `tech-archive-layout-fix.md_v1_0` | Layout collision fix |
 
 **CTO Response Pattern:**
 > "We already have that capability! Use `[filename]` — it handles [specific use case]."
@@ -316,7 +316,7 @@ When user asks about infrastructure:
 **Architecture Pattern:** Duplex Layout Strategy
 - Root layout = pass-through
 - Route groups = isolated HTML shells
-- Reference: `ARCHIVE_Layout_Collision_v1_0_FIXED.md`
+- Reference: `tech-archive-layout-fix.md`
 
 ---
 
@@ -324,16 +324,16 @@ When user asks about infrastructure:
 
 ### Claude CTO Project:
 - [ ] Update System Instructions (or use current project setup)
-- [ ] Upload `ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md` (replaces v5.2)
-- [ ] Upload `ARCHIVE_Layout_Collision_v1_0_FIXED.md` (NEW)
-- [ ] Upload `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt` (replaces v5.4)
+- [ ] Upload `tech-architecture-3way.md` (replaces v5.2)
+- [ ] Upload `tech-archive-layout-fix.md` (NEW)
+- [ ] Upload `instruction-performer.txt` (replaces v5.4)
 - [ ] Delete ~18 superseded files (see list above)
 - [ ] Verify 19 core files remain
 - [ ] Test: "What's our current infrastructure stack?"
 
 ### Gemini CTO Gem:
-- [ ] Update Gem Instructions with `GEMINI_CTO_v6_6_1_STRATEGIC_CONSULTANT.txt`
-- [ ] Upload `ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md` (replaces v5.2)
+- [ ] Update Gem Instructions with `instruction-gemini-cto.txt`
+- [ ] Upload `tech-architecture-3way.md` (replaces v5.2)
 - [ ] Remove old versions (v5.2 Architecture, v6.6 CTO prompt)
 - [ ] Test: "What database do we use?"
 

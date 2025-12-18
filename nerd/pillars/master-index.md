@@ -1,8 +1,7 @@
-# 📚 FIVE PILLAR SYSTEM — MASTER INDEX v5.3
+# 📚 FIVE PILLAR SYSTEM — MASTER INDEX
 ## Nerd with Nart Content Creation Engine
 
-**Version:** 5.3 (Deep Research Integration)  
-**Date:** December 15, 2025  
+**Updated:** December 18, 2025  
 **Architecture:** 3-Way Content System (Architect → Performer → Auditor)
 
 ---
@@ -50,7 +49,7 @@
 ### PILLAR 1: VOICE DNA (Identity)
 | File | Version | Size | Purpose |
 |------|---------|------|---------|
-| `Voice_DNA_Blueprint_v5_2_CORE.md` | v5.2 | 18K | Pure identity — นาถ's voice, influences, tone |
+| [voice-dna.md](voice-dna.md) | v5.2 | 18K | Pure identity — นาถ's voice, influences, tone |
 
 **Key Contents:**
 - 35 verified terms (TMO 2017, OIC, NHES, NCD, NSO)
@@ -63,7 +62,7 @@
 ### PILLAR 2: BRAND CONSTITUTION (Laws)
 | File | Version | Size | Reduction |
 |------|---------|------|-----------|
-| `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | v4.3.2 | 16K | 45% ↓ |
+| [constitution.md](constitution.md) | v4.3.2 | 16K | 45% ↓ |
 
 **Key Contents:**
 - Article I: Core Values (LEARN Framework)
@@ -77,7 +76,7 @@
 ### PILLAR 3: CONTENT ENGINE (Codes)
 | File | Version | Size | Reduction |
 |------|---------|------|-----------|
-| `PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md` | v4.5.1 | 14K | 44% ↓ |
+| [content-engine.md](content-engine.md) | v4.5.1 | 14K | 44% ↓ |
 
 **Key Contents:**
 - Content Modes: S (Quick) / A (Deep Dive) / B (Kane) / C (Series)
@@ -90,7 +89,7 @@
 ### PILLAR 4: GSB KANE DEEP DIVE (Protocol)
 | File | Version | Size | Changes |
 |------|---------|------|---------|
-| `GSB_Kane_Enhanced_Deep_Dive_v4_5_6_OPTIMIZED.md` | **v4.5.6** | 18K | 🆕 Deep Research + NotebookLM |
+| [framework-deep-dive.md](framework-deep-dive.md) | **v4.5.6** | 18K | 🆕 Deep Research + NotebookLM |
 
 **Key Contents:**
 - **NEW: Deep Research Protocol** (Step 1)
@@ -108,7 +107,7 @@
 ### PILLAR 5: VISUAL STYLE GUIDE (Visuals)
 | File | Version | Size | Reduction |
 |------|---------|------|-----------|
-| `PILLAR_5_Visual_Engine_v3_0_MASTER.md` | v3.0 | ~25K | Complete overhaul |
+| [visual-engine.md](visual-engine.md) | v3.0 | ~25K | Complete overhaul |
 
 **Key Contents:**
 - Electric Nerd color palette (Navy/Teal/Amber)
@@ -124,20 +123,20 @@
 ### Terminology & Formatting
 | File | Version | Purpose |
 |------|---------|---------|
-| `Terminology_Cheat_Sheet_v4_3_FINAL.md` | v4.3 | 35 verified terms with Thai-First format |
-| `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md` | v4.3.1 | Exception rules (SEC, Apple, Ray Dalio, etc.) |
-| `Quick_Citation_Template_v1_1_OPTIMIZED.md` | v1.1 | Citation formats for TMO, NHES, OIC |
+| [data-terminology.md](data-terminology.md) | v4.3 | 35 verified terms with Thai-First format |
+| [data-thai-handshake-exceptions.md](data-thai-handshake-exceptions.md) | v4.3.1 | Exception rules (SEC, Apple, Ray Dalio, etc.) |
+| [data-citation-template.md](data-citation-template.md) | v1.1 | Citation formats for TMO, NHES, OIC |
 
 ### Content Library
 | File | Version | Purpose |
 |------|---------|---------|
-| `LAB_The_Bridge_v4_6_2_OPTIMIZED.md` | v4.6.2 | 25 analogies (#001-#025) |
-| `NotebookLM_Protocol_v4_5.md` | v4.5 | Forensic Seed Extraction workflow |
+| [tech-bridge-lab.md](tech-bridge-lab.md) | v4.6.2 | 25 analogies (#001-#025) |
+| [instruction-notebooklm-protocol.md](instruction-notebooklm-protocol.md) | v4.5 | Forensic Seed Extraction workflow |
 
 ### Reference Data
 | File | Version | Purpose |
 |------|---------|---------|
-| `NHES_VII_MASTER_REFERENCE_v1_0.md` | v1.0 | Hard-coded health statistics (2568) |
+| [data-nhes-vii.md](data-nhes-vii.md) | v1.0 | Hard-coded health statistics (2568) |
 
 ---
 
@@ -145,7 +144,7 @@
 
 | File | Version | Use In |
 |------|---------|--------|
-| `PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt` | v5.5 | Claude Project / TypingMind |
+| [instruction-performer.txt](instruction-performer.txt) | v5.5 | Claude Project / TypingMind |
 
 **Key Features:**
 - Tone Matrix (T1-T5)
@@ -160,7 +159,7 @@
 
 | File | Version | Purpose |
 |------|---------|---------|
-| `GEM4_Sovereign_Auditor_Setup_v5_4_BULLETPROOF.md` | v5.4 | Complete setup + system instructions |
+| [instruction-auditor-setup.md](instruction-auditor-setup.md) | v5.4 | Complete setup + system instructions |
 
 **6-Point Compliance System:**
 | Check | Domain | What It Verifies |
@@ -173,10 +172,10 @@
 | 6 | **Brand DNA** | Banned words, Thai-First, tone |
 
 **Files for Auditor (4 files):**
-1. `Voice_DNA_Blueprint_v5_2_CORE.md`
-2. `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md`
-3. `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md`
-4. `NHES_VII_MASTER_REFERENCE_v1_0.md`
+1. [voice-dna.md](voice-dna.md)
+2. [constitution.md](constitution.md)
+3. [data-thai-handshake-exceptions.md](data-thai-handshake-exceptions.md)
+4. [data-nhes-vii.md](data-nhes-vii.md)
 
 ---
 
@@ -184,8 +183,8 @@
 
 | File | Version | Purpose |
 |------|---------|---------|
-| `ARCHITECTURE_3WAY_v5_2_1_BULLETPROOF.md` | v5.2.1 | Complete 3-Way system documentation |
-| `AI_Platform_Setup_Guide_v1_3.md` | v1.3 | Platform configuration guide |
+| [tech-architecture-3way.md](tech-architecture-3way.md) | v5.2.1 | Complete 3-Way system documentation |
+| [instruction-platform-setup.md](instruction-platform-setup.md) | v1.3 | Platform configuration guide |
 
 ---
 
@@ -205,30 +204,30 @@
 
 ### Claude Performer Project (8 Core Files)
 ```
-✅ GSB_Kane_Enhanced_Deep_Dive_v4_5_6_OPTIMIZED.md (🆕)
-✅ Voice_DNA_Blueprint_v5_2_CORE.md
-✅ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-✅ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-✅ LAB_The_Bridge_v4_6_2_OPTIMIZED.md
-✅ Terminology_Cheat_Sheet_v4_3_FINAL.md
-✅ Quick_Citation_Template_v1_1_OPTIMIZED.md
-✅ NHES_VII_MASTER_REFERENCE_v1_0.md
-+ System Instructions: PERFORMER_INSTRUCTIONS_v5_5_SYSTEM_PROMPT.txt
+✅ framework-deep-dive.md (🆕)
+✅ voice-dna.md
+✅ constitution.md
+✅ data-thai-handshake-exceptions.md
+✅ tech-bridge-lab.md
+✅ data-terminology.md
+✅ data-citation-template.md
+✅ data-nhes-vii.md
++ System Instructions: instruction-performer.txt
 ```
 
 ### Gemini Sovereign Auditor — Gem #4 (4 Files)
 ```
-✅ Voice_DNA_Blueprint_v5_2_CORE.md
-✅ PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md
-✅ Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md
-✅ NHES_VII_MASTER_REFERENCE_v1_0.md
-+ System Instructions: From GEM4_Sovereign_Auditor_Setup_v5_4_BULLETPROOF.md
+✅ voice-dna.md
+✅ constitution.md
+✅ data-thai-handshake-exceptions.md
+✅ data-nhes-vii.md
++ System Instructions: From instruction-auditor-setup.md
 ```
 
 ### Gemini Architect — Gems #1 & #2 (Full Stack)
 ```
 All 5 Pillars + Support Files
-+ NotebookLM_Protocol_v4_5.md
++ instruction-notebooklm-protocol.md
 + Research tools enabled
 ```
 
@@ -240,8 +239,8 @@ Output: Structured seeds for 3-Way system
 
 ### Optional Files (Load as needed)
 ```
-□ PILLAR_5_Visual_Engine_v3_0_MASTER.md (for visuals)
-□ PILLAR_3_Content_Engine_Master_Codes_v4_5_1_OPTIMIZED.md (for modes)
+□ visual-engine.md (for visuals)
+□ content-engine.md (for modes)
 ```
 
 ---
