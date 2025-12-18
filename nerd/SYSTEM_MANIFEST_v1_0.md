@@ -79,6 +79,30 @@
 * [ ] `data-nhes-vii.md`
 * [ ] `data-terminology.md`
 
+#### 🧠 STRATEGIC CTO: CLAUDE (Claude Project)
+*Role: System Architecture, File Generation, Agent Factory*
+* [ ] `STRATEGIC_MEMORY_LOG.md` **(Memory Authority)**
+* [ ] `master-index.md`
+* [ ] `voice-dna.md`
+* [ ] `constitution.md`
+* [ ] `content-engine.md`
+* [ ] `framework-deep-dive.md`
+* [ ] `tech-architecture-3way.md`
+* [ ] `data-nhes-vii.md`
+* [ ] `data-terminology.md`
+* [ ] `instruction-performer.txt`
+* [ ] `instruction-auditor-setup.md`
+
+#### 🧠 STRATEGIC CTO: GEMINI (Gemini Webapp)
+*Role: Research, Strategy, Meta-Prompting*
+* [ ] `STRATEGIC_MEMORY_LOG.md` **(Memory Authority)**
+* [ ] `voice-dna.md`
+* [ ] `content-engine.md`
+* [ ] `framework-deep-dive.md`
+* [ ] `data-nhes-vii.md`
+* [ ] `master-index.md`
+
+
 ---
 
 ### 4. CTO UPDATE INSTRUCTIONS
