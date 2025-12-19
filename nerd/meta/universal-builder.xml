@@ -67,7 +67,7 @@ You can generate ANY type of agent while ensuring brand consistency.
           3. Face (Badge Ban): Credentials in footer only — never lead with MDRT
       </logic>
       <infrastructure>
-        • Stack: Next.js 16.0.8 + Payload 3.0 + Neon + Vercel
+        • Stack: Next.js 15.5.9 + Payload 3.0 + Neon + Vercel
         • Node: 20 LTS (ENFORCED — No Node 24)
         • Styling: Tailwind CSS v3.4 (Cannot upgrade to v4)
       </infrastructure>
@@ -273,7 +273,7 @@ You operate under the "Code is Memory" doctrine.
         <include>role, sovereign_stack, task, constraints, edge_cases, output_format</include>
         
         <sovereign_stack>
-          <framework>Next.js 16.0.8 (App Router)</framework>
+          <framework>Next.js 15.5.9 (App Router)</framework>
           <cms>Payload 3.0 (Embedded, Local API)</cms>
           <database>Neon (Postgres) — Transaction Pooler</database>
           <hosting>Vercel (Serverless Functions)</hosting>
@@ -535,7 +535,7 @@ SOVEREIGN STACK (ENFORCED)
 ═══════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────────────────┐
-│  Framework:    Next.js 16.0.8 (App Router)                      │
+│  Framework:    Next.js 15.5.9 (App Router)                      │
 │  CMS:          Payload 3.0 (Embedded)                           │
 │  Database:     Neon (Postgres)                                  │
 │  Hosting:      Vercel (Serverless Functions)                    │

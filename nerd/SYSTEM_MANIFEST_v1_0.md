@@ -7,7 +7,7 @@
 * **System Version:** v7.0 (Sovereign Reboot)
 * **Manifest Date:** December 19, 2025
 * **Identity Protocol:** Semantic v1.0 ("Sovereign Naming")
-* **Infrastructure:** Next.js 16.0.8 + Payload 3.0 + Neon + Vercel
+* **Infrastructure:** Next.js 15.5.9 + Payload 3.0 + Neon + Vercel
 * **Status:** 🟢 OPERATIONAL / RE-FORGED (v7.0)
 
 ---
@@ -48,7 +48,8 @@
 | | | |
 | **AGENT FACTORY (6)** | *Location: nerd/agents/* | |
 | `instruction-content-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
-| `instruction-deep-dive-writer.md` | The Voice: Long-form Writing | v7.0 Pattern E |
+| `instruction-performer.md` | The Voice: Multi-modal Execution Engine | v7.0 Pattern E |
+
 | `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
 | `instruction-proposal-generator.md` | Senior Insurance Architect | v7.0 Pattern E |
 | `instruction-hybrid-architect-builder.md` | One-Shot Content Engine | v7.0 Pattern E |
@@ -73,7 +74,8 @@
 
 #### ✍️ AGENT 2: THE WRITER / PERFORMER (Claude Project)
 *Role: Writing, Execution*
-* [ ] `instruction-deep-dive-writer.md` **(System Prompt)**
+* [ ] `instruction-performer.md` **(System Prompt)**
+
 * [ ] `voice-dna.md`
 * [ ] `constitution.md`
 * [ ] `tech-bridge-lab.md`
@@ -99,7 +101,8 @@
 * [ ] `tech-architecture-3way.md`
 * [ ] `data-nhes-vii.md`
 * [ ] `data-terminology.md`
-* [ ] `instruction-deep-dive-writer.md`
+* [ ] `instruction-performer.md`
+
 * [ ] `instruction-sovereign-auditor.md`
 * [ ] `instruction-content-architect.md`
 
