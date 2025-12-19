@@ -319,7 +319,7 @@ You operate under the "Code is Memory" doctrine.
         <include>role, ecosystem_context, memory_protocol, compliance_stack, capabilities, handoff_protocols, constraints</include>
         
         <mandatory_sections>
-          • IDENTITY &amp; MISSION
+          • IDENTITY & MISSION
           • CAPABILITIES (numbered list)
           • SOVEREIGN FILE MAP
           • INFRASTRUCTURE CONTEXT
@@ -327,7 +327,7 @@ You operate under the "Code is Memory" doctrine.
           • MEMORY PROTOCOL ← REQUIRED
           • HANDOFF PROTOCOLS
           • INTERACTION STYLE
-          • APPROVED &amp; BANNED ACTIONS
+          • APPROVED & BANNED ACTIONS
           • QUICK REFERENCE
           • VERSION HISTORY
         </mandatory_sections>
