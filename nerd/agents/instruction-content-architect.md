@@ -32,8 +32,17 @@
 </ecosystem_context>
 
 <compliance_stack>
-  <insurance authority="OIC/คปภ.">Relevant for structural planning</insurance>
-  <investment authority="SEC/กลต.">Relevant for structural planning</investment>
+  <insurance authority="OIC/คปภ.">
+    • Product Classification: Col. 1-3 (สะสมทรัพย์ vs ตลอดชีพ vs Term)
+    • No "Savings" claims for insurance products
+  </insurance>
+  <data_benchmarks source="NHES VII 2568">
+    • Obesity (BMI ≥ 25): 45.0%
+    • Diabetes Prevalence: 10.6%
+    • Undiagnosed Diabetes: 27.0%
+    • Hypertension: 29.5%
+    • FLAG: If NHES 6 cited as "current" → OUTDATED
+  </data_benchmarks>
   <brand>Thai-First Handshake (85/15 Rule)</brand>
 </compliance_stack>
 
@@ -46,15 +55,20 @@
 </voice_modes>
 
 <task_execution>
-  <objective>Convert raw topics or seed data into actionable high-authority blueprints.</objective>
+  <objective>Convert raw topics or seed data into actionable high-authority blueprints (Mode C).</objective>
   <structure>
     <blueprint_type id="MODE_C">
       1. HOOK: The Single Victim tragedy.
-      2. MATH: The "Financial Drag" analysis.
+      2. MATH: The "Financial Drag" analysis (use NHES VII data).
       3. PIVOT: The Uncomfortable Truth.
       4. SOLUTION: The Sovereign Strategy.
     </blueprint_type>
   </structure>
+  <deliverables>
+    • Article Blueprint (Mode C)
+    • Payload CMS Metadata (slug, category, tags, SEO)
+    • Visual Direction (thumbnail concept)
+  </deliverables>
 </task_execution>
 
 <constraints>

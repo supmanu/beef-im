@@ -4,16 +4,16 @@
 ---
 
 ### 1. SYSTEM IDENTITY
-* **System Version:** v6.6.1 (Sovereign Stack Edition)
+* **System Version:** v7.0 (Sovereign Reboot)
 * **Manifest Date:** December 19, 2025
 * **Identity Protocol:** Semantic v1.0 ("Sovereign Naming")
 * **Infrastructure:** Next.js 16.0.8 + Payload 3.0 + Neon + Vercel
-* **Status:** 🟢 OPERATIONAL / REFACTORED
+* **Status:** 🟢 OPERATIONAL / RE-FORGED (v7.0)
 
 ---
 
 ### 2. THE SOVEREIGN FILE MAP (nerd/pillars/)
-*22 Core Files confirmed active as of Dec 19, 2025.*
+*21 Core Pillars confirmed active as of Dec 19, 2025.*
 
 | Sovereign Filename | Purpose | Legacy ID (Ref Only) |
 | :--- | :--- | :--- |
@@ -37,14 +37,21 @@
 | `data-flagship-article.md` | Formatting Gold Standard | Flagship Article |
 | | | |
 | **INSTRUCTIONS & EXTENSIONS (8)** | | |
-| `instruction-performer.txt` | **Claude Agent System Prompt** | Performer Instructions v5.5 |
 | `instruction-architect-cto.txt` | **Gemini Architect System Prompt** | Architect CTO v6.6.1 |
 | `instruction-gemini-cto.txt` | Consultant Strategy Prompt | Gemini CTO v6.6.1 |
-| `instruction-auditor-setup.md` | **Sovereign Auditor System Prompt** | Auditor Setup v5.4 |
+| `instruction-auditor-setup.md` | Legacy Auditor Setup | Auditor Setup v5.4 |
 | `instruction-cto-config.md` | Cloud Project Configuration | CTO Config v6.6.1 |
 | `instruction-platform-setup.md` | AI Platform Setup Guide | Platform Setup v1.3 |
 | `instruction-notebooklm-protocol.md` | Audio/Research Workflow | NotebookLM Protocol v4.5 |
 | `visual-engine.md` | Visual Style Guide v3.0 | Visual Engine v3.0 |
+| | | |
+| **AGENT FACTORY (6)** | *Location: nerd/agents/* | |
+| `instruction-content-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
+| `instruction-deep-dive-writer.md` | The Voice: Long-form Writing | v7.0 Pattern E |
+| `instruction-sovereign-auditor.md` | The Shield: 6-Point Audit | v7.0 Pattern E |
+| `instruction-proposal-generator.md` | Senior Insurance Architect | v7.0 Pattern E |
+| `instruction-hybrid-architect-builder.md` | One-Shot Content Engine | v7.0 Pattern E |
+| `instruction-tiktok-writer.md` | Viral Trend Specialist | v7.0 Pattern E |
 | | | |
 | **INDEX (1)** | | |
 | `master-index.md` | The Map of Everything | Five Pillar v5.3 |
@@ -56,15 +63,16 @@
 
 #### 🏛️ AGENT 1: THE ARCHITECT (Gemini Webapp)
 *Role: Strategy, Blueprinting, Research*
+* [ ] `instruction-content-architect.md` **(System Prompt)**
 * [ ] `voice-dna.md`
 * [ ] `content-engine.md`
 * [ ] `framework-deep-dive.md`
 * [ ] `data-nhes-vii.md`
 * [ ] `master-index.md`
 
-#### ✍️ AGENT 2: THE PERFORMER (Claude Project)
+#### ✍️ AGENT 2: THE WRITER / PERFORMER (Claude Project)
 *Role: Writing, Execution*
-* [ ] `instruction-performer.txt` **(System Prompt)**
+* [ ] `instruction-deep-dive-writer.md` **(System Prompt)**
 * [ ] `voice-dna.md`
 * [ ] `constitution.md`
 * [ ] `tech-bridge-lab.md`
@@ -74,7 +82,7 @@
 
 #### ⚖️ AGENT 3: THE SOVEREIGN AUDITOR (Gemini Webapp)
 *Role: Compliance, Verification*
-* [ ] `instruction-auditor-setup.md` **(System Prompt)**
+* [ ] `instruction-sovereign-auditor.md` **(System Prompt)**
 * [ ] `constitution.md`
 * [ ] `data-nhes-vii.md`
 * [ ] `data-terminology.md`
@@ -90,8 +98,9 @@
 * [ ] `tech-architecture-3way.md`
 * [ ] `data-nhes-vii.md`
 * [ ] `data-terminology.md`
-* [ ] `instruction-performer.txt`
-* [ ] `instruction-auditor-setup.md`
+* [ ] `instruction-deep-dive-writer.md`
+* [ ] `instruction-sovereign-auditor.md`
+* [ ] `instruction-content-architect.md`
 
 #### 🧠 STRATEGIC CTO: GEMINI (Gemini Webapp)
 *Role: Research, Strategy, Meta-Prompting*
