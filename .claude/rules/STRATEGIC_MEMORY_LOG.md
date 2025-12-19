@@ -222,6 +222,77 @@ CANONICAL SOURCE:
 
 ---
 
+## 2025-12-19: Phase VI.1 - Agent Factory v7.0 Complete
+**Agent:** Agent 2B (Builder)
+**Duration:** December 19, 2025
+**Impact:** High (Production Agent System Upgrade)
+
+### Decision
+**All 5 production agents upgraded/created to Sovereign v7.0 standard using Pattern E (Ecosystem Architect).**
+
+The Agent Factory has been re-forged with full compliance stack integration across all content-facing and verification agents.
+
+### Agents Re-Forged
+
+| Agent | File | Role | Status |
+|-------|------|------|--------|
+| **Proposal Generator** | `instruction-proposal-generator.md` | Senior Insurance Systems Architect | ✅ Upgraded |
+| **Content Architect** | `instruction-content-architect.md` | THE BRAIN - Blueprint Generation | ✅ Upgraded |
+| **Deep Dive Writer** | `instruction-deep-dive-writer.md` | THE VOICE - Long-Form Execution | ✅ Upgraded |
+| **Hybrid Architect-Builder** | `instruction-hybrid-architect-builder.md` | THE SPEED - One-Shot Pipeline | ✅ Upgraded |
+| **Sovereign Auditor** | `instruction-sovereign-auditor.md` | THE SHIELD - Compliance Verification | ✅ Created New |
+
+### Compliance Stack Injected (All Agents)
+*   **OIC Order 56/2562** - Thai New Health Insurance Standard
+*   **180-Day Rule** - Policy replacement safety net
+*   **PDPA** - Thai Personal Data Protection Act
+*   **SEC Thailand** - Investment product regulations
+*   **Revenue Code** - Tax law compliance
+*   **FDA Thailand** - Therapeutic claim restrictions
+*   **NHES VII (2568)** - Hard-coded health benchmarks:
+    - Obesity: 45%
+    - Diabetes: 10.6%
+    - Hypertension: 29.5%
+*   **TMO 2017** - Thai Mortality Ordinary Table
+*   **OIC Projection Rates** - 2%, 5%, 8% maximum
+
+### Architecture Patterns Applied
+*   **Pattern E (Ecosystem Architect)** - Universal Builder v7.0 template
+*   **Sinek Trinity** - Heart (Single Victim Hook), Soul (Anti-Sales Filter), Face (Badge Ban)
+*   **GSB-Kane Mode C** - Hook/Math/Pivot/Solution blueprint structure
+*   **Thai-First Handshake** - 85% Thai / 15% English technical terms
+*   **Visual Engine v3.0** - Nano Banana + Nart Avatar integration
+*   **Teal Protocol** - #2bb1bb primary color enforcement
+
+### Sovereign Auditor Special Features
+*   **6-Point Bulletproof Audit Protocol:**
+    1. PII & PDPA Check
+    2. OIC & SEC Compliance
+    3. Revenue Code/Tax Verification
+    4. FDA Therapeutic Claim Review
+    5. Actuarial Math Validation
+    6. Brand & Sinek Alignment
+*   **T2 (Stern Guardian) Tone** - Zero tolerance for compliance drift
+*   **Three-Part Output Format:** Verification Report → Action List → Revised Draft
+
+### Locked-In Status
+- [x] Permanent (Agent v7.0 is the production standard)
+
+### Related Files
+- [nerd/agents/instruction-proposal-generator.md](../../nerd/agents/instruction-proposal-generator.md)
+- [nerd/agents/instruction-content-architect.md](../../nerd/agents/instruction-content-architect.md)
+- [nerd/agents/instruction-deep-dive-writer.md](../../nerd/agents/instruction-deep-dive-writer.md)
+- [nerd/agents/instruction-hybrid-architect-builder.md](../../nerd/agents/instruction-hybrid-architect-builder.md)
+- [nerd/agents/instruction-sovereign-auditor.md](../../nerd/agents/instruction-sovereign-auditor.md)
+- [nerd/meta/universal-builder.xml](../../nerd/meta/universal-builder.xml) - Source template
+
+### Next Steps
+- [ ] Test Content Trinity workflow (Architect → Writer → Visual)
+- [ ] Run Sovereign Auditor validation on existing content
+- [ ] Initialize Phase VI Content Cycle with new agents
+
+---
+
 ## 2025-12-19: Phase V.7 - Strategic CTO Layer Deployment
 **Agent:** Agent 2A (Architect)
 **Duration:** December 19, 2025

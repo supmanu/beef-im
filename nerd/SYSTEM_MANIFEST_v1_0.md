@@ -39,7 +39,8 @@
 | **INSTRUCTIONS & EXTENSIONS (8)** | | |
 | `instruction-architect-cto.txt` | **Gemini Architect System Prompt** | Architect CTO v6.6.1 |
 | `instruction-gemini-cto.txt` | Consultant Strategy Prompt | Gemini CTO v6.6.1 |
-| `instruction-auditor-setup.md` | Legacy Auditor Setup | Auditor Setup v5.4 |
+| `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
+| `instruction-auditor-setup.md` | [DELETE] Legacy Auditor | Removed |
 | `instruction-cto-config.md` | Cloud Project Configuration | CTO Config v6.6.1 |
 | `instruction-platform-setup.md` | AI Platform Setup Guide | Platform Setup v1.3 |
 | `instruction-notebooklm-protocol.md` | Audio/Research Workflow | NotebookLM Protocol v4.5 |
@@ -48,7 +49,7 @@
 | **AGENT FACTORY (6)** | *Location: nerd/agents/* | |
 | `instruction-content-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
 | `instruction-deep-dive-writer.md` | The Voice: Long-form Writing | v7.0 Pattern E |
-| `instruction-sovereign-auditor.md` | The Shield: 6-Point Audit | v7.0 Pattern E |
+| `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
 | `instruction-proposal-generator.md` | Senior Insurance Architect | v7.0 Pattern E |
 | `instruction-hybrid-architect-builder.md` | One-Shot Content Engine | v7.0 Pattern E |
 | `instruction-tiktok-writer.md` | Viral Trend Specialist | v7.0 Pattern E |
