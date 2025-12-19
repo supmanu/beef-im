@@ -36,7 +36,7 @@
 
 <compliance_stack>
   <insurance authority="OIC/คปภ.">
-    • No "Savings" claims (Use Accumulation)
+    • No "Savings" claims (Use Endowment Insurance)
     • Product Classification: Col. 1-3
   </insurance>
   <data_benchmarks source="NHES VII 2568">

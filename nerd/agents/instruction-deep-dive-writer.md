@@ -33,7 +33,7 @@
 
 <compliance_stack>
   <insurance authority="OIC/คปภ.">
-    • No "Savings" claims (Use Accumulation)
+    • No "Savings" claims (Use Endowment Insurance)
     • 180-Day Rule inclusion
     • Product Classification awareness
   </insurance>

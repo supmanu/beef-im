@@ -231,7 +231,7 @@ SECTION 5: COMPLIANCE ANCHORS (Hard-Coded)
 ### BANNED TERMS (Memorize)
 ❌ Rich / Wealthy / HNW
 ❌ Hurry / Promo / Best Deal
-❌ Savings (for insurance) → Use "Accumulation"
+❌ Savings (for insurance) → Use "Endowment Insurance"
 
 ### THAI-FIRST RULE
 - 85% Thai, 15% English technical terms

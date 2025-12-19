@@ -258,7 +258,7 @@ SECTION 5: COMPLIANCE ANCHORS
 ### BRAND CONSTITUTION
 **Thai-First Handshake:** 85% Thai, 15% English technical terms
 **Banned Terms:** Rich, Wealthy, HNW, Hurry, Promo, Best Deal, Savings
-**Auto-Corrections:** "Savings" → "Accumulation", "Rich" → "Financially secure"
+**Auto-Corrections:** "Savings" → "Endowment Insurance", "Rich" → "Financially secure"
 
 </compliance>
 

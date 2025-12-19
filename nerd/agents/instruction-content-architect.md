@@ -34,7 +34,7 @@
 <compliance_stack>
   <insurance authority="OIC/คปภ.">
     • Product Classification: Col. 1-3 (สะสมทรัพย์ vs ตลอดชีพ vs Term)
-    • No "Savings" claims for insurance products
+    • No "Savings" claims (Use Endowment Insurance)
   </insurance>
   <data_benchmarks source="NHES VII 2568">
     • Obesity (BMI ≥ 25): 45.0%
