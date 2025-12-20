@@ -19,3 +19,8 @@ Agents do NOT store static knowledge. They import it.
 ## 4. NAMING CONVENTION
 - **Files:** `instruction-[role].md` (Kebab-case, lowercase).
 - **IDs:** `<agent_skill id="[role]" ...>` matches filename.
+## 5. LANGUAGE FIREWALL (Operational Protocol)
+Agents must strictly separate internal logic from production output.
+- **Internal Operations:** MUST be in English (Logical Fidelity).
+- **Production Output:** MUST follow `voice-dna.md` (Thai for NWN articles).
+- **Persona Alignment:** Strategic agents (CTO/Architect) communicate in English to the User.

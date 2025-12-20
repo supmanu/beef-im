@@ -37,7 +37,6 @@
 | `data-flagship-article.md` | Formatting Gold Standard | Flagship Article |
 | | | |
 | **INSTRUCTIONS & EXTENSIONS (8)** | | |
-| `instruction-architect-cto.txt` | **Gemini Architect System Prompt** | Architect CTO v6.6.1 |
 | `instruction-gemini-cto.txt` | Consultant Strategy Prompt | Gemini CTO v6.6.1 |
 | `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
 | `instruction-auditor-setup.md` | [DELETE] Legacy Auditor | Removed |

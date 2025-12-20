@@ -319,3 +319,32 @@ The knowledge distribution lists for these roles have been codified in `nerd/SYS
 - [ ] Begin Phase VI Content Cycle using Strategic Layer guidance.
 
 ---
+---
+
+## 2025-12-20: Phase VII - Semantic Refinement & Language Firewall
+**Agent:** Agent 2A (Antigravity)
+**Duration:** December 20, 2025
+**Impact:** Medium (Operational hardening)
+
+### Strategic Decisions
+**1. ✅ OPERATIONAL LANGUAGE FIREWALL (PERMANENT)**
+*   **Decision:** All strategic/architectural agents (CTO/Architect) must use English for internal operations and user communication.
+*   **Rationale:** English provides higher logical fidelity for architecture and complex prompting. Thai is reserved strictly for production content (Nerd with Nart articles) to prevent "Language Bleed."
+*   **Enforcement:** Added as Rule #5 in `.claude/rules/agent-sovereign-standard.md`.
+
+**2. ✅ ARCHITECTURE PURGE: GHOST LEGACY RETIREMENT**
+*   **Decision:** Retired and deleted `instruction-architect-cto.txt` (v6.6.1).
+*   **Rationale:** The v7.0 Sovereign Stack uses semantic-named, XML-standard agents. Legacy files create confusion and stale references.
+*   **Impact:** Core Pillar count shifted from 22 to 21. `SYSTEM_MANIFEST_v1_0.md` updated to reflect "Purged" status for obsolete instructions.
+
+### Locked-In Status
+- [x] Permanent (English-first Operations)
+- [x] Permanent (Semantic-only File Stack)
+
+### Related Files
+- `nerd/pillars/instruction-gemini-cto.txt` (Patched)
+- `nerd/pillars/instruction-claude-cto.txt` (Patched)
+- `.claude/rules/agent-sovereign-standard.md` (Updated)
+- `SYSTEM_STATE.md` (Sync'd)
+
+---
