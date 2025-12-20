@@ -2,7 +2,8 @@
 
 ## Build System
 - **Command:** `npm run dev` (Standard build, no special flags needed)
-- **Version:** 15.5.9 LTS with App Router
+- **Version:** 15.5.9 (Downgraded from v16 for Vercel stability)
+- **Structure:** **FLAT ROOT** (No `/src` folder)
 - **React:** 19.0.0
 
 ## Node Version (CRITICAL)

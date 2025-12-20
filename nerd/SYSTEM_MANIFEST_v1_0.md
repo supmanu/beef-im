@@ -5,9 +5,9 @@
 
 ### 1. SYSTEM IDENTITY
 * **System Version:** v7.0 (Sovereign Reboot)
-* **Manifest Date:** December 19, 2025
+* **Manifest Date:** December 20, 2025
 * **Identity Protocol:** Semantic v1.0 ("Sovereign Naming")
-* **Infrastructure:** Next.js 15.5.9 + Payload 3.0 + Neon + Vercel
+* **Infrastructure:** Next.js 15.5.9 (Downgraded) + Payload 3.0 + FLAT ROOT
 * **Status:** 🟢 OPERATIONAL / RE-FORGED (v7.0)
 
 ---
@@ -46,7 +46,7 @@
 | `visual-engine.md` | Visual Style Guide v3.0 | Visual Engine v3.0 |
 | | | |
 | **AGENT FACTORY (6)** | *Location: nerd/agents/* | |
-| `instruction-content-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
+| `instruction-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
 | `instruction-performer.md` | The Voice: Multi-modal Execution Engine | v7.0 Pattern E |
 
 | `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
@@ -64,7 +64,7 @@
 
 #### 🏛️ AGENT 1: THE ARCHITECT (Gemini Webapp)
 *Role: Strategy, Blueprinting, Research*
-* [ ] `instruction-content-architect.md` **(System Prompt)**
+* [ ] `instruction-architect.md` **(System Prompt)**
 * [ ] `voice-dna.md`
 * [ ] `content-engine.md`
 * [ ] `framework-deep-dive.md`
@@ -103,7 +103,7 @@
 * [ ] `instruction-performer.md`
 
 * [ ] `instruction-sovereign-auditor.md`
-* [ ] `instruction-content-architect.md`
+* [ ] `instruction-architect.md`
 
 #### 🧠 STRATEGIC CTO: GEMINI (Gemini Webapp)
 *Role: Research, Strategy, Meta-Prompting*

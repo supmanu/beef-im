@@ -6,6 +6,27 @@
 
 ---
 
+## 🌱 THAIHEALTH WATCH 2026: "ROOTS OF HEALTH"
+* **Core Theme:** "Planting the Future" (Focus on Child/Youth Foundation).
+* **The 3 Roots of Risk:**
+    1.  **Biological Root:** Child Obesity (4x Spike: 3.5% → 12%). "The environment designs sickness."
+    2.  **Mental Root:** "Sukkhaphap Jai" (Biological Burnout). High suicide ideation in youth (17.6%).
+    3.  **Safety Root:** Road Safety & Zero Death Goal (Helmet culture as a "Vaccine").
+
+## 💹 SOCIO-ECONOMIC & PSYCHOLOGICAL CONTEXT (2025-2026)
+* **The "Double Tax" on Wealth:**
+    * NCD Economic Loss: 1.6 Trillion THB/year (9.7% GDP).
+    * PM 2.5 Household Loss: 2.2 Trillion THB/year.
+    * **Total Wealth Erosion:** ~3.8 Trillion THB/year.
+* **The Mental Supply Shock:**
+    * Psychiatrists: 0.7 per 100k people (Only 7% of WHO Standard).
+* **The Gender Gap:**
+    * Male Life Expectancy (72) vs. Female (81) = **9 Year Gap**.
+* **Decision Theory (The Hook):**
+    * **95%** of health choices are Subconscious. Logic drives only 5%.
+
+---
+
 ## 🔢 MASTER STATISTICS TABLE
 
 ### Health Risk Behaviors (Age 15+)
@@ -140,11 +161,30 @@ National Health Examination Survey VII (NHES VII), Thailand 2024-2025, Faculty o
 
 ---
 
-## 🔗 REFERENCE LINKS
+## 🧮 CALIBRATED ANALOGIES (The Investment Ratio)
+* **Exercise ROI:** 1 hour activity = +7 hours life expectancy.
+* **Smoking Penalty:** 1 cigarette = -11 minutes life expectancy.
+* **Inheritance:** "You transfer assets via Will; you transfer habits via Routine."
 
-- Official Website: https://thai-nhes.com/
-- Full Report: Archive folder (load for deep research only)
-- Executive Summary: Archive folder
+---
+
+## 🔗 PRIMARY SOURCES (Official References)
+
+**1. ThaiHealth Watch 2026 (Current Strategic Anchor)**
+* **Title:** "จับตาทิศทางสุขภาพคนไทย ปี 2569 (ThaiHealth Watch 2026)"
+* **Publisher:** สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.)
+* **Source File:** `nerd/references/ThaiHealth WATCH 2026.pdf`
+* **Official Link:** [ThaiHealth.or.th/?p=406602](https://www.thaihealth.or.th/?p=406602)
+
+**2. ThaiHealth Watch 2025 (Economic Baseline)**
+* **Title:** "จับตาทิศทางสุขภาพคนไทย ปี 2568 (ThaiHealth Watch 2025)"
+* **Publisher:** สำนักงานกองทุนสนับสนุนการสร้างเสริมสุขภาพ (สสส.)
+* **Source File:** `nerd/references/ThaiHealth WATCH 2025.pdf`
+* **Official Link:** [ThaiHealth.or.th/?p=377441](https://www.thaihealth.or.th/?p=377441)
+
+**3. National Health Examination Survey VII (NHES VII)**
+* **Status:** Field Data (2024-2025)
+* **Key Benchmark:** Diabetes 10.6% | Obesity 45.0%
 
 ---
 

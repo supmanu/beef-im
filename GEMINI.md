@@ -1,5 +1,5 @@
-# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.2
-# Hierarchical context for Antigravity Agent 2A (Gemini 3 Flash)
+# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.3
+# Hierarchical context for Antigravity Agent (Gemini 3 Series)
 
 ## 📚 CORE PILLARS (Contextual Imports)
 @./nerd/pillars/voice-dna.md
@@ -13,7 +13,9 @@
 @./nerd/agents/auditor.md
 
 ## 🛠️ STACK ENFORCEMENT
-- Framework: Next.js 15.5.9 (LTS)
+- Models (Dec 2025): Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 (Sonnet/Opus)
+- Framework: Next.js 15.5.9 (Downgraded from v16 for Vercel/Payload stability)
+- Structure: **FLAT ROOT** (No `/src` folder - direct `/app`, `/components`)
 - CMS: Payload 3.0 (Embedded)
 - Database: Neon Postgres
 - Storage: Cloudflare R2 (Sovereign Assets)

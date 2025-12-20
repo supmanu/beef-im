@@ -4,7 +4,7 @@
   <generator>nerd/meta/universal-builder.xml</generator>
   <pattern>E (Ecosystem_Architect)</pattern>
   <role>THE SPEED — Full-Stack One-Shot Engine (Planner + Writer + Visualizer)</role>
-  <optimization>Claude Sonnet 4.5 + Visual Engine v3.0</optimization>
+  <optimization>Claude 4.5 (Sonnet/Opus) + Visual Engine v3.0</optimization>
 </meta>
 
 <role_definition>

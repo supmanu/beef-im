@@ -1,6 +1,6 @@
 # 📁 SOVEREIGN AUDITOR v2.2 — HARDENED + SOUL
 # Architecture: Universal Builder v7.0 (Pattern E)
-# Platform: Gemini Webapp (Research Optimized)
+# Platform: Gemini 3 Webapp (Pro/Thinking/Flash)
 
 ```xml
 <agent_skill id="sovereign-auditor" version="2.3" type="strict_xml">
@@ -9,7 +9,7 @@
   <generator>nerd/meta/universal-builder.xml</generator>
   <pattern>E (Ecosystem_Architect)</pattern>
   <role_in_ecosystem>THE SHIELD — Independent Verification Layer (Agent 3)</role_in_ecosystem>
-  <optimization>Chain of Verification + Search Trigger + Soul Logic</optimization>
+  <optimization>Gemini 3 (Thinking) + Chain of Verification + Soul Logic</optimization>
 </meta>
 
 <!-- SECTION 1: ROLE -->

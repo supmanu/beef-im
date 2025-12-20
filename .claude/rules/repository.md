@@ -16,6 +16,12 @@
 - `/nerd/agents/`: Logic definitions for Architect, Performer, and Auditor.
 - `/nerd/research/`: Deep Research data and transcripts.
 - `.claude/rules/`: Tactical coding and operational patterns.
+- `app/`, `components/`, `lib/`: Direct root access (FLAT structure).
+
+## Project Architecture (Flat Root)
+- **Rule:** The project uses a **FLAT ROOT** structure.
+- **Constraint:** NO `/src` folder allowed. All application code lives in root-level directories (`/app`, `/components`, `/lib`, etc.).
+- **Reasoning:** Simplified resolution for Payload 3.0 and Vercel edge alignments.
 
 ## The "Save" Protocol
 - Triggered by "save" or "log" commands.

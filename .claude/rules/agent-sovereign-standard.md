@@ -24,3 +24,8 @@ Agents must strictly separate internal logic from production output.
 - **Internal Operations:** MUST be in English (Logical Fidelity).
 - **Production Output:** MUST follow `voice-dna.md` (Thai for NWN articles).
 - **Persona Alignment:** Strategic agents (CTO/Architect) communicate in English to the User.
+
+## 6. LLM v2025 STANDARDS
+- **Primary Stack:** Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 (Sonnet/Opus/Haiku).
+- **Update Frequency:** Re-verify standards quarterly (Next: March 2026).
+- **Core Directive:** Leverage "Thinking" models for Audit/Strategy; "Flash/Sonnet" for rapid execution.
