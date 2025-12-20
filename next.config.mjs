@@ -15,7 +15,8 @@ const nextConfig = {
         'payload',
         'sharp',
         'express',
-        'graphql'
+        'graphql',
+        '@mastra/*'
     ],
 
     // 3. Allow standard image optimization
