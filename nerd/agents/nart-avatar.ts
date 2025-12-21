@@ -81,7 +81,7 @@ export const nartAvatar = new Agent({
     // REQUIRED: Description for MCP conversion
     description: 'Expert Digital Twin for insurance forensics, Thai health statistics (NHES VII), and systemic financial analysis.',
     instructions: voiceDnaInstructions,
-    model: google('gemini-3-flash-preview'), // Dec 2025 Standard
+    model: google('gemini-3-flash'), // Dec 2025 Standard
     memory: memory,
     tools: {
         searchNerdBrain,
