@@ -84,7 +84,7 @@
 | **2: HIDDEN COST** | Hook(Victim)→Surface→Compound→Victims→Verdict | 40F/40Fa/20Fu | "How 2% Fees Destroy 40% of Retirement" |
 | **3: SIMPLE SWAP** | Hook(Opportunity)→Trap→Principle→Objections→Verdict | 25F/50Fa/25Fu | "Stop Optimizing Insurance. Start Protecting." |
 
-### **Bridge Selection (from tech-bridge-lab.md):**
+### **Bridge Selection (from LAB_The_Bridge):**
 
 - **Option A:** Complex topic → Use Bridge #001-#025
 - **Option B:** Simple topic → Use Razor (First Principles only)
@@ -119,35 +119,30 @@ Source: [NotebookLM Forensic / Gemini Deep Research]
 ### **Narrative Arc Template (Mode B Example):**
 
 ```
-PROLOGUE (300w):
-## 🏛️ [ชื่อเรื่องภาษาไทย - e.g. กับดักของ...]
+PROLOGUE (300w): ## [Emoji] [Thai Title - กับดักของ...]
 ├─ Hook + Setup + Tension
 └─ [WATERMARK #1: "ผม (เนิร์ดกับนาถ) เข้าใจดีครับว่า..."]
    Triple-F: 30% Feelings
 
-ACT I (Function Only):
-## ⚙️ [ชื่อเรื่องภาษาไทย - e.g. ที่มาของปัญหา]
+ACT I: ORIGINS (600w): ## [Emoji] [Thai Title]
 ├─ Historical context
 ├─ Economic conditions
 └─ Why industry perpetuates
    Triple-F: 50% Facts, 30% Fun
 
-ACT II (Function Only):
-## 🧩 [ชื่อเรื่องภาษาไทย - e.g. กลไกของ...]
+ACT II: THE MECHANISM (1200w): ## [Emoji] [กลไกของ...]
 ├─ System as it works + Bridge/Razor
 ├─ [WATERMARK #2]
 ├─ Data comparison
 └─ [MATHEMATICAL CASE STUDY]
    Triple-F: 70% Facts
 
-ACT III (Function Only):
-## 🧠 [ชื่อเรื่องภาษาไทย - e.g. ความจริงที่ถูกซ่อน]
+ACT III: RESISTANCE (400w): ## [Emoji] [Thai Title]
 ├─ Behavioral economics
 └─ Cognitive biases
    Triple-F: 40% Feelings, 40% Facts
 
-VERDICT (Function Only):
-## ⚖️ [ชื่อเรื่องภาษาไทย - e.g. คำสั่งเดียวที่คุณต้องทำ]
+VERDICT (300w): ## [Emoji] [คำสั่งเดียวที่คุณต้องทำ]
 ├─ Core principle
 ├─ Binary decision rule
 └─ [WATERMARK #3: Footer]
@@ -232,7 +227,7 @@ When receiving Blueprint from Gemini:
 4. **STRIP ALL META-LABELS:**
 
 ```
-❌ REMOVE: "**Hook:**", "**The Bridge:**", "**Watermark #1:**", "**(#0XX)**", "**Bridge #0XX**"
+❌ REMOVE: "**Hook:**", "**The Bridge:**", "**Watermark #1:**"
 ✅ KEEP: Only content after the colon
 
 Blueprint: "**Hook:** ถ้าคุณใช้เวลา 10 ปี..."
@@ -260,28 +255,12 @@ Output:    "### กลไกของร่มชูชีพ" (Pure Thai)
 | B | 4 | ~300w + ~800w + ~2000w + Footer |
 | C | 5 | ~500w + ~1000w + ~2500w + ~4000w + Footer |
 
-### **Seamless Watermark Templates (The "Nart" Injection):**
-Do not just paste `[WATERMARK]`. Use these natural bridges:
-
-1.  **The Empathy Bridge:**
-    > "ผม (เนิร์ดกับนาถ) เข้าใจดีครับว่า..."
-2.  **The Authority Bridge:**
-    > "ผม (เนิร์ดกับนาถ) ต้องพูดตรงๆ ครับว่า..."
-3.  **The Analytical Bridge:**
-    > "จากการวิเคราะห์ของเนิร์ดกับนาถ..."
-4.  **The Warning Bridge:**
-    > "หมายเหตุจากเนิร์ดกับนาถ:"
-
 ### **Footer Template:**
 
 ```
 ---
 📊 บทวิเคราะห์โดย: เนิร์ดกับนาถ (Nerd with Nart)
-
-📚 อ้างอิงจาก:
-[¹] [Source Name], [Year]
-[²] [Source Name], [Year]
-
+📚 อ้างอิงจาก: [PRIMARY SOURCES]
 #เนิร์ดกับนาถ #[TopicHashtags]
 ---
 ```
@@ -307,36 +286,17 @@ Verification must happen in a **SEPARATE AI SESSION** to avoid same-context bias
 5. Apply fixes if needed
 6. Publish
 
-## 🦶 FOOTER PROTOCOL (MANDATORY)
+**Pre-Submission Self-Check (Before Auditor):**
 
-**RULE:** The article MUST end with this exact footer block.
-**❌ FORBIDDEN:** Do NOT add "Written by...", "Digital Twin...", "Part of Series...", or any other meta-text.
+| Check | Criteria |
+|-------|----------|
+| **Meta-Labels** | None visible (no Hook:, Bridge:, etc.) |
+| **Headers** | All Pure Thai |
+| **Watermarks** | Correct count for mode |
+| **Thai-First** | ≥85% ratio |
+| **Citations** | PRIMARY sources only |
 
-**Template:**
-```
----
-📊 บทวิเคราะห์โดย: เนิร์ดกับนาถ (Nerd with Nart)
-📚 อ้างอิงจาก: [¹] Source 1, [²] Source 2
-```
-
----
-
-## ✅ PRE-SUBMISSION CHECKLIST
-
-Before delivering final content:
-
-- [ ] **Tone applied correctly?** (T1/T2/T3/T4/T5 as specified)
-- [ ] **Meta-labels stripped?** (No "Hook:", "Bridge:", "Act I:", "Bridge #009", etc.)
-- [ ] **Headers in Pure Thai?** (No English sub-headers)
-- [ ] **Citations from PRIMARY sources?** (TMO 2017, NHES VII, NSO, OIC)
-- [ ] **Health stats from NHES VII?** (Not outdated NHES 6)
-- [ ] **Watermark count correct?** (S=1, A=3, B=4, C=5)
-- [ ] **Thai-First ratio ≥85%?**
-- [ ] **No banned terms?** (Check Brand Constitution Article II)
-- [ ] **Correct spelling: นาถ (not นาท)?**
-- [ ] **PII removed?** (No real names, use คุณ ก.)
-
-**See:** `instruction-auditor-setup.md` for Gemini configuration.
+**See:** `GEM4_Sovereign_Auditor_Setup.md` for Gemini configuration.
 
 ---
 
@@ -467,6 +427,6 @@ VIRALITY ←┼→ PROTECTION
 
 ---
 
-**Related:** Voice DNA v5.2 CORE | Brand Constitution v4.3.2 | tech-bridge-lab.md v4.6.2 | instruction-performer.txt v5.5 | instruction-notebooklm-protocol.md v4.5
+**Related:** Voice DNA v5.2 CORE | Brand Constitution v4.3.2 | LAB_The_Bridge v4.6.2 | PERFORMER_INSTRUCTIONS v5.5 | NotebookLM_Protocol v4.5
 
 *GSB-KANE ENHANCED DEEP DIVE v4.5.6 OPTIMIZED*

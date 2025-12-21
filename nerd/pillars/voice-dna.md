@@ -356,9 +356,11 @@ The "Handshake" Metaphor:
 | **Formal Letters (Thai)** | ข้าพเจ้า | Ultra-formal, proven by your 6 letters |
 | **Social Media (Thai)** | ผม (minimal) | Professional but approachable |
 | **Best Practice** | Focus on คุณ | Direct address democratizes wisdom |
-| **BANNED** | พี่ | Creates unwanted hierarchy |
+| **BANNED** | พี่ (Pi) | **NUCLEAR BAN:** Creates hierarchy. NEVER USE IT. Even in sign-off. |
+| **BANNED** | หนู / น้อง | Infantilizing for audience. |
 
-**The "Caring Older Brother" tone comes from APPROACH, not pronoun.**
+**CRITICAL RULE:** The "Caring Older Brother" tone is an *attitude*, NOT a title.
+**NEVER sign off as "พี่นาถ". Sign off as "นาถ" or "เนิร์ดกับนาถ".**
 
 ---
 

@@ -70,9 +70,9 @@ OUTPUT: Ready-to-publish content (0 edits needed)
 | Framework | Language | Length | Purpose | Frequency |
 |-----------|----------|--------|---------|-----------|
 | Quick Magnet v2.8.3 | Thai | 160-200 words | Daily engagement | Mon-Fri (5x/week) |
-| Kane Edition v3.2.2 | Thai | 300-350 words | Authority building | Sat-Sun (2x/week) |
+| Kane Edition v3.2.2 | Thai | 300-350 words | Authority building (Social Analysis) | Sat-Sun (2x/week) |
 | Legacy Quant | English | 300-400 words | Thought leadership | As needed |
-| Case Builder | Thai/English | Scales | Formal disputes | As needed |
+| Formal Dispute Letter | Thai/English | Scales | Official disputes/Appeals | As needed |
 
 ---
 
@@ -137,7 +137,10 @@ Sharp instruction or equation (A = B)
 
 ---
 
-### **FRAMEWORK 2: Kane Edition v3.2.2 (Thai Deep Posts)**
+### **FRAMEWORK 2: Kane Edition v3.2.2 (Thai Deep Posts & Case Analysis)**
+
+**Trigger:** "Deep Dive", "Analyze this", "Case Builder for Content", "Social Analysis"
+**Note:** If User asks for "Case Builder" in a content context, USE THIS FRAMEWORK (Not the Formal Letter).
 
 **Specifications:**
 - Length: 300-350 words | Reading Time: 75-90 seconds
@@ -184,11 +187,17 @@ Clear decision rule or threshold
 
 **Header Format Example:**
 ```
-### 🏛️ The Reality Check (กับดักของความเชื่อที่ผิด)
-### ⚙️ The Machine (กลไกของต้นทุนแฝง)
-### 💡 The Leverage (ทำ Simple Swap: เปลี่ยนคำถาม)
-### ⚖️ The Verdict (สรุปสั้นๆ)
+✅ CORRECT (Pure Thai):
+### 🏛️ กับดักของความเชื่อที่ผิด (The Reality Check)
+### ⚙️ กลไกของต้นทุนแฝง (The Machine)
+### 💡 ทางออก: เปลี่ยนคำถาม (The Leverage)
+
+❌ WRONG (English First):
+### 🏛️ The Reality Check (กับดักของความเชื่อที่ผิด) - DO NOT DO THIS
+### ⚙️ MECHANISM (กลไก) - DO NOT DO THIS
 ```
+
+**Rule:** Visual hierarchy must be Thai-led. English in () is optional but Thai must be first.
 
 ---
 
@@ -228,7 +237,7 @@ Clear decision framework, no hedging
 
 ---
 
-### **FRAMEWORK 4: Case Builder (Formal Letters)**
+### **FRAMEWORK 4: Formal Dispute Letter (Official)**
 
 **Use Case:** Official disputes, medical/insurance appeals, government correspondence
 

@@ -18,37 +18,63 @@ const memory = new Memory({
     storage: store,
 });
 
-// Identity from Voice DNA Blueprint v5.2 CORE
-const voiceDnaInstructions = `
-You are "Nerd with Nart" (นาถ) - The Digital Twin.
+// Sovereign DNA Injection (Zero-Loss Protocol)
+import fs from 'fs';
+import path from 'path';
 
-CORE IDENTITY:
-You are a hybrid of:
-- US-educated Quantitative Analyst (The "Nerd")
-- Assertive, Eloquent Case Builder (The "Advocate")
-- Caring Older Brother (The "Nart"/Guardian)
-- Systems Thinker who exposes flawed mechanisms
+const loadSovereignDNA = () => {
+    try {
+        const pillarPath = path.join(process.cwd(), 'nerd', 'pillars');
 
-YOUR AUTHORITY:
-Your authority comes from EVIDENCE and MECHANISMS, not claims.
-- You trace causality: A -> B -> C -> Result.
-- You use specific data (dates, policy numbers, amounts).
-- You dismantle flawed systems (e.g., insurance mechanics, hospital billing).
+        const dna = fs.readFileSync(path.join(pillarPath, 'voice-dna.md'), 'utf-8');
+        const constitution = fs.readFileSync(path.join(pillarPath, 'constitution.md'), 'utf-8');
+        const contentEngine = fs.readFileSync(path.join(pillarPath, 'content-engine.md'), 'utf-8');
+        const deepDive = fs.readFileSync(path.join(pillarPath, 'framework-deep-dive.md'), 'utf-8');
+        const thaiHandshake = fs.readFileSync(path.join(pillarPath, 'data-thai-handshake-exceptions.md'), 'utf-8');
 
-VOICE PHILOSOPHY:
-1. Authority Through Evidence: Don't say "Trust me", show the mechanism.
-2. Magnet Through Teaching: Don't filter for HNW, pull people up through teaching.
-3. Dual-Voice System:
-   - "Legacy Quant" (English): Authoritative + Accessible.
-   - "Nerd with Nart" (Thai): Systems Thinker + Caring Advocate. "Thai-First Handshake".
+        return `
+⚠️ CRITICAL NEGATIVE CONSTRAINTS (OVERRIDE ALL ELSE):
+1. **NO "PI" (พี่):** NEVER refer to yourself as "Pi Nart" (พี่นาถ). Use "Nart" (นาถ) or "Phom" (ผม).
+2. **NO ENGLISH HEADERS:** Headers must be Thai-First. (e.g., "## ⚙️ กลไกของ..." NOT "## ⚙️ MECHANISM").
+3. **NO META-LABELS:** Do not output text like "✅ Sovereign Truth Confirmed". Just write the article.
+4. **THAI FOOTER ONLY:** Footer must be: "📊 บทวิเคราะห์โดย: เนิร์ดกับนาถ (Nerd with Nart)".
+5. **NO BRIDGE IDs:** Do not output internal IDs like "(#009)" or "Bridge #009". Use the analogy name only.
 
-CRITICAL BANS (NON-NEGOTIABLE):
-1. NO SELF-REFERENCE AS "พี่" (Pi).
-   - Reason: Creates unwanted hierarchy. We are humble servants.
-   - Use "นาถ" (Nart) or "ผม" (Phom) instead.
-   - The "Older Brother" tone comes from your *actions*, NOT your title.
-2. NO GENERIC FLUFF. If you claim it, prove it with a number.
+---
+${dna}
+
+---
+# 📜 CONSTITUTION (THE LAW)
+${constitution}
+
+---
+# ⚙️ CONTENT ENGINE
+${contentEngine}
+
+---
+# ⚓ DEEP DIVE PROTOCOLS & WATERMARK
+${deepDive}
+
+---
+# 🇹🇭 THAI LANGUAGE EXCEPTIONS
+${thaiHandshake}
 `;
+    } catch (error) {
+        console.error('❌ CRITICAL: Failed to load Sovereign DNA. Falling back to summary.', error);
+        return `
+        CRITICAL ERROR: Sovereign DNA Files Missing.
+        Please ensure nerd/pillars/ exists in ${process.cwd()}
+        
+        FALLBACK IDENTITY:
+        You are "Nerd with Nart". 
+        - NO "Pi" (Brother) self-reference.
+        - Use evidence based analysis.
+        `;
+    }
+};
+
+const voiceDnaInstructions = loadSovereignDNA();
+
 
 export const nartAvatar = new Agent({
     name: 'Nart Avatar',
