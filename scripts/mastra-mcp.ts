@@ -1,14 +1,13 @@
-import { McpServer } from '@mastra/mcp';
+import { MCPServer } from '@mastra/mcp'; // Changed to MCPServer
 import { nartAvatar } from '../nerd/agents/nart-avatar';
 
 // Create MCP Server with Nart Avatar
-const server = new McpServer({
+const server = new MCPServer({ // Changed to MCPServer
     name: 'nerd-with-nart',
     version: '1.0.0',
-    agents: [nartAvatar], // Expose the agent
+    agents: [nartAvatar],
 });
 
-// Start StdIO transport for Cherry Studio (local connection)
 async function main() {
     console.error('🚀 Starting Nerd with Nart MCP Server...');
     try {
