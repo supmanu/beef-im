@@ -12,5 +12,5 @@
     * *Error if missing:* `AGENT_MEMORY_MISSING_RESOURCE_ID`
 
 ## 3. MODELS
-* **Google Provider:** Use `gemini-3-flash-preview` (Dec 2025 Standard).
-* **Deprecation:** `gemini-1.5-flash` causes 404 errors on v1beta.
+* **Google Provider:** Use `gemini-3-flash` (Dec 2025 Standard).
+* **Deprecation:** `gemini-3-flash-preview` is discontinued.

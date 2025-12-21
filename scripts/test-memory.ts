@@ -26,7 +26,7 @@ async function main() {
     const agent = new Agent({
         name: 'MemoryTester',
         instructions: 'You are a helpful assistant with infinite memory.',
-        model: google('gemini-3-flash-preview'),
+        model: google('gemini-3-flash'),
         memory: memory,
     });
 

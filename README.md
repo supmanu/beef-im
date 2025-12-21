@@ -19,7 +19,7 @@ Our system is "Sovereign" — meaning it owns its data (Neon Postgres) and its m
 
 ### 2. The Brain (AI Agent System)
 *   **Core:** Mastra Agent Framework
-*   **Model:** Google Gemini 3 Flash Preview (`gemini-3-flash-preview`)
+*   **Model:** Google Gemini 3 Flash (`gemini-3-flash`)
 *   **Memory:** `@mastra/memory` (PostgresStore via `DATABASE_URL`)
 *   **RAG:** `searchNerdBrain` tool (Pinecone/Neon Hybrid)
 *   **Identity:** "Nerd with Nart" (Dual-Voice: Quant + Advocate)
