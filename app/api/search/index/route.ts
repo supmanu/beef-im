@@ -9,7 +9,7 @@ function extractText(node: any): string {
     if (Array.isArray(node)) return node.map(extractText).join(' ');
 
     let text = '';
-    // Handle Lexical (root.children) or Hygraph (text) or Slate (children)
+    // Handle Lexical (root.children) or Generic Text or Slate (children)
     if (node.text) text += node.text + ' ';
     if (node.children && Array.isArray(node.children)) {
         text += node.children.map(extractText).join(' ');

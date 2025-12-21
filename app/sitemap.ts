@@ -1,43 +1,22 @@
 import { MetadataRoute } from 'next';
-import { gql } from 'graphql-request';
+import { getSovereignArticles } from '@/lib/payload';
 
 export const dynamic = 'force-static';
 
-const GET_SITEMAP_DATA = gql`
-  query GetSitemapData {
-    posts(first: 100) {
-      slug
-      updatedAt
-    }
-  }
-`;
-
-async function getSitemapData() {
-  const endpoint = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT || '';
-  if (!endpoint) return [];
-
-  try {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: GET_SITEMAP_DATA }),
-      next: { revalidate: 3600 }
-    });
-    const { data } = await res.json();
-    return data?.posts || [];
-  } catch (error) {
-    console.error('Sitemap Error:', error);
-    return [];
-  }
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nerdwithnart.com';
-  const articles = await getSitemapData();
 
-  const articleUrls = articles.map((article: any) => ({
-    url: `${baseUrl}/articles/${article.slug}`,
-    lastModified: article.updatedAt,
+  // Fetch from Sovereign Payload DB
+  let articles = [];
+  try {
+    articles = await getSovereignArticles();
+  } catch (error) {
+    console.error('Sitemap Error: Failed to fetch articles', error);
+  }
+
+  const articleUrls = articles.map((doc: any) => ({
+    url: `${baseUrl}/articles/${doc.slug}`,
+    lastModified: doc.updatedAt ? new Date(doc.updatedAt) : new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
