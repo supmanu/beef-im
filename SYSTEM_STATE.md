@@ -1,7 +1,7 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 22, 2025
+* **Last Updated:** Dec 22, 2025 (Brochure Pipeline Live)
 * **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 * **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA).
@@ -19,6 +19,10 @@
     *   **Architecture:** Hybrid RAG Bridge (Active Retrieval).
     *   **Safeguards:** 10-point Checklist + 5 Hard-Coded Guards.
     *   **Status:** Production Ready.
+*   **[Capability]** **Brochure Pipeline (Manual + AI)** Established.
+    *   **Lexicon:** `aia-lexicon.md` created (Product/Medical/OCR).
+    *   **Skill:** `instruction-brochure-cleaner.md` created.
+    *   **Library:** Standardized `library/assets/raw` structure.
 *   **[Brain]** `nerd_brain` re-ingested with v7.0 Rules.
 
 ## 🧠 STRATEGIC LOCKS
@@ -30,6 +34,7 @@
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
 7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
 8.  **RAG Law:** Pricing & Visa rules must use `<rag_bridge_protocol>` triggers.
+9.  **Brochure Law:** Cleaners MUST use `aia-lexicon.md`.
 
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).

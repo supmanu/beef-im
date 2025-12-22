@@ -10,7 +10,6 @@
     "dev": "next dev",
     "build": "next build",
     "verify-avatar": "tsx scripts/verify-avatar.ts",
-    "digitize": "tsx scripts/digitize-pdf.ts",
     "lint": "next lint",
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap",
