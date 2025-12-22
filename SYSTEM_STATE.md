@@ -13,9 +13,12 @@
 *   **[Identity]** "No-Pi" Rule enforced via `nart-avatar.ts` injection.
 *   **[Identity]** `#009` Bridge ID Leakage ELIMINATED via double-ban.
 *   **[Quality]** Restored 10-Point "Legacy Checklist" in `framework-deep-dive.md`.
-*   **[Branding]** Enforced "Footer Seal" Protocol (No Hallucinated Bios).
-*   **[Agent]** **Performer v3.1 Calibrated** (Checklist + Data Imports + Strict Formatting).
-*   **[Agent]** **Proposal Generator v4.0 (Sovereign Fortress)** Forged. Fused "Masamune Strategy" (v1.5) with "Opus Iron Dome" (Compliance).
+*   **[Identity]** "Footer Seal" Protocol enforced.
+*   **[Agent]** **Performer v3.1 Calibrated** (Checklist + Data Imports).
+*   **[Agent]** **Proposal Generator v4.1 (Sovereign Fortress)** Deployed.
+    *   **Architecture:** Hybrid RAG Bridge (Active Retrieval).
+    *   **Safeguards:** 10-point Checklist + 5 Hard-Coded Guards.
+    *   **Status:** Production Ready.
 *   **[Brain]** `nerd_brain` re-ingested with v7.0 Rules.
 
 ## 🧠 STRATEGIC LOCKS
@@ -26,6 +29,7 @@
 5.  **Production Law:** Cherry Studio + Mastra Brain = The "Factory" (Truth Source).
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
 7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
+8.  **RAG Law:** Pricing & Visa rules must use `<rag_bridge_protocol>` triggers.
 
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).
