@@ -15,6 +15,7 @@
 *   **[Quality]** Restored 10-Point "Legacy Checklist" in `framework-deep-dive.md`.
 *   **[Branding]** Enforced "Footer Seal" Protocol (No Hallucinated Bios).
 *   **[Agent]** **Performer v3.1 Calibrated** (Checklist + Data Imports + Strict Formatting).
+*   **[Agent]** **Proposal Generator v4.0 (Sovereign Fortress)** Forged. Fused "Masamune Strategy" (v1.5) with "Opus Iron Dome" (Compliance).
 *   **[Brain]** `nerd_brain` re-ingested with v7.0 Rules.
 
 ## 🧠 STRATEGIC LOCKS
@@ -24,6 +25,7 @@
 4.  **Bridge Law:** Usage of `#009` or internal IDs in output is FORBIDDEN.
 5.  **Production Law:** Cherry Studio + Mastra Brain = The "Factory" (Truth Source).
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
+7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
 
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).
