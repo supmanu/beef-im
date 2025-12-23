@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "created": "2025-12-23",
+  "source": "Google Gemini File API",
+  "description": "Forensic Vault URIs for AIA Brochure PDFs - Used for multimodal policy verification",
+  "expiry_note": "URIs may expire after 48 hours of inactivity. Re-run 'npx tsx scripts/setup-vault.ts' to refresh.",
+  "files": [
+    {
+      "name": "02Term_20250124.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/pvp61y662a2x",
+      "type": "term-life"
+    },
+    {
+      "name": "AHC - ENG 2024.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/5knztdmai2wm",
+      "type": "health"
+    },
+    {
+      "name": "AIA-CI-Procare-Brochure-EN.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/v0qfetvrky25",
+      "type": "critical-illness"
+    },
+    {
+      "name": "unknown-x9s5npsnrsml.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/x9s5npsnrsml",
+      "type": "pending-identification"
+    },
+    {
+      "name": "unknown-24qdqehrqqyt.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/24qdqehrqqyt",
+      "type": "pending-identification"
+    },
+    {
+      "name": "unknown-uz3cqnabagim.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/uz3cqnabagim",
+      "type": "pending-identification"
+    },
+    {
+      "name": "unknown-6d8b5qn6ahpn.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/6d8b5qn6ahpn",
+      "type": "pending-identification"
+    },
+    {
+      "name": "AIA_BenefitPlus2025.pdf",
+      "uri": "https://generativelanguage.googleapis.com/v1beta/files/2y22yl0raf9d",
+      "type": "master-reference",
+      "note": "Contains abridged information for ALL AIA policies. Primary forensic reference."
+    }
+  ]
+}
