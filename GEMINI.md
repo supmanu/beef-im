@@ -1,5 +1,28 @@
-# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.3
+# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.4
 # Hierarchical context for Antigravity Agent (Gemini 3 Series)
+# Architecture: Melkor OS v1.0 (Department 01)
+
+---
+
+## 🏛️ MELKOR OS AWARENESS
+
+This department operates under the **Melkor OS** parent-shell architecture.
+
+### Memory Hierarchy
+```
+../../memory/STRATEGIC_MEMORY_LOG.md   ← MOS-LEVEL (Authority)
+./SYSTEM_STATE.md                      ← DEPARTMENT-LEVEL (Tactical)
+```
+
+### MOS References
+| Resource | Path |
+|----------|------|
+| Master Manifest | `../../product.md` |
+| Global Roadmap | `../../plan.md` |
+| Strategic Memory | `../../memory/STRATEGIC_MEMORY_LOG.md` |
+| Submodule SOP | `../../memory/sop-submodule-sync.md` |
+
+---
 
 ## 📚 CORE PILLARS (Contextual Imports)
 @./nerd/pillars/voice-dna.md
@@ -7,10 +30,14 @@
 @./nerd/pillars/content-engine.md
 @./SYSTEM_STATE.md
 
+---
+
 ## 🤖 AGENT LOGIC MODULES
 @./nerd/agents/architect.md
 @./nerd/agents/performer.md
 @./nerd/agents/auditor.md
+
+---
 
 ## 🛠️ STACK ENFORCEMENT
 - Models (Dec 2025): Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 (Sonnet/Opus)
@@ -20,25 +47,73 @@
 - Database: Neon Postgres
 - Storage: Cloudflare R2 (Sovereign Assets)
 
-## 💾 NATIVE MEMORY PROTOCOL (No G: Drive)
-**You (Gemini) are the guardian of the REPOSITORY State.**
+---
+
+## 💾 NATIVE MEMORY PROTOCOL (Repository Sovereignty)
+
+**Doctrine:** "Code is Memory. Memory is Code. Git is the Brain."
+
+**You (Gemini/Antigravity) are the guardian of the REPOSITORY State.**
 You do NOT have access to the G: Drive MCP. You access the LOCAL filesystem only.
 
-**TRIGGER:** When user types `"save"` or `"log"`:
+### Memory Routing
+| Type | Location | When to Update |
+|------|----------|----------------|
+| **Strategic** | `../../memory/STRATEGIC_MEMORY_LOG.md` | Irreversible decisions, architecture changes |
+| **Tactical** | `./SYSTEM_STATE.md` | Department state, phase updates, accomplishments |
+| **Patterns** | `./.claude/rules/*.md` | Coding patterns, standards, SOPs |
 
-1.  **ANALYZE:** Scan the session for new patterns, decisions, or fixes.
-2.  **UPDATE STATE:**
-    - Edit `SYSTEM_STATE.md`: Update "Last Updated", "Status", and "Active Objectives".
-3.  **UPDATE RULES:**
-    - If a new coding pattern emerged, create/edit `.claude/rules/[topic].md` (e.g., `nextjs.md` or `payload.md`).
-    - *Example:* "I noticed we use 'getSovereignArticles' now. I will document this in '.claude/rules/payload.md'."
-4.  **REPORT:**
-    - Reply: "✅ **Repository State Updated.** Tactical patterns saved to `.claude/rules/`. Strategic status updated in `SYSTEM_STATE.md`."
+---
 
-**CRITICAL RULE:** DO NOT attempt to write to `nerd-memory.json`. That is Agent 2B's job.
+## 🔄 TRIGGER: "save" or "log"
+
+1. **ANALYZE:** Scan the session for new patterns, decisions, or fixes.
+2. **ROUTE DECISION:**
+   - Is this a **strategic/cross-department** decision? → Update `../../memory/STRATEGIC_MEMORY_LOG.md`
+   - Is this a **tactical/department-specific** state? → Update `./SYSTEM_STATE.md`
+3. **UPDATE RULES:**
+   - If a new coding pattern emerged, create/edit `.claude/rules/[topic].md`
+4. **REPORT:**
+   - Reply: "✅ **Repository State Updated.** [Specify which files were modified]"
+
+---
+
+## 🔄 SUBMODULE AWARENESS
+
+This folder is a **Git Submodule** of Melkor OS.
+
+**Sync Protocol:**
+```bash
+# After pushing changes here:
+cd ../..                              # Go to Melkor root
+git add departments/nerd-with-nart
+git commit -m "chore: update department reference"
+git push origin main
+```
+
+**Full SOP:** See `../../memory/sop-submodule-sync.md`
+
+---
 
 ## ⌨️ SLASH COMMANDS
-/architect - Start Content Blueprinting (Use @architect.md).
-/performer - Draft content (Agent 2A for rapid, Agent 2B for flagship).
-/audit     - Execute 6-Point Sovereign Audit in a NEW tab (Use @auditor.md).
-/sync      - Same as "save" - Log current progress to SYSTEM_STATE.md.
+| Command | Action |
+|---------|--------|
+| /architect | Start Content Blueprinting (Use @architect.md) |
+| /performer | Draft content (Agent 2A for rapid, Agent 2B for flagship) |
+| /audit | Execute 6-Point Sovereign Audit in a NEW tab (Use @auditor.md) |
+| /sync | Log current progress to SYSTEM_STATE.md |
+| /strategic | Log to MOS-level STRATEGIC_MEMORY_LOG.md |
+
+---
+
+## 📋 VERSION HISTORY
+
+| Version | Date | Changes |
+|---------|------|---------|
+| v1.4 | Dec 23, 2025 | MOS migration. Memory references updated. Submodule awareness added. |
+| v1.3 | Dec 22, 2025 | Sovereign Brain. Native Memory Protocol. |
+
+---
+
+*GEMINI.md — Department 01 Brain Context*  
+*Melkor OS v1.0*

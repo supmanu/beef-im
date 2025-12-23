@@ -1,4 +1,4 @@
-import { buildConfig } from 'payload'; // ✅ Fixed: Imported directly from 'payload'
+import { buildConfig } from 'payload';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -66,8 +66,10 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
-    // In production, you might want to disable push and use migrations instead
-    push: true,
+    // 🛡️ THE SOVEREIGN SHIELD: 
+    // Setting this to false prevents Payload from automatically 
+    // trying to manage (and delete) tables it doesn't recognize (like nerd_brain).
+    push: false,
   }),
 
   plugins: [
