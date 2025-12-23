@@ -12,6 +12,7 @@
   ```
 - **Relative imports:** Use `../../../../payload-config/payload.config` NOT `@payload-config`
 - **importMap:** Automatically handled via layout.tsx (no longer explicit import needed)
+- **Dependencies:** `graphql` (^16.8.1) is a REQUIRED peer dependency for `@payloadcms/graphql`. Must be in `package.json`.
 
 ## Route Groups (Duplex Layout Strategy)
 ```

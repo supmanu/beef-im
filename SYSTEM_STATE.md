@@ -1,7 +1,7 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 22, 2025 (Brochure Pipeline Live)
+* **Last Updated:** Dec 23, 2025 (Vercel Deployment Fixed)
 * **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 * **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA).
@@ -24,6 +24,7 @@
     *   **Skill:** `instruction-brochure-cleaner.md` created.
     *   **Library:** Standardized `library/assets/raw` structure.
 *   **[Brain]** `nerd_brain` re-ingested with v7.0 Rules.
+*   **[Infrastructure]** **Vercel Deployment Fixed:** Added missing `graphql` dependency and fixed `tsconfig` script exclusion.
 
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.
