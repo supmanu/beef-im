@@ -1,5 +1,6 @@
 import { MCPServer } from '@mastra/mcp';
 import { nartAvatar } from '../nerd/agents/nart-avatar';
+import { ctoConductor } from '../nerd/agents/cto-conductor'; // Import CTO
 
 /**
  * SOVEREIGN BRIDGE v1.1
@@ -9,7 +10,8 @@ const server = new MCPServer({
     name: 'nerd-with-nart',
     version: '1.0.0',
     agents: {
-        'nart-avatar': nartAvatar
+        'nart-avatar': nartAvatar,
+        'cto-conductor': ctoConductor // Register Strategic CTO
     },
     // Fallback to ensure tools is never undefined
     tools: nartAvatar?.tools || {},
