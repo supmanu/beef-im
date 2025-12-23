@@ -6,6 +6,7 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
     },
+    
     // 1. CRITICAL: Remove "output: export" to allow server-side rendering.
 
     // 2. Prevent Next.js from trying to bundle these server-side packages
@@ -51,11 +52,18 @@ const nextConfig = {
         ],
     },
 
-    // 4. SILENCE THE NOISE (The new part)
-    // This suppresses the "Sass @import rules are deprecated" warnings
+    // 4. SILENCE THE NOISE (Updated for Next.js 15 / Sass 3.0)
     sassOptions: {
-        silenceDeprecations: ['legacy-js-api'],
+        // We add 'import' to silence the specific warning you are seeing
+        silenceDeprecations: ['legacy-js-api', 'import'],
         quietDeps: true,
+        logger: {
+            warn: function (message) {
+                // filter out specific deprecation warnings
+                if (message.includes('Deprecation Warning')) return;
+                console.warn(message);
+            },
+        },
     },
 
     // 5. Ensure Webpack is used
