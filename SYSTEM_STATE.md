@@ -1,7 +1,7 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 23, 2025 (Vercel Deployment Fixed)
+* **Last Updated:** Dec 24, 2025 (Layer 2 Decommissioned)
 * **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 * **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA).
@@ -36,6 +36,7 @@
 7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
 8.  **RAG Law:** Pricing & Visa rules must use `<rag_bridge_protocol>` triggers.
 9.  **Brochure Law:** Cleaners MUST use `aia-lexicon.md`.
+10. **Hierarchy Law:** Layer 2 (PDF Vault) is **Forensic Fallback ONLY**. Primary production MUST use Layer 3 (Markdown/Vector).
 
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).
