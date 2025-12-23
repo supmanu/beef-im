@@ -1,3 +1,15 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+// nerd/agents/nart-avatar.ts -> ../../.env
+const __dirname = path.dirname(__filename);
+const envPath = path.resolve(__dirname, '../../.env');
+
+dotenv.config({ path: envPath });
+
+// Fallback: if that didn't work (development root), try standard config
 import 'dotenv/config';
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
@@ -20,12 +32,15 @@ const memory = new Memory({
 
 // Sovereign DNA Injection (Zero-Loss Protocol)
 import fs from 'fs';
-import path from 'path';
+// path import moved to top of file
 
 // ═══════════════════════════════════════════════════════════════════
 // 🔐 VAULT MANIFEST LOADER (Melkor OS Integration)
 // ═══════════════════════════════════════════════════════════════════
 const loadVaultManifest = () => {
+    console.log('🛑 Forensic Vault has been manually disabled by CTO mandate.');
+    return null;
+    /*
     try {
         const manifestPath = path.join(process.cwd(), 'nerd', 'vault-manifest.json');
 
@@ -41,6 +56,7 @@ const loadVaultManifest = () => {
         console.error('❌ Failed to load Vault manifest:', error);
         return null;
     }
+    */
 };
 
 const vaultManifest = loadVaultManifest();
@@ -181,7 +197,7 @@ export const nartAvatar = new Agent({
     // REQUIRED: Description for MCP conversion
     description: 'Expert Digital Twin for insurance forensics, Thai health statistics (NHES VII), and systemic financial analysis. Has access to AIA Forensic Vault for policy verification.',
     instructions: voiceDnaInstructions,
-    model: google('gemini-flash-latest'), // Using the auto-updated stable alias
+    model: google('gemini-2.5-flash'), // Explicitly using 2.5 Flash (Dec 2025 Standard)
     memory: memory,
     tools: {
         searchNerdBrain,

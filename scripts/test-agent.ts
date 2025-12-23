@@ -4,11 +4,19 @@ import { nartAvatar } from '../nerd/agents/nart-avatar';
 import fs from 'fs';
 
 async function main() {
-    console.log("🤖 WAKING NART AVATAR...");
+    console.log("🤖 WAKING NART AVATAR [DIAGNOSTIC MODE]...");
 
     try {
+        // Simple diagnostic prompt to test:
+        // 1. Identity (System Prompt)
+        // 2. Tool Usage (Vector DB)
+        // 3. Response Generation (LLM)
+        const prompt = 'What is the obesity rate in NHES VII? Use your brain tool.';
+
+        console.log(`❓ Asking: "${prompt}"`);
+
         const response = await nartAvatar.generate([
-            { role: 'user', content: 'What is the obesity rate in NHES VII? Use your brain tool.' }
+            { role: 'user', content: prompt }
         ]);
 
         console.log("\n✅ AGENT RESPONSE:");
@@ -19,7 +27,6 @@ async function main() {
 
     } catch (error: any) {
         console.error("❌ AGENT FAILURE (See agent-error.log)");
-        // Capture all enumerable properties
         const errorLog = {
             message: error.message,
             stack: error.stack,
