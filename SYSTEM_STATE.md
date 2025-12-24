@@ -20,11 +20,16 @@
     *   **Safeguards:** 10-point Checklist + 5 Hard-Coded Guards.
     *   **Status:** Production Ready.
 *   **[Capability]** **Brochure Pipeline (Manual + AI)** Established.
-    *   **Lexicon:** `aia-lexicon.md` created (Product/Medical/OCR).
+    *   **Lexicon:** `sovereign-lexicon.md` created (Product/Medical/OCR).
     *   **Skill:** `instruction-brochure-cleaner.md` created.
     *   **Library:** Standardized `library/assets/raw` structure.
 *   **[Brain]** `nerd_brain` re-ingested with v7.0 Rules.
+*   **[Optimization]** **ThaiHealth Watch 2025/2026 Cleanup Complete.**
+    *   **Scope:** Cleaned & Restored both documents (100% Accuracy).
+    *   **Result:** 150+ OCR errors corrected, garbage/hallucinations removed.
+    *   **Memory:** Patterns integrated into `nerd/references/sovereign-lexicon.md`.
 *   **[Infrastructure]** **Vercel Deployment Fixed:** Added missing `graphql` dependency and fixed `tsconfig` script exclusion.
+*   **[Infrastructure]** **Twin CTO Architecture Active:** Claude (Agent 2B) migrated to CLI/Desktop for full repository access.
 
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.
@@ -35,7 +40,7 @@
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
 7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
 8.  **RAG Law:** Pricing & Visa rules must use `<rag_bridge_protocol>` triggers.
-9.  **Brochure Law:** Cleaners MUST use `aia-lexicon.md`.
+9.  **Brochure Law:** Cleaners MUST use `sovereign-lexicon.md`.
 10. **Hierarchy Law:** Layer 2 (PDF Vault) is **Forensic Fallback ONLY**. Primary production MUST use Layer 3 (Markdown/Vector).
 
 ## 🚀 READY

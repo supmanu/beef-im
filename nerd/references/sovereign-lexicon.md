@@ -1,8 +1,8 @@
-# AIA LEXICON & OCR CORRECTION DICTIONARY
+# SOVEREIGN LEXICON & OCR CORRECTION DICTIONARY
 
-**Purpose:** Master reference for cleaning OCR'd brochure text to ensure accuracy in Product Names, Medical Terminology, and Legal Text.  
-**Updated:** December 23, 2025  
-**Source:** Validated against AIA Benefits Plus 2025 brochure cleaning (70+ corrections)
+**Purpose:** Universal pattern matching engine for cleaning OCR text across Melkor OS (Brochures, Reports, Government Docs).
+**Updated:** December 25, 2025 (Refactored to Sovereign Status)
+**Source:** Validated against AIA Benefits Plus 2025, ThaiHealth Watch 2025/2026.
 
 ---
 
@@ -20,6 +20,7 @@
 | **AIA ONE BILLION** | **AIA ONE BILLION** | AIA กิNE BILLIกิN |
 | **CI (Critical Illness)** | **ซีไอ** | ซีโอ |
 | **Unit Linked** | **ยูนิต ลิงค์** | ยูนิต ลิงค์ (extra space) |
+| **ThaiHealth Watch** | **ThaiHealth Watch** | ThaiHealth UJatch, ThaiHealth Uatch |
 
 ### Vitality Statuses
 
@@ -54,10 +55,37 @@
 | **Severe / Major** | **รุนแรง** | รูปแบบ, รูปแรง, ภัยแรง |
 | **Recurrent** | **กลับเป็นซ้ำ** | กลับเป็นข้า |
 | **Total Permanent Disability** | **ทุพพลภาพถาวรสิ้นเชิง** | ทุพพลภาพถาวรขั้นเชิง |
+| **Pollution** | **มลพิษ** | ผลพิษ |
+| **Dust / PM 2.5** | **ฝุ่น** | ผู้น |
+| **E-Cigarette** | **บุหรี่ไฟฟ้า** | บุหรี่ไม่มี, บุหรี่ไม่ฟ้า |
+| **Suicide** | **ฆ่าตัวตาย** | มาตัวตาย |
+| **Panic** | **แพนิค** | แผนิค |
+| **Tobacco** | **ยาสูบ** | อาสูบ |
+| **Artificial Intelligence** | **ปัญญาประดิษฐ์** | Artificial Intelligent |
+| **Lymphogranuloma Venereum** | **ฝีมะม่วง** | ผิ่มแม่วง (Context: STI) |
+| **Herpes** | **เริม** | เริ่ม (Context: STI) |
+| **Stunting** | **ภาวะเตี้ย** | ภาวะเดี๋ย |
+| **COVID-19** | **ซ้ำด้วยการติดโควิด** | น้ำด้วยการติดโตวิด |
 
 ---
 
-## 3. ⚖️ LEGAL & DISCLAIMER TEXT
+## 3. 🗺️ GEOGRAPHIC CORRECTION (PROVINCES)
+
+| English | Thai (Official) | Common OCR Errors (To Fix) |
+| :--- | :--- | :--- |
+| **Chiang Rai / Mai** | **เชียง-** | เขียง |
+| **Mae Hong Son** | **แม่ฮ่องสอน** | แม่ข้องสอน, แม่โสต๊วย |
+| **Khon Kaen** | **ขอนแก่น** | ออบแก่น |
+| **Lopburi** | **ลพบุรี** | อพบุรี |
+| **Sukhothai** | **สุโขทัย** | สุริยทัย |
+| **Kamphaeng Phet** | **กำแพงเพชร** | ท้ายพงเพชร |
+| **Lamphun** | **ลำพูน** | สำพูน |
+| **Suphan Buri** | **สุพรรณบุรี** | สพรรณบุรี |
+| **Samut Songkhram** | **สมุทรสงคราม** | สุนทรสงคราม |
+
+---
+
+## 4. ⚖️ LEGAL & DISCLAIMER TEXT
 
 | Wrong (OCR) | Right (Correction) | Context |
 | :--- | :--- | :--- |
@@ -76,10 +104,12 @@
 | ระยะเวลาเป็นกรมธรรม์ | **ระบุไว้ในกรมธรรม์** | "specified in policy" |
 | โจสตั๊คม | **ใจสมัคร** | Suicide clause |
 | โจมตีควาย | **ใจสมัคร** | Suicide clause |
+| บัญชีผ้า | **บัญชีม้า** | Mule Account |
+| หรันวิกฤตสั่งคม | **เป็นวิกฤตสังคม** | Social Crisis |
 
 ---
 
-## 4. 📝 COMMON OCR TYPOS & PATTERNS
+## 5. 📝 COMMON OCR TYPOS & PATTERNS
 
 ### Insurance Terminology
 
@@ -95,6 +125,8 @@
 | ล่าอุดที่ | **ล่าสุดที่** | Latest |
 | แบบบ้านาญ | **แบบบำนาญ** | Annuity |
 | ปิดอ | **ปีต่อ** | Next year / renewal |
+| โรเดอร์ | **ไรเดอร์** | Rider |
+| รบกองทุน | **งบกองทุน** | Fund Budget |
 
 ### General Terms
 
@@ -109,10 +141,14 @@
 | ได้หู | **ได้** | "can be" |
 | เบื้องอก | **เนื้องอก** | Tumor |
 | ถนนสุรวงค์ | **ถนนสุรวงศ์** | Address |
-
+| เคลิเวอรี | **เดลิเวอรี** | Delivery |
+| ศพค. | **ศพด.** | Child Development Center |
+| โภชนาการช้อน | **โภชนาการซ้อน** | Nutrition |
+| จิติพี | **จีดีพี** | GDP |
+| เนียนนิ่ง/เนื้อยัง | **เนือยนิ่ง** | Sedentary |
 ---
 
-## 5. 📐 FORMATTING STANDARDS
+## 6. 📐 FORMATTING STANDARDS
 
 - **Tables:** Keep original pipe structure `| ... |`. Do not collapse rows.
 - **Headers:** Ensure strict hierarchy (`#`, `##`, `###`).
@@ -123,7 +159,7 @@
 
 ---
 
-## 6. 🔧 REGEX PATTERNS FOR AUTOMATION
+## 7. 🔧 REGEX PATTERNS FOR AUTOMATION
 
 ```javascript
 // Company Name

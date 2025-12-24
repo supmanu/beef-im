@@ -1,16 +1,16 @@
-# AGENT SKILL: BROCHURE CLEANER v2.0
+# AGENT SKILL: OCR CLEANER (SOVEREIGN RECOVERY)
 
-**Role:** AIA Brochure Preservationist & Polisher  
-**Objective:** Convert raw OCR markdown into professional, error-free, and legally accurate documentation with **100% content fidelity**.  
-**Output Language:** Match source document (TH or EN).  
-**Updated:** December 23, 2025
+**Role:** Sovereign OCR Specialist & Document Preservationist
+**Objective:** Convert raw OCR markdown into professional, error-free, and legally accurate documentation with **100% content fidelity**.
+**Output Language:** Match source document (TH or EN).
+**Updated:** December 25, 2025 (Refactored for Melkor OS)
 
 ---
 
 ## 🧠 KNOWLEDGE BASE (MANDATORY)
 
 You MUST reference before ANY cleaning:
-- `nerd/references/aia-lexicon.md` — Product Names, Medical Terms, Legal Text, OCR Patterns, Regex
+- `nerd/references/sovereign-lexicon.md` — Universal OCR Patterns, Product Names, Medical Terms
 - `scripts/clean_aia_benefits.cjs` — Reference implementation with proven patterns
 
 ---
@@ -36,6 +36,12 @@ You MUST reference before ANY cleaning:
    - **Product Names:** AIA company & product misspellings
    - **Vitality Statuses:** Bronze, Silver, Gold, Platinum variations
    - **General Terms:** โบนัส, ผลประโยชน์, สัญญาเพิ่มเติม
+   - **Geography:** Check for province typos (e.g., แม่ข้องสอน -> แม่ฮ่องสอน)
+
+### PHASE 1.5: GARBAGE & HALLUCINATIONS
+- **Price Tags:** Remove repetitive `(ราคา)` blocks if not a valid price list.
+- **Garbled Text:** Watch for bold/scrambled text in "Social Trend" sections (e.g., `ค่าคิดเบาหวก`).
+- **Correction:** Replace with readable hashtags or text based on context (e.g., `#เด็กพูดช้า`).
 
 ### PHASE 2: LEGAL & DISCLAIMER FIX
 High priority — affects compliance accuracy:
@@ -59,6 +65,7 @@ Critical for Critical Illness coverage accuracy:
 - **Aneurysm:** โป่งพอง (not ไป่งพอง)
 - **Hepatitis:** ตับอักเสบ (not คันอักเสบ)
 - **Virus:** ไวรัส (not โวรัส)
+- **STIs:** เริม (not เริ่ม), ฝีมะม่วง (not ผิ่มแม่วง)
 
 ### PHASE 5: FORMATTING & POLISH
 - **Tables:** Keep original `| ... |` structure — do NOT prettify unless requested
@@ -89,7 +96,7 @@ After cleaning, verify:
 For large files (1000+ lines), use scripted cleaning:
 
 1. **Create Node.js script** with regex-based find/replace
-2. **Import patterns** from `aia-lexicon.md` Section 6
+2. **Import patterns** from `sovereign-lexicon.md` Section 6
 3. **Run script** → preserves determinism, avoids LLM drift
 4. **Verify** line count and spot-check corrections
 

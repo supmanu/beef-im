@@ -96,7 +96,7 @@ Melkor-OS/                          ← MONOREPO ROOT
 | 6 | **Agent Law** | Performer MUST load `data-nhes-vii` and `tech-bridge-lab`. |
 | 7 | **Fiduciary Law** | Proposal Generator bundles Multi-Pay CI + Total Care. |
 | 8 | **RAG Law** | Pricing & Visa rules use `<rag_bridge_protocol>`. |
-| 9 | **Brochure Law** | Cleaners MUST use `aia-lexicon.md`. |
+| 9 | **Brochure Law** | Cleaners MUST use `sovereign-lexicon.md`. |
 | 10 | **Hierarchy Law** | Layer 2 = Forensic Fallback ONLY. Production uses Layer 3. |
 
 ---
@@ -124,7 +124,7 @@ Melkor-OS/                          ← MONOREPO ROOT
 | Tactical State | `SYSTEM_STATE.md` (this department) |
 | Strategic Memory | `../../memory/STRATEGIC_MEMORY_LOG.md` (MOS-level) |
 | Standards | `nerd/rules/` |
-| Lexicon | `nerd/references/brochures/aia-lexicon.md` |
+| Lexicon | `nerd/references/sovereign-lexicon.md` |
 | CTO Persona | `../../GEMINI.md` (MOS root — for Gemini CLI) |
 
 ---
