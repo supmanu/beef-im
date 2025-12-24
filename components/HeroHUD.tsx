@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, useScroll, useTransform } from 'framer-motion';
 
 interface HeroHUDProps {
     temperature: number;
@@ -7,6 +7,9 @@ interface HeroHUDProps {
 }
 
 const HeroHUD: React.FC<HeroHUDProps> = ({ temperature, windSpeed }) => {
+    const { scrollY } = useScroll();
+    const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+    const y = useTransform(scrollY, [0, 400], [0, -50]); // Slight upward drift as it fades
 
     // 1. DATA CONFIGURATION (Easy to add more items later)
     const stats = [
@@ -23,7 +26,24 @@ const HeroHUD: React.FC<HeroHUDProps> = ({ temperature, windSpeed }) => {
 
     const item: Variants = {
         hidden: { opacity: 0, x: 20 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
+        visible: { 
+            opacity: 1, 
+            x: 0, 
+            transition: { duration: 0.8, ease: "easeOut" as const } 
+        }
+    };
+
+    const glitchEffect = {
+        animate: {
+            opacity: [1, 0.8, 1, 0.9, 1],
+            scale: [1, 1.02, 1, 0.98, 1],
+            transition: {
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "mirror" as const,
+                ease: "easeInOut"
+            }
+        }
     };
 
     return (
@@ -32,6 +52,7 @@ const HeroHUD: React.FC<HeroHUDProps> = ({ temperature, windSpeed }) => {
             variants={container}
             initial="hidden"
             animate="visible"
+            style={{ opacity, y }}
         >
             {stats.map((stat) => (
                 <motion.div
@@ -45,12 +66,14 @@ const HeroHUD: React.FC<HeroHUDProps> = ({ temperature, windSpeed }) => {
                     </span>
 
                     {/* Value */}
-                    <span
+                    <motion.span
+                        variants={glitchEffect}
+                        animate="animate"
                         className={`font-mono ${stat.isStatus ? 'text-xs tracking-[0.2em] animate-pulse' : 'text-xl'} font-bold ${stat.color} transition-all duration-300`}
                         style={stat.shadow ? { textShadow: `0 0 10px ${stat.shadow}` } : {}}
                     >
                         {stat.value}
-                    </span>
+                    </motion.span>
                 </motion.div>
             ))}
         </motion.div>

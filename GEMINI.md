@@ -65,7 +65,7 @@ You do NOT have access to the G: Drive MCP. You access the LOCAL filesystem only
 
 ---
 
-## 🔄 TRIGGER: "save" or "log"
+## 🔄 TRIGGER: "save", "log", "Save to Melkor", or "Save and Tell Melkor"
 
 1. **ANALYZE:** Scan the session for new patterns, decisions, or fixes.
 2. **ROUTE DECISION:**
@@ -73,7 +73,12 @@ You do NOT have access to the G: Drive MCP. You access the LOCAL filesystem only
    - Is this a **tactical/department-specific** state? → Update `./SYSTEM_STATE.md`
 3. **UPDATE RULES:**
    - If a new coding pattern emerged, create/edit `.claude/rules/[topic].md`
-4. **REPORT:**
+4. **EXECUTE MELKOR SAVE PROTOCOL (Level 1):**
+    - **IF** user said "Save to Melkor" or "Save and Tell Melkor":
+    - Commit all changes.
+    - `git push origin main` (Department Push).
+    - Report: "✅ **Child Push Complete.** Ready for Melkor Parent Sync."
+5. **REPORT:**
    - Reply: "✅ **Repository State Updated.** [Specify which files were modified]"
 
 ---

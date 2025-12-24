@@ -43,6 +43,27 @@
 9.  **Brochure Law:** Cleaners MUST use `sovereign-lexicon.md`.
 10. **Hierarchy Law:** Layer 2 (PDF Vault) is **Forensic Fallback ONLY**. Primary production MUST use Layer 3 (Markdown/Vector).
 
+## 🎨 UI/UX ENHANCEMENTS
+*   **[Manifesto Page]** Typography & Layout Refinement Complete (Dec 25, 2025).
+    *   **Hero:** Optimized heading size (`text-4xl/6xl/7xl`) for balanced impact.
+    *   **Container:** Widened from `max-w-4xl` to `max-w-5xl` for less cramped feel.
+    *   **Thai Typography:** Upgraded body text to `text-lg` with `leading-loose` for +50% readability.
+    *   **Card Hierarchy:** Section titles enlarged to `text-2xl/3xl`, English labels to `text-sm`.
+    *   **Visual Balance:** Restructured number displays (66→33, ROI 13%) with proper spacing.
+    *   **Icons:** Fixed decorative background icons with `p-6` spacing from corners.
+*   **[Tools Page]** Hybrid Design Implementation Complete (Dec 25, 2025).
+    *   **COI Calculator:** Light disclaimer card (`bg-white/80`) for Thai readability, upgraded labels to `text-base`.
+    *   **Dynasty Simulator:** Standardized title to match COI (`text-3xl/4xl`), removed awkward DELTA badge.
+    *   **Buttons:** Enlarged all preset buttons (`text-sm`, `px-5 py-2.5`) for better usability.
+    *   **Disclaimers:** Converted to subtle light cards with `text-base leading-loose` for maximum readability.
+    *   **Result:** Premium dark aesthetic + optimal Thai text readability.
+*   **[Homepage]** Typography Standardization Complete (Dec 25, 2025).
+    *   **BentoGrid Cards:** Upgraded all titles from `text-2xl` to `text-3xl md:text-4xl` (+50% size).
+    *   **Card Descriptions:** Upgraded from `text-sm` to `text-base leading-loose` (+28% Thai readability).
+    *   **Hero Subtitle:** Enlarged from `text-lg/xl` to `text-xl/2xl` with `leading-loose`.
+    *   **Search Input:** Upgraded placeholder from `text-sm` to `text-base`.
+    *   **Result:** Consistent typography scale across all pages (Manifesto/Tools/Homepage).
+
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).
 *   **Next:** Scaling production content.

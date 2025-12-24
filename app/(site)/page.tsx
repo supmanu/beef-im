@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import HomeContent from '@/components/HomeContent';
 import FeaturedPosts from '@/components/FeaturedPosts';
 import BentoGrid from '@/components/BentoGrid';
+import ForensicScroll from '@/components/landing/ForensicScroll';
+import GhostDemo from '@/components/landing/GhostDemo';
 
 export const metadata: Metadata = {
   title: "Nerd with Nart (เนิร์ดกับนาถ) | Financial Strategy",
@@ -25,10 +27,14 @@ export default function HomePage() {
       {/* 1. Client-Side Hero Section */}
       <HomeContent />
 
-      {/* 2. Server-Side Featured Articles (Top 3) */}
+      {/* 2. S-Tier Animation Layers */}
+      <ForensicScroll />
+      <GhostDemo />
+
+      {/* 3. Server-Side Featured Articles (Top 3) */}
       <FeaturedPosts />
 
-      {/* 3. Static Bento Grid Navigation */}
+      {/* 4. Static Bento Grid Navigation */}
       <BentoGrid />
     </main>
   );

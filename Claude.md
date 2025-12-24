@@ -140,11 +140,29 @@ Melkor-OS/                          ← MONOREPO ROOT
 
 ---
 
+## 🛠️ COMMAND PATTERNS
+
+### When User Says → You Do
+
+| Trigger | Action |
+|---------|--------|
+| "Save" / "Sync" | Issue Melkor Save Protocol (Level 1) |
+| "Save to Melkor" | **EXECUTE MELKOR SAVE PROTOCOL (Level 1)** |
+| "Save and Tell Melkor" | **EXECUTE MELKOR SAVE PROTOCOL (Level 1)** |
+| "Update memory" | Append to `../../memory/STRATEGIC_MEMORY_LOG.md` |
+
+---
+
 ## 🔄 SUBMODULE AWARENESS
 
 This folder is a **Git Submodule** of Melkor OS.
 
 **Melkor Save Protocol (Level 1):**
+    - **Step 1:** Commit all changes locally.
+    - **Step 2:** `git push origin main` (Department Push).
+    - **Step 3:** Report: "✅ **Child Push Complete.** Ready for Melkor Parent Sync."
+
+**Manual Command:**
 ```bash
 # Step 1: Commit in department (Child)
 cd departments/nerd-with-nart

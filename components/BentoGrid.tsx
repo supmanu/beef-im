@@ -30,10 +30,10 @@ export default function BentoGrid() {
                             <span className="text-xs font-bold text-brand-teal tracking-widest uppercase mb-2 block">
                                 The Armory
                             </span>
-                            <h3 className="text-2xl font-bold text-slate-100 mb-3 font-prompt group-hover:text-brand-teal transition-colors">
+                            <h3 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4 font-prompt group-hover:text-brand-teal transition-colors">
                                 คลังเครื่องมือ
                             </h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                            <p className="text-base text-slate-400 leading-loose mb-6">
                                 คำนวณภาษี ตรวจสอบกรมธรรม์ และวางแผนเกษียณด้วยตัวคุณเอง ผ่านเครื่องมือที่เราออกแบบมาเพื่อความแม่นยำ
                             </p>
                             <div className="flex items-center text-sm font-semibold text-slate-300 group-hover:text-brand-amber transition-colors">
@@ -51,10 +51,10 @@ export default function BentoGrid() {
                             <span className="text-xs font-bold text-brand-teal tracking-widest uppercase mb-2 block">
                                 The Manifesto
                             </span>
-                            <h3 className="text-2xl font-bold text-slate-100 mb-3 font-prompt group-hover:text-brand-teal transition-colors">
+                            <h3 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4 font-prompt group-hover:text-brand-teal transition-colors">
                                 จุดยืนของเรา
                             </h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                            <p className="text-base text-slate-400 leading-loose mb-6">
                                 ทำไมเราถึงไม่ขาย "ทางลัด" สู่ความมั่งคั่ง? อ่านเบื้องหลังความคิดและปรัชญาการทำงานของ Nerd with Nart
                             </p>
                             <div className="flex items-center text-sm font-semibold text-slate-300 group-hover:text-brand-amber transition-colors">
@@ -72,10 +72,10 @@ export default function BentoGrid() {
                             <span className="text-xs font-bold text-brand-teal tracking-widest uppercase mb-2 block">
                                 The Archive
                             </span>
-                            <h3 className="text-2xl font-bold text-slate-100 mb-3 font-prompt group-hover:text-brand-teal transition-colors">
+                            <h3 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4 font-prompt group-hover:text-brand-teal transition-colors">
                                 คลังความรู้
                             </h3>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                            <p className="text-base text-slate-400 leading-loose mb-6">
                                 รวมบทวิเคราะห์เจาะลึก กรณีศึกษา (Case Study) และจดหมายเหตุทางการเงินที่คุณอาจไม่เคยรู้มาก่อน
                             </p>
                             <div className="flex items-center text-sm font-semibold text-slate-300 group-hover:text-brand-amber transition-colors">
