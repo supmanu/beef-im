@@ -40,7 +40,9 @@ You MUST reference before ANY cleaning:
 
 ### PHASE 1.5: GARBAGE & HALLUCINATIONS
 - **Price Tags:** Remove repetitive `(ราคา)` blocks if not a valid price list.
-- **Garbled Text:** Watch for bold/scrambled text in "Social Trend" sections (e.g., `ค่าคิดเบาหวก`).
+- **Social Media Scrapes:** heavily garbled text in "Social Trend" sections is common.
+  - **Action:** DO NOT GUESS. Use `search_web` with unique phrases to find the original post and reconstruct.
+- **Garbled Text:** Watch for bold/scrambled text (e.g., `ค่าคิดเบาหวก`).
 - **Correction:** Replace with readable hashtags or text based on context (e.g., `#เด็กพูดช้า`).
 
 ### PHASE 2: LEGAL & DISCLAIMER FIX
@@ -51,14 +53,15 @@ High priority — affects compliance accuracy:
 - `สงวนสิทธิ์` patterns (ลงวนสิทธิ์, ลวนสิทธิ์, etc.)
 - `ห้ามเผยแพร่` patterns (ห้ามและแพร่, ห้ามแฮมเพร่, etc.)
 
-### PHASE 3: INSURANCE TERMINOLOGY
+### PHASE 3: INSURANCE & SOCIAL TERMINOLOGY
 - `ผู้เอาประกันภัย` (insured person) — check for OCR variants
 - `ผู้ถือกรมธรรม์` (policy holder) — check for OCR variants
 - `ปิดการขาย` vs `บิดการขาย`
 - `ล่าสุดที่` vs `ล่าอุดที่`
 - `แบบบำนาญ` (annuity) vs `แบบบ้านาญ`
+- **Social:** `นิเวศ` (not วิเวศ), `สานพลัง` (not สารพนัก)
 
-### PHASE 4: MEDICAL TERMS (CI PRODUCTS)
+### PHASE 4: MEDICAL TERMS (CI & PUBLIC HEALTH)
 Critical for Critical Illness coverage accuracy:
 - **Aorta:** เอออร์ตา (not เยอะรัดก็)
 - **Carotid:** คาโรติด (not ค่าโวติด)
@@ -66,6 +69,7 @@ Critical for Critical Illness coverage accuracy:
 - **Hepatitis:** ตับอักเสบ (not คันอักเสบ)
 - **Virus:** ไวรัส (not โวรัส)
 - **STIs:** เริม (not เริ่ม), ฝีมะม่วง (not ผิ่มแม่วง)
+- **NCDs:** `ไขมันพอกตับ` (not ดับ), `ภาวะดื้ออินซูลิน` (not ติดต่อ)
 
 ### PHASE 5: FORMATTING & POLISH
 - **Tables:** Keep original `| ... |` structure — do NOT prettify unless requested
@@ -74,6 +78,13 @@ Critical for Critical Illness coverage accuracy:
 - **`<br/>` Tags:** Acceptable within table cells
 - **Remove:** Page numbers, ref codes (HBX EN, E&OE)
 - **Whitespace:** 1 blank line between paragraphs
+
+### PHASE 6: STRICT MANUAL AUDIT (THE "TOUCH" PROTOCOL)
+**Mandatory for Sovereign-Tier Documents:**
+1. **Line-by-Line Scan:** Scroll through the entire document manually.
+2. **Context Check:** Look for "real words" that are wrong in context (e.g., `ชัก` vs `ชัด`, `ดับ` vs `ตับ`).
+3. **Garbled Block Reconstruction:** Identify blocks of nonsense text (often social media comments or references).
+   - **Protocol:** Search unique substrings on Google -> Find source -> Reconstruct manually.
 
 ---
 

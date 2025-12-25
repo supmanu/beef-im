@@ -1,8 +1,8 @@
 # SOVEREIGN LEXICON & OCR CORRECTION DICTIONARY
 
 **Purpose:** Universal pattern matching engine for cleaning OCR text across Melkor OS (Brochures, Reports, Government Docs).
-**Updated:** December 25, 2025 (Refactored to Sovereign Status)
-**Source:** Validated against AIA Benefits Plus 2025, ThaiHealth Watch 2025/2026.
+**Updated:** December 25, 2025 (Post ThaiHealth Watch 2025/2026 Cleanup)
+**Source:** Validated against AIA Benefits Plus 2025, ThaiHealth Watch 2025/2026, NHES VII (pending).
 
 ---
 
@@ -20,7 +20,14 @@
 | **AIA ONE BILLION** | **AIA ONE BILLION** | AIA กิNE BILLIกิN |
 | **CI (Critical Illness)** | **ซีไอ** | ซีโอ |
 | **Unit Linked** | **ยูนิต ลิงค์** | ยูนิต ลิงค์ (extra space) |
-| **ThaiHealth Watch** | **ThaiHealth Watch** | ThaiHealth UJatch, ThaiHealth Uatch |
+| **ThaiHealth Watch** | **ThaiHealth Watch** | ThaiHealth UJatch, ThaiHealth Uatch, ThaiHealth UNatch |
+| **Council of Breath** | **สภาลมหายใจ** | สภากลมหายใจ |
+| **Motto** | **สานพลัง สร้างนวัตกรรม สื่อสารสุข** | สารพนัก, สื่อสารสุข (Partial) |
+| **Ecosystem** | **นิเวศ** | วิเวศ |
+| **Danger** | **ภัย** | กัย |
+| **Academic Seminar** | **วงเสวนา** | วงสวน |
+| **Refine/Polish** | **ขัดเกลา** | ชัดเกลา |
+| **BMA** | **กทม.** | กหม. |
 
 ### Vitality Statuses
 
@@ -38,7 +45,24 @@
 | English Term | Thai Term (Verified) | Common OCR Errors (To Fix) |
 | :--- | :--- | :--- |
 | **Hepatitis** | **ตับอักเสบ** | คันอักเสบ |
-| **Virus** | **ไวรัส** | โวรัส |
+| **Fake News** | **ข่าวปลอม** | ช่าวปลอม |
+| **News** | **ข่าว** | ช่าว |
+| **Believe (data/info)** | **เชื่อ** | เชื้อ (context: เชื้อข้อมูล -> เชื่อข้อมูล) |
+| `เชื่อ` | `เชื้อ` |
+| `ตีตราทางสังคม` | `ติดราทางสังคม` |
+| `สุกๆ ดิบๆ` | `สุกๆ ดีบๆ` |
+| `ข่าว` | `ช่าว` |
+| `ทิ่มแทง` | `ทีมแท่ง` |
+| `โดยมิชอบ` | `โดยมีขอบ` |
+| `โทรม` | `โกรม` |
+| `ดัชนี` | `ตีชนี` |
+| `เสพติด` | `เสนอดีต` |
+| `ตุ๊กตา` | `ผู้กลา` |
+| `วอเตอร์ลู` | `อเดอร์ลู` |
+| `คิดว่าคุมไม่ได้` | `คิดว่าคุณไม่ได้` |
+| `วาทีสาธกกิจ` | `วาทีสาธารณ` | สุกๆ ดีบๆ |
+| **House Wins** | **เจ้ามือ** | เข้ามือ |
+| **Two-edged Sword** | **ดาบสองคม** | ตาบสองคม |
 | **Viral Hepatitis** | **ไวรัสตับอักเสบ** | ไวรัสคันอักเสบ, โวรัสคันอักเสบ |
 | **Aorta** | **เอออร์ตา** | เยอะรัดก็, เอื้ออร่ด, เอ ออร์ ตา |
 | **Carotid (artery)** | **คาโรติด** | ค่าโวติด |
@@ -61,11 +85,23 @@
 | **Suicide** | **ฆ่าตัวตาย** | มาตัวตาย |
 | **Panic** | **แพนิค** | แผนิค |
 | **Tobacco** | **ยาสูบ** | อาสูบ |
+| **Ticks & Mosquitoes** | **เห็บและยุง** | เห็นและยุง |
 | **Artificial Intelligence** | **ปัญญาประดิษฐ์** | Artificial Intelligent |
 | **Lymphogranuloma Venereum** | **ฝีมะม่วง** | ผิ่มแม่วง (Context: STI) |
 | **Herpes** | **เริม** | เริ่ม (Context: STI) |
 | **Stunting** | **ภาวะเตี้ย** | ภาวะเดี๋ย |
 | **COVID-19** | **ซ้ำด้วยการติดโควิด** | น้ำด้วยการติดโตวิด |
+| **Insulin Resistance** | **ภาวะดื้ออินซูลิน** | ภาวะติดต่ออินซูลิน |
+| **Fatty Liver** | **ไขมันพอกตับ** | ไขมันพอกดับ |
+| **Heart Failure** | **หัวใจวาย** | หัวใจหวาย |
+| **Malnutrition** | **โภชนาการซ้อน** | โภชนาการช้อน |
+| **Recession** | **ภาวะถดถอย** | ภาวะติดถอย |
+| **Statistics** | **สถิติ** | สกิดี, สถิตา |
+| **Child Development Center** | **ศพด.** | ศพค. |
+| **Danger (อันตราย)** | **อันตราย** | อัตราย |
+| **Social Media** | **โซเชียลมีเดีย** | ไซเซียลมีเดีย |
+| **Cyber / Digital** | **ไซเบอร์** | ไซเบอร์ |
+| **Personnel / Staff** | **บุคลากร** | รุทธิ, รุทธิอภิปรายการ |
 
 ---
 
@@ -80,8 +116,28 @@
 | **Sukhothai** | **สุโขทัย** | สุริยทัย |
 | **Kamphaeng Phet** | **กำแพงเพชร** | ท้ายพงเพชร |
 | **Lamphun** | **ลำพูน** | สำพูน |
+| **Lamphun** | **ลำพูน** | สำพูน |
 | **Suphan Buri** | **สุพรรณบุรี** | สพรรณบุรี |
-| **Samut Songkhram** | **สมุทรสงคราม** | สุนทรสงคราม |
+| **Phatthalung** | **พัทลุง** | พักลุง |
+| **Kumphawapi** | **กุมภวาปี** | ฯมภวาปี |
+| **Huai Koeng** | **ห้วยเกิ้ง** | ห้วยเก็ง |
+| **Pattani** | **ปัตตานี** | ปิดตานี |
+| **Border** | **ชายแดน** | ขายแดน |
+---
+
+## 4. 🚸 ROAD SAFETY & DIGITAL DANGERS (NEW)
+
+| English / Context | Thai (Official) | Common OCR Errors (To Fix) |
+| :--- | :--- | :--- |
+| **Speed Bump** | **ลูกระนาด** | ลูกระบาด |
+| **Hit by Sedan** | **ถูกเก๋ง** | ถูกเก่ง |
+| **Motorcycle** | **มอเตอร์ไซค์** | อเตอร์ไซค์, บิกไบก์ (-> บิ๊กไบค์) |
+| **Chain Reaction** | **ลูกโซ่** | ลูกไซ่ |
+| **Injured** | **บาดเจ็บ** | บาตเจ็บ |
+| **Collision** | **พุ่งชน** | พุ่งขน |
+| **School Bus** | **รถรับส่งนักเรียน** | ธุรกิจส่วนักเรียน, ธุกรับส่งนักเรียน |
+| **Online Gambling** | **พนันออนไลน์** | คุณพนันออนไลน์ |
+| **Betting** | **เดิมพัน** | เติมพัน |
 
 ---
 
