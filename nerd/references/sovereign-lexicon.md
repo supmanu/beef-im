@@ -243,4 +243,18 @@
 
 ---
 
+## 8. 🗑️ GARBAGE PATTERNS (AUTOMATED REMOVAL)
+
+### 🚫 Chinese Spam / Foreign Noise
+Pattern: `哈，你是个小伙子` or any random Chinese characters in Thai context.
+*   **Action:** DELETE line immediately.
+*   **Impact:** Found in NHES VII headers, causes parser confusion.
+
+### 🚫 Header Isolation Rule
+Pattern: `#Header` without preceding newline.
+*   **Action:** INSERT `\n\n` before any `#`.
+*   **Reason:** Markdown parsers fail if headers are fused to previous paragraphs.
+
+---
+
 *Reference Script:* `scripts/clean_aia_benefits.cjs`

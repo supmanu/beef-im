@@ -28,6 +28,16 @@
     *   **Scope:** Cleaned & Restored both documents (100% Accuracy).
     *   **Result:** 150+ OCR errors corrected, garbage/hallucinations removed.
     *   **Memory:** Patterns integrated into `nerd/references/sovereign-lexicon.md`.
+*   **[Optimization]** **NHES VII Audit & Clean Complete.**
+    *   **Status:** Certified & Ingested (Dec 25, 2025).
+    *   **Scope:** Forensic audit, structural hardening, Golden Number verification.
+    - [x] **NHES VII Pillar Upgrade (v2.0)** <!-- id: pillar_0 -->
+    -   **Detailed audit & upgrade** complete. Logged in SYSTEM_STATE.
+    *   **Golden Numbers:** Verified (Obesity 45.0% / Diabetes 10.6% / HT 29.5%).
+*   **[Optimization]** **NHES VII Pillar Upgrade (v2.0) Complete.**
+    *   **Status:** Sovereign Edition Live.
+    *   **New Data:** Added Regional Risk Map & Demographic Deep-Dives.
+    *   **Compliance:** Thai-First Headers, No "Pi".
 *   **[Infrastructure]** **Vercel Deployment Fixed:** Added missing `graphql` dependency and fixed `tsconfig` script exclusion.
 *   **[Infrastructure]** **Twin CTO Architecture Active:** Claude (Agent 2B) migrated to CLI/Desktop for full repository access.
 

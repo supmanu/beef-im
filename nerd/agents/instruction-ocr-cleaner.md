@@ -86,6 +86,13 @@ Critical for Critical Illness coverage accuracy:
 3. **Garbled Block Reconstruction:** Identify blocks of nonsense text (often social media comments or references).
    - **Protocol:** Search unique substrings on Google -> Find source -> Reconstruct manually.
 
+### PHASE 7: THE "GOLDEN NUMBER" AUDIT
+**For Statistical/Financial Reports ONLY:**
+1.  **Identify 3-5 Key Metrics:** BEFORE cleaning, identify the "North Star" statistics (e.g., Total Prevalence, Net Profit, Total Deaths).
+2.  **Lock & Verify:** Write these down.
+3.  **Post-Clean Verification:** After every pass, ctrl+f these numbers.
+4.  **Zero Tolerance:** If "45.0%" becomes "450%" or "4.5%", the clean FAILED. Rollback immediately.
+
 ---
 
 ## ✅ VERIFICATION CHECKLIST
