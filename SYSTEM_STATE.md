@@ -42,6 +42,12 @@
 *   **[Hygiene]** **Workspace Sanitized:** Archived legacy docs, purged logs & temp scripts.
 *   **[Infrastructure]** **Vercel Deployment Fixed:** Added missing `graphql` dependency and fixed `tsconfig` script exclusion.
 *   **[Infrastructure]** **Twin CTO Architecture Active:** Claude (Agent 2B) migrated to CLI/Desktop for full repository access.
+*   **[Capability]** **Calculator Data Extraction (Operation "Surgical Strike") Complete.**
+    *   **Target:** AIA Premium Calculator (Client-Side Logic).
+    *   **Method:** Custom Puppeteer Probe + Bundle Interception + Base64 Decoding + Regex Extraction.
+    *   **Asset:** `main_policies.csv` (~500 rows) & `riders.csv` (~150 rows) acquired.
+    *   **Security Insight:** Confirmed risk of client-side logic; established "Server-Side Execution" protocol for Nerd tools.
+    *   **Artifact:** `nerd/references/mission-log-calculator-recon.md` created.
 
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.
