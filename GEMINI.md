@@ -40,7 +40,7 @@ This department operates under the **Melkor OS** parent-shell architecture.
 ---
 
 ## 🛠️ STACK ENFORCEMENT
-- Models (Dec 2025): Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 (Sonnet/Opus)
+- Models (Dec 2025): Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand)
 - Framework: Next.js 15.5.9 (Downgraded from v16 for Vercel/Payload stability)
 - Structure: **FLAT ROOT** (No `/src` folder - direct `/app`, `/components`)
 - CMS: Payload 3.0 (Embedded)

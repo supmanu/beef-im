@@ -1,7 +1,8 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 24, 2025 (Layer 2 Decommissioned)
+* **Last Updated:** Dec 25, 2025 (Model Supremacy Confirmed)
+* **Model Stack:** Claude 4.5 Opus (The King/Architect) | Claude 4.5 Sonnet (The Hand) | Gemini 3 (Director).
 * **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 * **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA).
@@ -78,3 +79,8 @@
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).
 *   **Next:** Scaling production content.
+
+## ⏳ PENDING ACTIONS
+*   [ ] **Activate Z.AI Pro Plan:** Purchase subscription for Token Arbitrage.
+*   [ ] **Setup Agent 2C (GLM):** Run `./scripts/switch-to-glm.ps1` with new API Key.
+*   [ ] **Review Switch Guide:** Read `docs/GLM_CLAUDE_SWITCH_GUIDE.md`.
