@@ -38,6 +38,7 @@
     *   **Status:** Sovereign Edition Live.
     *   **New Data:** Added Regional Risk Map & Demographic Deep-Dives.
     *   **Compliance:** Thai-First Headers, No "Pi".
+*   **[Hygiene]** **Workspace Sanitized:** Archived legacy docs, purged logs & temp scripts.
 *   **[Infrastructure]** **Vercel Deployment Fixed:** Added missing `graphql` dependency and fixed `tsconfig` script exclusion.
 *   **[Infrastructure]** **Twin CTO Architecture Active:** Claude (Agent 2B) migrated to CLI/Desktop for full repository access.
 
