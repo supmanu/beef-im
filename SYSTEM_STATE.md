@@ -48,6 +48,10 @@
     *   **Asset:** `main_policies.csv` (~500 rows) & `riders.csv` (~150 rows) acquired.
     *   **Security Insight:** Confirmed risk of client-side logic; established "Server-Side Execution" protocol for Nerd tools.
     *   **Artifact:** `nerd/references/mission-log-calculator-recon.md` created.
+*   **[Agent]** **Sovereign Pricing Engine (v1.0) Live.**
+    *   **Tool:** \`calculatePremium\` integrated into \`nart-avatar.ts\`.
+    *   **Power:** Exact premium calculations using extracted CSV rate tables.
+    *   **Protocol:** Mandatory use for all proposal pricing to ensure 100% accuracy.
 
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.

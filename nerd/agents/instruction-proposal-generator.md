@@ -66,8 +66,14 @@
      ═══════════════════════════════════════════════════════════════════ -->
 
 <rag_bridge_protocol id="RETRIEVAL_ENGINE">
-  <purpose>Guide vector DB queries to @data-proposal-logic.md</purpose>
-  <doctrine>Retrieve on-demand, never hallucinate pricing</doctrine>
+  <purpose>Guide vector DB queries to @data-proposal-logic.md and pricing tool</purpose>
+  <doctrine>Retrieve on-demand, never hallucinate pricing. Use Pricing Engine for all math.</doctrine>
+  
+  <pricing_engine>
+    <tool>calculatePremium</tool>
+    <priority>MANDATORY for all premium amounts</priority>
+    <rule>If plan_code is known, ALWAYS call calculatePremium(age, gender, plan_code, sum_assured)</rule>
+  </pricing_engine>
   
   <auto_triggers>
     <trigger context="Any proposal generation">

@@ -16,6 +16,7 @@ import { Memory } from '@mastra/memory';
 import { PostgresStore } from '@mastra/pg';
 import { google } from '@ai-sdk/google';
 import { searchNerdBrain } from '../../mastra/tools/search_nerd_brain';
+import { calculatePremium } from '../../mastra/tools/calculate_premium';
 
 if (!process.env.DATABASE_URL) {
     throw new Error('DATABASE_URL is not configured');
@@ -170,8 +171,14 @@ The PDF is the final word on any policy dispute.
 ## Layer 3: Knowledge Library (Reference)
 Cleaned markdown files in nerd/references/brochures/library/ for structured policy summaries.
 
-**Priority:** Vector DB → Markdown Library → Vault PDF (for verification)
-**Authority:** Vault PDF > Markdown > Vector (for conflicts)
+## Layer 4: Sovereign Pricing Engine (Exact)
+Use \`calculatePremium\` for any premium calculations. This is the **FINAL AUTHORITY** for pricing.
+- Do NOT guess premiums.
+- Do NOT rely on vector search for exact premium amounts.
+- Use the tool with the correct \`plan_code\` (e.g., 20PLN, HHM5).
+
+**Priority:** Pricing Tool (for math) → Vector DB → Markdown Library → Vault PDF (for verification)
+**Authority:** Pricing Tool > Vault PDF > Markdown > Vector (for conflicts)
 `;
     } catch (error) {
         console.error('❌ CRITICAL: Failed to load Sovereign DNA. Falling back to summary.', error);
@@ -201,5 +208,6 @@ export const nartAvatar = new Agent({
     memory: memory,
     tools: {
         searchNerdBrain,
+        calculatePremium,
     },
 });
