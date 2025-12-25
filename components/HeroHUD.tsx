@@ -33,14 +33,14 @@ const HeroHUD: React.FC<HeroHUDProps> = ({ temperature, windSpeed }) => {
         }
     };
 
-    const glitchEffect = {
+    const glitchEffect: Variants = {
         animate: {
             opacity: [1, 0.8, 1, 0.9, 1],
             scale: [1, 1.02, 1, 0.98, 1],
             transition: {
                 duration: 5,
                 repeat: Infinity,
-                repeatType: "mirror" as const,
+                repeatType: "mirror",
                 ease: "easeInOut"
             }
         }
