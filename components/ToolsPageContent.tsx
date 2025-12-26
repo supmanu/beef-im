@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FlaskConical, BarChart3, Binary, Plus, Activity, Cpu } from 'lucide-react';
+import { FlaskConical, BarChart3, Binary, Plus, Activity, Cpu, Search } from 'lucide-react';
 import ToolLoader from './tools/ToolLoader';
 import { gsap } from 'gsap';
 
@@ -108,6 +108,23 @@ export default function ToolsPageContent() {
                         )}
                         <Binary className={`relative z-10 ${activeTool === 'DYNASTY_SIM' ? 'text-amber-400' : ''}`} />
                         <span className="relative z-10 tracking-tight">Dynasty Simulator</span>
+                    </button>
+
+                    <button
+                        onClick={() => setActiveTool('IRR_TRUTH')}
+                        className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'IRR_TRUTH'
+                            ? 'text-white border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.2)]'
+                            : 'text-slate-500 border-white/5 hover:text-cyan-400 hover:border-cyan-500/30'
+                            } border`}
+                    >
+                        {activeTool === 'IRR_TRUTH' && (
+                            <motion.div 
+                                layoutId="activeTab"
+                                className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 to-blue-600/20"
+                            />
+                        )}
+                        <Search className={`relative z-10 ${activeTool === 'IRR_TRUTH' ? 'text-cyan-400' : ''}`} />
+                        <span className="relative z-10 tracking-tight">IRR Truth Teller</span>
                     </button>
                 </div>
 

@@ -85,6 +85,11 @@
     *   **Hero Subtitle:** Enlarged from `text-lg/xl` to `text-xl/2xl` with `leading-loose`.
     *   **Search Input:** Upgraded placeholder from `text-sm` to `text-base`.
     *   **Result:** Consistent typography scale across all pages (Manifesto/Tools/Homepage).
+*   **[Tool]** **IRR Truth Teller (Beta) Deployed.**
+    *   **Logic:** Server-Side Newton-Raphson Engine (`calculateIRR`) for 100% precision.
+    *   **Privacy:** "Sovereign Shield" architecture (No client-side math exposure).
+    *   **UI:** User-Input driven (Universal compatibility with any insurance illustration).
+    *   **Verdict:** Auto-generates investment grade rating (e.g. "Bank Deposit Zone", "Wealth Destruction").
 
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).

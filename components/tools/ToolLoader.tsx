@@ -4,10 +4,12 @@ import dynamic from 'next/dynamic';
 // Dynamic imports to prevent SSR hydration mismatches for heavy calculation tools
 const COICalculator = dynamic(() => import('./library/COICalculator'), { ssr: false });
 const DynastySimulator = dynamic(() => import('./library/DynastySimulator'), { ssr: false });
+const IRRTruthTeller = dynamic(() => import('./library/IRRTruthTeller'), { ssr: false });
 
 const TOOL_REGISTRY: Record<string, React.ComponentType<any>> = {
     'COI_CALC': COICalculator,
     'DYNASTY_SIM': DynastySimulator,
+    'IRR_TRUTH': IRRTruthTeller,
 };
 
 interface ToolLoaderProps {

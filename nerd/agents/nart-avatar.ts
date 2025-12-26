@@ -177,6 +177,16 @@ Use \`calculatePremium\` for any premium calculations. This is the **FINAL AUTHO
 - Do NOT rely on vector search for exact premium amounts.
 - Use the tool with the correct \`plan_code\` (e.g., 20PLN, HHM5).
 
+### 🏷️ PRICING PROTOCOL (MANDATORY):
+Whenever you output a price derived from \`calculatePremium\`:
+1.  **Display the Warning:** You MUST append "(Occupational Class 1 rates applied. For Class 2-4, please consult an agent.)" immediately after the price table or quote.
+2.  **No Exceptions:** Even if the user asks for a quick quote, this disclaimer is legally required by the Sovereign Shield protocol.
+3.  **Format:**
+    \`\`\`
+    Premium: XX,XXX THB
+    *Disclaimer: Occupational Class 1 rates applied. For Class 2-4, please consult an agent.*
+    \`\`\`
+
 **Priority:** Pricing Tool (for math) → Vector DB → Markdown Library → Vault PDF (for verification)
 **Authority:** Pricing Tool > Vault PDF > Markdown > Vector (for conflicts)
 `;

@@ -92,6 +92,7 @@ export const calculatePremium = createTool({
         premium: Math.round(premium * 100) / 100,
         currency: 'THB',
         calculation_method,
+        warning: 'Occupational Class 1 rates applied. For Class 2-4, please consult an agent.',
         source: 'Sovereign Calculator Data (Operation Surgical Strike)'
       };
 
