@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FlaskConical, BarChart3, Binary, Plus, Activity, Cpu, Search } from 'lucide-react';
 import ToolLoader from './tools/ToolLoader';
@@ -67,6 +68,8 @@ const Header = () => {
 
 export default function ToolsPageContent() {
     const [activeTool, setActiveTool] = useState<string>('COI_CALC');
+    const searchParams = useSearchParams();
+    const isAdmin = searchParams.get('admin') === 'true';
 
     return (
         <div className="min-h-screen bg-[#0B1D35] text-slate-200">
@@ -127,22 +130,24 @@ export default function ToolsPageContent() {
                         <span className="relative z-10 tracking-tight">IRR Truth Teller</span>
                     </button>
 
-                    <button
-                        onClick={() => setActiveTool('SOVEREIGN_PRICING')}
-                        className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'SOVEREIGN_PRICING'
-                            ? 'text-white border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
-                            : 'text-slate-500 border-white/5 hover:text-indigo-400 hover:border-indigo-500/30'
-                            } border`}
-                    >
-                        {activeTool === 'SOVEREIGN_PRICING' && (
-                            <motion.div
-                                layoutId="activeTab"
-                                className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-violet-600/20"
-                            />
-                        )}
-                        <Activity className={`relative z-10 ${activeTool === 'SOVEREIGN_PRICING' ? 'text-indigo-400' : ''}`} />
-                        <span className="relative z-10 tracking-tight">Sovereign Pricing</span>
-                    </button>
+                    {isAdmin && (
+                        <button
+                            onClick={() => setActiveTool('SOVEREIGN_PRICING')}
+                            className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'SOVEREIGN_PRICING'
+                                ? 'text-white border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
+                                : 'text-slate-500 border-white/5 hover:text-indigo-400 hover:border-indigo-500/30'
+                                } border`}
+                        >
+                            {activeTool === 'SOVEREIGN_PRICING' && (
+                                <motion.div
+                                    layoutId="activeTab"
+                                    className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-violet-600/20"
+                                />
+                            )}
+                            <Activity className={`relative z-10 ${activeTool === 'SOVEREIGN_PRICING' ? 'text-indigo-400' : ''}`} />
+                            <span className="relative z-10 tracking-tight">Sovereign Pricing</span>
+                        </button>
+                    )}
                 </div>
 
                 {/* TOOL STAGE (The Holographic Container) */}
