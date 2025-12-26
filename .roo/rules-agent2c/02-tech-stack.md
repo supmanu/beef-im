@@ -28,3 +28,8 @@
 - Use **Framer Motion** for animations
 - Style: Smooth, professional springs
 - Avoid jarring or excessive animations
+
+## 🎨 Frontend Mastery (King Mode)
+- **Reference:** See `06-frontend-mastery.md` for strict design rules.
+- **Philosophy:** "Intentional Minimalism" - Reject generic layouts.
+- **Protocol:** Use "ULTRATHINK" when deep design reasoning is needed.

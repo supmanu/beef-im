@@ -101,6 +101,9 @@
 *   **Next:** Scaling production content.
 
 ## ⏳ PENDING ACTIONS
-*   [ ] **Activate Z.AI Pro Plan:** Purchase subscription for Token Arbitrage.
-*   [ ] **Setup Agent 2C (GLM):** Run `./scripts/switch-to-glm.ps1` with new API Key.
+*   [ ] **Scale Content Production:** Execute High-Volume Weekly Pack.
+
+## 📦 BACKLOG
+*   [ ] **Activate Z.AI Pro Plan:** Purchase subscription for Token Arbitrage (GLM-4.7).
+*   [ ] **Setup Agent 2C (GLM):** Run `./scripts/switch-to-glm.ps1`.
 *   [ ] **Review Switch Guide:** Read `docs/GLM_CLAUDE_SWITCH_GUIDE.md`.
