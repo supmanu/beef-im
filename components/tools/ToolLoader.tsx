@@ -5,11 +5,13 @@ import dynamic from 'next/dynamic';
 const COICalculator = dynamic(() => import('./library/COICalculator'), { ssr: false });
 const DynastySimulator = dynamic(() => import('./library/DynastySimulator'), { ssr: false });
 const IRRTruthTeller = dynamic(() => import('./library/IRRTruthTeller'), { ssr: false });
+const SovereignPricingEngine = dynamic(() => import('./library/SovereignPricingEngine'), { ssr: false }); // New Sovereign Engine
 
 const TOOL_REGISTRY: Record<string, React.ComponentType<any>> = {
     'COI_CALC': COICalculator,
     'DYNASTY_SIM': DynastySimulator,
     'IRR_TRUTH': IRRTruthTeller,
+    'SOVEREIGN_PRICING': SovereignPricingEngine,
 };
 
 interface ToolLoaderProps {

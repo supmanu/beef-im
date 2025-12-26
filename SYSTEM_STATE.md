@@ -90,6 +90,11 @@
     *   **Privacy:** "Sovereign Shield" architecture (No client-side math exposure).
     *   **UI:** User-Input driven (Universal compatibility with any insurance illustration).
     *   **Verdict:** Auto-generates investment grade rating (e.g. "Bank Deposit Zone", "Wealth Destruction").
+*   **[Tool]** **Sovereign Pricing Engine (Internal UI) Deployed.**
+    *   **Logic:** Hybrid Server Action (Term Rates + CSV Loading).
+    *   **Power:** Auto-applies "Large Sum Assured" discounts per Business Rules.
+    *   **UI:** "Dark Mode Admin" theme with strict Validation Constraints.
+    *   **Status:** Internal Actuarial Use Only (Not public).
 
 ## 🚀 READY
 *   System is ready for **High-Volume Content Production** (Cost Optimized).
