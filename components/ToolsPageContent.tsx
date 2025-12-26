@@ -40,6 +40,7 @@ const Header = () => {
             <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
                 className="relative inline-block p-4 rounded-3xl bg-teal-500/10 border border-teal-500/20 mb-8"
             >
                 <FlaskConical className="w-12 h-12 text-[#2bb1bb]" />
@@ -75,12 +76,14 @@ export default function ToolsPageContent() {
         <div className="min-h-screen bg-[#0B1D35] text-slate-200">
             <Header />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+            <div className="max-w-7xl mx-auto px-6 py-16">
 
                 {/* TACTICAL TAB CONTROLLER */}
                 <div className="flex flex-wrap justify-center gap-6 mb-20">
-                    <button
+                    <motion.button
                         onClick={() => setActiveTool('COI_CALC')}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
                         className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'COI_CALC'
                             ? 'text-white border-teal-500/50 shadow-[0_0_30px_rgba(43,177,187,0.2)]'
                             : 'text-slate-500 border-white/5 hover:text-teal-400 hover:border-teal-500/30'
@@ -94,10 +97,12 @@ export default function ToolsPageContent() {
                         )}
                         <BarChart3 className={`relative z-10 ${activeTool === 'COI_CALC' ? 'text-teal-400' : ''}`} />
                         <span className="relative z-10 tracking-tight">Unit-Linked COI</span>
-                    </button>
+                    </motion.button>
 
-                    <button
+                    <motion.button
                         onClick={() => setActiveTool('DYNASTY_SIM')}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
                         className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'DYNASTY_SIM'
                             ? 'text-white border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.2)]'
                             : 'text-slate-500 border-white/5 hover:text-amber-400 hover:border-amber-500/30'
@@ -111,10 +116,12 @@ export default function ToolsPageContent() {
                         )}
                         <Binary className={`relative z-10 ${activeTool === 'DYNASTY_SIM' ? 'text-amber-400' : ''}`} />
                         <span className="relative z-10 tracking-tight">Dynasty Simulator</span>
-                    </button>
+                    </motion.button>
 
-                    <button
+                    <motion.button
                         onClick={() => setActiveTool('IRR_TRUTH')}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
                         className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'IRR_TRUTH'
                             ? 'text-white border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.2)]'
                             : 'text-slate-500 border-white/5 hover:text-cyan-400 hover:border-cyan-500/30'
@@ -128,11 +135,13 @@ export default function ToolsPageContent() {
                         )}
                         <Search className={`relative z-10 ${activeTool === 'IRR_TRUTH' ? 'text-cyan-400' : ''}`} />
                         <span className="relative z-10 tracking-tight">IRR Truth Teller</span>
-                    </button>
+                    </motion.button>
 
                     {isAdmin && (
-                        <button
+                        <motion.button
                             onClick={() => setActiveTool('SOVEREIGN_PRICING')}
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            whileTap={{ scale: 0.98 }}
                             className={`group relative flex items-center gap-3 px-10 py-5 rounded-2xl font-bold font-prompt text-xl transition-all duration-500 overflow-hidden ${activeTool === 'SOVEREIGN_PRICING'
                                 ? 'text-white border-indigo-500/50 shadow-[0_0_30px_rgba(99,102,241,0.2)]'
                                 : 'text-slate-500 border-white/5 hover:text-indigo-400 hover:border-indigo-500/30'
@@ -146,7 +155,7 @@ export default function ToolsPageContent() {
                             )}
                             <Activity className={`relative z-10 ${activeTool === 'SOVEREIGN_PRICING' ? 'text-indigo-400' : ''}`} />
                             <span className="relative z-10 tracking-tight">Sovereign Pricing</span>
-                        </button>
+                        </motion.button>
                     )}
                 </div>
 

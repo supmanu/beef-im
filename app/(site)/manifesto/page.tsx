@@ -270,10 +270,28 @@ export default function Manifesto() {
           </div>
         </motion.div>
 
-        {/* 5. FOOTER QUOTE (Fixed) */}
-        <div className="text-center pb-12 opacity-60 hover:opacity-100 transition-opacity duration-500">
-          <Compass size={48} strokeWidth={1} className="mx-auto mb-4 text-slate-600" />
-          <p className="font-prompt text-sm tracking-widest text-slate-400">BASECAMP • BANGKOK</p>
+        {/* 5. FOOTER - Extended Background with Gradient */}
+        <div className="relative mt-16">
+          {/* Gradient Fade at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/60 to-transparent pointer-events-none" />
+
+          {/* Snowstorm continues */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <Snowstorm windIntensity={10} />
+          </div>
+
+          {/* Footer Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative z-10 text-center pb-12"
+          >
+            <div className="inline-block p-8 rounded-2xl bg-slate-900/40 backdrop-blur-sm border border-slate-700/30 hover:border-amber-500/30 transition-all duration-500">
+              <Compass size={48} strokeWidth={1} className="mx-auto mb-4 text-slate-500" />
+              <p className="font-prompt text-sm tracking-widest text-slate-400">BASECAMP • BANGKOK</p>
+            </div>
+          </motion.div>
         </div>
 
       </div>

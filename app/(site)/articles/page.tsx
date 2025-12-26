@@ -2,7 +2,7 @@ import React from 'react';
 import { getSovereignArticles } from '../../../lib/payload';
 import { getLocalPayload } from '../../../lib/payload';
 import { Metadata } from 'next';
-import ArchiveClient from '@/components/ArchiveClient';
+import ArticlesContent from '@/components/ArticlesContent';
 
 export const metadata: Metadata = {
     title: 'คลังความรู้ (The Archive) - Nerd with Nart',
@@ -21,8 +21,8 @@ export default async function ArticlesPage() {
     });
 
     return (
-        <main className="min-h-screen bg-brand-dark text-slate-200 pt-24 px-4 sm:px-6 lg:px-8">
-            <ArchiveClient
+        <main className="min-h-screen bg-brand-dark text-slate-200">
+            <ArticlesContent
                 initialPosts={posts as any}
                 categories={categoriesData.docs as any}
             />

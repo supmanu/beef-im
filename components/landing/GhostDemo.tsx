@@ -12,13 +12,16 @@ import GlassCard from '../GlassCard';
 const GhostDemo: React.FC = () => {
     const [status, setStatus] = useState<'idle' | 'moving' | 'uploading' | 'scanning' | 'complete'>('idle');
     const [progress, setProgress] = useState(0);
+    const [mounted, setMounted] = useState(false);
     const cursorControls = useAnimation();
-    
+
     // Refs for target elements to calculate dynamic mouse movement
     const uploadRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const runSequence = async () => {
+        if (!mounted || !uploadRef.current || !containerRef.current) return;
+
         // Reset
         setStatus('idle');
         setProgress(0);
@@ -28,7 +31,7 @@ const GhostDemo: React.FC = () => {
         if (uploadRef.current && containerRef.current) {
             const rect = uploadRef.current.getBoundingClientRect();
             const parentRect = containerRef.current.getBoundingClientRect();
-            
+
             // Calculate relative position
             const targetX = rect.left - parentRect.left + (rect.width / 2);
             const targetY = rect.top - parentRect.top + (rect.height / 2);
@@ -43,7 +46,7 @@ const GhostDemo: React.FC = () => {
             // Step 2: "Click" and Upload
             setStatus('uploading');
             await new Promise(r => setTimeout(r, 1000));
-            
+
             // Step 3: Scanning Phase
             setStatus('scanning');
             let p = 0;
@@ -52,20 +55,25 @@ const GhostDemo: React.FC = () => {
                 setProgress(p);
                 if (p >= 100) clearInterval(interval);
             }, 50);
-            
+
             await new Promise(r => setTimeout(r, 1500));
-            
+
             // Step 4: Complete
             setStatus('complete');
             await new Promise(r => setTimeout(r, 4000));
-            
+
             // Restart
             runSequence();
         }
     };
 
     useEffect(() => {
-        runSequence();
+        setMounted(true);
+        // Small delay to ensure DOM is ready
+        const timer = setTimeout(() => {
+            runSequence();
+        }, 100);
+        return () => clearTimeout(timer);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -77,18 +85,18 @@ const GhostDemo: React.FC = () => {
                         สัมผัสพลัง <span className="text-brand-teal">Forensic Simulator</span>
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto">
-                        ระบบจำลองสถานการณ์ความเสี่ยง (Risk Modeling) เพื่อหา "จุดบอด" ในแผนการเงินและสุขภาพของคุณ 
+                        ระบบจำลองสถานการณ์ความเสี่ยง (Risk Modeling) เพื่อหา "จุดบอด" ในแผนการเงินและสุขภาพของคุณ
                         <span className="text-xs ml-2 text-slate-600 font-mono tracking-tighter">Powered by Mastra AI</span>
                     </p>
                 </div>
 
-                <div 
+                <div
                     ref={containerRef}
                     className="relative w-full aspect-video md:aspect-[21/9] max-h-[500px] rounded-2xl border border-white/10 bg-slate-900/50 backdrop-blur-sm overflow-hidden shadow-2xl"
                 >
                     {/* Background Grid */}
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
-                    
+
                     {/* Simulated Interface */}
                     <div className="absolute inset-0 p-8 flex gap-6">
                         {/* Sidebar */}
@@ -160,7 +168,7 @@ const GhostDemo: React.FC = () => {
                                                 </div>
                                             </div>
                                             <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                                                <motion.div 
+                                                <motion.div
                                                     className="h-full bg-brand-teal"
                                                     style={{ width: `${progress}%` }}
                                                 />
@@ -196,7 +204,7 @@ const GhostDemo: React.FC = () => {
                                                     </div>
                                                 </div>
                                             </GlassCard>
-                                            
+
                                             <div className="space-y-4">
                                                 <div className="p-4 rounded-xl bg-white/5 border border-white/10">
                                                     <span className="block text-[10px] text-slate-500 mb-1 uppercase tracking-tighter">Intelligence Insight</span>
@@ -226,7 +234,7 @@ const GhostDemo: React.FC = () => {
                     >
                         <MousePointer2 size={24} fill="currentColor" />
                         {status === 'moving' && (
-                            <motion.div 
+                            <motion.div
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 animate={{ scale: 1.5, opacity: 0.2 }}
                                 className="absolute top-0 left-0 w-6 h-6 bg-brand-teal rounded-full -translate-x-1/2 -translate-y-1/2"
@@ -235,7 +243,7 @@ const GhostDemo: React.FC = () => {
                     </motion.div>
                 </div>
             </div>
-            
+
             {/* Background Decorative Element */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-teal/5 rounded-full blur-[120px] pointer-events-none" />
         </section>
