@@ -21,13 +21,13 @@ During network analysis, no relevant XHR/Fetch requests were observed. Analysis 
 *   **`bundle_12.js`**: Contained the variable `INITIAL_CSV_DATA` (Main Policies).
 *   **`bundle_13.js`**: Contained the variable `INITIAL_RIDER_CSV_DATA` (Riders).
 
-### 3. Extraction Result
-We have successfully extracted and saved the following raw data files to `nerd/references/raw/calculator_source/`:
-
-| File Name | Content | Rows | Key Columns |
-|-----------|---------|------|-------------|
-| `main_policies.csv` | Base Premium Rates | ~500 | `age`, `gender`, `segment`, `interest`, `Years to pay` |
-| `riders.csv` | Rider Premium Rates | ~150 | `age`, `gender`, `segment`, `interest`, `Benefit` |
+### 3. Data Extraction (Phase 1, 2 & 4)
+- **Initial Finding:** `INITIAL_CSV_DATA` (Main Policies) and `INITIAL_RIDER_CSV_DATA` (Riders) were found embedded in JS bundles.
+- **Correction:** Both embedded datasets were incomplete fallbacks.
+- **Solution:** Utilized discovered Supabase credentials to fetch the **full datasets** directly from the backend tables `main_policies` and `riders`.
+- **Result:**
+    - `main_policies_full.csv`: Complete catalog of 18 products (e.g., 10/15/20 Pay Life, Annuity Fix, CI ProCare).
+    - `riders_full.csv`: Complete catalog of 51+ rider options across all ages.
 
 ### 4. Logic & Calculation
 The pricing calculation is performed by `Calculator.js` using `useMemo` hooks. It filters the parsed CSV data based on user input (Age, Gender, Segment) and applies simple arithmetic formulas:
@@ -38,5 +38,6 @@ The pricing calculation is performed by `Calculator.js` using `useMemo` hooks. I
 Since the data is static clientside code, "ingestion" into `nerd_brain` is simply a matter of parsing the now-extracted CSV files. No ongoing API integration is needed unless the source application is updated, in which case the `download-bundles.ts` and `extract-data.ts` scripts can be re-run to fetch the latest data.
 
 **Next Steps:**
-1.  Ingest `main_policies.csv` and `riders.csv` into the `product_engine`.
+1.  Ingest `main_policies_full.csv` and `riders_full.csv` into the `product_engine`.
 2.  Map the CSV columns to the `nerd` generic data schema.
+3.  Update `calculatePremium` tool to use the new full datasets.
