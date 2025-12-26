@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, BookOpen } from 'lucide-react';
 import { RichText } from '@payloadcms/richtext-lexical/react';
+import ArticlesBackground from '@/components/ArticlesBackground';
 
 // Temporary Sovereign Override
 const AVATAR_URL = "https://assets.nerdwithnart.com/nwn-assets/natapol-supmanu-nerd-with-nart-avatar.png";
@@ -52,11 +53,13 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             : 'Article';
 
     return (
-        <div className="min-h-screen pt-28 pb-20 bg-[#0B1D35]">
+        <div className="relative min-h-screen">
+            <ArticlesBackground enableScrollGradient={true} />
+
             {/* Progress/Status Bar Visual (Teal for Logic) */}
             <div className="fixed top-0 left-0 h-1 bg-brand-teal/50 w-full z-40"></div>
 
-            <article className="max-w-3xl mx-auto px-6">
+            <article className="relative z-10 max-w-3xl mx-auto px-6 pt-28 pb-20">
 
                 {/* Navigation */}
                 <Link
