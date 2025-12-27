@@ -68,6 +68,14 @@
     *   **Tool:** `calculatePremium` integrated into `nart-avatar.ts`.
     *   **Power:** Exact premium calculations using extracted CSV rate tables.
     *   **Protocol:** Mandatory use for all proposal pricing to ensure 100% accuracy.
+*   **[Agent]** **Sovereign Engine v1.5 Deployed.**
+    *   **Consolidation:** Merged Performer v3.1 + Hybrid v8.1 + Proposal v4.1 into `.clinerules`.
+    *   **Features:** Tone Matrix (T1-T5), Math Verification Protocol, Dual Brains (Artist/Analyst).
+    *   **Result:** Actuarial precision + Native Thai fluency (Verified in `insurance-extinction-2083v1_5.md`).
+*   **[Infrastructure]** **"Twin Brain" Alias System Live.**
+    *   **Command:** `mmclaude` (Minimax M2.1) vs `claude` (Sonnet).
+    *   **Method:** PowerShell profile injection via official Minimax Proxy (`api.minimax.io/anthropic`).
+    *   **Benefit:** Zero-setup Sovereign Model Switching in CLI.
 *   **[Discovery]** **Minimax Ambient Intelligence Confirmed.**
     *   **Observation:** Minimax M2.1 autonomously internalized "Voice DNA" from workspace files.
     *   **Result:** Produced A++ Thai content ("Letter from 75") without extensive prompting.
