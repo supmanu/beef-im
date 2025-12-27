@@ -72,6 +72,10 @@
     *   **Consolidation:** Merged Performer v3.1 + Hybrid v8.1 + Proposal v4.1 into `.clinerules`.
     *   **Features:** Tone Matrix (T1-T5), Math Verification Protocol, Dual Brains (Artist/Analyst).
     *   **Result:** Actuarial precision + Native Thai fluency (Verified in `insurance-extinction-2083v1_5.md`).
+*   **[Agent]** **Sovereign Proposal Engine v1.0 Deployed.**
+    *   **File:** `.clinerules-proposal`
+    *   **Logic:** RAG Bridge + Iron Dome Compliance + Nationality Positioning.
+    *   **Status:** Production Ready for private client proposals.
 *   **[Infrastructure]** **"Twin Brain" Alias System Live.**
     *   **Command:** `mmclaude` (Minimax M2.1) vs `claude` (Sonnet).
     *   **Method:** PowerShell profile injection via official Minimax Proxy (`api.minimax.io/anthropic`).
