@@ -1,25 +1,38 @@
-# Task Progress: 2083 Insurance Industry Forensic Report
+# Unit Linked Misconceptions Article - Task Progress
 
-## Objective
-Write a ~500 word forensic report titled '2083: The Year the Thai Insurance Industry Dies' using Population Decay data and NHES VII health statistics.
+## 📋 TASK OVERVIEW
+Execute GSB-Kane Strategic Blueprint for Unit Linked misconceptions article ("Side Contract" test)
 
-## Steps
-- [ ] Read relevant pillar files for data and rules
-- [ ] Analyze Population Decay data (66m → 33m by 2083)
-- [ ] Cross-reference with NHES VII data (15.2% Medical Inflation, 29.5% Hypertension)
-- [ ] Structure using GSB-Kane Mode C
-- [ ] Create victim story (30-year-old today → 88 in 2083)
-- [ ] Write forensic analysis explaining 'Death Spiral' concept
-- [ ] Include exactly 3 watermarks: 'ผม (เนิร์ดกับนาถ)'
-- [ ] Maintain 85/15 Thai/English ratio
-- [ ] Ensure headers in Thai only
-- [ ] Verify no 'พี่' usage
-- [ ] Save as insurance-extinction-2083.md in content/test-articles/
+## 🎯 OBJECTIVES
+- [ ] Create Mode S (Strategic Education) article on Unit Linked misconceptions
+- [ ] Follow PERFORMER MODE guidelines with Thai Naturalness Filter
+- [ ] Include proper watermarks and compliance elements
+- [ ] Use "Side Contract Challenge" as core rhetorical device
 
-## Key Requirements
-- Language: 85% Thai / 15% English technical terms
-- Structure: GSB-Kane Mode C
-- Voice: Forensic analyst (นาถ), authoritative and strategic
-- Length: ~500 words
-- Forbidden: 'พี่', internal system codes
-- Required: 3 watermarks exactly
+## 📝 EXECUTION STEPS
+- [ ] 1. Read core blueprint and understand narrative architecture
+- [ ] 2. Structure article following Mode S format (7 sections)
+- [ ] 3. Write Hook with "Magic Words" setup
+- [ ] 4. Develop Context section with "Leaking Bucket" analogy
+- [ ] 5. Create Mechanism section breaking down 3 myths
+- [ ] 6. Build Pivot with "Side Contract Challenge" dialogue
+- [ ] 7. Deliver Solution with Binary Rule
+- [ ] 8. Close with return to Khun Vichai story
+- [ ] 9. Apply Thai Naturalness Filter (anti-AI fingerprints)
+- [ ] 10. Add proper watermarks (3 for Mode S)
+- [ ] 11. Create compliance footer with citations
+- [ ] 12. Final quality check and confidence rating
+
+## 🎨 CONTENT REQUIREMENTS
+- Mode: S (Strategic Education) - ~1,500 words
+- Tone: T1 (Benevolent Teacher)
+- Language: Thai-first (≥85%)
+- Watermarks: 3 (Intro + Body + Footer)
+- Required elements: Bridge Lab metaphor, OIC compliance, NHES data where relevant
+
+## ✅ SUCCESS CRITERES
+- [ ] Passes Thai Naturalness Filter
+- [ ] Includes "Side Contract Challenge" as hero element
+- [ ] Uses proper Thai pronouns and tone
+- [ ] Maintains forensic analysis approach
+- [ ] Includes proper regulatory citations

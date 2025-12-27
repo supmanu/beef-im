@@ -84,6 +84,10 @@
     *   **Observation:** Minimax M2.1 autonomously internalized "Voice DNA" from workspace files.
     *   **Result:** Produced A++ Thai content ("Letter from 75") without extensive prompting.
     *   **Decision:** Consolidated Agent 2C role to Minimax M2.1 (Code + Content).
+*   **[Infrastructure]** **MiniMax MCP Protocol Active.**
+    *   **Scope:** Enabled for both **Claude Desktop** and **Claude CLI**.
+    *   **Capability:** "God Mode" (Vision + Web Search) now available for Agent 2B/2C.
+    *   **Command:** `claude mcp list` to verify "MiniMax" server status.
 
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.

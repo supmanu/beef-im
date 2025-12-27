@@ -4,11 +4,11 @@
 ---
 
 ### 1. SYSTEM IDENTITY
-* **System Version:** v7.0 (Sovereign Reboot)
-* **Manifest Date:** December 20, 2025
+* **System Version:** v7.1 (Sovereign Reboot)
+* **Manifest Date:** December 27, 2025
 * **Identity Protocol:** Semantic v1.0 ("Sovereign Naming")
 * **Infrastructure:** Next.js 15.5.9 (Downgraded) + Payload 3.0 + FLAT ROOT
-* **Status:** 🟢 OPERATIONAL / RE-FORGED (v7.0)
+* **Status:** 🟢 OPERATIONAL / RE-FORGED (v7.1)
 
 ---
 
@@ -35,6 +35,7 @@
 | `data-citation-template.md` | Citation Formats (TMO/OIC) | Quick Citation v1.1 |
 | `data-notebooklm-prompt.txt` | Forensic Seed Extraction Prompt | NotebookLM Prompt |
 | `data-flagship-article.md` | Formatting Gold Standard | Flagship Article |
+| `sovereign-phrases.md` | High-Intensity Linguistic Weapons | v1.0 |
 | | | |
 | **INSTRUCTIONS & EXTENSIONS (8)** | | |
 | `instruction-gemini-cto.txt` | Consultant Strategy Prompt | Gemini CTO v6.6.1 |
@@ -48,7 +49,6 @@
 | **AGENT FACTORY (6)** | *Location: nerd/agents/* | |
 | `instruction-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
 | `instruction-performer.md` | The Voice: Multi-modal Execution Engine | v7.0 Pattern E |
-
 | `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
 | `instruction-proposal-generator.md` | Senior Insurance Architect | v7.0 Pattern E |
 | `instruction-hybrid-architect-builder.md` | One-Shot Content Engine | v7.0 Pattern E |
@@ -59,7 +59,14 @@
 
 ---
 
-### 3. AGENT KNOWLEDGE BASE MANIFEST (Distribution List)
+### 3. AMBIENT INTELLIGENCE (Local IDE Rules)
+| Local Rule File | Version | Scope | Status |
+| :--- | :--- | :--- | :--- |
+| `.clinerules` | v1.7 | Global / Nerd with Nart | 🟢 Production Ready (MiniMax M2.1 Sovereign Engine) |
+
+---
+
+### 4. AGENT KNOWLEDGE BASE MANIFEST (Distribution List)
 *Upload strictly these files to the respective Webapp Agents.*
 
 #### 🏛️ AGENT 1: THE ARCHITECT (Gemini Webapp)
@@ -74,7 +81,6 @@
 #### ✍️ AGENT 2: THE WRITER / PERFORMER (Claude Project)
 *Role: Writing, Execution*
 * [ ] `instruction-performer.md` **(System Prompt)**
-
 * [ ] `voice-dna.md`
 * [ ] `constitution.md`
 * [ ] `tech-bridge-lab.md`
@@ -101,7 +107,6 @@
 * [ ] `data-nhes-vii.md`
 * [ ] `data-terminology.md`
 * [ ] `instruction-performer.md`
-
 * [ ] `instruction-sovereign-auditor.md`
 * [ ] `instruction-architect.md`
 
@@ -117,7 +122,7 @@
 
 ---
 
-### 4. CTO UPDATE INSTRUCTIONS
+### 5. CTO UPDATE INSTRUCTIONS
 *Copy-paste these snippets to synchronize your Cloud Agents.*
 
 #### For Gemini CTO (Architect):
