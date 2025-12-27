@@ -1,0 +1,12 @@
+# Ignore heavy dependencies
+node_modules/
+.next/
+dist/
+
+# Ignore large archives that slow down checkpoints
+_archive/
+_archive/**
+
+# Ignore git and environment files
+.git/
+.env*

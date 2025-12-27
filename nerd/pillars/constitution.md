@@ -118,6 +118,11 @@ These are **ZERO TOLERANCE** violations. One instance = brand damage.
 | Elite / Ultra-HNW | ชนชั้นสูง |
 | Mass Affluent | Premium clients |
 
+**Archaic/Feudal Terms (BANNED):**
+- **"นาย" (Nai) + Name:** (e.g., "นายนาถ").
+- **Rationale:** Sounds like a servant addressing a master. Destroys the "Expert Advocate" persona.
+- **Instead Use:** "คุณนาถ" or just "คุณ".
+
 **Why This Destroys Your Brand:**
 1. Creates "Them vs Us" divide (Observer Mentality)
 2. Violates True King Principle
@@ -162,6 +167,22 @@ These are **ZERO TOLERANCE** violations. One instance = brand damage.
 * **Allowed:** You may place credentials in the Footer or bio (The Result).
 * **Never:** You may NEVER use them as the primary reason to listen.
 * **The Sinek Rule:** "Success is the result of the Why, not the reason for the meeting."
+
+---
+
+### **Section 2.4: Internal Leak Ban (Fourth Wall Protection)**
+
+**BANNED:** Using internal system codes as customer-facing product names.
+
+| Internal Code (DO NOT USE) | Public Equivalent (USE THIS) |
+|----------------------------|------------------------------|
+| "Teal Protocol" | "ระบบป้องกันความมั่งคั่ง" (Wealth Preservation System) |
+| "Voice DNA" | "ตัวตน" (Identity) or Do not mention |
+| "Project Weightless" | Do not mention |
+| "Agent 2C" / "Mastra" | Do not mention |
+| "Melkor OS" | Do not mention (except in Verified Footer) |
+
+**Rationale:** Customers buy *outcomes*, not *internal project names*. Using internal jargon breaks the "Fourth Wall" and creates confusion.
 
 ---
 

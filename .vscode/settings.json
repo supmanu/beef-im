@@ -1,0 +1,6 @@
+{
+    "editor.codeActions.triggerOnFocusChange": false,
+    "editor.editContext": true,
+    "workbench.editor.showTabIndex": false,
+    "workbench.editor.showTabs": "single"
+}

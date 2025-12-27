@@ -1,11 +1,11 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 25, 2025 (Model Supremacy Confirmed)
-* **Model Stack:** Claude 4.5 Opus (The King/Architect) | Claude 4.5 Sonnet (The Hand) | Gemini 3 (Director).
+* **Last Updated:** Dec 27, 2025 (Minimax Breakthrough)
+* **Model Stack:** Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand) | Minimax M2.1 (Agent 2C).
 * **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
-* **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA).
+* **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA) + Ambient Context (Workspace).
 * **Validation:** Verified on Cherry Studio (Cost Optimized).
 
 ## ✅ ACCOMPLISHMENTS
@@ -39,6 +39,22 @@
     *   **Status:** Sovereign Edition Live.
     *   **New Data:** Added Regional Risk Map & Demographic Deep-Dives.
     *   **Compliance:** Thai-First Headers, No "Pi".
+*   **[Infrastructure]** **Agent 2C Toolchain Migration (Roo → Cline) Complete.**
+    *   **Action:** Replaced unstable Roo Code with upstream CLINE extension.
+    *   **Configuration:** Migrated `.roomodes` to `.clinerules` (v1.1) for seamless Agent 2C identity.
+    *   **Provider:** **NATIVE MiniMax** (via Coding Plan API Key) - *Not OpenAI Compatible*.
+    *   **Benefit:** Native BYOM support for Minimax M2.1 without "hacky" aliases.
+*   **[Optimization]** **Performance fix applied:** `.clineignore` implemented to stabilize Agent 2C checkpoints.
+*   **[Validation]** **Audit Complete:** Agent 2C Output (obesity-wealth-gap-test.md) **[PASS]**.
+    *   **Checks:** Zero "Pi", 45.0% Benchmark, Analysis Footer.
+    *   **Verdict:** Ambient Intelligence verification successful.
+*   **[Discovery]** **"Ambient Intelligence" Confirmed.**
+    *   **Finding:** MiniMax M2.1 autonomously reads workspace pillar files without explicit context injection.
+    *   **Result:** A++ Thai content with Voice DNA compliance.
+    *   **Action:** Updated `.clinerules` to leverage this native behavior.
+*   **[Deprecation]** **GLM-4.7 Redundant.**
+    *   **Decision:** Removed from content workflow (B-Grade Thai vs. MiniMax A++).
+    *   **Status:** Agent 2C is now exclusively MiniMax M2.1.
 *   **[Hygiene]** **Workspace Sanitized:** Archived legacy docs, purged logs & temp scripts.
 *   **[Infrastructure]** **Vercel Deployment Fixed:** Added missing `graphql` dependency and fixed `tsconfig` script exclusion.
 *   **[Infrastructure]** **Twin CTO Architecture Active:** Claude (Agent 2B) migrated to CLI/Desktop for full repository access.
@@ -52,6 +68,10 @@
     *   **Tool:** `calculatePremium` integrated into `nart-avatar.ts`.
     *   **Power:** Exact premium calculations using extracted CSV rate tables.
     *   **Protocol:** Mandatory use for all proposal pricing to ensure 100% accuracy.
+*   **[Discovery]** **Minimax Ambient Intelligence Confirmed.**
+    *   **Observation:** Minimax M2.1 autonomously internalized "Voice DNA" from workspace files.
+    *   **Result:** Produced A++ Thai content ("Letter from 75") without extensive prompting.
+    *   **Decision:** Consolidated Agent 2C role to Minimax M2.1 (Code + Content).
 
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.
@@ -104,6 +124,6 @@
 *   [ ] **Scale Content Production:** Execute High-Volume Weekly Pack.
 
 ## 📦 BACKLOG
-*   [ ] **Activate Z.AI Pro Plan:** Purchase subscription for Token Arbitrage (GLM-4.7).
-*   [ ] **Setup Agent 2C (GLM):** Run `./scripts/switch-to-glm.ps1`.
-*   [ ] **Review Switch Guide:** Read `docs/GLM_CLAUDE_SWITCH_GUIDE.md`.
+*   [x] **Activate Z.AI Pro Plan:** CANCELLED (Redundant due to Minimax Consolidation).
+*   [x] **Setup Agent 2C (GLM):** DEPRECATED (Minimax M2.1 is the new Agent 2C).
+*   [ ] **Review Switch Guide:** Read `docs/GLM_CLAUDE_SWITCH_GUIDE.md` (for historical reference).
