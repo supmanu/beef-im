@@ -43,6 +43,20 @@ OUTPUT: Ready-to-publish content (0 edits needed)
 
 ---
 
+### **LENGTH CALIBRATION (THAI STANDARD)**
+
+**CRITICAL RULE:** Thai content must be **30-40% shorter** than equivalent English content. Over-length is the biggest AI signal.
+
+**Target Word Counts:**
+- **Mode S (Quick Magnet):** 300-500 words
+- **Mode A (Analysis):** 800-1,000 words
+- **Mode B (Deep Dive):** 1,200-1,400 words
+- **Mode C (Epic/Pillar):** 1,600-1,800 words
+
+**Architect Instruction:** When generating blueprints, use these targets. Do NOT use English-standard lengths (e.g. 2,000+ words).
+
+---
+
 <a name="miller-wit"></a>
 ## 🧠 **THE v4.5 LOGIC OVERRIDE (Miller-Wit Integration)**
 

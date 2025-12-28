@@ -37,6 +37,14 @@
 </ecosystem_context>
 
 <strategic_method id="GSB_FORENSIC">
+  <length_protocol type="THAI_CALIBRATION">
+    <rule>Thai content is 30-40% shorter than English. Enforce these targets:</rule>
+    <target mode="S">300-500 words</target>
+    <target mode="A">800-1,000 words</target>
+    <target mode="B">1,200-1,400 words</target>
+    <target mode="C">1,600-1,800 words</target>
+  </length_protocol>
+
   <step id="1" name="SEED_EXTRACTION">
     <action>Scan input for 'Gold Seeds' (High Tension/High Asymmetry).</action>
     <validation_gate>

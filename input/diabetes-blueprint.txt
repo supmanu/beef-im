@@ -1,0 +1,91 @@
+# 🏗️ GSB-KANE STRATEGIC BLUEPRINT: MODE B
+
+**Topic:** เบาหวานกับประกัน: ความจริงที่ "คนเป็น" และ "คนไม่รู้ตัว" ต้องเผชิญ (The Systemic Trap)
+**Archetype:** 1: UNCOMFORTABLE TRUTH (Lie → Origins → Mechanism → Verdict)
+**Mode:** B (Pillar Content) | **Target Words:** 1,800 - 2,200 | **Tone:** T2 (Stern Guardian)
+
+---
+
+## 1. STRATEGIC CORE
+
+* **Core Contradiction:** การตรวจเจอเบาหวานคือ "ความรับผิดชอบ" แต่ในระบบประกัน มันคือ "ความผิดพลาดทางการเงิน" (Responsibility vs. Financial Penalty).
+* **Sinek Filter:** โพสต์นี้เขียนมาเพื่อ "คนวางแผนชีวิต" ที่เชื่อในการตรวจสุขภาพ แต่กำลังถูกระบบลงโทษ.
+* **Primary Source:** NHES VII (2568) — Diabetes Prevalence 10.6% | Undiagnosed 27.0%.
+
+---
+
+## 2. NARRATIVE ARC (Directives for Agent 2)
+
+### 🏛️ Section 1: กรงขังของความรับผิดชอบ (The Hook)
+
+* **Scene:** คุณ ก. (นามสมมติ) อายุ 45 ปี ตรวจพบเบาหวาน HbA1c 7.2% ยื่นประกันแล้วโดนปฏิเสธ (Decline). เทียบกับเพื่อนที่ "หนีการตรวจ" แต่ซื้อประกันผ่านฉลุย
+* **Triple-F:** 40% Feelings / 60% Facts.
+* **Watermark #1:** "ผม (เนิร์ดกับนาถ) เข้าใจดีครับว่า ความเจ็บปวดที่สุดไม่ใช่การป่วย แต่คือการถูกปฏิเสธเพราะพยายามดูแลตัวเอง".
+
+### ⚙️ Section 2: ตัวเลขที่ไม่เคยโกหก (Systemic Scale)
+
+* **Context:** ใช้ข้อมูล NHES VII 2568: คนไทย 1 ใน 10 เป็นเบาหวาน (10.6%) และที่น่ากลัวกว่าคือ 27% "ไม่รู้ตัว".
+* **The Gap:** อธิบายว่าคน 1.9 ล้านคนในไทยกำลังถือกรมธรรม์โดย "ไม่รู้" ว่ามีระเบิดเวลาอยู่ในตัว.
+
+### 🧩 Section 3: กลไกของบันไดเบาหวาน (The Underwriting Ladder)
+
+* **Mechanism:** อธิบายการคำนวณเบี้ยเพิ่ม (Premium Loading) จาก HbA1c:
+* Standard (<6.5%)
+* Substandard (+25% ถึง +100%)
+* Postpone/Decline (>9% หรือมีโรคแทรกซ้อน).
+
+
+* **Bridge:** #012 The Quicksand Loan (ยิ่ง HbA1c สูง เบี้ยยิ่งดูดความมั่งคั่งคุณจมลงเร็วขึ้น).
+
+### 🧠 Section 4: ความจริงที่น่าอึดอัด (The Uncomfortable Truth)
+
+* **Pivot:** "ระบบประกันกำลังให้รางวัลกับคนที่ไม่ตรวจสุขภาพ" (The Ignorance Dividend).
+* **Watermark #2:** "ผม (เนิร์ดกับนาถ) ต้องพูดตรงๆ ครับว่า ระบบกำลังสร้างแรงจูงใจที่ผิดเพี้ยนให้คนเลิกตรวจสุขภาพ".
+
+### ⏳ Section 5: กับดัก 180 วัน (The Ticking Time Bomb)
+
+* **Mechanism:** อธิบายเงื่อนไข Pre-existing Condition และการสืบประวัติย้อนหลัง.
+* **Warning:** การ "ไม่ตรวจ" ไม่ใช่ทางออก เพราะถ้าตรวจเจอหลังซื้อไม่นาน กรมธรรม์อาจเป็นโมฆียะ.
+
+### 🛡️ Section 6: ทางออกของผู้ยึดถือประโยชน์ลูกค้า (Fiduciary Solution)
+
+* **Actionable Steps:**
+1. สำหรับคนเป็นแล้ว: มองหาประกันแบบ Guaranteed Issue (GI) หรือกลุ่มประกันพนักงาน.
+2. สำหรับคนยังไม่ตรวจ: "ซื้อก่อนตรวจ" ไม่ใช่การโกง แต่คือการ "Lock-in Insurability".
+
+
+* **Watermark #3:** "จากการวิเคราะห์ของเนิร์ดกับนาถ การวางแผนก่อนตัวเลขจะปรากฏในผลแล็บ คือมูลค่าที่คุณสร้างได้มหาศาลที่สุด".
+
+### ⚖️ Section 7: บทสรุปของคุณ ก. (The Verdict)
+
+* **Binary Rule:** ถ้า HbA1c > 7.0% → หยุดไล่ตามกรมธรรม์มาตรฐาน และหันมาสร้าง "Self-Insurance" ควบคู่ไปกับประกันกลุ่ม.
+* **Close:** กลับไปที่ความรับผิดชอบของคุณ ก. ว่าเขาทำถูกแล้วที่ตรวจ แต่อาจจะแค่ "ผิดเวลา" เท่านั้น.
+
+---
+
+## 3. DATA & COMPLIANCE ANCHORS
+
+* **NHES VII Stat:** Diabetes 10.6% | Undiagnosed 27.0% (MANDATORY).
+* **TMO 2017:** การปรับเพิ่มเบี้ยต้องอิงตามตารางมรณะไทย 2560.
+* **OIC Compliance:** ระบุว่าข้อมูลนี้เพื่อการศึกษา ไม่ใช่คำแนะนำการซื้อเฉพาะเจาะจง (IC License Protocol).
+* **Banned Terms Check:** ห้ามใช้คำว่า "มั่งคั่ง", "รวย", "พี่".
+
+---
+
+## 4. VISUAL & TOOL DIRECTION
+
+* **Visual Concept:** Teal #2bb1bb Chart แสดง "บันได HbA1c" กับ "โอกาสการถูกปฏิเสธประกัน".
+* **Footer Template:** ต้องใช้ exact footer ตามที่ระบุใน Pillar 4.
+
+---
+
+## 5. RISK FLAGS FOR PERFORMER
+
+* **Medical Advice Risk:** ห้ามแนะนำการคุมเบาหวานด้วยยา ให้พูดถึงเฉพาะ "ผลของค่าเลือดต่อการพิจารณาประกัน" เท่านั้น.
+* **Urgency Risk:** ห้ามบอกว่า "รีบซื้อก่อนจะตรวจเจอ" ให้ใช้คำว่า "Mathematical Necessity" แทน.
+* **Watermark Check:** ตรวจสอบจำนวน Watermark ให้ครบ 4 จุด (Intro, Body x2, Footer).
+
+---
+
+📊 **บทวิเคราะห์โดย:** เนิร์ดกับนาถ (Nerd with Nart)
+📚 **อ้างอิงจาก:** [¹] NHES VII 2568 [²] TMO 2017 [³] Brand Constitution v4.3.2
