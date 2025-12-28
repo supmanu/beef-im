@@ -1,25 +1,22 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 28, 2025 (Architect/Performer Calibration)
-* **Model Stack:** Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand) | Minimax M2.1 (Agent 2C).
-* **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
+* **Last Updated:** Dec 29, 2025 (Universal Performer v1.7.2 Locked)
+* **Model Stack:** Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand) | DeepSeek Reasoner (The Auditor).
+* **Identity Protocol:** Sovereign Universal (v1.7.2) - Rich Context + Anti-AI Fingerprint.
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
-* **Knowledge Base:** Vector Brain (PGVector) + Prompt Soul (Voice DNA) + Ambient Context (Workspace).
-* **Validation:** Verified on Cherry Studio (Cost Optimized).
 
 ## ✅ ACCOMPLISHMENTS
+*   **[Infrastructure]** **Universal Performer Agent (v1.7.2) Standardized.**
+    *   **Consolidation:** Merged high-strength `performer-universal.md` into the primary `performer.md`.
+    *   **Capabilities:** Full 19-step CoT, 29-idiom bank, and explicit Vocabulary Guards (ปกป้อง vs ปกครอง) locked for all models.
+    *   **Benchmarking:** Successfully completed a 7-model shootout (Opus, Sonnet, DeepSeek R1/V3, MiniMax, GLM, GPT-5.2) validating framework supremacy over model selection.
 *   **[Optimization]** **Architect & Performer Protocol Calibration.**
     *   **Action:** Synchronized Agent 1 (Architect) and Agent 2 (Performer) measurement standards.
     *   **Result:** Updated `content-engine.md` and `instruction-architect.md` with Thai Length Calibration (30-40% shorter than English).
-    *   **Outcome:** Blueprints now generate correct Mode-specific word count targets (e.g., Mode B = 1,200-1,400 words).
 *   **[Infrastructure]** **OpenCode CLI Configuration Complete.**
     *   **Agent 2 (Performer):** Migrated to OpenCode CLI for high-velocity production.
-    *   **Identity:** `performer.md` agent file created at `.opencode/agent/performer.md`.
-    *   **Protocol:** Ambient Context (`@voice-dna.md`) locked for Native Thai generation.
-*   **[Hygiene]** **Workbench Reset & Archive Protocol.**
-    *   **Tool:** `scripts/reset-workbench.ps1` deployed (emoji-free for Windows stability).
-    *   **Pattern:** Automated archival of `content/test-articles/` to `content/_draft_archive/` before production runs.
+    *   **Hygiene:** `reset-workbench.ps1` script and `_draft_archive` protocol active.
 *   **[Optimization]** "Project Weightless" complete. `nart-avatar.ts` refactored to Hybrid RAG.
 *   **[Cost]** Reduced per-message context from ~75KB to ~5KB.
 *   **[Identity]** "No-Pi" Rule enforced via `nart-avatar.ts` injection.
