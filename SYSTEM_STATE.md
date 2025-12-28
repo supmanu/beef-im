@@ -1,7 +1,7 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 27, 2025 (Minimax Breakthrough)
+* **Last Updated:** Dec 28, 2025 (OpenCode CLI Setup)
 * **Model Stack:** Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand) | Minimax M2.1 (Agent 2C).
 * **Identity Protocol:** Sovereign Sealed (Footer Protocol + Negative Constraints)
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
@@ -9,6 +9,10 @@
 * **Validation:** Verified on Cherry Studio (Cost Optimized).
 
 ## ✅ ACCOMPLISHMENTS
+*   **[Infrastructure]** **OpenCode CLI Configuration Complete.**
+    *   **Agent 2 (Performer):** Migrated to OpenCode CLI for high-velocity production.
+    *   **Identity:** `performer.md` agent file created at `.opencode/agent/performer.md`.
+    *   **Protocol:** Ambient Context (`@voice-dna.md`) locked for Native Thai generation.
 *   **[Optimization]** "Project Weightless" complete. `nart-avatar.ts` refactored to Hybrid RAG.
 *   **[Cost]** Reduced per-message context from ~75KB to ~5KB.
 *   **[Identity]** "No-Pi" Rule enforced via `nart-avatar.ts` injection.
@@ -138,6 +142,7 @@
 
 ## ⏳ PENDING ACTIONS
 *   [ ] **Scale Content Production:** Execute High-Volume Weekly Pack.
+*   [ ] **OpenCode Installation:** Verify `curl` installation via Git Bash.
 
 ## 📦 BACKLOG
 *   [x] **Activate Z.AI Pro Plan:** CANCELLED (Redundant due to Minimax Consolidation).
