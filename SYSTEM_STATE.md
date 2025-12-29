@@ -14,8 +14,11 @@
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 29, 2025 (Performer v1.9 - Discipline Upgrade)
-* **Model Stack:** DeepSeek Reasoner (Workhorse) | Claude 4.5 Opus (Flagship) | MiniMax M2.1 (Planner).
+* **Last Updated:** Dec 30, 2025 (Performer v1.9 - The Discipline Upgrade)
+* **Model Stack:** 
+    *   **Social/Voice:** DeepSeek Chat (Native Thai Champion)
+    *   **Website/Authority:** Sonnet 4.5 (Structure/SEO King)
+    *   **System/Logic:** DeepSeek Reasoner (The Architect)
 * **Identity Protocol:** Sovereign Universal (v1.9) - Mandatory File Read + Citation Trap Fix.
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 
