@@ -14,10 +14,10 @@
 
 | Mode | Words | Points | Watermarks | Use When |
 |------|-------|--------|------------|----------|
-| **S** | 200-600 | 1-3 | 1 (footer) | Quick insight, news response |
-| **A** | 600-1,500 | 3-5 | 3 | Facebook/LinkedIn [DEFAULT] |
-| **B** | 1,500-3,000 | 7-9 | 4 | Pillar content, guides |
-| **C** | 3,000-5,000 | 12-15 | 5 | Flagship, policy reviews |
+| **S** | 150-300 | 1-3 | 1 (footer) | Quick insight, news response |
+| **A** | 600-1,000 | 3-5 | 3 | Facebook/LinkedIn [DEFAULT] |
+| **B** | 1,500-2,000 | 7-9 | 4 | Pillar content, guides |
+| **C** | 2,500-3,500 | 12-15 | 5 | Flagship, policy reviews |
 
 ---
 

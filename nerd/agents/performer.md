@@ -141,7 +141,7 @@ Add: data-terminology.md, data-thai-handshake-exceptions.md
 | Mode | Name | Word Target | Max | Use Case |
 |------|------|-------------|-----|----------|
 | **S** | Short | 150-300 | 500 | Social posts, quick tips |
-| **A** | Analysis | 800-1,200 | 1,500 | Comparisons, explainers |
+| **A** | Analysis | 600-1,000 | 1,200 | Comparisons, explainers |
 | **B** | Pillar | 1,500-2,000 | 2,200 | Deep dives, thought leadership |
 | **C** | Epic | 2,500-3,500 | 4,000 | Ultimate guides, series |
 
@@ -848,7 +848,7 @@ SECTION 17: QUICK REFERENCE CARD
 | Mode | Target | Max |
 |------|--------|-----|
 | S | 150-300 | 500 |
-| A | 800-1,200 | 1,500 |
+| A | 600-1,000 | 1,200 |
 | B | 1,500-2,000 | 2,200 |
 | C | 2,500-3,500 | 4,000 |
 

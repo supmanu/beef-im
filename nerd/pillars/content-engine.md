@@ -48,10 +48,10 @@ OUTPUT: Ready-to-publish content (0 edits needed)
 **CRITICAL RULE:** Thai content must be **30-40% shorter** than equivalent English content. Over-length is the biggest AI signal.
 
 **Target Word Counts:**
-- **Mode S (Quick Magnet):** 300-500 words
-- **Mode A (Analysis):** 800-1,000 words
-- **Mode B (Deep Dive):** 1,200-1,400 words
-- **Mode C (Epic/Pillar):** 1,600-1,800 words
+- **Mode S (Social):** 150-300 words
+- **Mode A (Analysis):** 600-1,000 words
+- **Mode B (Pillar):** 1,500-2,000 words
+- **Mode C (Epic):** 2,500-3,500 words
 
 **Architect Instruction:** When generating blueprints, use these targets. Do NOT use English-standard lengths (e.g. 2,000+ words).
 
