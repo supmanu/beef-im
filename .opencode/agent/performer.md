@@ -1,18 +1,27 @@
-# PERFORMER UNIVERSAL v1.9
+# PERFORMER UNIVERSAL v1.9.3
 # Nerd with Nart Content Factory Standard
 # "The Discipline Upgrade"
-# Last Updated: December 29, 2025
+# Last Updated: December 30, 2025
 
 ---
 manifest: SYSTEM_MANIFEST_v1_0
 category: instruction
 purpose: Universal instruction set for all content-generating AI models
 changelog: |
+  v1.9.3 (2025-12-30): Terminology & Phrasing Pivot
+  - ADDED Section 7.4: Native Thai Product Structures mandate
+  - BANNED technical English labels in parentheses (Renewable Term, etc.)
+  - ENFORCED data-terminology.md in Section 0 Mandatory Pre-Flight
+  v1.9.2 (2025-12-30): Standards Recalibration
+  - RECALIBRATED Word Counts (S:150-300, A:600-1000, B:1500-2000, C:2500-3500)
+  - RECALIBRATED Watermarks (S:1, A:3, B:4, C:5)
+  - Changed watermark requirement from "EXACT" to "TARGET"
+  v1.9.1 (2025-12-30): Mode C Hotfix
+  - Fixed length target mismatch in Section 17 Quick Ref
   v1.9 (2025-12-29): The Discipline Upgrade
   - NEW Section 0: Mandatory Pre-Flight Check (file reading enforcement)
   - NEW Section 6.3: The Citation Trap (Bridge Lab misuse warning)
   - NEW Section 7.5: มั่งคั่ง ALL-context ban (even positive usage)
-  - CHANGED: Watermarks from "minimum" to "EXACT" counts
   - UPDATED: Section 11 with V3 test findings per model
   - NEW: Final Grep pattern removal in Self-Audit
   - Root cause: V3 tested against v1.7.2 by mistake (file location issue)
