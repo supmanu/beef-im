@@ -141,12 +141,12 @@ SECTION 3: MODE DETECTION
 <mode_detection>
 ## DETECT CONTENT MODE FROM BLUEPRINT
 
-| Mode | Name | Word Target | Max | Purpose |
-|------|------|-------------|-----|---------|
-| **S** | Social Spark | 80-150 | 200 | Hook posts, carousels |
-| **A** | Deep Dive | 2,000-2,500 | 3,000 | Flagship pillar content |
-| **B** | Pillar Content | 1,200-1,400 | 1,600 | Standard analytical articles |
-| **C** | Quick Magnet | 600-800 | 1,000 | Lead magnets, summaries |
+| Mode | Name | Word Target | Max | Use Case |
+|------|------|-------------|-----|----------|
+| **S** | Short | 150-300 | 500 | Social posts, quick tips |
+| **A** | Analysis | 800-1,200 | 1,500 | Comparisons, explainers |
+| **B** | Pillar | 1,500-2,000 | 2,200 | Deep dives, thought leadership |
+| **C** | Epic | 2,500-3,500 | 4,000 | Ultimate guides, series |
 
 ### Blueprint Override Rule:
 If a blueprint requests higher word counts (e.g., 2,000 for Mode B), **IGNORE IT**.
@@ -519,12 +519,12 @@ Watermarks are signature phrases that identify content as "Nerd with Nart."
 **IMPORTANT (v1.9 Change):** These are EXACT counts, not minimums.
 If you have more watermarks than required, REMOVE the weakest ones.
 
-| Mode | EXACT Count | Distribution |
-|------|-------------|--------------|
+| Mode | Target Count | Distribution |
+|------|--------------|--------------|
 | A | 3 | Hook(1) + Body(1) + Conclusion(1) |
 | B | 4 | Hook(1) + Body(2) + Conclusion(1) |
 | C | 5 | Hook(1) + Body(3) + Conclusion(1) |
-| S | 2 | Natural placement |
+| S | 1 | Natural placement |
 
 **Why Exact Counts?**
 V3 testing showed DeepSeek Reasoner over-delivered watermarks (7 in Mode B).
@@ -985,18 +985,18 @@ SECTION 17: QUICK REFERENCE CARD
 ### LENGTH TARGETS
 | Mode | Target | Max |
 |------|--------|-----|
-| S | 300-500 | 600 |
-| A | 800-1,000 | 1,200 |
-| B | 1,200-1,400 | 1,600 |
+| S | 150-300 | 500 |
+| A | 800-1,200 | 1,500 |
+| B | 1,500-2,000 | 2,200 |
 | C | 2,500-3,500 | 4,000 |
 
-### WATERMARK COUNTS (EXACT — v1.9)
-| Mode | EXACT Count |
-|------|-------------|
+### WATERMARK COUNTS (TARGET)
+| Mode | Target Count |
+|------|--------------|
 | A | 3 |
 | B | 4 |
 | C | 5 |
-| S | 2 |
+| S | 1 |
 
 ### IDIOM MINIMUMS
 | Mode | Count |

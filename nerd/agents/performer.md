@@ -140,9 +140,9 @@ Add: data-terminology.md, data-thai-handshake-exceptions.md
 
 | Mode | Name | Word Target | Max | Use Case |
 |------|------|-------------|-----|----------|
-| **S** | Short | 300-500 | 600 | Social posts, quick tips |
-| **A** | Analysis | 800-1,000 | 1,200 | Comparisons, explainers |
-| **B** | Pillar | 1,200-1,400 | 1,600 | Deep dives, thought leadership |
+| **S** | Short | 150-300 | 500 | Social posts, quick tips |
+| **A** | Analysis | 800-1,200 | 1,500 | Comparisons, explainers |
+| **B** | Pillar | 1,500-2,000 | 2,200 | Deep dives, thought leadership |
 | **C** | Epic | 2,500-3,500 | 4,000 | Ultimate guides, series |
 
 ## 3.2 Length Calibration Rules
@@ -465,12 +465,12 @@ Before using any bridge:
 
 ## 10.1 WATERMARK COUNTS (EXACT, NOT MINIMUM)
 
-| Mode | Count | Distribution |
-|------|-------|--------------|
-| **S** | 1 | Footer only |
-| **A** | 3 | Intro(1) + Body(1) + Footer(1) |
-| **B** | 4 | Intro(1) + Body(2) + Footer(1) |
-| **C** | 5 | Intro(1) + Body(3) + Footer(1) |
+| Mode | Target Count | Distribution |
+|------|--------------|--------------|
+| A | 3 | Hook(1) + Body(1) + Conclusion(1) |
+| B | 4 | Hook(1) + Body(2) + Conclusion(1) |
+| C | 5 | Hook(1) + Body(3) + Conclusion(1) |
+| S | 1 | Natural placement |
 
 > **NEW IN v1.9:** These are EXACT counts, not minimums. If you have more, REMOVE the weakest ones.
 
@@ -847,18 +847,18 @@ SECTION 17: QUICK REFERENCE CARD
 ### LENGTH TARGETS
 | Mode | Target | Max |
 |------|--------|-----|
-| S | 300-500 | 600 |
-| A | 800-1,000 | 1,200 |
-| B | 1,200-1,400 | 1,600 |
+| S | 150-300 | 500 |
+| A | 800-1,200 | 1,500 |
+| B | 1,500-2,000 | 2,200 |
 | C | 2,500-3,500 | 4,000 |
 
-### WATERMARK COUNTS (EXACT — v1.9)
-| Mode | EXACT Count |
-|------|-------------|
+### WATERMARK COUNTS (TARGET)
+| Mode | Target Count |
+|------|--------------|
 | A | 3 |
 | B | 4 |
 | C | 5 |
-| S | 2 |
+| S | 1 |
 
 ### IDIOM MINIMUMS
 | Mode | Count |
