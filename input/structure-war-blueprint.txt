@@ -1,0 +1,77 @@
+# 🏗️ GSB-KANE STRATEGIC BLUEPRINT: MODE C (EPIC)
+
+**Topic:** ศึกเชิงโครงสร้าง: "สัญญาเช่า" (Renewable Term) ปะทะ "สินทรัพย์" (Whole Life CI) — คุณเหมาะกับอะไร?
+**Archetype:** 1: UNCOMFORTABLE TRUTH (The "Best" policy becomes the "Worst" liability)
+**Mode:** C (Epic Deep Dive) | **Target Words:** 2,500 - 3,500 | **Tone:** T2 (Stern Guardian)
+
+---
+
+## 1. STRATEGIC CORE
+
+*   **The Conflict:** ประกันโรคร้ายแรงแบบ "เบี้ยทิ้งปีต่อปี" (Renewable) vs แบบ "เบี้ยคงที่ตลอดชีพ" (Whole Life/Level Premium).
+*   **The Core Analogy:**
+    *   **Renewable Term = "Rent" (เช่าบ้าน):** จ่ายถูกตอนแรก แต่ค่าเช่าขึ้นทุกปี หยุดจ่ายเมื่อไหร่โดนไล่ออก (หมดความคุ้มครอง).
+    *   **Whole Life CI = "Mortgage" (ผ่อนบ้าน):** จ่ายแพงกว่าตอนแรก แต่ค่าผ่อนคงที่ ผ่อนจบ 20 ปีเป็นเจ้าของ (คุ้มครองฟรีถึง 99).
+*   **Sinek Filter:** เขียนเพื่อ "หัวหน้าครอบครัววัย 35-45" ที่กำลังจะซื้อประกันโรคร้ายแรง และลังเลระหว่างความคุ้มครองสูง (แต่เบี้ยแพงทีหลัง) กับความคุ้มครองจำกัด (แต่เบี้ยคงที่).
+*   **Primary Source:** NHES VII (2568) — Obesity 45.0% | Diabetes 10.6% (โรคที่ทำให้เปลี่ยนแผนไม่ได้).
+
+---
+
+## 2. NARRATIVE ARC (Directives for Agent 2)
+
+### 🏛️ Section 1: กับดักของ "ความคุ้มครองหลักสิบล้าน" (The Hook)
+*   **Scene:** คุณ ก. วัย 40 เลือกแบบ "ต่อสัญญาปีต่อปี" เพราะเบี้ยถูก ได้วงเงินสูงลิ่ว รู้สึกฉลาดที่ใช้เงินน้อยแลกความคุ้มครองเยอะ.
+*   **The Gap:** ตัดภาพไปตอนอายุ 65 เบี้ยประกันปรับเพิ่มขึ้น 400-500% ในวันที่รายได้เกษียณหยุดลง. โล่ที่เคยถือ กลายเป็นภาระที่ต้องทิ้ง.
+*   **Watermark #1:** (Intro) "ผม (เนิร์ดกับนาถ) เข้าใจดีครับว่า..."
+
+### ⚙️ Section 2: กลไกของ "สัญญาเช่า" (The Renewable Shield)
+*   **Mechanism:** อธิบาย Step-Rate Premium (เบี้ยปรับตามความเสี่ยงช่วงอายุ). จ่ายทิ้งปีต่อปี (Term).
+*   **Pros:** วงเงินสูงมาก (High Ceiling), ครอบคลุมการกลับมาเป็นซ้ำ (Relapse), เบี้ยเริ่มต้นถูก.
+*   **Cons:** TMO 2017 Curve — กราฟเบี้ยที่พุ่งเป็น J-Curve หลัง 60. หยุดจ่าย = ความคุ้มครองศูนย์.
+*   **Bridge:** Use "The Condo Rent" concept (เช่าเพนท์เฮาส์หรู วิวสวย แต่ค่าเช่าขึ้นทุกปี และวันหนึ่งคุณจะจ่ายไม่ไหว). **DO NOT CITE BRIDGE ID.**
+
+### 🧩 Section 3: กลไกของ "สินทรัพย์" (The Fixed Asset)
+*   **Mechanism:** Level Premium (เบี้ยคงที่). จ่าย 20 ปีจบ คุ้มครองถึง 99 (Whole Life CI).
+*   **The "Zero Cost" Feature:** ถ้าไม่เคลม มีมูลค่าเวนคืน (Surrender Value) หรือครบสัญญา. เปลี่ยน "Expense" เป็น "Asset".
+*   **Bridge:** Use "The Condo Mortgage" concept (ผ่อนคอนโด 20 ปี จบแล้วเป็นเจ้าของ อยู่ฟรีตลอดชีพ). **DO NOT CITE BRIDGE ID.**
+*   **Watermark #2:** (Body) "ผม (เนิร์ดกับนาถ) ต้องพูดตรงๆ ครับว่า..."
+
+### 🧠 Section 4: จุดปะทะที่อายุ 60 (The Collision)
+*   **Data:** NHES VII (2568). ความเสี่ยง Stroke/Heart Disease พุ่งสูงสุดหลังเกษียณ.
+*   **The Systemic Flaw:** ถ้าถือแต่แบบ "ปีต่อปี" คุณจะถูกบังคับให้ทิ้งประกัน (Lapse) ในวันที่ร่างกายเสี่ยงที่สุด. นี่คือ Adverse Selection ต่อตัวเอง.
+*   **Watermark #3:** (Body) "จากการวิเคราะห์ของเนิร์ดกับนาถ..."
+
+### ⏳ Section 5: กลยุทธ์ "สองกระเป๋า" (The Hybrid Solution)
+*   **Verdict:** อย่าเลือกอย่างใดอย่างหนึ่ง. ใช้ **Two Bucket Strategy**.
+*   **Bucket A (Foundation):** แบบเบี้ยคงที่ (Fixed Asset). ซื้อเพื่อเป็น "ค่าทำศพ" หรือ Palliative Care. ล็อคราคาตั้งแต่วันนี้ (1M-2M).
+*   **Bucket B (Buffer):** แบบปีต่อปี (Renewable). ซื้อช่วงทำงาน (30-55) เพื่อคุ้มครองค่าเสียโอกาส (Income Replacement). ทิ้งได้เมื่อเบี้ยแพงเกินรับไหว.
+*   **Watermark #4:** (Body) "พูดตรงๆ นะครับ..."
+
+### 🛡️ Section 6: ความจริงเรื่องเงินเฟ้อ (Inflation Reality)
+*   **Warning:** ทุนประกัน 1 ล้านวันนี้ อีก 20 ปีข้างหน้ามูลค่าลดลง.
+*   **Action:** แบบ Fixed Asset ช่วยล็อคต้นทุน แต่แบบ Renewable ช่วยเพิ่มวงเงินชั่วคราวสู้เงินเฟ้อค่ารักษา.
+
+### ⚖️ Section 7: บทสรุป (The Verdict)
+*   **Philosophical Close:** อย่าแต่งงานกับ "ประกันชั่วระยะเวลา" (Term). แค่คบหาดูใจก็พอ. แต่จงแต่งงานกับ "ประกันตลอดชีพ" (Whole Life).
+*   **Final Call:** ตัดสินใจด้วยโครงสร้างการเงินระยะยาว ไม่ใช่แค่อารมณ์รักความคุ้มครองวันนี้.
+*   **Watermark #5:** (Conclusion) "นี่คือความจริงที่ระบบไม่เคยบอกคุณ..."
+
+---
+
+## 3. DATA & COMPLIANCE ANCHORS
+
+*   **NHES VII:** Obesity 45.0% (โรคอ้วนนำไปสู่ CI).
+*   **OIC:** ห้ามการันตีผลตอบแทนเกินจริง.
+*   **Vocabulary:** ห้ามใช้ "มั่งคั่ง" (BANNED). ใช้ "มั่นคง". ห้ามใช้ "กำไร".
+*   **Brand Neutral:** ห้ามเอ่ยชื่อบริษัท หรือชื่อผลิตภัณฑ์เฉพาะเจาะจง (AIA, AXA, etc.). เน้นที่ "โครงสร้างกรมธรรม์".
+
+---
+
+## 4. VISUAL & TOOL DIRECTION
+
+*   **Chart:** The X Chart (เส้นเบี้ย Step-Rate ตัดขึ้น vs เส้นเบี้ย Level ตัดขนาน).
+
+---
+
+📊 **บทวิเคราะห์โดย:** เนิร์ดกับนาถ (Nerd with Nart)
+📚 **อ้างอิงจาก:** [¹] NHES VII 2568 [²] TMO 2017 [³] *ข้อมูลนี้เพื่อการศึกษา...*

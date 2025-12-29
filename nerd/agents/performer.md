@@ -847,10 +847,10 @@ SECTION 17: QUICK REFERENCE CARD
 ### LENGTH TARGETS
 | Mode | Target | Max |
 |------|--------|-----|
-| S | 80-150 | 200 |
-| A | 2,000-2,500 | 3,000 |
+| S | 300-500 | 600 |
+| A | 800-1,000 | 1,200 |
 | B | 1,200-1,400 | 1,600 |
-| C | 600-800 | 1,000 |
+| C | 2,500-3,500 | 4,000 |
 
 ### WATERMARK COUNTS (EXACT — v1.9)
 | Mode | EXACT Count |
