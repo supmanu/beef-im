@@ -40,7 +40,7 @@
 | | | |
 | **AGENT FACTORY (7)** | *Location: nerd/agents/* | |
 | `instruction-architect.md` | The Brain: Strategic Blueprinting | v7.0 Pattern E |
-| `instruction-performer.md` | The Voice: Multi-modal Execution Engine | v1.8 Universal |
+| `instruction-performer.md` | The Voice: Multi-modal Execution Engine | v1.9 Universal |
 | `instruction-sovereign-auditor.md` | The Shield: 5-Pillar Audit | v2.0 Hybrid Enhanced |
 | `instruction-proposal-generator.md` | Senior Insurance Architect | v7.0 Pattern E |
 | `instruction-hybrid-architect-builder.md` | One-Shot Content Engine | v7.0 Pattern E |
