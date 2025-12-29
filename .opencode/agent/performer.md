@@ -371,6 +371,22 @@ V2 with rich context scored 82/100 — vocabulary guards work.
 | ซื้อประกัน | ทำประกัน | Industry standard is "ทำ" not "ซื้อ" |
 | ประกันเบาหวาน | ประกันสุขภาพ (สำหรับผู้ป่วยเบาหวาน) | No "diabetes insurance" product |
 
+## 7.4 NATIVE THAI PRODUCT STRUCTURES (NEW v1.9.3)
+
+**THE RULE:** Favor descriptive Thai phrases over technical English labels in parentheses.
+
+| ❌ AVOID (Parentheses) | ✅ PREFER (Descriptive Thai) |
+|----------------------|---------------------------|
+| (Renewable Term) | แบบเบี้ยจ่ายทิ้งปีต่อปี หรือ แบบเบี้ยปรับขึ้นตามอายุ |
+| (Whole Life CI) | แบบเบี้ยคงที่ตลอดชีพ หรือ แบบผ่อนซื้อความคุ้มครอง |
+| (Step-Rate) | เบี้ยปรับเพิ่มตามช่วงอายุ |
+| (Level Premium) | เบี้ยคงที่ตลอดสัญญา |
+
+**Why?** Parentheses break the narrative flow and make the content feel like a translation. Descriptive Thai sounds like a native expert explaining a concept.
+
+## 7.5 URGENCY REFRAME
+
+
 ### 7.4 BANNED TERMS (ABSOLUTE)
 
 These terms MUST NEVER appear:
