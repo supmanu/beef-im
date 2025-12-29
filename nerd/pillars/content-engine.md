@@ -83,8 +83,8 @@ OUTPUT: Ready-to-publish content (0 edits needed)
 
 | Framework | Language | Length | Purpose | Frequency |
 |-----------|----------|--------|---------|-----------|
-| Quick Magnet v2.8.3 | Thai | 160-200 words | Daily engagement | Mon-Fri (5x/week) |
-| Kane Edition v3.2.2 | Thai | 300-350 words | Authority building (Social Analysis) | Sat-Sun (2x/week) |
+| Quick Magnet v2.8.3 | Thai | 150-300 words | Daily engagement | Mon-Fri (5x/week) |
+| Kane Edition v3.2.2 | Thai | 600-1,000 words | Authority building (Social Analysis) | Sat-Sun (2x/week) |
 | Legacy Quant | English | 300-400 words | Thought leadership | As needed |
 | Formal Dispute Letter | Thai/English | Scales | Official disputes/Appeals | As needed |
 
@@ -146,7 +146,7 @@ Sharp instruction or equation (A = B)
 **Critical Rules:**
 - Thai-first ratio MUST be 85%+
 - Mechanism section CANNOT be skipped
-- Word count MUST be 160-200
+- Word count MUST be 150-300
 - No LaTeX symbols ($$), no meta-commentary
 
 ---
@@ -157,7 +157,7 @@ Sharp instruction or equation (A = B)
 **Note:** If User asks for "Case Builder" in a content context, USE THIS FRAMEWORK (Not the Formal Letter).
 
 **Specifications:**
-- Length: 300-350 words | Reading Time: 75-90 seconds
+- Length: 600-1,000 words | Reading Time: 2-3 minutes
 - Thai-First Handshake: 95-100% (IDEAL)
 - Triple-F: Full (30% Feelings, 25% Facts, 20% Fun)
 - Frequency: Sat-Sun (2x/week)
