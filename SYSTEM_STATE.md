@@ -1,12 +1,16 @@
 # NERD WITH NART: SYSTEM STATE
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 29, 2025 (Universal Performer v1.7.2 Locked)
-* **Model Stack:** Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand) | DeepSeek Reasoner (The Auditor).
-* **Identity Protocol:** Sovereign Universal (v1.7.2) - Rich Context + Anti-AI Fingerprint.
+* **Last Updated:** Dec 29, 2025 (Performer v1.8 - A/B Test Validated)
+* **Model Stack:** DeepSeek Reasoner (Workhorse) | Claude 4.5 Opus (Flagship) | MiniMax M2.1 (Planner).
+* **Identity Protocol:** Sovereign Universal (v1.8) - Fourth Wall Protection + Thai Naturalness.
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 
 ## ✅ ACCOMPLISHMENTS
+*   **[Agent]** **Performer v1.8 Deployed (A/B Test Validated).**
+    *   **Optimization:** A/B tested across 7 models with 4 external evaluators.
+    *   **Fixes:** Explicit "Fourth Wall" ban list, vocabulary guards for "quicksand" errors.
+    *   **Stack:** **DeepSeek Reasoner** promoted to #1 Workhorse (9.3/10). **DeepSeek Chat** REMOVED (length explosion).
 *   **[Infrastructure]** **Universal Performer Agent (v1.7.2) Standardized.**
     *   **Consolidation:** Merged high-strength `performer-universal.md` into the primary `performer.md`.
     *   **Capabilities:** Full 19-step CoT, 29-idiom bank, and explicit Vocabulary Guards (ปกป้อง vs ปกครอง) locked for all models.
