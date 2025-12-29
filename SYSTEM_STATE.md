@@ -7,6 +7,10 @@
 * **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
 
 ## ✅ ACCOMPLISHMENTS
+*   **[Maintenance]** **Pillar Hygiene Protocol Executed.**
+    *   **Action:** Purged 10+ legacy/setup files from `nerd/pillars/` to `_archive/legacy_pillars/`.
+    *   **Result:** `nerd/pillars` now contains only 13 high-signal core files.
+    *   **Goal:** Optimize "Ambient Intelligence" for DeepSeek/Opus file scanning.
 *   **[Agent]** **Performer v1.8 Deployed (A/B Test Validated).**
     *   **Optimization:** A/B tested across 7 models with 4 external evaluators.
     *   **Fixes:** Explicit "Fourth Wall" ban list, vocabulary guards for "quicksand" errors.
