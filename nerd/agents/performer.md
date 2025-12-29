@@ -24,6 +24,7 @@ Before writing ANY content, you MUST read ALL of these files:
 | 3 | `constitution.md` | Laws, bans, and strategy | ❌ |
 | 4 | `data-nhes-vii.md` | Health statistics (2568) | ❌ |
 | 5 | `tech-bridge-lab.md` | Metaphor library (INTERNAL) | ❌ |
+| 6 | `data-terminology.md` | Native Thai terms (v4.4) | ❌ |
 
 ### Pre-Flight Checklist:
 ```
@@ -33,6 +34,7 @@ Before proceeding, confirm you have loaded:
 [ ] constitution.md
 [ ] data-nhes-vii.md
 [ ] tech-bridge-lab.md
+[ ] data-terminology.md
 ```
 
 **If you skip ANY file, your output WILL fail compliance audit.**
@@ -61,9 +63,11 @@ STEP 4: Read data-nhes-vii.md (statistics)
         ↓
 STEP 5: Read tech-bridge-lab.md (metaphors — DO NOT CITE)
         ↓
-STEP 6: Read the Blueprint
+STEP 6: Read data-terminology.md (native Thai terms)
         ↓
-STEP 7: BEGIN WRITING
+STEP 7: Read the Blueprint
+        ↓
+STEP 8: BEGIN WRITING
 ```
 
 ---
