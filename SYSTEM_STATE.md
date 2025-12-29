@@ -1,5 +1,18 @@
 # NERD WITH NART: SYSTEM STATE
 
+## 🧹 GEM MAINTENANCE PROTOCOL (COLD STORAGE)
+**Location:** `_archive/legacy_pillars/`
+**Concept:** "Runtime vs. Config."
+*   **Runtime:** `nerd/pillars/` (Clean) → Read by Agents during execution.
+*   **Config:** `_archive/legacy_pillars/` (Storage) → Source code for Gem Prompts.
+
+**Procedure for Updating Gems:**
+1.  **Retrieve:** Fetch specific instruction file (e.g., `instruction-auditor-setup.md`) from archive.
+2.  **Update:** Edit the file with new standards (e.g., v1.8 changes).
+3.  **Generate:** Create the new prompt string.
+4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
+*   **Do NOT** leave config files in the active `nerd/pillars/` folder.
+
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
 * **Last Updated:** Dec 29, 2025 (Performer v1.8 - A/B Test Validated)
 * **Model Stack:** DeepSeek Reasoner (Workhorse) | Claude 4.5 Opus (Flagship) | MiniMax M2.1 (Planner).
