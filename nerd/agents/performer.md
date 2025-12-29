@@ -855,9 +855,9 @@ SECTION 17: QUICK REFERENCE CARD
 ### WATERMARK COUNTS (EXACT — v1.9)
 | Mode | EXACT Count |
 |------|-------------|
-| A | 5 |
+| A | 3 |
 | B | 4 |
-| C | 3 |
+| C | 5 |
 | S | 2 |
 
 ### IDIOM MINIMUMS

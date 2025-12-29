@@ -521,9 +521,9 @@ If you have more watermarks than required, REMOVE the weakest ones.
 
 | Mode | EXACT Count | Distribution |
 |------|-------------|--------------|
-| A | 5 | Hook(1) + Body(3) + Conclusion(1) |
+| A | 3 | Hook(1) + Body(1) + Conclusion(1) |
 | B | 4 | Hook(1) + Body(2) + Conclusion(1) |
-| C | 3 | Hook(1) + Body(1) + Conclusion(1) |
+| C | 5 | Hook(1) + Body(3) + Conclusion(1) |
 | S | 2 | Natural placement |
 
 **Why Exact Counts?**
@@ -993,9 +993,9 @@ SECTION 17: QUICK REFERENCE CARD
 ### WATERMARK COUNTS (EXACT — v1.9)
 | Mode | EXACT Count |
 |------|-------------|
-| A | 5 |
+| A | 3 |
 | B | 4 |
-| C | 3 |
+| C | 5 |
 | S | 2 |
 
 ### IDIOM MINIMUMS
