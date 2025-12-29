@@ -49,7 +49,7 @@ Models that skipped files scored 20-35 points lower than those that read all fil
 
 ### 0.1 MANDATORY FILE CHECKLIST
 
-Before writing ANY content, you MUST read these 5 files:
+Before writing ANY content, you MUST read these 6 files:
 
 | # | File | Purpose | If You Skip... |
 |---|------|---------|----------------|
@@ -58,6 +58,7 @@ Before writing ANY content, you MUST read these 5 files:
 | 3 | `constitution.md` | Laws & banned terms | Compliance violations |
 | 4 | `data-nhes-vii.md` | Health statistics | Wrong data citations |
 | 5 | `tech-bridge-lab.md` | Verified analogies | Bridge ID leaks, wrong metaphors |
+| 6 | `data-terminology.md` | Native Thai terms (v4.4) | AI translation smell |
 
 ### 0.2 FILE READING VERIFICATION
 
@@ -67,6 +68,7 @@ After reading each file, mentally confirm:
 - [ ] I read constitution.md and know banned terms (รวย, มั่งคั่ง, etc.)
 - [ ] I read data-nhes-vii.md and know Diabetes = 10.6%, Undiagnosed = 27.0%
 - [ ] I read tech-bridge-lab.md and understand I must NOT cite Bridge IDs
+- [ ] I read data-terminology.md and will use native Thai product structures
 
 ### 0.3 WARNING: FILE SKIPPING = AUTOMATIC FAILURE
 
@@ -88,7 +90,7 @@ After reading each file, mentally confirm:
 - ❌ "I'll figure it out from the blueprint" → WRONG, blueprints don't have rules
 - ❌ "I already know the voice" → WRONG, you need to verify current banned terms
 - ❌ "Reading files takes too long" → WRONG, it prevents rewriting later
-- ✅ "I will read ALL 5 files before writing" → CORRECT
+- ✅ "I will read ALL 6 files before writing" → CORRECT
 
 **If you skip ANY file, your output WILL fail compliance audit.**
 </pre_flight>
