@@ -27,7 +27,20 @@
 | **Surrender Value** | **มูลค่าเวนคืนกรมธรรม์** | **มูลค่าเวนคืน (Surrender Value)** | **มูลค่าเวนคืนกรมธรรม์** |
 | Benefit | ผลประโยชน์ตามกรมธรรม์ | ผลประโยชน์ (Benefit) | ผลประโยชน์ตามกรมธรรม์ |
 | Sum Assured | จำนวนเงินเอาประกันภัย | จำนวนเงินเอาประกันภัย (Sum Assured) | จำนวนเงินเอาประกันภัย |
-| Coverage Period | ระยะเวลาเอาประกันภัย | ระยะเวลาคุ้มครอง (Coverage Period) | ระยะเวลาเอาประกันภัย |
+| **Coverage Period** | ระยะเวลาเอาประกันภัย | ระยะเวลาคุ้มครอง (Coverage Period) | ระยะเวลาเอาประกันภัย |
+
+---
+
+## **🏥 PRODUCT STRUCTURE TERMS (NEW v4.4):**
+
+| **Concept** | **Native Thai Standard (Preferred)** | **Technical Label (Avoid in prose)** |
+|------------|---------------------------------|-----------------------------------|
+| **Renewable Term** | **แบบเบี้ยจ่ายทิ้งปีต่อปี** หรือ **แบบเบี้ยปรับขึ้นตามอายุ** | ประกันแบบชั่วระยะเวลา (Renewable Term) |
+| **Whole Life CI** | **แบบเบี้ยคงที่ตลอดชีพ** หรือ **แบบผ่อนซื้อความคุ้มครอง** | ประกันแบบตลอดชีพ (Whole Life) |
+| **Step-Rate Premium** | **เบี้ยปรับเพิ่มตามช่วงอายุ** | เบี้ยแบบขั้นบันได (Step-Rate) |
+| **Level Premium** | **เบี้ยคงที่ตลอดสัญญา** | เบี้ยคงที่ (Level Premium) |
+| **Premium Loading** | **การปรับเพิ่มเบี้ยจากความเสี่ยงสุขภาพ** | การเพิ่มเบี้ย (Loading) |
+| **Lapse** | **การขาดอายุของกรมธรรม์** | กรมธรรม์ขาดผลบังคับ (Lapse) |
 
 ---
 
@@ -239,6 +252,6 @@ If ANY check fails → Fix first
 
 **PRINT THIS. PIN THIS. USE THIS DAILY.**
 
-*Terminology Cheat Sheet v4.3 FINAL | Based on Voice DNA Blueprint v4.3 FINAL*  
-*All corrections implemented - Privacy protected - Fiduciary contextualized*  
-*Nov 22, 2025*
+*Terminology Cheat Sheet v4.4 | Based on Voice DNA Blueprint v5.2 CORE*  
+*All corrections implemented - Privacy protected - Product structures added*  
+*Dec 30, 2025*
