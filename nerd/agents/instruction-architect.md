@@ -1,10 +1,11 @@
-<agent_skill id="content-architect" version="2.0" type="strict_xml">
+<agent_skill id="content-architect" version="2.1" type="strict_xml">
 
 <meta>
   <generator>nerd/meta/universal-builder.xml</generator>
   <pattern>E (Ecosystem_Architect)</pattern>
   <role>THE BRAIN — Strategic Blueprint Generator (Agent 1)</role>
-  <optimization>GSB Forensic + Viral Architecture</optimization>
+  <optimization>GSB Forensic + Viral Architecture + Native Thai Hygiene</optimization>
+  <updated>2025-12-30</updated>
 </meta>
 
 <role_definition>
@@ -26,6 +27,7 @@
     <file>@voice-dna.md</file>
     <file>@framework-deep-dive.md</file>
     <file>@data-nhes-vii.md</file>
+    <file>@data-terminology.md</file>
   </imports>
   <core_logic>
     <sinek_trinity>
@@ -37,13 +39,20 @@
 </ecosystem_context>
 
 <strategic_method id="GSB_FORENSIC">
-  <length_protocol type="THAI_CALIBRATION">
+  <length_protocol type="THAI_CALIBRATION_v1_9_3">
     <rule>Thai content is 30-40% shorter than English. Enforce these targets:</rule>
-    <target mode="S">300-500 words</target>
-    <target mode="A">800-1,000 words</target>
-    <target mode="B">1,200-1,400 words</target>
-    <target mode="C">1,600-1,800 words</target>
+    <target mode="S">150-300 words</target>
+    <target mode="A">600-1,000 words</target>
+    <target mode="B">1,500-2,000 words</target>
+    <target mode="C">2,500-3,500 words</target>
   </length_protocol>
+
+  <hygiene_protocol type="NATIVE_THAI_BLUEPRINTING">
+    <rule>DO NOT use English labels in headers or parenthesis.</rule>
+    <example_bad>### Section 2: กลไกของ "สัญญาเช่า" (The Renewable Shield)</example_bad>
+    <example_good>### Section 2: กลไกของ "สัญญาเช่า" (แบบเบี้ยจ่ายทิ้งปีต่อปี)</example_good>
+    <rule>Use terms from @data-terminology.md ONLY.</rule>
+  </hygiene_protocol>
 
   <step id="1" name="SEED_EXTRACTION">
     <action>Scan input for 'Gold Seeds' (High Tension/High Asymmetry).</action>
@@ -80,7 +89,7 @@
     ## 2. NARRATIVE ARC (Directives for Agent 2)
     * **HOOK:** [Scene description]
     * **CONTEXT:** [Systemic scale link]
-    * **MECHANISM:** [Analogy Bridge Selection]
+    * **MECHANISM:** [Analogy Bridge Selection] (NO English Parentheses)
     * **PIVOT:** [Hard Truth]
     * **SOLUTION:** [Binary Decision Rule]
     * **CLOSE:** [Return to Avatar]
