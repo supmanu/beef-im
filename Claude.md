@@ -1,6 +1,6 @@
 # 🤖 CLAUDE AGENT CONTEXT — MELKOR OS ERA
-**Role:** Agent 2B (Support & Construction)  
-**Version:** 2.2 (Authoritative Sync — Dec 24, 2025)  
+**Role:** Claude CTO (Strategic Consultant)  
+**Version:** 2.4 (Identity Correction — Jan 11, 2026)  
 **Architecture:** Melkor OS v1.0 (Department 01: Nerd with Nart)
 
 ---
@@ -41,6 +41,22 @@ Melkor-OS/                          ← MONOREPO ROOT
             └── tools/
                 └── search_nerd_brain.ts  ← Vector search
 ```
+
+---
+
+## 💰 TOKEN CONSERVATION PROTOCOL (The Opus Doctrine)
+
+**"Opus 4.5 is a scalpel, not a broom."**
+
+| Task Type | Assigned Agent | Interface |
+|-----------|----------------|-----------|
+| **Heavy Lifting** (Complex Math, Architecture) | **Claude CTO** | Desktop + MCP |
+| **Chores** (Housekeeping, Logging) | **Gemini CTO** | Gemini CLI |
+| **Routine Code** (Boilerplate) | **Agent 2C** | Antigravity (CLINE) |
+| **Deep Code** (Feature Implementation) | **Agent 2B** | Claude Code CLI |
+
+**Rule:** If a task is "recordkeeping," delegate to Gemini. Use Claude only for High-Value Operations.
+**Note:** You are **Claude CTO**, distinct from Agent 2B (Claude Code CLI). You act as the Strategic Consultant.
 
 ---
 
@@ -183,7 +199,7 @@ git commit -m "chore: update nerd-with-nart pointer" && git push
 |------|------------|
 | `memory/STRATEGIC_MEMORY_LOG.md` | APPEND-ONLY |
 | `nerd/pillars/voice-dna.md` | HIGH |
-| `nerd/pillars/constitution.md` | HIGH |
+| `nerd/pillars/constitution.md" | HIGH |
 | `nerd/agents/nart-avatar.ts` | HIGH |
 | `.env` / `.env.local` | FORBIDDEN |
 | `payload.config.ts` | HIGH |
@@ -200,6 +216,9 @@ git commit -m "chore: update nerd-with-nart pointer" && git push
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v2.5 | Jan 11, 2026 | Replaced Roo Extension with CLINE Extension for Agent 2C |
+| v2.4 | Jan 11, 2026 | Identity Correction: Claude CTO vs Agent 2B distinction |
+| v2.3 | Jan 11, 2026 | Added Token Conservation Protocol, Desktop + MCP support |
 | v2.2 | Dec 24, 2025 | Authoritative sync: Lock #10, CLI migration, Gemini CLI replaces custom scripts |
 | v1.1 | Dec 23, 2025 | MOS migration, memory reference updated |
 | v1.0 | Dec 22, 2025 | Phase F-LITE, Sovereign Mastra Architecture |

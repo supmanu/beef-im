@@ -39,13 +39,16 @@ This department operates under the **Melkor OS** parent-shell architecture.
 
 ---
 
-## 🛠️ STACK ENFORCEMENT
-- Models (Dec 2025): Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 Opus (The King) | Claude 4.5 Sonnet (The Hand)
-- Framework: Next.js 15.5.9 (Downgraded from v16 for Vercel/Payload stability)
-- Structure: **FLAT ROOT** (No `/src` folder - direct `/app`, `/components`)
-- CMS: Payload 3.0 (Embedded)
-- Database: Neon Postgres
-- Storage: Cloudflare R2 (Sovereign Assets)
+## 🛠️ STACK & AGENT ENFORCEMENT
+- **Agent 2A (General):** Antigravity Built-in (Gemini 3.0 Pro/Flash / Claude 4.5 Sonnet/Opus)
+- **Agent 2B (Deep Code):** Claude Code Ext (Claude 4.5 Sonnet Pro/API)
+- **Agent 2C (Cost-Eff):** CLINE Ext (MiniMax M2.1 / GLM-4.7)
+- **OpenCode CLI:** Content Production & Model Switching
+- **Framework:** Next.js 15.5.9 (Downgraded from v16 for Vercel/Payload stability)
+- **Structure:** **FLAT ROOT** (No `/src` folder - direct `/app`, `/components`)
+- **CMS:** Payload 3.0 (Embedded)
+- **Database:** Neon Postgres
+- **Storage:** Cloudflare R2 (Sovereign Assets)
 
 ---
 
