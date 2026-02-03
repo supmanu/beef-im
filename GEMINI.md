@@ -1,4 +1,4 @@
-# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.5
+# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.6
 # Hierarchical context for Antigravity Agent (Gemini 3 Series)
 # Architecture: Melkor OS v1.0 (Department 01)
 
@@ -123,20 +123,29 @@ git push origin main
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.6 | Feb 04, 2026 | Three-Layer Architecture model, Operational Rules A-D, container-aware identity |
 | v1.5 | Feb 03, 2026 | Fedora Atomic migration. Path Translation Rule. Node 24.13.0 (via Distrobox). |
 | v1.4 | Dec 23, 2025 | MOS migration. Memory references updated. Submodule awareness added. |
 | v1.3 | Dec 22, 2025 | Sovereign Brain. Native Memory Protocol. |
 
 ---
 
-## 🐧 ENVIRONMENT NOTE
+## 🐧 SYSTEM ARCHITECTURE: FEDORA COSMIC ATOMIC
 
-**Development Platform:** Fedora Cosmic Atomic (immutable OS) with Distrobox containers.
-**Node:** v24.13.0 (inside `ai-tools` container, Debian 13). Legacy `nerd-lab` container (Node 20) available as fallback.
+**You (Gemini CLI) are running INSIDE the `ai-tools` Distrobox container (Debian 13), not on the host.**
 
-### ⚠️ PATH TRANSLATION RULE
-> Any reference to `C:\Users\supma\*` → translate to `~/` or `/var/home/supmanu/`.
-> Fedora Atomic uses `/var/home/` instead of `/home/`.
+### Three-Layer Model
+| Layer | Role | Constraint |
+|-------|------|------------|
+| **1. Host** | Fedora Cosmic Atomic (immutable) | Root is READ-ONLY. No `dnf install`. Use `rpm-ostree` for drivers only. |
+| **2. GUI** | Flatpak (sandboxed apps) | Cannot launch via bare CLI names. |
+| **3. Dev/CLI** | Distrobox (`ai-tools`) — **YOU ARE HERE** | Mutable workspace. Full access to `~/` (shared with host). |
+
+### Operational Rules
+- **Rule A:** AI binaries live at `/usr/bin/` inside container. **NEVER** install to `~/.local/bin` (causes recursion loop with host wrapper).
+- **Rule B:** Never `npm install -g` AI tools. Tell user to run `update-ai` on host.
+- **Rule C:** Translate `C:\Users\supma\*` → `~/` or `/var/home/supmanu/`. Fedora uses `/var/home/` not `/home/`.
+- **Rule D:** `nerd-lab` container (Node 20) is fallback only. Don't use unless instructed.
 
 ---
 
