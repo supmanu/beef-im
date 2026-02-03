@@ -1,9 +1,11 @@
 import re
 import os
 
-# Configuration
-RAW_FILE_PATH = r"C:\Users\supma\Melkor-OS\departments\nerd-with-nart\nerd\references\brochures\raw\AIA_Benefits_Plus_2025.md"
-OUTPUT_FILE_PATH = r"C:\Users\supma\Melkor-OS\departments\nerd-with-nart\nerd\references\brochures\library\AIA_Benefits_Plus_2025.md"
+# Configuration - paths relative to script location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)  # departments/nerd-with-nart/
+RAW_FILE_PATH = os.path.join(PROJECT_ROOT, "nerd", "references", "brochures", "raw", "AIA_Benefits_Plus_2025.md")
+OUTPUT_FILE_PATH = os.path.join(PROJECT_ROOT, "nerd", "references", "brochures", "library", "AIA_Benefits_Plus_2025.md")
 
 def clean_ocr_errors(text):
     # 1. Product Names & Key Terms (High Confidence)

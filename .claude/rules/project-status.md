@@ -114,11 +114,11 @@ We are now 100% sovereign with no external content dependencies:
 - All CLI tools work: `generate:importmap`, `generate:types`, migrations
 - **Decision:** Never use auto-discovery for Payload. This is the production standard.
 
-**3. Node 20 LTS is Non-Negotiable** ✅ ENFORCED
-- Node 24+ BREAKS Payload CLI tools (confirmed blocker)
-- Must use Node v20.18.0 LTS (Iron) exclusively
-- Documented in `.nvmrc` + enforced with `engine-strict=true`
-- **Decision:** Zero exceptions. This is a constraint, not a preference.
+**3. Node 24.13.0 LTS (Updated Feb 2026)** ✅ CURRENT
+- Payload CMS bumped monorepo to Node 24.13.0 (release #15364) — Node 20 constraint lifted
+- Primary: Node 24.13.0 via Distrobox `ai-tools` (Debian 13)
+- Fallback: Node 20.x via Distrobox `nerd-lab` (Debian 12) if regressions occur
+- **Decision:** Node 24 is now the standard. Legacy `nerd-lab` container available as safety net.
 
 **4. Hygraph is Completely Eradicated** ✅ COMPLETE
 - Full migration from Hygraph → Payload 3.0 complete
@@ -144,7 +144,7 @@ We are now 100% sovereign with no external content dependencies:
 *   **Database:** Neon Postgres
 *   **Legacy Content:** Hygraph (being phased out)
 *   **Styling:** Tailwind CSS v3.4.17
-*   **Node Version:** v20.18.0 LTS
+*   **Node Version:** v24.13.0 (via Distrobox ai-tools)
 
 ### Environment Status
 *   ✅ Development server running (`npm run dev`)

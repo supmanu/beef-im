@@ -6,9 +6,10 @@
 - **Structure:** **FLAT ROOT** (No `/src` folder)
 - **React:** 19.0.0
 
-## Node Version (CRITICAL)
-- **Required:** Node v20.18.0 LTS (Iron)
-- **Incompatible:** Node v24+ breaks Payload CLI tools
+## Node Version
+- **Primary:** Node v24.13.0 (via Distrobox `ai-tools`, Debian 13)
+- **Fallback:** Node v20.x (via Distrobox `nerd-lab`, Debian 12) — if Payload regresses
+- **Note:** Payload CMS now supports Node 24 (bumped in release #15364)
 - **Check:** Run `node -v` before development
 
 ## Module System (Phase II - ESM)

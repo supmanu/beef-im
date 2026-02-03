@@ -1,4 +1,4 @@
-# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.4
+# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.5
 # Hierarchical context for Antigravity Agent (Gemini 3 Series)
 # Architecture: Melkor OS v1.0 (Department 01)
 
@@ -123,10 +123,22 @@ git push origin main
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.5 | Feb 03, 2026 | Fedora Atomic migration. Path Translation Rule. Node 24.13.0 (via Distrobox). |
 | v1.4 | Dec 23, 2025 | MOS migration. Memory references updated. Submodule awareness added. |
 | v1.3 | Dec 22, 2025 | Sovereign Brain. Native Memory Protocol. |
 
 ---
 
-*GEMINI.md — Department 01 Brain Context*  
+## 🐧 ENVIRONMENT NOTE
+
+**Development Platform:** Fedora Cosmic Atomic (immutable OS) with Distrobox containers.
+**Node:** v24.13.0 (inside `ai-tools` container, Debian 13). Legacy `nerd-lab` container (Node 20) available as fallback.
+
+### ⚠️ PATH TRANSLATION RULE
+> Any reference to `C:\Users\supma\*` → translate to `~/` or `/var/home/supmanu/`.
+> Fedora Atomic uses `/var/home/` instead of `/home/`.
+
+---
+
+*GEMINI.md — Department 01 Brain Context*
 *Melkor OS v1.0*
