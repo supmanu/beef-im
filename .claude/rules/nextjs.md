@@ -7,8 +7,8 @@
 - **React:** 19.0.0
 
 ## Node Version
-- **Primary:** Node v24.13.0 (via Distrobox `ai-tools`, Debian 13)
-- **Fallback:** Node v20.x (via Distrobox `nerd-lab`, Debian 12) — if Payload regresses
+- **Primary:** Node v24.13.0 (via NVM native, `~/.nvm`)
+- **Fallback:** Node v20.x (via `nvm use 20`) — if Payload regresses
 - **Note:** Payload CMS now supports Node 24 (bumped in release #15364)
 - **Check:** Run `node -v` before development
 

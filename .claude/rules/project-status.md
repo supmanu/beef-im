@@ -116,9 +116,9 @@ We are now 100% sovereign with no external content dependencies:
 
 **3. Node 24.13.0 LTS (Updated Feb 2026)** ✅ CURRENT
 - Payload CMS bumped monorepo to Node 24.13.0 (release #15364) — Node 20 constraint lifted
-- Primary: Node 24.13.0 via Distrobox `ai-tools` (Debian 13)
-- Fallback: Node 20.x via Distrobox `nerd-lab` (Debian 12) if regressions occur
-- **Decision:** Node 24 is now the standard. Legacy `nerd-lab` container available as safety net.
+- Primary: Node 24.13.0 via NVM native (`~/.nvm`)
+- Fallback: Node 20.x via `nvm use 20` if regressions occur
+- **Decision:** Node 24 is now the standard. NVM provides instant version switching.
 
 **4. Hygraph is Completely Eradicated** ✅ COMPLETE
 - Full migration from Hygraph → Payload 3.0 complete
@@ -144,7 +144,7 @@ We are now 100% sovereign with no external content dependencies:
 *   **Database:** Neon Postgres
 *   **Legacy Content:** Hygraph (being phased out)
 *   **Styling:** Tailwind CSS v3.4.17
-*   **Node Version:** v24.13.0 (via Distrobox ai-tools)
+*   **Node Version:** v24.13.0 (via NVM native)
 
 ### Environment Status
 *   ✅ Development server running (`npm run dev`)
