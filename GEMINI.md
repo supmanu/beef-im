@@ -125,27 +125,29 @@ git push origin main
 |---------|------|---------|
 | v1.7 | Feb 04, 2026 | Native NVM Protocol v5.0: Retired Distrobox containers, NVM user-space for Node management |
 | v1.6 | Feb 04, 2026 | Three-Layer Architecture model, Operational Rules A-D, container-aware identity |
+| v1.6 | Feb 19, 2026 | NixOS 26.05 migration. Updated OS architecture section. Rule D (Shebang Law) added. /home replaces /var/home. |
 | v1.5 | Feb 03, 2026 | Fedora Atomic migration. Path Translation Rule. Node 24.13.0 (via Distrobox). |
 | v1.4 | Dec 23, 2025 | MOS migration. Memory references updated. Submodule awareness added. |
 | v1.3 | Dec 22, 2025 | Sovereign Brain. Native Memory Protocol. |
 
 ---
 
-## 🐧 SYSTEM ARCHITECTURE: FEDORA COSMIC ATOMIC
+## 🐧 SYSTEM ARCHITECTURE: NIXOS 26.05 YARARA
 
 **You (Gemini CLI) are running NATIVELY on the host via NVM user-space.**
 
 ### Architecture Model
 | Layer | Role | Constraint |
 |-------|------|------------|
-| **1. Host** | Fedora Cosmic Atomic (immutable) | Root is READ-ONLY. No `dnf install`. Use `rpm-ostree` for drivers only. |
+| **1. Host** | NixOS 26.05 Yarara (declarative) | Config via `configuration.nix`. No `apt`/`dnf`/`rpm-ostree`. Use `nixos-rebuild switch`. |
 | **2. GUI** | Flatpak (sandboxed apps) | Cannot launch via bare CLI names. |
-| **3. Dev/CLI** | NVM Native — **YOU ARE HERE** | `npm install -g` is safe (NVM intercepts to `~/.nvm`). |
+| **3. Dev/CLI** | NVM Native — **YOU ARE HERE** | `npm install -g` is safe (NVM intercepts to `~/.nvm`). `nix-ld` enabled for foreign binaries. |
 
 ### Operational Rules
-- **Rule A:** `npm install -g` is SAFE. NVM saves to `~/.nvm`, bypassing immutable OS root.
+- **Rule A:** `npm install -g` is SAFE. NVM saves to `~/.nvm`, bypassing OS root.
 - **Rule B:** Use `nvm use 24` (default) or `nvm use 20` (legacy fallback) to switch Node versions.
-- **Rule C:** Translate `C:\Users\supma\*` → `~/` or `/var/home/supmanu/`. Fedora uses `/var/home/` not `/home/`.
+- **Rule C:** Translate `C:\Users\supma\*` → `~/` or `/home/supmanu/`. NixOS uses `/home/` (Fedora used `/var/home/` — migrated).
+- **Rule D:** Scripts MUST use `#!/run/current-system/sw/bin/bash`. NixOS has no `/bin/bash`.
 
 ---
 
