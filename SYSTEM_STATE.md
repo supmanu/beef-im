@@ -14,7 +14,7 @@
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
 ## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Dec 30, 2025 (Performer v1.9 - The Discipline Upgrade)
+* **Last Updated:** Feb 27, 2026 (NixOS Resurrection Audit)
 * **Model Stack:** 
     *   **Social/Voice:** DeepSeek Chat (Native Thai Champion)
     *   **Website/Authority:** Sonnet 4.5 (Structure/SEO King)
