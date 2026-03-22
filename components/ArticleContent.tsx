@@ -54,7 +54,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
 
     return (
         <div className="relative min-h-screen">
-            <ArticlesBackground enableScrollGradient={true} />
+            <ArticlesBackground enableScrollGradient={false} />
 
             {/* Progress/Status Bar Visual (Teal for Logic) */}
             <div className="fixed top-0 left-0 h-1 bg-brand-teal/50 w-full z-40"></div>
@@ -73,7 +73,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
                 {/* Header Section */}
                 <header className="mb-12 border-b border-white/10 pb-12">
                     <div className="flex flex-wrap items-center gap-3 mb-6">
-                        <span className={`px-3 py-1 text-xs font-bold rounded tracking-widest uppercase border ${colorMap[categorySlug] || colorMap.default}`}>
+                        <span className={`px-3 py-1 text-xs font-bold rounded tracking-wider uppercase border ${colorMap[categorySlug] || colorMap.default}`}>
                             {categoryLabel}
                         </span>
                         <span className="w-1 h-1 rounded-full bg-gray-600"></span>
@@ -110,7 +110,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             max-w-none 
             text-gray-300 
             font-['Sarabun'] 
-            leading-loose 
+            leading-relaxed
             
             /* GLOBAL IMAGE ROUNDING */
             prose-img:rounded-2xl
@@ -121,8 +121,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             /* 1. HEADINGS (H2/H3) */
             prose-headings:font-['Prompt'] 
             prose-headings:text-white
-            prose-headings:mt-12
-            prose-headings:mb-6
+            prose-headings:mt-10
+            prose-headings:mb-5
             
             /* 2. LINKS */
             prose-a:text-brand-amber
@@ -132,22 +132,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-a:transition-colors
             hover:prose-a:text-brand-amber/80
             
-            /* 3. BLOCKQUOTES (Teal Protocol - Intelligence Box / Calculation Zone) */
-            prose-blockquote:border-l-4
-            prose-blockquote:border-brand-teal
-            prose-blockquote:text-gray-200
-            prose-blockquote:bg-brand-dark/50
-            prose-blockquote:p-6
-            prose-blockquote:rounded-r-lg
-            prose-blockquote:not-italic
-            prose-blockquote:my-8
-            prose-blockquote:before:content-none
-            prose-blockquote:after:content-none
-            prose-blockquote:shadow-lg
+            /* 3. BLOCKQUOTES — styled via globals.css (Intelligence Box) */
 
             /* 5. HR (Horizontal Rule) */
             prose-hr:border-brand-teal/30
-            prose-hr:my-12
+            prose-hr:my-10
 
             /* 6. LISTS */
             prose-li:marker:text-brand-amber
@@ -165,7 +154,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
             prose-table:overflow-hidden
             prose-table:my-8
             
-            prose-thead:bg-brand-teal/10
+            prose-thead:bg-brand-teal/15
             prose-thead:border-b
             prose-thead:border-brand-teal/30
             

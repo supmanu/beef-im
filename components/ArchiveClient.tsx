@@ -4,7 +4,6 @@ import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 import { motion } from 'framer-motion';
-import ArticlesBackground from '@/components/ArticlesBackground';
 
 // Map categories to colors for badges
 const colorMap: Record<string, string> = {
