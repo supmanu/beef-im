@@ -158,7 +158,7 @@ export default function COICalculator() {
                                             return (
                                                 <div className="bg-slate-900 border border-brand-teal/50 p-4 rounded-xl shadow-2xl backdrop-blur-xl">
                                                     <p className="text-xs text-slate-400 font-prompt uppercase mb-1">อายุ {payload[0].payload.age} ปี</p>
-                                                    <p className="text-brand-teal font-bold font-mono text-lg">฿{payload[0].value?.toLocaleString()}</p>
+                                                    <p className="text-brand-teal font-bold font-prompt text-lg">฿{payload[0].value?.toLocaleString()}</p>
                                                 </div>
                                             );
                                         }
