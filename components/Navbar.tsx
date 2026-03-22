@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
           >
             {/* PART A: THE ICON */}
             <img
-              src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit4dveu11ed07nzgohj0lx0"
+              src="https://assets.nerdwithnart.com/nwn-assets/navbar-logo.png"
               alt="Nerd with Nart Logo"
               className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
             />

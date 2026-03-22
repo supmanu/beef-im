@@ -19,7 +19,7 @@ interface BackgroundLayersProps {
  * - Snowstorm effect (optional)
  */
 export default function BackgroundLayers({
-    imageUrl = 'https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit9qvyx13ln07pjg8ad4u8t',
+    imageUrl = 'https://assets.nerdwithnart.com/nwn-assets/og-background.jpg',
     imageOpacity = 0.4,
     overlayOpacity = 0.6,
     snowIntensity = 20,

@@ -36,7 +36,7 @@ const HomeContent: React.FC = () => {
                         className="absolute inset-0 w-full h-full"
                     >
                         <motion.img
-                            src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit33qbm10wh07nz61n3l18i"
+                            src="https://assets.nerdwithnart.com/nwn-assets/hero-mountain.jpg"
                             alt="Mountain Expedition"
                             className="w-full h-full object-cover opacity-70"
                             style={{ scale }}

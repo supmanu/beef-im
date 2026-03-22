@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Nerd with Nart (เนิร์ดกับนาถ) | Financial Strategy",
     description: "Data. Logic. Legacy.",
     images: [{
-      url: "https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit9qvyx13ln07pjg8ad4u8t",
+      url: "https://assets.nerdwithnart.com/nwn-assets/og-background.jpg",
     }],
     siteName: "Nerd with Nart",
   },

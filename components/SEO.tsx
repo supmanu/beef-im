@@ -21,7 +21,7 @@ export default function SEO({
   const defaultDescription = "Data. Logic. Legacy. เจาะลึกกลไกการเงินและประกันด้วยตรรกะ ไม่ใช่การขายฝัน";
 
   // 👇 Defaulting to your Profile Avatar if no article image is provided
-  const defaultImage = "https://media.graphassets.com/D4s2X1yTQi2g2Z5q5q5q"; // Replace with actual ID if different
+  const defaultImage = "https://assets.nerdwithnart.com/nwn-assets/og-background.jpg";
 
   const siteUrl = "https://nerdwithnart.com";
 
