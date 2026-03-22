@@ -38,14 +38,14 @@ const HomeContent: React.FC = () => {
                         <motion.img
                             src="https://ap-south-1.graphassets.com/cmio1jnkr03oo06o7af14hqyd/cmit33qbm10wh07nz61n3l18i"
                             alt="Mountain Expedition"
-                            className="w-full h-full object-cover opacity-60"
+                            className="w-full h-full object-cover opacity-70"
                             style={{ scale }}
                         />
                     </motion.div>
                     <Snowstorm windIntensity={weather.wind} />
                     <HeroHUD temperature={weather.temp} windSpeed={weather.wind} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/60 to-transparent"></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D35]/70 via-transparent to-[#0B1D35]/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-[#0B1D35]/40 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D35]/50 via-transparent to-[#0B1D35]/30"></div>
                 </div>
 
                 {/* Content */}
@@ -80,8 +80,8 @@ const HomeContent: React.FC = () => {
                         transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
                         className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6 font-prompt"
                     >
-                        การเงินไม่ใช่การ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">วิ่งระยะสั้น...</span><br />
-                        แต่คือการ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">ปีนสู่ยอดเขา</span>
+                        การเงินไม่ใช่การ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">วิ่งระยะสั้น...</span><br />
+                        แต่คือการ<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">ปีนสู่ยอดเขา</span>
                     </motion.h1>
 
                     <motion.p
