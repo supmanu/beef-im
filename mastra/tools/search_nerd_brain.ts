@@ -11,15 +11,14 @@ export const searchNerdBrain = createTool({
   inputSchema: z.object({
     query: z.string().describe('The search query to retrieve context for'),
   }),
-  execute: async ({ context }) => {
-    const { query } = context;
+  execute: async ({ query }) => {
 
     if (!process.env.DATABASE_URL) {
       return { error: 'DATABASE_URL not configured' };
     }
 
     try {
-      const vectorStore = new PgVector({ connectionString: process.env.DATABASE_URL });
+      const vectorStore = new PgVector({ id: 'nerd-brain', connectionString: process.env.DATABASE_URL });
 
       // Generate embedding for query
       const { embedding } = await embed({

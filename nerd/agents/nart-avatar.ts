@@ -24,6 +24,7 @@ if (!process.env.DATABASE_URL) {
 
 // Initialize Memory
 const store = new PostgresStore({
+    id: 'nart-store',
     connectionString: process.env.DATABASE_URL,
 });
 
@@ -210,6 +211,7 @@ const voiceDnaInstructions = loadSovereignDNA();
 
 
 export const nartAvatar = new Agent({
+    id: 'nart-avatar',
     name: 'Nart Avatar',
     // REQUIRED: Description for MCP conversion
     description: 'Expert Digital Twin for insurance forensics, Thai health statistics (NHES VII), and systemic financial analysis. Has access to AIA Forensic Vault for policy verification.',

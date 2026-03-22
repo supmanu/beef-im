@@ -19,6 +19,7 @@ dotenv.config({ path: envPath });
  * The "Pre-frontal Cortex" for the Nerd-with-Nart department.
  */
 export const ctoConductor = new Agent({
+    id: 'cto-conductor',
     name: 'Strategic CTO',
     description: 'Chief Orchestrator for Melkor-OS. Manages content strategy and verifies Nart Avatar output.',
 
