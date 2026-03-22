@@ -12,6 +12,18 @@ type CashbackRule = {
     amount: number;
 };
 
+// Format number with commas, strip non-numeric, remove leading zeros
+const formatCurrency = (value: string): string => {
+    const num = value.replace(/[^0-9]/g, '').replace(/^0+/, '');
+    if (!num) return '';
+    return Number(num).toLocaleString();
+};
+
+const parseCurrency = (value: string): number => {
+    const num = Number(value.replace(/[^0-9]/g, ''));
+    return isNaN(num) ? 0 : num;
+};
+
 export default function IRRTruthTeller() {
     // INPUT STATE
     const [premium, setPremium] = useState<number>(0);
@@ -107,11 +119,13 @@ export default function IRRTruthTeller() {
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-xs text-slate-500 mb-1">เบี้ยประกันต่อปี (บาท)</label>
-                                <input 
-                                    type="number" 
+                                <input
+                                    type="text"
+                                    inputMode="numeric"
                                     className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:border-teal-500 focus:outline-none"
-                                    value={premium}
-                                    onChange={(e) => setPremium(Number(e.target.value))}
+                                    value={premium ? premium.toLocaleString() : ''}
+                                    placeholder="0"
+                                    onChange={(e) => setPremium(parseCurrency(e.target.value))}
                                 />
                             </div>
                             <div>
@@ -164,12 +178,13 @@ export default function IRRTruthTeller() {
                                             onChange={(e) => updateCashback(cb.id, 'endYear', Number(e.target.value))}
                                         />
                                     </div>
-                                    <input 
-                                        type="number" 
+                                    <input
+                                        type="text"
+                                        inputMode="numeric"
                                         placeholder="จำนวนเงิน"
                                         className="flex-1 bg-slate-800 rounded px-2 py-1 text-sm text-white"
-                                        value={cb.amount}
-                                        onChange={(e) => updateCashback(cb.id, 'amount', Number(e.target.value))}
+                                        value={cb.amount ? cb.amount.toLocaleString() : ''}
+                                        onChange={(e) => updateCashback(cb.id, 'amount', parseCurrency(e.target.value))}
                                     />
                                     <button onClick={() => removeCashback(cb.id)} className="text-slate-600 hover:text-rose-500">
                                         <Trash2 size={16} />
@@ -193,11 +208,13 @@ export default function IRRTruthTeller() {
                                 </div>
                                 <div>
                                     <label className="block text-xs text-slate-500 mb-1">จำนวนเงิน (บาท)</label>
-                                    <input 
-                                        type="number" 
+                                    <input
+                                        type="text"
+                                        inputMode="numeric"
                                         className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:border-emerald-500 focus:outline-none"
-                                        value={maturityAmount}
-                                        onChange={(e) => setMaturityAmount(Number(e.target.value))}
+                                        value={maturityAmount ? maturityAmount.toLocaleString() : ''}
+                                        placeholder="0"
+                                        onChange={(e) => setMaturityAmount(parseCurrency(e.target.value))}
                                     />
                                 </div>
                             </div>
