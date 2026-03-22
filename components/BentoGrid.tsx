@@ -58,7 +58,7 @@ export default function BentoGrid() {
                     className="mb-8 flex items-end justify-between"
                 >
                     <div>
-                        <span className="text-brand-amber text-xs font-bold tracking-widest uppercase mb-2 block">
+                        <span className="text-brand-amber text-xs font-bold tracking-wider uppercase mb-2 block">
                             The Gear Check
                         </span>
                         <h2 className="text-3xl font-bold text-slate-100 font-prompt">
@@ -85,7 +85,7 @@ export default function BentoGrid() {
                                     <card.icon size={24} />
                                 </motion.div>
                                 <div className="mt-8">
-                                    <span className="text-xs font-bold text-brand-teal tracking-widest uppercase mb-2 block">
+                                    <span className="text-xs font-bold text-brand-teal tracking-wider uppercase mb-2 block">
                                         {card.category}
                                     </span>
                                     <h3 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4 font-prompt group-hover:text-brand-teal transition-colors">

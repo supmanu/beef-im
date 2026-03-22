@@ -40,7 +40,7 @@ export default function ArticlesContent({ initialPosts, categories }: ArticlesCo
             <div className={`relative z-10 pt-32 pb-16 px-6 max-w-7xl mx-auto transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="text-center space-y-6">
                     <div className="inline-block px-3 py-1 border border-teal-500/30 rounded-full bg-teal-500/10 animate-fade-in">
-                        <span className="text-teal-400 text-xs font-bold tracking-[0.2em]">THE ARCHIVE</span>
+                        <span className="text-teal-400 text-xs font-bold tracking-wider">THE ARCHIVE</span>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-bold text-white font-prompt tracking-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
                         คลังความรู้

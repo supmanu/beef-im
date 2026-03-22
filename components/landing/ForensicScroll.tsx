@@ -112,7 +112,7 @@ const ForensicScroll: React.FC = () => {
                         </span>
 
                         <div ref={slide.ref as any} className="relative z-10 max-w-4xl text-center">
-                            <span className="inline-block px-4 py-1 rounded-full border border-white/10 text-white/40 text-[10px] uppercase tracking-[0.3em] mb-8">
+                            <span className="inline-block px-4 py-1 rounded-full border border-white/10 text-white/40 text-[10px] uppercase tracking-wider mb-8">
                                 Strategy {index + 1}
                             </span>
                             

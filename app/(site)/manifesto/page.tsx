@@ -90,7 +90,7 @@ export default function Manifesto() {
           className="text-center space-y-6"
         >
           <div className="inline-block px-3 py-1 border border-amber-500/30 rounded-full bg-amber-500/10 mb-4">
-            <span className="text-amber-500 text-xs font-bold tracking-[0.2em]">THE PHILOSOPHY</span>
+            <span className="text-amber-500 text-xs font-bold tracking-wider">THE PHILOSOPHY</span>
           </div>
 
           <h1 ref={heroTextRef} className="text-4xl md:text-6xl lg:text-7xl font-prompt font-bold leading-tight min-h-[120px] md:min-h-[auto]">
@@ -136,7 +136,7 @@ export default function Manifesto() {
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-ping shrink-0 mt-2" />
                 <h3 className="text-red-400 font-prompt font-bold text-2xl md:text-3xl uppercase tracking-tight leading-tight">วิกฤตประชากร</h3>
               </div>
-              <span className="text-red-500/60 text-sm uppercase font-mono tracking-widest block ml-5">THE CRISIS</span>
+              <span className="text-red-500/60 text-sm uppercase font-mono tracking-wider block ml-5">THE CRISIS</span>
             </div>
 
             <div className="text-4xl md:text-5xl font-prompt font-bold text-white mb-6 tracking-tight flex items-baseline justify-start gap-3">
@@ -175,7 +175,7 @@ export default function Manifesto() {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0 mt-2" />
                 <h3 className="text-emerald-400 font-prompt font-bold text-2xl md:text-3xl uppercase tracking-tight leading-tight">ทางออกเชิงระบบ</h3>
               </div>
-              <span className="text-emerald-500/60 text-sm uppercase font-mono tracking-widest block ml-5">THE SOLUTION</span>
+              <span className="text-emerald-500/60 text-sm uppercase font-mono tracking-wider block ml-5">THE SOLUTION</span>
             </div>
 
             <div className="text-4xl md:text-5xl font-prompt font-bold text-white mb-6 tracking-tight flex items-baseline justify-start gap-3">
@@ -289,7 +289,7 @@ export default function Manifesto() {
           >
             <div className="inline-block p-8 rounded-2xl bg-slate-900/40 backdrop-blur-sm border border-slate-700/30 hover:border-amber-500/30 transition-all duration-500">
               <Compass size={48} strokeWidth={1} className="mx-auto mb-4 text-slate-500" />
-              <p className="font-prompt text-sm tracking-widest text-slate-400">BASECAMP • BANGKOK</p>
+              <p className="font-prompt text-sm tracking-wider text-slate-400">BASECAMP • BANGKOK</p>
             </div>
           </motion.div>
         </div>

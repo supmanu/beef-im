@@ -68,7 +68,7 @@ const HomeContent: React.FC = () => {
                                 ease: "easeInOut"
                             }
                         }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-widest mb-6"
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-bold tracking-wider mb-6"
                     >
                         <span className="w-2 h-2 rounded-full bg-brand-amber animate-pulse"></span>
                         ALT: 24,500 FT
@@ -123,7 +123,7 @@ const HomeContent: React.FC = () => {
                     transition={{ delay: 3.5, duration: 1 }}
                     className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
                 >
-                    <span className="text-slate-400 text-[10px] font-bold tracking-[0.2em] uppercase opacity-50">
+                    <span className="text-slate-400 text-[10px] font-bold tracking-wider uppercase opacity-50">
                         Descent to Basecamp
                     </span>
                     <ArrowDown className="text-slate-400 opacity-50 animate-bounce" size={20} />

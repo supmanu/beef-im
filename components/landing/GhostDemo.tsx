@@ -110,7 +110,7 @@ const GhostDemo: React.FC = () => {
                         {/* Main Work Area */}
                         <div className="flex-1 flex flex-col gap-6">
                             <div className="h-10 border-b border-white/5 flex items-center justify-between px-4">
-                                <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+                                <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
                                     System Mode: <span className={status === 'complete' ? 'text-emerald-400' : 'text-brand-amber animate-pulse'}>{status === 'uploading' ? 'SIMULATING' : status.toUpperCase()}</span>
                                 </span>
                                 <div className="flex gap-2">
@@ -164,7 +164,7 @@ const GhostDemo: React.FC = () => {
                                                 </svg>
                                                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                                                     <span className="text-3xl font-mono text-white">{progress}%</span>
-                                                    <span className="text-[10px] text-slate-500 uppercase tracking-widest">Risk Analysis</span>
+                                                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">Risk Analysis</span>
                                                 </div>
                                             </div>
                                             <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
