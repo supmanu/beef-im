@@ -22,7 +22,7 @@ export const searchNerdBrain = createTool({
 
       // Generate embedding for query
       const { embedding } = await embed({
-        model: google.textEmbeddingModel('text-embedding-004'),
+        model: google.textEmbeddingModel('gemini-embedding-001'),
         value: query,
       });
 

@@ -22,7 +22,7 @@ async function main() {
     // Initialize Vector Store
     const vectorStore = new PgVector({ id: 'nerd-brain', connectionString: process.env.DATABASE_URL });
     const indexName = 'nerd_brain';
-    const dimension = 768; // Google text-embedding-004
+    const dimension = 3072; // Google gemini-embedding-001
 
     // RESET LOGIC
     try {
@@ -40,15 +40,23 @@ async function main() {
             metric: 'cosine',
         });
         console.log(`✅ Connected to Vector Index: ${indexName} (${dimension} dims)`);
-    } catch (e) {
-        console.log('ℹ️ Index creation skipped/error:', e);
+    } catch (e: any) {
+        // Neon pgvector caps ivfflat/hnsw at 2000 dims.
+        // gemini-embedding-001 outputs 3072 dims → no vector index possible.
+        // Sequential scan on ~100 rows is sub-100ms, perfectly fine for this use case.
+        if (e?.cause?.code === '54000') {
+            console.log(`ℹ️  Vector index skipped: ${dimension} dims exceeds pgvector 2000-dim limit. Sequential scan will be used (fine for <1000 rows).`);
+        } else {
+            console.log('ℹ️ Index creation skipped/error:', e);
+        }
     }
 
     // 1. THE LOGIC CORE (Markdown)
     const coreDirs = [
         'nerd/pillars',
         'nerd/rules',
-        'nerd/agents'
+        'nerd/agents',
+        'nerd/references/brochures/library'
     ];
 
     for (const dirRelative of coreDirs) {
@@ -134,27 +142,34 @@ async function processChunks(chunks: any[], store: PgVector, indexName: string, 
     const texts = chunks.map(c => c.text || c);
     if (texts.some(t => !t)) return;
 
+    // Google batch API limits to 100 items per request
+    const BATCH_SIZE = 100;
+    let totalUpserted = 0;
+
     try {
-        const { embeddings } = await embedMany({
-            model: google.textEmbeddingModel('text-embedding-004'),
-            values: texts,
-        });
+        for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
+            const batchChunks = chunks.slice(i, i + BATCH_SIZE);
+            const batchTexts = texts.slice(i, i + BATCH_SIZE);
 
-        // Parallel Arrays Strategy for Mastra PgVector
-        // vectors: number[][]
-        // metadata: Record<string, any>[]
-        const vectorData = chunks.map((_, i) => embeddings[i]);
-        const metadataData = chunks.map((chunk) => ({
-            ...chunk.metadata,
-            text: chunk.text
-        }));
+            const { embeddings } = await embedMany({
+                model: google.textEmbeddingModel('gemini-embedding-001'),
+                values: batchTexts,
+            });
 
-        await store.upsert({
-            indexName: indexName,
-            vectors: vectorData as any,
-            metadata: metadataData as any
-        } as any);
-        console.log(`      ✅ Upserted ${chunks.length} chunks for ${sourceId}`);
+            const vectorData = batchChunks.map((_, j) => embeddings[j]);
+            const metadataData = batchChunks.map((chunk) => ({
+                ...chunk.metadata,
+                text: chunk.text
+            }));
+
+            await store.upsert({
+                indexName: indexName,
+                vectors: vectorData as any,
+                metadata: metadataData as any
+            } as any);
+            totalUpserted += batchChunks.length;
+        }
+        console.log(`      ✅ Upserted ${totalUpserted} chunks for ${sourceId}`);
 
     } catch (error) {
         console.error(`      ❌ Error processing ${sourceId}:`, error);

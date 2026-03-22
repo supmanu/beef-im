@@ -24,7 +24,7 @@ async function ingest() {
     console.log('Creating Vector Table...');
     await vectorStore.createIndex({
         indexName: TABLE_NAME,
-        dimension: 768, // Gemini text-embedding-004
+        dimension: 3072, // Google gemini-embedding-001
         metric: 'cosine',
     });
 
@@ -47,7 +47,7 @@ async function ingest() {
             try {
                 // Generate Embedding
                 const { embedding } = await embed({
-                    model: google.textEmbeddingModel('text-embedding-004'),
+                    model: google.textEmbeddingModel('gemini-embedding-001'),
                     value: chunk,
                 });
 

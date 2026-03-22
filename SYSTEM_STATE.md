@@ -13,14 +13,20 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: PHASE H (PROJECT WEIGHTLESS)
-* **Last Updated:** Feb 27, 2026 (NixOS Resurrection Audit)
-* **Model Stack:** 
+## 🟢 CURRENT STATUS: PHASE I (PRODUCTION REVIVAL)
+* **Last Updated:** Mar 23, 2026 (Mastra Vector DB Migration + Claude Code Skills)
+* **Model Stack:**
     *   **Social/Voice:** DeepSeek Chat (Native Thai Champion)
-    *   **Website/Authority:** Sonnet 4.5 (Structure/SEO King)
-    *   **System/Logic:** DeepSeek Reasoner (The Architect)
+    *   **Website/Authority:** Sonnet 4.5 / Claude Opus 4.6 (Structure/SEO King)
+    *   **System/Logic:** DeepSeek Reasoner / Gemini 2.5 Pro (The Architect)
+    *   **Embedding:** `gemini-embedding-001` (3072 dims, replaces deprecated `text-embedding-004`)
+    *   **Nart Avatar:** Gemini 2.5 Flash (Mastra Agent)
+    *   **CTO Conductor:** Gemini 2.5 Pro (Mastra Strategic Agent)
 * **Identity Protocol:** Sovereign Universal (v1.9) - Mandatory File Read + Citation Trap Fix.
-* **Architecture:** Hybrid RAG (Mastra + Neon) - 75% Token Reduction.
+* **Architecture:** Hybrid RAG (Mastra + Neon) — 231 vectors across 32 files.
+* **Content Production:** Two methods documented (Classic file-based + Mastra AI vector retrieval).
+* **Claude Code Skills:** 5 skills deployed (`/architect`, `/performer`, `/hybrid`, `/auditor`, `/produce-article`).
+* **Reference:** `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
 *   **[Validation]** **Mode C (Epic Deep Dive) Validated (v1.9.3).**

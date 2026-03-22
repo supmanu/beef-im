@@ -45,7 +45,11 @@ const vectorStore = new PgVector({
 ### Retired Models
 *   ❌ `gemini-1.5-flash`
 *   ❌ `gemini-1.5-pro`
-*   **Reason:** Deprecated/Retired on `v1beta` as of Dec 2025. Returns `404 NOT_FOUND`.
+*   ❌ `text-embedding-004` (embedding) — returns `404 NOT_FOUND` as of Mar 2026
+*   **Reason:** Deprecated/Retired on `v1beta`. Returns `404 NOT_FOUND`.
+
+### Active Embedding Model
+*   ✅ `gemini-embedding-001` (3072 dims, replaces text-embedding-004 which was 768 dims)
 
 ### Active Models (Sovereign Standard)
 *   ✅ `gemini-3-flash` (Speed/Memory)

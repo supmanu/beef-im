@@ -1,6 +1,7 @@
-# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.7
+# 🧠 NERD WITH NART: SOVEREIGN BRAIN v1.8
 # Hierarchical context for Antigravity Agent (Gemini 3 Series)
 # Architecture: Melkor OS v1.0 (Department 01)
+# Updated: Mar 23, 2026 (Mastra Vector DB Migration + Claude Code Skills)
 
 ---
 
