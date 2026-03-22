@@ -108,7 +108,7 @@ export default function COICalculator() {
                                     const val = Number(e.target.value.replace(/,/g, ''));
                                     if (!isNaN(val)) setSumAssured(val);
                                 }}
-                                className="bg-transparent w-full text-right font-mono font-bold text-brand-teal text-2xl focus:outline-none"
+                                className="bg-transparent w-full text-right font-prompt font-bold text-brand-teal text-2xl focus:outline-none"
                             />
                             <span className="text-slate-500 text-sm font-bold font-mono">THB</span>
                         </div>
@@ -184,7 +184,7 @@ export default function COICalculator() {
                         <div className="absolute top-0 right-0 w-40 h-40 bg-brand-teal/5 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-brand-teal/10 transition-colors" />
                         <div className="relative z-10">
                             <div className="text-xs text-slate-400 uppercase tracking-wider font-prompt mb-3 font-bold">วันนี้ (Age {currentAge})</div>
-                            <div className="text-4xl md:text-5xl font-bold text-white font-mono tracking-tight">
+                            <div className="text-4xl md:text-5xl font-bold text-white font-prompt tracking-tight">
                                 ฿{currentCost.toLocaleString()} <span className="text-xl text-slate-400 font-normal font-sarabun">/ปี</span>
                             </div>
                         </div>
@@ -194,7 +194,7 @@ export default function COICalculator() {
                         <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-amber-500/20 transition-colors" />
                         <div className="relative z-10">
                             <div className="text-xs text-amber-500 uppercase tracking-wider font-prompt mb-3 font-bold">ในอนาคต (Age {data.length > 0 ? data[data.length - 1].age : 0})</div>
-                            <div className="text-4xl md:text-5xl font-bold text-brand-amber font-mono tracking-tight">
+                            <div className="text-4xl md:text-5xl font-bold text-brand-amber font-prompt tracking-tight">
                                 ฿{futureCost.toLocaleString()} <span className="text-xl text-amber-400/70 font-normal font-sarabun">/ปี</span>
                             </div>
                             <div className="inline-block mt-4 px-4 py-1.5 bg-amber-500/20 border border-amber-500/30 rounded-full text-xs text-amber-400 font-bold uppercase tracking-wide">

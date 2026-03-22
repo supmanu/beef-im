@@ -93,7 +93,7 @@ export default function DynastySimulator() {
                                         const val = Number(e.target.value.replace(/,/g, ''));
                                         if (!isNaN(val) && val <= 500000000) setSumAssured(val);
                                     }}
-                                    className="bg-transparent w-full text-right font-mono font-bold text-brand-teal text-3xl focus:outline-none"
+                                    className="bg-transparent w-full text-right font-prompt font-bold text-brand-teal text-3xl focus:outline-none"
                                 />
                                 <span className="ml-3 text-slate-500 text-xs font-bold font-mono tracking-widest">THB</span>
                             </div>
@@ -125,8 +125,8 @@ export default function DynastySimulator() {
                                         className="w-12 bg-white/5 border border-white/10 rounded-lg text-center text-brand-teal font-mono font-bold text-lg focus:outline-none"
                                     />
                                 </div>
-                                <div className="text-right font-mono font-bold text-white text-base">
-                                    ฿{Math.round(basePremium).toLocaleString()} <span className="text-[10px] font-normal text-slate-500">/ปี</span>
+                                <div className="text-right font-prompt font-bold text-white text-base">
+                                    ฿{Math.round(basePremium).toLocaleString()} <span className="text-[10px] font-normal text-slate-500 font-sarabun">/ปี</span>
                                 </div>
                             </div>
 
@@ -141,8 +141,8 @@ export default function DynastySimulator() {
                                         className="w-12 bg-white/5 border border-white/10 rounded-lg text-center text-brand-amber font-mono font-bold text-lg focus:outline-none"
                                     />
                                 </div>
-                                <div className="text-right font-mono font-bold text-white text-base">
-                                    ฿{Math.round(comparePremium).toLocaleString()} <span className="text-[10px] font-normal text-slate-500">/ปี</span>
+                                <div className="text-right font-prompt font-bold text-white text-base">
+                                    ฿{Math.round(comparePremium).toLocaleString()} <span className="text-[10px] font-normal text-slate-500 font-sarabun">/ปี</span>
                                 </div>
                             </div>
                         </div>
