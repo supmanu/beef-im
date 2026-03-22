@@ -37,8 +37,9 @@ NEXT_PUBLIC_HYGRAPH_ENDPOINT=...
 ```
 
 ## Styling (Teal Protocol)
-- **Engine:** Tailwind CSS v3.4.17 (NOT v4 - incompatible)
-- **Config:** `tailwind.config.ts` with content paths
+- **Engine:** Tailwind CSS v4.2.2 (CSS-first config — no `tailwind.config.ts`)
+- **Config:** `@theme` block in `globals.css`, plugin via `@plugin "@tailwindcss/typography"`
+- **PostCSS:** `@tailwindcss/postcss` (replaces `tailwindcss` + `autoprefixer`)
 - **Colors:**
   - Primary: `brand-teal` (#2bb1bb)
   - Action: `brand-amber` (#F59E0B)

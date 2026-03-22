@@ -1,8 +1,21 @@
-# 🧠 MASTRA RAG & MEMORY STANDARDS (Dec 2025)
-> **Context:** Sovereign Brain Architecture (Phase VIII)
-> **Stack:** Mastra 0.x, PgVector, Google Gemini 3
+# MASTRA RAG & MEMORY STANDARDS (Mar 2026)
+> **Context:** Sovereign Brain Architecture
+> **Stack:** Mastra 1.x (@mastra/core 1.15, @mastra/memory 1.9, @mastra/pg 1.8, @mastra/rag 2.1)
+
+## 0. Mastra 1.x Migration Notes (from 0.x)
+*   **All classes require `id` field:** `Agent`, `PostgresStore`, `PgVector` constructors now require `{ id: '...' }`.
+*   **Tool execute params flattened:** `execute: async ({ context }) => { const { x } = context; }` → `execute: async ({ x }) => { ... }`.
+*   **Zod requirement:** `^3.25.0` or `^4.0.0` (Standard Schema compatibility).
 
 ## 1. Vector Database (PgVector)
+### Constructor (1.x)
+```typescript
+const vectorStore = new PgVector({
+  id: 'nerd-brain',
+  connectionString: process.env.DATABASE_URL,
+});
+```
+
 ### Upsert Strategy
 *   **Pattern:** "Parallel Arrays"
 *   **Rule:** When using `pgVector.upsert`, do NOT pass an array of objects. Pass separate arrays for vectors and metadata.
@@ -35,22 +48,36 @@
 *   **Reason:** Deprecated/Retired on `v1beta` as of Dec 2025. Returns `404 NOT_FOUND`.
 
 ### Active Models (Sovereign Standard)
-*   ✅ `gemini-3-flash-preview` (Speed/Memory)
-*   ✅ `gemini-3-pro-preview` (Reasoning/RAG)
+*   ✅ `gemini-3-flash` (Speed/Memory)
+*   ✅ `gemini-3-pro` (Reasoning/RAG)
 
 ## 3. Persistent Memory
-*   **Library:** `@mastra/memory`
+*   **Library:** `@mastra/memory` (1.9+)
 *   **Storage:** `PostgresStore` (via `@mastra/pg`)
-*   **Pattern:**
+*   **Pattern (1.x):**
     ```typescript
-    const memory = new Memory({ storage: new PostgresStore(...) });
-    const agent = new Agent({ memory, ... });
+    const store = new PostgresStore({ id: 'nart-store', connectionString: '...' });
+    const memory = new Memory({ storage: store });
+    const agent = new Agent({ id: 'nart-avatar', memory, ... });
     // Usage:
     agent.generate(prompt, { threadId, resourceId });
     ```
 *   **Constraint:** Both `threadId` AND `resourceId` are required for persistence.
 
-## 4. Ingestion (PDFs)
+## 4. Tool Definition (1.x)
+*   **Pattern:** Params are now passed directly, not wrapped in `context`.
+    ```typescript
+    export const myTool = createTool({
+      id: 'my-tool',
+      description: '...',
+      inputSchema: z.object({ query: z.string() }),
+      execute: async ({ query }) => {  // ← direct destructure, no `context`
+        return { result: query };
+      },
+    });
+    ```
+
+## 5. Ingestion (PDFs)
 *   **Environment:** `tsx` / ESM
 *   **Rule:** `pdf-parse` requires robust import handling to avoid `TypeError`.
 *   **Code:**
