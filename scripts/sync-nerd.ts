@@ -20,7 +20,7 @@ async function main() {
     }
 
     // Initialize Vector Store
-    const vectorStore = new PgVector({ connectionString: process.env.DATABASE_URL });
+    const vectorStore = new PgVector({ id: 'nerd-brain', connectionString: process.env.DATABASE_URL });
     const indexName = 'nerd_brain';
     const dimension = 768; // Google text-embedding-004
 

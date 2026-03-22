@@ -14,6 +14,7 @@ async function main() {
 
     // 1. Storage
     const store = new PostgresStore({
+        id: 'test-store',
         connectionString: process.env.DATABASE_URL,
     });
 
@@ -24,6 +25,7 @@ async function main() {
 
     // 3. Agent
     const agent = new Agent({
+        id: 'memory-tester',
         name: 'MemoryTester',
         instructions: 'You are a helpful assistant with infinite memory.',
         model: google('gemini-3-flash'),

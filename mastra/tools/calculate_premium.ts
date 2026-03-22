@@ -45,8 +45,7 @@ export const calculatePremium = createTool({
     plan_code: z.string().describe('The plan code (segcode) e.g., 20PLN, HHM5, MPCIP10, HSNM1000'),
     sum_assured: z.number().optional().describe('Sum Assured for life products or benefit amount for riders. Leave empty for fixed-benefit riders like Health Happy or HB.'),
   }),
-  execute: async ({ context }) => {
-    const { age, gender, plan_code, sum_assured } = context;
+  execute: async ({ age, gender, plan_code, sum_assured }) => {
 
     try {
       const mainPolicies = parseCSV(path.join(DATA_DIR, 'main_policies.csv'), 'main');

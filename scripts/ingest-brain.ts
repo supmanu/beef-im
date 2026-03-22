@@ -18,7 +18,7 @@ async function ingest() {
     console.log('🚀 Starting Sovereign Brain Ingestion...');
 
     // Initialize Vector Store
-    const vectorStore = new PgVector({ connectionString: process.env.DATABASE_URL });
+    const vectorStore = new PgVector({ id: 'nerd-brain', connectionString: process.env.DATABASE_URL });
 
     // Explicitly create table
     console.log('Creating Vector Table...');
