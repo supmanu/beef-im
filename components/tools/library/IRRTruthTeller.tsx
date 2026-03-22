@@ -236,7 +236,7 @@ export default function IRRTruthTeller() {
                             <div className="bg-slate-800/80 p-8 rounded-3xl border border-white/10 text-center relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent pointer-events-none" />
                                 
-                                <h3 className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-2">
+                                <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">
                                     TRUE YIELD (IRR)
                                 </h3>
                                 <div className={`text-6xl md:text-7xl font-bold font-prompt tracking-tighter mb-4 ${

@@ -60,13 +60,13 @@ export default function DynastySimulator() {
                 </div>
             </div>
 
-            <div className="bg-slate-900/40 border-x border-b border-white/5 p-8 rounded-b-[2rem] shadow-2xl space-y-12 backdrop-blur-sm">
+            <div className="bg-slate-900/40 border-x border-b border-white/5 p-8 rounded-b-[2rem] shadow-2xl space-y-8 backdrop-blur-sm">
 
                 {/* CONTROL SECTION (The Instrumentation Panel) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-8">
                         <div className="bg-white/5 p-6 rounded-3xl border border-white/10 shadow-inner">
-                            <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-widest font-sarabun">เพศผู้เอาประกัน (Gender)</label>
+                            <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-wide font-sarabun">เพศผู้เอาประกัน (Gender)</label>
                             <div className="flex bg-slate-950/50 rounded-2xl p-1.5 border border-white/10">
                                 {['male', 'female'].map((g) => (
                                     <button
@@ -84,7 +84,7 @@ export default function DynastySimulator() {
                         </div>
 
                         <div className="bg-white/5 p-6 rounded-3xl border border-white/10 shadow-inner">
-                            <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-widest font-sarabun">ทุนประกัน (Sum Assured)</label>
+                            <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-wide font-sarabun">ทุนประกัน (Sum Assured)</label>
                             <div className="bg-slate-950/50 p-4 rounded-2xl border border-white/10 mb-4 flex items-center">
                                 <input
                                     type="text"
@@ -112,7 +112,7 @@ export default function DynastySimulator() {
                     </div>
 
                     <div className="bg-white/5 p-8 rounded-3xl border border-white/10 flex flex-col justify-between shadow-inner">
-                        <label className="block text-base font-bold text-slate-400 mb-6 uppercase tracking-widest font-sarabun text-center">เปรียบเทียบอายุ (Compare Age)</label>
+                        <label className="block text-base font-bold text-slate-400 mb-6 uppercase tracking-wide font-sarabun text-center">เปรียบเทียบอายุ (Compare Age)</label>
                         <div className="grid grid-cols-2 gap-6">
                             <div className="p-5 bg-slate-950/50 rounded-2xl border border-white/10 relative group">
                                 <div className="text-[10px] text-slate-500 mb-3 uppercase font-mono font-bold">เริ่มทำให้ (Start For)</div>
@@ -155,18 +155,18 @@ export default function DynastySimulator() {
                 </div>
 
                 {/* RESULTS SECTION (Analyzed Data) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white/5 p-8 rounded-[2.5rem] border border-white/10 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                             <TrendingUp size={80} />
                         </div>
-                        <h3 className="flex items-center gap-3 font-bold text-white mb-10 uppercase text-sm tracking-[0.2em] font-sarabun">
+                        <h3 className="flex items-center gap-3 font-bold text-white mb-10 uppercase text-sm tracking-wider font-sarabun">
                             <Activity className="text-brand-teal" size={20} />
                             ต้นทุนรวม 20 ปี (Total Cost)
                         </h3>
                         <div className="space-y-8">
                             <div>
-                                <div className="flex justify-between text-sm font-bold text-slate-400 mb-3 uppercase tracking-widest font-sarabun">
+                                <div className="flex justify-between text-sm font-bold text-slate-400 mb-3 uppercase tracking-wider font-sarabun">
                                     เริ่มอายุ {baseAge}
                                     <span className="text-white text-lg">{(baseTotalCost / 1000000).toFixed(2)} ล้านบาท</span>
                                 </div>
@@ -175,14 +175,14 @@ export default function DynastySimulator() {
                                 </div>
                             </div>
                             <div>
-                                <div className="flex justify-between text-sm font-bold text-slate-400 mb-3 uppercase tracking-widest font-sarabun">
+                                <div className="flex justify-between text-sm font-bold text-slate-400 mb-3 uppercase tracking-wider font-sarabun">
                                     เริ่มอายุ {compareAge}
                                     <span className="text-brand-amber text-lg font-bold">{(compareTotalCost / 1000000).toFixed(2)} ล้านบาท</span>
                                 </div>
                                 <div className="h-2 bg-slate-800 rounded-full overflow-hidden relative">
                                     <motion.div initial={{ width: 0 }} animate={{ width: `${Math.min((compareTotalCost / baseTotalCost) * 20, 100)}%` }} transition={{ duration: 1, delay: 0.5 }} className="h-full bg-brand-amber shadow-[0_0_10px_rgba(245,158,11,0.5)]"></motion.div>
                                 </div>
-                                <div className="text-right text-xs text-brand-amber font-bold mt-3 uppercase tracking-widest">
+                                <div className="text-right text-xs text-brand-amber font-bold mt-3 uppercase tracking-wider">
                                     Temporal Premium: {multiplier}x
                                 </div>
                             </div>
@@ -220,25 +220,25 @@ export default function DynastySimulator() {
                         <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                             <Compass size={80} />
                         </div>
-                        <h3 className="flex items-center gap-3 font-bold text-white mb-10 uppercase text-sm tracking-[0.2em] font-sarabun">
+                        <h3 className="flex items-center gap-3 font-bold text-white mb-10 uppercase text-sm tracking-wider font-sarabun">
                             <Plus className="text-brand-teal" size={20} />
                             ประสิทธิภาพกองทุน
                         </h3>
 
                         <div className="flex gap-6 mb-10">
                             <div className="flex-1 bg-slate-950/50 p-6 rounded-3xl border border-white/10 text-center shadow-inner">
-                                <div className="text-[10px] text-slate-500 uppercase font-mono mb-2 font-bold tracking-widest">ระยะเวลาคุ้มครอง</div>
+                                <div className="text-[10px] text-slate-500 uppercase font-mono mb-2 font-bold tracking-wider">ระยะเวลาคุ้มครอง</div>
                                 <div className="font-bold text-white text-2xl font-prompt uppercase tracking-tighter">99 ปี</div>
                             </div>
                             <div className="flex-1 bg-slate-950/50 p-6 rounded-3xl border border-white/10 text-center shadow-inner">
-                                <div className="text-[10px] text-slate-500 uppercase font-mono mb-2 font-bold tracking-widest">ระยะเวลาชำระเบี้ย</div>
+                                <div className="text-[10px] text-slate-500 uppercase font-mono mb-2 font-bold tracking-wider">ระยะเวลาชำระเบี้ย</div>
                                 <div className="font-bold text-white text-2xl font-prompt uppercase tracking-tighter">20 ปี</div>
                             </div>
                         </div>
 
                         <div className="bg-brand-teal/10 border-2 border-brand-teal/30 p-8 rounded-[2rem] text-center relative overflow-hidden shadow-2xl">
                             <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent pointer-events-none" />
-                            <div className="text-xs text-brand-teal font-bold mb-3 uppercase tracking-[0.2em] font-sarabun text-shadow-sm opacity-80">มูลค่ากองทุนส่งต่อ (เมื่อครบสัญญา)</div>
+                            <div className="text-xs text-brand-teal font-bold mb-3 uppercase tracking-wider font-sarabun text-shadow-sm opacity-80">มูลค่ากองทุนส่งต่อ (เมื่อครบสัญญา)</div>
                             <div className="text-3xl sm:text-4xl font-black text-white font-prompt tracking-tight mb-2">
                                 {(sumAssured / 1000000).toFixed(2)} <span className="text-xl sm:text-2xl text-brand-teal font-bold ml-1">ล้านบาท</span>
                             </div>
@@ -249,9 +249,9 @@ export default function DynastySimulator() {
                     </div>
                 </div>
 
-                {/* DISCLAIMER (SUBTLE LIGHT CARD) */}
-                <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl border border-slate-300/50 shadow-xl">
-                    <p className="text-base text-slate-700 font-sarabun leading-loose text-center">
+                {/* DISCLAIMER */}
+                <div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-xl">
+                    <p className="text-base text-slate-300 font-sarabun leading-relaxed text-center">
                         ข้อมูลนี้เพื่อการศึกษาเท่านั้น ตัวเลขเบี้ยประกันเป็นประมาณการเพื่อการเปรียบเทียบ (Standard Actuarial Model) •
                         อัตราจริงขึ้นอยู่กับบริษัท อายุ เพศ สุขภาพ และเงื่อนไขของแต่ละกรมธรรม์ • ควรขอใบเสนอราคาจริงจากบริษัทประกันก่อนตัดสินใจ
                     </p>

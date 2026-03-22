@@ -210,7 +210,7 @@ export default function COICalculator() {
                         <Shield size={100} className="text-slate-600" />
                     </div>
                     <div className="relative z-10 space-y-4">
-                        <p className="text-sm font-bold text-amber-400 uppercase tracking-wider font-prompt">ข้อควรระวัง (Disclaimer):</p>
+                        <p className="text-lg font-bold text-amber-400 uppercase tracking-wider font-prompt">ข้อควรระวัง (Disclaimer):</p>
                         <ul className="text-base text-slate-300 font-sarabun leading-relaxed list-none space-y-4">
                             <li className="flex gap-3">
                                 <span className="text-amber-500 font-mono font-bold mt-1">01</span>
