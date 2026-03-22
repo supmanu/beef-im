@@ -1,15 +1,16 @@
 # Next.js 15 Conventions
 
 ## Build System
-- **Command:** `npm run dev` (Standard build, no special flags needed)
-- **Version:** 15.5.9 (Downgraded from v16 for Vercel stability)
+- **Command:** `npm run dev` (Turbopack is default in Next.js 16 — no flags needed)
+- **Version:** 16.2.1
 - **Structure:** **FLAT ROOT** (No `/src` folder)
-- **React:** 19.0.0
+- **React:** 19.2.4
+- **Bundler:** Turbopack (webpack block removed from next.config.mjs)
 
 ## Node Version
-- **Primary:** Node v24.13.0 (via NVM native, `~/.nvm`)
-- **Fallback:** Node v20.x (via `nvm use 20`) — if Payload regresses
-- **Note:** Payload CMS now supports Node 24 (bumped in release #15364)
+- **Minimum:** Node v20.19.0 (required by Next.js 16 — engines field updated)
+- **Primary:** Node v24.13.0 (via NVM native, `~/.nvm`) — fully supported
+- **Fallback:** Node v20.x (via `nvm use 20`)
 - **Check:** Run `node -v` before development
 
 ## Module System (Phase II - ESM)

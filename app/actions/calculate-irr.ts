@@ -73,19 +73,19 @@ export async function calculateIRR(cashflows: Cashflow[]): Promise<{
             }
 
             if (d_npv === 0) {
-                 return { 
-                    irr: 0, totalPaid, totalReceived, netProfit: totalReceived - totalPaid, 
-                    status: 'error', message: "Calculation failed (Divide by zero)" 
+                 return {
+                    irr: 0, totalPaid, totalReceived, netProfit: totalReceived - totalPaid,
+                    verdict: '', status: 'error', message: "Calculation failed (Divide by zero)"
                 };
             }
 
             const newGuess = guess - npv / d_npv;
-            
+
             // Safety brake for divergence
             if (Math.abs(newGuess) > 100) { // > 10000% IRR is unlikely
-                 return { 
-                    irr: 0, totalPaid, totalReceived, netProfit: totalReceived - totalPaid, 
-                    status: 'error', message: "Does not converge" 
+                 return {
+                    irr: 0, totalPaid, totalReceived, netProfit: totalReceived - totalPaid,
+                    verdict: '', status: 'error', message: "Does not converge"
                 };
             }
             
@@ -113,9 +113,9 @@ export async function calculateIRR(cashflows: Cashflow[]): Promise<{
         };
 
     } catch (e) {
-        return { 
+        return {
             irr: 0, totalPaid: 0, totalReceived: 0, netProfit: 0,
-            status: 'error', message: "Calculation Error" 
+            verdict: '', status: 'error', message: "Calculation Error"
         };
     }
 }

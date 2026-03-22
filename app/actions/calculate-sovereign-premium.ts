@@ -137,7 +137,8 @@ export async function calculateSovereignPremium(request: PricingRequest): Promis
 
         const rates = TERM_RATES[`Term${productInfo.termYears}` as keyof typeof TERM_RATES];
 
-        if (!rates || index < 0 || index >= rates.length) {
+        const ratesAny = rates as any;
+        if (!rates || index < 0 || index >= (ratesAny.male?.length ?? ratesAny.length ?? 0)) {
             return { success: false, error: "Rate not found for this Age/Term", warnings };
         }
 

@@ -1,6 +1,6 @@
 # Payload CMS 3.0 Patterns
 
-## Configuration (Sovereign Migration - Phase III Complete)
+## Configuration (Sovereign Migration - Phase III Complete, Payload 3.80.0)
 - **Location:** `payload-config/payload.config.ts`
 - **Hard-wire pattern:** Import `sharp` directly for image optimization
   ```typescript

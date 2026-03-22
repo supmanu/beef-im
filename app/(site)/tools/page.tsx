@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import ToolsPageContent from '@/components/ToolsPageContent';
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function ToolsPage() {
-    return <ToolsPageContent />;
+    return (
+        <Suspense>
+            <ToolsPageContent />
+        </Suspense>
+    );
 }
