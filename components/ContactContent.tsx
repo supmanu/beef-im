@@ -30,7 +30,7 @@ export default function ContactContent() {
                         className="text-center mb-16"
                     >
                         <div className="inline-block px-3 py-1 border border-amber-500/30 rounded-full bg-amber-500/10 mb-4">
-                            <span className="text-amber-500 text-xs font-bold tracking-[0.2em]">CONTACT COMMAND</span>
+                            <span className="text-amber-500 text-xs font-bold tracking-wider">CONTACT COMMAND</span>
                         </div>
                         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-prompt">Contact Command</h1>
                         <p className="text-slate-400 max-w-xl mx-auto text-lg font-sarabun">
@@ -63,7 +63,7 @@ export default function ContactContent() {
                                             />
                                         </motion.div>
                                         <div>
-                                            <div className="text-xs font-bold text-[#06C755] uppercase tracking-widest mb-1 group-hover:underline">OFFICIAL CHANNEL (LINE)</div>
+                                            <div className="text-xs font-bold text-[#06C755] uppercase tracking-wider mb-1 group-hover:underline">OFFICIAL CHANNEL (LINE)</div>
                                             <div className="text-white font-medium">@nerdwithnart</div>
                                         </div>
                                     </a>
@@ -76,7 +76,7 @@ export default function ContactContent() {
                                             <Mail size={20} />
                                         </div>
                                         <div>
-                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Email</div>
+                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Email</div>
                                             <div className="text-white font-medium">hello@nerdwithnart.com</div>
                                         </div>
                                     </motion.div>
@@ -89,7 +89,7 @@ export default function ContactContent() {
                                             <MapPin size={20} />
                                         </div>
                                         <div>
-                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Basecamp Location</div>
+                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Basecamp Location</div>
                                             <div className="text-white font-medium">
                                                 Bangkok, Thailand
                                             </div>
@@ -143,7 +143,7 @@ export default function ContactContent() {
                                     variants={fieldVariants}
                                     className="space-y-2"
                                 >
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Name</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Name</label>
                                     <motion.input
                                         whileFocus={{ scale: 1.02 }}
                                         type="text"
@@ -161,7 +161,7 @@ export default function ContactContent() {
                                     variants={fieldVariants}
                                     className="space-y-2"
                                 >
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Email</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Email</label>
                                     <motion.input
                                         whileFocus={{ scale: 1.02 }}
                                         type="email"
@@ -179,7 +179,7 @@ export default function ContactContent() {
                                     variants={fieldVariants}
                                     className="space-y-2"
                                 >
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Topic</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Topic</label>
                                     <motion.select
                                         whileFocus={{ scale: 1.02 }}
                                         name="topic"
@@ -199,7 +199,7 @@ export default function ContactContent() {
                                     variants={fieldVariants}
                                     className="space-y-2"
                                 >
-                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Message</label>
+                                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Message</label>
                                     <motion.textarea
                                         whileFocus={{ scale: 1.02 }}
                                         name="message"

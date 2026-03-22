@@ -120,7 +120,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
 
             /* 1. HEADINGS (H2/H3) */
             prose-headings:font-['Prompt'] 
-            prose-headings:text-white
+            prose-headings:text-slate-100
             prose-headings:mt-10
             prose-headings:mb-5
             
