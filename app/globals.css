@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Brand colors */
+  --color-brand-teal: #2bb1bb;
+  --color-brand-amber: #F59E0B;
+  --color-brand-dark: #0B1D35;
+
+  /* Font families */
+  --font-family-prompt: var(--font-prompt);
+  --font-family-sarabun: var(--font-sarabun);
+}
 
 @layer base {
   body {
@@ -45,10 +55,8 @@
 .prose blockquote,
 .prose-invert blockquote {
   background-color: rgba(15, 23, 42, 0.5) !important;
-  /* Brand Dark 50% */
   border-left-width: 4px !important;
   border-left-color: #2DD4BF !important;
-  /* Brand Teal */
   padding: 1.5rem !important;
   border-radius: 0 0.5rem 0.5rem 0 !important;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
@@ -71,7 +79,6 @@
 .prose pre code,
 .prose code {
   color: #cbd5e1 !important;
-  /* Slate-300 (Softer) */
   font-size: 1.12em !important;
   line-height: 1.8 !important;
   white-space: pre-wrap !important;
@@ -86,7 +93,6 @@
 .prose table,
 .prose-invert table {
   border: 2px solid rgba(45, 212, 191, 0.4) !important;
-  /* Teal border */
   border-radius: 0.5rem !important;
   border-collapse: separate !important;
   border-spacing: 0 !important;
