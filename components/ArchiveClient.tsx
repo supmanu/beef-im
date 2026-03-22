@@ -191,27 +191,23 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
                                 <motion.article
                                     key={post.id}
                                     variants={cardVariants}
-                                    whileHover={{ y: -4 }}
+                                    whileHover={{ y: -8 }}
                                     className="h-full cursor-pointer"
                                 >
                                     <Link href={`/articles/${post.slug}`} className="group block h-full">
-                                        <article className="bg-slate-900/60 backdrop-blur border border-slate-700/50 rounded-2xl overflow-hidden hover:border-brand-teal/50 hover:shadow-[0_0_30px_rgba(45,212,191,0.25)] transition-all duration-300 h-full flex flex-col">
+                                        <article className="bg-[#0f2645] border border-slate-800/50 rounded-2xl overflow-hidden hover:border-brand-teal/50 hover:shadow-[0_0_20px_rgba(43,177,187,0.15)] transition-all duration-500 h-full flex flex-col">
                                             <div className="aspect-video bg-slate-800 relative overflow-hidden">
                                                 {coverImageUrl ? (
-                                                    <motion.img
+                                                    <img
                                                         src={coverImageUrl}
                                                         alt={post.title}
-                                                        className="w-full h-full object-cover"
-                                                        whileHover={{ scale: 1.08 }}
-                                                        transition={{ duration: 0.5 }}
+                                                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full bg-slate-700 flex items-center justify-center">
                                                         <span className="text-slate-500 text-sm">No Image</span>
                                                     </div>
                                                 )}
-                                                {/* Hover overlay gradient */}
-                                                <div className="absolute inset-0 bg-gradient-to-t from-brand-teal/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                             </div>
                                             <div className="p-6 flex flex-col flex-grow">
                                                 <div className="flex items-center gap-2 mb-3">
@@ -219,12 +215,15 @@ export default function ArchiveClient({ initialPosts, categories }: ArchiveClien
                                                         {categoryLabel}
                                                     </span>
                                                 </div>
-                                                <h3 className="text-xl font-bold text-white group-hover:text-brand-teal transition-colors duration-300 mb-3 line-clamp-2 font-prompt">
+                                                <h3 className="text-xl font-bold text-white group-hover:text-brand-teal transition-colors mb-3 line-clamp-2 font-prompt">
                                                     {post.title}
                                                 </h3>
-                                                <p className="text-slate-400 text-sm line-clamp-3 mb-4 flex-grow font-sarabun group-hover:text-slate-300 transition-colors">
+                                                <p className="text-slate-400 text-sm line-clamp-3 mb-4 flex-grow font-sarabun">
                                                     {post.excerpt || 'Click to read more...'}
                                                 </p>
+                                                <div className="flex items-center gap-2 text-brand-amber text-sm font-bold tracking-wider group-hover:translate-x-2 transition-transform mt-auto">
+                                                    READ ANALYSIS <span className="text-lg">→</span>
+                                                </div>
                                             </div>
                                         </article>
                                     </Link>
