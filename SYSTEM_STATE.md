@@ -140,6 +140,17 @@
 10. **Hierarchy Law:** Layer 2 (PDF Vault) is **Forensic Fallback ONLY**. Primary production MUST use Layer 3 (Markdown/Vector).
 
 ## 🎨 UI/UX ENHANCEMENTS
+*   **[Visual Refinement Sprint]** Site-Wide Typography & Asset Sovereignty (Mar 22, 2026).
+    *   **Scope:** 11 commits across 2 sessions covering all pages (Home, Articles, Tools, Contact, Manifesto).
+    *   **Typography Standard:** `tracking-wider` locked as site-wide standard for all uppercase labels/badges. Replaced all `tracking-widest`, `tracking-[0.2em]`, `tracking-[0.3em]` instances.
+    *   **Display Numbers:** `font-mono` → `font-prompt` for all large formatted numbers (eliminates excessive comma spacing).
+    *   **Article Page:** Disabled teal scroll gradient (flat #0B1D35 navy). Softened headings `text-white` → `text-slate-100`. Tightened line height `leading-loose` → `leading-relaxed`. Consolidated blockquote styling to globals.css.
+    *   **Archive Cards:** Restored legacy hover effects (card lift -8px, image zoom+brighten on group-hover, 500ms/700ms transitions, READ ANALYSIS CTA with arrow slide).
+    *   **Hero Section:** Freshened by reducing overlay stack (image opacity 60→70%, gradient via 60→40%, side vignette 70→50%, heading gradient to-gray-400 → to-gray-200).
+    *   **Tools:** COI disclaimer dark-themed (`bg-slate-800/60`), Dynasty Simulator harmonized, IRR Truth Teller currency inputs fixed (type="text" + parseCurrency).
+    *   **Contact Page:** All label tracking normalized to `tracking-wider`.
+    *   **Asset Sovereignty:** ALL static assets migrated from Hygraph CDN to R2 (`assets.nerdwithnart.com/nwn-assets/`). Zero `graphassets.com` references remain in codebase.
+    *   **R2 Asset Registry:** hero-mountain.jpg (94K), contact-basecamp.jpg (160K), navbar-logo.png (9K), og-background.jpg (353K), natapol-supmanu-nerd-with-nart-avatar.png (existing).
 *   **[Manifesto Page]** Typography & Layout Refinement Complete (Dec 25, 2025).
     *   **Hero:** Optimized heading size (`text-4xl/6xl/7xl`) for balanced impact.
     *   **Container:** Widened from `max-w-4xl` to `max-w-5xl` for less cramped feel.
