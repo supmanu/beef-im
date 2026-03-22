@@ -78,12 +78,12 @@ export default function COICalculator() {
                 </div>
             </div>
 
-            <div className="bg-slate-900/60 border-x border-b border-white/10 p-8 rounded-b-[2rem] shadow-2xl space-y-12 backdrop-blur-sm">
+            <div className="bg-slate-900/60 border-x border-b border-white/10 p-8 rounded-b-[2rem] shadow-2xl space-y-8 backdrop-blur-sm">
 
                 {/* --- CONTROLS --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white/5 p-8 rounded-3xl border border-white/10 relative shadow-inner">
-                        <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-wider font-prompt">
+                        <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-wide font-prompt">
                             อายุปัจจุบันของคุณ (Current Age): <span className="text-brand-teal text-3xl font-mono ml-2">{currentAge}</span>
                         </label>
                         <input
@@ -99,7 +99,7 @@ export default function COICalculator() {
                     </div>
 
                     <div className="bg-white/5 p-8 rounded-3xl border border-white/10 shadow-inner">
-                        <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-wider font-prompt">ทุนประกัน (Sum Assured)</label>
+                        <label className="block text-base font-bold text-slate-400 mb-4 uppercase tracking-wide font-prompt">ทุนประกัน (Sum Assured)</label>
                         <div className="flex items-center gap-4 bg-slate-950/50 p-4 rounded-2xl border border-white/10 mb-4">
                             <input
                                 type="text"
@@ -183,9 +183,9 @@ export default function COICalculator() {
                     <div className="bg-white/5 p-8 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-white/20 transition-colors">
                         <div className="absolute top-0 right-0 w-40 h-40 bg-brand-teal/5 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-brand-teal/10 transition-colors" />
                         <div className="relative z-10">
-                            <div className="text-xs text-slate-400 uppercase tracking-widest font-prompt mb-3 font-bold">วันนี้ (Age {currentAge})</div>
+                            <div className="text-xs text-slate-400 uppercase tracking-wider font-prompt mb-3 font-bold">วันนี้ (Age {currentAge})</div>
                             <div className="text-4xl md:text-5xl font-bold text-white font-mono tracking-tight">
-                                ฿{currentCost.toLocaleString()} <span className="text-lg text-slate-500 font-normal font-sarabun">/ปี</span>
+                                ฿{currentCost.toLocaleString()} <span className="text-xl text-slate-400 font-normal font-sarabun">/ปี</span>
                             </div>
                         </div>
                     </div>
@@ -193,9 +193,9 @@ export default function COICalculator() {
                     <div className="bg-amber-500/10 p-8 rounded-3xl border border-amber-500/20 relative overflow-hidden group hover:border-amber-500/40 transition-colors">
                         <div className="absolute top-0 right-0 w-40 h-40 bg-amber-500/10 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-amber-500/20 transition-colors" />
                         <div className="relative z-10">
-                            <div className="text-xs text-amber-500 uppercase tracking-widest font-prompt mb-3 font-bold">ในอนาคต (Age {data.length > 0 ? data[data.length - 1].age : 0})</div>
+                            <div className="text-xs text-amber-500 uppercase tracking-wider font-prompt mb-3 font-bold">ในอนาคต (Age {data.length > 0 ? data[data.length - 1].age : 0})</div>
                             <div className="text-4xl md:text-5xl font-bold text-brand-amber font-mono tracking-tight">
-                                ฿{futureCost.toLocaleString()} <span className="text-lg text-amber-500/60 font-normal font-sarabun">/ปี</span>
+                                ฿{futureCost.toLocaleString()} <span className="text-xl text-amber-400/70 font-normal font-sarabun">/ปี</span>
                             </div>
                             <div className="inline-block mt-4 px-4 py-1.5 bg-amber-500/20 border border-amber-500/30 rounded-full text-xs text-amber-400 font-bold uppercase tracking-wide">
                                 แพงขึ้น {multiplier} เท่าตัว!
@@ -205,24 +205,24 @@ export default function COICalculator() {
                 </div>
 
                 {/* --- DISCLAIMER (SUBTLE LIGHT CARD) --- */}
-                <div className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl border border-slate-300/50 shadow-xl relative overflow-hidden">
+                <div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-xl relative overflow-hidden">
                     <div className="absolute right-6 bottom-6 opacity-5 pointer-events-none">
-                        <Shield size={100} className="text-slate-400" />
+                        <Shield size={100} className="text-slate-600" />
                     </div>
                     <div className="relative z-10 space-y-4">
-                        <p className="text-sm font-bold text-amber-600 uppercase tracking-[0.2em] font-prompt">⚠️ ข้อควรระวัง (Disclaimer):</p>
-                        <ul className="text-base text-slate-700 font-sarabun leading-loose list-none space-y-4">
+                        <p className="text-sm font-bold text-amber-400 uppercase tracking-wider font-prompt">ข้อควรระวัง (Disclaimer):</p>
+                        <ul className="text-base text-slate-300 font-sarabun leading-relaxed list-none space-y-4">
                             <li className="flex gap-3">
-                                <span className="text-amber-600 font-mono font-bold mt-1">01</span>
-                                <span>ข้อมูลนี้เป็นการจำลอง <strong className="text-slate-900">"ต้นทุนความเสี่ยงภัยพื้นฐาน" (Base COI)</strong> ตามตารางมรณะไทยปี 2560 (TMO 2017) ที่ คปภ. กำหนดเพื่อใช้เป็นมาตรฐานอ้างอิงเท่านั้น</span>
+                                <span className="text-amber-500 font-mono font-bold mt-1">01</span>
+                                <span>ข้อมูลนี้เป็นการจำลอง <strong className="text-white">"ต้นทุนความเสี่ยงภัยพื้นฐาน" (Base COI)</strong> ตามตารางมรณะไทยปี 2560 (TMO 2017) ที่ คปภ. กำหนดเพื่อใช้เป็นมาตรฐานอ้างอิงเท่านั้น</span>
                             </li>
                             <li className="flex gap-3">
-                                <span className="text-amber-600 font-mono font-bold mt-1">02</span>
-                                <span><strong className="text-slate-900">อัตราค่าใช้จ่ายจริง (Actual COI) ที่บริษัทประกันเรียกเก็บมักจะสูงกว่านี้</strong> เนื่องจากมีการบวกค่าใช้จ่ายดำเนินงาน (Expense Loading) และความเสี่ยงเฉพาะของพอร์ตโฟลิโอแต่ละบริษัท</span>
+                                <span className="text-amber-500 font-mono font-bold mt-1">02</span>
+                                <span><strong className="text-white">อัตราค่าใช้จ่ายจริง (Actual COI) ที่บริษัทประกันเรียกเก็บมักจะสูงกว่านี้</strong> เนื่องจากมีการบวกค่าใช้จ่ายดำเนินงาน (Expense Loading) และความเสี่ยงเฉพาะของพอร์ตโฟลิโอแต่ละบริษัท</span>
                             </li>
                             <li className="flex gap-3">
-                                <span className="text-amber-600 font-mono font-bold mt-1">03</span>
-                                <span>กราฟนี้มีวัตถุประสงค์เพื่อแสดง <strong className="text-slate-900">"แนวโน้ม (Trend)"</strong> ของต้นทุนที่เพิ่มขึ้นแบบทวีคูณตามอายุ (Exponential Curve) เพื่อประกอบการวางแผนระยะยาว ไม่สามารถใช้อ้างอิงเพื่อคำนวณเบี้ยประกันที่ต้องจ่ายจริงได้</span>
+                                <span className="text-amber-500 font-mono font-bold mt-1">03</span>
+                                <span>กราฟนี้มีวัตถุประสงค์เพื่อแสดง <strong className="text-white">"แนวโน้ม (Trend)"</strong> ของต้นทุนที่เพิ่มขึ้นแบบทวีคูณตามอายุ (Exponential Curve) เพื่อประกอบการวางแผนระยะยาว ไม่สามารถใช้อ้างอิงเพื่อคำนวณเบี้ยประกันที่ต้องจ่ายจริงได้</span>
                             </li>
                         </ul>
                     </div>

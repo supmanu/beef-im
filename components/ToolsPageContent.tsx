@@ -79,7 +79,7 @@ export default function ToolsPageContent() {
             <div className="max-w-7xl mx-auto px-6 py-16">
 
                 {/* TACTICAL TAB CONTROLLER */}
-                <div className="flex flex-wrap justify-center gap-6 mb-20">
+                <div className="flex flex-wrap justify-center gap-6 mb-12">
                     <motion.button
                         onClick={() => setActiveTool('COI_CALC')}
                         whileHover={{ scale: 1.02, y: -2 }}
