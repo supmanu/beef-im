@@ -203,6 +203,9 @@ Last Updated: December 20, 2025
 ## 📞 How to Use This Index
 
 **Looking for...**
+- How to capture content ideas? → [nerd/CHEATSHEET.md](../../nerd/CHEATSHEET.md) + [nerd/OBSIDIAN_GUIDE.md](../../nerd/OBSIDIAN_GUIDE.md)
+- What content do I already have? → [nerd/content-catalog.md](../../nerd/content-catalog.md)
+- Content pipeline dashboard? → [nerd/dashboard.md](../../nerd/dashboard.md) (open in Obsidian)
 - How to set up Payload? → [payload.md](./payload.md)
 - How to configure Next.js? → [nextjs.md](./nextjs.md)
 - How to handle memory? → [MEMORY_BRIDGE_QUICKSTART.md](./MEMORY_BRIDGE_QUICKSTART.md)
@@ -214,8 +217,16 @@ Last Updated: December 20, 2025
 
 ## 🔄 File Update History
 
-216: 
-217: **December 20, 2025 (Phase VII Sync - Language Firewall & Purge):**
+**March 24, 2026 (Obsidian Intake Layer + Content Catalog):**
+- ✅ Added Obsidian to NixOS melkor config (pending rebuild)
+- ✅ Created `nerd/seeds/` capture system with frontmatter template
+- ✅ Created `nerd/content-catalog.md` (indexed 68+ existing scattered content files)
+- ✅ Created `nerd/dashboard.md` (Dataview pipeline dashboard for Obsidian)
+- ✅ Created `nerd/OBSIDIAN_GUIDE.md` (8-part installation + workflow guide)
+- ✅ Created `nerd/CHEATSHEET.md` (one-page quick reference)
+- ✅ Updated README.md with content pipeline references
+
+**December 20, 2025 (Phase VII Sync - Language Firewall & Purge):**
 218: - ✅ Implemented English-first Operational Language Protocol
 219: - ✅ Retired legacy Architect CTO v6.6.1 instruction file
 220: - ✅ Updated SYSTEM_STATE and Strategic Memory Log
@@ -279,9 +290,9 @@ Last Updated: December 20, 2025
 ---
 
 **Status:** Active
-**Last Reviewed:** March 23, 2026 (Phase I 2026 — Production Revival)
+**Last Reviewed:** March 24, 2026 (Obsidian Intake Layer + Content Organization)
 **Ready for:** Production use ✅
-**Phase:** Production (Dual Methods — Classic + Mastra AI)
+**Phase:** Production (Obsidian Intake → Claude Code Pipeline → Payload CMS)
 
 🎓 Start with MEMORY_BRIDGE_QUICKSTART.md - it's all you need for 80% of cases!
 🎓 For semantic versioning: See [semantic-versioning.md](./semantic-versioning.md)
