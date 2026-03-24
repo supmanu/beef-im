@@ -1,6 +1,7 @@
 # Obsidian + Content Pipeline Guide
 
 **Created:** March 24, 2026
+**Updated:** March 25, 2026 (v6.0 pipeline, _ops/ symlinks, /seed skill, Templates plugin)
 **Purpose:** How to use Obsidian as the intake layer for the Nerd with Nart content production system
 
 ---
@@ -9,7 +10,7 @@
 
 ### The Problem
 
-The content production workflow had a missing first stage. Raw material (Facebook posts, article ideas, research notes) was being copy-pasted directly into AI tools (Gemini Gem, NotebookLM, Claude Code) with no organization. This caused:
+The content production workflow had a missing first stage. Raw material (Facebook posts, article ideas, research notes) was being copy-pasted directly into AI tools with no organization. This caused:
 
 - Sample outputs from multi-model testing got lost in chat histories
 - Production-ready articles sat forgotten in scattered folders
@@ -19,35 +20,41 @@ The content production workflow had a missing first stage. Raw material (Faceboo
 
 ### The Solution
 
-Added Obsidian as the **intake layer** — the organized inbox where raw material lands before entering the existing 3-agent production pipeline. Nothing in the existing system changed. Obsidian sits in front of it.
+Added Obsidian as the **intake layer** — the organized inbox where raw material lands before entering the CLI-first production pipeline.
 
 ```
 BEFORE:
-  📱 Facebook → 🧠 Your memory → 🤖 Architect → ✍️ Performer → ⚖️ Auditor
+  📱 Facebook → 🧠 Your memory → 🤖 Gemini Gem → ✍️ Claude → ⚖️ Gemini Gem
                   ↑ everything lost here
 
-AFTER:
-  📱 Facebook → 📥 Obsidian Seed → 📊 Dashboard → 🤖 Architect → ✍️ Performer → ⚖️ Auditor
-                  ↑ captured, tagged, tracked         ↑ fed with full context
+AFTER (v6.0):
+  📱 Facebook → 📥 Obsidian Seed → 📊 Dashboard → 🤖 /architect → ✍️ /performer → ⚖️ /auditor
+                  ↑ captured, tagged, tracked       ↑ CLI Skills, one terminal session
+  Alternative:
+  📱 Facebook → 💻 /seed [dump] → auto-creates seed file in Obsidian
 ```
 
 ### What Was Built
 
 | Item | Location | Purpose |
 |------|----------|---------|
-| Obsidian | NixOS config (pending rebuild) | Visual markdown editor + Dataview dashboards |
-| `nerd/seeds/` | New folder | Capture raw ideas with frontmatter tags |
-| `nerd/seeds/_template.md` | Seed template | Copy this for every new idea |
-| `nerd/content-catalog.md` | Content index | Map of all 68+ existing files (your treasure map) |
-| `nerd/dashboard.md` | Dataview dashboard | Live pipeline visibility in Obsidian |
+| Obsidian | NixOS melkor config | Visual markdown editor + Dataview dashboards |
+| `nerd/seeds/` | Seed folder | Capture raw ideas with frontmatter tags |
+| `nerd/seeds/_template.md` | Seed template | Auto-date via `{{date}}`, insert with Ctrl+P |
+| `nerd/content-catalog.md` | Content index | Map of all 68+ existing files |
+| `nerd/dashboard.md` | Dataview dashboard | Live pipeline visibility |
+| `nerd/_ops/` | Symlinks | Browse docs, input, content, rules, skills from vault |
+| `.claude/skills/seed/` | CLI skill | `/seed [dump]` — captures seed from terminal |
 
-### What Did NOT Change
+### Why `nerd/` as Vault (Not `nerd-with-nart/`)
 
-- Your `/nerd/pillars/` files — untouched
-- Your `/nerd/agents/` instructions — untouched
-- Your `.claude/skills/` (architect, performer, auditor, hybrid, produce-article) — untouched
-- Your Mastra vector DB — untouched
-- Your existing content files — untouched (just cataloged)
+Using the project root as vault would crawl `node_modules/`, `.next/`, TypeScript files — polluting search, graph view, and Dataview queries. The `nerd/` folder is pure content domain. Operational files are accessible via `_ops/` symlinks.
+
+| Domain | Tool |
+|--------|------|
+| **Content** (pillars, seeds, research) | Obsidian (`nerd/`) |
+| **Code** (app, components, config) | IDE (Antigravity) |
+| **Ops** (.claude/rules, docs) | Obsidian via `_ops/` symlinks |
 
 ---
 
@@ -55,7 +62,7 @@ AFTER:
 
 ### Step 1: Install Obsidian on NixOS
 
-Obsidian has already been added to your NixOS config. Run:
+Already added to NixOS config. Run:
 
 ```bash
 sudo nixos-rebuild switch --flake ~/Melkor-OS/nixos#melkor
@@ -68,46 +75,71 @@ sudo nixos-rebuild switch --flake ~/Melkor-OS/nixos#melkor
 3. Navigate to: `~/Melkor-OS/departments/nerd-with-nart/nerd/`
 4. Click "Open"
 
-This makes Obsidian read your entire `nerd/` folder — pillars, seeds, samples, everything.
-
 ### Step 3: Install Dataview Plugin
 
-1. In Obsidian: Settings (gear icon) → Community Plugins → Turn off Restricted Mode
+1. Settings (gear icon) → Community Plugins → Turn off Restricted Mode
 2. Browse → Search "Dataview" → Install → Enable
 3. Open `dashboard.md` — you should see live tables
 
-### Step 4: (Optional) Install Templater Plugin
+### Step 4: Configure Templates (Core Plugin)
 
-1. Browse → Search "Templater" → Install → Enable
-2. Settings → Templater → Template folder: `seeds`
-3. Now you can create new seeds from template with a hotkey
+1. Settings → Core Plugins → Enable "Templates"
+2. Settings → Templates:
+   - **Template folder location:** `seeds`
+   - **Date format:** `YYYY-MM-DD`
+   - **Time format:** (leave default, not needed for seeds)
+3. Now `Ctrl+P` → "Insert template" → `_template.md` inserts the seed template with today's date auto-filled in the `created:` field
+
+### Step 5: Customize Fonts (Optional)
+
+For Thai readability:
+- Settings → Appearance → Font → Set to **Sarabun** (body) and **Prompt** (headings)
+- These match your site's typography
 
 ---
 
 ## Part 3: Daily Workflow
 
-### Capturing a New Idea (30 Seconds)
+### Capturing a New Idea — Two Methods
 
-**When you see something interesting on Facebook, LINE, or anywhere:**
+#### Method 1: `/seed` CLI Skill (Fastest — 10 seconds)
+
+From Claude Code terminal, just dump:
+
+```
+/seed เห็นโพสต์ใน Facebook เรื่องคนซื้อ CI แล้วเคลมไม่ได้เพราะ waiting period ไม่ครบ 90 วัน
+```
+
+The skill automatically:
+- Names the file `2026-03-25-ci-waiting-period.md`
+- Fills `created:` with today's date
+- Infers the `pillar:` (critical-illness)
+- Pastes your raw material into the Raw Material section
+- Writes a "Why This Matters" note
+
+You can then open the file in Obsidian to refine it.
+
+#### Method 2: Obsidian Template (Visual — 30 seconds)
 
 1. In Obsidian, go to `seeds/` folder
-2. Create new file: `2026-03-24-short-topic-name.md`
-3. Copy the frontmatter from `_template.md` (or use Templater hotkey)
-4. Fill in the minimum:
+2. `Ctrl+N` → Name the file: `2026-03-25-ci-waiting-period`
+3. `Ctrl+P` → "Insert template" → select `_template.md`
+4. The `created:` field auto-fills with today's date (`{{date}}` → `2026-03-25`)
+5. Fill in `pillar:` and paste raw material below
+6. Done. Fill in paradox/mode/archetype later.
+
+**You don't need to fill in everything.** The minimum is:
 
 ```yaml
 ---
 type: seed
 status: seed
 pillar: critical-illness
-created: 2026-03-24
+created: 2026-03-25      ← auto-filled by template
 ---
+
+(paste the Facebook post or idea here)
 ```
-
-5. Paste the raw material below the frontmatter
-6. Done. Move on with your day.
-
-**You don't need to fill in everything.** The paradox, archetype, and mode can be filled in later when you're ready to research.
 
 ### Reviewing Your Pipeline (2 Minutes)
 
@@ -115,18 +147,21 @@ Open `dashboard.md` in Obsidian. You'll see:
 
 - **Inbox:** New seeds not yet researched
 - **Researching:** Seeds you're gathering data for
-- **Ready:** Seeds with paradox + data, ready for the Architect
+- **Ready:** Seeds with paradox + data, ready for the pipeline
 - **Gap Analysis:** Which pillars have too few ideas
 
-### Promoting a Seed to Production
+### Promoting a Seed to Production (v6.0)
 
 When a seed is ready:
 
 1. Change frontmatter: `status: ready` → `status: in-production`
 2. Open Claude Code terminal
-3. Run: `/architect [topic from seed]` or `/produce-article [topic]`
-4. The Architect now has context: your raw notes, the paradox, linked brochures
-5. After publishing: change to `status: published`, add `published_date` and `article_slug`
+3. Run: `/produce-article [topic] [mode]` (full pipeline) or step-by-step:
+   - `/architect [topic] [mode]` → generates blueprint
+   - `/performer [blueprint]` → writes Thai article
+   - `/auditor [article]` → 6-point compliance check
+4. If regulatory-sensitive: escalate audit to Gemini Gem #4
+5. After publishing: `status: published`, add `published_date` and `article_slug`
 
 ### The Complete Status Flow
 
@@ -147,7 +182,7 @@ killed (decided not to pursue — keep for reference)
 type: seed          # always "seed"
 status: seed        # seed | researching | ready | in-production | published | killed
 pillar: tax         # which content pillar
-created: 2026-03-24 # when you captured it
+created: 2026-03-25 # auto-filled by {{date}} template
 ---
 ```
 
@@ -195,7 +230,30 @@ article_slug: "premium-holiday-trap"             # URL slug on site
 
 ---
 
-## Part 5: Using the Content Catalog
+## Part 5: Browsing Operational Files (`_ops/`)
+
+The `_ops/` folder in your vault contains symlinks to project files outside `nerd/`:
+
+```
+nerd/_ops/
+├── claude-rules  → .claude/rules/    (22 tactical pattern files)
+├── claude-skills → .claude/skills/   (6 skill folders)
+├── content       → content/          (articles, drafts, viral)
+├── docs          → docs/             (guides, handovers, constitution)
+└── input         → input/            (raw blueprints)
+```
+
+**Why symlinks?** Keeps the vault focused on content (no `node_modules/` pollution) while giving you read access to operational files through Obsidian's nice UI.
+
+**To add more symlinks later:**
+```bash
+cd ~/Melkor-OS/departments/nerd-with-nart/nerd/_ops
+ln -s ../../[folder] [name]
+```
+
+---
+
+## Part 6: Using the Content Catalog
 
 Open `nerd/content-catalog.md` to see everything you already have.
 
@@ -206,65 +264,63 @@ Open `nerd/content-catalog.md` to see everything you already have.
 2. `content/articles/insurance-extinction-2083.md` — 2083: ปีที่อุตสาหกรรมประกันภัยไทยตาย
 3. `content/test-articles/structure-war-final.md` — ศึกเชิงโครงสร้าง
 
-**Pick Best Variant (6 model variants of Premium Holiday):**
-- Read all 6 versions in `content/articles/premium-holiday-*.md`
-- Pick your favorite tone/angle
-- Polish and publish
-
 **Unused Blueprints (3 ready for pipeline):**
 - `input/diabetes-blueprint.txt` → `/produce-article`
 - `input/senior-crisis-blueprint.txt` → `/produce-article`
 - `input/aia-war-blueprint.txt` → `/produce-article`
 
-**Draft Archive (28 files, 4 batches):**
-- Check `content/_draft_archive/2025-12-30_03-47-06/` (V4, latest iteration)
-- Compare the 7 model outputs for the diabetes article
-- Promote the best one
-
 ---
 
-## Part 6: How Everything Connects
+## Part 7: How Everything Connects (v6.0)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    YOUR CONTENT SYSTEM                       │
+│                    YOUR CONTENT SYSTEM (v6.0)                │
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
-│  INTAKE (New)                PRODUCTION (Existing)           │
-│  ───────────                 ────────────────────            │
+│  INTAKE                        PRODUCTION                    │
+│  ──────                        ──────────                    │
 │                                                              │
-│  📱 Facebook/LINE            🤖 Claude Code Skills:          │
-│       ↓                         /architect                   │
-│  📥 nerd/seeds/                 /performer                   │
-│     (Obsidian capture)          /auditor                     │
-│       ↓                         /produce-article             │
-│  📊 dashboard.md                /hybrid                      │
-│     (pipeline view)                                          │
-│       ↓                      📚 Knowledge Base:              │
-│  When status = "ready" ───→    nerd/pillars/ (13 files)     │
-│                                nerd/agents/ (instructions)   │
-│                                nerd/references/brochures/    │
+│  📱 Facebook/LINE/Idea          💻 Claude Code Skills:        │
+│       ↓                            /seed (capture)           │
+│  📥 nerd/seeds/                    /architect (blueprint)    │
+│     (/seed CLI or Obsidian)        /performer (write)        │
+│       ↓                            /auditor (comply)         │
+│  📊 dashboard.md                   /produce-article (all 3)  │
+│     (pipeline view)                /hybrid (one-shot)        │
+│       ↓                                                      │
+│  When status = "ready" ───→     🔬 Gemini (when needed):     │
+│                                    Deep Research (web)       │
+│                                    Gem #4 (regulatory audit) │
 │                                                              │
-│  STORAGE                     PUBLISHING                      │
-│  ───────                     ──────────                      │
+│  KNOWLEDGE                     PUBLISHING                    │
+│  ─────────                     ──────────                    │
 │                                                              │
-│  🗄️ content/articles/         🌐 Payload CMS                 │
-│  🗄️ content/_draft_archive/   🌐 Vercel (auto-deploy)       │
-│  🗄️ content/test-articles/    🌐 nerdwithnart.com            │
+│  📚 nerd/pillars/ (22 files)    🌐 Payload CMS               │
+│  📚 nerd/agents/ (instructions)  🌐 Vercel (auto-deploy)     │
+│  📚 nerd/references/brochures/   🌐 nerdwithnart.com          │
 │  📋 nerd/content-catalog.md                                  │
-│     (index of everything)                                    │
+│                                                              │
+│  BROWSING (Obsidian)                                         │
+│  ───────                                                     │
+│  📁 _ops/docs          (project documentation)               │
+│  📁 _ops/input         (raw blueprints)                      │
+│  📁 _ops/content       (articles, drafts)                    │
+│  📁 _ops/claude-rules  (tactical patterns)                   │
+│  📁 _ops/claude-skills (skill definitions)                   │
 │                                                              │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Tool Roles
+### Tool Roles (v6.0)
 
 | Tool | Role | When to Use |
 |------|------|-------------|
-| **Obsidian** | Capture, organize, visualize pipeline | Daily — dump ideas, check dashboard |
-| **Claude Code** | Production pipeline + system maintenance | When producing articles or coding |
-| **Gemini Gem** | Alternative Architect (in browser) | When you prefer Gemini's analysis |
-| **NotebookLM** | Deep research / forensic extraction | When doing heavy research on PDFs |
+| **Obsidian** | Capture, organize, browse, visualize pipeline | Daily — dump ideas, check dashboard, browse files |
+| **Claude Code CLI** | Production pipeline (`/seed`, `/architect`, `/performer`, `/auditor`) | When capturing or producing articles |
+| **Gemini Deep Research** | Multi-source web research | Deep dives requiring investigative research |
+| **Gemini Gem #4** | Escalation audit (regulatory web search) | When article makes regulatory claims you're unsure about |
+| **NotebookLM** | Multi-document forensic extraction | Occasional — bulk PDF processing |
 | **Payload CMS** | Publishing platform | When posting final articles |
 
 ### Key Principle
@@ -273,7 +329,7 @@ Open `nerd/content-catalog.md` to see everything you already have.
 
 ---
 
-## Part 7: Obsidian Tips for This Workflow
+## Part 8: Obsidian Tips for This Workflow
 
 ### Bidirectional Links
 
@@ -290,20 +346,13 @@ Uses bridge: [[tech-bridge-lab]]
 
 Over time, Graph View will show clusters of related ideas.
 
-### Quick Capture Shortcut
-
-1. Ctrl+N → New file
-2. Type filename: `2026-03-24-topic.md`
-3. Paste minimal frontmatter + raw material
-4. Ctrl+S → Done
-
 ### Useful Obsidian Hotkeys
 
 | Key | Action |
 |-----|--------|
 | Ctrl+N | New file |
 | Ctrl+O | Quick open file |
-| Ctrl+P | Command palette |
+| Ctrl+P | Command palette (insert template, search commands) |
 | Ctrl+Shift+F | Search across all files |
 | Ctrl+G | Open Graph View |
 
@@ -313,7 +362,7 @@ Open Graph View (Ctrl+G) to see connections between your files. Filter by folder
 
 ---
 
-## Part 8: Maintenance
+## Part 9: Maintenance
 
 ### Weekly (5 minutes)
 
@@ -338,8 +387,12 @@ Open Graph View (Ctrl+G) to see connections between your files. Filter by folder
 
 | File | What It Is |
 |------|------------|
-| `nerd/seeds/_template.md` | Copy this for new seeds |
+| `nerd/seeds/_template.md` | Seed template with `{{date}}` auto-fill |
 | `nerd/seeds/README.md` | Seed system documentation |
 | `nerd/dashboard.md` | Dataview pipeline dashboard |
 | `nerd/content-catalog.md` | Index of all 68+ existing content files |
+| `nerd/CHEATSHEET.md` | One-page quick reference (print this) |
 | `nerd/OBSIDIAN_GUIDE.md` | This file |
+| `nerd/pillars/master-index.md` | Content system architecture (v6.0) |
+| `nerd/_ops/` | Symlinks to docs, input, content, rules, skills |
+| `.claude/skills/seed/` | `/seed` CLI skill for terminal capture |

@@ -137,14 +137,15 @@ We are now 100% sovereign with no external content dependencies:
 
 ## Technical Baseline
 
-### Stack (Current)
-*   **Framework:** Next.js 15.5.9 (LTS)
-*   **React:** 19.0.0
-*   **CMS:** Payload 3.0
-*   **Database:** Neon Postgres
-*   **Legacy Content:** Hygraph (being phased out)
-*   **Styling:** Tailwind CSS v3.4.17
-*   **Node Version:** v24.13.0 (via NVM native)
+### Stack (Current — Mar 2026)
+*   **Framework:** Next.js 16.2.1 (App Router, Turbopack)
+*   **React:** 19.2.4
+*   **CMS:** Payload 3.80.0 (Embedded)
+*   **Database:** Neon Postgres (nerd_brain: 231 rows, gemini-embedding-001 3072d)
+*   **AI:** Mastra 1.x + Gemini 3 Flash
+*   **Styling:** Tailwind CSS v4.2 (CSS-first config)
+*   **Node Version:** 24 LTS (nixpkgs, system-managed)
+*   **Content Pipeline:** v6.0 CLI-First (Obsidian → CLI Skills → Payload CMS)
 
 ### Environment Status
 *   ✅ Development server running (`npm run dev`)

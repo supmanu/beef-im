@@ -396,14 +396,14 @@ NOT from:
 
 | Need | File | Key Contents |
 |------|------|--------------|
-| **What terms are BANNED** | `constitution.md_v4_3_2` | Zero-tolerance terms, replacement patterns |
-| **Correct terminology (35 terms)** | `data-terminology.md_v4_3` | Thai-first format, formal vs social |
-| **Content structures** | `content-engine.md_v4_5_1` | Quick Magnet, Kane Edition, Deep Dive |
-| **Thai-First exceptions** | `data-thai-handshake-exceptions.md_v4_3_1` | When English-first is allowed |
-| **Analogies for teaching** | `tech-bridge-lab.md_v4_6_2` | 25 verified analogies |
-| **Production prompts** | `instruction-performer.txt_v5_4` | Ready-to-use AI prompts |
-| **Deep content mode** | `framework-deep-dive.md_v4_5_5` | UNLEASHED protocol |
-| **Visual standards** | `PILLAR_5_Visual_Style_Guide_v1_2` | Colors, fonts, layouts |
+| **What terms are BANNED** | `constitution.md` | Zero-tolerance terms, replacement patterns |
+| **Correct terminology (35 terms)** | `data-terminology.md` | Thai-first format, formal vs social |
+| **Content structures** | `content-engine.md` | Quick Magnet, Kane Edition, Deep Dive |
+| **Thai-First exceptions** | `data-thai-handshake-exceptions.md` | When English-first is allowed |
+| **Analogies for teaching** | `tech-bridge-lab.md` | 25 verified analogies |
+| **Production prompts** | `instruction-performer.txt` | Ready-to-use AI prompts |
+| **Deep content mode** | `framework-deep-dive.md` | UNLEASHED protocol |
+| **Visual standards** | `visual-engine.md` | Colors, fonts, layouts |
 
 ---
 

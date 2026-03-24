@@ -7,7 +7,7 @@ source: ""
 brochure: ""
 archetype: ""
 mode: ""
-created:
+created: {{date}}
 published_date:
 article_slug: ""
 ---
@@ -24,7 +24,6 @@ article_slug: ""
 
 ## Potential Paradox
 <!-- The contradiction between belief and reality -->
-<!-- Use the 4-Question Filter: -->
 <!-- 1. The Myth: What do people WRONGLY believe? -->
 <!-- 2. The Trap: What is the HIDDEN COST of the safe choice? -->
 <!-- 3. The Surprise: What COUNTERINTUITIVE truth does the data reveal? -->

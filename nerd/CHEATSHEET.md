@@ -5,7 +5,7 @@
 ## Setup (One Time)
 
 ```bash
-# 1. Install Obsidian
+# 1. Install Obsidian (already done)
 sudo nixos-rebuild switch --flake ~/Melkor-OS/nixos#melkor
 
 # 2. Open vault
@@ -13,30 +13,35 @@ obsidian → "Open folder as vault" → ~/Melkor-OS/departments/nerd-with-nart/n
 
 # 3. Install plugins
 Settings → Community Plugins → Install "Dataview" → Enable
+
+# 4. Configure Templates (Core plugin)
+Settings → Core Plugins → Enable "Templates"
+Settings → Templates:
+  - Template folder location: seeds
+  - Date format: YYYY-MM-DD
 ```
 
 ---
 
-## Capture New Idea (30 Seconds)
+## Capture New Idea — Two Methods
+
+### Method 1: CLI (Fastest — 10 seconds)
 
 ```
-1. Obsidian → seeds/ folder → New file
-2. Name: 2026-03-24-short-topic.md
-3. Paste this at the top:
+/seed เห็นโพสต์เรื่อง CI เคลมไม่ได้เพราะ waiting period 90 วัน
 ```
 
-```yaml
----
-type: seed
-status: seed
-pillar:
-created: 2026-03-24
----
-```
+That's it. The skill auto-generates filename, date, and pillar.
+
+### Method 2: Obsidian (Visual — 30 seconds)
 
 ```
-4. Paste raw material below
-5. Done. Fill in paradox/mode later.
+1. Obsidian → seeds/ folder → Ctrl+N (new file)
+2. Name: 2026-03-25-ci-waiting-period
+3. Ctrl+P → "Insert template" → _template.md
+4. created: field auto-fills with today's date
+5. Fill in pillar, paste raw material below
+6. Done. Fill in paradox/mode later.
 ```
 
 **Pillar values:** `life-insurance` | `critical-illness` | `health-insurance` | `tax` | `savings` | `investment` | `estate` | `general`
@@ -62,7 +67,7 @@ seed ──→ researching ──→ ready ──→ in-production ──→ pub
 
 ---
 
-## Produce an Article
+## Produce an Article (v6.0 CLI-First)
 
 ```
 # When a seed is ready:
@@ -71,10 +76,14 @@ seed ──→ researching ──→ ready ──→ in-production ──→ pub
 2. Open terminal (Claude Code)
 3. Run one of:
 
-   /architect [topic]              ← blueprint only
-   /produce-article [topic]        ← full pipeline (architect → performer → auditor)
+   /architect [topic] [mode]         ← blueprint only
+   /performer [blueprint]            ← write from blueprint
+   /auditor [article]                ← compliance check
+   /produce-article [topic] [mode]   ← full pipeline (all 3 steps)
+   /hybrid [topic] [mode]            ← one-shot (skip split)
 
-4. After publishing:
+4. If regulatory-sensitive: escalate audit to Gemini Gem #4
+5. After publishing:
    status: published
    published_date: 2026-04-01
    article_slug: premium-holiday-trap
@@ -88,6 +97,20 @@ Open `dashboard.md` in Obsidian → see live tables:
 - How many seeds in each status
 - Which pillars have gaps
 - What's ready for production
+
+---
+
+## Browse Operational Files
+
+The `_ops/` folder in your vault contains symlinks to project files outside `nerd/`:
+
+| Folder | What's Inside |
+|--------|---------------|
+| `_ops/docs` | Production guides, handovers, technical docs |
+| `_ops/input` | Raw blueprints (.txt) ready for pipeline |
+| `_ops/content` | Articles, drafts, test outputs |
+| `_ops/claude-rules` | Tactical patterns, project status |
+| `_ops/claude-skills` | Skill definitions (architect, performer, etc.) |
 
 ---
 
@@ -123,7 +146,7 @@ source: "facebook URL or note"  # where you found it
 brochure: "aia-multi-pay-ci"    # linked brochure file
 archetype: uncomfortable-truth  # uncomfortable-truth|hidden-cost|simple-swap
 mode: B                         # S|A|B|C
-created: 2026-03-24
+created: 2026-03-24             # auto-filled by template {{date}}
 published_date:                 # fill after publishing
 article_slug: ""                # URL slug
 ---
@@ -135,12 +158,14 @@ article_slug: ""                # URL slug
 
 | Open This | To Do This |
 |-----------|------------|
-| `seeds/_template.md` | Copy for new seed |
+| `seeds/_template.md` | Template with auto-date (insert via Ctrl+P) |
 | `dashboard.md` | See pipeline status |
 | `content-catalog.md` | Find existing content |
 | `OBSIDIAN_GUIDE.md` | Full documentation |
+| `pillars/master-index.md` | Content system architecture (v6.0) |
 | `pillars/voice-dna.md` | Check brand voice |
 | `pillars/content-engine.md` | Check article modes |
+| `_ops/` | Browse docs, rules, skills, content |
 
 ---
 
@@ -150,6 +175,7 @@ article_slug: ""                # URL slug
 |-----|--------|
 | `Ctrl+N` | New file |
 | `Ctrl+O` | Quick open |
+| `Ctrl+P` | Command palette (insert template here) |
 | `Ctrl+Shift+F` | Search all files |
 | `Ctrl+G` | Graph view |
 | `[[filename]]` | Link to another file |

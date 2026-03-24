@@ -290,22 +290,21 @@ Do not just paste `[WATERMARK]`. Use these natural bridges:
 
 ## ✅ STEP 5: VERIFICATION
 
-**⚠️ CRITICAL: Use "Sovereign Auditor" Gem (Gemini) for final verification.**
+**Primary:** Run `/auditor` CLI skill — 6-point compliance check with direct pillar access.
 
-Verification must happen in a **SEPARATE AI SESSION** to avoid same-context bias.
+**Escalation:** Use Gemini Gem #4 (Sovereign Auditor) when the article is regulatory-sensitive — Gem #4 has real-time web search to verify current OIC/SEC/Revenue Code status.
 
-**Why Separate Session:**
+**Why separate from writing:**
 - Same-session verification has blind spots (AI knows what it *meant* to write)
 - Fresh context = objective review (AI only sees what was *actually* written)
 - The "Writer vs. Editor" rule: Never proofread your own work immediately
 
 **Workflow:**
-1. Complete article in Claude (Performer)
-2. Copy final Thai draft
-3. Open **Gemini Sovereign Auditor** (separate Gem)
-4. Paste draft for independent verification
-5. Apply fixes if needed
-6. Publish
+1. Complete article via `/performer` (or `/produce-article` for full pipeline)
+2. Run `/auditor [article]` — primary 6-point compliance check
+3. If regulatory-sensitive: escalate to Gemini Gem #4 (separate session, paste draft)
+4. Apply fixes if needed
+5. Publish
 
 ## 🦶 FOOTER PROTOCOL (MANDATORY)
 

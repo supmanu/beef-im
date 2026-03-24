@@ -16,10 +16,10 @@ This Insurance Proposal Engine works **WITH** your existing Nerd with Nart Conte
 
 | Core File | Purpose | Required For |
 |-----------|---------|--------------|
-| `Voice_DNA_Blueprint_v5_2_CORE.md` | Your identity (Legacy Quant / Nerd with Nart) | All proposals |
-| `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | Fiduciary positioning, banned terms | All proposals |
-| `Terminology_Cheat_Sheet_v4_3_FINAL.md` | Correct Thai insurance terms | Thai proposals |
-| `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md` | 85/15 Thai-First formatting | Thai proposals |
+| `voice-dna.md` | Your identity (Legacy Quant / Nerd with Nart) | All proposals |
+| `constitution.md` | Fiduciary positioning, banned terms | All proposals |
+| `data-terminology.md` | Correct Thai insurance terms | Thai proposals |
+| `data-thai-handshake-exceptions.md` | 85/15 Thai-First formatting | Thai proposals |
 
 **Without these files, the system will lack:**
 - Your authentic voice
@@ -280,7 +280,7 @@ For wealthy Thai clients, use "Nerd with Nart: PRO MODE" — a hybrid:
 | Beneficiary | ผู้รับผลประโยชน์ | — |
 | Premium Waiver | การยกเว้นเบี้ยประกันภัย | — |
 
-**Full terminology: See `Terminology_Cheat_Sheet_v4_3_FINAL.md`**
+**Full terminology: See `data-terminology.md`**
 
 ---
 
@@ -726,10 +726,10 @@ Your proposals position Natapol as a fiduciary advisor who explains mechanisms, 
 
 <required_knowledge_files>
 You have access to these files (ALWAYS reference them):
-1. Voice_DNA_Blueprint_v5_2_CORE.md — Your voice identity
-2. PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md — Laws and bans
-3. Terminology_Cheat_Sheet_v4_3_FINAL.md — Correct Thai terms
-4. Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md — 85/15 formatting
+1. voice-dna.md — Your voice identity
+2. constitution.md — Laws and bans
+3. data-terminology.md — Correct Thai terms
+4. data-thai-handshake-exceptions.md — 85/15 formatting
 5. Insurance_Proposal_Engine_Handover_v1_5.md — Product knowledge, regulatory rules, samples
 </required_knowledge_files>
 
@@ -864,8 +864,8 @@ You review drafts in BOTH English and Thai, checking for accuracy, strategy, bra
 
 <required_knowledge_files>
 Reference these files for audit:
-1. PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md — Compliance check
-2. Terminology_Cheat_Sheet_v4_3_FINAL.md — Thai terminology verification
+1. constitution.md — Compliance check
+2. data-terminology.md — Thai terminology verification
 3. Insurance_Proposal_Engine_Handover_v1_5.md — Product accuracy, regulatory rules
 </required_knowledge_files>
 
@@ -957,10 +957,10 @@ Provide feedback in this structure:
 
 | File | Purpose | Required For |
 |------|---------|--------------|
-| `Voice_DNA_Blueprint_v5_2_CORE.md` | Your identity (Legacy Quant / Nerd with Nart) | ALL proposals |
-| `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | Fiduciary positioning, banned terms, anti-sales | ALL proposals |
-| `Terminology_Cheat_Sheet_v4_3_FINAL.md` | Correct Thai insurance terms | Thai proposals |
-| `Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md` | 85/15 formatting rule | Thai proposals |
+| `voice-dna.md` | Your identity (Legacy Quant / Nerd with Nart) | ALL proposals |
+| `constitution.md` | Fiduciary positioning, banned terms, anti-sales | ALL proposals |
+| `data-terminology.md` | Correct Thai insurance terms | Thai proposals |
+| `data-thai-handshake-exceptions.md` | 85/15 formatting rule | Thai proposals |
 
 **LAYER 2: PROPOSAL MODULE FILES (New)**
 
@@ -985,8 +985,8 @@ Provide feedback in this structure:
 | File | Purpose |
 |------|---------|
 | `Insurance_Proposal_Engine_Handover_v1_5.md` | Audit reference |
-| `PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md` | Compliance check |
-| `Terminology_Cheat_Sheet_v4_3_FINAL.md` | Thai terminology verification |
+| `constitution.md` | Compliance check |
+| `data-terminology.md` | Thai terminology verification |
 | Sample proposals (Andy, Joseph, Kenta, Tui) | Benchmark for quality |
 
 ### File Dependency Map
@@ -1007,10 +1007,10 @@ Provide feedback in this structure:
                            │
 ┌─────────────────────────────────────────────────────────┐
 │                 CORE FILES (Layer 1)                     │
-│  • Voice_DNA_Blueprint_v5_2_CORE.md                     │
-│  • PILLAR_2_Brand_Constitution_v4_3_2_OPTIMIZED.md      │
-│  • Terminology_Cheat_Sheet_v4_3_FINAL.md                │
-│  • Thai_First_Handshake_EXCEPTIONS_v4_3_1_OPTIMIZED.md  │
+│  • voice-dna.md                     │
+│  • constitution.md      │
+│  • data-terminology.md                │
+│  • data-thai-handshake-exceptions.md  │
 └─────────────────────────────────────────────────────────┘
 ```
 

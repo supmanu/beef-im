@@ -1,4 +1,4 @@
-# Next.js 15 Conventions
+# Next.js 16 Conventions
 
 ## Build System
 - **Command:** `npm run dev` (Turbopack is default in Next.js 16 — no flags needed)

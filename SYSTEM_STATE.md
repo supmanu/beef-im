@@ -13,20 +13,21 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: PHASE I (PRODUCTION REVIVAL)
-* **Last Updated:** Mar 23, 2026 (Mastra Vector DB Migration + Claude Code Skills)
+## 🟢 CURRENT STATUS: v6.0 CLI-FIRST PIPELINE
+* **Last Updated:** Mar 25, 2026 (v6.0 Pipeline Migration + Obsidian Intake Layer)
 * **Model Stack:**
-    *   **Social/Voice:** DeepSeek Chat (Native Thai Champion)
-    *   **Website/Authority:** Sonnet 4.5 / Claude Opus 4.6 (Structure/SEO King)
-    *   **System/Logic:** DeepSeek Reasoner / Gemini 2.5 Pro (The Architect)
-    *   **Embedding:** `gemini-embedding-001` (3072 dims, replaces deprecated `text-embedding-004`)
-    *   **Nart Avatar:** Gemini 2.5 Flash (Mastra Agent)
-    *   **CTO Conductor:** Gemini 2.5 Pro (Mastra Strategic Agent)
+    *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (CLI Skills pipeline, deep code)
+    *   **Research:** Gemini 3 Pro (Deep Research — irreplaceable for web synthesis)
+    *   **Routine/Speed:** Gemini 3 Flash (Mastra Agent, embeddings)
+    *   **Cost-Optimized:** MiniMax M2.7 / GLM 5.0 (Agent 2C, untested for v6.0 pipeline)
+    *   **Embedding:** `gemini-embedding-001` (3072 dims)
+    *   **Nart Avatar:** Gemini 3 Flash (Mastra Agent)
 * **Identity Protocol:** Sovereign Universal (v1.9) - Mandatory File Read + Citation Trap Fix.
 * **Architecture:** Hybrid RAG (Mastra + Neon) — 231 vectors across 32 files.
-* **Content Production:** Two methods documented (Classic file-based + Mastra AI vector retrieval).
+* **Content Pipeline (v6.0):** Obsidian intake → Gemini Research → CLI Skills → Payload CMS.
 * **Claude Code Skills:** 5 skills deployed (`/architect`, `/performer`, `/hybrid`, `/auditor`, `/produce-article`).
-* **Reference:** `docs/article-production-guide.md`
+* **Obsidian:** Vault at `nerd/`, Dataview plugin, `_ops/` symlinks for operational browsing.
+* **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
 *   **[Validation]** **Mode C (Epic Deep Dive) Validated (v1.9.3).**
@@ -138,7 +139,7 @@
 2.  **Identity Law:** Never use "Pi". Never use English Headers.
 3.  **Footer Law:** MUST use the `📊 บทวิเคราะห์โดย...` Template. NO Meta-Text.
 4.  **Bridge Law:** Usage of `#009` or internal IDs in output is FORBIDDEN.
-5.  **Production Law:** Cherry Studio + Mastra Brain = The "Factory" (Truth Source).
+5.  **Production Law:** Claude Code Skills + Mastra = Truth Source.
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
 7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
 8.  **RAG Law:** Pricing & Visa rules must use `<rag_bridge_protocol>` triggers.

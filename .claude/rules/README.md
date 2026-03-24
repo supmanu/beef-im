@@ -290,9 +290,10 @@ Last Updated: December 20, 2025
 ---
 
 **Status:** Active
-**Last Reviewed:** March 24, 2026 (Obsidian Intake Layer + Content Organization)
+**Last Reviewed:** March 25, 2026 (v6.0 CLI-First Pipeline Migration)
 **Ready for:** Production use ✅
-**Phase:** Production (Obsidian Intake → Claude Code Pipeline → Payload CMS)
+**Phase:** v6.0 Production (Obsidian Intake → Gemini Research → CLI Skills → Payload CMS)
+**Stack:** Next.js 16.2.1, Payload 3.80.0, Node 24, Tailwind v4.2, Mastra 1.x
 
 🎓 Start with MEMORY_BRIDGE_QUICKSTART.md - it's all you need for 80% of cases!
 🎓 For semantic versioning: See [semantic-versioning.md](./semantic-versioning.md)
