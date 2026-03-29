@@ -117,5 +117,32 @@ Verdict: PASS / REJECT
 ═══════════════════════════════════════
 FINAL APPROVED ARTICLE
 ═══════════════════════════════════════
-[Clean article ready to paste into Payload CMS]
+[Clean article in markdown format]
 ```
+
+## After Approval: Publish to Payload
+
+Save the final approved article as a `.md` file with publish frontmatter, then use `/publish`:
+
+```yaml
+---
+title: "Article title here"
+slug: "article-slug"
+category: health
+publishedDate: 2026-03-29
+excerpt: "Short excerpt for article cards"
+coverImage: https://assets.nerdwithnart.com/nwn-assets/og-background.jpg
+---
+
+[Paste approved article body here]
+```
+
+Then run:
+```
+/publish nerd/output/article-slug.md          # publish immediately
+/publish nerd/output/article-slug.md --draft  # save as draft first
+```
+
+**Categories:** `health` | `wealth` | `legacy` | `perspective`
+
+**Note:** Standard `.md` (markdown) only. MDX is not needed — the markdown-to-Lexical converter handles all formatting (tables, code blocks, blockquotes, bold, italic, links, lists) automatically.

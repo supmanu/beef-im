@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "publish-article": "tsx scripts/publish-article.ts",
     "verify-avatar": "tsx scripts/verify-avatar.ts",
     "lint": "next lint",
     "generate:types": "payload generate:types",

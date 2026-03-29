@@ -204,6 +204,7 @@ Last Updated: December 20, 2025
 
 **Looking for...**
 - How to capture content ideas? → [nerd/CHEATSHEET.md](../../nerd/CHEATSHEET.md) + [nerd/OBSIDIAN_GUIDE.md](../../nerd/OBSIDIAN_GUIDE.md)
+- How to publish an article? → `/publish` skill or [.claude/skills/publish/SKILL.md](../../.claude/skills/publish/SKILL.md)
 - What content do I already have? → [nerd/content-catalog.md](../../nerd/content-catalog.md)
 - Content pipeline dashboard? → [nerd/dashboard.md](../../nerd/dashboard.md) (open in Obsidian)
 - How to set up Payload? → [payload.md](./payload.md)
@@ -212,6 +213,7 @@ Last Updated: December 20, 2025
 - What's the current status? → [project-status.md](./project-status.md)
 - How do I optimize tokens? → [token-optimization.md](./token-optimization.md)
 - How do I deploy? → [deployment.md](./deployment.md)
+- Stack strategy & DB exit plan? → [deployment.md](./deployment.md) (Strategic Stack Assessment section)
 
 ---
 
@@ -290,10 +292,10 @@ Last Updated: December 20, 2025
 ---
 
 **Status:** Active
-**Last Reviewed:** March 25, 2026 (v6.0 CLI-First Pipeline Migration)
+**Last Reviewed:** March 29, 2026 (v6.0 + /publish skill, Mastra non-core, stack review)
 **Ready for:** Production use ✅
-**Phase:** v6.0 Production (Obsidian Intake → Gemini Research → CLI Skills → Payload CMS)
-**Stack:** Next.js 16.2.1, Payload 3.80.0, Node 24, Tailwind v4.2, Mastra 1.x
+**Phase:** v6.0 Production (Obsidian Intake → Gemini Research (optional) → CLI Skills → /publish → Payload CMS — zero manual steps)
+**Stack:** Next.js 16.2.1, Payload 3.80.0, Node 24, Tailwind v4.2 (Mastra: non-core, exploratory)
 
 🎓 Start with MEMORY_BRIDGE_QUICKSTART.md - it's all you need for 80% of cases!
 🎓 For semantic versioning: See [semantic-versioning.md](./semantic-versioning.md)

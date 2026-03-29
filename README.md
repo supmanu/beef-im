@@ -11,9 +11,9 @@
 | Framework | Next.js 16.2.1 (App Router, Turbopack) |
 | CMS | Payload 3.80.0 (Embedded) |
 | Database | Neon Postgres |
-| AI | Mastra 1.x + Gemini 3 Flash |
-| Embedding | gemini-embedding-001 (3072 dims) |
-| Hosting | Vercel |
+| AI | Gemini 3 (Research) + Claude Code Skills (Production) |
+| AI (Exploratory) | Mastra 1.x (non-core, token optimization research) |
+| Hosting | Vercel (Cloudflare Pages: feasible, exit plan ready) |
 | Node | 24 LTS (nixpkgs) |
 | Styling | Tailwind CSS v4.2 |
 | Storage | Cloudflare R2 |
@@ -21,10 +21,12 @@
 ## Content Pipeline (v6.0)
 
 ```
-Obsidian seeds/ → Gemini Research → /architect → /performer → /auditor → Payload CMS
+Obsidian seeds/ → Gemini Research (optional) → /architect → /performer → /auditor → /publish → Payload CMS
 ```
 
-**Skills:** `/seed`, `/architect`, `/performer`, `/auditor`, `/produce-article`, `/hybrid`
+**Skills:** `/seed`, `/architect`, `/performer`, `/auditor`, `/produce-article`, `/hybrid`, `/publish`
+
+**Publishing:** `/publish` converts `.md` → Lexical JSON → Payload CMS via Local API. No manual copy-paste into admin UI.
 
 ## Key Directories
 
@@ -34,7 +36,7 @@ Obsidian seeds/ → Gemini Research → /architect → /performer → /auditor �
 | `nerd/seeds/` | Obsidian intake — raw idea capture |
 | `nerd/agents/` | Agent instruction files |
 | `nerd/references/` | Brochures, lexicon, data |
-| `.claude/skills/` | CLI pipeline skills (6) |
+| `.claude/skills/` | CLI pipeline skills (7 — includes /publish) |
 | `.claude/rules/` | Tactical patterns (22 files) |
 | `app/(site)/` | Public website |
 | `app/(payload)/` | CMS admin |

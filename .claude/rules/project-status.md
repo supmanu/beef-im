@@ -1,6 +1,6 @@
 # Project Status: Phase I (2026) - Production Revival
-**Last Updated:** March 24, 2026 (Obsidian Intake Layer + Content Catalog)
-**Status:** ✅ PRODUCTION PIPELINE RESTORED + INTAKE LAYER DEPLOYED — Obsidian integration, seed capture system, content catalog
+**Last Updated:** March 29, 2026 (Publish Skill — CLI-to-Payload pipeline, zero manual copy-paste)
+**Status:** ✅ FULL PIPELINE COMPLETE — Obsidian intake → Claude Code Skills → /publish → Payload (no manual step)
 **Agent:** 2B (Claude Code CLI) - Content Pipeline Organization
 **Handoff:** Full pipeline: Obsidian (intake) → Claude Code Skills (production) → Payload CMS (publishing)
 
@@ -208,6 +208,28 @@ We are now 100% sovereign with no external content dependencies:
 *   Proper types should align Payload output with Frontend expectations
 *   Consider using Payload's generated types directly
 *   Remove `as any` casts after proper type alignment
+
+### March 29, 2026 (Strategic Stack Review)
+
+**Context:** Evaluated whether to migrate away from Next.js + Payload CMS after testing Astro + Keystatic. The experiment achieved 95-97% visual parity in a few hours, proving migration is feasible if ever needed.
+
+**Decision:** Keep Next.js + Payload CMS as production stack
+**Reason:** Payload's browser admin UI + Lexical WYSIWYG editor (visual tables, Intelligence Boxes, code blocks, post from any device) is a genuine competitive advantage. File-based CMS alternatives (Keystatic, Sveltia, TinaCMS) are all a step down in editing experience. "We built a Ferrari — don't trade it for a Ford truck."
+**Impact:** Stack remains stable, no migration work needed
+**Owner:** Strategic review (User + Agent 2B)
+
+**Decision:** Mastra RAG is non-core — can be removed
+**Reason:** Mastra AI/RAG (`nerd_brain` PgVector) was exploratory for content research and token optimization. The file-based `.md` system (`.claude/rules/`, Obsidian, `nerd/`) is the battle-tested content workflow. Obsidian + Smart Connections plugin provides local semantic search without infrastructure.
+**Impact:** Simplifies stack, removes one of two Postgres consumers, potentially unblocks Cloudflare Pages deployment
+**Owner:** Strategic review (User + Agent 2B)
+
+**Decision:** Document Neon exit plan, do not execute yet
+**Reason:** Neon free tier works today, but free tiers are not permanent ("หนีเสือปะจระเข้" — don't flee the tiger only to meet the crocodile). Payload's adapter pattern makes DB swaps a config-level change.
+**Impact:** Exit options ready: Supabase/Railway (1hr), Turso SQLite (half day), VPS+SQLite (1 day)
+**Owner:** Strategic review (User + Agent 2B)
+**Reference:** Full exit plan documented in [deployment.md](./deployment.md)
+
+**Historical note:** Cloudflare D1/Pages deployment was already attempted around Nov-Dec 2025 and failed (buggy, unsuccessful). This is why the project moved to Vercel — it was a fallback, not a first choice. Any future CF attempt should be treated as an experiment, not a production migration.
 
 ---
 

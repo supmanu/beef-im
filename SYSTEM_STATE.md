@@ -13,20 +13,22 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: v6.0 CLI-FIRST PIPELINE
-* **Last Updated:** Mar 25, 2026 (v6.0 Pipeline Migration + Obsidian Intake Layer)
+## 🟢 CURRENT STATUS: v6.0 CLI-FIRST PIPELINE + /PUBLISH
+* **Last Updated:** Mar 29, 2026 (Strategic Stack Review + /publish skill + Mastra non-core)
 * **Model Stack:**
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (CLI Skills pipeline, deep code)
     *   **Research:** Gemini 3 Pro (Deep Research — irreplaceable for web synthesis)
-    *   **Routine/Speed:** Gemini 3 Flash (Mastra Agent, embeddings)
+    *   **Routine/Speed:** Gemini 3 Flash (embeddings, quick tasks)
     *   **Cost-Optimized:** MiniMax M2.7 / GLM 5.0 (Agent 2C, untested for v6.0 pipeline)
-    *   **Embedding:** `gemini-embedding-001` (3072 dims)
-    *   **Nart Avatar:** Gemini 3 Flash (Mastra Agent)
+    *   **Embedding:** `gemini-embedding-001` (3072 dims) — exploratory only (Mastra non-core)
 * **Identity Protocol:** Sovereign Universal (v1.9) - Mandatory File Read + Citation Trap Fix.
-* **Architecture:** Hybrid RAG (Mastra + Neon) — 231 vectors across 32 files.
-* **Content Pipeline (v6.0):** Obsidian intake → Gemini Research → CLI Skills → Payload CMS.
-* **Claude Code Skills:** 5 skills deployed (`/architect`, `/performer`, `/hybrid`, `/auditor`, `/produce-article`).
+* **Architecture:** Payload CMS + Neon Postgres (exit plan ready: Turso/SQLite/Supabase). Mastra RAG: non-core, exploratory.
+* **Content Pipeline (v6.0):** Obsidian intake → Gemini Research (optional) → CLI Skills → /publish → Payload CMS.
+* **Claude Code Skills:** 7 skills deployed (`/seed`, `/architect`, `/performer`, `/hybrid`, `/auditor`, `/produce-article`, `/publish`).
+* **Publishing:** `/publish` converts .md → Lexical JSON → Payload CMS via Local API. Zero manual copy-paste.
+* **Content Format:** Standard markdown (.md) only. MDX not needed (Lexical JSON cannot store JSX).
 * **Obsidian:** Vault at `nerd/`, Dataview plugin, `_ops/` symlinks for operational browsing.
+* **Stack Strategy (Mar 29):** Keep Next.js + Payload (Ferrari, not Ford). Neon exit plan documented in `.claude/rules/deployment.md`. Cloudflare Pages feasible if DB moves to SQLite.
 * **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
@@ -139,7 +141,7 @@
 2.  **Identity Law:** Never use "Pi". Never use English Headers.
 3.  **Footer Law:** MUST use the `📊 บทวิเคราะห์โดย...` Template. NO Meta-Text.
 4.  **Bridge Law:** Usage of `#009` or internal IDs in output is FORBIDDEN.
-5.  **Production Law:** Claude Code Skills + Mastra = Truth Source.
+5.  **Production Law:** Claude Code Skills = Truth Source. Mastra = Exploratory only (non-core).
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
 7.  **Fiduciary Law:** Proposal Generator MUST bundle `Multi-Pay CI` + `Total Care` by hard-code.
 8.  **RAG Law:** Pricing & Visa rules must use `<rag_bridge_protocol>` triggers.

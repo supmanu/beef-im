@@ -1,7 +1,7 @@
 # 🧠 NERD WITH NART: SOVEREIGN BRAIN v2.0
 # Hierarchical context for Antigravity Agent (Gemini 3 Series)
 # Architecture: Melkor OS v1.0 (Department 01)
-# Updated: Mar 25, 2026 (v6.0 CLI-First Pipeline Migration)
+# Updated: Mar 29, 2026 (v6.0 + /publish skill, Mastra non-core, .md-only pipeline)
 
 ---
 
@@ -63,15 +63,15 @@ This department operates under the **Melkor OS** parent-shell architecture.
 | **Styling** | Tailwind CSS v4.2 (CSS-first config) |
 | **Structure** | **FLAT ROOT** (No `/src` folder) |
 | **Intake** | Obsidian (vault: `nerd/`) |
-| **Production** | Claude Code Skills + Mastra |
+| **Production** | Claude Code Skills (Mastra: non-core, exploratory only) |
 
 ---
 
 ## 🔁 CONTENT PIPELINE (v6.0 — CLI-First)
 
 ```
-Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /auditor → Payload CMS
-                   (when needed)         (blueprint)  (write)      (comply)
+Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /auditor → /publish → Payload CMS
+                   (when needed)         (blueprint)  (write)      (comply)   (auto)
 ```
 
 | Step | Tool | Who |
@@ -82,7 +82,7 @@ Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /audi
 | **Write** | `/performer` CLI skill | Agent 2B |
 | **Audit (primary)** | `/auditor` CLI skill | Agent 2B |
 | **Audit (escalation)** | Gemini Gem #4 | **You (Gemini)** — regulatory web search |
-| **Publish** | Payload CMS → Vercel | Agent 2B |
+| **Publish** | `/publish` CLI skill → Payload CMS → Vercel | Agent 2B |
 
 **Your unique roles:** Research (web-scale synthesis) + Escalation Audit (live regulatory verification).
 
@@ -151,6 +151,7 @@ git push origin main
 | /performer | Draft content (Agent 2A for rapid, Agent 2B `/performer` for flagship) |
 | /audit | Run `/auditor` CLI skill (primary) or Gemini Gem #4 (escalation for regulatory) |
 | /sync | Log current progress to SYSTEM_STATE.md |
+| /publish | Publish .md article to Payload CMS (auto-converts markdown → Lexical JSON) |
 | /strategic | Log to MOS-level STRATEGIC_MEMORY_LOG.md |
 
 ---
@@ -159,7 +160,8 @@ git push origin main
 
 | Version | Date | Changes |
 |---------|------|---------|
-| **v2.0** | Mar 25, 2026 | v6.0 pipeline: CLI Skills for production, Gemini reserved for Research + Escalation Audit. Stack updated (Next.js 16.2.1, Node 24, Tailwind v4.2, Payload 3.80.0). Obsidian intake layer. |
+| **v2.1** | Mar 29, 2026 | /publish skill: zero-touch .md → Payload CMS publishing. Mastra RAG confirmed non-core. .md is the standard (not .mdx). Strategic stack review: keep Payload + Next.js, Neon exit plan ready. |
+| v2.0 | Mar 25, 2026 | v6.0 pipeline: CLI Skills for production, Gemini reserved for Research + Escalation Audit. Stack updated (Next.js 16.2.1, Node 24, Tailwind v4.2, Payload 3.80.0). Obsidian intake layer. |
 | v1.8 | Mar 23, 2026 | Mastra Vector DB Migration + Claude Code Skills |
 | v1.7 | Feb 04, 2026 | Native NVM Protocol v5.0: Retired Distrobox containers |
 | v1.6 | Feb 19, 2026 | NixOS 26.05 migration. Rule D (Shebang Law). |

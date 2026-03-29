@@ -1,6 +1,6 @@
 # Article Production Guide — Two Methods
-**Version:** 1.1 | **Updated:** March 23, 2026
-**Purpose:** Step-by-step reference for producing articles with both Classic and Mastra AI methods.
+**Version:** 1.2 | **Updated:** March 29, 2026
+**Purpose:** Step-by-step reference for producing articles. Now includes `/publish` for zero-touch CMS publishing.
 
 ---
 
@@ -15,10 +15,27 @@ These skills are now available as slash commands in Claude Code CLI when working
 | `/hybrid [topic] [mode]` | One-shot: Blueprint + Write in single pass | All-in-one |
 | `/auditor [article]` | Run 6-point compliance audit | Agent 3 |
 | `/produce-article [topic] [mode]` | Full pipeline: Architect → Performer → Auditor | All 3 agents |
+| `/publish [path.md] [--draft]` | Publish .md file directly to Payload CMS | Publishing |
+| `/seed [raw idea]` | Capture raw idea as structured seed file | Intake |
 
 **How they work:** Each skill auto-injects the relevant pillar files (voice-dna, constitution, terminology, etc.) into the prompt using shell preprocessing. No manual copy-paste needed.
 
-**Location:** `.claude/skills/{architect,performer,hybrid,auditor,produce-article}/SKILL.md`
+**`/publish` workflow:** Converts markdown → Lexical JSON, resolves categories and cover images, creates/updates article in Payload via Local API. No manual copy-paste into the admin UI.
+
+**Location:** `.claude/skills/{architect,performer,hybrid,auditor,produce-article,publish,seed}/SKILL.md`
+
+### End-to-End Pipeline (Zero Manual Steps)
+
+```
+/seed [raw idea]                              ← capture to Obsidian
+/produce-article [topic] [mode]               ← full 3-agent pipeline
+(save approved output as .md with frontmatter)
+/publish nerd/output/article-slug.md          ← directly to Payload CMS
+```
+
+### Mastra AI Status
+
+**Note (March 29, 2026):** Mastra RAG (`nerd_brain` PgVector) is confirmed **non-core** — it was exploratory for token optimization research. The file-based `.md` knowledge system (Obsidian + `.claude/rules/`) is the battle-tested production workflow. Mastra Method 2 below remains documented for reference but is not required for article production.
 
 ---
 

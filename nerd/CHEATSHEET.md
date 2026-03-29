@@ -83,11 +83,36 @@ seed ──→ researching ──→ ready ──→ in-production ──→ pub
    /hybrid [topic] [mode]            ← one-shot (skip split)
 
 4. If regulatory-sensitive: escalate audit to Gemini Gem #4
-5. After publishing:
+5. Save approved output as .md file with publish frontmatter (see below)
+6. Publish directly to Payload CMS:
+
+   /publish nerd/output/article-slug.md          ← publish immediately
+   /publish nerd/output/article-slug.md --draft   ← save as draft first
+
+7. Update seed frontmatter:
    status: published
    published_date: 2026-04-01
    article_slug: premium-holiday-trap
 ```
+
+---
+
+## Publish Frontmatter (for /publish)
+
+Add this block to the top of any approved article before running `/publish`:
+
+```yaml
+---
+title: "ทำไมประกันชีวิตแบบ Term ถึงดีกว่าที่คุณคิด"
+slug: "term-insurance-paradox"
+category: health
+publishedDate: 2026-03-29
+excerpt: "ประโยคสรุปสั้น ๆ ที่ดึงดูดผู้อ่าน"
+coverImage: https://assets.nerdwithnart.com/nwn-assets/og-background.jpg
+---
+```
+
+**Categories:** `health` | `wealth` | `legacy` | `perspective`
 
 ---
 
@@ -166,6 +191,7 @@ article_slug: ""                # URL slug
 | `pillars/voice-dna.md` | Check brand voice |
 | `pillars/content-engine.md` | Check article modes |
 | `_ops/` | Browse docs, rules, skills, content |
+| `_ops/claude-skills/publish/` | `/publish` skill docs |
 
 ---
 

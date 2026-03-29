@@ -1,7 +1,7 @@
 # Obsidian + Content Pipeline Guide
 
 **Created:** March 24, 2026
-**Updated:** March 25, 2026 (v6.0 pipeline, _ops/ symlinks, /seed skill, Templates plugin)
+**Updated:** March 29, 2026 (v6.0 pipeline, /publish skill, _ops/ symlinks, /seed skill, Templates plugin)
 **Purpose:** How to use Obsidian as the intake layer for the Nerd with Nart content production system
 
 ---
@@ -27,9 +27,9 @@ BEFORE:
   📱 Facebook → 🧠 Your memory → 🤖 Gemini Gem → ✍️ Claude → ⚖️ Gemini Gem
                   ↑ everything lost here
 
-AFTER (v6.0):
-  📱 Facebook → 📥 Obsidian Seed → 📊 Dashboard → 🤖 /architect → ✍️ /performer → ⚖️ /auditor
-                  ↑ captured, tagged, tracked       ↑ CLI Skills, one terminal session
+AFTER (v6.0 + /publish):
+  📱 Facebook → 📥 Obsidian Seed → 📊 Dashboard → 🤖 /architect → ✍️ /performer → ⚖️ /auditor → 📤 /publish
+                  ↑ captured, tagged, tracked       ↑ CLI Skills, one terminal session              ↑ direct to Payload
   Alternative:
   📱 Facebook → 💻 /seed [dump] → auto-creates seed file in Obsidian
 ```
@@ -161,7 +161,9 @@ When a seed is ready:
    - `/performer [blueprint]` → writes Thai article
    - `/auditor [article]` → 6-point compliance check
 4. If regulatory-sensitive: escalate audit to Gemini Gem #4
-5. After publishing: `status: published`, add `published_date` and `article_slug`
+5. Save approved article as `.md` with publish frontmatter (title, slug, category, date, coverImage)
+6. Publish to Payload: `/publish nerd/output/article-slug.md` (or `--draft` to preview first)
+7. Update seed: `status: published`, add `published_date` and `article_slug`
 
 ### The Complete Status Flow
 
