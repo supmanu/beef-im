@@ -48,7 +48,7 @@ Obsidian seeds/ → Gemini Research (optional) → /architect → /performer →
 
 | File | For |
 |------|-----|
-| `Claude.md` | Agent 2B (Claude Code CLI) |
+| `CLAUDE.md` | Agent 2B (Claude Code CLI) |
 | `GEMINI.md` | Agent 2A (Gemini / Antigravity) |
 | `SYSTEM_STATE.md` | Tactical state + strategic locks |
 | `nerd/pillars/master-index.md` | Content system architecture (v6.0) |

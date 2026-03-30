@@ -21,7 +21,7 @@ Melkor-OS/                          ← MONOREPO ROOT
 │
 └── departments/
     └── nerd-with-nart/             ← DEPARTMENT 01 (Git Submodule)
-        ├── Claude.md               ← THIS FILE
+        ├── CLAUDE.md               ← THIS FILE
         ├── GEMINI.md               ← Agent 2A department context
         ├── SYSTEM_STATE.md         ← Tactical state (10 Strategic Locks)
         │
@@ -262,6 +262,6 @@ git commit -m "chore: update nerd-with-nart pointer" && git push
 
 ---
 
-*Claude.md — Department 01 Agent Context*
+*CLAUDE.md — Department 01 Agent Context*
 *Melkor OS Era — v6.0 CLI-First Pipeline*
 *"The Repository remembers. The Vector searches. The Skills execute."*
