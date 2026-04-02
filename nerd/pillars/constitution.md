@@ -202,7 +202,7 @@ ZERO exceptions.
 | Correct | FORBIDDEN |
 |---------|-----------|
 | ด.ญ. ป. (daughter) | ปภิญญา |
-| ด.ช. ก. (son) | กันตภัท |
+| ด.ช. ก. (son) | กันตภณ |
 
 **Rationale:** Digital safety, privacy rights (children can't consent), irreversibility.
 
