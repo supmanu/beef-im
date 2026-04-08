@@ -156,6 +156,22 @@ git push origin main
 
 ---
 
+## 📋 WIKI SESSION PROTOCOL
+
+**Fleet wiki:** `../../docs/wiki/` — NixOS, Stow, Niri, hardware, agents.
+
+**Session start** (read these when doing fleet/infra work):
+- `../../docs/wiki/log.md`
+- `../../docs/wiki/current-status.md`
+- `../../docs/wiki/index.md`
+
+**Full protocol** (session start checklist, frontmatter spec, 3-tier maintenance, log.md discipline): `../../docs/wiki/_protocol.md`.
+**Writeback:** If department state changed, update `SYSTEM_STATE.md` first, then relevant wiki page.
+**Content knowledge** lives in `nerd/` (Obsidian vault) — not in the wiki. Wiki = fleet ops. Obsidian = content intelligence.
+**Note:** Datacore MCP fires automatically in Claude Code sessions (session.start/session.end). Not available here.
+
+---
+
 ## 📋 VERSION HISTORY
 
 | Version | Date | Changes |

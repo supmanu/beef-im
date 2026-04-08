@@ -248,6 +248,24 @@ git commit -m "chore: update nerd-with-nart pointer" && git push
 
 ---
 
+## 🔚 SESSION END PROTOCOL
+
+> Convention-based — requires explicit trigger before closing terminal.
+> Force-close [x] = nothing happens. Type "log session" or "wrap up" first.
+
+| Trigger | Action |
+|---------|--------|
+| "log session" / "wrap up" | Update `SYSTEM_STATE.md` — current phase, what changed, what's next |
+| "sync docs" | Update `CLAUDE.md` (if rules/pipeline changed) + `SYSTEM_STATE.md` + relevant `.claude/rules/*.md` |
+| Code pattern emerged | Update/create `.claude/rules/[topic].md` |
+| Architecture / Strategic Lock changed | Update `CLAUDE.md` — relevant section |
+| Major strategic decision | Append to `../../memory/STRATEGIC_MEMORY_LOG.md` |
+| Changes to push | Melkor Save Protocol (Level 1) |
+
+> Note: `docs/wiki/` (fleet wiki) is Melkor-OS root only — not applicable here. Content knowledge lives in `nerd/` (Obsidian vault).
+
+---
+
 ## 📊 VERSION HISTORY
 
 | Version | Date | Changes |
