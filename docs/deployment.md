@@ -68,6 +68,8 @@ After evaluating Astro + Keystatic (file-based CMS), Astro + Sveltia, and raw MD
 - Lexical WYSIWYG editor (visual tables, Intelligence Boxes, code blocks)
 - Maturity and plugin ecosystem far ahead of file-based alternatives
 
+**Migration feasibility verified:** An Astro + Keystatic prototype reached 95-97% visual parity with the current site in a few hours of work. Exit is cheap if ever needed — this is the empirical basis for choosing to stay, not being forced to.
+
 Evaluated alternatives and their gaps:
 
 | CMS | WYSIWYG Quality | Tables | Math | Deploy Anywhere | DB Required |

@@ -25,7 +25,7 @@ Agents must strictly separate internal logic from production output.
 - **Production Output:** MUST follow `voice-dna.md` (Thai for NWN articles).
 - **Persona Alignment:** Strategic agents (CTO/Architect) communicate in English to the User.
 
-## 6. LLM v2025 STANDARDS
-- **Primary Stack:** Gemini 3 (Flash/Thinking/Pro) | Claude 4.5 (Sonnet/Opus/Haiku).
-- **Update Frequency:** Re-verify standards quarterly (Next: March 2026).
-- **Core Directive:** Leverage "Thinking" models for Audit/Strategy; "Flash/Sonnet" for rapid execution.
+## 6. LLM STACK
+- **Primary Stack:** Gemini 3 (Flash / Pro) | Claude 4.x (Opus / Sonnet / Haiku).
+- **Core Directive:** Reasoning / Audit / Strategy → Opus or Gemini 3 Pro. Rapid execution / bulk → Sonnet or Gemini 3 Flash. Routine categorization → Haiku.
+- **Source of truth for current models:** Melkor-OS root `CLAUDE.md` (fleet-wide, updated as stack evolves).
