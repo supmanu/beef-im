@@ -9,6 +9,8 @@ Auto-loaded on every Claude Code session in this department. Keep lean: only act
 | File | What it governs |
 |------|-----------------|
 | [paradox-architecture.md](./paradox-architecture.md) | Content law — every article needs a Paradox. Enforced by Architect / Performer / Auditor. |
+| [thai-model-routing.md](./thai-model-routing.md) | Thai production uses Qwen3.6 Plus (draft) + Sonnet 4.6 (audit). GLM / MiniMax disqualified on Thai tokenization. |
+| [content-compliance-boundaries.md](./content-compliance-boundaries.md) | Professional scope: no specific drug names / dosages / diagnostic verdicts. We comment, we do not prescribe. |
 | [agent-sovereign-standard.md](./agent-sovereign-standard.md) | Agent authoring standard — XML protocol, Sinek Trinity, language firewall. |
 | [agent-pattern-forensic.md](./agent-pattern-forensic.md) | Forensic Reconstruction pattern for audit agents (avoids "over-obedience" stops). |
 | [visuals.md](./visuals.md) | Sovereign asset registry (R2), site-wide typography, avatar protocol. |
@@ -26,7 +28,7 @@ Auto-loaded on every Claude Code session in this department. Keep lean: only act
 | [docs/typescript-patterns.md](../../docs/typescript-patterns.md) | Type alignment Payload ↔ Frontend |
 | [docs/archive-ui.md](../../docs/archive-ui.md) | Working on `ArchiveClient.tsx` or the articles archive |
 | [docs/deployment.md](../../docs/deployment.md) | Vercel deploy, Neon exit plan, Cloudflare Pages research |
-| [docs/mastra-rag.md](../../docs/mastra-rag.md) | Mastra 1.x vector / memory patterns (stack is non-core) |
+| [docs/mastra-rag.md](../../docs/mastra-rag.md) | Mastra 1.x vector / memory patterns — ⚠️ ARCHIVED 2026-04-21, reference only |
 
 ## Memory protocol
 

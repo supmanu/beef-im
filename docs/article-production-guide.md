@@ -1,6 +1,11 @@
-# Article Production Guide — Two Methods
-**Version:** 1.2 | **Updated:** March 29, 2026
-**Purpose:** Step-by-step reference for producing articles. Now includes `/publish` for zero-touch CMS publishing.
+# Article Production Guide
+**Version:** 1.4 | **Updated:** April 21, 2026
+**Purpose:** Step-by-step reference for producing articles. The canonical pipeline is **Method 1 (Classic / CLI Skills)**. Method 2 (Mastra RAG) is **archived** — kept for reference, not used for production.
+
+**Changelog:**
+- v1.4 (Apr 21, 2026): **Mastra RAG soft-paused.** Method 2 demoted to archived reference. Stack reflects CLI-Skills-only production path. Infra (`nerd_brain` table, Mastra agents) preserved — no deletion.
+- v1.3 (Apr 21, 2026): Blueprint persistence — `/architect` auto-writes to `nerd/output/blueprints/`. Pipeline artifact table added. Frontmatter linkage (seed ↔ blueprint ↔ article) codified.
+- v1.2 (Mar 29, 2026): `/publish` skill added.
 
 ---
 
@@ -33,22 +38,71 @@ These skills are now available as slash commands in Claude Code CLI when working
 /publish nerd/output/article-slug.md          ← directly to Payload CMS
 ```
 
+### Pipeline Artifact Persistence
+
+Every stage saves its output to a canonical location so the pipeline is reproducible across sessions and models. **No artifact should live only in chat history.**
+
+| Stage | Output location | Naming |
+|-------|-----------------|--------|
+| `/seed` | `nerd/seeds/` | `YYYY-MM-DD-<kebab-slug>.md` |
+| `/architect` | `nerd/output/blueprints/` | **inherits seed filename** (or `YYYY-MM-DD-<slug>.md` for free-form topics) |
+| `/performer` | chat output → hand-save to `nerd/output/<slug>.md` | same slug as blueprint |
+| `/auditor` | chat output (transient review) | — |
+| `/publish` | Payload CMS (Lexical JSON in DB) | reads `nerd/output/<slug>.md` |
+
+**Frontmatter linkage** makes the chain traversable in either direction:
+
+```yaml
+# Seed (update the existing empty fields once blueprint/article exists)
+blueprint_slug: 2026-04-21-no-insurance-5-traps
+article_slug: ""
+
+# Blueprint (written by /architect)
+type: blueprint
+seed: 2026-04-21-no-insurance-5-traps
+status: draft | ready | consumed
+mode: B
+archetype: uncomfortable-truth
+
+# Article (added before /publish)
+blueprint: 2026-04-21-no-insurance-5-traps
+```
+
+The `/architect` skill auto-saves its blueprint as of v1.3 (Apr 21, 2026). See `.claude/skills/architect/SKILL.md`. Performer draft persistence is manual — save the chat output to `nerd/output/<slug>.md` before running `/auditor` or `/publish`.
+
 ### Mastra AI Status
 
-**Note (March 29, 2026):** Mastra RAG (`nerd_brain` PgVector) is confirmed **non-core** — it was exploratory for token optimization research. The file-based `.md` knowledge system (Obsidian + `.claude/rules/`) is the battle-tested production workflow. Mastra Method 2 below remains documented for reference but is not required for article production.
+**⚠️ ARCHIVED — Soft-paused on April 21, 2026**
+
+Mastra RAG (`nerd_brain` PgVector) is no longer part of the production pipeline. Use **Method 1 (Classic / CLI Skills)** for all article production. Method 2 below remains *in the document for reference only* — do not use it for new content.
+
+**What replaced it:** Method 1 via the Claude Code Skills (`/architect`, `/performer`, `/auditor`) — full-file pillar injection via shell preprocessing. No retrieval gaps, no chunk boundaries, predictable quality.
+
+**Distinct from (do not confuse):**
+- **LLM-wiki (`docs/wiki/`)** — fleet ops knowledge. Not content pipeline. Never indexed `nerd/pillars/`.
+- **Datacore** — cross-session behavioral memory. Captures user corrections and patterns. Not a pillar store.
+
+**Infrastructure preserved (not deleted):**
+- `nerd_brain` Neon table (231 rows) — intact
+- `nerd/agents/nart-avatar.ts`, `nerd/agents/cto-conductor.ts` — intact
+- `mastra/tools/search_nerd_brain.ts` — intact
+- Sync scripts (`scripts/sync-nerd.ts`, `scripts/test-agent.ts`) — intact
+
+If we revisit vector retrieval (e.g., when Classic token cost becomes painful at scale), restart from the archived Method 2 instructions below.
 
 ---
 
 ## Quick Comparison
 
-| Aspect | Method 1: Classic (File-Based) | Method 2: Mastra AI (Vector DB) |
+| Aspect | Method 1: Classic (File-Based) ✅ PRODUCTION | Method 2: Mastra AI (Vector DB) ⚠️ ARCHIVED |
 |--------|-------------------------------|--------------------------------|
-| **Token Cost** | HIGH (~50-70K tokens per article) | LOW (~5-10K tokens per article) |
-| **Quality** | Battle-tested, predictable | Depends on retrieval quality |
-| **Setup** | Copy-paste pillar files into prompt | Agent has vector search tools |
-| **Best For** | High-stakes content, fine-tuning | Daily production, scaling |
-| **Where** | Any AI chat (Cherry Studio, Claude, etc.) | Mastra agents (CLI, MCP, API) |
-| **Knowledge** | Full pillar files in context | Chunked retrieval from `nerd_brain` |
+| **Status** | **Production** | **Archived — do not use** |
+| **Token Cost** | HIGH (~50-70K tokens per article) | ~~LOW (~5-10K tokens per article)~~ |
+| **Quality** | Battle-tested, predictable | ~~Depends on retrieval quality~~ |
+| **Setup** | CLI Skills auto-inject via `!cat` | ~~Agent has vector search tools~~ |
+| **Best For** | All content production today | ~~Daily production, scaling~~ |
+| **Where** | Claude Code CLI (`/architect`, `/performer`, `/auditor`) | ~~Mastra agents (CLI, MCP, API)~~ |
+| **Knowledge** | Full pillar files in context | ~~Chunked retrieval from `nerd_brain`~~ |
 
 ---
 
@@ -215,7 +269,13 @@ Run the 6-Point Compliance Audit:
 
 ---
 
-## METHOD 2: MASTRA AI (Vector DB + Agent Pipeline)
+## METHOD 2: MASTRA AI (Vector DB + Agent Pipeline) — ⚠️ ARCHIVED (2026-04-21)
+
+> **DO NOT USE FOR PRODUCTION.** Soft-paused on April 21, 2026. Method 1 (Classic / CLI Skills) is the production path.
+>
+> This section is preserved for reference in case we revisit vector retrieval later. All infrastructure (`nerd_brain` table, Mastra agents, sync scripts) remains intact — nothing was deleted.
+>
+> If you're writing content today, scroll up to Method 1.
 
 ### Overview
 The Mastra agents use `searchNerdBrain` (vector search) to retrieve relevant knowledge chunks on demand, rather than loading full files into context. Voice DNA is still injected statically for identity consistency.

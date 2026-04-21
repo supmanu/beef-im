@@ -2,8 +2,8 @@
 name: architect
 description: "Generate a GSB-Kane Strategic Blueprint for a content topic. Agent 1 of the 3-agent pipeline. Use when you need to plan an article before writing. Requires a topic and optional mode (S/A/B/C)."
 disable-model-invocation: true
-argument-hint: "[topic] [mode: S|A|B|C]"
-allowed-tools: Read, Glob, Grep
+argument-hint: "[topic | seed path] [mode: S|A|B|C]"
+allowed-tools: Read, Glob, Grep, Write
 ---
 
 # Agent 1: THE ARCHITECT — Strategic Blueprint Generator
@@ -40,9 +40,10 @@ If no mode is specified, default to **Mode A** (Analysis, 600-1,000 words).
 
 ## Your Task
 
-1. Find the **Paradox** — what do people wrongly believe vs what reality shows?
-2. Run the **3-Step GSB Forensic Method**: Seed Extraction → Archetype Selection → Viral Architecture
-3. Output a complete **GSB-Kane Strategic Blueprint** following the output template in the architect instructions.
+1. **If the argument is a path to a seed file** (e.g., `nerd/seeds/YYYY-MM-DD-slug.md`), Read it first — the seed's front-matter (`paradox`, `archetype`, `mode`) and body (Raw Material, Potential Paradox, Data Anchors, Notes) are primary inputs. Preserve the seed's slug for the output filename.
+2. Find the **Paradox** — what do people wrongly believe vs what reality shows?
+3. Run the **3-Step GSB Forensic Method**: Seed Extraction → Archetype Selection → Viral Architecture
+4. Produce a complete **GSB-Kane Strategic Blueprint** following the output template in the architect instructions.
 
 The blueprint must include:
 - Core Contradiction (The Lie vs The Truth)
@@ -52,4 +53,36 @@ The blueprint must include:
 - Data anchors (NHES VII citations, regulatory references)
 - Visual & Tool direction
 
-**Output the blueprint in a clean markdown format that can be directly passed to `/performer`.**
+**Compliance floor** (auto-check in the Blueprint Metadata table — see `.claude/rules/content-compliance-boundaries.md`):
+- ❌ No specific drug names (Metformin, Atorvastatin, etc.) — frame as generic class
+- ❌ No dosage numbers
+- ❌ No diagnostic verdicts — thresholds only as indicators
+- ❌ No specific treatment protocols
+- ✅ Data citations (NHES VII, policy numbers, %) are allowed
+
+## Save the Blueprint (MANDATORY)
+
+Before ending, write the blueprint to disk with `Write`:
+
+**Path:** `nerd/output/blueprints/<slug>.md`
+- If the input was a seed file, inherit the seed's exact filename (e.g., seed `2026-04-21-no-insurance-5-traps.md` → blueprint `nerd/output/blueprints/2026-04-21-no-insurance-5-traps.md`).
+- If the input was a free-form topic, generate a `YYYY-MM-DD-<kebab-slug>.md` filename from today's date + a short slug.
+
+**Required frontmatter** (prepend to the blueprint body):
+
+```yaml
+---
+type: blueprint
+seed: <seed-slug-or-empty>
+status: draft
+mode: <S|A|B|C>
+archetype: <uncomfortable-truth|hidden-cost|simple-swap>
+avatar: "<Sinek Hook single-victim description>"
+paradox: "<one-line Paradox frame>"
+primary_source: "<e.g., NHES VII 2568>"
+created: <YYYY-MM-DD>
+article_slug: ""
+---
+```
+
+After saving, print the saved path and tell the user the blueprint is ready for `/performer`.

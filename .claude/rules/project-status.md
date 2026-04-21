@@ -14,7 +14,7 @@
 | React | 19.2.4 |
 | CMS | Payload 3.80.0 (embedded) |
 | Database | Neon Postgres (`nerd_brain`: 231 rows, 3072d) |
-| AI | Mastra 1.x + Gemini 3 Flash — **non-core, exploratory** |
+| AI | Claude Code CLI Skills (production) · Mastra 1.x + Gemini 3 Flash — **⚠️ ARCHIVED 2026-04-21** (infra preserved, not deleted) |
 | Embedding | `gemini-embedding-001` (3072 dims) |
 | Storage | Cloudflare R2 (S3-compatible, sovereign) |
 | Styling | Tailwind v4.2 (CSS-first) |
@@ -57,5 +57,6 @@ Phase I–V completion logs (Dec 2025) and the Sovereign Migration decision trai
 - Semantic versioning standard → [semantic-versioning.md](./semantic-versioning.md), [repository.md](./repository.md)
 - Paradox Architecture doctrine → [paradox-architecture.md](./paradox-architecture.md)
 - Strategic stack review (Mar 29, 2026) — keep Payload, Mastra non-core, Neon exit plan → [docs/deployment.md](../../docs/deployment.md)
+- Mastra RAG soft-pause (Apr 21, 2026) — Method 2 archived in article-production-guide v1.4; production is CLI Skills only. `nerd_brain` table + agents preserved for potential revival.
 - Lexical Intelligence Suite (tables / code / intelligence boxes) → [docs/payload.md](../../docs/payload.md)
 - Type-mismatch emergency fix → [docs/typescript-patterns.md](../../docs/typescript-patterns.md)
