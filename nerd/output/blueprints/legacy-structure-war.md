@@ -1,3 +1,21 @@
+---
+type: blueprint
+status: legacy-consumed
+seed: null
+mode: C
+archetype: uncomfortable-truth
+tone: T2
+avatar: "คุณ ก. (40 ปี, หัวหน้าครอบครัว, ลังเลระหว่าง Renewable Term และ Whole Life CI)"
+paradox: "Renewable Term = เช่าบ้าน / Whole Life CI = ผ่อนบ้าน — เบี้ยถูกวันนี้กลายเป็นภาระไล่ออกตอนแก่"
+primary_source: "NHES VII 2568"
+target_words: 2500-3500
+brand_mode: "brand-neutral (no company/product names)"
+created: 2025-12-30
+migrated: 2026-04-22
+legacy_source: input/structure-war-blueprint.txt
+article_slug: "content/test-articles/structure-war-final.md"
+---
+
 # 🏗️ GSB-KANE STRATEGIC BLUEPRINT: MODE C (EPIC)
 
 **Topic:** ศึกเชิงโครงสร้าง: "สัญญาเช่า" (Renewable Term) ปะทะ "สินทรัพย์" (Whole Life CI) — คุณเหมาะกับอะไร?

@@ -1,3 +1,20 @@
+---
+type: blueprint
+status: legacy-ready
+seed: null
+mode: B
+archetype: uncomfortable-truth
+tone: T2
+avatar: "คุณ ก. (45 ปี, HbA1c 7.2%, ยื่นประกันถูกปฏิเสธ)"
+paradox: "การตรวจเจอเบาหวานคือความรับผิดชอบ แต่ในระบบประกัน มันคือความผิดพลาดทางการเงิน"
+primary_source: "NHES VII 2568"
+target_words: 1800-2200
+created: 2025-12-30
+migrated: 2026-04-22
+legacy_source: input/diabetes-blueprint.txt
+article_slug: ""
+---
+
 # 🏗️ GSB-KANE STRATEGIC BLUEPRINT: MODE B
 
 **Topic:** เบาหวานกับประกัน: ความจริงที่ "คนเป็น" และ "คนไม่รู้ตัว" ต้องเผชิญ (The Systemic Trap)

@@ -1,8 +1,9 @@
 # Article Production Guide
-**Version:** 1.4 | **Updated:** April 21, 2026
+**Version:** 1.5 | **Updated:** April 22, 2026
 **Purpose:** Step-by-step reference for producing articles. The canonical pipeline is **Method 1 (Classic / CLI Skills)**. Method 2 (Mastra RAG) is **archived** — kept for reference, not used for production.
 
 **Changelog:**
+- v1.5 (Apr 22, 2026): Performer model routing is now length-tiered — see [thai-model-routing.md](../.claude/rules/thai-model-routing.md). Added content-compliance references. Migrated 4 legacy `input/*.txt` blueprints → `nerd/output/blueprints/legacy-*.md` (retrospective frontmatter); `input/` folder + `_ops/input` symlink removed.
 - v1.4 (Apr 21, 2026): **Mastra RAG soft-paused.** Method 2 demoted to archived reference. Stack reflects CLI-Skills-only production path. Infra (`nerd_brain` table, Mastra agents) preserved — no deletion.
 - v1.3 (Apr 21, 2026): Blueprint persistence — `/architect` auto-writes to `nerd/output/blueprints/`. Pipeline artifact table added. Frontmatter linkage (seed ↔ blueprint ↔ article) codified.
 - v1.2 (Mar 29, 2026): `/publish` skill added.
@@ -111,10 +112,21 @@ If we revisit vector retrieval (e.g., when Classic token cost becomes painful at
 Both methods use the same **3-Agent Pipeline**:
 
 ```
-Agent 1: ARCHITECT (Blueprint)    → Gemini
-Agent 2: PERFORMER (Writing)      → Claude
-Agent 3: AUDITOR (Compliance)     → Gemini
+Agent 1: ARCHITECT (Blueprint)    → Sonnet 4.6 / Opus 4.7 / Gemini 3 Pro
+Agent 2: PERFORMER (Writing)      → length-tiered (see routing rule below)
+Agent 3: AUDITOR (Compliance)     → Sonnet 4.6 (primary) / Gemini Gem #4 (regulatory escalation)
 ```
+
+**Performer routing (established Apr 22, 2026 via 6-model bake-off):**
+
+| Tier | Word target | Default model | Auditor |
+|---|---|---|---|
+| Mode S (social) | 150-300w | **Qwen3.6 Plus** | Sonnet |
+| Mode A (analysis) | 600-1000w | **Qwen3.6 Plus** | Sonnet |
+| Mode B (pillar) | 1500-2000w | **Kimi K2.6** | Sonnet |
+| Mode C (epic) | 2500-3500w | **Kimi K2.6** | Sonnet |
+
+Full rationale, model roster, and failure-mode notes: [`.claude/rules/thai-model-routing.md`](../.claude/rules/thai-model-routing.md). Compliance boundaries (no drug names, no dosages, no diagnostic verdicts): [`.claude/rules/content-compliance-boundaries.md`](../.claude/rules/content-compliance-boundaries.md).
 
 ### Content Modes
 
@@ -142,6 +154,8 @@ Agent 3: AUDITOR (Compliance)     → Gemini
 | Performer Instructions | `nerd/agents/instruction-performer.md` | Agent 2 system prompt |
 | Auditor Instructions | `nerd/agents/instruction-sovereign-auditor.md` | Agent 3 system prompt |
 | Proposal Logic | `nerd/pillars/data-proposal-logic.md` | Insurance proposal decisions |
+| Thai Model Routing | `.claude/rules/thai-model-routing.md` | Length-tiered LLM selection doctrine |
+| Content Compliance | `.claude/rules/content-compliance-boundaries.md` | No drug names / dosage / diagnostic verdicts |
 
 ---
 
@@ -190,8 +204,8 @@ Find the Paradox — what do people wrongly believe vs what reality shows?
 
 ### Step 2: Performer Execution (Agent 2)
 
-**Platform:** Cherry Studio / Claude (Claude preferred for Thai writing quality)
-**Model:** Claude Sonnet 4.5+ (writing quality matters here)
+**Platform:** Claude Code CLI (OpenRouter subshells for non-Anthropic models)
+**Model:** Length-tiered — Qwen3.6 Plus for S/A, Kimi K2.6 for B/C. Sonnet is auditor, not writer. See [thai-model-routing.md](../.claude/rules/thai-model-routing.md).
 
 **Files to attach/paste into the system prompt:**
 1. `instruction-performer.md` — Agent 2 system prompt
@@ -224,6 +238,10 @@ Follow all compliance rules in the performer instructions.
 - [ ] Footer matches template: `📊 บทวิเคราะห์โดย: เนิร์ดกับนาถ (Nerd with Nart)`
 - [ ] No "พี่" (Pi) self-reference?
 - [ ] No English headers in production output?
+- [ ] **No specific drug/medication names** (Metformin, Atorvastatin, etc.) — see compliance boundaries
+- [ ] **No dosage numbers** (500mg, 2x daily, etc.)
+- [ ] **No diagnostic verdicts** — frame as indicator, not pronouncement; close with "ปรึกษาแพทย์"
+- [ ] **Token integrity (Mode B/C)** — grep output for stray CJK/Latin characters outside Thai-First Handshake (Qwen3.6 regression 2026-04-22)
 
 ### Step 3: Sovereign Auditor (Agent 3)
 

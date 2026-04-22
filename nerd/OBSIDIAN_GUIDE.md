@@ -1,7 +1,7 @@
 # Obsidian + Content Pipeline Guide
 
 **Created:** March 24, 2026
-**Updated:** March 29, 2026 (v6.0 pipeline, /publish skill, _ops/ symlinks, /seed skill, Templates plugin)
+**Updated:** April 22, 2026 (blueprint persistence, draft persistence, legacy `input/` migrated to `nerd/output/blueprints/`)
 **Purpose:** How to use Obsidian as the intake layer for the Nerd with Nart content production system
 
 ---
@@ -41,9 +41,11 @@ AFTER (v6.0 + /publish):
 | Obsidian | NixOS melkor config | Visual markdown editor + Dataview dashboards |
 | `nerd/seeds/` | Seed folder | Capture raw ideas with frontmatter tags |
 | `nerd/seeds/_template.md` | Seed template | Auto-date via `{{date}}`, insert with Ctrl+P |
-| `nerd/content-catalog.md` | Content index | Map of all 68+ existing files |
+| `nerd/output/blueprints/` | Architect output | `/architect` auto-saves here with seed↔blueprint linkage frontmatter |
+| `nerd/output/drafts/` | Performer output | Hand-save chat output here with `--<model>.md` suffix when bake-off testing |
+| `nerd/content-catalog.md` | Content index | Map of existing files (⚠️ may be stale — last scan Mar 24) |
 | `nerd/dashboard.md` | Dataview dashboard | Live pipeline visibility |
-| `nerd/_ops/` | Symlinks | Browse docs, input, content, rules, skills from vault |
+| `nerd/_ops/` | Symlinks | Browse docs, content, rules, skills from vault |
 | `.claude/skills/seed/` | CLI skill | `/seed [dump]` — captures seed from terminal |
 
 ### Why `nerd/` as Vault (Not `nerd-with-nart/`)
@@ -156,14 +158,29 @@ When a seed is ready:
 
 1. Change frontmatter: `status: ready` → `status: in-production`
 2. Open Claude Code terminal
-3. Run: `/produce-article [topic] [mode]` (full pipeline) or step-by-step:
-   - `/architect [topic] [mode]` → generates blueprint
-   - `/performer [blueprint]` → writes Thai article
-   - `/auditor [article]` → 6-point compliance check
-4. If regulatory-sensitive: escalate audit to Gemini Gem #4
-5. Save approved article as `.md` with publish frontmatter (title, slug, category, date, coverImage)
-6. Publish to Payload: `/publish nerd/output/article-slug.md` (or `--draft` to preview first)
-7. Update seed: `status: published`, add `published_date` and `article_slug`
+3. Run the pipeline step-by-step (recommended for quality control):
+   - `/architect nerd/seeds/<seed-slug>.md [mode]` → auto-saves blueprint to `nerd/output/blueprints/<seed-slug>.md`
+   - `/performer nerd/output/blueprints/<seed-slug>.md` → Thai article (hand-save from chat to `nerd/output/drafts/<slug>.md`; add `--<model>.md` suffix when testing multiple models)
+   - `/auditor nerd/output/drafts/<slug>.md` → 6-point compliance check
+4. Model choice is length-tiered — Qwen3.6 Plus for S/A, Kimi K2.6 for B/C. See [`.claude/rules/thai-model-routing.md`](../.claude/rules/thai-model-routing.md).
+5. If regulatory-sensitive: escalate audit to Gemini Gem #4
+6. Save approved article as `.md` with publish frontmatter (title, slug, category, date, coverImage)
+7. Publish to Payload: `/publish nerd/output/<article-slug>.md` (or `--draft` to preview first)
+8. Update seed: `status: published`, add `published_date` and `article_slug`
+
+**Pipeline artifact chain** (see [article-production-guide.md](../docs/article-production-guide.md) §Pipeline Artifact Persistence):
+
+```
+nerd/seeds/2026-04-21-topic.md
+    ↓  /architect auto-saves
+nerd/output/blueprints/2026-04-21-topic.md
+    ↓  /performer output (hand-save)
+nerd/output/drafts/2026-04-21-topic.md  (or --<model>.md for bake-offs)
+    ↓  /auditor approves, frontmatter added
+nerd/output/2026-04-21-topic.md
+    ↓  /publish
+Payload CMS
+```
 
 ### The Complete Status Flow
 
@@ -241,9 +258,10 @@ nerd/_ops/
 ├── claude-rules  → .claude/rules/    (22 tactical pattern files)
 ├── claude-skills → .claude/skills/   (6 skill folders)
 ├── content       → content/          (articles, drafts, viral)
-├── docs          → docs/             (guides, handovers, constitution)
-└── input         → input/            (raw blueprints)
+└── docs          → docs/             (guides, handovers, constitution)
 ```
+
+**Note (Apr 22, 2026):** The legacy `input/` folder (4 pre-v6.0 plain-text blueprints from Dec 2025) has been migrated to `nerd/output/blueprints/legacy-*.md` with retrospective frontmatter. `input/` folder and its `_ops/input` symlink removed — all blueprints now live under the v6.0 single source of truth.
 
 **Why symlinks?** Keeps the vault focused on content (no `node_modules/` pollution) while giving you read access to operational files through Obsidian's nice UI.
 
@@ -266,10 +284,12 @@ Open `nerd/content-catalog.md` to see everything you already have.
 2. `content/articles/insurance-extinction-2083.md` — 2083: ปีที่อุตสาหกรรมประกันภัยไทยตาย
 3. `content/test-articles/structure-war-final.md` — ศึกเชิงโครงสร้าง
 
-**Unused Blueprints (3 ready for pipeline):**
-- `input/diabetes-blueprint.txt` → `/produce-article`
-- `input/senior-crisis-blueprint.txt` → `/produce-article`
-- `input/aia-war-blueprint.txt` → `/produce-article`
+**Migrated Legacy Blueprints (3 ready for pipeline, in `nerd/output/blueprints/`):**
+- `nerd/output/blueprints/legacy-diabetes.md` → `/performer` (Mode B)
+- `nerd/output/blueprints/legacy-senior-crisis.md` → `/performer` (Mode C)
+- `nerd/output/blueprints/legacy-aia-war.md` → `/performer` (Mode C)
+
+*Pre-v6.0 blueprints converted Apr 22, 2026 — `seed: null`, `status: legacy-ready`. New blueprints go to the same folder with seed↔blueprint frontmatter linkage. A 4th legacy blueprint (`legacy-structure-war.md`) is already `legacy-consumed` → `content/test-articles/structure-war-final.md`.*
 
 ---
 

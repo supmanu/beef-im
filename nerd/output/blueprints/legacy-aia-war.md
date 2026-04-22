@@ -1,3 +1,21 @@
+---
+type: blueprint
+status: legacy-ready
+seed: null
+mode: C
+archetype: uncomfortable-truth
+tone: T2
+avatar: "คุณ ก. (40 ปี, กำลังเลือกระหว่าง AIA Multi-Pay CI Plus และ AIA CI ProCare)"
+paradox: "Multi-Pay = สัญญาเช่าที่พุ่งราคา / ProCare = สินทรัพย์ที่ล็อคราคา — เลือกผิดคือต้องทิ้งโล่ตอนป่วยจริง"
+primary_source: "NHES VII 2568"
+target_words: 2500-3500
+brand_mode: "AIA product names permitted (structural analysis)"
+created: 2025-12-30
+migrated: 2026-04-22
+legacy_source: input/aia-war-blueprint.txt
+article_slug: ""
+---
+
 # 🏗️ GSB-KANE STRATEGIC BLUEPRINT: MODE C (EPIC)
 
 **Topic:** ศึกสายเลือด: "โล่" (Multi-Pay) ปะทะ "คลังสมบัติ" (ProCare) — การตัดสินใจครั้งสุดท้าย

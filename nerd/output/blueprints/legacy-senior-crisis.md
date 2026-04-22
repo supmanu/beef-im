@@ -1,3 +1,20 @@
+---
+type: blueprint
+status: legacy-ready
+seed: null
+mode: C
+archetype: systemic-reveal
+tone: "T2 + T1"
+avatar: "คุณลุงวัย 72 ปี (ถือกรมธรรม์ 30 ปี, ไม่เคยเคลม, รับจดหมายปรับเบี้ย)"
+paradox: "ทำประกันตอนหนุ่มแล้วสบายตอนแก่ — แต่เบี้ยวิ่งเร็วกว่าบำนาญ"
+primary_source: "NHES VII 2568"
+target_words: 2500-3500
+created: 2025-12-30
+migrated: 2026-04-22
+legacy_source: input/senior-crisis-blueprint.txt
+article_slug: ""
+---
+
 # 🏗️ GSB-KANE STRATEGIC BLUEPRINT: MODE C (EPIC)
 
 **Topic:** วิกฤตประกันสุขภาพวัยเกษียณ: เมื่อ "เบี้ย" วิ่งเร็วกว่า "บำนาญ" (The Retirement Trap)

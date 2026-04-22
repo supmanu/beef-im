@@ -1,6 +1,6 @@
 # Project Status — Nerd with Nart
 
-**Last Updated:** March 29, 2026
+**Last Updated:** April 22, 2026
 **Phase:** v6.0 Production (CLI-first pipeline)
 **Status:** 🟢 Live, sovereign, production-ready
 
@@ -58,5 +58,6 @@ Phase I–V completion logs (Dec 2025) and the Sovereign Migration decision trai
 - Paradox Architecture doctrine → [paradox-architecture.md](./paradox-architecture.md)
 - Strategic stack review (Mar 29, 2026) — keep Payload, Mastra non-core, Neon exit plan → [docs/deployment.md](../../docs/deployment.md)
 - Mastra RAG soft-pause (Apr 21, 2026) — Method 2 archived in article-production-guide v1.4; production is CLI Skills only. `nerd_brain` table + agents preserved for potential revival.
+- Flagship Mode B bake-off (Apr 22, 2026) — 6-model shared-blueprint test. **Kimi K2.6 wins longform** (Naval pacing + mechanism depth); Qwen regressed on token integrity at length; GLM-5.1 cleaned up (anomaly, re-test). Routing now length-tiered: Qwen for S/A, Kimi for B/C. See [thai-model-routing.md](./thai-model-routing.md) §3.
 - Lexical Intelligence Suite (tables / code / intelligence boxes) → [docs/payload.md](../../docs/payload.md)
 - Type-mismatch emergency fix → [docs/typescript-patterns.md](../../docs/typescript-patterns.md)

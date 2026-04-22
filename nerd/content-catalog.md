@@ -1,6 +1,7 @@
 ---
 type: catalog
 updated: 2026-03-24
+stale_since: 2026-04-22
 total_files: 68
 production_ready: 3
 drafts: 6
@@ -11,6 +12,14 @@ draft_archive_batches: 4
 # Content Catalog — Everything You Have
 
 Last scanned: 2026-03-24
+**⚠️ STALE as of 2026-04-22** — this catalog predates:
+- The new `nerd/output/blueprints/` and `nerd/output/drafts/` directories (Apr 21-22)
+- Seeds added April 2026 (`2026-04-21-no-insurance-5-traps.md`, `2026-04-21-health-insurance-beua-thing.md`)
+- 6-model bake-off drafts in `nerd/output/drafts/`
+- New `.claude/rules/` additions (thai-model-routing, content-compliance-boundaries)
+- Mastra RAG soft-pause (Apr 21)
+
+Numbers below are **last known good** from Mar 24. Re-scan recommended before relying on counts.
 
 ---
 
@@ -50,16 +59,17 @@ Multiple model variants of the same topic. Pick the best one, polish, publish.
 
 ---
 
-## Unused Blueprints (Ready for /architect → /produce-article)
+## Blueprints — `nerd/output/blueprints/` (v6.0+, single source of truth)
 
-These blueprints have paradox, archetype, and narrative arc defined. Feed directly to the production pipeline.
+All blueprints now live under `nerd/output/blueprints/`. Legacy `input/*.txt` files were migrated on Apr 22, 2026 — converted to `.md`, wrapped with retrospective frontmatter (`seed: null`, `status: legacy-ready | legacy-consumed`, `legacy_source:` pointer), and the original `input/` folder + `_ops/input` symlink were removed.
 
-| # | File | Thai Topic | Archetype | Mode | Status |
-|---|------|-----------|-----------|------|--------|
-| 1 | `input/diabetes-blueprint.txt` | เบาหวานกับประกัน: ความจริงที่ต้องเผชิญ | Uncomfortable Truth | B | Blueprint ready |
-| 2 | `input/senior-crisis-blueprint.txt` | วิกฤตประกันสุขภาพวัยเกษียณ | Systemic Reveal | C | Blueprint ready |
-| 3 | `input/aia-war-blueprint.txt` | ศึกสายเลือด: Multi-Pay ปะทะ ProCare | Uncomfortable Truth | C | Blueprint ready |
-| 4 | `input/structure-war-blueprint.txt` | ศึกเชิงโครงสร้าง: Term ปะทะ Whole Life | Uncomfortable Truth | C | Already produced → structure-war-final.md |
+| # | File | Seed | Archetype | Mode | Status |
+|---|------|------|-----------|------|--------|
+| 1 | `nerd/output/blueprints/2026-04-21-no-insurance-5-traps.md` | `2026-04-21-no-insurance-5-traps` | — | B | Consumed — 6 drafts produced Apr 22 |
+| 2 | `nerd/output/blueprints/legacy-diabetes.md` | _null (legacy)_ | Uncomfortable Truth | B | Legacy-ready |
+| 3 | `nerd/output/blueprints/legacy-senior-crisis.md` | _null (legacy)_ | Systemic Reveal | C | Legacy-ready |
+| 4 | `nerd/output/blueprints/legacy-aia-war.md` | _null (legacy)_ | Uncomfortable Truth | C | Legacy-ready |
+| 5 | `nerd/output/blueprints/legacy-structure-war.md` | _null (legacy)_ | Uncomfortable Truth | C | Legacy-consumed → `content/test-articles/structure-war-final.md` |
 
 ---
 
