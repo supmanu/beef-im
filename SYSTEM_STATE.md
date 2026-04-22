@@ -14,7 +14,7 @@
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
 ## 🟢 CURRENT STATUS: v6.0 CLI-FIRST PIPELINE + /PUBLISH
-* **Last Updated:** Mar 29, 2026 (Strategic Stack Review + /publish skill + Mastra non-core)
+* **Last Updated:** Apr 22, 2026 (AIA client onboarding toolkit + Typora theme)
 * **Model Stack:**
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (CLI Skills pipeline, deep code)
     *   **Research:** Gemini 3 Pro (Deep Research — irreplaceable for web synthesis)
@@ -32,6 +32,16 @@
 * **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
+*   **[Insurance Ops]** **AIA Client Onboarding Toolkit Deployed (Apr 22, 2026).**
+    *   **Health Questions Preview (`Health_Questions_PREVIEW_Card.md`):** Compact bilingual EN/TH checklist for pre-meeting client prep. Sent via LINE before iPad sessions.
+    *   **Medical History Checklist (`Medical_History_Checklist.md`):** Full 8-section self-assessment (symptoms, diagnosed conditions, surgeries, medications, family history, lifestyle, tests, declarations).
+    *   **AIA iPad Cheat Sheet (`AIA_iPad_Application_Cheat_Sheet.md`):** Agent reference mapping Q21–Q29 from AIA e-policy screenshots. EN-first with TH condition matching for iPad form navigation.
+    *   **Document Requirements (`Document_Requirements_Checklist.md` + `Document_Checklist_Card.md`):** Full + pocket-size checklists for foreign nationals by visa type (Work, Business, Elite, Student, Retirement). Highlights Thailand Elite = passport only, no Work Permit.
+    *   **LINE Message Templates:** Ready-to-send preview messages for expat clients, with W-8BEN heads-up for US citizens.
+*   **[Tooling]** **Typora Theme: `aia-checklist.css` (Apr 22, 2026).**
+    *   **Purpose:** Compact checklist/preview document theme optimized for PDF export → LINE sharing.
+    *   **Design:** Sans-serif only (Inter + Sarabun), tight bullet spacing, navy blue accent (#1e4d8c), full table borders.
+    *   **Contrast:** Slimmer and more scannable than `claude-proposal.css` for utility documents.
 *   **[Validation]** **Mode C (Epic Deep Dive) Validated (v1.9.3).**
     *   **Result:** DeepSeek Reasoner produced a 2,800-word masterpiece with 100% compliance.
     *   **Evidence:** Perfect Fourth Wall discipline, exact watermark counts, and proactive self-correction loops.
