@@ -144,6 +144,36 @@ The casual register is the wrapper. The intellectual firepower is still the cont
 
 ---
 
+## Content Format Tiers
+
+| Format | Length | Channel | Cadence |
+|---|---|---|---|
+| Flagship | 4,000-5,000w | Website | Quarterly |
+| Standard article | 1,200-1,600w | Website | Regular |
+| Short post | 500-800w | Facebook + website | Frequent |
+| Scroll post | 150-300w | Facebook only | Most frequent |
+
+Existing flagships (wealth-transfer, medical-audit) stay mostly as-is — strip น้ำ from intros, cut FAQs.
+First rewrite priority: unit-linked side-contract article → expand to standard format (1,200-1,600w). It is the brand's founding edge.
+
+---
+
+## Watermark — Lock #3 Update (add to Opus task)
+
+Current footer law uses "เนิร์ดกับนาถ (Nerd with Nart)" — must be replaced everywhere.
+
+**New watermark (decided):**
+- Finance/insurance posts: `📊 บทวิเคราะห์โดย: นาถ | beef.im`
+- Beef/cooking posts: `🔥 นาถ | beef.im`
+- Inline attribution: `จากการวิเคราะห์ของนาถ`
+- Hashtags: `#ประกันเนื้อๆ` replaces `#เนิร์ดกับนาถ`
+
+Dual emoji signals content type without explanation. `นาถ` is the personal name anchor; `beef.im` is the domain. No Thai brand name in the signature — cleaner.
+
+**Opus must update Lock #3 (Footer Law) in constitution.md** as part of the rewrite task.
+
+---
+
 ## Repo / Infrastructure
 
 - **Folder stays `nerd-with-nart`** — internal codename, completely invisible publicly
