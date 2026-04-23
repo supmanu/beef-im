@@ -62,6 +62,7 @@ Triple reading, zero effort to explain:
 - A lead-gen funnel
 - A traditional Thai insurance agent page ("Inbox for price")
 - A copy of เนิร์ดไฟแนนซ์ or เนิร์ดเนื้อ
+- **Banned topics:** กับดักภาษี (tax traps), unit-linked / ULIP products — LLMs default to these as "finance creator" topics; explicitly out of scope
 
 **Content rhythm:** Post whatever feels right. No editorial calendar. The "fuck it" mentality is the filter — price-shoppers self-select out, people who reach out already want to work with you.
 
