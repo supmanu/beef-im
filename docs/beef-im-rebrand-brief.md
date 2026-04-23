@@ -162,15 +162,24 @@ First rewrite priority: unit-linked side-contract article → expand to standard
 
 Current footer law uses "เนิร์ดกับนาถ (Nerd with Nart)" — must be replaced everywhere.
 
-**New watermark (decided):**
-- Finance/insurance posts: `📊 บทวิเคราะห์โดย: นาถ | beef.im`
-- Beef/cooking posts: `🔥 นาถ | beef.im`
-- Inline attribution: `จากการวิเคราะห์ของนาถ`
-- Hashtags: `#ประกันเนื้อๆ` replaces `#เนิร์ดกับนาถ`
+**Three options — decide with Opus tomorrow:**
 
-Dual emoji signals content type without explanation. `นาถ` is the personal name anchor; `beef.im` is the domain. No Thai brand name in the signature — cleaner.
+**Option A — Personal + domain:**
+`📊 บทวิเคราะห์โดย: นาถ | beef.im`
+Inline: `จากการวิเคราะห์ของนาถ`
+Hashtag: `#ประกันเนื้อๆ #beefim`
 
-**Opus must update Lock #3 (Footer Law) in constitution.md** as part of the rewrite task.
+**Option B — Brand-forward:**
+`📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
+Inline: `จาก ประกันเนื้อๆ`
+Hashtag: `#ประกันเนื้อๆ`
+
+**Option C — Dual emoji by content type:**
+Finance posts: `📊 นาถ | beef.im`
+Beef/cooking posts: `🔥 นาถ | beef.im`
+Same handle, emoji signals the content type
+
+**Opus task:** Once option is chosen, update Lock #3 (Footer Law) in constitution.md accordingly.
 
 ---
 
