@@ -162,24 +162,16 @@ First rewrite priority: unit-linked side-contract article → expand to standard
 
 Current footer law uses "เนิร์ดกับนาถ (Nerd with Nart)" — must be replaced everywhere.
 
-**Three options — decide with Opus tomorrow:**
+**Watermark — decided (B + C hybrid):**
 
-**Option A — Personal + domain:**
-`📊 บทวิเคราะห์โดย: นาถ | beef.im`
-Inline: `จากการวิเคราะห์ของนาถ`
-Hashtag: `#ประกันเนื้อๆ #beefim`
+- Finance/insurance posts: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
+- Beef/cooking posts: `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
+- Inline attribution: `จาก ประกันเนื้อๆ`
+- Hashtag: `#ประกันเนื้อๆ`
 
-**Option B — Brand-forward:**
-`📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
-Inline: `จาก ประกันเนื้อๆ`
-Hashtag: `#ประกันเนื้อๆ`
+Brand name imprinted on every post. Dual emoji acts as immediate mode toggle — 📊 = contract forensics, 🔥 = meat/cooking. No explanation needed.
 
-**Option C — Dual emoji by content type:**
-Finance posts: `📊 นาถ | beef.im`
-Beef/cooking posts: `🔥 นาถ | beef.im`
-Same handle, emoji signals the content type
-
-**Opus task:** Once option is chosen, update Lock #3 (Footer Law) in constitution.md accordingly.
+**Opus task:** Update Lock #3 (Footer Law) in constitution.md with this system.
 
 ---
 
