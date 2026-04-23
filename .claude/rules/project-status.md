@@ -59,5 +59,6 @@ Phase I–V completion logs (Dec 2025) and the Sovereign Migration decision trai
 - Strategic stack review (Mar 29, 2026) — keep Payload, Mastra non-core, Neon exit plan → [docs/deployment.md](../../docs/deployment.md)
 - Mastra RAG soft-pause (Apr 21, 2026) — Method 2 archived in article-production-guide v1.4; production is CLI Skills only. `nerd_brain` table + agents preserved for potential revival.
 - Flagship Mode B bake-off (Apr 22, 2026) — 6-model shared-blueprint test. **Kimi K2.6 wins longform** (Naval pacing + mechanism depth); Qwen regressed on token integrity at length; GLM-5.1 cleaned up (anomaly, re-test). Routing now length-tiered: Qwen for S/A, Kimi for B/C. See [thai-model-routing.md](./thai-model-routing.md) §3.
+- **Rebrand to beef.im (Apr 23, 2026)** — Drop "Nerd with Nart" before public launch. Public brand is beef.im (domain) + ประกันเนื้อๆ (Facebook display name). Repo/folder stays `nerd-with-nart` — internal only. Voice-dna + constitution recalibration pending (Opus 4.7 task). Full decision record: [docs/beef-im-rebrand-brief.md](../../docs/beef-im-rebrand-brief.md).
 - Lexical Intelligence Suite (tables / code / intelligence boxes) → [docs/payload.md](../../docs/payload.md)
 - Type-mismatch emergency fix → [docs/typescript-patterns.md](../../docs/typescript-patterns.md)

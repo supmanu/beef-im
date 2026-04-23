@@ -14,7 +14,7 @@
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
 ## 🟢 CURRENT STATUS: v6.0 CLI-FIRST PIPELINE + /PUBLISH
-* **Last Updated:** Apr 22, 2026 (AIA client onboarding toolkit + Typora theme)
+* **Last Updated:** Apr 23, 2026 (beef.im rebrand decision locked — pre-launch)
 * **Model Stack:**
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (CLI Skills pipeline, deep code)
     *   **Research:** Gemini 3 Pro (Deep Research — irreplaceable for web synthesis)
@@ -32,6 +32,7 @@
 * **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
+*   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).** Drop "Nerd with Nart" before public launch. Public brand: beef.im (domain) + ประกันเนื้อๆ (Facebook). Repo stays `nerd-with-nart`. Voice-dna + constitution recalibration pending (Opus 4.7). Brief: `docs/beef-im-rebrand-brief.md`.
 *   **[Insurance Ops]** **AIA Client Onboarding Toolkit Deployed (Apr 22, 2026).**
     *   **Health Questions Preview (`Health_Questions_PREVIEW_Card.md`):** Compact bilingual EN/TH checklist for pre-meeting client prep. Sent via LINE before iPad sessions.
     *   **Medical History Checklist (`Medical_History_Checklist.md`):** Full 8-section self-assessment (symptoms, diagnosed conditions, surgeries, medications, family history, lifestyle, tests, declarations).
