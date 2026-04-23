@@ -58,6 +58,9 @@ Triple reading, zero effort to explain:
 - Meat / cooking: casual, sensory, no doctrine required
 - Your actual background (quant, statistical arbitrage, systems) = the credibility anchor — not "nerd energy," data/systems energy
 
+**The origin edge (why high-net-worth clients come):**
+Unit-linked rescue. Many clients arrived not from sales pitches but because they were sold unit-linked products that damaged their financial position — and needed someone with the forensic skill to diagnose and fix it. This is the founding credibility anchor. Unit-linked teardowns, กับดักภาษี exposés, contract forensics on bad products — this is not just allowed content, it's the brand's sharpest weapon.
+
 **What this brand is not:**
 - A lead-gen funnel
 - A traditional Thai insurance agent page ("Inbox for price")
