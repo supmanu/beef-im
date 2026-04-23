@@ -166,10 +166,14 @@ Current footer law uses "เนิร์ดกับนาถ (Nerd with Nart)" 
 
 - Finance/insurance posts: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
 - Beef/cooking posts: `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
-- Inline attribution: `จาก ประกันเนื้อๆ`
+- Inline attribution: **none** — no mid-article watermark of any kind
 - Hashtag: `#ประกันเนื้อๆ`
 
-Brand name imprinted on every post. Dual emoji acts as immediate mode toggle — 📊 = contract forensics, 🔥 = meat/cooking. No explanation needed.
+Brand name imprinted at footer only. Dual emoji acts as immediate mode toggle — 📊 = contract forensics, 🔥 = meat/cooking. No explanation needed.
+
+**Why no inline watermark:** The analysis speaks for itself. Inserting a brand name mid-sentence is น้ำ — it interrupts data flow and signals ego, not substance. Footer handles all attribution. The "Oracle effect": the voice reads as a pure system output from a high-level architect, which is exactly what this brand is.
+
+**Distinction:** No inline watermarks ≠ no first-person voice. Natural `ผม` in Thai prose (`ผมวิเคราะห์ว่า...`, `ลองนึกภาพแบบนี้ครับ`) is kept — that is writing voice, not attribution.
 
 **Opus task:** Update Lock #3 (Footer Law) in constitution.md with this system.
 
