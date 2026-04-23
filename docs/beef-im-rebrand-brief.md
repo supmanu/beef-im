@@ -166,14 +166,17 @@ Current footer law uses "เนิร์ดกับนาถ (Nerd with Nart)" 
 
 - Finance/insurance posts: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
 - Beef/cooking posts: `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
-- Inline attribution: **none** — no mid-article watermark of any kind
+- Inline attribution: `จาก ประกันเนื้อๆ` — **pending final decision with Opus**
 - Hashtag: `#ประกันเนื้อๆ`
 
-Brand name imprinted at footer only. Dual emoji acts as immediate mode toggle — 📊 = contract forensics, 🔥 = meat/cooking. No explanation needed.
+Dual emoji acts as immediate mode toggle — 📊 = contract forensics, 🔥 = meat/cooking.
 
-**Why no inline watermark:** The analysis speaks for itself. Inserting a brand name mid-sentence is น้ำ — it interrupts data flow and signals ego, not substance. Footer handles all attribution. The "Oracle effect": the voice reads as a pure system output from a high-level architect, which is exactly what this brand is.
+**The inline tension to resolve with Opus:**
+- *For:* Content theft is real in Thai social media — screenshots get reshared without credit. `จาก ประกันเนื้อๆ` mid-article is lightweight defence.
+- *Against:* Inserting brand name mid-sentence is น้ำ — interrupts data flow. Footer alone handles attribution cleanly. The "Oracle effect" is strongest with zero inline interruption.
+- *Middle ground:* Use inline only at key conclusions or data claims — not every paragraph.
 
-**Distinction:** No inline watermarks ≠ no first-person voice. Natural `ผม` in Thai prose (`ผมวิเคราะห์ว่า...`, `ลองนึกภาพแบบนี้ครับ`) is kept — that is writing voice, not attribution.
+**Distinction regardless of decision:** No inline watermark ≠ no first-person voice. Natural `ผม` in Thai prose (`ผมวิเคราะห์ว่า...`, `ลองนึกภาพแบบนี้ครับ`) is kept — that is writing voice, not attribution.
 
 **Opus task:** Update Lock #3 (Footer Law) in constitution.md with this system.
 
