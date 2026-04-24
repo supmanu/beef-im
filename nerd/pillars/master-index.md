@@ -95,29 +95,101 @@ Skills auto-load relevant pillar files from `nerd/pillars/`. Definitions at `.cl
 
 | File | Role |
 |------|------|
-| [nard/agents/instruction-architect.md](../agents/instruction-architect.md) | Blueprint agent |
-| [nard/agents/instruction-performer.md](../agents/instruction-performer.md) | Performer agent (slim XML) |
-| [nard/agents/performer.md](../agents/performer.md) | Performer universal (full instructions) |
-| [nard/agents/instruction-auditor-Sonnet.md](../agents/instruction-auditor-Sonnet.md) | Sonnet auditor |
-| [nard/agents/instruction-sovereign-auditor.md](../agents/instruction-sovereign-auditor.md) | Sovereign auditor |
-| [nard/agents/instruction-hybrid-architect-builder.md](../agents/instruction-hybrid-architect-builder.md) | Hybrid agent |
-| [nard/agents/instruction-proposal-generator.md](../agents/instruction-proposal-generator.md) | Proposal generator |
-| [nard/agents/instruction-ocr-cleaner.md](../agents/instruction-ocr-cleaner.md) | OCR/brochure cleaner |
-| [nard/agents/nart-avatar.ts](../agents/nart-avatar.ts) | Identity avatar (protected) |
+| [nerd/agents/instruction-architect.md](../agents/instruction-architect.md) | Blueprint agent |
+| [nerd/agents/instruction-performer.md](../agents/instruction-performer.md) | Performer agent (slim XML) |
+| [nerd/agents/performer.md](../agents/performer.md) | Performer universal (full instructions) |
+| [nerd/agents/instruction-auditor-Sonnet.md](../agents/instruction-auditor-Sonnet.md) | Sonnet auditor |
+| [nerd/agents/instruction-sovereign-auditor.md](../agents/instruction-sovereign-auditor.md) | Sovereign auditor |
+| [nerd/agents/instruction-hybrid-architect-builder.md](../agents/instruction-hybrid-architect-builder.md) | Hybrid agent |
+| [nerd/agents/instruction-proposal-generator.md](../agents/instruction-proposal-generator.md) | Proposal generator |
+| [nerd/agents/instruction-ocr-cleaner.md](../agents/instruction-ocr-cleaner.md) | OCR/brochure cleaner |
+| [nerd/agents/nart-avatar.ts](../agents/nart-avatar.ts) | Identity avatar (protected) |
 
 ---
 
 ## CONTENT WORKFLOW (v6.0)
 
+### System Architecture
+
 ```
-Obsidian seeds/ → (Gemini Deep Research when needed) → /architect → /performer → /auditor → /publish → Payload CMS
+┌─────────────────┐
+│ OBSIDIAN INTAKE │   Layer 0 — 30-sec seed with frontmatter
+│ nerd/seeds/     │
+└────────┬────────┘
+         ↓
+┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│ GEMINI RESEARCH │  →   │  CLI PIPELINE   │  →   │  CLI AUDITOR    │
+│                 │      │                 │      │                 │
+│ • Deep Research │      │ /architect      │      │ /auditor        │
+│ • Multi-source  │      │ /performer      │      │ 6-Point Check   │
+│   web synthesis │      │ /produce-article│      │ Rule-based      │
+│                 │      │                 │      │                 │
+│ (when needed)   │      │ Thai drafting:  │      │                 │
+│                 │      │  S/A → Qwen 3.6 │      │                 │
+│                 │      │  B/C → Kimi 2.6 │      │                 │
+└─────────────────┘      └─────────────────┘      └────────┬────────┘
+                                                           ↓
+                                                  ┌─────────────────┐
+                                                  │ GEMINI GEM #4   │
+                                                  │ (ESCALATION)    │
+                                                  │ Live regulatory │
+                                                  │ web verification│
+                                                  └────────┬────────┘
+                                                           ↓
+                                                  ┌─────────────────┐
+                                                  │ /publish        │
+                                                  │ → Payload CMS   │
+                                                  │ → Vercel        │
+                                                  └─────────────────┘
+
+Optional Layer 0 alternative:
+┌─────────────────┐
+│ NOTEBOOKLM      │  Multi-doc forensic extraction → structured seeds
+│ bulk PDFs       │
+└─────────────────┘
 ```
 
-**Thai model routing (per `.claude/rules/thai-model-routing.md`):**
-- Short/mid (S, A): Qwen3.6 Plus draft → Sonnet 4.6 audit
-- Flagship (B, C): Kimi K2.6 draft → Sonnet 4.6 audit
+**Why 3-way still matters:** The writer can't proofread their own work. Separating creation from audit eliminates same-session bias and catches regulatory errors. Research stays with Gemini (web-scale). Everything else runs in one CLI session with direct pillar access.
 
-**Escalation:** `/auditor` = every article. Gemini Gem #4 = regulatory-sensitive content needing live web verification.
+### Deep Dive Workflow (Step by Step)
+
+```
+Step 0: CAPTURE (Obsidian)
+        ├─ Seed in nerd/seeds/ with frontmatter (30 sec)
+        └─ Alt: NotebookLM for bulk PDF extraction
+        ↓
+Step 1: RESEARCH (Gemini Deep Research — when needed)
+        ├─ Feed seed + topic to Gemini
+        ├─ NHES VII Hard-Check (mandatory)
+        └─ Sinek Filter (confirm believers, not convince cynics)
+        ↓
+Step 2: BLUEPRINT (CLI)
+        └─ /architect [topic] [mode] — loads pillars, produces blueprint
+        ↓
+Step 3: EXECUTE (CLI)
+        └─ /performer [blueprint]
+            ├─ S/A length → Qwen3.6 Plus (native Thai rhythm wins)
+            └─ B/C length → Kimi K2.6 (mechanism depth + Naval pacing)
+        ↓
+Step 4: AUDIT (CLI — primary)
+        ├─ /auditor [article] — 6-point compliance check
+        └─ Escalate to Gemini Gem #4 if regulatory-sensitive
+        ↓
+Step 5: PUBLISH
+        └─ /publish → Payload CMS → Vercel
+
+One-shot:  /produce-article [topic] [mode]   (Steps 2–4 combined)
+Quick:     /hybrid [topic] S                 (skip 3-way split for Mode S/A)
+```
+
+### Thai Model Routing (per `.claude/rules/thai-model-routing.md`)
+
+| Length tier | Draft model | Audit model |
+|---|---|---|
+| Short / Mid (S, A — 150–800w) | **Qwen3.6 Plus** | Sonnet 4.6 |
+| Flagship (B, C — 1,200–5,000w) | **Kimi K2.6** | Sonnet 4.6 |
+
+**Escalation:** `/auditor` runs on every article. Gemini Gem #4 handles regulatory-sensitive content needing live web verification.
 
 ---
 
@@ -144,6 +216,71 @@ Obsidian seeds/ → (Gemini Deep Research when needed) → /architect → /perfo
 | 4 | FDA/อย. — no therapeutic claims for non-drugs |
 | 5 | Actuarial — premium benchmarks, TMO 2017 |
 | 6 | Brand DNA — banned words, Thai-First, tone, compliance boundaries |
+
+---
+
+## PILLAR LOADING BY TOOL
+
+Which files each tool auto-loads — useful when debugging "why didn't the agent respect X?"
+
+### CLI Skills (Claude Code / OpenCode) — primary pipeline
+
+```
+/architect   loads:  voice-dna, constitution, framework-deep-dive,
+                     content-engine, data-nhes-vii,
+                     data-thai-handshake-exceptions, tech-bridge-lab,
+                     data-citation-template
+
+/performer   loads:  voice-dna, constitution, tech-bridge-lab,
+                     data-nhes-vii, data-thai-handshake-exceptions,
+                     data-citation-template, visual-engine,
+                     framework-deep-dive, content-engine
+
+/auditor     loads:  voice-dna, constitution,
+                     data-thai-handshake-exceptions, data-nhes-vii,
+                     tech-bridge-lab, data-citation-template,
+                     visual-engine
+
+/hybrid      loads:  same as /architect + /performer (fused)
+
+/produce-article    loads:  same as /architect + /performer + /auditor
+                            (chained)
+
+/publish     loads:  (none — just pushes to Payload CMS)
+```
+
+### Proposal Generator
+
+```
+instruction-proposal-generator.md loads:
+  data-proposal-logic.md (priority 1)
+  data-nhes-vii.md (priority 6)
+```
+
+### Gemini Gem #4 (Escalation Auditor — external)
+
+```
+✅ voice-dna.md
+✅ constitution.md
+✅ data-thai-handshake-exceptions.md
+✅ data-nhes-vii.md
++ Live regulatory web search
+```
+
+### Gemini Deep Research
+
+```
+No pillar files required — Gemini searches the web.
+Input:  Topic + seed notes from Obsidian
+Output: Research synthesis → feed to /architect
+```
+
+### NotebookLM (Optional — Multi-Doc Extraction)
+
+```
+Input:  Raw document dumps (PDFs, etc.)
+Output: Structured seeds → nerd/seeds/
+```
 
 ---
 
