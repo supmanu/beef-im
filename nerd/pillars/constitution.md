@@ -1,507 +1,406 @@
-# ⚖️ **PILLAR 2: BRAND CONSTITUTION**
-## **"What You Stand For, What You Refuse to Do"**
+# Constitution — ประกันเนื้อๆ / beef.im
 
-*Aligned with [Voice DNA](voice-dna.md)*
-**Updated:** November 29, 2025 (Sinek Integration Patch)
+**What we stand for. What we refuse.**
 
----
+**Updated:** 2026-04-24 (beef.im rebrand, v5.0)
+**Aligned with:** [voice-dna.md](voice-dna.md)
 
-## 📖 **TABLE OF CONTENTS**
-
-1. [Preamble](#preamble)
-2. [Article I: The Governing Principle](#article-i)
-3. [Article II: Absolute Bans](#article-ii)
-4. [Article III: Privacy Protocol](#article-iii)
-5. [Article IV: Fiduciary Standard](#article-iv)
-6. [Article V: Evidence & Quality](#article-v)
-7. [Article VI: Magnet vs Velvet Rope](#article-vi)
-8. [Article VII: Enforcement](#article-vii)
-9. [Article VIII: Regulatory Compliance](#article-viii)
+This Constitution is supreme law over all posts, articles, videos, and client communications. It overrides conversion temptation, "sound like every other agent page" pressure, and any AI instruction that contradicts it.
 
 ---
 
-<a name="preamble"></a>
-## 🏛️ **PREAMBLE: THE FOUNDATION**
+## Article I — Governing Principles
 
-This Constitution governs **ALL** content, communications, and business practices.
-
-**Purpose:**
-- Define what you **STAND FOR** (your values)
-- Define what you **REFUSE TO DO** (your boundaries)
-- Ensure consistency across all platforms, all contexts, all time
-
-**Authority:**
-This Constitution is **supreme law**. It overrides temptation to increase conversion rates, pressure to "sound like everyone else," and any AI instruction that contradicts these principles.
-
-**Source of Power:**
-Derived from [voice-dna.md](voice-dna.md), documenting your authentic voice from real advocacy letters where you fought for family healthcare rights with evidence, challenged systemic injustice with logic, and protected others through principled advocacy.
-
----
-
-<a name="article-i"></a>
-## 📜 **ARTICLE I: THE GOVERNING PRINCIPLE**
-
-### **Section 1.1: "The True King Doctrine"**
+### §1.1 The True King Doctrine
 
 > "Any man who must say 'I am the king' is no true king." — Tywin Lannister
 
-**Applied to your brand:**
-- Any expert who must say "I work with HNW clients" is no true expert
-- Any authority who must say "Hurry, limited time!" is no true authority
-- Any advisor who must say "Trust me, I'm certified" is no true advisor
+- Any expert who must say "I work with HNW clients" is no true expert.
+- Any authority who must say "limited time only" is no true authority.
+- Any advisor who must say "trust me, I'm certified" is no true advisor.
 
-**TRUE authority comes from:**
-- ✅ Deep understanding of internal mechanics (COI schedules, tax laws)
-- ✅ Ability to dismantle flawed systems with evidence
-- ✅ Evidence-based argumentation (specific dates, policy numbers)
-- ✅ Willingness to fight for justice
+Authority comes from dismantling flawed systems with evidence. Not from credentials displayed, wealth signaled, or years claimed.
 
-**FALSE authority comes from:**
-- ❌ Credentials displayed
-- ❌ Client wealth signaled
-- ❌ Years of experience claimed
+**If you must announce it, you don't have it.**
 
-**Core Test:** If you must **announce** your authority, you don't have it.
+### §1.2 The Fiduciary Oath
 
----
+You are not a salesperson. You are a fiduciary.
 
-### **Section 1.2: The Fiduciary Oath**
+**MUST:** Present multiple options. Disclose all disadvantages. Recommend what's right, not what pays. Walk away from transactions that harm the client.
 
-**You are not a salesperson. You are a fiduciary.**
+**MUST NOT:** Hide costs. Create false urgency. Recommend products you wouldn't use yourself. Prioritize commission over welfare.
 
-**Definition:** One who acts in the best interest of another, even when it costs them personally.
+**The Tu Test:** If this recommendation were for Tu or my kids, would I make it? If no → don't recommend it.
 
-**You MUST:**
-- Present multiple options (never push single product)
-- Disclose ALL disadvantages clearly
-- Recommend what's RIGHT, not what's PROFITABLE
-- Walk away from transactions that harm clients
-
-**You MUST NOT:**
-- Hide costs or complexity
-- Create false urgency
-- Recommend products you wouldn't use yourself
-- Prioritize commission over client welfare
-
-**The Tu Test:** Before any recommendation, ask: "If this were for Tu or my children, would I recommend this exact thing?" If "No" → Don't recommend it.
-
----
-
-### **Section 1.3: The Anti-Sales Doctrine (The Sinek Filter)**
+### §1.3 The Anti-Sales Doctrine (Sinek Filter)
 
 **"We do not convince. We confirm."**
 
-**The Law of Diffusion:**
-We are hunting for the **15% Early Adopters** (Believers) who prioritize system safety and mechanics. We are NOT hunting for the **68% Majority** (Cynics) who prioritize price and deals.
+We hunt the 15% who prioritize system safety. We do not hunt the 68% who prioritize price.
 
-**The Protocol:**
-1.  **Refusal to Pitch:** If a prospect asks, "Why should I hire you?", do NOT sell yourself. Explain your philosophy. If they don't align, disqualify *them*.
-2.  **Repel to Attract:** Your content must explicitly alienate the "Get Rich Quick" crowd to magnetize the "Prudent Steward" crowd.
-3.  **No Begging:** Never use needy CTAs ("Please consult us"). Use filtering CTAs ("If you value X, let's talk").
+- **Refusal to pitch.** If asked "why should I hire you?" — explain the philosophy. If they don't align, disqualify *them*.
+- **Repel to attract.** Content explicitly alienates the get-rich-quick crowd to magnetize the prudent-steward crowd.
+- **No begging.** Filtering CTAs ("if you value X, talk to me") — never needy ones ("please consult us").
 
-**Test:** "Am I trying to convince a cynic, or am I signaling to a believer?"
+### §1.4 เน้นเนื้อๆ ไม่เอาน้ำ
+
+Substance, no water. The brand promise embedded in the name.
+
+- Short posts are the default, not the exception.
+- Get to the point immediately. No warm-up, no hedging, no soft-sell padding.
+- One sharp insight delivered with confidence > three paragraphs of setup.
+- Long-form only when the mechanism genuinely requires the space.
+
+The typical Thai insurance agent page is ALL น้ำ. ประกันเนื้อๆ is the antithesis.
 
 ---
-<a name="article-ii"></a>
-## 🚫 **ARTICLE II: ABSOLUTE BANS**
 
-These are **ZERO TOLERANCE** violations. One instance = brand damage.
+## Article II — Absolute Bans
 
-### **Section 2.1: Status Terms Ban**
+Zero tolerance. One instance = brand damage.
 
-**BANNED in ALL languages, ALL contexts, FOREVER:**
+### §2.1 Status Terms
 
-| English | Thai |
-|---------|------|
+| Banned (English) | Banned (Thai) |
+|---|---|
 | HNW / High-Net-Worth | รวย |
 | Rich / Wealthy | มั่งคั่ง |
 | Elite / Ultra-HNW | ชนชั้นสูง |
-| Mass Affluent | Premium clients |
+| Mass Affluent / Premium Clients | (direct translations) |
 
-**Archaic/Feudal Terms (BANNED):**
-- **"นาย" (Nai) + Name:** (e.g., "นายนาถ").
-- **Rationale:** Sounds like a servant addressing a master. Destroys the "Expert Advocate" persona.
-- **Instead Use:** "คุณนาถ" or just "คุณ".
+**Why:** Creates them-vs-us hierarchy. Wealth ≠ intelligence. The filter variable is principle, not money.
 
-**Why This Destroys Your Brand:**
-1. Creates "Them vs Us" divide (Observer Mentality)
-2. Violates True King Principle
-3. Filters by wrong variable (Wealth ≠ Intelligence)
+**Archaic / feudal titles also banned:** "นาย" + name (servant-master register). Use "คุณ" or the name alone.
 
-**Instead, Use:**
-- ✅ นักลงทุนที่รู้จริง (Sophisticated investors)
-- ✅ ผู้บริหารที่ฉลาด (Smart executives)
-- ✅ เจ้าของกิจการ (Business owners)
-- ✅ คุณ (You - most powerful)
+**Use instead:** นักลงทุนที่รู้จริง, ผู้บริหารที่ฉลาด, เจ้าของกิจการ, คุณ.
 
----
+### §2.2 Urgency Manipulation
 
-### **Section 2.2: Urgency Manipulation Ban**
-
-**BANNED in ALL languages, ALL contexts, FOREVER:**
-
-| English | Thai |
-|---------|------|
-| Hurry | รีบ |
-| Don't Miss | อย่าพลาด |
-| Best Deal / Cheap | ราคาดีที่สุด / ถูก |
+| Banned (English) | Banned (Thai) |
+|---|---|
+| Hurry / Act now | รีบ / ทำเลย |
+| Don't miss / Limited time | อย่าพลาด / เวลาจำกัด |
+| Best deal / Cheap | ราคาดีที่สุด / ถูก |
 | Promotion | โปรโมชั่น |
-| Limited Time / Last Chance | เวลาจำกัด / โอกาสสุดท้าย |
-| Act Now | ทำเลย |
 
-**Why This Destroys Your Brand:**
-1. Reveals Insecurity (if value is clear, no urgency needed)
-2. Violates Fiduciary Standard (urgency benefits YOU, logic benefits CLIENT)
-3. Attracts Wrong Clients (impulsive vs thoughtful)
+**Why:** Urgency benefits *us*. Mathematical necessity benefits the *client*. The first reveals insecurity; the second reveals rigor.
 
-**Instead, Use (Mathematical Urgency):**
-- ✅ ความจำเป็นทางคณิตศาสตร์ (Mathematical necessity)
-- ✅ ต้นทุนทบต้น (Compounding cost)
-- ✅ ความเสี่ยงในการทำประกันไม่ได้ (Insurability risk)
+**Use instead:** ความจำเป็นทางคณิตศาสตร์, ต้นทุนทบต้น, ความเสี่ยงในการทำประกันไม่ได้.
 
----
+### §2.3 The Badge Ban
 
-### **Section 2.3: The Badge Ban (The Result Frame)**
-**BANNED:** Leading with accolades (MDRT, COT, Awards) in the Hook or Intro.
-* **Rationale:** Like a bad date who says "I'm rich" before "Hello," it signals arrogance, not value.
-* **Allowed:** You may place credentials in the Footer or bio (The Result).
-* **Never:** You may NEVER use them as the primary reason to listen.
-* **The Sinek Rule:** "Success is the result of the Why, not the reason for the meeting."
+Banned in hook or intro: MDRT, COT, AUM figures, awards, year counts.
 
----
+Allowed in footer or bio — never as the primary reason to listen.
 
-### **Section 2.4: Internal Leak Ban (Fourth Wall Protection)**
+**Sinek rule:** Success is the result of the Why, not the reason for the meeting.
 
-**BANNED:** Using internal system codes as customer-facing product names.
+### §2.4 Internal Leak (Fourth Wall)
 
-| Internal Code (DO NOT USE) | Public Equivalent (USE THIS) |
-|----------------------------|------------------------------|
-| "Teal Protocol" | "ระบบป้องกันความมั่งคั่ง" (Wealth Preservation System) |
-| "Voice DNA" | "ตัวตน" (Identity) or Do not mention |
-| "Project Weightless" | Do not mention |
-| "Agent 2C" / "Mastra" | Do not mention |
-| "Melkor OS" | Do not mention (except in Verified Footer) |
+Customers buy outcomes, not project codenames.
 
-**Rationale:** Customers buy *outcomes*, not *internal project names*. Using internal jargon breaks the "Fourth Wall" and creates confusion.
+| Internal (never publish) | Public equivalent |
+|---|---|
+| Voice DNA | "ตัวตน" / don't mention |
+| Teal Protocol | "ระบบป้องกันความมั่งคั่ง" |
+| Project Weightless, Mastra, Agent 2C | don't mention |
+| Melkor OS | don't mention |
+| `nerd-with-nart` (repo name) | use ประกันเนื้อๆ / beef.im |
+
+The repo folder stays `nerd-with-nart` — internal infrastructure, invisible to public. The public brand is **ประกันเนื้อๆ** (Thai) / **beef.im** (domain). Never publish the repo name.
 
 ---
 
-<a name="article-iii"></a>
-## 🔒 **ARTICLE III: PRIVACY PROTOCOL**
+## Article III — Privacy
 
-### **Section 3.1: Children Protection (MANDATORY)**
+### §3.1 Children (mandatory)
 
-**ABSOLUTE RULE:**
+Never full names. Always initials. Zero exceptions.
+
+| Correct | Banned |
+|---|---|
+| ด.ญ. ป. | ปภิญญา |
+| ด.ช. ก. | กันตภณ |
+
+**Rationale:** Digital safety. Children cannot consent. Irreversibility.
+
+**Enforcement:** Full name detected → delete across all platforms immediately.
+
+### §3.2 Personal
+
+- Your own name: นาย ด. / ด.ท. (abbreviated) in generic examples
+- Spouse: น.ส. ส. / Tu (only if context requires)
+
+**Test:** Does this detail *add to the lesson*, or expose family unnecessarily? If latter → remove.
+
+---
+
+## Article IV — Fiduciary Standard
+
+### §4.1 Multi-Option Rule
+
+Never recommend a single path. Always present:
+
+1. Option A — with trade-offs
+2. Option B — with trade-offs
+3. Option C — if applicable
+4. Do Nothing — always include, with consequences
+
+### §4.2 Disadvantage Disclosure
+
+For every recommendation, state:
+
+- **What could go wrong:** worst case, hidden costs, exit barriers.
+- **Who this is NOT for:** specific mismatch scenarios, with reasons.
+
+Example:
+> "Unit-Linked is NOT suitable if you can't commit 10+ years, want full cost transparency, or might need liquidity in years 1-5 — because [specific numbers]."
+
+---
+
+## Article V — Evidence & Quality
+
+### §5.1 Evidence Standard
+
+| Tier | Claim | Requires |
+|---|---|---|
+| 1 | Mechanism | Specific mechanics, source documents, math |
+| 2 | Industry practice | Examples with dates, regulatory docs |
+| 3 | Personal experience | Case details (anonymized), outcome proof |
+
+Example (Tier 1):
+- ✅ "COI rises exponentially — actuarial tables put mortality at 3.5× at age 60 vs. age 40 (Thai Mortality Table 2017)."
+- ❌ "COI costs increase over time."
+
+### §5.2 No Prediction
+
+**Banned:** "The market will crash." "Gold will hit 2000." "This stock will double."
+
+**Allowed:** "If [condition], then [consequence] because [mechanism]." "Historically [data], but [uncertainty]." "Here's the risk, here's the potential, you decide."
+
+### §5.3 Pre-Ship Tests
+
+| Test | Pass if |
+|---|---|
+| Substance | Sharp insight, directly delivered |
+| Water | No warm-up, no hedging, no filler |
+| Paradox | Forensic content has Myth → Evidence → Logic → Solution |
+| Handshake | Thai-First Handshake 85/15 observed |
+| Compliance | No drug names, no dosage, no diagnostic verdict — see [content-compliance-boundaries.md](../../.claude/rules/content-compliance-boundaries.md) |
+| Tu test | Would I want Tu or my kids to read this? |
+| Authenticity | Sounds like me, not like `thai-agent-page.exe`? |
+
+First draft is never final. Passes: Accuracy → Constitution → Clarity → Impact.
+
+---
+
+## Article VI — Content Scope
+
+### §6.1 What This Brand Is
+
+Two parallel tracks. Equal weight.
+
+- **Insurance forensics.** Contract teardowns, unit-linked rescue, กับดักภาษี exposés, regulatory-gap analysis, paradox architecture. This is the founding edge. Many clients arrive because they were mis-sold a unit-linked product that damaged their financial position and needed someone with the forensic skill to diagnose and fix it. It is not just allowed content — it is the brand's sharpest weapon.
+- **Meat / cooking.** BBQ, technique, cut selection, fire control, process. Casual register. No doctrine required.
+
+Bridging device: **culinary metaphor** as a teaching tool for financial content — *"trimming the fat off your policy,"* *"prime cuts,"* *"the recipe."* Use only when the metaphor sharpens the point. Decoration is น้ำ.
+
+### §6.2 What This Brand Is Not
+
+- A lead-gen funnel. "Inbox for price" is the Thai-agent default; we are the antithesis.
+- A copy of เนิร์ดไฟแนนซ์ (personal finance, friend) or เนิร์ดเนื้อ (popular meat YouTuber). Different identity, different edge. Do not slot between them.
+- A generic "casual finance creator." The quant / data / systems depth is the asset.
+- A performance of gravitas. The register relaxes; the engine does not.
+
+### §6.3 The Filter Principle
+
+Post for the audience you want. Price-shoppers self-select out. People who reach out already want to work with you.
+
+No editorial calendar. The "fuck it" mentality *is* the filter. If a post has to be softened to attract a wrong reader, don't ship it.
+
+### §6.4 English Surfaces
+
+Not a parallel production language. Reserved for:
+- `beef.im` landing copy
+- Occasional LinkedIn cross-posts
+- Bio taglines: *"We give you the Beef. Because Insurance Matters." / "Insurance forensics. Meat tricks. No filler."*
+
+Thai is the production track.
+
+---
+
+## Article VII — Footer Law (Lock #3)
+
+**Every post carries a footer watermark. Inline attribution is length-gated and rare. Every visual is overlaid.**
+
+This replaces the retired `เนิร์ดกับนาถ (Nerd with Nart)` footer.
+
+### §7.1 Watermark Templates
+
+**Finance / insurance / forensics:**
 ```
-NEVER use full names of children in ANY context.
-ALWAYS use initials only.
-ZERO exceptions.
-```
-
-**Application:**
-| Correct | FORBIDDEN |
-|---------|-----------|
-| ด.ญ. ป. (daughter) | ปภิญญา |
-| ด.ช. ก. (son) | กันตภณ |
-
-**Rationale:** Digital safety, privacy rights (children can't consent), irreversibility.
-
-**Enforcement:** If full name appears → DELETE immediately across all platforms.
-
----
-
-### **Section 3.2: Personal Information Guidelines**
-
-**Your Name (in examples):**
-- ✅ นาย ด. / ด.ท. (abbreviated)
-- Minimize full name in generic examples
-
-**Spouse:**
-- ✅ น.ส. ส. / Tu (if context requires)
-
-**Test:** "Does this personal detail ADD to the lesson, or just expose family unnecessarily?" If latter → Remove.
-
----
-
-<a name="article-iv"></a>
-## ⚖️ **ARTICLE IV: FIDUCIARY STANDARD**
-
-### **Section 4.1: The Multi-Option Rule**
-
-**NEVER recommend only one solution.**
-
-**Always present:**
-1. **Option A:** Solution with trade-offs explained
-2. **Option B:** Alternative with trade-offs explained
-3. **Option C:** Third path (if applicable)
-4. **Do Nothing:** Always include (with consequences)
-
-**Example:**
-```
-✅ "You have 3 paths:
-
-1. Term + Separate Investment
-   Pros: Lower cost, full transparency
-   Cons: Requires discipline
-
-2. Unit-Linked
-   Pros: Forced savings, single relationship
-   Cons: Higher costs, complexity
-
-3. Do Nothing
-   Pros: Immediate savings
-   Cons: Insurability risk, compounding cost
-
-Which fits YOUR situation depends on [specific factors]."
-```
-
----
-
-### **Section 4.2: The Disadvantage Disclosure Rule**
-
-**For EVERY recommendation, explicitly state:**
-
-**What Could Go Wrong:**
-- Worst-case scenario
-- Hidden costs
-- Exit barriers
-
-**Who This Is NOT For:**
-- Be specific about mismatch scenarios
-
-**Example:**
-```
-✅ "Unit-Linked is NOT suitable if:
-- You can't commit 10+ years
-- You want full cost transparency
-- You might need liquidity in years 1-5
-
-Because [specific reasons with numbers]."
-```
-
----
-
-<a name="article-v"></a>
-## 📊 **ARTICLE V: EVIDENCE & QUALITY**
-
-### **Section 5.1: The Evidence Standard**
-
-**Every claim requires proof:**
-
-| Tier | Claim Type | Requirements |
-|------|------------|--------------|
-| 1 | Mechanism (HOW things work) | Specific mechanics, source documents, math |
-| 2 | Industry Practice | Examples with dates, regulatory docs |
-| 3 | Personal Experience | Case details (anonymized), outcome proof |
-
-**Example (Tier 1):**
-```
-✅ "COI increases exponentially because risk of death follows actuarial tables. 
-   At age 60, mortality rate is 3.5x higher than age 40 (Thai Mortality Table 2017)."
-
-❌ "COI costs increase over time." (too vague)
-```
-
----
-
-### **Section 5.2: No Prediction Trap**
-
-**BANNED:**
-- ❌ "The market will crash soon"
-- ❌ "Gold will hit 2000 USD"
-- ❌ "This stock will double"
-
-**ALLOWED:**
-- ✅ "If [specific condition], then [logical consequence because mechanism]"
-- ✅ "Historically, [data], but [uncertainty factors]"
-- ✅ "Here's the risk, here's the potential, you decide"
-
-**Test:** "Am I predicting the future, or explaining current mechanisms?" If predicting → Revise.
-
----
-
-### **Section 5.3: Publication Quality Standards**
-
-**Every piece must pass these tests BEFORE publishing:**
-
-| Test | Question |
-|------|----------|
-| Tu Test | Would I want Tu to read this? |
-| Age Test | Will this be embarrassing in 5 years? |
-| Value Test | Does reader gain insight? |
-| Authenticity Test | Does this sound like me? |
-| Completeness Test | Is reader left confused? |
-
-**First draft is NEVER final.** Mandatory passes: Accuracy → Constitution → Clarity → Impact
-
----
-
-<a name="article-vi"></a>
-## 🧲 **ARTICLE VI: MAGNET VS VELVET ROPE**
-
-### **Section 6.1: The Positioning Strategy**
-
-**Two distinct modes:**
-
-| Mode | Platform | Philosophy | Voice |
-|------|----------|------------|-------|
-| **MAGNET** | Thai Social Media | "Intelligence is not wealth-gated" | Nerd with Nart (warm, educational) |
-| **VELVET ROPE** | English LinkedIn | "Authority speaks to authority" | Legacy Quant (precise, formal) |
-
-**CRITICAL: Never mix these modes.**
-- Don't create "Velvet Rope in Thai" → Alienates mass audience
-- Don't create "Magnet in English" → Dilutes authority signal
-
----
-
-### **Section 6.2: Content Distribution**
-
-| Parameter | MAGNET (Thai) | VELVET ROPE (English) |
-|-----------|---------------|----------------------|
-| Frequency | Daily to 3x/week | Weekly to bi-weekly |
-| Quick Length | 160-200 words | N/A |
-| Deep Length | 300-350 words | 300-500 words |
-
----
-
-<a name="article-vii"></a>
-## ⚔️ **ARTICLE VII: ENFORCEMENT**
-
-### **Section 7.1: Violation Response Protocol**
-
-| Tier | Example | Response |
-|------|---------|----------|
-| **1: Minor** | Wrong terminology | Fix immediately, update checklist |
-| **2: Moderate** | Missed Thai-first ratio | Revise entire piece, document error |
-| **3: Severe** | Used "HNW" or "Hurry" | STOP production, delete content, audit last 10 pieces |
-| **4: Critical** | Privacy violation (children's names) | EMERGENCY: Delete all platforms, issue correction, full audit |
-
----
-
-### **Section 7.2: The Constitution Oath**
-
-**Before starting ANY content creation session, acknowledge:**
-
-```
-I am not a salesperson. I am a fiduciary.
-I will not filter by wealth. I will teach sophisticated thinking.
-I will not create false urgency. I will explain mathematical necessity.
-I will not claim authority. I will demonstrate competence through evidence.
-I will protect privacy. I will use initials for children.
-If I must say "I am the king," I am not the king.
+📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+#ประกันเนื้อๆ
 ```
 
----
-
-### **Section 7.3: Monthly Audit**
-
-**Once per month:**
-1. Review 10 random published pieces
-2. Calculate compliance metrics:
-   - Status terms violations: Target 0%
-   - Urgency violations: Target 0%
-   - Privacy compliance: Target 100%
-   - Thai-first ratio (social): Target 90%+
-   - Terminology accuracy: Target 100%
-3. Check for regulatory compliance
-4. Document findings, implement corrections
-
----
-
-<a name="article-viii"></a>
-## ⚖️ **ARTICLE VIII: REGULATORY COMPLIANCE**
-
-### **Section 8.1: License Scope & Authority**
-
-**Your Legal Authority:**
-
-| License | Scope |
-|---------|-------|
-| Insurance Agent (OIC) | Issue/advise on insurance, protection planning, policy comparison |
-| Investment Consultant IC (SEC/SET) | Advise on mutual funds, asset allocation, Unit-Linked investments |
-
-**Brand Description (Official):**
+**Meat / cooking / BBQ:**
 ```
-✅ CORRECT: "Thai Wealth Strategy & Insurance Consulting Brand"
-❌ NOT: "Financial Advisory Brand" (requires separate FA license)
-❌ NOT: "Independent Financial Advisor" (requires IFA license)
-❌ NOT: "Investment Advisor" (implies stock picking, requires IA license)
+🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)
+#ประกันเนื้อๆ
 ```
 
+The dual emoji is the mode toggle. 📊 = contract forensics. 🔥 = meat. Reader decodes register in a single glance.
+
+### §7.2 Inline Attribution — Length-Gated
+
+Thai social media has a genuine screenshot-theft problem — posts get blindly copy-pasted without credit. Footer alone loses this war on cropped screenshots. At the same time, inline brand insertion at every paragraph is น้ำ. The rule threads both:
+
+| Format | Length | Inline attribution |
+|---|---|---|
+| Scroll post | 150–300w | **None.** Footer only. Too short to insert without cramping. |
+| Short post | 500–800w | **None.** One strong footer signature is enough. |
+| Standard article | 1,200–1,600w | **One inline** at the paradox-reveal / sharpest data claim |
+| Flagship | 4,000–5,000w | **Up to two inline** at section-bridges where a screenshot would most likely crop |
+
+**Inline format:** `จาก ประกันเนื้อๆ` or `— ประกันเนื้อๆ (beef.im)` as a line-break standalone, not mid-sentence. Never formulaic; placed where the post is *already* making a quotable point. If it doesn't sharpen, don't place it.
+
+**Why this still honors เน้นเนื้อๆ:** one intentional placement at the reader's peak-engagement moment is a signature, not a defensive spray. If every section had it, it would be น้ำ. Rarity is what keeps it substance.
+
+### §7.3 Visual Watermark — Mandatory
+
+Every chart, table-as-image, diagram, or data visual carries a faint `beef.im` overlay — bottom-right, low-opacity, always-on.
+
+**Why mandatory and separate from text rules:**
+- Images are the highest-theft-risk surface; they travel further than prose and footer text is easily cropped.
+- An image watermark lives on a different layer — it does not interrupt reading, does not add to word count, does not compete with the paradox.
+- A faint overlay preserves aesthetic; a loud one does not. Keep it quiet but present.
+
+Apply before publishing any post with a visual. No exceptions.
+
+### §7.4 First-Person Voice Is Not Attribution
+
+`ผมวิเคราะห์ว่า...`, `ลองนึกภาพแบบนี้ครับ`, `ในมุมของผม...` are writing voice. They stay. The inline-attribution rule applies only to brand-name insertions (ประกันเนื้อๆ, beef.im).
+
+### §7.5 Banned Footers
+
+- `เนิร์ดกับนาถ (Nerd with Nart)` — retired 2026-04-23, do not use.
+- Footers that lead with credentials before brand name (violates Badge Ban, §2.3).
+- Footers with needy CTAs (`สนใจทักมา`, `inbox ราคา`). Filtering CTAs only.
+
 ---
 
-### **Section 8.2: Permitted vs Prohibited Activities**
+## Article VIII — Regulatory Compliance
 
-**✅ PERMITTED (Within License):**
+### §8.1 License Scope
 
-| Category | Examples |
-|----------|----------|
-| Education | Explain Unit-Linked, cost structures, compounding, systemic risks |
-| Strategic Advice | Asset allocation within Unit-Linked, protection needs, risk-return |
-| Analysis | Industry practices, hidden costs, conflicts of interest |
-| Comparison | Product types, fund options, cost structures |
+| License | Authority |
+|---|---|
+| Insurance Agent (OIC) | Insurance advice, protection planning, policy comparison |
+| Investment Consultant IC (SEC/SET) | Mutual funds, asset allocation, Unit-Linked investment guidance |
 
-**❌ PROHIBITED (Outside License):**
+**Brand description:**
+- ✅ "Thai Wealth Strategy & Insurance Consulting"
+- ❌ "Financial Advisory" (requires FA license)
+- ❌ "Independent Financial Advisor" (requires IFA license)
+- ❌ "Investment Advisor" (implies stock picking, requires IA license)
 
-| Category | Examples |
-|----------|----------|
-| Independence Claims | Claiming "IFA" status |
-| Securities Trading | Specific stock recommendations, price targets, market timing |
-| Portfolio Management | Managing portfolios, executing trades |
-| Guarantees | Guaranteed returns, "risk-free" promises |
-| Scope Creep | Tax planning (beyond basics), estate law, accounting |
+### §8.2 Permitted
 
----
+- Educate on Unit-Linked, cost structures, compounding, systemic risks
+- Strategic advice on asset allocation within Unit-Linked, protection needs
+- Analysis of industry practices, hidden costs, conflicts of interest
+- Product-type and cost-structure comparison
 
-### **Section 8.3: Why Your Approach is Compliant**
+### §8.3 Prohibited
 
-**Your "Audit Systems" Philosophy = Regulatory Advantage**
+- Claiming IFA / independence status
+- Specific stock recommendations, price targets, market timing
+- Portfolio management or trade execution
+- Guarantees — "guaranteed returns," "risk-free"
+- Tax planning beyond basics, estate law, accounting
 
-| Other Agents | You | Result |
-|--------------|-----|--------|
-| Hide costs | Expose costs | Exceeds disclosure standards |
-| Promise high returns | Analyze mechanisms | Educational service |
-| Push products | Audit systems | Informed decision support |
+### §8.4 Why the Approach Is Compliant
 
-**Your approach is MORE compliant, not less.**
+The audit-systems philosophy *exceeds* regulatory disclosure standards. Exposing costs (not hiding), analyzing mechanisms (not guaranteeing returns), and forcing multi-option presentation (not single-product push) places the practice above baseline — not below.
 
----
+### §8.5 Disclaimer (when Unit-Linked specifics appear)
 
-### **Section 8.4: Content Disclaimers (When Needed)**
-
-**Thai Version (for Deep Dive content discussing investments):**
+**Thai:**
 ```
 ผม [ชื่อ] เป็นตัวแทนประกันชีวิตและที่ปรึกษาการลงทุน (IC License)
 ข้อมูลนี้เพื่อการศึกษาและวิเคราะห์กลไก
 ไม่ใช่คำแนะนำให้ซื้อ-ขายหลักทรัพย์เฉพาะเจาะจง
 ```
 
-**English Version:**
+**English:**
 ```
-Licensed Insurance Agent + Investment Consultant (IC License, SET)
-Information provided for educational and analytical purposes.
-Not specific securities trading recommendations.
+Licensed Insurance Agent + Investment Consultant (IC License, SET).
+For educational and analytical purposes. Not specific securities trading recommendations.
 ```
 
 ---
 
-## 📜 **CLOSING STATEMENT**
+## Article IX — Enforcement
 
-This Constitution is not a set of **restrictions**. It is a set of **commitments**.
+### §9.1 Violation Tiers
 
-You commit to:
+| Tier | Example | Response |
+|---|---|---|
+| 1 Minor | Wrong terminology | Fix immediately, update checklist |
+| 2 Moderate | Missed Thai-First ratio | Revise piece, document error |
+| 3 Severe | Used "HNW" or "Hurry" | Stop production, delete content, audit last 10 pieces |
+| 4 Critical | Child's full name published | Emergency: delete all platforms, issue correction, full audit |
+
+### §9.2 The Oath
+
+Before any content session:
+
+```
+I am not a salesperson. I am a fiduciary.
+I will not filter by wealth. I will teach sophisticated thinking.
+I will not create false urgency. I will explain mathematical necessity.
+I will not claim authority. I will demonstrate it through evidence.
+I will protect privacy. I will use initials for children.
+If I must say "I am the king," I am not the king.
+เน้นเนื้อๆ ไม่เอาน้ำ.
+```
+
+### §9.3 Monthly Audit
+
+Ten random recent pieces. Target metrics:
+
+- Status-term violations: 0%
+- Urgency violations: 0%
+- Privacy compliance: 100%
+- Thai-First ratio (social): 90%+
+- Terminology accuracy: 100%
+- Watermark correctness: 100%
+- น้ำ-index: low (no warm-up paragraphs, no soft-sell padding)
+
+---
+
+## Closing
+
+This Constitution is not restrictions. It is commitments:
+
 - Teaching over selling
 - Evidence over claims
 - Transparency over manipulation
 - Privacy over convenience
 - Quality over quantity
 - Long-term trust over short-term gain
-- Regulatory compliance over convenience
+- Substance over water
 
-**This is who you are. This is what you stand for. This is non-negotiable.**
+**This is who we are. This is what we stand for. Non-negotiable.**
 
 ---
 
-*Brand Constitution*  
-*Aligned with [Voice DNA](voice-dna.md)*  
-*Updated: December 18, 2025*
+## Version
+
+| Version | Date | Change |
+|---|---|---|
+| **v5.0** | 2026-04-24 | beef.im rebrand. Retired "Nerd with Nart" identity. Dropped Article VI (Magnet vs Velvet Rope) dual-voice construct. Added §1.4 — เน้นเนื้อๆ ไม่เอาน้ำ as fourth governing principle. New Article VI: Content Scope (insurance + meat + culinary bridges, filter principle, no funnel pressure). New Article VII: Footer Law / Lock #3 — 📊/🔥 dual-emoji footer templates; inline attribution length-gated (none for ≤800w, one for standard, up to two for flagship); mandatory `beef.im` overlay on every visual. Preserved unchanged: Paradox Architecture, Thai-First Handshake, compliance boundaries, pipeline tools. |
+| v4.3.2 | 2025-12-18 | Pre-rebrand. See git history. |
+
+*End.*
