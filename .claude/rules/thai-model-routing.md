@@ -1,6 +1,6 @@
 # Thai Content — LLM Routing Doctrine
 
-**Status:** ACTIVE (established 2026-04-21 short-form + 2026-04-22 flagship Mode B, both native-reader audited)
+**Status:** ACTIVE (established 2026-04-21 short-form + 2026-04-22 flagship Mode B + 2026-04-25 tagline workshop, all native-reader audited)
 **Scope:** All Thai production output for nerd-with-nart (MAGNET posts, articles, social drafts).
 
 **Length tier matters** — short-form and flagship longform have different winners. See §3.
@@ -20,7 +20,7 @@ Inverts the English ranking. For English content, Sonnet/Opus remain preferred. 
 
 ## 2. Why
 
-Three blind tests across the same 6-model roster — Kimi K2.6, GLM-5.1, Qwen3.6 Plus, MiniMax M2.7, Sonnet 4.6, Opus 4.7.
+Four blind tests across the same 6-model roster — Kimi K2.6, GLM-5.1, Qwen3.6 Plus, MiniMax M2.7, Sonnet 4.6, Opus 4.7.
 
 **Test 1 — Short-form intro (2026-04-21, 150-300w):** Qwen won.
 > *"Sonnet and Opus were excellent but too good that it sounded like an obvious AI. Qwen one looks good for a short and compact social media message."*
@@ -32,6 +32,13 @@ Three blind tests across the same 6-model roster — Kimi K2.6, GLM-5.1, Qwen3.6
 - Kimi's one-line-per-thought pacing is how Thai longform finance bloggers actually write — not essay-register, not translated-English rhythm.
 - Qwen's same draft leaked four non-Thai characters (`与健康` CN, `Ihnen` DE, `催促` CN, bare `storm` EN) — token integrity breaks under Mode B composition load.
 - GLM-5.1 surprisingly clean this run (no `หวัว`-class garbling) — flag for re-evaluation.
+
+**Test 4 — Tagline workshop (2026-04-25, 15 candidates × 6 models, short-form direct register):** **GLM-5.1 redeemed.**
+- All 6 models produced clean Thai — zero garbling, zero token bleed. MiniMax also cleared short-form on this run.
+- User's top 3 picks: **2 of 3 from GLM-5.1** — #15 *"ดูเนื้อ ไม่ดูหน้า"* (now the brand master line, leverages real Thai idiom meaning *judge by substance, not appearance*) and #14 *"เน้นเนื้อ ทุกเรื่อง"*. Remaining pick: MiniMax *"เนื้อๆ ไม่มีน้ำ"*.
+- GLM's unique strength: **organic Thai-idiom leverage** and **behavioral-observation paradox** (*"คนอ่านเมนูก่อนสั่ง แต่ไม่อ่านกรมธรรม์ก่อนซื้อ"* — the strongest longer-form line in the workshop).
+- Zero picks from Qwen despite its short-form default status — Qwen's strength is *paragraph rhythm*, not 4-word idiom leverage. Different short-form sub-register.
+- Inverts the Apr 21 short-form disqualification for GLM and MiniMax.
 
 The failure mode for Sonnet/Opus is consistent: over-composition. They translate English literary rhythm into Thai essay-register, which reads as AI to native scrollers. What changes with length is which model best avoids *that* without breaking the other direction (Qwen's short-form simplicity becomes short-form rhythm + token bleed at longform).
 
@@ -45,8 +52,8 @@ The failure mode for Sonnet/Opus is consistent: over-composition. They translate
 | **Kimi K2.6** | 🟡 alt | 🟡 alt | ✅ **Default** | Flagship-tier winner (2026-04-22). One-line-per-thought pacing = closest to how Thai longform bloggers write. Mechanism depth (5-step chain) + Naval one-liners both land at length. |
 | **Sonnet 4.6** | 🟡 Auditor | 🟡 Auditor | 🟡 Auditor | Structural reference only. Mode B output is audit-ready (4 watermarks, tables, tool placeholders) but reads slightly AI. Ship as last-resort when Kimi+Qwen both fail. |
 | **Opus 4.7** | 🟡 Strategy | 🟡 Strategy | 🟡 Strategy | Best emotional richness + Dalio closers, but literary over-composition. Use for Architect blueprints, not Performer output. |
-| **GLM-5.1** | ❌ Garbled | ❌ Garbled | ⚠️ **Clean 2026-04-22** | Apr 21 short-form: `หวัว`, `เส้นประสาด`, `เคล็ดขั้นบริเวณ`. Apr 22 flagship: clean Thai, table present, solid structure. **Anomaly — re-test quarterly before reinstating.** |
-| **MiniMax M2.7** | ❌ Token bleed | ❌ Token bleed | ⚠️ Plain-but-clean | Apr 21: `กินยะm`, `Powel ขั้นสูง`. Apr 22 flagship: clean but plainest output; no table, fewest watermarks. Still benched — compliance gain doesn't offset voice-DNA shortfall. |
+| **GLM-5.1** | ✅ **Direct/idiom register (2026-04-25)** | 🟡 alt | ⚠️ Clean 2026-04-22 | Apr 21 short-form garbled; Apr 22 flagship clean; **Apr 25 tagline workshop: won 2 of user's top 3 picks** (idiom-leverage + scope claim). **Redemption confirmed for short-form direct register.** Strength: organic Thai-idiom leverage, behavioral-observation paradox. Not a Qwen replacement — different sub-register (idiom/wit, not paragraph rhythm). Re-test quarterly. |
+| **MiniMax M2.7** | ⚠️ Clean (2026-04-25) | ❌ Token bleed | ⚠️ Plain-but-clean | Apr 21: `กินยะm`, `Powel ขั้นสูง`. Apr 22 flagship: clean but plainest. Apr 25 tagline workshop: clean Thai + 1 of user's top 3 picks (*"เนื้อๆ ไม่มีน้ำ"*). Short-form redemption partial — usable for direct-register drafts, longform still benched. |
 
 **Legend:** ✅ production · 🟡 use with care / non-content role · ⚠️ unstable, needs re-test · ❌ disqualified
 
