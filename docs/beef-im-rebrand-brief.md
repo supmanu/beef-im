@@ -14,9 +14,12 @@
 | Inline watermark decision | ✅ Resolved — length-gated | constitution.md §7.2 |
 | Visual overlay policy | ✅ New rule added | constitution.md §7.3 |
 | Pre-rebrand snapshot | ✅ Tagged | `legacy/pre-beef-im-v5.2` (commit `42012c5`) |
-| Pillar file cleanup (orphans) | ⏳ Next | `nerd/pillars/*` — content-engine, framework-deep-dive, tech-bridge-lab, etc. |
-| Infrastructure rebrand | ⏳ Pending | Navbar, SEO, Vercel domain, metadata |
-| First unit-linked article rewrite | ⏳ Pending | 1,200–1,600w founding-edge piece |
+| Pillar file cleanup (orphans) | ✅ Done 2026-04-24 | 5 orphaned files removed; `master-index.md` v7.0 |
+| Infrastructure rebrand — plan | ✅ Authored 2026-04-24 | [beef-im-infra-plan.md](./beef-im-infra-plan.md) — Option B locked (CNAME `assets.beef.im` → same R2 bucket) |
+| Infrastructure rebrand — Phase 0–1 (user manual) | ⏳ Next | Vercel + Cloudflare R2 secondary-domain setup |
+| Infrastructure rebrand — Phase 2 (Sonnet code) | ⏳ Pending Phase 1 | 7-file code rebrand per plan |
+| Infrastructure rebrand — Phase 3 (user cutover) | ⏳ Pending Phase 2 | Flip primary domain, 301 redirects, Facebook rename |
+| First unit-linked article rewrite | ⏳ Pending infra | 1,200–1,600w founding-edge piece |
 
 ---
 
