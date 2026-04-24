@@ -18,10 +18,10 @@
 | Infrastructure rebrand — plan | ✅ Authored + revised 2026-04-24 | [beef-im-infra-plan.md](./beef-im-infra-plan.md) — new bucket `beef-assets` (clean paths, no `/nwn-assets/` debt) |
 | Infrastructure — Phase 1.1 Vercel domain | ✅ Done 2026-04-24 | `beef.im` primary, `www.beef.im` + CNAME flattening, DNS-only |
 | Infrastructure — Phase 1.2 R2 bucket + upload | ✅ Done 2026-04-24 | `beef-assets` bucket, 5 files at root, avatar renamed to `natapol-supmanu-avatar.png` |
-| Infrastructure — Phase 1.3 `assets.beef.im` binding | ⏳ Next (user manual) | R2 → beef-assets → Settings → Custom Domains |
-| Infrastructure — Phase 2 (Sonnet code) | ⏳ Pending Phase 1.3 | 8 files: SEO, Navbar, layout, sitemap, robots, next.config, ArticleContent, visuals.md |
-| Infrastructure — Phase 3 (Facebook rename + optional nerdwithnart.com 301) | ⏳ Pending Phase 2 | Mostly Facebook; nerdwithnart.com deprecation is separate decision |
-| Infrastructure — Phase 5 (404 page from legacy HTML) | ⏳ Pending Phase 2 | Convert `Beef.im HTML fun web.txt` → `app/not-found.tsx`, recolor to brand palette |
+| Infrastructure — Phase 1.3 `assets.beef.im` binding | ✅ Done 2026-04-24 | R2 custom domain bound + SSL verified |
+| Infrastructure — Phase 2 (Sonnet code) | ✅ Done 2026-04-24 | 20 files: SEO, Navbar, layout, sitemap, robots, next.config, ArticleContent, visuals.md + 6 sweep hits + SYSTEM_STATE.md |
+| Infrastructure — Phase 3 (Facebook rename + optional nerdwithnart.com 301) | ⏳ User manual (~15 min) | Facebook page rename to ประกันเนื้อ々; nerdwithnart.com deprecation is separate decision |
+| Infrastructure — Phase 5 (404 page from legacy HTML) | ✅ Done 2026-04-24 | `app/not-found.tsx` + `app/not-found.module.css`; 12 beef facts, typing effect, SVG animations, red/gold palette |
 | First unit-linked article rewrite | ⏳ Pending infra | 1,200–1,600w founding-edge piece |
 
 ---
