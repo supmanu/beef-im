@@ -4,6 +4,22 @@
 
 ---
 
+## STATUS (as of 2026-04-24)
+
+| Item | State | Where |
+|---|---|---|
+| voice-dna.md recalibration | ✅ Done | `nerd/pillars/voice-dna.md` v6.0 |
+| constitution.md recalibration | ✅ Done | `nerd/pillars/constitution.md` v5.0 |
+| Footer Law / Lock #3 update | ✅ Done | constitution.md Article VII |
+| Inline watermark decision | ✅ Resolved — length-gated | constitution.md §7.2 |
+| Visual overlay policy | ✅ New rule added | constitution.md §7.3 |
+| Pre-rebrand snapshot | ✅ Tagged | `legacy/pre-beef-im-v5.2` (commit `42012c5`) |
+| Pillar file cleanup (orphans) | ⏳ Next | `nerd/pillars/*` — content-engine, framework-deep-dive, tech-bridge-lab, etc. |
+| Infrastructure rebrand | ⏳ Pending | Navbar, SEO, Vercel domain, metadata |
+| First unit-linked article rewrite | ⏳ Pending | 1,200–1,600w founding-edge piece |
+
+---
+
 ## The Decision
 
 Drop "Nerd with Nart" entirely before public launch. The public brand is **beef.im**.
@@ -162,23 +178,32 @@ First rewrite priority: unit-linked side-contract article → expand to standard
 
 Current footer law uses "เนิร์ดกับนาถ (Nerd with Nart)" — must be replaced everywhere.
 
-**Watermark — decided (B + C hybrid):**
+**Watermark — finalized 2026-04-24 (B + C hybrid + length-gated inline + visual overlay):**
 
-- Finance/insurance posts: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
-- Beef/cooking posts: `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
-- Inline attribution: `จาก ประกันเนื้อๆ` — **pending final decision with Opus**
+- Finance/insurance footer: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
+- Beef/cooking footer: `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
 - Hashtag: `#ประกันเนื้อๆ`
 
 Dual emoji acts as immediate mode toggle — 📊 = contract forensics, 🔥 = meat/cooking.
 
-**The inline tension to resolve with Opus:**
-- *For:* Content theft is real in Thai social media — screenshots get reshared without credit. `จาก ประกันเนื้อๆ` mid-article is lightweight defence.
-- *Against:* Inserting brand name mid-sentence is น้ำ — interrupts data flow. Footer alone handles attribution cleanly. The "Oracle effect" is strongest with zero inline interruption.
-- *Middle ground:* Use inline only at key conclusions or data claims — not every paragraph.
+**Inline attribution — length-gated:**
 
-**Distinction regardless of decision:** No inline watermark ≠ no first-person voice. Natural `ผม` in Thai prose (`ผมวิเคราะห์ว่า...`, `ลองนึกภาพแบบนี้ครับ`) is kept — that is writing voice, not attribution.
+| Format | Length | Inline |
+|---|---|---|
+| Scroll post | 150–300w | None |
+| Short post | 500–800w | None |
+| Standard article | 1,200–1,600w | One at paradox-reveal |
+| Flagship | 4,000–5,000w | Up to two at section-bridges |
 
-**Opus task:** Update Lock #3 (Footer Law) in constitution.md with this system.
+Inline form: `จาก ประกันเนื้อๆ` / `— ประกันเนื้อๆ (beef.im)` as a line-break standalone, not mid-sentence. Rarity at peak-engagement placement = signature, not spray.
+
+**Visual overlay — mandatory:** every chart / table-as-image / diagram carries a faint `beef.im` overlay (bottom-right, low-opacity). Images are the highest-theft-risk surface; overlays live on a different layer so they don't interrupt prose.
+
+**Why this shape:** pure footer-only was too brand-law-pure and under-weighted Thai screenshot-theft reality. Per-paragraph inline would be น้ำ. Length-gated rarity + mandatory image overlay threads both.
+
+**Distinction:** No inline watermark ≠ no first-person voice. Natural `ผม` in Thai prose (`ผมวิเคราะห์ว่า...`, `ลองนึกภาพแบบนี้ครับ`) stays — that is writing voice, not attribution.
+
+**Codified in:** `nerd/pillars/constitution.md` Article VII (§7.1 footer templates, §7.2 inline length-gate, §7.3 visual overlay, §7.4 first-person distinction, §7.5 banned footers).
 
 ---
 
@@ -206,4 +231,4 @@ English (beef.im bio):
 ---
 
 *Decision made 2026-04-23. Pre-launch — zero audience cost to rebrand.*
-*Voice-dna + constitution rewrite: Opus 4.7 tomorrow (post Claude usage reset).*
+*Voice-dna + constitution rewrite: ✅ Done 2026-04-24 (Opus 4.7). See STATUS table at top for follow-up items.*
