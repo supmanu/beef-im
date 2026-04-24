@@ -15,10 +15,13 @@
 | Visual overlay policy | ✅ New rule added | constitution.md §7.3 |
 | Pre-rebrand snapshot | ✅ Tagged | `legacy/pre-beef-im-v5.2` (commit `42012c5`) |
 | Pillar file cleanup (orphans) | ✅ Done 2026-04-24 | 5 orphaned files removed; `master-index.md` v7.0 |
-| Infrastructure rebrand — plan | ✅ Authored 2026-04-24 | [beef-im-infra-plan.md](./beef-im-infra-plan.md) — Option B locked (CNAME `assets.beef.im` → same R2 bucket) |
-| Infrastructure rebrand — Phase 0–1 (user manual) | ⏳ Next | Vercel + Cloudflare R2 secondary-domain setup |
-| Infrastructure rebrand — Phase 2 (Sonnet code) | ⏳ Pending Phase 1 | 7-file code rebrand per plan |
-| Infrastructure rebrand — Phase 3 (user cutover) | ⏳ Pending Phase 2 | Flip primary domain, 301 redirects, Facebook rename |
+| Infrastructure rebrand — plan | ✅ Authored + revised 2026-04-24 | [beef-im-infra-plan.md](./beef-im-infra-plan.md) — new bucket `beef-assets` (clean paths, no `/nwn-assets/` debt) |
+| Infrastructure — Phase 1.1 Vercel domain | ✅ Done 2026-04-24 | `beef.im` primary, `www.beef.im` + CNAME flattening, DNS-only |
+| Infrastructure — Phase 1.2 R2 bucket + upload | ✅ Done 2026-04-24 | `beef-assets` bucket, 5 files at root, avatar renamed to `natapol-supmanu-avatar.png` |
+| Infrastructure — Phase 1.3 `assets.beef.im` binding | ⏳ Next (user manual) | R2 → beef-assets → Settings → Custom Domains |
+| Infrastructure — Phase 2 (Sonnet code) | ⏳ Pending Phase 1.3 | 8 files: SEO, Navbar, layout, sitemap, robots, next.config, ArticleContent, visuals.md |
+| Infrastructure — Phase 3 (Facebook rename + optional nerdwithnart.com 301) | ⏳ Pending Phase 2 | Mostly Facebook; nerdwithnart.com deprecation is separate decision |
+| Infrastructure — Phase 5 (404 page from legacy HTML) | ⏳ Pending Phase 2 | Convert `Beef.im HTML fun web.txt` → `app/not-found.tsx`, recolor to brand palette |
 | First unit-linked article rewrite | ⏳ Pending infra | 1,200–1,600w founding-edge piece |
 
 ---
