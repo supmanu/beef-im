@@ -2,12 +2,12 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  --primary: #2bb1bb;
+  --primary: #E63946;
   --secondary: #F1FAEE;
-  --accent: #F59E0B;
+  --accent: #FFD166;
   --dark: #1D3557;
   --light: #F8F9FA;
-  --gold: #F59E0B;
+  --gold: #FFD166;
 }
 
 .header {
@@ -20,7 +20,7 @@
   font-weight: 800;
   margin-bottom: 0.5rem;
   display: inline-block;
-  background: linear-gradient(90deg, #2bb1bb, #1a8a93);
+  background: linear-gradient(90deg, #E63946, #D62828);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -83,9 +83,9 @@
 
 .categoryCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
-  background: rgba(245, 158, 11, 0.08);
-  outline: 2px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 209, 102, 0.25);
+  background: rgba(255, 209, 102, 0.08);
+  outline: 2px solid rgba(255, 209, 102, 0.3);
   outline-offset: -2px;
 }
 
@@ -210,7 +210,7 @@
   max-width: 300px;
   margin: 2rem auto;
   padding: 1rem;
-  background: linear-gradient(to right, #2bb1bb, #1a8a93);
+  background: linear-gradient(to right, #E63946, #D62828);
   color: white;
   border: none;
   border-radius: 50px;
@@ -220,12 +220,12 @@
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(43, 177, 187, 0.3);
+  box-shadow: 0 4px 8px rgba(230, 57, 70, 0.3);
 }
 
 .ctaButton:hover {
   transform: scale(1.02);
-  box-shadow: 0 6px 12px rgba(43, 177, 187, 0.4);
+  box-shadow: 0 6px 12px rgba(230, 57, 70, 0.4);
 }
 
 .ctaButton:hover::after {
