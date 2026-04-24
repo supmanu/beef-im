@@ -55,9 +55,9 @@ const Navbar: React.FC = () => {
             />
 
             {/* PART B: THE TEXT STACK */}
-            <div className="flex flex-col justify-center text-center">
+            <div className="flex flex-col justify-center">
               {/* Main Title */}
-              <span className="font-prompt font-bold text-white text-lg lg:text-xl leading-none tracking-wide">
+              <span className="font-prompt font-bold text-white text-lg lg:text-xl leading-none tracking-wide ml-[-2px]">
                 ประกันเนื้อๆ
               </span>
               {/* Tagline */}

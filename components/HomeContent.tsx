@@ -43,7 +43,7 @@ const HomeContent: React.FC = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
-                        className="text-xl md:text-2xl text-gray-300 max-w-2xl font-light mb-10 leading-relaxed font-prompt"
+                        className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto font-light mb-10 leading-relaxed font-prompt"
                     >
                         เรื่องประกันเราจริงจัง เรื่องย่างเนื้อเราก็จัดเต็ม
                     </motion.p>
@@ -52,10 +52,10 @@ const HomeContent: React.FC = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
-                        className="flex flex-col sm:flex-row gap-4"
+                        className="flex flex-col sm:flex-row gap-4 justify-center"
                     >
                         <div
-                            className="flex-1 max-w-md h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center px-2 pl-6 transition-colors hover:bg-white/10 hover:border-white/30 cursor-pointer"
+                            className="max-w-md w-full mx-auto h-14 bg-white/5 backdrop-blur-md border border-white/10 rounded-full flex items-center px-2 pl-6 transition-colors hover:bg-white/10 hover:border-white/30 cursor-pointer"
                             onClick={openSearch}
                         >
                             <input
