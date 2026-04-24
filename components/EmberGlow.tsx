@@ -37,7 +37,7 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
 
         const createEmbers = () => {
             embers = [];
-            const count = Math.min(100, Math.max(63, intensity * 1.0));
+            const count = Math.min(130, Math.max(95, intensity * 1.2));
 
             for (let i = 0; i < count; i++) {
                 embers.push({
