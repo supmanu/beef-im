@@ -7,8 +7,9 @@ interface Ember {
     y: number;
     radius: number;
     speed: number;
+    drift: number;
+    opacity: number;
     swayOffset: number;
-    baseOpacity: number;
 }
 
 interface EmberGlowProps {
@@ -37,16 +38,17 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
 
         const createEmbers = () => {
             embers = [];
-            const count = Math.min(130, Math.max(95, intensity * 1.2));
+            const count = 120 + intensity;
 
             for (let i = 0; i < count; i++) {
                 embers.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 1.5,
-                    speed: Math.random() * 0.5 + 0.3,
+                    radius: Math.random() * 2 + 1,
+                    speed: Math.random() * 0.6 + 0.2,
+                    drift: Math.random() * 0.3 - 0.15,
+                    opacity: Math.random() * 0.5 + 0.3,
                     swayOffset: Math.random() * Math.PI * 2,
-                    baseOpacity: Math.random() * 0.4 + 0.2,
                 });
             }
         };
@@ -55,23 +57,23 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
             if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.shadowColor = 'rgba(255, 209, 102, 0.15)';
+            ctx.shadowColor = 'rgba(255, 209, 102, 0.12)';
             ctx.shadowBlur = 6;
 
             embers.forEach((e) => {
                 e.y -= e.speed;
-                e.x += Math.sin(e.swayOffset) * 0.3;
-                e.swayOffset += 0.008;
+                e.x += Math.sin(e.swayOffset) * 0.5 + e.drift;
+                e.swayOffset += 0.01;
 
                 const dx = e.x - mouseX;
                 const dy = e.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                const repelRadius = 120;
+                const repelRadius = 150;
 
                 if (distance < repelRadius) {
                     const force = (repelRadius - distance) / repelRadius;
                     const angle = Math.atan2(dy, dx);
-                    const pushStrength = 0.8;
+                    const pushStrength = 2;
                     e.x += Math.cos(angle) * force * pushStrength;
                     e.y += Math.sin(angle) * force * pushStrength;
                 }
@@ -86,12 +88,11 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
                     e.x = canvas.width;
                 }
 
-                const fadeFactor = Math.min(1, (canvas.height - e.y) / canvas.height * 2);
-                const opacity = e.baseOpacity * Math.max(0.05, fadeFactor);
+                const fade = e.y < 100 ? Math.max(0.05, e.y / 100) : 1;
 
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 209, 102, ${opacity})`;
+                ctx.fillStyle = `rgba(255, 209, 102, ${e.opacity * fade})`;
                 ctx.fill();
             });
 
