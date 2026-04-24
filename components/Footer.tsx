@@ -88,9 +88,8 @@ const Footer: React.FC = () => {
 
           {/* 4. THE MANIFESTO TAGLINE (English - Legacy Quant Voice) */}
           <div className="mb-10 text-center max-w-2xl px-4">
-            <p className="text-brand-teal/90 text-sm md:text-base font-['Sarabun'] leading-relaxed italic">
-              "We don't sell shortcuts to wealth. <br className="hidden md:block" />
-              We provide the <span className="text-brand-amber font-bold not-italic">map</span> and the <span className="text-brand-amber font-bold not-italic">compass</span> for a safe expedition."
+            <p className="text-brand-teal/90 text-sm md:text-base font-['Prompt'] leading-relaxed">
+              ดูเนื้อ ไม่ดูหน้า
             </p>
           </div>
 

@@ -23,8 +23,8 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'หน้าหลัก', sub: 'Basecamp', path: '/' },
-    { name: 'คลังเครื่องมือ', sub: 'Gear Check', path: '/tools' },
+    { name: 'หน้าหลัก', sub: 'Home', path: '/' },
+    { name: 'คลังเครื่องมือ', sub: 'Tools', path: '/tools' },
     { name: 'คลังความรู้', sub: 'Archive', path: '/articles' },
     { name: 'จุดยืน', sub: 'Manifesto', path: '/manifesto' },
     { name: 'ติดต่อ', sub: 'Contact', path: '/contact' },
@@ -61,8 +61,8 @@ const Navbar: React.FC = () => {
                 ประกันเนื้อๆ
               </span>
               {/* Tagline */}
-              <span className="font-sarabun text-amber-500 text-[10px] font-medium tracking-[0.2em] leading-tight">
-                DATA. LOGIC. LEGACY.
+              <span className="font-prompt text-amber-500 text-xs font-medium tracking-wide leading-tight">
+                ดูเนื้อ ไม่ดูหน้า
               </span>
             </div>
           </Link>

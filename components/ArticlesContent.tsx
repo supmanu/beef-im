@@ -45,6 +45,9 @@ export default function ArticlesContent({ initialPosts, categories }: ArticlesCo
                     <h1 className="text-5xl md:text-7xl font-bold text-white font-prompt tracking-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
                         คลังความรู้
                     </h1>
+                    <p className="text-brand-amber text-sm tracking-widest font-mono animate-slide-up" style={{ animationDelay: '0.15s' }}>
+                        เน้นเนื้อ ทุกเรื่อง
+                    </p>
                     <p className="text-xl text-slate-400 max-w-2xl mx-auto font-sarabun leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
                         บันทึกการเดินทางและองค์ความรู้ที่รวบรวมจากการทำงานจริง
                     </p>
