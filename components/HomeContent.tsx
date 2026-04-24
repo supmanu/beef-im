@@ -20,7 +20,7 @@ const HomeContent: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B1D35] via-transparent to-transparent"></div>
                 </div>
 
-                <div className="relative z-10 max-w-5xl mx-auto px-6 w-full">
+                <div className="relative z-10 max-w-5xl mx-auto px-6 w-full text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
