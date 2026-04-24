@@ -7,17 +7,17 @@ import ForensicScroll from '@/components/landing/ForensicScroll';
 import GhostDemo from '@/components/landing/GhostDemo';
 
 export const metadata: Metadata = {
-  title: "Nerd with Nart (เนิร์ดกับนาถ) | Financial Strategy",
-  description: "Data. Logic. Legacy. Designing financial architecture and insurance systems for the sophisticated investor.",
+  title: "ประกันเนื้อๆ (beef.im) | Insurance Forensics & Meat",
+  description: "Insurance forensics. Meat tricks. No filler.",
   openGraph: {
     type: 'website',
-    url: 'https://nerdwithnart.com',
-    title: "Nerd with Nart (เนิร์ดกับนาถ) | Financial Strategy",
-    description: "Data. Logic. Legacy.",
+    url: 'https://beef.im',
+    title: "ประกันเนื้อๆ (beef.im) | Insurance Forensics & Meat",
+    description: "Insurance forensics. Meat tricks. No filler.",
     images: [{
-      url: "https://assets.nerdwithnart.com/nwn-assets/og-background.jpg",
+      url: "https://assets.beef.im/og-background.jpg",
     }],
-    siteName: "Nerd with Nart",
+    siteName: "ประกันเนื้อๆ",
   },
 };
 

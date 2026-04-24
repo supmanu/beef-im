@@ -49,8 +49,8 @@ const Navbar: React.FC = () => {
           >
             {/* PART A: THE ICON */}
             <img
-              src="https://assets.nerdwithnart.com/nwn-assets/navbar-logo.png"
-              alt="Nerd with Nart Logo"
+              src="https://assets.beef.im/navbar-logo.png"
+              alt="ประกันเนื้อๆ Logo"
               className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
             />
 
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
             <div className="flex flex-col justify-center">
               {/* Main Title */}
               <span className="font-prompt font-bold text-white text-lg lg:text-xl leading-none tracking-wide">
-                NERD WITH NART
+                ประกันเนื้อๆ
               </span>
               {/* Tagline */}
               <span className="font-sarabun text-amber-500 text-[10px] font-medium tracking-[0.2em] leading-tight">

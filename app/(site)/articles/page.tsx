@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import ArticlesContent from '@/components/ArticlesContent';
 
 export const metadata: Metadata = {
-    title: 'คลังความรู้ (The Archive) - Nerd with Nart',
+    title: 'คลังความรู้ (The Archive) - ประกันเนื้อๆ',
     description: 'บันทึกการเดินทางและองค์ความรู้ที่รวบรวมจากการทำงานจริง',
 };
 

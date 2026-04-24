@@ -1,18 +1,18 @@
 # Visual Assets & Sovereign Branding
 
 ## Sovereign Asset Registry (R2)
-**CDN Domain:** `https://assets.nerdwithnart.com/nwn-assets/`
-**Bucket:** `nwn-assets` (Cloudflare R2, S3-compatible)
-**Status:** 100% sovereign — zero Hygraph CDN dependencies remain (migrated Mar 22, 2026)
+**CDN Domain:** `https://assets.beef.im/`
+**Bucket:** `beef-assets` (Cloudflare R2, S3-compatible)
+**Status:** 100% sovereign — zero Hygraph CDN dependencies remain (migrated Mar 22, 2026; rebranded to beef.im Apr 24, 2026)
 
 ### Asset Inventory
 | File | Size | Usage |
 |------|------|-------|
-| `natapol-supmanu-nerd-with-nart-avatar.png` | — | Author avatar (ArticleContent.tsx) |
-| `hero-mountain.jpg` | 94K | Homepage hero (HomeContent.tsx) |
-| `contact-basecamp.jpg` | 160K | Contact page photo (ContactContent.tsx) |
+| `natapol-supmanu-avatar.png` | 496K | Author avatar (ArticleContent.tsx) — renamed from `natapol-supmanu-nerd-with-nart-avatar.png` |
+| `hero-mountain.jpg` | 96K | Homepage hero (HomeContent.tsx) |
+| `contact-basecamp.jpg` | 163K | Contact page photo (ContactContent.tsx) |
 | `navbar-logo.png` | 9K | Site logo (Navbar.tsx) |
-| `og-background.jpg` | 353K | OG image + backgrounds (BackgroundLayers, SEO, page.tsx, manifesto) |
+| `og-background.jpg` | 361K | OG image + backgrounds (BackgroundLayers, SEO, page.tsx, manifesto) |
 
 ### Code References (7 locations)
 - `components/HomeContent.tsx` — hero-mountain.jpg
@@ -23,12 +23,18 @@
 - `app/(site)/page.tsx` — og-background.jpg (metadata)
 - `app/(site)/manifesto/page.tsx` — og-background.jpg (background)
 
-## Sovereign Avatar Protocol (v1.0)
+### Legacy Bucket
+**Domain:** `https://assets.nerdwithnart.com/nwn-assets/`
+**Bucket:** `nwn-assets` (Cloudflare R2, left untouched)
+**Status:** Legacy only — serves historical article images. New assets use `beef-assets` bucket.
+**Avatar old filename:** `natapol-supmanu-nerd-with-nart-avatar.png` (still available via legacy bucket for backward compatibility)
+
+## Sovereign Avatar Protocol (v1.1)
 - **Pattern:** Use verified static R2 URL for the author avatar.
-- **URL:** `https://assets.nerdwithnart.com/nwn-assets/natapol-supmanu-nerd-with-nart-avatar.png`
+- **URL:** `https://assets.beef.im/natapol-supmanu-avatar.png`
 
 ```tsx
-const AVATAR_URL = "https://assets.nerdwithnart.com/nwn-assets/natapol-supmanu-nerd-with-nart-avatar.png";
+const AVATAR_URL = "https://assets.beef.im/natapol-supmanu-avatar.png";
 ```
 
 ## Remote Asset Domains
@@ -36,10 +42,15 @@ const AVATAR_URL = "https://assets.nerdwithnart.com/nwn-assets/natapol-supmanu-n
 ```javascript
 {
   protocol: 'https',
-  hostname: 'assets.nerdwithnart.com',
-  port: '',
-  pathname: '/**',
+  hostname: 'assets.beef.im',
 }
+// Legacy hostname (still whitelisted for historical article images):
+// {
+//   protocol: 'https',
+//   hostname: 'assets.nerdwithnart.com',
+//   port: '',
+//   pathname: '/**',
+// }
 ```
 
 ## Site-Wide Typography Standards (Mar 22, 2026)

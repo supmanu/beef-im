@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
 
           {/* 1. BRAND IDENTITY */}
           <h2 className="text-2xl font-bold font-['Prompt'] tracking-widest text-white mb-2">
-            NERD WITH NART
+            ประกันเนื้อๆ
           </h2>
           <p className="text-xs font-bold text-brand-amber tracking-widest mb-10">
             DATA • LOGIC • LEGACY
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
               เนื้อหาทั้งหมดจัดทำขึ้นเพื่อการศึกษาและวิเคราะห์กลไกทางการเงินเท่านั้น มิใช่คำแนะนำทางการเงินหรือการชี้ชวนให้ลงทุน
             </p>
             <p className="text-slate-700 text-[10px]">
-              © {new Date().getFullYear()} Nerd with Nart. All Rights Reserved.
+              © {new Date().getFullYear()} ประกันเนื้อๆ. All Rights Reserved.
             </p>
           </div>
 

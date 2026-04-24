@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/_next/',
     },
-    sitemap: 'https://nerdwithnart.com/sitemap.xml',
+    sitemap: 'https://beef.im/sitemap.xml',
   };
 }

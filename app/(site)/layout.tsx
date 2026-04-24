@@ -20,8 +20,8 @@ const sarabun = Sarabun({
 });
 
 export const metadata: Metadata = {
-  title: "Nerd with Nart (เนิร์ดกับนาถ) | Financial Strategy",
-  description: "Data. Logic. Legacy.",
+  title: "ประกันเนื้อๆ (beef.im) | Insurance Forensics & Meat",
+  description: "Insurance forensics. Meat tricks. No filler.",
 };
 
 export default function SiteLayout({

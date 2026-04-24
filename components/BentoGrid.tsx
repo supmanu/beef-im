@@ -19,7 +19,7 @@ export default function BentoGrid() {
             icon: ScrollText,
             category: 'The Manifesto',
             title: 'จุดยืนของเรา',
-            description: 'ทำไมเราถึงไม่ขาย "ทางลัด" สู่ความมั่งคั่ง? อ่านเบื้องหลังความคิดและปรัชญาการทำงานของ Nerd with Nart',
+            description: 'ทำไมเราถึงไม่ขาย "ทางลัด" สู่ความมั่งคั่ง? อ่านเบื้องหลังความคิดและปรัชญาการทำงานของ ประกันเนื้อๆ',
             cta: 'อ่านต่อ'
         },
         {

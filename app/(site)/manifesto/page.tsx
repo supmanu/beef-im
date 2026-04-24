@@ -69,7 +69,7 @@ export default function Manifesto() {
       {/* Image Layer (Placeholder URL - User to replace) */}
       <div
         className="fixed inset-0 z-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: "url('https://assets.nerdwithnart.com/nwn-assets/og-background.jpg')" }}
+        style={{ backgroundImage: "url('https://assets.beef.im/og-background.jpg')" }}
       ></div>
 
       {/* Black Overlay for Readability */}
@@ -108,7 +108,7 @@ export default function Manifesto() {
               แต่คือความสม่ำเสมอในการรักษาระดับออกซิเจนในเลือด
             </p>
             <p>
-              ที่ <strong className="text-white">Nerd with Nart</strong> เราไม่ได้ขายตั๋วทางลัดสู่ความรวย
+              ที่ <strong className="text-white">ประกันเนื้อๆ</strong> เราไม่ได้ขายตั๋วทางลัดสู่ความรวย
               แต่เรามอบเครื่องมือ แผนที่ และเข็มทิศ ให้คุณเดินถึงยอดเขา... อย่างปลอดภัย
             </p>
           </div>

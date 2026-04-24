@@ -7,7 +7,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react';
 import ArticlesBackground from '@/components/ArticlesBackground';
 
 // Temporary Sovereign Override
-const AVATAR_URL = "https://assets.nerdwithnart.com/nwn-assets/natapol-supmanu-nerd-with-nart-avatar.png";
+const AVATAR_URL = "https://assets.beef.im/natapol-supmanu-avatar.png";
 
 // ✅ FIXED: Map Categories to Badge Colors (Teal Protocol Enforced)
 const colorMap: Record<string, string> = {
@@ -91,12 +91,12 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ post }) => {
                         <div className="w-12 h-12 rounded-full bg-gray-700 overflow-hidden border-2 border-white flex items-center justify-center">
                             <img
                                 src={AVATAR_URL}
-                                alt="Nerd with Nart"
+                                alt="ประกันเนื้อๆ"
                                 className="w-full h-full object-cover"
                             />
                         </div>
                         <div>
-                            <div className="text-white text-sm font-bold">Nerd with Nart</div>
+                            <div className="text-white text-sm font-bold">ประกันเนื้อๆ</div>
                             <div className="text-gray-500 text-xs flex items-center gap-1">
                                 <Calendar size={10} /> {new Date(post.publishedDate || post.createdAt).toLocaleDateString('en-GB')}
                             </div>

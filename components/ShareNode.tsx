@@ -17,7 +17,7 @@ const ShareNode: React.FC<ShareNodeProps> = ({ title, slug }) => {
             setUrl(window.location.href);
         } else {
             // Fallback if window is undefined (though in React component it usually is fine on mount)
-            setUrl(`https://nerdwithnart.com/articles/${slug}`);
+            setUrl(`https://beef.im/articles/${slug}`);
         }
     }, [slug]);
 
@@ -38,7 +38,7 @@ const ShareNode: React.FC<ShareNodeProps> = ({ title, slug }) => {
     };
 
     // Text for Twitter/X
-    const text = "Check this out from Nerd with Nart";
+    const text = "Check this out from ประกันเนื้อๆ";
 
     return (
         <div className="

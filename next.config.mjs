@@ -33,6 +33,18 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'beef.im',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.beef.im',
+            },
+            {
+                protocol: 'https',
+                hostname: 'assets.beef.im',
+            },
+            {
+                protocol: 'https',
                 hostname: '**.r2.dev',
             },
             {

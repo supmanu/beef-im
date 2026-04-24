@@ -21,11 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post: any = await getSovereignArticleBySlug(slug);
 
     if (!post) {
-        return { title: 'Article Not Found | Nerd with Nart' };
+        return { title: 'Article Not Found | ประกันเนื้อๆ' };
     }
 
     // Handle Image URL
-    const coverImageUrl = post.coverImage?.url || post.coverImage || 'https://nerdwithnart.com/default-og.jpg';
+    const coverImageUrl = post.coverImage?.url || post.coverImage || 'https://beef.im/default-og.jpg';
 
     return {
         title: post.title,
@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         openGraph: {
             title: post.title,
             description: post.excerpt || "Data. Logic. Legacy.",
-            url: `https://nerdwithnart.com/articles/${slug}`,
-            siteName: 'Nerd with Nart',
+            url: `https://beef.im/articles/${slug}`,
+            siteName: 'ประกันเนื้อๆ',
             images: [{
                 url: coverImageUrl,
                 width: 1200,
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             }],
             type: 'article',
             publishedTime: post.publishedDate,
-            authors: ['Nerd with Nart'],
+            authors: ['ประกันเนื้อๆ'],
         },
         twitter: {
             card: 'summary_large_image',

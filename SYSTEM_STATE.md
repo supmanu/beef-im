@@ -170,7 +170,7 @@
     *   **Tools:** COI disclaimer dark-themed (`bg-slate-800/60`), Dynasty Simulator harmonized, IRR Truth Teller currency inputs fixed (type="text" + parseCurrency).
     *   **Contact Page:** All label tracking normalized to `tracking-wider`.
     *   **Asset Sovereignty:** ALL static assets migrated from Hygraph CDN to R2 (`assets.nerdwithnart.com/nwn-assets/`). Zero `graphassets.com` references remain in codebase.
-    *   **R2 Asset Registry:** hero-mountain.jpg (94K), contact-basecamp.jpg (160K), navbar-logo.png (9K), og-background.jpg (353K), natapol-supmanu-nerd-with-nart-avatar.png (existing).
+    *   **R2 Asset Registry:** hero-mountain.jpg (94K), contact-basecamp.jpg (160K), navbar-logo.png (9K), og-background.jpg (353K), natapol-supmanu-avatar.png (renamed from natapol-supmanu-nerd-with-nart-avatar.png, rebrand Apr 24, 2026).
 *   **[Manifesto Page]** Typography & Layout Refinement Complete (Dec 25, 2025).
     *   **Hero:** Optimized heading size (`text-4xl/6xl/7xl`) for balanced impact.
     *   **Container:** Widened from `max-w-4xl` to `max-w-5xl` for less cramped feel.

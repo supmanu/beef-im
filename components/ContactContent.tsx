@@ -108,7 +108,7 @@ export default function ContactContent() {
                                 <motion.img
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.7 }}
-                                    src="https://assets.nerdwithnart.com/nwn-assets/contact-basecamp.jpg"
+                                    src="https://assets.beef.im/contact-basecamp.jpg"
                                     alt="Communicating from Basecamp"
                                     className="w-full h-full object-cover opacity-70"
                                 />

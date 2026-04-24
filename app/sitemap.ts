@@ -4,7 +4,7 @@ import { getSovereignArticles } from '@/lib/payload';
 export const dynamic = 'force-static';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://nerdwithnart.com';
+  const baseUrl = 'https://beef.im';
 
   // Fetch from Sovereign Payload DB
   let articles = [];
