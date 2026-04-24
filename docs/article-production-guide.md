@@ -235,7 +235,7 @@ Follow all compliance rules in the performer instructions.
 - [ ] Watermark count correct? (S=1, A=3, B=4, C=5)
 - [ ] Thai-First ratio >= 85%?
 - [ ] Correct spelling: นาถ (not นาท)?
-- [ ] Footer matches template: `📊 บทวิเคราะห์โดย: เนิร์ดกับนาถ (Nerd with Nart)`
+- [ ] Footer matches constitution.md Article VII: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)` (finance) / `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` (meat)
 - [ ] No "พี่" (Pi) self-reference?
 - [ ] No English headers in production output?
 - [ ] **No specific drug/medication names** (Metformin, Atorvastatin, etc.) — see compliance boundaries

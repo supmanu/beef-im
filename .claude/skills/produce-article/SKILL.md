@@ -66,7 +66,7 @@ Read the full performer instructions from `nerd/agents/performer.md` before writ
 - NHES VII stats (not NHES 6)
 - Watermark count correct (S=1, A=3, B=4, C=5)
 - Thai-First >= 85%
-- Footer: `📊 บทวิเคราะห์โดย: เนิร์ดกับนาถ (Nerd with Nart)`
+- Footer: Per constitution.md Article VII: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)` (finance) / `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` (meat)
 
 **Output the draft, then immediately proceed to Step 3.**
 

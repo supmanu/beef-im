@@ -1,4 +1,4 @@
-# NERD WITH NART: SYSTEM STATE
+# ประกันเนื้อๆ (beef.im): SYSTEM STATE
 
 ## 🧹 GEM MAINTENANCE PROTOCOL (COLD STORAGE)
 **Location:** `_archive/legacy_pillars/`
@@ -32,7 +32,7 @@
 * **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
-*   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).** Drop "Nerd with Nart" before public launch. Public brand: beef.im (domain) + ประกันเนื้อๆ (Facebook). Repo stays `nerd-with-nart`. Voice-dna + constitution recalibration pending (Opus 4.7). Brief: `docs/beef-im-rebrand-brief.md`.
+*   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).** Drop "Nerd with Nart" before public launch. Public brand: beef.im (domain) + ประกันเนื้อๆ (Facebook). Repo stays `nerd-with-nart`. **Voice-dna v6.0 + constitution v5.0 recalibration: ✅ COMPLETE (Apr 24, 2026).** Agent instruction files (CLAUDE.md, AGENTS.md, SKILL.md, article-production-guide.md) footer/watermark rebranded. Brief: `docs/beef-im-rebrand-brief.md`.
 *   **[Insurance Ops]** **AIA Client Onboarding Toolkit Deployed (Apr 22, 2026).**
     *   **Health Questions Preview (`Health_Questions_PREVIEW_Card.md`):** Compact bilingual EN/TH checklist for pre-meeting client prep. Sent via LINE before iPad sessions.
     *   **Medical History Checklist (`Medical_History_Checklist.md`):** Full 8-section self-assessment (symptoms, diagnosed conditions, surgeries, medications, family history, lifestyle, tests, declarations).
@@ -150,7 +150,7 @@
 ## 🧠 STRATEGIC LOCKS
 1.  **Hybrid Law:** Voice DNA is in Prompt. Constitution is in Vector.
 2.  **Identity Law:** Never use "Pi". Never use English Headers.
-3.  **Footer Law:** MUST use the `📊 บทวิเคราะห์โดย...` Template. NO Meta-Text.
+3.  **Footer Law:** Per constitution.md Article VII — dual-footer: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)` for finance, `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` for meat. Retired `เนิร์ดกับนาถ (Nerd with Nart)` is BANNED.
 4.  **Bridge Law:** Usage of `#009` or internal IDs in output is FORBIDDEN.
 5.  **Production Law:** Claude Code Skills = Truth Source. Mastra = Exploratory only (non-core).
 6.  **Agent Law:** Performer MUST load `data-nhes-vii` and `tech-bridge-lab`.
