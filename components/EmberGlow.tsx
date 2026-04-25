@@ -30,21 +30,39 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
         let embers: Ember[] = [];
         let mouseX = -1000;
         let mouseY = -1000;
+        let dimScale = 1;
+        let fadeZone = 100;
+        let glowBlur = 6;
+
+        const BASE_AREA = 1920 * 1080;
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            const area = canvas.width * canvas.height;
+            // Linear-dimensional scale: ~0.4 on mobile portrait, 1.0 on 1080p desktop.
+            // Particles, glow, and fade-zone all scale with this so each ember
+            // occupies the same visual fraction of the viewport on any device.
+            dimScale = Math.sqrt(area / BASE_AREA);
+            fadeZone = 100 * dimScale;
+            glowBlur = 6 * dimScale;
+            createEmbers();
         };
 
         const createEmbers = () => {
             embers = [];
-            const count = 120 + intensity;
+            const area = canvas.width * canvas.height;
+            // Power 1.4 makes count drop sharply on small screens — 180 on
+            // desktop 1080p, ~14 on mobile portrait. Bigger glow-radius
+            // particles on mobile would otherwise overcrowd the hero.
+            const rawCount = Math.round(180 * Math.pow(area / BASE_AREA, 1.4));
+            const count = Math.max(8, Math.min(500, rawCount));
 
             for (let i = 0; i < count; i++) {
                 embers.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 1,
+                    radius: (Math.random() * 2 + 1) * dimScale,
                     speed: Math.random() * 0.6 + 0.2,
                     drift: Math.random() * 0.3 - 0.15,
                     opacity: Math.random() * 0.5 + 0.3,
@@ -58,7 +76,7 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.shadowColor = 'rgba(255, 209, 102, 0.12)';
-            ctx.shadowBlur = 6;
+            ctx.shadowBlur = glowBlur;
 
             embers.forEach((e) => {
                 e.y -= e.speed;
@@ -88,7 +106,7 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
                     e.x = canvas.width;
                 }
 
-                const fade = e.y < 100 ? Math.max(0.05, e.y / 100) : 1;
+                const fade = e.y < fadeZone ? Math.max(0.05, e.y / fadeZone) : 1;
 
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
@@ -109,7 +127,6 @@ const EmberGlow: React.FC<EmberGlowProps> = ({ intensity = 60 }) => {
         window.addEventListener('mousemove', handleMouseMove);
 
         resizeCanvas();
-        createEmbers();
         draw();
 
         return () => {

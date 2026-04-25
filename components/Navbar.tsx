@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
                     }`}>
                     {link.name}
                   </span>
-                  <span className={`text--[10px] font-mono uppercase tracking-wide transition-colors ${isActive ? 'text-brand-amber/60' : 'text-slate-500 group-hover:text-brand-amber/70'
+                  <span className={`text-[10px] font-mono uppercase tracking-wide transition-colors ${isActive ? 'text-brand-amber/60' : 'text-slate-500 group-hover:text-brand-amber/70'
                     }`}>
                     {link.sub}
                   </span>
