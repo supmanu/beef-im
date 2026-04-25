@@ -44,6 +44,144 @@ Body would still want a comfortable Thai sans (Sarabun, Noto Sans Thai, IBM Plex
 
 ---
 
+## Code-level findings — verified from catalog page source
+
+Fetched 2026-04-25 via `curl https://deepseek-v4.pages.dev/`. The implementation is far simpler than it looks.
+
+### Verified font stack
+
+```css
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@500;600&family=Spline+Sans:wght@400;500;650;700&display=swap");
+```
+
+| Role | Font | Notes |
+|---|---|---|
+| Display headline | **Bricolage Grotesque** (500/700/800) | Variable-width grotesque with personality. Not Inter Tight. Has more character — slight quirks per glyph that make headlines feel set, not generated. |
+| Body | **Spline Sans** (400/500/650/700) | 2026-current modern sans, quietly trending. Note the unusual 650 weight in the load. |
+| Mono / data | **IBM Plex Mono** (500/600) | Already on our shortlist. |
+
+For Thai pairing — neither Bricolage Grotesque nor Spline Sans has Thai glyphs. We'd need to pair with Thai equivalents (Anuphan Bold for display, Sarabun or IBM Plex Sans Thai for body) and let the browser font-stack handle script splitting.
+
+### Verified palette (CSS variables)
+
+```css
+:root {
+  --bg:           #e8e1d0;                     /* warm cream                 */
+  --panel:        #fff9e8;                     /* hero card surface (lighter)*/
+  --ink:          #17140f;                     /* near-black body text       */
+  --muted:        #6b6254;                     /* warm neutral muted         */
+  --line:         #272017;                     /* dark stroke / borders      */
+  --hairline:     rgba(39, 32, 23, 0.18);      /* subtle dividers            */
+  --accent:       #007f6d;                     /* forest green               */
+  --accent-ink:   #042b26;                     /* deeper green for emphasis  */
+  --accent-soft:  #bde9d6;                     /* mint callout fill          */
+  --warning:      #f0b323;                     /* warm yellow                */
+  --error:        #a41437;                     /* deep crimson               */
+  --error-soft:   #f8c9d5;                     /* dusty pink                 */
+  --shadow:       12px 12px 0 rgba(23, 20, 15, 0.2);  /* hard offset shadow */
+}
+```
+
+Notable: hard-offset chunky shadow (`12px 12px 0`) instead of blur — that's what gives the hero card its "stamped" almanac-poster feel.
+
+### Body background stack — multi-layer, no images
+
+```css
+body {
+  background:
+    /* 1. fine grid texture — vertical lines  */
+    linear-gradient(90deg, rgba(39, 32, 23, 0.05) 1px, transparent 1px),
+    /* 2. fine grid texture — horizontal lines */
+    linear-gradient(180deg, rgba(39, 32, 23, 0.05) 1px, transparent 1px),
+    /* 3. green radial glow, top-left          */
+    radial-gradient(circle at 18% 12%, rgba(0, 127, 109, 0.2), transparent 28rem),
+    /* 4. yellow radial glow, top-right        */
+    radial-gradient(circle at 88% 18%, rgba(240, 179, 35, 0.24), transparent 24rem),
+    /* 5. base diagonal beige gradient         */
+    linear-gradient(135deg, #f6efd9 0%, var(--bg) 54%, #d3c7ae 100%);
+  background-size: 36px 36px, 36px 36px, auto, auto, auto;
+}
+```
+
+Five stacked CSS layers — zero image assets, infinitely scalable, ~5 KB total payload. The 36×36 px grid + two radial color washes + base diagonal = warm "old-paper" depth without any photography.
+
+### The rotating sunburst — the actual technique
+
+What it looked like and behaved like → confirmed implementation:
+
+```css
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -25% -10% auto auto;     /* anchored top-right, hangs off edges */
+  width: 46rem;
+  height: 46rem;
+  background: repeating-conic-gradient(
+    from 12deg,
+    rgba(0, 127, 109, 0.15) 0deg 12deg,    /* 12° forest-green wedge */
+    transparent              12deg 24deg   /* 12° transparent gap    */
+  );
+  border-radius: 50%;             /* clips square gradient to circle */
+  opacity: 0.7;
+  z-index: -1;
+  animation: slow-turn 28s linear infinite;
+}
+
+.hero::after {
+  /* secondary decorative rounded rectangle, bottom-right */
+  content: "";
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  width: min(32vw, 300px);
+  height: min(32vw, 300px);
+  border: 2px solid rgba(39, 32, 23, 0.18);
+  border-radius: 32px;
+  transform: rotate(-6deg);
+  z-index: -1;
+}
+
+@keyframes slow-turn {
+  to { transform: rotate(1turn); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+}
+```
+
+**Names for this:** sunburst (design term), pinwheel (when rotating), conic-gradient sunburst (CSS-implementation term).
+
+**Why it works:** 28-second linear rotation is below the perceptual threshold of "movement" — reads as "the site is alive" rather than "something is moving." The 12° wedge / 12° gap pattern at 0.15 opacity is subtle enough to read as texture, not motif.
+
+**Cost:** ~12 lines of CSS, zero JavaScript, zero assets, GPU-composited transform. Cheapest possible premium-animated hero.
+
+**Drop-in for beef.im:** trivial. Swap the green `rgba(0, 127, 109, 0.15)` to amber `rgba(255, 209, 102, 0.12)` (matches our existing brand-amber + glow opacity), drop opacity to 0.4–0.5 against our dark navy background, and it's done. Could replace or layer with EmberGlow depending on the chosen direction.
+
+### Other notable patterns
+
+- **Pill metadata badges** (`.meta span`):
+  ```css
+  background: rgba(255, 249, 232, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  box-shadow: 3px 3px 0 rgba(39, 32, 23, 0.11);  /* mini chunky shadow */
+  ```
+  Each pill carries the hard-offset shadow signature — visual consistency with the hero card.
+
+- **`isolation: isolate`** on `.hero` — creates a new stacking context so `::before` and `::after` `z-index: -1` stays trapped inside the card without bleeding behind body content. Important detail.
+
+- **`::selection` styling** — `color: var(--accent-ink); background: var(--warning);` — when a user selects text, it highlights in warm yellow with deep-green text. Tiny detail, real polish.
+
+---
+
 ## Page 2 — Sublevel 7 web demo (deep-sea bioluminescent)
 
 ### Visual signature
