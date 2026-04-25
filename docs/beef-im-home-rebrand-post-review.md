@@ -83,3 +83,39 @@ All changes are in commits `98bebac` → `3489014`.
 - Manifesto page: Snowstorm → EmberGlow migration
 - Article template: `เนื้อๆ ไม่มีน้ำ` as footer signature
 - `components/BackgroundLayers.tsx` — verify usage, possibly delete if unused
+
+---
+
+## Post-Review Tweaks (Evening — 2026-04-25)
+
+**Context:** Ember particle density looked good on 1920×1080 but broke on extreme aspect ratios — too sparse on ultra-wide, too dense on narrow/mobile portrait.
+
+### Round 1 — Initial responsive density (uncommitted, superseded by Round 2)
+
+First attempt scaled only the particle *count* with viewport area:
+
+| File | What | Why |
+|------|------|-----|
+| `components/EmberGlow.tsx:34-44` | Resize now calls `createEmbers()`; particle count uses `area^1.2` power law instead of linear density | Linear area scaling didn't account for particles occupying proportionally more visual space on small screens. New formula: `count = 180 × (area / 2073600)^1.2`, bounded 10–500. Mobile 390×844: ~20 particles, desktop unchanged at 180. |
+| `app/icon.svg` | New SVG favicon with 🥩 emoji | Replaced `app/favicon.ico` |
+| `app/favicon.ico` | Removed | Superseded by `app/icon.svg` |
+
+**Verdict:** Insufficient. User testing on Huawei phone in portrait still showed "super dense" particles vs the calm desktop view. Scaling count alone wasn't enough — each particle's *radius* and *glow* stayed at desktop-pixel size, so each one dominated a much larger fraction of the small canvas.
+
+### Round 2 — Commit `3c8b871` — Visual-weight scaling + navbar typo + favicon (final)
+
+| File | What | Why |
+|------|------|-----|
+| `components/Navbar.tsx:85` | `text--[10px]` (double dash, silently invalid Tailwind class) → `text-[10px]` | Pre-existing typo since before Phase 6. Caught during verification pass. Menu sub-labels were rendering at inherited browser size, not 10px. Latin uppercase masked it; new mixed-case labels exposed it. |
+| `components/EmberGlow.tsx` | Full responsive rewrite: count power 1.2 → 1.4 (steeper drop); radius, `shadowBlur`, and fadeZone now scale with `dimScale = sqrt(area / 1920×1080)` | Mobile portrait was producing fewer particles but each one stayed at desktop pixel size. New formula keeps visual weight per viewport-fraction roughly constant: mobile 390×844 → ~14 particles at 0.4–1.2px radius with 2.4px glow; desktop 1080p → 180 particles at 1–3px radius with 6px glow. |
+| `app/icon.svg` | New SVG favicon with 🥩 emoji | Same as Round 1 |
+| `app/favicon.ico` | Removed | Same as Round 1 |
+
+**Math sanity check (Round 2):**
+
+| Viewport | Area | dimScale | count (^1.4) | radius range | glow |
+|---|---|---|---|---|---|
+| Desktop 1080p (1920×1080) | 2.07M | 1.00 | 180 | 1–3 px | 6 px |
+| Tablet (1024×768) | 786K | 0.62 | 48 | 0.6–1.9 px | 3.7 px |
+| Mobile portrait (390×844) | 329K | 0.40 | 14 | 0.4–1.2 px | 2.4 px |
+| Ultra-wide (3440×1440) | 4.95M | 1.55 | 500 (capped) | 1.5–4.6 px | 9.3 px |
