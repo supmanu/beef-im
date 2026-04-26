@@ -1,14 +1,19 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../layouts/ArticleLayout.astro';
+import Highlight from '../components/mdx/Highlight.astro';
+import MarginNote from '../components/mdx/MarginNote.astro';
+import ScrapCard from '../components/mdx/ScrapCard.astro';
+import CorrectionBlock from '../components/mdx/CorrectionBlock.astro';
+import VerdictSeal from '../components/mdx/VerdictSeal.astro';
 
 export async function getStaticPaths() {
   const caseEntries = await getCollection('case');
   const expEntries = await getCollection('experiment');
   const fieldEntries = await getCollection('field-note');
-  
+
   const allEntries = [...caseEntries, ...expEntries, ...fieldEntries];
-  
+
   return allEntries.map(entry => ({
     params: { slug: `${entry.data.category}/${entry.id}` },
     props: { entry },
@@ -18,11 +23,13 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-// Format date
 const d = new Date(entry.data.date);
 const formattedDate = `${d.getDate()} ${d.toLocaleString('th-TH', { month: 'short' })} ${d.getFullYear()}`;
+
+// MDX components auto-injected — no imports needed inside .mdx files
+const mdxComponents = { Highlight, MarginNote, ScrapCard, CorrectionBlock, VerdictSeal };
 ---
-<ArticleLayout 
+<ArticleLayout
   title={entry.data.title}
   category={entry.data.category}
   date={formattedDate}
@@ -32,7 +39,5 @@ const formattedDate = `${d.getDate()} ${d.toLocaleString('th-TH', { month: 'shor
   <h2 class="nb-h">{entry.data.title}</h2>
   <div class="nb-byline">{formattedDate} · {entry.data.author}</div>
   <div class="nb-rule-red"></div>
-  <div class="nb-p">
-    <Content />
-  </div>
+  <Content components={mdxComponents} />
 </ArticleLayout>
