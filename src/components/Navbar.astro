@@ -6,5 +6,19 @@ const formattedDate = `${days[now.getDay()]} · ${now.getDate().toString().padSt
 ---
 <nav class="hero-nav">
   <div class="hero-brand">ประกันเนื้อๆ<small>BEEF · IM · JOURNAL</small></div>
-  <div class="hero-nav-right">{formattedDate}</div>
+  <div class="hero-nav-right" id="hero-date-display">{formattedDate}</div>
 </nav>
+
+<script is:inline>
+  function updateHeroDate() {
+    const now = new Date();
+    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const formatted = `${days[now.getDay()]} · ${now.getDate().toString().padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear().toString().slice(-2)}`;
+    const el = document.getElementById('hero-date-display');
+    if (el) el.textContent = formatted;
+  }
+  // Run immediately and also every hour just in case
+  updateHeroDate();
+  setInterval(updateHeroDate, 3600000);
+</script>
