@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — Immersive Dark (DeepSeek V4 Pro GO)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700;800&family=Bai+Jamjuree:wght@400;700;800&family=Chakra+Petch:wght@400;600;700&family=Cinzel:wght@400;700;900&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=Inter:wght@400;500;700&family=Inter+Tight:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700;800&family=Playfair+Display:wght@700;900&family=Prompt:wght@400;500;600;700;900&family=Sarabun:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#0a0a0c;color:#d4d4d8;font-family:-apple-system,sans-serif;line-height:1.5;padding:32px 16px 64px}
+.page-header{max-width:1280px;margin:0 auto 40px;padding-bottom:28px;border-bottom:1px solid #27272a}
+.page-header h1{font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#fafafa;margin-bottom:8px}
+.page-header .sub{color:#a1a1aa;font-size:14px;line-height:1.65}
+.overview{max-width:1280px;margin:0 auto 48px;background:#18181b;border:1px solid #27272a;border-radius:14px;padding:20px 24px}
+.overview h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#71717a;font-family:ui-monospace,monospace;margin-bottom:14px}
+.overview-row{display:grid;grid-template-columns:220px 1fr 130px;align-items:center;gap:16px;padding:10px 0;border-bottom:1px dashed #27272a}
+.overview-row:last-child{border-bottom:none}
+.overview-name{font-size:13.5px;color:#fafafa;font-weight:500}
+.overview-name a{color:inherit;text-decoration:none}.overview-name a:hover{text-decoration:underline}
+.overview-strip{display:flex;gap:4px;height:32px;border-radius:6px;overflow:hidden}
+.overview-strip>div{flex:1}.overview-source{font-family:ui-monospace,monospace;font-size:10.5px;color:#a1a1aa;text-align:right}
+main{max-width:1280px;margin:0 auto;display:grid;gap:56px}
+.direction{background:#18181b;border:1px solid #27272a;border-radius:18px;padding:28px}
+.dir-header{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #27272a}
+.dir-num{font-family:ui-monospace,monospace;font-size:11px;color:#71717a;text-transform:uppercase;letter-spacing:.12em;padding:3px 8px;background:#27272a;border-radius:4px}
+.dir-title{font-size:26px;font-weight:700;color:#fafafa;letter-spacing:-0.01em}
+.dir-source{font-family:ui-monospace,monospace;font-size:11.5px;color:#a1a1aa;margin-left:auto}
+.dir-mood{width:100%;margin-top:6px;color:#d4d4d8;font-style:italic;font-size:14px;line-height:1.55}
+.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:28px}
+.swatch{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.swatch-color{height:84px}.swatch-meta{background:#0a0a0c;padding:10px 12px;border-top:1px solid rgba(255,255,255,.05)}
+.swatch-role{font-family:ui-monospace,monospace;font-size:9.5px;color:#71717a;text-transform:uppercase;letter-spacing:.06em;line-height:1.3}
+.swatch-hex{font-family:ui-monospace,monospace;font-size:11.5px;color:#fafafa;font-weight:600;margin-top:3px}
+.dir-body{display:grid;grid-template-columns:380px 1fr;gap:32px;align-items:start}
+@media(max-width:880px){.dir-body{grid-template-columns:1fr}.palette{grid-template-columns:repeat(3,1fr)}.overview-row{grid-template-columns:1fr;gap:8px}}
+.mockup{border-radius:12px;overflow:hidden;min-height:400px;box-shadow:0 8px 24px rgba(0,0,0,.6);position:relative}
+.mockup-frame{padding:18px;position:relative;z-index:2}
+.mockup-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:14px}
+.notes h4{font-family:ui-monospace,monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#71717a;margin-bottom:8px;margin-top:16px}.notes h4:first-child{margin-top:0}
+.notes p{font-size:13.5px;line-height:1.65;color:#d4d4d8;margin-bottom:6px}
+.notes .axes{display:grid;grid-template-columns:1fr auto;gap:4px 16px;margin-top:8px;font-family:ui-monospace,monospace;font-size:11.5px}
+.notes .axes .l{color:#71717a}.notes .axes .v{color:#fafafa;text-align:right}
+.notes .tradeoff{background:#1c1917;border-left:3px solid #f59e0b;padding:10px 12px;border-radius:4px;font-size:12.5px;line-height:1.55;color:#d4d4d8;margin-top:6px}
+footer{max-width:1280px;margin:56px auto 0;padding:24px 0;border-top:1px solid #27272a;font-size:12px;color:#71717a;line-height:1.6}
+
+/* Mock 1 — Slow Cinema */
+.msc{background:#1A0F0A;color:#F0EAD6;font-family:'Sarabun','Inter',sans-serif}
+.msc .atmo{position:absolute;inset:0;background:linear-gradient(155deg,rgba(210,105,30,.06),transparent 40%),radial-gradient(ellipse at 30% 50%,rgba(255,220,180,.04),transparent 60%);pointer-events:none;z-index:1}
+.msc .mockup-nav{border-bottom:1px solid rgba(240,234,214,.12);padding-bottom:14px}
+.msc .nav-brand{font-family:'IBM Plex Serif',serif;font-weight:700;font-size:17px;color:#F0EAD6;letter-spacing:.02em}
+.msc .nav-brand small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#D2691E;letter-spacing:.16em;margin-top:2px}
+.msc .nav-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a7a60}
+.msc .hero-section{min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 0 0;position:relative;z-index:2}
+.msc .hero-h{font-family:'IBM Plex Serif',serif;font-size:28px;font-weight:700;line-height:1.15;margin-bottom:6px;color:#F0EAD6}
+.msc .hero-sub{font-size:11px;color:rgba(240,234,214,.65);margin-bottom:4px}
+.msc .hero-byline{font-size:10px;color:#D2691E;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em}
+.msc .scroll-cue{text-align:center;margin:14px 0 8px;font-size:9px;color:rgba(240,234,214,.25);letter-spacing:.2em;position:relative;z-index:2}
+.msc .scroll-cue::after{content:'';display:block;width:1px;height:16px;background:rgba(240,234,214,.2);margin:6px auto 0}
+.msc .article-body{font-size:11.5px;line-height:1.7;color:rgba(240,234,214,.8);margin-bottom:14px;position:relative;z-index:2}
+.msc .verdict{text-align:center;font-family:'IBM Plex Serif',serif;font-size:20px;color:#D2691E;padding:10px 0;border-top:1px solid rgba(240,234,214,.12);border-bottom:1px solid rgba(240,234,214,.12);margin:14px 0;position:relative;z-index:2}
+
+/* Mock 2 — Celluloid */
+.mcel{background:#0C0C09;color:#DDD5C4;font-family:'Noto Sans Thai','Inter',sans-serif}
+.mcel .grain{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(rgba(255,255,255,.3) 1px,transparent 1px),radial-gradient(rgba(200,180,140,.3) 1px,transparent 1px);background-size:3px 3px,5px 5px;z-index:1;pointer-events:none}
+.mcel .mockup-nav{border-bottom:.5px solid #33332A;position:relative;z-index:2}
+.mcel .nav-brand{font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#DDD5C4;letter-spacing:.04em}
+.mcel .nav-brand small{display:block;font-family:'DM Mono',monospace;font-size:8px;color:#E8A840;letter-spacing:.24em;margin-top:2px}
+.mcel .nav-reel{font-family:'DM Mono',monospace;font-size:9px;color:#856b54;letter-spacing:.1em}
+.mcel .frame-43{aspect-ratio:4/3;background:linear-gradient(155deg,#2a2014 0%,#3a2816 35%,#1a1410 70%,#0C0C09 100%);border:.5px solid #33332A;margin-bottom:12px;position:relative;overflow:hidden;z-index:2}
+.mcel .frame-43 .still{position:absolute;inset:0;z-index:0}
+.mcel .frame-43 .still::before{content:'';position:absolute;top:20%;left:30%;width:120px;height:80px;background:radial-gradient(ellipse at 40% 30%,rgba(232,168,64,.12) 0%,transparent 60%);transform:rotate(-12deg)}
+.mcel .frame-43 .still::after{content:'';position:absolute;bottom:30%;right:25%;width:60px;height:6px;background:rgba(232,168,64,.08);border-radius:3px;transform:rotate(4deg)}
+.mcel .frame-43::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 45%,#0C0C09 95%);opacity:.85;z-index:1}
+.mcel .frame-43 .label{position:absolute;bottom:10px;left:12px;z-index:2;color:#DDD5C4}
+.mcel .frame-43 .label .scene{font-family:'DM Mono',monospace;font-size:8px;color:#E8A840;letter-spacing:.18em;margin-bottom:2px}
+.mcel .frame-43 .label h3{font-size:15px;font-weight:500;line-height:1.2}
+.mcel .body-text{font-size:11.5px;line-height:1.7;color:#b8b09e;margin-bottom:12px;position:relative;z-index:2;padding:0 4px}
+.mcel .intermission{height:50px;margin:16px 0;border-top:.5px solid #33332A;border-bottom:.5px solid #33332A;display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+.mcel .intermission::after{content:'';width:5px;height:5px;background:#E8A840;border-radius:50%;box-shadow:0 0 10px rgba(232,168,64,.5)}
+
+/* Mock 3 — Yaowarat Code */
+.myw{background:#0D0D0D;color:#F0E6D0;font-family:'Prompt','Inter',sans-serif;overflow:hidden}
+.myw .mockup-nav{border-bottom:1px solid #2a2a44}
+.myw .nav-brand{font-family:'Bai Jamjuree','Unbounded',sans-serif;font-weight:800;font-size:22px;color:#FF5533;letter-spacing:-.04em}
+.myw .nav-brand small{display:block;font-family:'Unbounded',sans-serif;font-size:9px;color:#FFD700;font-weight:700;letter-spacing:.18em;margin-top:2px}
+.myw .glyph{font-family:'Bai Jamjuree',sans-serif;font-size:80px;font-weight:800;color:#FF5533;opacity:.8;line-height:.85;margin:8px 0 0}
+.myw .card-overlap{margin-top:-22px;margin-left:50px;background:#1A1A2E;padding:14px;border-left:3px solid #FF5533;position:relative;z-index:3}
+.myw .tag{display:inline-block;font-family:'Unbounded',sans-serif;font-size:8px;padding:2px 7px;background:#FFD700;color:#0D0D0D;font-weight:700;letter-spacing:.1em;margin-bottom:8px}
+.myw h3{font-family:'Bai Jamjuree','Unbounded',sans-serif;font-size:20px;font-weight:800;line-height:1.1;margin-bottom:6px;color:#F0E6D0}
+.myw h3 .neon{color:#FF5533}
+.myw .dek{font-size:11.5px;line-height:1.55;color:#c4baa0;margin-bottom:8px}
+.myw .meta{font-family:'Unbounded',sans-serif;font-size:9px;color:#FFD700;letter-spacing:.08em}
+
+/* Mock 4 — Char Line */
+.mch{background:#0A0806;color:#D9C8B8;font-family:'Noto Sans Thai','Inter',sans-serif}
+.mch .char-lines{position:absolute;right:12px;top:50px;bottom:50px;display:flex;flex-direction:column;gap:8px;z-index:1}
+.mch .char-lines span{width:24px;height:1.5px;background:rgba(212,122,58,.3)}
+.mch .char-lines span:nth-child(3){background:#D47A3A;box-shadow:0 0 6px rgba(212,122,58,.4)}
+.mch .mockup-nav{border-bottom:1px solid rgba(217,200,184,.08)}
+.mch .nav-brand{font-family:'Prompt',sans-serif;font-weight:700;font-size:17px;color:#D9C8B8;letter-spacing:-.01em}
+.mch .nav-brand small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#D47A3A;letter-spacing:.14em;margin-top:2px}
+.mch h2{font-family:'Prompt',sans-serif;font-size:24px;font-weight:700;line-height:1.15;margin-bottom:8px;color:#D9C8B8}
+.mch .char-rule{height:1px;background:linear-gradient(90deg,#D47A3A,transparent 60%);margin:12px 0}
+.mch .dek{font-size:11.5px;line-height:1.6;color:#a89880;margin-bottom:12px}
+.mch .cta{display:inline-block;padding:6px 14px;border:1px solid #D47A3A;color:#D47A3A;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em}
+
+/* Mock 5 — Hearth Cut */
+.mhc{background:#0A0A0A;color:#E8E4DE;font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif}
+.mhc .mockup-nav{border-bottom:1px solid rgba(232,228,222,.06)}
+.mhc .nav-brand{font-family:'Bai Jamjuree','Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#E8E4DE;letter-spacing:.02em}
+.mhc .nav-brand small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#A0845C;letter-spacing:.14em;margin-top:2px}
+.mhc .one-mark{height:1px;background:#A0845C;width:100%;margin:20px 0 14px;opacity:.5}
+.mhc h2{font-family:'Bai Jamjuree','Space Grotesk',sans-serif;font-size:22px;font-weight:700;line-height:1.15;margin-bottom:8px;color:#E8E4DE}
+.mhc .dek{font-size:12px;line-height:1.65;color:rgba(232,228,222,.6);margin-bottom:16px}
+.mhc .silent-card{padding:12px;border:1px solid rgba(232,228,222,.06);margin-bottom:10px}
+.mhc .silent-card .tag{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#A0845C;letter-spacing:.14em;margin-bottom:4px}
+.mhc .silent-card h4{font-size:14px;font-weight:500;color:#E8E4DE}
+
+/* Mock 6 — Slow Burn */
+.msb{background:#0D0D0D;color:#C8C2B8;font-family:'Anuphan','Inter Tight',sans-serif}
+.msb .glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(232,93,38,.08),transparent 70%);pointer-events:none;z-index:1}
+.msb .mockup-nav{border-bottom:1px solid rgba(200,194,184,.08)}
+.msb .nav-brand{font-family:'Anuphan',sans-serif;font-weight:600;font-size:16px;color:#C8C2B8}
+.msb .nav-brand small{display:block;font-family:'Inter Tight',sans-serif;font-size:9px;color:#E85D26;letter-spacing:.16em;margin-top:2px}
+.msb .featured{text-align:center;margin:24px 0;position:relative;z-index:2}
+.msb .eyebrow{font-family:'Inter Tight',sans-serif;font-size:10px;color:#E85D26;letter-spacing:.2em;margin-bottom:12px}
+.msb h2{font-family:'Anuphan',sans-serif;font-size:24px;font-weight:600;line-height:1.2;margin-bottom:8px;max-width:250px;margin-left:auto;margin-right:auto}
+.msb .dek{font-size:12px;color:#a09888;line-height:1.6;max-width:230px;margin:0 auto 16px}
+.msb .cta{display:inline-block;padding:7px 16px;border:1px solid #E85D26;color:#E85D26;font-size:11px;letter-spacing:.08em;box-shadow:0 0 18px rgba(232,93,38,.35)}
+.msb .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:2}
+.msb .mini{font-size:12px;color:#C8C2B8;font-weight:500;border-top:1px solid rgba(200,194,184,.08);padding-top:8px}
+.msb .mini .t{font-size:9px;color:#E85D26;letter-spacing:.14em;margin-bottom:2px;font-family:'Inter Tight',sans-serif}
+
+/* Mock 7 — Midnight Smoke */
+.mms{background:#121110;color:#D1C7BD;font-family:'Noto Sans Thai','Inter',sans-serif;position:relative}
+.mms::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(181,101,29,.06),transparent 60%);pointer-events:none;z-index:1}
+.mms .mockup-nav{border-bottom:1px solid rgba(209,199,189,.08);position:relative;z-index:2}
+.mms .nav-brand{font-family:'Cinzel',serif;font-weight:700;font-size:16px;color:#D1C7BD;letter-spacing:.04em}
+.mms .nav-brand small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#B5651D;letter-spacing:.14em;margin-top:2px}
+.mms .focus-card{background:radial-gradient(ellipse at 50% 0%,rgba(181,101,29,.06),transparent 70%);border:1px solid rgba(209,199,189,.08);padding:16px;margin-bottom:12px;position:relative;z-index:2}
+.mms .focus-card .tag{font-size:9px;color:#B5651D;letter-spacing:.14em;margin-bottom:8px;font-family:'IBM Plex Mono',monospace}
+.mms .focus-card h3{font-size:18px;font-weight:500;line-height:1.25;margin-bottom:6px}
+.mms .focus-card .dek{font-size:11.5px;line-height:1.6;color:#8a8075}
+.mms .vignette-hint{text-align:center;font-size:9px;color:rgba(209,199,189,.15);margin:10px 0;position:relative;z-index:2;letter-spacing:.12em}
+
+/* Mock 8 — Candlelight Noir */
+.mcln{background:#0F0E0C;color:#D4C8B8;font-family:'Noto Sans Thai','Inter',sans-serif;position:relative}
+.mcln::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(212,168,83,.06),transparent 60%);pointer-events:none;z-index:1}
+.mcln .mockup-nav{border-bottom:1px solid rgba(212,200,184,.08);position:relative;z-index:2}
+.mcln .nav-brand{font-family:'DM Serif Display','Bai Jamjuree',serif;font-weight:700;font-size:17px;color:#D4C8B8;letter-spacing:.02em}
+.mcln .nav-brand small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#D4A853;letter-spacing:.16em;margin-top:2px}
+.mcln .candle-card{background:rgba(28,26,23,.6);padding:14px 16px;margin-bottom:12px;border-left:2px solid rgba(212,168,83,.3);position:relative;z-index:2}
+.mcln .candle-card .tag{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#D4A853;letter-spacing:.14em;margin-bottom:6px}
+.mcln .candle-card h3{font-size:16px;font-weight:500;line-height:1.25;margin-bottom:6px}
+.mcln .candle-card .dek{font-size:11.5px;color:rgba(212,200,184,.7);line-height:1.55}
+.mcln .candle-card .meta{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#8B2635;letter-spacing:.08em;margin-top:8px;padding-top:6px;border-top:1px solid rgba(212,200,184,.06)}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+<h1>beef.im — Immersive Dark Directions</h1>
+<p class="sub">DeepSeek V4 Pro GO · Preview 2/4 · 8 directions covering cinematic, theatrical, atmospheric dark-background languages · Mockups ~360px · Open in Firefox/Chrome for accurate Thai font rendering</p>
+</header>
+
+<section class="overview">
+<h2>Palette overview</h2>
+<div class="overview-row"><div class="overview-name"><a href="#sc">Slow Cinema</a></div><div class="overview-strip"><div style="background:#1A0F0A"></div><div style="background:#2A1B12"></div><div style="background:#F0EAD6"></div><div style="background:#D2691E"></div><div style="background:#C41E3A"></div></div><div class="overview-source">Opus 4.7</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#cel">Celluloid</a></div><div class="overview-strip"><div style="background:#0C0C09"></div><div style="background:#1A1A14"></div><div style="background:#DDD5C4"></div><div style="background:#E8A840"></div><div style="background:#E0553D"></div></div><div class="overview-source">DeepSeek V4 GO max</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#yw">Yaowarat Code</a></div><div class="overview-strip"><div style="background:#0D0D0D"></div><div style="background:#1A1A2E"></div><div style="background:#F0E6D0"></div><div style="background:#FF5533"></div><div style="background:#FFD700"></div></div><div class="overview-source">DeepSeek V4 Flash</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#ch">Char Line</a></div><div class="overview-strip"><div style="background:#0A0806"></div><div style="background:#1C1612"></div><div style="background:#D9C8B8"></div><div style="background:#D47A3A"></div><div style="background:#B83333"></div></div><div class="overview-source">DeepSeek V4 Flash</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#hc">Hearth Cut</a></div><div class="overview-strip"><div style="background:#0A0A0A"></div><div style="background:#161616"></div><div style="background:#E8E4DE"></div><div style="background:#A0845C"></div><div style="background:#E84545"></div></div><div class="overview-source">GLM 5.1</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#sb">Slow Burn</a></div><div class="overview-strip"><div style="background:#0D0D0D"></div><div style="background:#1A1A1A"></div><div style="background:#C8C2B8"></div><div style="background:#E85D26"></div><div style="background:#F0C050"></div></div><div class="overview-source">Opus 4.6 Merlin</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#ms">Midnight Smoke</a></div><div class="overview-strip"><div style="background:#121110"></div><div style="background:#1F1C1A"></div><div style="background:#D1C7BD"></div><div style="background:#B5651D"></div><div style="background:#E63946"></div></div><div class="overview-source">Gemini 3.1</div></div>
+<div class="overview-row"><div class="overview-name"><a href="#cn">Candlelight Noir</a></div><div class="overview-strip"><div style="background:#0F0E0C"></div><div style="background:#1C1A17"></div><div style="background:#D4C8B8"></div><div style="background:#D4A853"></div><div style="background:#8B2635"></div></div><div class="overview-source">MiniMax 2.7</div></div>
+</section>
+
+<main>
+<article class="direction" id="sc"><div class="dir-header"><span class="dir-num">01</span><h2 class="dir-title">Slow Cinema</h2><span class="dir-source">Opus 4.7 · CC CLI</span><p class="dir-mood">"A24's Past Lives reframed as a publication — atmospheric, image-led. The page performs before it asks you to read."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#1A0F0A"></div><div class="swatch-meta"><div class="swatch-role">Deep teak</div><div class="swatch-hex">#1A0F0A</div></div></div><div class="swatch"><div class="swatch-color" style="background:#2A1B12"></div><div class="swatch-meta"><div class="swatch-role">Warmer charcoal</div><div class="swatch-hex">#2A1B12</div></div></div><div class="swatch"><div class="swatch-color" style="background:#F0EAD6"></div><div class="swatch-meta"><div class="swatch-role">Warm cream</div><div class="swatch-hex">#F0EAD6</div></div></div><div class="swatch"><div class="swatch-color" style="background:#D2691E"></div><div class="swatch-meta"><div class="swatch-role">Ember orange</div><div class="swatch-hex">#D2691E</div></div></div><div class="swatch"><div class="swatch-color" style="background:#C41E3A"></div><div class="swatch-meta"><div class="swatch-role">Cardinal red</div><div class="swatch-hex">#C41E3A</div></div></div></div>
+<div class="dir-body"><div class="mockup msc"><div class="atmo"></div><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · CINEMA</small></div><div class="nav-meta">25 APR · EVENING</div></div><div class="hero-section"><h1 class="hero-h">ดูเนื้อ<br>ไม่ดูหน้า</h1><p class="hero-sub">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน</p><p class="hero-byline">ประกันเนื้อๆ · NATAPOL</p></div><div class="scroll-cue">SCROLL</div><div class="article-body">สัญญา Whole Life 99/20 ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</div><div class="verdict">ไม่ผ่าน</div></div></div><div class="notes"><h4>Signature</h4><p>Cold open: 90vh hero still pins in place while headline rises 24px and byline fades over 80vh of scroll. Content hidden until cinematic title card releases. Only motion on the entire page. After release: pure stillness.</p><h4>Trade-off</h4><div class="tradeoff">Dark background = unreadable in Bangkok sunlight. Theatrical scroll-lock animation risks feeling like a "loading screen" on slow connections. Best for desktop and evening mobile reading. Unforgettable when it works — frustrating when it doesn't.</div></div></div></article>
+
+<article class="direction" id="cel"><div class="dir-header"><span class="dir-num">02</span><h2 class="dir-title">ฟิล์ม / Celluloid</h2><span class="dir-source">DeepSeek V4 GO max</span><p class="dir-mood">"A 35mm contact sheet from a Thai indie film — grain, halation, golden hour, and the patience to hold a frame for ten seconds."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#0C0C09"></div><div class="swatch-meta"><div class="swatch-role">Projection black</div><div class="swatch-hex">#0C0C09</div></div></div><div class="swatch"><div class="swatch-color" style="background:#1A1A14"></div><div class="swatch-meta"><div class="swatch-role">Frame border</div><div class="swatch-hex">#1A1A14</div></div></div><div class="swatch"><div class="swatch-color" style="background:#DDD5C4"></div><div class="swatch-meta"><div class="swatch-role">Subtitle cream</div><div class="swatch-hex">#DDD5C4</div></div></div><div class="swatch"><div class="swatch-color" style="background:#E8A840"></div><div class="swatch-meta"><div class="swatch-role">Golden hour</div><div class="swatch-hex">#E8A840</div></div></div><div class="swatch"><div class="swatch-color" style="background:#E0553D"></div><div class="swatch-meta"><div class="swatch-role">Channel clip</div><div class="swatch-hex">#E0553D</div></div></div></div>
+<div class="dir-body"><div class="mockup mcel"><div class="grain"></div><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div><div class="nav-reel">REEL 04 · 25 APR</div></div><div class="frame-43"><div class="still"></div><div class="label"><div class="scene">SCENE I · POLICY</div><h3>Unit-linked:<br>หน้าที่หายไป</h3></div></div><div class="body-text">เบี้ยปีแรกถูกกว่า Term — แต่ปีที่ 30 ค่า COI มากกว่าเบี้ยทั้งหมดที่จ่าย สัญญาคือฟิล์ม ฉายทีละเฟรม เปิดให้ดูทุกหน้า</div><div class="intermission"></div><div class="frame-43"><div class="still"></div><div class="label"><div class="scene">SCENE II · GRILL</div><h3>Reverse-sear<br>กฎ 3 ข้อ</h3></div></div><div class="body-text">ไฟแรงคือกับดัก · 54°C คือเส้นแบ่ง · การพักเนื้อสำคัญกว่าการย่าง — ทุกขั้นตอนวัดได้ เหมือนล้างฟิล์ม</div></div></div><div class="notes"><h4>Signature</h4><p>Film grain dissolve on section transitions (pre-rendered canvas). 4:3 locked frames with permanent vignette. 120px intermission bands with single amber dot — visual exhale. Taviraj + Cinzel type stack. Golden hour palette.</p><h4>Build</h4><div class="axes"><span class="l">Animation</span><span class="v">Medium · grain canvas + dissolve</span><span class="l">Mobile sunlight</span><span class="v">High · dark bg</span><span class="l">Complexity</span><span class="v">Medium</span></div></div></div></article>
+
+<article class="direction" id="yw"><div class="dir-header"><span class="dir-num">03</span><h2 class="dir-title">Yaowarat Code</h2><span class="dir-source">DeepSeek V4 Flash · direct API</span><p class="dir-mood">"The typographic chaos of Bangkok's oldest street — characters collide, the page navigates like a market: by trusting the signal in the noise."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#0D0D0D"></div><div class="swatch-meta"><div class="swatch-role">Night street</div><div class="swatch-hex">#0D0D0D</div></div></div><div class="swatch"><div class="swatch-color" style="background:#1A1A2E"></div><div class="swatch-meta"><div class="swatch-role">Midnight blue</div><div class="swatch-hex">#1A1A2E</div></div></div><div class="swatch"><div class="swatch-color" style="background:#F0E6D0"></div><div class="swatch-meta"><div class="swatch-role">Sign-lit</div><div class="swatch-hex">#F0E6D0</div></div></div><div class="swatch"><div class="swatch-color" style="background:#FF5533"></div><div class="swatch-meta"><div class="swatch-role">Neon red</div><div class="swatch-hex">#FF5533</div></div></div><div class="swatch"><div class="swatch-color" style="background:#FFD700"></div><div class="swatch-meta"><div class="swatch-role">Taxi gold</div><div class="swatch-hex">#FFD700</div></div></div></div>
+<div class="dir-body"><div class="mockup myw"><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · YAOWARAT</small></div><span style="font-family:'Unbounded',sans-serif;font-size:10px;color:#F0E6D0;letter-spacing:.15em">ก</span></div><div class="glyph">ก</div><div class="card-overlap"><span class="tag">วิเคราะห์แล้ว</span><h3><span class="neon">เปิดทุกหน้า</span> ที่ตัวแทนหลีก</h3><p class="dek">ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย — และตัวแทนรู้ตั้งแต่วันแรก</p><div class="meta">AIA-UL · 2,840w · 11 MIN</div></div><div style="margin-top:16px;padding-top:12px;border-top:1px dashed #2a2a44;font-family:'Bai Jamjuree',sans-serif;font-size:16px;font-weight:700;color:#F0E6D0;position:relative"><span style="font-size:48px;color:#FF5533;opacity:.35;position:absolute;left:-20px;top:-14px;font-weight:800">เน</span>Reverse-sear · กฎ 3 ข้อ<p style="font-size:11px;color:#c4baa0;font-weight:400;margin-top:4px">RIBEYE 4" · 54°C · 6 MIN</p></div></div></div><div class="notes"><h4>Signature</h4><p>Character drift on scroll: 3–5 Thai brand characters translate horizontally at opposing parallax rates (0.25× left, 0.5× right). Giant single-character glyph-markers as section dividers. Aggressive typographic scale. Bai Jamjuree + Unbounded. Hardest to build but most uncopyable.</p></div></div></article>
+
+<article class="direction" id="ch"><div class="dir-header"><span class="dir-num">04</span><h2 class="dir-title">Char Line</h2><span class="dir-source">DeepSeek V4 Flash</span><p class="dir-mood">"The aftermath of fire — blackened, elemental, reduced to what matters. A single ember still glows. The page is the residue of a process."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#0A0806"></div><div class="swatch-meta"><div class="swatch-role">Pure charcoal</div><div class="swatch-hex">#0A0806</div></div></div><div class="swatch"><div class="swatch-color" style="background:#1C1612"></div><div class="swatch-meta"><div class="swatch-role">Warm ash</div><div class="swatch-hex">#1C1612</div></div></div><div class="swatch"><div class="swatch-color" style="background:#D9C8B8"></div><div class="swatch-meta"><div class="swatch-role">Parchment</div><div class="swatch-hex">#D9C8B8</div></div></div><div class="swatch"><div class="swatch-color" style="background:#D47A3A"></div><div class="swatch-meta"><div class="swatch-role">Ember glow</div><div class="swatch-hex">#D47A3A</div></div></div><div class="swatch"><div class="swatch-color" style="background:#B83333"></div><div class="swatch-meta"><div class="swatch-role">Warning</div><div class="swatch-hex">#B83333</div></div></div></div>
+<div class="dir-body"><div class="mockup mch"><div class="char-lines"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · REDUCED</small></div></div><h2>ค่าธรรมเนียม<br>ที่เขาไม่อยาก<br>ให้คุณเห็น</h2><div class="char-rule"></div><p class="dek">Unit-linked คือสัญญาที่เผาเงินคุณช้าๆ — เปิดทีละหน้า ดูตัวเลขจริง</p><a class="cta">อ่านบทวิเคราะห์</a></div></div><div class="notes"><h4>Signature</h4><p>Grill-mark scroll progress on right gutter — 10–12 thin horizontal lines. Each burns in left-to-right as scroll reaches corresponding section. The final line stays amber. Everything unnecessary is burned away — "เน้นเนื้อๆ ไม่เอาน้ำ" made visual.</p></div></div></article>
+
+<article class="direction" id="hc"><div class="dir-header"><span class="dir-num">05</span><h2 class="dir-title">Hearth Cut</h2><span class="dir-source">GLM 5.1</span><p class="dir-mood">"A private omakase counter at 9PM — ten seats, one focus, complete silence except for the cut and the sizzle."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#0A0A0A"></div><div class="swatch-meta"><div class="swatch-role">Void black</div><div class="swatch-hex">#0A0A0A</div></div></div><div class="swatch"><div class="swatch-color" style="background:#161616"></div><div class="swatch-meta"><div class="swatch-role">Near-black</div><div class="swatch-hex">#161616</div></div></div><div class="swatch"><div class="swatch-color" style="background:#E8E4DE"></div><div class="swatch-meta"><div class="swatch-role">Warm parchment</div><div class="swatch-hex">#E8E4DE</div></div></div><div class="swatch"><div class="swatch-color" style="background:#A0845C"></div><div class="swatch-meta"><div class="swatch-role">Tannin gold</div><div class="swatch-hex">#A0845C</div></div></div><div class="swatch"><div class="swatch-color" style="background:#E84545"></div><div class="swatch-meta"><div class="swatch-role">Hibachi flash</div><div class="swatch-hex">#E84545</div></div></div></div>
+<div class="dir-body"><div class="mockup mhc"><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · OMAKASE</small></div></div><div class="one-mark"></div><h2>Unit-linked · เปิดทุกหน้า ที่ตัวแทนหลีก</h2><p class="dek">เบี้ยปีแรกถูกกว่า Term — แต่ปีที่ 25 ค่าธรรมเนียมที่หักจากกองทุนมากพอให้ IRR ต่ำกว่ากองทุนรวม</p><div class="silent-card"><div class="tag">POLICY · CASE 12</div><h4>COI escalation curve — ดูที่หน้า 6</h4></div><div class="silent-card"><div class="tag">GRILL · 54°C</div><h4>Reverse-sear · same discipline</h4></div></div></div><div class="notes"><h4>Signature</h4><p>The single mark — one 1px gold horizontal line per page. No doubling, no decoration. The slash of the knife: decisive, singular, done. "Sear reveal" content animation: clip-path sweeps left-to-right on scroll entry like a torch passing over protein.</p></div></div></article>
+
+<article class="direction" id="sb"><div class="dir-header"><span class="dir-num">06</span><h2 class="dir-title">Slow Burn</h2><span class="dir-source">Opus 4.6 · Merlin webapp</span><p class="dir-mood">"A film still held two seconds too long — the scene where the protagonist stares into the coals and understands something."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#0D0D0D"></div><div class="swatch-meta"><div class="swatch-role">Deep black</div><div class="swatch-hex">#0D0D0D</div></div></div><div class="swatch"><div class="swatch-color" style="background:#1A1A1A"></div><div class="swatch-meta"><div class="swatch-role">Lifted black</div><div class="swatch-hex">#1A1A1A</div></div></div><div class="swatch"><div class="swatch-color" style="background:#C8C2B8"></div><div class="swatch-meta"><div class="swatch-role">Warm ash</div><div class="swatch-hex">#C8C2B8</div></div></div><div class="swatch"><div class="swatch-color" style="background:#E85D26"></div><div class="swatch-meta"><div class="swatch-role">Ember core</div><div class="swatch-hex">#E85D26</div></div></div><div class="swatch"><div class="swatch-color" style="background:#F0C050"></div><div class="swatch-meta"><div class="swatch-role">Caution amber</div><div class="swatch-hex">#F0C050</div></div></div></div>
+<div class="dir-body"><div class="mockup msb"><div class="glow"></div><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div><span style="font-size:10px;color:#E85D26;font-family:'Inter Tight',sans-serif;letter-spacing:.08em">EVENING · APR 25</span></div><div class="featured"><div class="eyebrow">FEATURED · POLICY TEARDOWN</div><h2>ค่าธรรมเนียมที่เขาไม่อยากให้คุณเห็น</h2><p class="dek">Unit-linked คือสัญญาที่เผาเงินคุณช้าๆ — เปิดทีละหน้า ดูตัวเลขจริง</p><a class="cta">อ่านบทวิเคราะห์</a></div><div class="grid-2"><div class="mini"><div class="t">RECIPE</div>Reverse-sear · กฎ 3 ข้อ</div><div class="mini"><div class="t">EXPLAINER</div>Term ดีกว่า Whole Life</div></div></div></div><div class="notes"><h4>Signature</h4><p>Single ember glow per page (E85D26), box-shadow pulse on 4s cycle. Everything else static. Depth-of-field blur halos behind content. Cinematic full-bleed sections. Most direct visual cousin to the legacy EmberGlow experience.</p></div></div></article>
+
+<article class="direction" id="ms"><div class="dir-header"><span class="dir-num">07</span><h2 class="dir-title">Midnight Smoke</h2><span class="dir-source">Gemini 3.1</span><p class="dir-mood">"The hushed, focused intimacy of an exclusive chef's counter at midnight — chiaroscuro interfaces without borders."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#121110"></div><div class="swatch-meta"><div class="swatch-role">Smoked charcoal</div><div class="swatch-hex">#121110</div></div></div><div class="swatch"><div class="swatch-color" style="background:#1F1C1A"></div><div class="swatch-meta"><div class="swatch-role">Dark umber</div><div class="swatch-hex">#1F1C1A</div></div></div><div class="swatch"><div class="swatch-color" style="background:#D1C7BD"></div><div class="swatch-meta"><div class="swatch-role">Aged bone</div><div class="swatch-hex">#D1C7BD</div></div></div><div class="swatch"><div class="swatch-color" style="background:#B5651D"></div><div class="swatch-meta"><div class="swatch-role">Maillard brown</div><div class="swatch-hex">#B5651D</div></div></div><div class="swatch"><div class="swatch-color" style="background:#E63946"></div><div class="swatch-meta"><div class="swatch-role">Raw center</div><div class="swatch-hex">#E63946</div></div></div></div>
+<div class="dir-body"><div class="mockup mms"><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div></div><div class="focus-card"><div class="tag">POLICY · CASE FILE</div><h3>Unit-linked: หน้าที่หายไปจาก presentation</h3><p class="dek">ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย — และตัวแทนรู้ตั้งแต่วันแรก</p></div><div class="vignette-hint">flashlight focus tracking follows cursor</div><div class="focus-card"><div class="tag">GRILL · TECHNIQUE</div><h3>Reverse-sear · กฎ 3 ข้อ</h3><p class="dek">ไฟแรงคือกับดัก · 54°C คือเส้นแบ่ง · การพักเนื้อสำคัญ</p></div></div></div><div class="notes"><h4>Signature</h4><p>Flashlight focus tracking — a 400px radial gradient glow follows the cursor across the dark screen, revealing a microscopic noise texture only within the glow radius. No borders — elements emerge from shadow. Chiaroscuro lighting as interface.</p></div></div></article>
+
+<article class="direction" id="cn"><div class="dir-header"><span class="dir-num">08</span><h2 class="dir-title">Candlelight Noir</h2><span class="dir-source">MiniMax 2.7</span><p class="dir-mood">"A steakhouse where serious people eat serious meat and insurance paperwork gets signed by candlelight — warm, intimate, slightly hazy."</p></div>
+<div class="palette"><div class="swatch"><div class="swatch-color" style="background:#0F0E0C"></div><div class="swatch-meta"><div class="swatch-role">Charcoal deep</div><div class="swatch-hex">#0F0E0C</div></div></div><div class="swatch"><div class="swatch-color" style="background:#1C1A17"></div><div class="swatch-meta"><div class="swatch-role">Smoke shadow</div><div class="swatch-hex">#1C1A17</div></div></div><div class="swatch"><div class="swatch-color" style="background:#D4C8B8"></div><div class="swatch-meta"><div class="swatch-role">Candlelight</div><div class="swatch-hex">#D4C8B8</div></div></div><div class="swatch"><div class="swatch-color" style="background:#D4A853"></div><div class="swatch-meta"><div class="swatch-role">Butter gold</div><div class="swatch-hex">#D4A853</div></div></div><div class="swatch"><div class="swatch-color" style="background:#8B2635"></div><div class="swatch-meta"><div class="swatch-role">Aged wine</div><div class="swatch-hex">#8B2635</div></div></div></div>
+<div class="dir-body"><div class="mockup mcln"><div class="mockup-frame"><div class="mockup-nav"><div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div></div><div class="candle-card"><div class="tag">ANALYSIS · UNIT-LINKED</div><h3>สัญญาที่เผาเงินคุณช้าๆ</h3><p class="dek">เบี้ยปีแรกถูกกว่า Term — แต่ปีที่ 25 ค่าธรรมเนียมกินผลตอบแทนจนต่ำกว่ากองทุนรวม</p><div class="meta">ⓘ ปรับปรุงล่าสุด · 25 APR</div></div><div class="candle-card"><div class="tag">RECIPE · GRILL</div><h3>Reverse-sear ribeye · กฎ 3 ข้อ</h3><p class="dek">ทำไมไฟแรงเป็นกับดัก · 54°C คือเส้นแบ่ง · การพักเนื้อสำคัญ</p><div class="meta">ⓘ ผ่านการทดสอบ · 3 รอบ</div></div></div></div><div class="notes"><h4>Signature</h4><p>Condensation haze — warm light sources always slightly hazy, like breath on cold glass. Ambient elements flicker subtly (opacity 0.85–1.0 on randomized 2–4s intervals). On hover, the flicker ceases — "the flame steadies." The warmth is the visual asset.</p></div></div></article>
+</main>
+
+<footer>DeepSeek V4 Pro GO · Preview 2/4 · Immersive Dark · <code>DeepV4ProGO-Preview-2-Immersive-Dark.html</code></footer>
+</body>
+</html>

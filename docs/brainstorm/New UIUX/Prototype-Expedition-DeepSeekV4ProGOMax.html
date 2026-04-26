@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — Merged Prototype · Expedition Notebook · DeepSeekV4ProGOMax</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700;800&family=Caveat:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=K2D:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  :root{
+    --cream:#F6F1E8;--cream-card:#FFFCF7;--ink:#1B1A17;
+    --hero-dark:#0D0A08;--hero-text:#F0E8D5;
+    --ember:#E8782A;--burn:#B85C38;
+    --navy:#2B4A5E;--red:#CC3A2F;
+    --grid-line:rgba(175,165,145,0.18);
+    --temp-blue:#3B7DD8;--temp-amber:#F5A623;--temp-red:#E8482F;
+    --wd-teal:#2E6D63;--wd-rule:#c7b78f;
+    --font-thai:'Sarabun',sans-serif;
+    --font-serif:'Noto Serif Thai',serif;
+    --font-display:'Anuphan',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+    --font-hand:'K2D',sans-serif;
+    --font-hand-latin:'Caveat',cursive;
+  }
+  body{font-family:var(--font-thai);color:var(--ink);line-height:1.6;background:#0a0a0c;}
+
+  /* =================================================================== */
+  /* SIGNATURE HERO                                                       */
+  /* =================================================================== */
+  .hero{
+    position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:0 18px 40px;overflow:hidden;isolation:isolate;
+    background:radial-gradient(ellipse at 50% 100%,rgba(232,120,42,0.10) 0%,transparent 55%),
+               radial-gradient(ellipse at 78% 22%,rgba(232,120,42,0.07) 0%,transparent 40%),
+               linear-gradient(180deg,var(--hero-dark) 0%,#0A0705 100%);
+    color:var(--hero-text);font-family:var(--font-display);
+  }
+  /* Sunburst */
+  .hero::before{
+    content:'';position:absolute;top:50%;left:50%;width:150vmax;height:150vmax;
+    transform:translate(-50%,-50%);
+    background:conic-gradient(from 0deg,rgba(232,120,42,0.05) 0deg,transparent 30deg,rgba(245,200,66,0.03) 60deg,transparent 120deg,rgba(232,120,42,0.04) 180deg,transparent 240deg,rgba(245,200,66,0.02) 300deg,transparent 360deg);
+    animation:compass 36s linear infinite;pointer-events:none;z-index:0;
+  }
+  @keyframes compass{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  /* Embers */
+  .embers{position:absolute;inset:0;pointer-events:none;z-index:2}
+  .embers span{position:absolute;width:3px;height:3px;background:var(--ember);border-radius:50%;box-shadow:0 0 6px var(--ember),0 0 14px rgba(232,120,42,0.4);animation:emberUp 7s ease-in-out infinite;opacity:0}
+  .embers span:nth-child(1){left:8%;bottom:12%;animation-delay:0s}
+  .embers span:nth-child(2){left:18%;bottom:20%;animation-delay:0.8s}
+  .embers span:nth-child(3){left:25%;bottom:6%;animation-delay:1.9s;width:2px;height:2px}
+  .embers span:nth-child(4){left:38%;bottom:18%;animation-delay:0.4s}
+  .embers span:nth-child(5){left:45%;bottom:8%;animation-delay:2.7s}
+  .embers span:nth-child(6){left:55%;bottom:22%;animation-delay:1.3s;width:2px;height:2px}
+  .embers span:nth-child(7){left:62%;bottom:10%;animation-delay:2.1s}
+  .embers span:nth-child(8){left:72%;bottom:18%;animation-delay:3.5s}
+  .embers span:nth-child(9){left:82%;bottom:6%;animation-delay:0.6s}
+  .embers span:nth-child(10){left:90%;bottom:24%;animation-delay:2.9s;width:2px;height:2px}
+  .embers span:nth-child(11){left:14%;bottom:28%;animation-delay:4.1s}
+  .embers span:nth-child(12){left:50%;bottom:30%;animation-delay:3.1s;width:1.5px;height:1.5px}
+  @keyframes emberUp{0%{opacity:0;transform:translateY(0) translateX(0) scale(0.6)}18%{opacity:0.75;transform:translateY(-18vh) scale(1)}55%{opacity:0.4;transform:translateY(-48vh) translateX(12px) scale(0.85)}85%{opacity:0.15;transform:translateY(-75vh) translateX(22px) scale(0.6)}100%{opacity:0;transform:translateY(-95vh) translateX(30px) scale(0.4)}}
+  /* Glyph watermark */
+  .hero-glyph{position:absolute;bottom:20px;left:-16px;font-family:var(--font-display);font-weight:800;font-size:280px;line-height:0.75;color:rgba(232,120,42,0.05);pointer-events:none;z-index:1;user-select:none;letter-spacing:-0.05em}
+  @media(min-width:768px){.hero-glyph{font-size:360px;left:-28px;bottom:28px}}
+  /* Grid bleed */
+  .hero-grid-bleed{position:absolute;bottom:0;left:0;right:0;height:160px;z-index:3;pointer-events:none;
+    background:linear-gradient(90deg,rgba(175,165,145,0.08) 1px,transparent 1px),linear-gradient(180deg,rgba(175,165,145,0.08) 1px,transparent 1px),linear-gradient(to top,rgba(246,241,232,0.18) 0%,transparent 100%);
+    background-size:24px 24px,24px 24px,auto;
+    mask-image:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 100%);
+  }
+  /* Nav */
+  .hero-nav{position:absolute;top:0;left:0;right:0;padding:18px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-bottom:1px solid rgba(232,120,42,0.10)}
+  @media(min-width:768px){.hero-nav{padding:22px 24px}}
+  .hero-brand{font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:-0.01em;color:var(--hero-text)}
+  .hero-brand small{display:block;font-family:var(--font-mono);font-size:8.5px;color:rgba(240,232,213,0.5);letter-spacing:0.22em;margin-top:2px;text-transform:uppercase}
+  .hero-date{font-family:var(--font-mono);font-size:10px;color:var(--burn);letter-spacing:0.15em;text-transform:uppercase}
+  /* Content */
+  .hero-content{position:relative;z-index:5;max-width:600px}
+  .hero-eyebrow{font-family:var(--font-mono);font-size:10px;color:var(--burn);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px}
+  .hero-h{font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1.15;letter-spacing:-0.025em;margin-bottom:10px;animation:inkSettle 800ms 200ms both}
+  @media(min-width:768px){.hero-h{font-size:40px}}
+  .hero-h .accent{color:var(--ember)}
+  .hero-byline{font-family:var(--font-mono);font-size:10px;color:rgba(240,232,213,0.55);letter-spacing:0.1em;margin-bottom:24px;animation:inkSettle 600ms 550ms both}
+  @keyframes inkSettle{0%{filter:blur(3px);opacity:0}60%{filter:blur(1px);opacity:0.7}100%{filter:blur(0);opacity:1}}
+  /* CTA */
+  .hero-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+  .hero-cta{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--ember);color:var(--hero-dark);font-family:var(--font-display);font-weight:600;font-size:13px;text-decoration:none;border-radius:4px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;border:none}
+  .hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,120,42,0.35)}
+  .hero-cta.ghost{background:transparent;color:var(--hero-text);border:1px solid rgba(240,232,213,0.2)}
+  .hero-cta.ghost:hover{border-color:var(--ember);color:var(--ember);box-shadow:none}
+  /* Temp bar */
+  .hero-tempbar{position:relative;height:4px;width:100%;max-width:300px;margin-top:28px;
+    background:linear-gradient(to right,var(--temp-blue),var(--temp-amber),var(--temp-red));border-radius:2px;overflow:visible}
+  .hero-tempbar::after{content:'เส้นแบ่งความเสี่ยง';position:absolute;top:-20px;right:0;font-family:var(--font-mono);font-size:8.5px;color:rgba(240,232,213,0.3);letter-spacing:0.1em}
+  /* Gold rule */
+  .hero-rule{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(245,200,66,0.35) 20%,rgba(245,200,66,0.35) 80%,transparent);z-index:10}
+
+  /* =================================================================== */
+  /* HOMEPAGE BODY — Weekend Dossier (GPT-5.4 original spec)              */
+  /* =================================================================== */
+  .homepage{background:var(--cream);padding:40px 0 64px;display:block}
+  .homepage.hidden{display:none}
+  .hp-container{max-width:720px;margin:0 auto;padding:0 18px}
+  @media(min-width:768px){.hp-container{padding:0 24px}}
+  .hp-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .hp-header-left{font-family:var(--font-mono);font-size:9.5px;color:var(--wd-teal);letter-spacing:0.1em;text-transform:uppercase}
+  .hp-header-right{font-family:var(--font-mono);font-size:9px;color:rgba(27,26,23,0.35);letter-spacing:0.12em;text-transform:uppercase}
+  /* Card — faithful to original Weekend Dossier spec */
+  .hp-card{background:var(--cream-card);padding:14px 16px;margin-bottom:14px;border:1px solid var(--wd-rule);cursor:pointer;transition:transform 0.15s ease,box-shadow 0.15s ease;position:relative}
+  .hp-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(27,26,23,0.08)}
+  .hp-card:active{transform:translateY(0)}
+  /* Masthead — teal-green desk tag + beige-gold rule */
+  .hp-masthead{display:flex;gap:14px;font-family:var(--font-mono);font-size:9.5px;color:var(--wd-teal);text-transform:uppercase;letter-spacing:0.1em;padding-bottom:8px;border-bottom:0.5px solid var(--wd-rule);margin-bottom:10px}
+  .hp-masthead .desk{font-weight:600}
+  /* Headline — Noto Serif Thai */
+  .hp-card-h{font-family:var(--font-serif);font-weight:700;font-size:19px;line-height:1.25;margin-bottom:8px;color:var(--ink);letter-spacing:-0.01em}
+  @media(min-width:768px){.hp-card-h{font-size:20px}}
+  /* Lede — warm grey, 12.5px */
+  .hp-card-lede{font-size:12.5px;line-height:1.65;color:#3a3933;margin-bottom:12px}
+  /* Sidenote — NOTE. prefix, beige bg, burnt sienna left border, italic */
+  .hp-sidenote{background:#f4eed8;padding:8px 10px;border-left:2px solid var(--burn);font-size:11px;color:#4a4944;line-height:1.55;font-style:italic}
+  .hp-sidenote::before{content:'NOTE.';font-family:var(--font-mono);font-size:9px;color:var(--burn);font-weight:600;letter-spacing:0.1em;font-style:normal;margin-right:6px}
+
+  /* =================================================================== */
+  /* ARTICLE BODY — Expedition Notebook                                    */
+  /* =================================================================== */
+  .article-view{display:none;background:var(--cream);min-height:100vh}
+  .article-view.active{display:block}
+  .article-nav{position:sticky;top:0;z-index:20;padding:14px 18px;display:flex;align-items:center;gap:14px;
+    background:linear-gradient(90deg,rgba(175,165,145,0.10) 1px,transparent 1px),
+               linear-gradient(180deg,rgba(175,165,145,0.10) 1px,transparent 1px),
+               rgba(246,241,232,0.96);
+    background-size:24px 24px,24px 24px,auto;
+    backdrop-filter:blur(8px);border-bottom:1px solid rgba(204,58,47,0.12);
+  }
+  .article-nav-back{font-family:var(--font-mono);font-size:10px;color:var(--burn);letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border:none;background:none;padding:2px 0;display:flex;align-items:center;gap:4px}
+  .article-nav-back:hover{color:var(--red)}
+  .article-nav-stamp{font-family:var(--font-display);font-weight:700;font-size:9.5px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase}
+  .article-nav-date{font-family:var(--font-mono);font-size:9px;color:rgba(27,26,23,0.35);letter-spacing:0.1em;margin-left:auto;text-transform:uppercase}
+
+  .nb-article-body{
+    background:linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),
+               linear-gradient(180deg,var(--grid-line) 1px,transparent 1px),
+               radial-gradient(ellipse at center,transparent 60%,rgba(180,160,130,0.05) 100%),
+               linear-gradient(180deg,#F5F2EA 0%,#F3EFE5 100%);
+    background-size:24px 24px,24px 24px,auto,auto;
+    padding:28px 18px 48px;
+    color:var(--ink);position:relative;
+  }
+  .nb-article-wrap{max-width:580px;margin:0 auto;position:relative}
+  @media(min-width:768px){.nb-article-wrap{max-width:620px}.nb-article-body{padding:32px 24px 56px}}
+
+  /* Headline */
+  .nb-h{font-family:var(--font-display);font-weight:800;font-size:24px;line-height:1.2;letter-spacing:-0.015em;margin-bottom:8px;color:var(--ink)}
+  @media(min-width:768px){.nb-h{font-size:28px}}
+  .nb-byline{font-family:var(--font-hand);font-weight:300;font-style:italic;font-size:13px;color:var(--navy);margin-bottom:6px}
+  .nb-rule-red{height:1px;background:rgba(204,58,47,0.25);margin:12px 0 18px}
+  /* Body text */
+  .nb-p{font-size:15px;line-height:1.75;color:var(--ink);margin-bottom:14px}
+  /* <Highlight> */
+  .nb-hl{background:rgba(255,237,100,0.45);padding:1px 0;box-shadow:0 0 2px rgba(255,237,100,0.3)}
+  /* <Note> — marginal */
+  .nb-note{font-family:var(--font-hand);font-weight:300;font-style:italic;font-size:12.5px;color:var(--navy);line-height:1.5;padding:8px 12px;margin:10px 0;border-left:2px solid rgba(43,74,94,0.2);background:rgba(253,251,247,0.6);position:relative}
+  .nb-note.caution{color:var(--red);border-left-color:rgba(204,58,47,0.3);font-weight:400}
+  @media(min-width:768px){.nb-note{position:absolute;right:-220px;width:195px;margin:0;transform:rotate(1.2deg);font-size:12px;padding:6px 10px;background:rgba(253,251,247,0.85)}.nb-note.left{left:-220px;right:auto;transform:rotate(-1.5deg)}}
+  /* <Scrap> — taped-in */
+  .nb-scrap{background:var(--cream-card);border:1px solid rgba(175,165,145,0.25);padding:16px 14px 14px;margin:16px 0;position:relative;transform:rotate(-1.2deg);box-shadow:2px 2px 6px rgba(28,24,20,0.08);transform-origin:center top;animation:tapeSettle 550ms 150ms cubic-bezier(0.34,1.56,0.64,1) both}
+  @keyframes tapeSettle{0%{transform:translateY(-5px) rotate(-1.2deg);opacity:0.7}100%{transform:translateY(0) rotate(-1.2deg);opacity:1}}
+  .nb-scrap::before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(-0.8deg);width:68px;height:13px;background:rgba(245,240,220,0.72);border:1px solid rgba(200,190,170,0.25);border-radius:1px}
+  .nb-scrap-label{font-family:var(--font-mono);font-size:8px;color:rgba(27,26,23,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+  .nb-scrap-table{width:100%;font-family:var(--font-mono);font-size:11px;border-collapse:collapse}
+  .nb-scrap-table td{padding:4px 8px;border-bottom:1px solid rgba(175,165,145,0.18);color:var(--ink)}
+  .nb-scrap-table td:last-child{text-align:right;font-weight:600;color:var(--red)}
+  .nb-scrap-table tr:last-child td{border-bottom:none}
+  /* <Correction> */
+  .nb-correction{margin:14px 0}
+  .nb-correction .strike{font-size:14px;color:rgba(204,58,47,0.45);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1px;text-decoration-style:wavy;margin-bottom:4px}
+  .nb-correction .fix{font-family:var(--font-hand);font-weight:300;font-style:italic;font-size:12.5px;color:var(--navy);padding-left:14px;border-left:2px solid rgba(43,74,94,0.15);line-height:1.5}
+  /* <Verdict> */
+  .nb-verdict{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:18px 0 6px;padding-top:14px;border-top:1px dashed rgba(204,58,47,0.15)}
+  .nb-verdict-circle{width:60px;height:60px;flex-shrink:0}
+  @media(min-width:768px){.nb-verdict-circle{width:68px;height:68px}}
+  .nb-verdict-circle svg{width:100%;height:100%}
+  .nb-verdict-circle .cp{fill:none;stroke:var(--red);stroke-width:2;stroke-dasharray:195;stroke-dashoffset:195;animation:verdictDraw 800ms 300ms ease-in-out forwards}
+  @keyframes verdictDraw{0%{stroke-dashoffset:195}65%{stroke-dashoffset:18}82%{stroke-dashoffset:6}92%{stroke-dashoffset:2}100%{stroke-dashoffset:0}}
+  .nb-verdict-label{font-family:var(--font-hand);font-weight:300;font-style:italic;font-size:11.5px;color:var(--navy);text-align:right;line-height:1.4;max-width:140px}
+  /* Page footer */
+  .nb-page-footer{margin-top:24px;padding-top:16px;border-top:1px solid rgba(204,58,47,0.10);display:flex;justify-content:space-between;align-items:flex-end}
+  .nb-page-footer-left{font-family:var(--font-hand);font-weight:300;font-style:italic;font-size:11px;color:var(--navy);line-height:1.5}
+  .nb-page-footer-right{text-align:right}
+  .nb-page-footer-right svg{width:48px;height:48px}
+  .nb-page-footer-right ellipse{fill:none;stroke:var(--red);stroke-width:1.6}
+  .nb-page-footer-right text{font-family:var(--font-display);font-weight:700;font-size:8px;fill:var(--red);text-anchor:middle;dominant-baseline:central}
+  .nb-page-num{font-family:var(--font-mono);font-size:8px;color:rgba(27,26,23,0.3);letter-spacing:0.12em;margin-top:4px;text-align:right}
+  /* Watermark */
+  .nb-watermark{margin-top:20px;padding-top:12px;border-top:1px solid rgba(175,165,145,0.18);font-size:10.5px;color:rgba(27,26,23,0.3);text-align:center;letter-spacing:-0.005em}
+
+  /* =================================================================== */
+  /* RESPONSIVE                                                            */
+  /* =================================================================== */
+  @media(max-width:767px){
+    .hero-h{font-size:26px}
+    .hero-glyph{font-size:220px;bottom:12px;left:-14px}
+    .hero{min-height:90vh}
+    .hp-card-h{font-size:16px}
+  }
+
+  /* =================================================================== */
+  /* REDUCED MOTION                                                        */
+  /* =================================================================== */
+  @media(prefers-reduced-motion:reduce){
+    .embers span,.hero::before{animation:none!important}
+    .hero-h,.hero-byline{animation:none}
+    .nb-verdict-circle .cp{animation:none;stroke-dashoffset:0!important}
+    .nb-scrap{animation:none}
+    .hero-cta:hover{transform:none}
+    .hp-card:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- =================================================================== -->
+<!-- ZONE 1 — SIGNATURE HERO                                              -->
+<!-- =================================================================== -->
+<section class="hero" id="hero">
+  <div class="embers">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-glyph">เนื้อ</div>
+  <div class="hero-grid-bleed"></div>
+
+  <nav class="hero-nav">
+    <div class="hero-brand">ประกันเนื้อๆ<small>BEEF · IM · EXPEDITION LOG</small></div>
+    <div class="hero-date">SAT · 26 APR 26</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">เน้นเนื้อๆ ไม่เอาน้ำ</div>
+    <h1 class="hero-h">ดูเนื้อ <span class="accent">ไม่ดูหน้า</span></h1>
+    <div class="hero-byline">Contract forensics · Grill technique · No filler</div>
+    <div class="hero-cta-row">
+      <a class="hero-cta" href="#homepage">บทวิเคราะห์</a>
+      <a class="hero-cta ghost" href="#homepage">เริ่มอ่าน</a>
+    </div>
+    <div class="hero-tempbar"></div>
+  </div>
+  <div class="hero-rule"></div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ZONE 2 — HOMEPAGE (Weekend Dossier clean cards)                      -->
+<!-- =================================================================== -->
+<section class="homepage" id="homepage">
+  <div class="hp-container">
+    <div class="hp-header">
+      <span class="hp-header-left">สมุดบันทึกการสำรวจ — EXPEDITION LOG</span>
+      <span class="hp-header-right">№ 1 · APR 2026</span>
+    </div>
+
+    <!-- Card 1 — POLICY DESK · CASE FILE -->
+    <article class="hp-card" onclick="openArticle('case-ul')">
+      <div class="hp-masthead">
+        <span class="desk">POLICY DESK · CASE FILE</span>
+        <span>2,840w · 11 MIN</span>
+      </div>
+      <h3 class="hp-card-h">Unit-linked: กับดักค่าธรรมเนียม ที่ตัวแทนไม่บอก</h3>
+      <p class="hp-card-lede">COI ปีที่ 30 = 128,400 บาท — exponential curve ที่หายไปจาก presentation ทุกครั้ง เบี้ยเท่าเดิม แต่ค่าใช้จ่ายภายในเพิ่มทุกปี</p>
+      <div class="hp-sidenote">ตัวอย่าง AIA Multi-Pay CI ปี 2024 — COI เพิ่ม 8% ต่อปีหลังอายุ 50 จนถึงปีที่ 30 เกินเบี้ยที่จ่ายทั้งปี</div>
+    </article>
+
+    <!-- Card 2 — FOOD DESK · EXPERIMENT LOG -->
+    <article class="hp-card" onclick="openArticle('exp-ribeye')">
+      <div class="hp-masthead">
+        <span class="desk">FOOD DESK · EXPERIMENT LOG</span>
+        <span>1,420w · 6 MIN</span>
+      </div>
+      <h3 class="hp-card-h">Ribeye 4" — สอนภรรยาย่าง Reverse-sear</h3>
+      <p class="hp-card-lede">54°C คือเส้นแบ่ง · ไฟแรงคือกับดัก · การพักเนื้อสำคัญกว่าการย่าง · Meat thermometer คืออาวุธสำคัญที่สุดในครัว</p>
+      <div class="hp-sidenote">เปรียบเทียบ: เตาถ่าน vs. เตาไฟฟ้า — ผลต่างที่จับด้วยมือได้ ไม่ใช่ความรู้สึก</div>
+    </article>
+
+    <!-- Card 3 — POLICY DESK · CASE FILE -->
+    <article class="hp-card" onclick="openArticle('case-wl')">
+      <div class="hp-masthead">
+        <span class="desk">POLICY DESK · CASE FILE</span>
+        <span>3,100w · 14 MIN</span>
+      </div>
+      <h3 class="hp-card-h">ผมแนะนำให้ยกเลิก Whole Life 8 หลัก</h3>
+      <p class="hp-card-lede">IRR 1.2% · ถูกขายเป็น "การลงทุน" · ลูกค้าเซ็นเพราะตัวแทนเป็นคนรู้จัก — เบี้ยรวม 30 ปี vs. ผลตอบแทนคืน</p>
+      <div class="hp-sidenote">Whole Life เหมาะกับใคร: ต้องการความคุ้มครองตลอดชีพ + ไม่สนใจผลตอบแทน — คนกลุ่มนี้มีไม่ถึง 10%</div>
+    </article>
+
+    <!-- Card 4 — FOOD DESK · FIELD NOTE -->
+    <article class="hp-card" onclick="openArticle('exp-pork')">
+      <div class="hp-masthead">
+        <span class="desk">FOOD DESK · FIELD NOTE</span>
+        <span>420w · 3 MIN</span>
+      </div>
+      <h3 class="hp-card-h">หมูสามชั้นทอดน้ำปลา — สูตรจดหลังย่างเสร็จ</h3>
+      <p class="hp-card-lede">สามชั้นหนา 1.5" · น้ำปลาแท้เท่านั้น · ทอดไฟกลาง 12 นาที · หนังฟองกรอบ · Megachef ไม่ใช่ Tiparos</p>
+      <div class="hp-sidenote">ถ้าทำอีกครั้ง: เอากระดาษซับน้ำมันออกก่อนใส่น้ำปลา — น้ำมันที่เหลือทำให้ caramelize ไม่สม่ำเสมอ</div>
+    </article>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ZONE 3A — ARTICLE: CASE FILE · Unit-linked Teardown                  -->
+<!-- =================================================================== -->
+<section class="article-view" id="case-ul">
+  <nav class="article-nav">
+    <button class="article-nav-back" onclick="closeArticle()">← กลับหน้าหลัก</button>
+    <span class="article-nav-stamp">CASE FILE · PAGE 04</span>
+    <span class="article-nav-date">SAT · 26 APR 26</span>
+  </nav>
+  <div class="nb-article-body">
+    <div class="nb-article-wrap">
+      <h2 class="nb-h">Unit-linked: กับดักค่าธรรมเนียม ที่ตัวแทนไม่บอกคุณ</h2>
+      <div class="nb-byline">25 เม.ย. 2026 · ณัฐพล · เริ่มเขียน 21:14 · แก้ครั้งที่ 3</div>
+      <div class="nb-rule-red"></div>
+
+      <p class="nb-p">
+        เวลาตัวแทนขาย Unit-linked สิ่งที่คุณเห็นคือกราฟผลตอบแทนที่สมมติ 7–8% ต่อปี สิ่งที่คุณไม่เห็นคือ <span class="nb-hl">ค่าใช้จ่ายที่หักจากกองทุนทุกเดือน</span> — และตัวที่หนักที่สุดคือ COI (Cost of Insurance) ที่เพิ่มขึ้นแบบ <strong>exponential</strong> ตามอายุ
+      </p>
+
+      <div class="nb-note">
+        กับดักที่พบบ่อยที่สุด — ตัวแทนมักบอกว่า "เบี้ยเท่าเดิมตลอดสัญญา" ซึ่งจริงแค่ครึ่งเดียว เบี้ยจ่ายเท่าเดิม แต่ค่าใช้จ่ายภายในเพิ่มขึ้นทุกปี
+      </div>
+
+      <p class="nb-p">
+        เบี้ยปีที่ 1 = 120,000 บาท ค่า COI ยังต่ำ — แค่หลักพัน แต่พอถึง <span class="nb-hl">ปีที่ 30 ตัวเลขนี้กระโดดไปที่ 128,400 บาทต่อปี (Thai Mortality Table 2017) — มากกว่าเบี้ยที่คุณจ่ายทั้งปี</span> ส่วนต่างถูกหักจากมูลค่ากองทุนของคุณ โดยที่คุณไม่รู้ตัว
+      </p>
+
+      <div class="nb-scrap">
+        <div class="nb-scrap-label">EXHIBIT A · AIA-UL COI SCHEDULE</div>
+        <table class="nb-scrap-table">
+          <tr><td>เบี้ยรายปี (ปี 1–30)</td><td>฿120,000</td></tr>
+          <tr><td>COI ปีที่ 1</td><td>฿3,200</td></tr>
+          <tr><td>COI ปีที่ 15 (อายุ 50)</td><td>฿41,600</td></tr>
+          <tr><td>COI ปีที่ 30 (อายุ 65)</td><td>฿128,400</td></tr>
+          <tr><td>ผลตอบแทนสุทธิ 30 ปี (IRR)</td><td>— 3.2% p.a.</td></tr>
+        </table>
+      </div>
+
+      <div class="nb-note left caution">
+        ⚠ ถ้า COI มากกว่าเบี้ย — กองทุนถูกกินหมดใน 3–5 ปีหลังเกษียณ ตัวแทนที่ดีต้องเปิดตารางนี้ให้ดูก่อนขาย
+      </div>
+
+      <p class="nb-p">
+        ตัวแทนที่ขาย Unit-linked แบบไม่เปิด COI schedule คือตัวแทนที่ยอมให้คุณเดินเข้าสู่กับดักโดยไม่รู้ตัว — ไม่ใช่ทุกคน แต่มีมากพอที่คุณควรถามก่อนเซ็น
+      </p>
+
+      <div class="nb-correction">
+        <div class="strike">ความเชื่อผิด: "Unit-linked ดีกว่า Term เพราะเอาเงินคืนได้"</div>
+        <div class="fix">ความจริง: เงินที่คุณ "ได้คืน" คือเงินที่คุณจ่ายเข้าไป — ลบด้วยค่าธรรมเนียมที่หักทุกเดือนตลอด 30 ปี ถ้า IRR สุทธิต่ำกว่าเงินเฟ้อ คุณไม่ได้ "ได้คืน" — คุณกำลังจ่ายให้บริษัทประกันบริหารเงินให้คุณในราคาแพง</div>
+      </div>
+
+      <div class="nb-verdict">
+        <div class="nb-verdict-label">Unit-linked ไม่ใช่ผลิตภัณฑ์ที่เลว — แต่มันคือผลิตภัณฑ์ที่ต้องเข้าใจก่อนซื้อ</div>
+        <div class="nb-verdict-circle">
+          <svg viewBox="0 0 100 100"><ellipse class="cp" cx="50" cy="50" rx="44" ry="42" transform="rotate(-3 50 50)"/><text x="50" y="45" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:10px;fill:#CC3A2F;text-anchor:middle;opacity:1">ตรวจสอบ</text><text x="50" y="57" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:10px;fill:#CC3A2F;text-anchor:middle;opacity:1">ก่อนเซ็น</text></svg>
+        </div>
+      </div>
+
+      <div class="nb-page-footer">
+        <div class="nb-page-footer-left">25 เม.ย. 2026 · ณัฐพล<br>สมุดบันทึกการสำรวจ · เล่ม 1</div>
+        <div class="nb-page-footer-right">
+          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="44" ry="42" transform="rotate(-2 50 50)"/><text x="50" y="50">⚠ HIGH</text></svg>
+          <div class="nb-page-num">หน้า 04</div>
+        </div>
+      </div>
+
+      <div class="nb-watermark">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im) · #ประกันเนื้อๆ</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ZONE 3B — ARTICLE: EXPERIMENT LOG · Reverse-sear Ribeye             -->
+<!-- =================================================================== -->
+<section class="article-view" id="exp-ribeye">
+  <nav class="article-nav">
+    <button class="article-nav-back" onclick="closeArticle()">← กลับหน้าหลัก</button>
+    <span class="article-nav-stamp">EXPERIMENT LOG · PAGE 09</span>
+    <span class="article-nav-date">SAT · 26 APR 26</span>
+  </nav>
+  <div class="nb-article-body">
+    <div class="nb-article-wrap">
+      <h2 class="nb-h">Ribeye 4" — สอนภรรยาย่าง Reverse-sear</h2>
+      <div class="nb-byline">24 เม.ย. 2026 · ณัฐพล · ทดลอง 3 ครั้ง · สรุปครั้งสุดท้าย</div>
+      <div class="nb-rule-red"></div>
+
+      <p class="nb-p">
+        ภรรยาถามว่า "ทำไมเนื้อแข็งจัง" — หลังจากลองย่าง ribeye ด้วยไฟแรงตาม YouTube คำถามนั้นเริ่มการทดลอง 3 ครั้งในครัวเมื่อวาน <span class="nb-hl">สิ่งที่ค้นพบ: ไฟแรงคือกับดักใหญ่ที่สุดสำหรับมือใหม่</span>
+      </p>
+
+      <div class="nb-note">
+        ข้อสังเกต: YouTube สอนให้ "sear ด้วยไฟแรง" — แต่ไม่ได้บอกว่าถ้าคุณไม่มีเตา 800°C เหมือนร้าน steakhouse เนื้อคุณจะสุกนอกดิบใน
+      </div>
+
+      <p class="nb-p">
+        <span class="nb-hl">กฎข้อที่ 1: 54°C คือเส้นแบ่งระหว่าง medium-rare กับ disaster.</span> ใช้อุณหภูมิแกนกลางเป็นตัวนำ — ไม่ใช่เวลา ไม่ใช่สี ไม่ใช่ความรู้สึก Meat thermometer คืออาวุธสำคัญที่สุดในครัว
+      </p>
+
+      <div class="nb-correction">
+        <div class="strike">ความเชื่อผิด: "ต้องกลับเนื้อบ่อยๆ จะได้สุกทั่ว"</div>
+        <div class="fix">แก้หลังทดลองครั้งที่ 2: กลับครั้งเดียว — ตอนอุณหภูมิแกนกลางถึง 48°C ปล่อยให้อีกด้านไล่ตามถึง 54°C การกลับบ่อยทำให้ความร้อนหนีออกจากผิวเนื้อทุกครั้งที่พลิก</div>
+      </div>
+
+      <div class="nb-scrap">
+        <div class="nb-scrap-label">EXPERIMENT LOG · RIBEYE-54C · TRIAL 3</div>
+        <table class="nb-scrap-table">
+          <tr><td>อุณหภูมิแกนกลาง (target)</td><td>54°C</td></tr>
+          <tr><td>อุณหภูมิผิวตอน sear</td><td>220°C</td></tr>
+          <tr><td>เวลา sear (ต่อด้าน)</td><td>45 วินาที</td></tr>
+          <tr><td>เวลาพักเนื้อ</td><td>10 นาที</td></tr>
+          <tr><td>ผลลัพธ์</td><td>MEDIUM RARE ✓</td></tr>
+        </table>
+      </div>
+
+      <div class="nb-note left">
+        เคล็ดลับ: เอาเนื้อออกจากตู้เย็น 45 นาทีก่อนย่าง — อุณหภูมิห้องช่วยให้ความร้อนกระจายสม่ำเสมอ ลดความต่างระหว่างผิวกับแกนกลาง
+      </div>
+
+      <p class="nb-p">
+        <span class="nb-hl">กฎข้อที่ 2: การพักเนื้อสำคัญกว่าการย่าง.</span> หลัง sear — วางเนื้อบนตะแกรง 10 นาที น้ำในเนื้อที่ถูกความร้อนดันมาที่ผิวจะ redistribute กลับเข้าสู่โครงสร้างกล้ามเนื้อ ตัดทันที = น้ำหวานไหลออกหมดบนเขียง
+      </p>
+
+      <p class="nb-p">
+        <span class="nb-hl">กฎข้อที่ 3: ใช้เกลือหยาบก่อนย่าง อย่าใช้เกลือป่น.</span> เกลือหยาบละลายช้า — ดึงน้ำออกจากผิวเนื้อ แล้วน้ำนั้นผสมเกลือละลายแล้วถูกดูดกลับเข้าเนื้อ (dry brine แบบเร่งด่วน) เกลือป่นละลายเร็วเกินไป — ได้แค่เค็มที่ผิว ไม่ได้ความนุ่มลึก
+      </p>
+
+      <div class="nb-verdict">
+        <div class="nb-verdict-label">ภรรยาบอกว่า "เนื้อนุ่มกว่า ครั้งก่อนเยอะ" — การทดลองสำเร็จ</div>
+        <div class="nb-verdict-circle">
+          <svg viewBox="0 0 100 100"><ellipse class="cp" cx="50" cy="50" rx="44" ry="42" transform="rotate(2 50 50)"/><text x="50" y="43" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:9px;fill:#CC3A2F;text-anchor:middle;opacity:1">54°C</text><text x="50" y="55" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:9px;fill:#CC3A2F;text-anchor:middle;opacity:1">ผ่านฉลุย</text></svg>
+        </div>
+      </div>
+
+      <div class="nb-page-footer">
+        <div class="nb-page-footer-left">24 เม.ย. 2026 · ณัฐพล · ครัวบ้าน<br>สมุดบันทึกการสำรวจ · เล่ม 1</div>
+        <div class="nb-page-footer-right">
+          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="44" ry="42" transform="rotate(-1 50 50)"/><text x="50" y="50">🔥 MED RARE</text></svg>
+          <div class="nb-page-num">หน้า 09</div>
+        </div>
+      </div>
+
+      <div class="nb-watermark">🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im) · #ประกันเนื้อๆ</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ZONE 3C — ARTICLE: CASE FILE · Whole Life Teardown (brief)           -->
+<!-- =================================================================== -->
+<section class="article-view" id="case-wl">
+  <nav class="article-nav">
+    <button class="article-nav-back" onclick="closeArticle()">← กลับหน้าหลัก</button>
+    <span class="article-nav-stamp">CASE FILE · PAGE 02</span>
+    <span class="article-nav-date">SAT · 26 APR 26</span>
+  </nav>
+  <div class="nb-article-body">
+    <div class="nb-article-wrap">
+      <h2 class="nb-h">ผมแนะนำให้ยกเลิก Whole Life 8 หลัก</h2>
+      <div class="nb-byline">20 เม.ย. 2026 · ณัฐพล · วิเคราะห์จากกรมธรรม์จริง</div>
+      <div class="nb-rule-red"></div>
+
+      <p class="nb-p">ลูกค้าเดินเข้ามาพร้อมกับ Whole Life วงเงิน 8 หลักที่ซื้อมา 7 ปีแล้ว — "ซื้อเพราะตัวแทนเป็นพี่ที่รู้จักกันมานาน" นั่นคือประโยคที่ผมได้ยินบ่อยที่สุด <span class="nb-hl">และเป็นประโยคที่นำไปสู่การสูญเสียเงินมากที่สุดในวงการประกัน</span></p>
+
+      <div class="nb-scrap">
+        <div class="nb-scrap-label">EXHIBIT B · WHOLE LIFE · CASH VALUE PROJECTION</div>
+        <table class="nb-scrap-table">
+          <tr><td>เบี้ยรวม 30 ปี</td><td>฿3,600,000</td></tr>
+          <tr><td>มูลค่าเวนคืนปีที่ 30</td><td>฿2,850,000</td></tr>
+          <tr><td>IRR สุทธิ</td><td>1.2%</td></tr>
+          <tr><td>เงินเฟ้อเฉลี่ย 30 ปี</td><td>2.5–3.0%</td></tr>
+          <tr><td>ผลตอบแทนจริง (หลังเงินเฟ้อ)</td><td>— ติดลบ</td></tr>
+        </table>
+      </div>
+
+      <div class="nb-note left caution">⚠ 1.2% IRR ต่ำกว่าเงินเฟ้อ — มูลค่าเงินที่ "ได้คืน" น้อยกว่ามูลค่าเงินที่จ่ายเข้าไปในแง่ของ Purchasing Power</div>
+
+      <p class="nb-p">ไม่ได้แปลว่า Whole Life ไม่ดี — <span class="nb-hl">มันดีสำหรับคนที่ต้องการความคุ้มครองตลอดชีพแบบไม่ต้องคิดอะไร</span> แต่มันไม่ควรถูกขายในฐานะ "การลงทุน" กับคนที่ยังไม่มีความรู้ทางการเงิน เพราะ IRR 1.2% เทียบกับกองทุนรวมที่ให้ 5–7% คือส่วนต่างมหาศาลในระยะ 30 ปี</p>
+
+      <div class="nb-correction">
+        <div class="strike">ความเชื่อผิด: "Whole Life ดีเพราะได้ทั้งความคุ้มครองและการออม"</div>
+        <div class="fix">ความจริง: คุณจ่ายเบี้ยแพงขึ้น 8–12 เท่าเพื่อแลกกับ "การออม" ที่ให้ผลตอบแทนต่ำกว่าเงินเฟ้อ — การแยกความคุ้มครอง (Term) + การลงทุน (กองทุนรวม) ให้ผลตอบแทนโดยรวมสูงกว่าเสมอในทุกกรณีที่ผมวิเคราะห์</div>
+      </div>
+
+      <div class="nb-verdict">
+        <div class="nb-verdict-label">Whole Life ไม่ใช่ผลิตภัณฑ์ที่เลว — แต่มันถูกขายผิดกลุ่มเป้าหมายมาตลอด</div>
+        <div class="nb-verdict-circle">
+          <svg viewBox="0 0 100 100"><ellipse class="cp" cx="50" cy="50" rx="44" ry="42" transform="rotate(-2 50 50)"/><text x="50" y="45" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:10px;fill:#CC3A2F;text-anchor:middle;opacity:1">FLAGGED</text><text x="50" y="57" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:10px;fill:#CC3A2F;text-anchor:middle;opacity:1">RE-READ</text></svg>
+        </div>
+      </div>
+
+      <div class="nb-page-footer">
+        <div class="nb-page-footer-left">20 เม.ย. 2026 · ณัฐพล<br>สมุดบันทึกการสำรวจ · เล่ม 1</div>
+        <div class="nb-page-footer-right">
+          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="44" ry="42" transform="rotate(-2 50 50)"/><text x="50" y="50">⚠ HIGH</text></svg>
+          <div class="nb-page-num">หน้า 02</div>
+        </div>
+      </div>
+
+      <div class="nb-watermark">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im) · #ประกันเนื้อๆ</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- ZONE 3D — ARTICLE: FIELD NOTE · หมูสามชั้นทอดน้ำปลา                    -->
+<!-- =================================================================== -->
+<section class="article-view" id="exp-pork">
+  <nav class="article-nav">
+    <button class="article-nav-back" onclick="closeArticle()">← กลับหน้าหลัก</button>
+    <span class="article-nav-stamp">FIELD NOTE · PAGE 01</span>
+    <span class="article-nav-date">SAT · 26 APR 26</span>
+  </nav>
+  <div class="nb-article-body">
+    <div class="nb-article-wrap">
+      <h2 class="nb-h">หมูสามชั้นทอดน้ำปลา — สูตรจดหลังย่างเสร็จ</h2>
+      <div class="nb-byline">22 เม.ย. 2026 · ณัฐพล · เขียนหลังกิน 5 นาที · ภรรยาบอก "อร่อยที่สุดตั้งแต่ทำมา"</div>
+      <div class="nb-rule-red"></div>
+
+      <p class="nb-p">นี่ไม่ใช่สูตรที่วางแผนไว้ — มันคือ <span class="nb-hl">ความบังเอิญที่เกิดจากการลองผิดลองถูก</span> ตอนแรกจะทอดหมูสามชั้นธรรมดา แต่น้ำปลาหมดขวดเก่าเลยลองเปลี่ยนยี่ห้อ แล้วทุกอย่างเปลี่ยน</p>
+
+      <div class="nb-note">
+        จดไว้กันลืม: น้ำปลาที่ใช้คือ Megachef — รสอ่อนกว่า Tiparos ใช้แล้วหมูไม่เค็มโดด ได้รส Umami แทนที่จะเป็นแค่เค็ม
+      </div>
+
+      <div class="nb-correction">
+        <div class="strike">ความผิดพลาดครั้งที่ 1: ใส่น้ำปลาตั้งแต่เริ่มทอด — หมูไหม้ก่อนสุก น้ำปลาเป็นน้ำตาล</div>
+        <div class="fix">แก้ไข: ทอดหมูด้วยไฟกลางจนหนังเริ่มฟอง (~8 นาที) — แล้วค่อยราดน้ำปลาลงบนหมูโดยตรง ไม่ใช่ลงกระทะ น้ำปลาจะ caramelize บนผิวหมู ไม่ใช่ไหม้ที่ก้นกระทะ</div>
+      </div>
+
+      <div class="nb-scrap">
+        <div class="nb-scrap-label">FIELD NOTE · FRIED-BELLY · PARAMETERS</div>
+        <table class="nb-scrap-table">
+          <tr><td>หมูสามชั้น</td><td>หนา 1.5" · มีหนัง · 300 กรัม</td></tr>
+          <tr><td>น้ำมันเริ่มต้น</td><td>2 ช้อนโต๊ะ · ไฟกลาง</td></tr>
+          <tr><td>เวลา (ก่อนใส่น้ำปลา)</td><td>8 นาที · กลับด้านที่ 4 นาที</td></tr>
+          <tr><td>น้ำปลา</td><td>1 ช้อนโต๊ะ · Megachef</td></tr>
+          <tr><td>เวลา (หลังใส่น้ำปลา)</td><td>4 นาที · ลดไฟอ่อน</td></tr>
+          <tr><td>ผลลัพธ์</td><td>หนังฟองกรอบ · เนื้อนุ่ม · หอมน้ำปลา</td></tr>
+        </table>
+      </div>
+
+      <div class="nb-note left">
+        สิ่งที่เรียนรู้: ถ้าทำอีกครั้ง — เอากระดาษซับน้ำมันออกก่อนใส่น้ำปลา น้ำมันที่เหลือจากหมูทำให้การ caramelize ไม่สม่ำเสมอ
+      </div>
+
+      <p class="nb-p">
+        <span class="nb-hl">บทเรียนที่สำคัญที่สุด: น้ำปลาแท้เท่านั้น.</span> น้ำปลาผสม (hydrolyzed vegetable protein) จะไม่ caramelize — มันจะแค่ระเหยแล้วทิ้งคราบเค็มไว้ ต้องน้ำปลาที่หมักจากปลาจริงถึงจะมีน้ำตาลธรรมชาติพอที่จะเกิด Maillard reaction บนผิวหมู
+      </p>
+
+      <div class="nb-verdict">
+        <div class="nb-verdict-label">ภรรยาบอก "อร่อยที่สุดตั้งแต่ทำมา" — บันทึกไว้แล้ว ลองใหม่สัปดาห์หน้า</div>
+        <div class="nb-verdict-circle">
+          <svg viewBox="0 0 100 100"><ellipse class="cp" cx="50" cy="50" rx="44" ry="42" transform="rotate(1 50 50)"/><text x="50" y="43" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:9px;fill:#CC3A2F;text-anchor:middle;opacity:1">ผ่านฉลุย</text><text x="50" y="55" style="font-family:'Anuphan',sans-serif;font-weight:700;font-size:9px;fill:#CC3A2F;text-anchor:middle;opacity:1">ทำอีกแน่</text></svg>
+        </div>
+      </div>
+
+      <div class="nb-page-footer">
+        <div class="nb-page-footer-left">22 เม.ย. 2026 · ณัฐพล · ครัวบ้าน<br>สมุดบันทึกการสำรวจ · เล่ม 1</div>
+        <div class="nb-page-footer-right">
+          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="44" ry="42" transform="rotate(-1 50 50)"/><text x="50" y="50">🔥 MED WELL</text></svg>
+          <div class="nb-page-num">หน้า 01</div>
+        </div>
+      </div>
+
+      <div class="nb-watermark">🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im) · #ประกันเนื้อๆ</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- SCRIPTS                                                              -->
+<!-- =================================================================== -->
+<script>
+  function openArticle(id) {
+    document.getElementById('homepage').classList.add('hidden');
+    document.querySelectorAll('.article-view').forEach(el => el.classList.remove('active'));
+    const article = document.getElementById(id);
+    if (article) {
+      article.classList.add('active');
+      article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  function closeArticle() {
+    document.querySelectorAll('.article-view').forEach(el => el.classList.remove('active'));
+    const hp = document.getElementById('homepage');
+    hp.classList.remove('hidden');
+    hp.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Scroll reveal for homepage cards
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.hp-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity 0.45s ease-out, transform 0.45s ease-out';
+    cardObserver.observe(el);
+  });
+
+  // Handle direct URL hash for CTA clicks
+  window.addEventListener('load', () => {
+    if (window.location.hash === '#homepage') {
+      setTimeout(() => {
+        document.getElementById('homepage').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  });
+</script>
+
+</body>
+</html>

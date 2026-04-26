@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — UI/UX Direction Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700;800&family=Bai+Jamjuree:wght@400;500;600;700;800&family=Fraunces:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Serif:wght@400;700&family=Inter:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Noto+Serif+Thai:wght@400;700&family=Playfair+Display:wght@700;900&family=Prompt:wght@400;500;700;900&family=Sarabun:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;700&family=Tiempos+Headline&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0a0a0c;
+    color: #d4d4d8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+    min-height: 100vh;
+  }
+
+  /* ============ Header ============ */
+  .page-header {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #27272a;
+  }
+  .page-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fafafa;
+    margin-bottom: 12px;
+  }
+  .page-header p {
+    color: #a1a1aa;
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 780px;
+  }
+  .page-header .meta {
+    margin-top: 16px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 11.5px;
+    color: #71717a;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ Quick comparison strip ============ */
+  .overview {
+    max-width: 1280px;
+    margin: 0 auto 48px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 14px;
+    padding: 20px 24px;
+  }
+  .overview h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #71717a;
+    font-family: ui-monospace, monospace;
+    margin-bottom: 14px;
+  }
+  .overview-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 90px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #27272a;
+  }
+  .overview-row:last-child { border-bottom: none; }
+  .overview-name { font-size: 13.5px; color: #fafafa; font-weight: 500; }
+  .overview-name a { color: inherit; text-decoration: none; }
+  .overview-name a:hover { color: #fafafa; text-decoration: underline; }
+  .overview-name .pick { font-family: ui-monospace, monospace; font-size: 10px; color: #71717a; display: block; margin-bottom: 2px; letter-spacing: 0.08em; }
+  .overview-strip { display: flex; gap: 4px; height: 32px; border-radius: 6px; overflow: hidden; }
+  .overview-strip > div { flex: 1; }
+  .overview-score { font-family: ui-monospace, monospace; font-size: 11px; color: #a1a1aa; text-align: right; }
+
+  /* ============ Direction card ============ */
+  main { max-width: 1280px; margin: 0 auto; display: grid; gap: 56px; }
+
+  .direction {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 18px;
+    padding: 28px;
+  }
+  .dir-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #27272a;
+  }
+  .dir-num {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 8px;
+    background: #27272a;
+    border-radius: 4px;
+  }
+  .dir-num.alt { background: #422006; color: #fbbf24; }
+  .dir-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fafafa;
+    letter-spacing: -0.01em;
+  }
+  .dir-source {
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    color: #a1a1aa;
+    margin-left: auto;
+  }
+  .dir-mood {
+    width: 100%;
+    margin-top: 6px;
+    color: #d4d4d8;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ============ Palette ============ */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .swatch {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch-color { height: 84px; }
+  .swatch-meta {
+    background: #0a0a0c;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .swatch-role {
+    font-family: ui-monospace, monospace;
+    font-size: 9.5px;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+  .swatch-hex {
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    color: #fafafa;
+    font-weight: 600;
+    margin-top: 3px;
+  }
+
+  /* ============ Body two-column ============ */
+  .dir-body {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .dir-body { grid-template-columns: 1fr; }
+    .palette { grid-template-columns: repeat(3, 1fr); }
+    .overview-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ============ Mockup base ============ */
+  .mockup {
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 540px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .mockup-frame { padding: 18px; }
+  .mockup-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+  }
+  .mockup-card {
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .mockup-card:last-child { margin-bottom: 0; }
+  .mockup-h { line-height: 1.3; margin-bottom: 8px; }
+  .mockup-lede { font-size: 12.5px; line-height: 1.55; }
+  .mockup-meta-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .mockup-chip {
+    display: inline-block;
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+  }
+  .mockup-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* ============ Notes column ============ */
+  .notes h4 {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #71717a;
+    margin-bottom: 8px;
+    margin-top: 18px;
+  }
+  .notes h4:first-child { margin-top: 0; }
+  .notes p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #d4d4d8;
+    margin-bottom: 4px;
+  }
+  .notes p code {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    background: #27272a;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #fbbf24;
+  }
+  .notes .axes {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 16px;
+    margin-top: 8px;
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+  }
+  .notes .axes .label { color: #71717a; }
+  .notes .axes .value { color: #fafafa; text-align: right; }
+  .notes .tradeoff {
+    background: #1c1917;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #d4d4d8;
+    margin-top: 6px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 1 — INVESTMENT GRADE                                       */
+  /* =================================================================== */
+  .mock-investment {
+    background: #F7F6F3;
+    color: #141414;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+  }
+  .mock-investment .mockup-nav {
+    border-bottom: 1px solid #d4d4d8;
+  }
+  .mock-investment .nav-brand {
+    font-weight: 700;
+    font-size: 16px;
+    color: #141414;
+  }
+  .mock-investment .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #737373;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+  }
+  .mock-investment .nav-search {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #525252;
+    padding: 5px 10px;
+    border: 1px solid #d4d4d8;
+    border-radius: 3px;
+  }
+  .mock-investment .ig-card {
+    background: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .mock-investment .ig-badge {
+    display: inline-block;
+    padding: 5px 8px;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .mock-investment .ig-badge.overweight { background: #B91C1C; }
+  .mock-investment .ig-badge.well-marbled { background: #1B3A6B; }
+  .mock-investment .ig-h {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .mock-investment .ig-lede {
+    font-size: 12.5px;
+    color: #525252;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-investment .ig-meta {
+    display: flex;
+    gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #737373;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 2 — DOCKET#                                                */
+  /* =================================================================== */
+  .mock-docket {
+    background: #F5F0E8;
+    color: #1C1C1C;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+  }
+  .mock-docket .mockup-nav {
+    border-bottom: 2px solid #1C1C1C;
+  }
+  .mock-docket .nav-brand {
+    font-family: 'IBM Plex Serif', 'IBM Plex Sans Thai', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1C1C1C;
+  }
+  .mock-docket .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #525252;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    margin-top: 1px;
+  }
+  .mock-docket .nav-cite {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #D43830;
+    letter-spacing: 0.05em;
+  }
+  .mock-docket .doc-card {
+    background: #FFFFFF;
+    border-left: 3px solid #D43830;
+    padding: 14px 16px 14px 14px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mock-docket .doc-marker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #D43830;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .mock-docket .doc-h {
+    font-family: 'IBM Plex Serif', 'IBM Plex Sans Thai', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .mock-docket .doc-body {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #1C1C1C;
+    margin-bottom: 10px;
+  }
+  .mock-docket .doc-body sup {
+    color: #D43830;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+  }
+  .mock-docket .doc-annotation {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #D43830;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #525252;
+    line-height: 1.55;
+  }
+  .mock-docket .doc-annotation .anno-num {
+    color: #D43830;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .mock-docket .doc-stamp {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1.5px solid #D43830;
+    color: #D43830;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    transform: rotate(-2deg);
+    margin-top: 4px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 3 — WEEKEND DOSSIER                                        */
+  /* =================================================================== */
+  .mock-dossier {
+    background: #F6F1E8;
+    color: #1B1A17;
+    font-family: 'Sarabun', 'Source Serif 4', serif;
+  }
+  .mock-dossier .mockup-nav {
+    border-bottom: 1px solid #1B1A17;
+  }
+  .mock-dossier .nav-brand {
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1B1A17;
+    letter-spacing: -0.005em;
+  }
+  .mock-dossier .nav-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #2E6D63;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .mock-dossier .wd-card {
+    background: #FFFCF7;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    border: 1px solid #e8e0cc;
+  }
+  .mock-dossier .wd-masthead {
+    display: flex;
+    gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #2E6D63;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid #c7b78f;
+    margin-bottom: 10px;
+  }
+  .mock-dossier .wd-h {
+    font-family: 'Noto Serif Thai', 'Source Serif 4', serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .mock-dossier .wd-lede {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #3a3933;
+    margin-bottom: 12px;
+  }
+  .mock-dossier .wd-sidenote {
+    background: #f4eed8;
+    padding: 8px 10px;
+    border-left: 2px solid #B85C38;
+    font-size: 11px;
+    color: #4a4944;
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .mock-dossier .wd-sidenote::before {
+    content: 'NOTE.';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #B85C38;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    font-style: normal;
+    margin-right: 6px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 4 — TEMPERATURE GRADE                                      */
+  /* =================================================================== */
+  .mock-temp {
+    background: #F7F7F5;
+    color: #1C1C1E;
+    font-family: 'Anuphan', 'Inter', sans-serif;
+  }
+  .mock-temp .mockup-nav {
+    border-bottom: 1px solid #d4d4d8;
+  }
+  .mock-temp .nav-brand {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1C1C1E;
+    letter-spacing: -0.01em;
+  }
+  .mock-temp .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #71717a;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    margin-top: 1px;
+  }
+  .mock-temp .nav-legend {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #525252;
+  }
+  .mock-temp .nav-legend .strip {
+    height: 8px;
+    width: 60px;
+    border-radius: 2px;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+  }
+  .mock-temp .tg-card {
+    background: #FFFFFF;
+    margin-bottom: 14px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+  }
+  .mock-temp .tg-bar {
+    height: 5px;
+    width: 100%;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    position: relative;
+  }
+  .mock-temp .tg-marker {
+    position: absolute;
+    top: -2px;
+    width: 2px;
+    height: 9px;
+    background: #1C1C1E;
+  }
+  .mock-temp .tg-content { padding: 14px; }
+  .mock-temp .tg-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #525252;
+    margin-bottom: 8px;
+  }
+  .mock-temp .tg-meta .label {
+    color: #1C1C1E;
+    font-weight: 600;
+  }
+  .mock-temp .tg-h {
+    font-size: 16.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .mock-temp .tg-lede {
+    font-size: 12.5px;
+    color: #525252;
+    line-height: 1.6;
+  }
+  .mock-temp .tg-tag-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+  }
+  .mock-temp .tg-tag {
+    padding: 3px 8px;
+    background: #F7F7F5;
+    border: 1px solid #e5e5e5;
+    color: #525252;
+    border-radius: 2px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 5 — แกะสลัก / ENGRAVED                                     */
+  /* =================================================================== */
+  .mock-engraved {
+    background: #F0ECE4;
+    color: #2B2620;
+    font-family: 'Sarabun', 'Inter', sans-serif;
+  }
+  .mock-engraved .mockup-nav {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #d4ccba;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  }
+  .mock-engraved .nav-brand {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: #2B2620;
+    letter-spacing: -0.025em;
+  }
+  .mock-engraved .nav-brand small {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 10px;
+    color: #B8860B;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  .mock-engraved .nav-section {
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    color: #B8860B;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+  .mock-engraved .eg-card {
+    background: #EBE5DB;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.7),
+      inset 0 -1px 0 rgba(0,0,0,0.08);
+  }
+  .mock-engraved .eg-section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #B8860B;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 6px;
+    background:
+      linear-gradient(180deg,
+        rgba(184,134,11,1) 0%,
+        rgba(184,134,11,0.85) 60%,
+        rgba(140,100,8,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .mock-engraved .eg-h {
+    font-family: 'Sarabun', 'Fraunces', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: -0.025em;
+    color: #2B2620;
+  }
+  .mock-engraved .eg-lede {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #4a3f30;
+    margin-bottom: 14px;
+  }
+  .mock-engraved .eg-divider {
+    height: 0;
+    border-top: 1px solid #4a3f30;
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+    margin: 14px 0;
+  }
+  .mock-engraved .eg-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 12px;
+    color: #4a3f30;
+  }
+  .mock-engraved .eg-stat .v {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    color: #B8860B;
+    font-size: 14px;
+  }
+
+  /* =================================================================== */
+  /* SWING ALT — OPEN MARKET                                              */
+  /* =================================================================== */
+  .mock-market {
+    background: #FEFCF8;
+    color: #292524;
+    font-family: 'IBM Plex Sans Thai', 'Inter', sans-serif;
+  }
+  .mock-market .mockup-nav {
+    border-bottom: 1px solid #e7e5e0;
+  }
+  .mock-market .nav-brand {
+    font-family: 'Bai Jamjuree', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #292524;
+    letter-spacing: -0.01em;
+  }
+  .mock-market .nav-brand small {
+    display: block;
+    font-family: 'DM Mono', 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #78716c;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .mock-market .nav-filter {
+    display: flex;
+    gap: 6px;
+  }
+  .mock-market .nav-filter .pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 4px 9px;
+    background: #FFFFFF;
+    border: 1px solid #e7e5e0;
+    border-radius: 12px;
+    color: #57534e;
+  }
+  .mock-market .nav-filter .pill.active {
+    background: #16803C;
+    color: #fff;
+    border-color: #16803C;
+  }
+  .mock-market .om-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .mock-market .om-card {
+    background: #FFFFFF;
+    padding: 12px;
+    border: 1px solid #e7e5e0;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .mock-market .om-card.tall { grid-row: span 2; }
+  .mock-market .om-tag {
+    display: inline-block;
+    font-family: 'Bai Jamjuree', 'IBM Plex Sans Thai', sans-serif;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .mock-market .om-tag.green { background: #16803C; color: #fff; }
+  .mock-market .om-tag.red { background: #DC2626; color: #fff; }
+  .mock-market .om-tag.cream { background: #f5f0e1; color: #57534e; border: 1px solid #e7d8a8; }
+  .mock-market .om-h {
+    font-family: 'Bai Jamjuree', 'IBM Plex Sans Thai', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .mock-market .om-lede {
+    font-size: 11.5px;
+    color: #57534e;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .mock-market .om-spec {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #57534e;
+    padding-top: 8px;
+    border-top: 1px dashed #e7e5e0;
+  }
+  .mock-market .om-spec .v { color: #292524; font-weight: 600; }
+
+  /* ============ Footer ============ */
+  footer {
+    max-width: 1280px;
+    margin: 56px auto 0;
+    padding: 24px 0;
+    border-top: 1px solid #27272a;
+    font-size: 12px;
+    color: #71717a;
+    line-height: 1.6;
+  }
+  footer code {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: #a1a1aa;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>beef.im — UI/UX Direction Preview</h1>
+  <p>Visual reference for the 5+1 shortlist from the 13-LLM brainstorm. Each direction shows its exact 5-color palette plus a small interface mockup using real beef.im content (insurance teardown + grill recipe) so you can judge whether the visual register actually carries both halves of the brand. Mockups simulate ~360px portrait viewport.</p>
+  <div class="meta">Source analysis · Analysis-Opus4.7.md · Inputs: docs/brainstorm/New UIUX/UI-Idea-*.md (13 files) · Open in Firefox/Chrome for accurate Thai font rendering</div>
+</header>
+
+<!-- ============ Quick comparison strip ============ -->
+<section class="overview">
+  <h2>Palette overview — all 6 directions at a glance</h2>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Pick 1</span>
+      <a href="#investment-grade">Investment Grade</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F7F6F3"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#141414"></div>
+      <div style="background:#1B3A6B"></div>
+      <div style="background:#B91C1C"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Pick 2</span>
+      <a href="#docket">Docket#</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F5F0E8"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#1C1C1C"></div>
+      <div style="background:#D43830"></div>
+      <div style="background:#A61A1A"></div>
+    </div>
+    <div class="overview-score">DeepSeek V4 Flash</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Pick 3</span>
+      <a href="#weekend-dossier">Weekend Dossier</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F6F1E8"></div>
+      <div style="background:#FFFCF7"></div>
+      <div style="background:#1B1A17"></div>
+      <div style="background:#2E6D63"></div>
+      <div style="background:#B85C38"></div>
+    </div>
+    <div class="overview-score">Opus 4.7</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Pick 4</span>
+      <a href="#temperature-grade">Temperature Grade</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F7F7F5"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#1C1C1E"></div>
+      <div style="background:linear-gradient(to right, #3B7DD8, #F5A623, #E8482F)"></div>
+      <div style="background:#E8482F"></div>
+    </div>
+    <div class="overview-score">GLM 5.1</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Pick 5</span>
+      <a href="#engraved">แกะสลัก / Engraved</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F0ECE4"></div>
+      <div style="background:#EBE5DB"></div>
+      <div style="background:#2B2620"></div>
+      <div style="background:#B8860B"></div>
+      <div style="background:#C03D2B"></div>
+    </div>
+    <div class="overview-score">DeepSeek V4 GO</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Swing alt</span>
+      <a href="#open-market">Open Market</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#FEFCF8"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#292524"></div>
+      <div style="background:#16803C"></div>
+      <div style="background:#DC2626"></div>
+    </div>
+    <div class="overview-score">Opus 4.6 / Merlin</div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- PICK 1 — INVESTMENT GRADE                                     -->
+<!-- ============================================================ -->
+<article class="direction" id="investment-grade">
+  <div class="dir-header">
+    <span class="dir-num">PICK 01</span>
+    <h2 class="dir-title">Investment Grade</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI · score 24</span>
+    <p class="dir-mood">"Goldman Sachs equity research, translated for the reader who signed whole life without reading the prospectus."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F7F6F3"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F7F6F3</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#141414"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#141414</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1B3A6B"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#1B3A6B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B91C1C"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#B91C1C</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-investment">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · RESEARCH</small></div>
+          <div class="nav-search">⌘K</div>
+        </div>
+        <div class="ig-card">
+          <span class="ig-badge overweight">UNDERWEIGHT</span>
+          <h3 class="ig-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="ig-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="ig-meta">
+            <span>AIA-UL-2024</span>
+            <span>—</span>
+            <span>2,840w · 11 min</span>
+          </div>
+        </div>
+        <div class="ig-card">
+          <span class="ig-badge well-marbled">WELL MARBLED</span>
+          <h3 class="ig-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="ig-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="ig-meta">
+            <span>RIBEYE-54C</span>
+            <span>—</span>
+            <span>1,420w · 6 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Rating badge is the cleanest dual-content unification in the bake-off. Same 72×24px IBM Plex Mono component carries <code>UNDERWEIGHT</code> for whole life and <code>WELL MARBLED</code> for ribeye. The brand thesis becomes self-evident — every piece gets a verdict.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>rating badge</strong>. Vocabulary tier: <code>OVERWEIGHT</code> · <code>NEUTRAL</code> · <code>UNDERWEIGHT</code> for insurance; <code>WELL MARBLED</code> · <code>LEAN</code> · <code>AVOID</code> for cuts. Same colors (navy / amber / red), same position, same rigor.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">"The visual system protects nothing — it amplifies whatever the writing is. If the writing is hot, it becomes a weapon. If the writing is safe, it becomes a liability brochure." — Sonnet 4.6's own honest flag. Format risk: defaults to KBank wealth-management feel if voice slips into formal advisory register.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex full family is free</span>
+        <span class="label">Animation budget</span><span class="value">Low · single 500ms badge fade</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · light bg</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- PICK 2 — DOCKET#                                              -->
+<!-- ============================================================ -->
+<article class="direction" id="docket">
+  <div class="dir-header">
+    <span class="dir-num">PICK 02</span>
+    <h2 class="dir-title">Docket#</h2>
+    <span class="dir-source">DeepSeek V4 Flash · direct API · score 24</span>
+    <p class="dir-mood">"You're reading an advocate's annotated brief — red ink in the margin, paper that has been argued on, every claim marked up by someone who has already done the work for you."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F5F0E8"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F5F0E8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1C1C"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#1C1C1C</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D43830"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#D43830</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#A61A1A"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#A61A1A</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-docket">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · DOCKET</small></div>
+          <div class="nav-cite">Cite ⌘K</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-marker">EXHIBIT 4A · POLICY TEARDOWN</div>
+          <h3 class="doc-h">"ค่าธรรมเนียม COI" ที่ตัวแทนไม่ยอมชี้ให้ดู</h3>
+          <p class="doc-body">เบี้ย Unit-linked ปีที่ 1 ดูถูกกว่าเบี้ย Term — แต่ Cost of Insurance<sup>1</sup> เพิ่มขึ้นทุกปีตามอายุ และปีที่ 30 ค่า COI<sup>2</sup> มักจะกินเบี้ยทั้งหมดที่จ่าย</p>
+          <div class="doc-annotation">
+            <div><span class="anno-num">¹</span>COI = Cost of Insurance (ค่าใช้จ่ายในการประกัน) คิดเป็นรายเดือนตามอายุ</div>
+            <div style="margin-top:4px;"><span class="anno-num">²</span>คำนวณจาก AIA Multi-Pay CI · เพศชาย · เริ่มต้นอายุ 35</div>
+          </div>
+          <span class="doc-stamp">FLAGGED — RE-READ</span>
+        </div>
+        <div class="doc-card">
+          <div class="doc-marker">EXHIBIT 9 · GRILL TECHNIQUE</div>
+          <h3 class="doc-h">Reverse-sear: ทำไมต้อง 54°C ก่อนจี่</h3>
+          <p class="doc-body">โปรตีนเสียโครงสร้างที่ 60°C<sup>3</sup> — เนื้อแห้ง น้ำหวานหนีออก สูญเสียมวลถึง 18%</p>
+          <div class="doc-annotation">
+            <div><span class="anno-num">³</span>Source: Modernist Cuisine Vol. 3 p. 242 — Maillard reaction window</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Most direct enactment of beef.im's founding edge (contract forensics from the unit-linked rescue history). The annotated-margin UI makes credibility <em>visible in every interaction</em> — the user doesn't read "we analyze contracts," the interface proves it.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>numbered annotation</strong> with red marginal rule. Insurance gets clause flags and source citations; cooking gets technique footnotes and citation refs (Modernist Cuisine, Serious Eats lab). Same markup language, two kinds of truth.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Cooking content reads slightly less native — margin annotations on a grill recipe become "chef's notes" rather than legal markup. Acceptable because ~80% of trust-building content is forensic; cooking lives in a slightly adapted variant.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex Sans Thai + Serif free</span>
+        <span class="label">Animation budget</span><span class="value">Low · red-line draw on hover (450ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · cream paper bg</span>
+        <span class="label">Build complexity</span><span class="value">Medium · marginalia layout</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- PICK 3 — WEEKEND DOSSIER                                      -->
+<!-- ============================================================ -->
+<article class="direction" id="weekend-dossier">
+  <div class="dir-header">
+    <span class="dir-num">PICK 03</span>
+    <h2 class="dir-title">Weekend Dossier</h2>
+    <span class="dir-source">GPT-5.4 · score 25</span>
+    <p class="dir-mood">"Thai weekend broadsheet meets buy-side memo meets cookbook margin."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F6F1E8"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F6F1E8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFCF7"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFCF7</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1B1A17"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#1B1A17</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2E6D63"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#2E6D63</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B85C38"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#B85C38</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-dossier">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ</div>
+          <div class="nav-date">SAT · 25 APR 26</div>
+        </div>
+        <div class="wd-card">
+          <div class="wd-masthead">
+            <span>POLICY DESK</span>
+            <span>2,840w · 11 min</span>
+          </div>
+          <h3 class="wd-h">Unit-linked: ที่คนขายไม่ยอมเปิดให้ดู</h3>
+          <p class="wd-lede">เบี้ยปีแรกถูกกว่า Term — แต่ปีที่ 25 ค่าธรรมเนียมที่หักจากกองทุนมากพอให้ผลตอบแทนต่ำกว่ากองทุนรวมธรรมดา</p>
+          <div class="wd-sidenote">ตัวอย่าง AIA Multi-Pay CI ปี 2024 — COI เพิ่ม 8% ต่อปีหลังอายุ 50</div>
+        </div>
+        <div class="wd-card">
+          <div class="wd-masthead">
+            <span>FOOD DESK</span>
+            <span>1,420w · 6 min</span>
+          </div>
+          <h3 class="wd-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="wd-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="wd-sidenote">เปรียบเทียบ: เตาถ่าน vs. เตาไฟฟ้า — ผลต่างที่จับด้วยมือได้</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Most durable system for a 5-year horizon. Light bg = mobile sunlight readable by default. Annotation depth instead of motion = won't trend-date. Carries investigative teardown, explainer, opinion, interview, and recipe in one editorial language without two-brand syndrome.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>masthead block</strong> (desk tag · word count · read time) above every headline. Treats both content types as <em>filed stories</em>. The desk tag (<code>POLICY DESK</code> / <code>FOOD DESK</code>) frames the editorial seriousness without hiding either.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">"Less instantly theatrical than Heat Haze and less aggressively ownable than Clause Block. You accept that trade in exchange for a system that can still feel premium five years from now, not just bold at launch." — GPT-5.4's own honest flag.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Noto Serif Thai + Sarabun free</span>
+        <span class="label">Animation budget</span><span class="value">Low · footnote-snap rail (160ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · cream paper bg</span>
+        <span class="label">Build complexity</span><span class="value">Low–Medium</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- PICK 4 — TEMPERATURE GRADE                                    -->
+<!-- ============================================================ -->
+<article class="direction" id="temperature-grade">
+  <div class="dir-header">
+    <span class="dir-num">PICK 04</span>
+    <h2 class="dir-title">Temperature Grade</h2>
+    <span class="dir-source">GLM 5.1 · score 22</span>
+    <p class="dir-mood">"What if budget spreadsheets and doneness charts shared the same heat-map — blue for safe, orange for caution, red for critical, and every content piece lives somewhere on that spectrum?"</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F7F7F5"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F7F7F5</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1C1E"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#1C1C1E</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(to right, #3B7DD8, #F5A623, #E8482F)"></div><div class="swatch-meta"><div class="swatch-role">Accent (gradient)</div><div class="swatch-hex">3B7DD8 → E8482F</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8482F"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#E8482F</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-temp">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div>
+          <div class="nav-legend">
+            <div class="strip"></div>
+          </div>
+        </div>
+        <div class="tg-card">
+          <div class="tg-bar"><div class="tg-marker" style="left: 76%"></div></div>
+          <div class="tg-content">
+            <div class="tg-meta">
+              <span>POLICY · INSURANCE</span>
+              <span class="label">ความเสี่ยง: สูง</span>
+            </div>
+            <h3 class="tg-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+            <p class="tg-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ</p>
+            <div class="tg-tag-row">
+              <span class="tg-tag">AIA-UL</span>
+              <span class="tg-tag">2,840w</span>
+              <span class="tg-tag">11 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="tg-card">
+          <div class="tg-bar"><div class="tg-marker" style="left: 38%"></div></div>
+          <div class="tg-content">
+            <div class="tg-meta">
+              <span>RECIPE · GRILL</span>
+              <span class="label">ความสุก: Medium-Rare</span>
+            </div>
+            <h3 class="tg-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+            <p class="tg-lede">ทำไมไฟแรงเป็นกับดัก และทำไม 54°C คือเส้นแบ่ง</p>
+            <div class="tg-tag-row">
+              <span class="tg-tag">54°C</span>
+              <span class="tg-tag">1,420w</span>
+              <span class="tg-tag">6 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="tg-card">
+          <div class="tg-bar"><div class="tg-marker" style="left: 10%"></div></div>
+          <div class="tg-content">
+            <div class="tg-meta">
+              <span>EXPLAINER · POLICY</span>
+              <span class="label">ความเสี่ยง: ต่ำ</span>
+            </div>
+            <h3 class="tg-h">Term insurance: ทำไมเช่ากันความเสี่ยงดีกว่าซื้อ</h3>
+            <p class="tg-lede">เบี้ยถูกกว่า 10 เท่า · ไม่มีกับดัก · เปรียบเทียบ 5 บริษัท</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Most genuinely novel idea across all 13 outputs. The temperature bar is <em>literally</em> the same chart for "insurance risk level" and "meat doneness level" — not a metaphor, a shared information-design language. You can scan the homepage and "read" the temperature of every article before clicking.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>temperature bar</strong> (4px tall, gradient blue → amber → red) at the top of every card. Same gradient, semantic axis swaps:</p>
+      <p>Insurance → ความเสี่ยง: <code>ต่ำ</code> · <code>ปานกลาง</code> · <code>สูง</code><br>Recipe → ความสุก: <code>Rare</code> · <code>Medium</code> · <code>Well-done</code></p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Requires editorial discipline — every article gets a temperature value. Color must be tested for color-blind accessibility (blue → amber → red compresses for deuteranopia). Higher upfront design system cost than Picks 1–3.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Anuphan + Inter free</span>
+        <span class="label">Animation budget</span><span class="value">Low · bar expand on hover (300ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · gradient is high-saturation</span>
+        <span class="label">Build complexity</span><span class="value">Medium · CMS-side temperature field</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- PICK 5 — แกะสลัก / ENGRAVED                                   -->
+<!-- ============================================================ -->
+<article class="direction" id="engraved">
+  <div class="dir-header">
+    <span class="dir-num">PICK 05</span>
+    <h2 class="dir-title">แกะสลัก / Engraved</h2>
+    <span class="dir-source">DeepSeek V4 GO max · OpenCode Go · score 24</span>
+    <p class="dir-mood">"Information carved into warm limestone — tactile, permanent, weight-bearing — like a 14th-century Sukhothai inscription rendered on a 2026 OLED screen."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F0ECE4"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F0ECE4</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#EBE5DB"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#EBE5DB</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2B2620"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#2B2620</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B8860B"></div><div class="swatch-meta"><div class="swatch-role">Accent (gold leaf)</div><div class="swatch-hex">#B8860B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C03D2B"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#C03D2B</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-engraved">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>ดูเนื้อ ไม่ดูหน้า</small></div>
+          <div class="nav-section">SECTION I</div>
+        </div>
+        <div class="eg-card">
+          <div class="eg-section-num">01</div>
+          <h3 class="eg-h">Unit-linked: คำเตือนที่จารึกไว้</h3>
+          <p class="eg-lede">ค่าธรรมเนียมที่ไม่ปรากฏในใบเสนอ คือสิ่งที่บอกตัวจริงของผลิตภัณฑ์ — เปิดสัญญาให้ดูทีละหน้า</p>
+          <div class="eg-divider"></div>
+          <div class="eg-stat"><span>เบี้ยรายปี</span><span class="v">120,000 บาท</span></div>
+          <div class="eg-stat" style="margin-top:6px;"><span>COI ปีที่ 30 (ประมาณการ)</span><span class="v">128,400 บาท</span></div>
+        </div>
+        <div class="eg-card">
+          <div class="eg-section-num">02</div>
+          <h3 class="eg-h">Ribeye 4 นิ้ว — เทคนิคที่บันทึกไว้</h3>
+          <p class="eg-lede">กฎ 3 ข้อของ reverse-sear · เกณฑ์ 54°C · เหตุผลเรื่องการพักเนื้อ ทั้งหมดวัดผลได้</p>
+          <div class="eg-divider"></div>
+          <div class="eg-stat"><span>อุณหภูมิแกนกลาง</span><span class="v">54°C</span></div>
+          <div class="eg-stat" style="margin-top:6px;"><span>เวลาพักเนื้อ</span><span class="v">10 นาที</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The only direction that owns Thai cultural depth as a design system, not as decoration. References the Ramkhamhaeng Stele directly. Carved-stone tactility maps <code>ดูเนื้อ ไม่ดูหน้า</code> as <em>what's carved lasts; what's painted fades</em>.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>section number + carved data row</strong>. Both insurance metrics (COI, premium, illustrated value) and recipe metrics (core temp, rest time) get the same chiseled-stat treatment with gold-leaf values. Information presented as inscribed wisdom.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">"The inset/chiseled visual language is harder to execute consistently across browsers — box-shadow inset stacking behaves differently on Safari vs. Chrome at sub-pixel widths. Demands disciplined QA. Mobile spacing discipline (200px+ section gaps) means fewer elements above the fold." — DeepSeek V4 GO max's own honest flag. Highest execution risk of the five.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Sarabun + Fraunces free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · light-catch on scroll-entry</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · warm limestone bg</span>
+        <span class="label">Build complexity</span><span class="value">High · cross-browser inset-shadow QA</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- SWING ALT — OPEN MARKET                                       -->
+<!-- ============================================================ -->
+<article class="direction" id="open-market">
+  <div class="dir-header">
+    <span class="dir-num alt">SWING ALT</span>
+    <h2 class="dir-title">Open Market</h2>
+    <span class="dir-source">Opus 4.6 · Merlin webapp · score 21</span>
+    <p class="dir-mood">"A Saturday morning at a premium Thai fresh market — organized chaos, abundant choice, everything labeled and priced, nothing hidden."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#FEFCF8"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#FEFCF8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#292524"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#292524</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#16803C"></div><div class="swatch-meta"><div class="swatch-role">Accent (fresh)</div><div class="swatch-hex">#16803C</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#DC2626"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#DC2626</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-market">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · ตลาดสด</small></div>
+          <div class="nav-filter">
+            <span class="pill active">ทั้งหมด</span>
+            <span class="pill">ประกัน</span>
+            <span class="pill">ครัว</span>
+          </div>
+        </div>
+        <div class="om-grid">
+          <div class="om-card">
+            <span class="om-tag green">ประกัน</span>
+            <h4 class="om-h">Unit-linked: ที่ตัวแทนหลีก</h4>
+            <p class="om-lede">เปิดสัญญาทีละหน้า เห็นตัวเลขจริง</p>
+            <div class="om-spec"><span>ค่าเบี้ย ≤ 15,000/ปี</span><span class="v">11 min</span></div>
+          </div>
+          <div class="om-card">
+            <span class="om-tag red">ครัว</span>
+            <h4 class="om-h">Reverse-sear ribeye 4"</h4>
+            <p class="om-lede">กฎ 3 ข้อ · เส้นแบ่งที่ 54°C</p>
+            <div class="om-spec"><span>เวลาย่าง: 12 นาที</span><span class="v">6 min</span></div>
+          </div>
+          <div class="om-card">
+            <span class="om-tag cream">EXPLAINER</span>
+            <h4 class="om-h">Term ดีกว่า Whole Life — เกือบทุกครั้ง</h4>
+            <p class="om-lede">เบี้ยถูกกว่า 10 เท่า · เปรียบเทียบ 5 บริษัท</p>
+            <div class="om-spec"><span>เบี้ย/ปี: 4,200</span><span class="v">8 min</span></div>
+          </div>
+          <div class="om-card">
+            <span class="om-tag cream">รีวิว</span>
+            <h4 class="om-h">เตาถ่าน vs. เตาแก๊ส</h4>
+            <p class="om-lede">วัดผลด้วยเทอร์โมมิเตอร์ ไม่ใช่ความรู้สึก</p>
+            <div class="om-spec"><span>อุณหภูมิ: 220°C</span><span class="v">4 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why this is here (not in the top 5)</h4>
+      <p>Open Market does the same structural job as Pick 1 (one component unifies dual content) but in a Thai-vernacular register instead of an institutional one. Worth seeing side-by-side before committing to Investment Grade.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>price-tag chip</strong>. Insurance: <code>ค่าเบี้ย ≤ 15,000/ปี</code>. Recipe: <code>เวลาย่าง: 12 นาที</code>. Mixed Thai+English, market-tag aesthetic. Same connective tissue as Pick 1's badge — different cultural register entirely.</p>
+
+      <h4>Investment Grade vs. Open Market — the real fork</h4>
+      <div class="axes">
+        <span class="label">Register</span><span class="value">Institutional ↔ Vernacular</span>
+        <span class="label">Reads as</span><span class="value">Goldman analyst ↔ Bangkok vendor</span>
+        <span class="label">Unifies via</span><span class="value">Verdict ↔ Parameter</span>
+        <span class="label">Voice fit</span><span class="value">Forensic ↔ Casual</span>
+        <span class="label">Layout</span><span class="value">3-col research ↔ Pinterest masonry</span>
+      </div>
+
+      <h4>The honest call</h4>
+      <p>Investment Grade aligns with beef.im's <em>founding edge</em> (forensic verdicts). Open Market aligns with beef.im's <em>current voice</em> (casual register, "post whatever feels right"). This is a real fork — worth deciding before any more design work.</p>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer>
+  <p>Companion document: <code>Analysis-Opus4.7.md</code> in the same folder. Source LLM proposals: <code>UI-Idea-*.md</code> (13 files).</p>
+  <p style="margin-top:8px;">Mockups are intentionally schematic — they show the <em>typography stack</em>, <em>palette</em>, and <em>signature component</em> of each direction at a recognisable density. They are not pixel-perfect previews. Real design execution will refine spacing, hierarchy, and typographic detail beyond what static mockups can carry.</p>
+</footer>
+
+</body>
+</html>

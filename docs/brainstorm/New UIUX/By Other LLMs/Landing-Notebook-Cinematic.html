@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ประกันเนื้อๆ — beef.im</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;700;800&family=Caveat:wght@400;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500&family=K2D:wght@300;400&family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F2EA;
+    --cream-deep: #F0EBE0;
+    --cream-warm: #F3EDE2;
+    --grid: rgba(175, 165, 145, 0.16);
+    --card: #FDFBF7;
+    --ink: #1C1814;
+    --navy: #2B4A5E;
+    --red: #CC3A2F;
+    --persimmon: #B85C3A;
+    --gold: #B8860B;
+    --navy-badge: #1B3A6B;
+    --amber: #F5A623;
+    --highlighter: rgba(255, 237, 100, 0.42);
+    --tape: rgba(245, 240, 220, 0.68);
+    --cool: #3B7DD8;
+    --hot: #E8482F;
+    --grain-opacity: 0.06;
+    --vignette-opacity: 0.10;
+    --font-head: 'Anuphan', 'Prompt', sans-serif;
+    --font-body: 'Sarabun', 'IBM Plex Sans Thai', serif;
+    --font-note: 'K2D', 'Sarabun', sans-serif;
+    --font-note-latin: 'Caveat', cursive;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    min-height: 100vh;
+    background:
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      linear-gradient(180deg, var(--grid) 1px, transparent 1px),
+      radial-gradient(circle at 18% 12%, rgba(0, 127, 109, 0.04), transparent 28rem),
+      radial-gradient(circle at 88% 18%, rgba(240, 179, 35, 0.07), transparent 24rem),
+      radial-gradient(ellipse at 50% 0%, var(--cream-warm) 0%, var(--cream) 40%, var(--cream-deep) 100%);
+    background-size: 24px 24px, 24px 24px, auto, auto, auto;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Vignette breathing */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(180, 160, 130, var(--vignette-opacity)) 100%);
+    animation: vignette-breathe 7s ease-in-out infinite alternate;
+  }
+  @keyframes vignette-breathe {
+    0% { --vignette-opacity: 0.06; }
+    100% { --vignette-opacity: 0.14; }
+  }
+  /* CSS custom property animation workaround */
+  @property --vignette-opacity {
+    syntax: '<number>';
+    initial-value: 0.10;
+    inherits: false;
+  }
+
+  /* Grain canvas overlay */
+  #grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    opacity: var(--grain-opacity); mix-blend-mode: multiply;
+    width: 100vw; height: 100vh;
+  }
+
+  /* Ink-bleed cursor layer */
+  #ink-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 2;
+    background: radial-gradient(circle 180px at 50% 50%, rgba(28,24,20,0.025) 0%, transparent 100%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  #ink-layer.active { opacity: 1; }
+
+  /* Main content */
+  .page { position: relative; z-index: 3; max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem; }
+
+  /* --- HERO --- */
+  .hero {
+    min-height: 85vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 2rem 0 4rem; position: relative;
+  }
+  .hero-rule-top {
+    width: 100%; height: 1px; background: rgba(204,58,47,0.35);
+    margin-bottom: 2rem;
+  }
+  .hero-date {
+    font-family: var(--font-note); font-weight: 300; font-size: 0.85rem;
+    color: var(--navy); margin-bottom: 0.75rem;
+    transform: rotate(-1deg); display: inline-block;
+  }
+  .hero-site {
+    font-family: var(--font-note); font-weight: 300; font-size: 0.8rem;
+    color: var(--navy); opacity: 0.7; margin-bottom: 1.5rem;
+    transform: rotate(-0.75deg); display: inline-block;
+  }
+  .hero-rule {
+    width: 100%; height: 2px; background: var(--persimmon);
+    margin-bottom: 2.5rem; opacity: 0.6;
+  }
+
+  .chiseled {
+    font-family: var(--font-head); font-weight: 800;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    line-height: 1.05; letter-spacing: -0.025em;
+    background-clip: text; -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, rgba(28,24,20,0.25) 0%, rgba(28,24,20,1) 100%);
+    background-position: 100% 0%; background-size: 200% 100%;
+    transition: background-position 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+    margin-bottom: 0.5rem;
+  }
+  .chiseled.revealed { background-position: 0% 0%; }
+
+  .hero-subhead {
+    font-family: var(--font-head); font-weight: 400;
+    font-size: clamp(1rem, 2.5vw, 1.25rem); line-height: 1.6;
+    color: rgba(28,24,20,0.65); max-width: 520px;
+    margin-bottom: 3rem;
+  }
+  .hero-subhead .highlight {
+    background: var(--highlighter); padding: 0 4px; color: var(--ink);
+  }
+
+  /* Intermission dot */
+  .intermission {
+    height: 120px; display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .intermission::before {
+    content: '';
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(175,165,145,0.3) 40%, transparent 50%, rgba(175,165,145,0.3) 60%, transparent 100%);
+    position: absolute; top: 50%;
+  }
+  .intermission-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--persimmon); position: relative; z-index: 1;
+    box-shadow: 0 0 12px rgba(184,92,58,0.3);
+    animation: dot-breathe 4s ease-in-out infinite alternate;
+  }
+  @keyframes dot-breathe {
+    0% { box-shadow: 0 0 8px rgba(184,92,58,0.2); }
+    100% { box-shadow: 0 0 20px rgba(184,92,58,0.4); }
+  }
+
+  /* --- ARTICLE CARD --- */
+  .article-card {
+    background: var(--card); border: 1px solid rgba(175,165,145,0.22);
+    border-radius: 8px; padding: 2rem 1.5rem;
+    position: relative;
+    box-shadow: 1px 2px 0 rgba(28,24,20,0.06);
+    transition: box-shadow 0.3s, background 0.4s;
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+  }
+  .article-card::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(28,24,20,0.03) 0%, transparent 100%);
+    opacity: 0; transition: opacity 0.4s; z-index: 0;
+  }
+  .article-card:hover::before { opacity: 1; }
+  .article-card:hover { box-shadow: 3px 6px 20px rgba(28,24,20,0.1); }
+
+  .card-inner { position: relative; z-index: 1; }
+
+  /* Temperature bar */
+  .temp-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .temp-bar {
+    height: 5px; flex: 1; border-radius: 3px;
+    background: linear-gradient(90deg, var(--cool) 0%, var(--amber) 50%, var(--hot) 100%);
+    transition: height 0.3s; cursor: default;
+  }
+  .temp-bar:hover { height: 20px; }
+  .temp-label {
+    font-family: var(--font-note); font-size: 0.75rem; color: var(--navy);
+    white-space: nowrap; transform: rotate(-1.5deg); opacity: 0.8;
+  }
+  .temp-marker {
+    position: absolute; top: -6px; width: 2px; height: 15px; background: var(--navy);
+    border-radius: 1px; right: 20%;
+  }
+
+  /* Rating badge */
+  .badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: #FFFFFF; background: var(--navy-badge);
+    padding: 5px 14px; border-radius: 999px;
+    box-shadow: 2px 3px 0 rgba(28,24,20,0.12);
+    line-height: 1; z-index: 2;
+  }
+
+  /* Category tag */
+  .category-tag {
+    font-family: var(--font-note); font-weight: 300; font-size: 0.75rem;
+    color: var(--persimmon); margin-bottom: 0.5rem;
+    transform: rotate(-1deg); display: inline-block;
+    border: 1px solid rgba(184,92,58,0.25); padding: 2px 10px;
+    border-radius: 3px; letter-spacing: 0.04em;
+  }
+
+  .card-title {
+    font-family: var(--font-head); font-weight: 700;
+    font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+    line-height: 1.3; margin-bottom: 0.75rem;
+  }
+  .card-dek {
+    font-size: 0.95rem; line-height: 1.6; color: rgba(28,24,20,0.7);
+    margin-bottom: 1rem;
+  }
+
+  .meta-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .meta-pill {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    color: #6B6254; padding: 4px 10px;
+    border: 1px solid rgba(175,165,145,0.4); border-radius: 999px;
+    background: rgba(255,252,247,0.7);
+    box-shadow: 1px 1px 0 rgba(28,24,20,0.06);
+  }
+
+  /* --- MARGIN NOTES --- */
+  .note-section { display: flex; gap: 2rem; align-items: flex-start; margin: 2rem 0; position: relative; }
+  .note-body { flex: 1; }
+  .note-body p { font-size: 1rem; line-height: 1.75; color: rgba(28,24,20,0.85); margin-bottom: 1rem; }
+  .note-margin {
+    width: 200px; flex-shrink: 0; display: flex; flex-direction: column; gap: 1.25rem;
+    padding-top: 0.3rem;
+  }
+  .margin-note {
+    font-family: var(--font-note); font-size: 0.8rem; font-weight: 300;
+    color: var(--navy); line-height: 1.5;
+    --rot: -1.5deg;
+    transform: rotate(var(--rot, -1.5deg));
+    padding-left: 12px; border-left: 1.5px solid rgba(184,92,58,0.35);
+    position: relative;
+  }
+  .margin-note::before {
+    content: '↳'; position: absolute; left: -16px; top: -2px;
+    font-size: 0.65rem; color: var(--persimmon); opacity: 0.6;
+  }
+  .margin-note.m2 { --rot: 1.2deg; }
+  .margin-note.m3 { --rot: -0.8deg; }
+
+  /* --- SCRAP (taped-in) --- */
+  .scrap {
+    background: #FDFBF7; border: 1px solid rgba(175,165,145,0.3);
+    padding: 1.5rem 1.25rem 1.25rem; border-radius: 4px;
+    margin: 2.5rem 0; position: relative;
+    box-shadow: 1px 3px 8px rgba(28,24,20,0.08);
+    transform: rotate(-0.8deg); --tape-rot: -1.5deg;
+  }
+  .scrap::before {
+    content: ''; position: absolute;
+    top: -10px; left: 50%; transform: translateX(-50%) rotate(var(--tape-rot));
+    width: 80px; height: 24px;
+    background: var(--tape);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(28,24,20,0.1);
+  }
+  .scrap-label {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--persimmon); margin-bottom: 1rem; padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(175,165,145,0.3);
+  }
+  .scrap-table { width: 100%; border-collapse: collapse; }
+  .scrap-table th {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em; color: #8A7E6B;
+    text-align: left; padding: 6px 8px; border-bottom: 1px solid rgba(175,165,145,0.3);
+  }
+  .scrap-table td {
+    font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500;
+    color: var(--ink); padding: 8px 8px;
+    border-bottom: 1px solid rgba(175,165,145,0.15);
+  }
+  .scrap-table .count-up { font-variant-numeric: tabular-nums; }
+  .scrap-table tr:last-child td { border-bottom: none; }
+
+  /* --- VERDICT CIRCLE --- */
+  .verdict-section { display: flex; justify-content: flex-end; margin: 3rem 0 2rem; }
+  .verdict-wrap { position: relative; width: 80px; height: 80px; }
+  .verdict-svg { width: 80px; height: 80px; overflow: visible; }
+  .verdict-circle {
+    fill: none; stroke: var(--red); stroke-width: 2.5;
+    stroke-dasharray: 230; stroke-dashoffset: 230;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.25, 0.1, 0.15, 1);
+  }
+  .verdict-circle.drawn { stroke-dashoffset: 0; }
+  .verdict-text {
+    font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+    fill: var(--red); text-anchor: middle; dominant-baseline: central;
+    opacity: 0; transition: opacity 0.3s 0.6s;
+  }
+  .verdict-text.visible { opacity: 1; }
+  .verdict-sig {
+    font-family: var(--font-note-latin); font-size: 0.7rem;
+    color: var(--navy); text-align: right; margin-top: 6px;
+    transform: rotate(-2deg);
+  }
+
+  /* --- CORRECTION --- */
+  .correction { margin: 1.5rem 0; }
+  .correction del {
+    text-decoration: line-through; text-decoration-color: var(--red);
+    text-decoration-style: wavy; text-decoration-thickness: 1px;
+    color: rgba(28,24,20,0.45);
+  }
+  .correction ins {
+    font-family: var(--font-note); font-weight: 300; font-size: 0.85rem;
+    color: var(--navy); text-decoration: none; display: block;
+    margin-top: 4px; transform: rotate(-0.8deg);
+  }
+
+  /* --- FOOTER --- */
+  .notebook-footer {
+    padding: 2rem 0 1rem; border-top: 1px solid rgba(175,165,145,0.25);
+    font-family: var(--font-body); font-size: 0.75rem; color: #8A7E6B;
+    text-align: center; letter-spacing: 0.02em;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    .page { padding: 1.5rem 0.875rem; }
+    .hero { min-height: 70vh; padding: 1rem 0 2rem; }
+    .chiseled { font-size: clamp(2rem, 10vw, 3.5rem); }
+    .note-section { flex-direction: column; }
+    .note-margin { width: 100%; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; }
+    .margin-note {
+      font-size: 0.72rem; flex: 1 1 45%; --rot: 0deg;
+      padding: 6px 10px; border-left: none;
+      border: 1px solid rgba(184,92,58,0.2); border-radius: 4px;
+      background: rgba(255,252,247,0.6);
+    }
+    .margin-note::before { display: none; }
+    .badge { top: 1rem; right: 1rem; font-size: 0.55rem; padding: 4px 10px; }
+    .scrap { transform: rotate(-0.4deg); }
+    .verdict-section { justify-content: center; }
+  }
+
+  @media (max-width: 360px) {
+    .card-title { font-size: 1rem; }
+    .meta-pills { gap: 3px; }
+    .meta-pill { font-size: 0.55rem; padding: 3px 7px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    #grain { display: none; }
+    body::before { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="grain"></canvas>
+<div id="ink-layer"></div>
+
+<main class="page">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <div class="hero-rule-top"></div>
+    <span class="hero-date">25 เมษายน 2026</span>
+    <span class="hero-site">ประกันเนื้อๆ · beef.im</span>
+    <div class="hero-rule"></div>
+
+    <h1 class="chiseled" id="hero-headline">ดูเนื้อ<br>ไม่ดูหน้า</h1>
+
+    <p class="hero-subhead">
+      วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน —
+      <span class="highlight">ไม่มีน้ำ</span> ไม่มีเซลล์
+    </p>
+
+    <div class="category-tag">CASE FILE #031</div>
+  </section>
+
+  <!-- ═══════════ INTERMISSION ═══════════ -->
+  <div class="intermission"><div class="intermission-dot"></div></div>
+
+  <!-- ═══════════ ARTICLE CARD ═══════════ -->
+  <article class="article-card" id="main-card">
+    <div class="card-inner">
+      <span class="badge">UNDERWEIGHT</span>
+
+      <div class="temp-bar-wrap">
+        <div class="temp-bar" style="position:relative">
+          <div class="temp-marker"></div>
+        </div>
+        <span class="temp-label">ความเสี่ยงสูง<br>อ่านก่อนเซ็น</span>
+      </div>
+
+      <h2 class="card-title">
+        ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ
+      </h2>
+      <p class="card-dek">
+        สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60%
+        และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7
+      </p>
+
+      <div class="meta-pills">
+        <span class="meta-pill">25 APR 2026</span>
+        <span class="meta-pill">8 MIN</span>
+        <span class="meta-pill">CASE FILE #031</span>
+        <span class="meta-pill">INSURANCE</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════ MARGIN NOTES ═══════════ -->
+  <div class="note-section">
+    <div class="note-body">
+      <p>
+        สัญญา Whole Life 99/20 คือผลิตภัณฑ์ประกันชีวิตที่ขายดีที่สุดในไทยในปี 2025
+        ด้วยจำนวนกรมธรรม์ใหม่กว่า 120,000 ฉบับ แต่เมื่ออ่านเงื่อนไขการจ่ายผลประโยชน์ตามจริง
+        กลับพบว่าผลตอบแทนการลงทุนสุทธิหลังหักค่าธรรมเนียมอยู่ที่เพียง 1.8–2.2% ต่อปี
+        ต่ำกว่าอัตราเงินเฟ้อเฉลี่ยของไทยที่ 2.5%
+      </p>
+      <p>
+        ข้อ 7.3 ในสัญญาระบุว่า "บริษัทขอสงวนสิทธิ์ในการปรับลดมูลค่าเวนคืนกรมธรรม์
+        ตามดุลยพินิจของบริษัทในกรณีที่มีการยกเลิกภายใน 3 ปีแรก" — คำว่า "ตามดุลยพินิจ"
+        คือช่องโหว่ที่ทำให้บริษัทสามารถลดมูลค่าเวนคืนได้โดยไม่ต้องชี้แจงเหตุผล
+      </p>
+
+      <!-- Correction -->
+      <div class="correction">
+        <del>ค่าเบี้ยสูงเกินผลตอบแทนประมาณ 60%</del>
+        <ins>แก้ไข: 72% หลังตรวจสอบอัตราค่าธรรมเนียมอีกครั้ง — รวมค่าธรรมเนียมบริหาร 2.4% ต่อปี</ins>
+      </div>
+    </div>
+
+    <aside class="note-margin">
+      <div class="margin-note">สัญญานี้ขายดีเพราะค่าคอมสูง — ไม่ใช่เพราะมันดี</div>
+      <div class="margin-note m2">ข้อ 7.3 — ค่าเวนคืนใน 3 ปีแรก = 0 บาท</div>
+      <div class="margin-note m3">คำว่า "ตามดุลยพินิจ" = กับดักทางกฎหมาย</div>
+    </aside>
+  </div>
+
+  <!-- ═══════════ SCRAP ═══════════ -->
+  <div class="scrap">
+    <div class="scrap-label">Exhibit A — เปรียบเทียบค่าเบี้ยและผลตอบแทน</div>
+    <table class="scrap-table">
+      <thead>
+        <tr><th>รายการ</th><th>Whole Life 99/20</th><th>ทางเลือก</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ค่าเบี้ยต่อปี</td><td class="count-up">฿48,000</td><td class="count-up">฿18,500</td></tr>
+        <tr><td>ทุนประกัน</td><td class="count-up">฿1,000,000</td><td class="count-up">฿1,200,000</td></tr>
+        <tr><td>ผลตอบแทนสุทธิ</td><td class="count-up" style="color:var(--red)">1.8%</td><td class="count-up" style="color:#1B7A4C">4.2%</td></tr>
+        <tr><td>เวนคืนปีที่ 3</td><td class="count-up" style="color:var(--red)">฿0</td><td class="count-up">฿42,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════ VERDICT ═══════════ -->
+  <section class="verdict-section">
+    <div>
+      <div class="verdict-wrap">
+        <svg class="verdict-svg" viewBox="0 0 80 80">
+          <ellipse class="verdict-circle" id="verdict-circle"
+            cx="40" cy="40" rx="35" ry="35"
+            transform="rotate(-8, 40, 40)"
+            stroke-dasharray="230" stroke-dashoffset="230" />
+          <text class="verdict-text" id="verdict-text" x="40" y="40">ไม่ผ่าน</text>
+        </svg>
+      </div>
+      <div class="verdict-sig">— นาถ · 25/04/2026</div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="notebook-footer">
+    📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  // ── REDUCED MOTION CHECK ──
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── GRAIN CANVAS ──
+  const grain = document.getElementById('grain');
+  if (grain && !prefersReduced) {
+    const ctx = grain.getContext('2d');
+    function resizeGrain() {
+      grain.width = window.innerWidth;
+      grain.height = window.innerHeight;
+      const imgData = ctx.createImageData(grain.width, grain.height);
+      for (let i = 0; i < imgData.data.length; i += 4) {
+        const v = 180 + Math.random() * 50;
+        imgData.data[i] = v;
+        imgData.data[i+1] = v - 15;
+        imgData.data[i+2] = v - 35;
+        imgData.data[i+3] = 15 + Math.random() * 25;
+      }
+      ctx.putImageData(imgData, 0, 0);
+    }
+    resizeGrain();
+    window.addEventListener('resize', resizeGrain);
+
+    // Grain dissolve on scroll — subtle pulse
+    let grainTimeout;
+    window.addEventListener('scroll', () => {
+      grain.style.opacity = '0.12';
+      clearTimeout(grainTimeout);
+      grainTimeout = setTimeout(() => { grain.style.opacity = '0.06'; }, 300);
+    }, { passive: true });
+  } else if (grain) {
+    grain.style.display = 'none';
+  }
+
+  // ── INK-BLEED CURSOR ──
+  const inkLayer = document.getElementById('ink-layer');
+  let inkTimeout;
+  function updateInk(x, y) {
+    inkLayer.style.background = `radial-gradient(circle 200px at ${x}px ${y}px, rgba(28,24,20,0.028) 0%, transparent 100%)`;
+    inkLayer.classList.add('active');
+    clearTimeout(inkTimeout);
+    inkTimeout = setTimeout(() => inkLayer.classList.remove('active'), 1200);
+  }
+  document.addEventListener('mousemove', (e) => updateInk(e.clientX, e.clientY), { passive: true });
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches.length) updateInk(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+
+  // ── INTERSECTION OBSERVER ──
+  const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -10% 0px' };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+
+      // Chiseled headline
+      if (el.classList.contains('chiseled')) {
+        el.classList.add('revealed');
+      }
+
+      // Verdict circle
+      if (el.classList.contains('verdict-circle')) {
+        el.classList.add('drawn');
+        const text = document.getElementById('verdict-text');
+        if (text) text.classList.add('visible');
+      }
+
+      // Scrap settle animation
+      if (el.classList.contains('scrap')) {
+        el.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease';
+        el.style.transform = 'translateY(-5px) rotate(-0.8deg)';
+        requestAnimationFrame(() => {
+          el.style.transform = 'translateY(0) rotate(-0.8deg)';
+          el.style.boxShadow = '1px 3px 12px rgba(28,24,20,0.1)';
+        });
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements
+  document.querySelectorAll('.chiseled, .verdict-circle, .scrap').forEach(el => observer.observe(el));
+
+  // ── CARD INK-BLEED ON HOVER ──
+  const card = document.getElementById('main-card');
+  if (card) {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+      card.style.setProperty('--mx', x + '%');
+      card.style.setProperty('--my', y + '%');
+    });
+  }
+
+  // ── TEMPERATURE BAR EXPAND ──
+  document.querySelectorAll('.temp-bar').forEach(bar => {
+    bar.addEventListener('mouseenter', () => bar.style.height = '20px');
+    bar.addEventListener('mouseleave', () => bar.style.height = '5px');
+  });
+
+})();
+</script>
+
+</body>
+</html>

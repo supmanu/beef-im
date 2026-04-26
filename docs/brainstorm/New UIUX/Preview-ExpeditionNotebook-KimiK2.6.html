@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — Expedition Notebook · Zone 1 Cover + Zone 2 Pages · Kimi K2.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;600;700;800&family=Bricolage+Grotesque:wght@400;700&family=Caveat:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=K2D:ital,wght@0,300;0,400;1,300;1,400&family=Sarabun:wght@400;500;700&family=Source+Serif+4:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  :root{
+    --exp-night:#0D0A07;--exp-leather:#1A1510;--exp-cream:#F0E8D5;
+    --ember:#E8782A;--burnt:#B85C38;
+    --paper:#F5F2EA;--paper-bright:#FDFBF7;--ink:#1C1814;
+    --navy:#2B4A5E;--red-pen:#CC3A2F;--highlight:rgba(255,237,100,0.45);
+    --grid:rgba(175,165,145,0.18);--grid-bleed:rgba(175,165,145,0.14);
+    --temp-blue:#3B7DD8;--temp-amber:#F5A623;--temp-red:#E8482F;
+    --font-thai:'Sarabun','K2D',sans-serif;
+    --font-display:'Anuphan','Bricolage Grotesque',sans-serif;
+    --font-hand:'K2D','Caveat',cursive;
+    --font-mono:'IBM Plex Mono',monospace;
+    --font-serif:'Source Serif 4',serif;
+  }
+  body{font-family:var(--font-thai);color:var(--ink);line-height:1.65;}
+
+  /* ============================================================= */
+  /* ZONE 1 — THE COVER (Hero)                                     */
+  /* ============================================================= */
+  .exp-hero{
+    position:relative;width:100%;min-height:100vh;
+    background:var(--exp-night);color:var(--exp-cream);
+    overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:0 24px 72px;
+  }
+  /* Graph-paper bleed from bottom */
+  .exp-hero::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:35%;
+    background-image:
+      linear-gradient(to top, var(--grid-bleed) 0%, transparent 100%),
+      linear-gradient(var(--grid-bleed) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-bleed) 1px, transparent 1px);
+    background-size:100% 100%, 24px 24px, 24px 24px;
+    pointer-events:none;z-index:2;mask-image:linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+    -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+  }
+  /* Ember particles */
+  .embers{position:absolute;inset:0;pointer-events:none;z-index:3;}
+  .embers span{
+    position:absolute;width:3px;height:3px;background:var(--ember);border-radius:50%;
+    opacity:0;box-shadow:0 0 6px 1px rgba(232,120,42,0.4);animation:emberDrift 6s ease-in-out infinite;
+  }
+  .embers span:nth-child(1){left:10%;bottom:6%;animation-delay:0s;animation-duration:5.4s}
+  .embers span:nth-child(2){left:18%;bottom:14%;animation-delay:0.8s;animation-duration:6.2s}
+  .embers span:nth-child(3){left:28%;bottom:5%;animation-delay:1.6s;animation-duration:5.8s}
+  .embers span:nth-child(4){left:38%;bottom:18%;animation-delay:2.4s;animation-duration:6.6s}
+  .embers span:nth-child(5){left:48%;bottom:8%;animation-delay:0.4s;animation-duration:5.6s}
+  .embers span:nth-child(6){left:56%;bottom:22%;animation-delay:1.2s;animation-duration:6.4s}
+  .embers span:nth-child(7){left:64%;bottom:10%;animation-delay:2.0s;animation-duration:5.2s}
+  .embers span:nth-child(8){left:72%;bottom:26%;animation-delay:2.8s;animation-duration:6.0s}
+  .embers span:nth-child(9){left:80%;bottom:12%;animation-delay:3.6s;animation-duration:5.9s}
+  .embers span:nth-child(10){left:86%;bottom:20%;animation-delay:0.6s;animation-duration:6.8s}
+  .embers span:nth-child(11){left:92%;bottom:8%;animation-delay:1.8s;animation-duration:5.5s}
+  .embers span:nth-child(12){left:96%;bottom:16%;animation-delay:3.2s;animation-duration:6.3s}
+  @keyframes emberDrift{
+    0%{opacity:0;transform:translateY(0) scale(0.5)}
+    12%{opacity:0.9;transform:translateY(-12vh) scale(1)}
+    50%{opacity:0.5;transform:translateY(-42vh) scale(0.85)}
+    88%{opacity:0.15;transform:translateY(-78vh) scale(0.6)}
+    100%{opacity:0;transform:translateY(-92vh) scale(0.45)}
+  }
+  /* Sunburst compass */
+  .sunburst{
+    position:absolute;top:-30%;right:-20%;width:90vmin;height:90vmin;border-radius:50%;
+    background:repeating-conic-gradient(from 12deg, rgba(232,120,42,0.10) 0deg 12deg, transparent 12deg 24deg);
+    animation:rotateCompass 32s linear infinite;pointer-events:none;z-index:1;
+  }
+  @keyframes rotateCompass{to{transform:rotate(360deg)}}
+  /* Glyph watermark */
+  .hero-glyph{
+    position:absolute;bottom:-24px;left:-8px;font-family:var(--font-display);
+    font-weight:800;font-size:280px;line-height:1;color:var(--ember);opacity:0.08;
+    pointer-events:none;z-index:1;user-select:none;
+  }
+  @media(min-width:768px){.hero-glyph{font-size:340px;left:-16px;bottom:-32px}}
+  /* Nav */
+  .hero-nav{
+    position:absolute;top:0;left:0;right:0;padding:22px 24px;
+    display:flex;justify-content:space-between;align-items:center;z-index:10;
+    border-bottom:1px solid rgba(240,232,213,0.06);
+  }
+  .hero-brand{font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.02em}
+  .hero-brand small{display:block;font-family:var(--font-mono);font-size:9px;opacity:0.5;letter-spacing:0.22em;margin-top:2px}
+  .hero-search{font-family:var(--font-mono);font-size:12px;opacity:0.45;border:1px solid rgba(240,232,213,0.15);padding:4px 10px;border-radius:4px}
+  /* Title card */
+  .hero-content{position:relative;z-index:5;max-width:720px;margin-bottom:20px}
+  .hero-eyebrow{
+    font-family:var(--font-mono);font-size:10.5px;color:var(--burnt);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:14px;
+    opacity:0;animation:staggerIn 200ms ease-out 500ms forwards;
+  }
+  .hero-h{
+    font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1.25;letter-spacing:-0.025em;margin-bottom:14px;
+    filter:blur(2px);opacity:0.7;animation:inkBleed 400ms ease-out 200ms forwards;
+  }
+  @media(min-width:768px){.hero-h{font-size:44px}}
+  .hero-byline{
+    font-family:var(--font-mono);font-size:12px;opacity:0.4;margin-bottom:28px;
+    opacity:0;animation:staggerIn 200ms ease-out 700ms forwards;
+  }
+  .hero-cta-row{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:staggerIn 200ms ease-out 900ms forwards}
+  .hero-cta{
+    display:inline-flex;padding:11px 22px;background:var(--ember);color:var(--exp-night);
+    font-family:var(--font-display);font-weight:600;font-size:14px;text-decoration:none;border-radius:3px;
+    transition:transform 0.2s,box-shadow 0.2s;
+  }
+  .hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,120,42,0.3)}
+  .hero-cta.ghost{background:transparent;color:var(--exp-cream);border:1px solid rgba(240,232,213,0.2)}
+  .hero-cta.ghost:hover{border-color:var(--ember);color:var(--ember)}
+  .hero-tempbar{
+    position:relative;height:4px;width:100%;max-width:280px;margin-top:32px;
+    background:linear-gradient(to right,var(--temp-blue),var(--temp-amber),var(--temp-red));border-radius:2px;
+    opacity:0;animation:staggerIn 200ms ease-out 1100ms forwards;
+  }
+  .hero-tempbar::after{
+    content:'เส้นแบ่งความเสี่ยง →';position:absolute;top:-20px;right:0;
+    font-family:var(--font-mono);font-size:9px;opacity:0.3;letter-spacing:0.1em;
+  }
+  .hero-rule{
+    position:absolute;bottom:0;left:0;right:0;height:1px;
+    background:linear-gradient(to right,transparent,rgba(245,200,66,0.5) 25%,rgba(245,200,66,0.5) 75%,transparent);z-index:10;
+  }
+  @keyframes inkBleed{to{filter:blur(0px);opacity:1}}
+  @keyframes staggerIn{to{opacity:1}}
+
+  /* ============================================================= */
+  /* TRANSITION                                                    */
+  /* ============================================================= */
+  .transition-band{
+    background:var(--exp-night);text-align:center;padding:14px 0;position:relative;z-index:10;
+  }
+  .transition-tag{
+    font-family:var(--font-mono);font-size:10px;opacity:0.35;letter-spacing:0.15em;
+  }
+
+  /* ============================================================= */
+  /* ZONE 2 — THE NOTEBOOK PAGES                                   */
+  /* ============================================================= */
+  .notebook{
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:24px 24px;
+    padding:56px 0 80px;
+    position:relative;
+  }
+  .notebook-inner{max-width:720px;margin:0 auto;padding:0 24px;position:relative;}
+  @media(min-width:900px){.notebook-inner{max-width:820px}}
+
+  /* Section header */
+  .nb-section-header{margin-bottom:32px;padding-bottom:16px;border-bottom:2px solid var(--red-pen)}
+  .nb-stamp{
+    display:inline-block;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--red-pen);border:1.5px solid var(--red-pen);padding:4px 12px;margin-bottom:14px;font-weight:600;
+  }
+  .nb-h{
+    font-family:var(--font-display);font-weight:800;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);
+    filter:blur(2px);opacity:0.7;animation:inkBleed 600ms ease-out forwards;
+  }
+  @media(min-width:768px){.nb-h{font-size:36px}}
+  .nb-byline{
+    font-family:var(--font-hand);font-style:italic;font-size:15px;color:var(--navy);margin-top:10px;
+  }
+
+  /* Body text */
+  .nb-body{font-family:var(--font-serif);font-size:17px;line-height:1.75;color:var(--ink);margin-bottom:18px}
+  @media(min-width:768px){.nb-body{font-size:18px}}
+
+  /* Note (marginal annotation) */
+  .nb-note{
+    font-family:var(--font-hand);font-size:14px;line-height:1.5;padding:10px 14px;
+    background:rgba(255,255,255,0.6);border:1px dashed rgba(43,74,94,0.25);border-radius:3px;
+    margin:14px 0;position:relative;
+  }
+  .nb-note.navy{color:var(--navy)}
+  .nb-note.red{color:var(--red-pen);border-color:rgba(204,58,47,0.3)}
+  .nb-note.tilt-l{transform:rotate(-1.5deg)}
+  .nb-note.tilt-r{transform:rotate(1.2deg)}
+  @media(min-width:900px){
+    .nb-note{position:absolute;width:200px;margin:0}
+    .nb-note.pos-left{left:-230px;top:0;text-align:right}
+    .nb-note.pos-right{right:-230px;top:0}
+  }
+
+  /* Verdict (red-pen circle) */
+  .verdict-wrap{display:inline-flex;align-items:center;gap:8px;margin:16px 0}
+  .verdict-svg{width:44px;height:44px;flex-shrink:0}
+  .verdict-svg circle{fill:none;stroke:var(--red-pen);stroke-width:2;stroke-dasharray:140;stroke-dashoffset:140;animation:circleDraw 600ms ease-out forwards}
+  @keyframes circleDraw{to{stroke-dashoffset:0}}
+  .verdict-text{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--red-pen)}
+
+  /* Scrap (taped-in exhibit) */
+  .scrap{
+    background:var(--paper-bright);padding:20px 22px;margin:22px 0;
+    border:1px solid rgba(28,24,20,0.1);box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    position:relative;transform:rotate(0.5deg);
+  }
+  .scrap::before{
+    content:'';position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-1deg);
+    width:48px;height:16px;background:rgba(245,240,220,0.75);border:1px solid rgba(0,0,0,0.08);
+    box-shadow:0 1px 2px rgba(0,0,0,0.06);
+  }
+  .scrap-label{
+    font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-bottom:8px;
+  }
+  .scrap-h{font-family:var(--font-display);font-weight:700;font-size:17px;margin-bottom:8px;color:var(--ink)}
+  .scrap-body{font-size:14px;line-height:1.65;color:#333}
+
+  /* Correction */
+  .correction{margin:14px 0}
+  .correction .wrong{
+    font-family:var(--font-hand);font-size:15px;color:#888;
+    text-decoration:line-through;text-decoration-color:var(--red-pen);text-decoration-thickness:2px;
+  }
+  .correction .fix{
+    font-family:var(--font-hand);font-size:15px;color:var(--navy);margin-top:4px;
+  }
+
+  /* Highlight */
+  .hl{background:var(--highlight);padding:1px 3px;border-radius:2px}
+
+  /* Arrow */
+  .arrow-wrap{margin:16px 0;text-align:center}
+  .arrow-wrap svg{display:inline-block}
+
+  /* Temperature bar */
+  .tempbar{height:4px;border-radius:2px;background:linear-gradient(to right,var(--temp-blue),var(--temp-amber),var(--temp-red));margin:8px 0 14px}
+  .temp-meta{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:#888;letter-spacing:0.08em}
+
+  /* Ruled divider between sections */
+  .ruled-divider{
+    height:1px;background:repeating-linear-gradient(to right, var(--navy) 0, var(--navy) 6px, transparent 6px, transparent 10px);
+    margin:40px 0;opacity:0.5;
+  }
+
+  /* Footer verdict */
+  .page-footer{
+    margin-top:48px;padding-top:24px;border-top:1px solid rgba(28,24,20,0.12);
+    display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;
+  }
+  .page-footer .pf-stamp{font-family:var(--font-mono);font-size:10px;color:#999}
+  .page-footer .pf-hand{font-family:var(--font-hand);font-size:14px;color:var(--navy)}
+
+  /* IntersectionObserver reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease-out, transform 0.5s ease-out}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* Reduced motion */
+  @media(prefers-reduced-motion:reduce){
+    .embers span,.sunburst,.hero-h,.hero-eyebrow,.hero-byline,.hero-cta-row,.hero-tempbar,.nb-h,.verdict-svg circle{animation:none!important}
+    .hero-h,.hero-eyebrow,.hero-byline,.hero-cta-row,.hero-tempbar,.nb-h{filter:none;opacity:1}
+    .verdict-svg circle{stroke-dashoffset:0}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- ZONE 1 — THE COVER (Hero)                                    -->
+<!-- ============================================================ -->
+<section class="exp-hero" id="hero">
+  <div class="sunburst"></div>
+  <div class="embers">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-glyph">เนื้อ</div>
+
+  <nav class="hero-nav">
+    <div class="hero-brand">ประกันเนื้อๆ<small>BEEF · IM · EXPEDITION LOG</small></div>
+    <div class="hero-search">⌘K</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">CASE FILE 04 · POLICY TEARDOWN</div>
+    <h2 class="hero-h">ผมอ่านสัญญาให้คุณ — ทีละหน้า</h2>
+    <div class="hero-byline">โดย ณัฐพล · 25 APR 26 · 2,840 WORDS</div>
+    <div class="hero-cta-row">
+      <a class="hero-cta" href="#casefile">เปิดสมุด</a>
+      <a class="hero-cta ghost" href="#experiment">ไปที่ครัว</a>
+    </div>
+    <div class="hero-tempbar"></div>
+  </div>
+  <div class="hero-rule"></div>
+</section>
+
+<div class="transition-band">
+  <span class="transition-tag">↓ เปิดสมุด ↓</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- ZONE 2 — THE NOTEBOOK PAGES                                   -->
+<!-- ============================================================ -->
+<section class="notebook">
+  <div class="notebook-inner">
+
+    <!-- ====== CASE FILE 04 ====== -->
+    <article id="casefile" class="reveal">
+      <header class="nb-section-header">
+        <span class="nb-stamp">CASE FILE #04</span>
+        <h1 class="nb-h">Unit-linked: ค่าธรรมเนียมที่ตัวแทนไม่ยอมเปิดให้ดู</h1>
+        <div class="nb-byline">25 APR 26 · POLICY DESK · 11 MIN</div>
+      </header>
+
+      <p class="nb-body">
+        เบี้ย Unit-linked ปีที่ 1 ดูถูกกว่าเบี้ย Term — แต่ Cost of Insurance เพิ่มขึ้นทุกปีตามอายุ
+        และปีที่ 30 ค่า COI มักจะ<span class="hl">กินเบี้ยทั้งหมดที่จ่าย</span>
+        ตัวแทนรู้ตั้งแต่วันแรก แต่ presentation ไม่มีหน้านี้
+      </p>
+
+      <div class="scrap">
+        <div class="scrap-label">EXHIBIT A — ตัวอย่างจากกรมธรรม์</div>
+        <div class="scrap-h">AIA Multi-Pay CI · เพศชาย · อายุ 35 · ไม่สูบบุหรี่</div>
+        <div class="scrap-body">
+          เบี้ยรายปี: 120,000 บาท<br>
+          COI ปีที่ 30 (ประมาณการ): <strong style="color:var(--red-pen)">128,400 บาท</strong><br>
+          ผลตอบแทนรวม 30 ปี (IRR): <strong style="color:var(--navy)">1.2%</strong>
+        </div>
+      </div>
+
+      <div class="nb-note navy tilt-r">
+        ตรงนี้สำคัญ — ถ้าตัวแทนบอกว่า "เบี้ยเท่ากันทุกปี" ให้ถามกลับว่า "แล้ต้นทุนภายในล่ะ?"
+      </div>
+
+      <p class="nb-body">
+        ผมเจอ case นี้บ่อยกว่าที่คิด ลูกค้าเซ็นเพราะตัวแทนเป็น "พี่ที่รู้จักนาน"
+        ไม่มีใครเปิดกรมธรรม์ให้อ่านทีละหน้า
+      </p>
+
+      <div class="correction">
+        <div class="wrong">"Unit-linked คือการลงทุนที่มีประกันแถม"</div>
+        <div class="fix">→ จริง ๆ คือ ประกันที่หักค่าธรรมเนียมจากกองทุน — ไม่ใช่การลงทุนโดยตรง</div>
+      </div>
+
+      <div class="verdict-wrap">
+        <svg class="verdict-svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20"/></svg>
+        <span class="verdict-text">✗ ไม่ผ่าน — ปีที่ 30 เบี้ยหมด</span>
+      </div>
+    </article>
+
+    <div class="ruled-divider"></div>
+
+    <!-- ====== EXPERIMENT LOG 09 ====== -->
+    <article id="experiment" class="reveal">
+      <header class="nb-section-header">
+        <span class="nb-stamp">EXPERIMENT LOG #09</span>
+        <h1 class="nb-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h1>
+        <div class="nb-byline">25 APR 26 · FOOD DESK · 6 MIN</div>
+      </header>
+
+      <p class="nb-body">
+        โปรตีนเสียโครงสร้างที่ <span class="hl">60°C</span> — เนื้อแห้ง น้ำหวานหนีออก สูญเสียมวลถึง 18%
+        นั่นคือเหตุผลที่ผมย่างที่ 54°C แล้วพัก 10 นาที
+      </p>
+
+      <div class="tempbar"></div>
+      <div class="temp-meta"><span>RARE</span><span>MEDIUM-RARE</span><span>MEDIUM</span><span>WELL-DONE</span></div>
+
+      <div class="scrap">
+        <div class="scrap-label">EXPERIMENT DATA — ครั้งที่ 3 (สำเร็จ)</div>
+        <div class="scrap-h">Core 54°C · Rest 10 min · Sear 90 sec</div>
+        <div class="scrap-body">
+          เตา: ถ่านลูกไนซ์ 2.5 กก.<br>
+          ระยะห่างตะแกรง-ถ่าน: 15 ซม.<br>
+          ผลลัพธ์: สุกแบบ medium-rare ทั้งชิ้น ไม่มี ring
+        </div>
+      </div>
+
+      <div class="nb-note navy tilt-l">
+        ครั้งแรกไฟแรงเกินไป — ผิวไหม้แต่แกนกลางดิบ ไฟอ่อนช้า ๆ คือกุญแจสำคัญ
+      </div>
+
+      <p class="nb-body">
+        การพักเนื้อสำคัญกว่าการย่าง ถ้าไม่พัก น้ำหวานจะไหลออกตอนหั่น
+        ผมวัดด้วยเทอร์โมมิเตอร์แทรก — ไม่ใช่ความรู้สึก
+      </p>
+
+      <div class="correction">
+        <div class="wrong">"ย่างไฟแรงเพื่อ seal น้ำหวาน"</div>
+        <div class="fix">→ น้ำหวานไม่ถูก seal — มันถูก squeeze ออกถ้าไฟแรงเกินไป ไฟอ่อนคือคำตอบ</div>
+      </div>
+
+      <div class="arrow-wrap">
+        <svg width="200" height="50" viewBox="0 0 200 50" fill="none">
+          <path d="M10 35 Q 60 5, 140 25" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" fill="none" stroke-dasharray="4 3"/>
+          <path d="M130 18 L 145 25 L 132 35" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="80" y="45" font-family="K2D,Caveat" font-size="12" fill="var(--navy)" text-anchor="middle">same logic</text>
+        </svg>
+      </div>
+
+      <div class="nb-note red tilt-r" style="max-width:340px">
+        ความร้อนช้า = compounding (COI) · ไฟแรงทันที = sunk cost (เบี้ยปีแรกที่ไม่ได้อะไรกลับ)
+      </div>
+
+      <div class="verdict-wrap">
+        <svg class="verdict-svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20"/></svg>
+        <span class="verdict-text">✓ ผ่าน — 54°C คือเส้นแบ่ง</span>
+      </div>
+    </article>
+
+    <!-- Page footer -->
+    <footer class="page-footer">
+      <div>
+        <div class="pf-stamp">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)</div>
+        <div class="pf-hand" style="margin-top:4px">#ประกันเนื้อๆ · หน้า 04-09</div>
+      </div>
+      <div class="pf-hand" style="text-align:right">
+        ณัฐพล · 25.IV.MMXXVI<br>
+        <span style="font-size:12px;color:#999">เขียนที่ความสูง 4,200 เมตร</span>
+      </div>
+    </footer>
+
+  </div>
+</section>
+
+<script>
+  // IntersectionObserver for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

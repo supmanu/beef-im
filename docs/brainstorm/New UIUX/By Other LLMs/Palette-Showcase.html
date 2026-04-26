@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>beef.im — UI/UX Palette Showcase (13 Models × 5 Directions)</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Sans', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F5F1E8; color: #1C1814; line-height: 1.5; padding: 2rem;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  .subtitle { color: #6B6254; font-size: 0.85rem; margin-bottom: 2rem; }
+
+  /* Global filter bar */
+  .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filters button {
+    padding: 6px 14px; border: 1px solid #C0B8A8; background: #FFFCF7; border-radius: 20px;
+    cursor: pointer; font-size: 0.8rem; color: #3D3428; transition: all 0.15s;
+  }
+  .filters button:hover { border-color: #B85C3A; color: #B85C3A; }
+  .filters button.active { background: #B85C3A; color: #FFF; border-color: #B85C3A; }
+
+  /* Model section */
+  .model { margin-bottom: 3rem; }
+  .model-header {
+    display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 1rem;
+    padding-bottom: 0.5rem; border-bottom: 2px solid #D4CFC5;
+  }
+  .model-header h2 { font-size: 1.15rem; font-weight: 700; }
+  .model-header .score {
+    font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+    background: #E8E3DA; color: #6B6254;
+  }
+  .model-header .score.gold { background: #E8A84C; color: #1C1814; }
+  .model-header .score.silver { background: #C0C0C0; color: #1C1814; }
+  .model-header .model-sub { font-size: 0.75rem; color: #8A7E6B; }
+
+  /* Direction cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1rem; }
+  .card {
+    background: #FFFCF7; border: 1px solid #E0D8C8; border-radius: 10px; padding: 1rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    transition: box-shadow 0.15s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .card.dark { background: #1C1814; border-color: #3D3428; color: #E8D5C4; }
+  .card.dark .hex { color: #B8A898; }
+
+  .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
+  .card-head h3 { font-size: 0.95rem; font-weight: 700; line-height: 1.3; }
+  .mood-line { font-size: 0.78rem; color: #8A7E6B; line-height: 1.4; font-style: italic; }
+  .card.dark .mood-line { color: #A89880; }
+
+  /* Swatches */
+  .swatches { display: flex; gap: 6px; align-items: stretch; }
+  .swatch {
+    flex: 1; height: 48px; border-radius: 6px; position: relative; cursor: default;
+    border: 1px solid rgba(0,0,0,0.08); min-width: 0; display: flex; align-items: flex-end;
+    justify-content: center; padding-bottom: 4px;
+  }
+  .swatch .hex {
+    font-family: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: -0.01em;
+    background: rgba(255,255,255,0.78); color: #1C1814; padding: 1px 5px; border-radius: 3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+  }
+  .swatch.dark-hex .hex { background: rgba(0,0,0,0.55); color: #E8D5C4; }
+  .swatch-label { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.03em; color: #8A7E6B; margin-top: 2px; text-align: center; }
+
+  /* Mini card preview */
+  .mini-preview {
+    border-radius: 6px; padding: 10px 12px; font-size: 0.72rem; display: flex;
+    flex-direction: column; gap: 4px; border: 1px solid rgba(0,0,0,0.06);
+  }
+  .mini-preview .preview-title { font-weight: 700; font-size: 0.82rem; }
+  .mini-preview .preview-body { opacity: 0.85; line-height: 1.45; }
+  .mini-preview .preview-accent { width: 32px; height: 3px; border-radius: 2px; margin-bottom: 2px; }
+
+  /* Typography section */
+  .typo-row { display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.68rem; }
+  .typo-tag {
+    padding: 2px 8px; border-radius: 4px; border: 1px solid #D4CFC5;
+    background: #FAF7F2; white-space: nowrap;
+  }
+  .card.dark .typo-tag { background: #2A2520; border-color: #4A3D30; }
+
+  /* Top pick indicator */
+  .top-pick { border-left: 3px solid #B85C3A; padding-left: 0.6rem; }
+  .top-badge {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: #B85C3A; margin-bottom: 0.15rem;
+  }
+  .card.dark .top-badge { color: #E8A84C; }
+
+  /* Responsive */
+  @media (max-width: 420px) {
+    body { padding: 0.75rem; }
+    .cards { grid-template-columns: 1fr; }
+    .card { padding: 0.75rem; }
+    .swatch { height: 36px; }
+    .swatch .hex { font-size: 0.52rem; padding: 1px 3px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🥩 beef.im — UI/UX Palette Showcase</h1>
+<p class="subtitle">13 LLM models × 5 directions = 65 visual concepts &middot; Open in browser to scan &middot; Click swatches to copy hex</p>
+
+<div class="filters">
+  <button onclick="filterAll()" class="active">All</button>
+  <button onclick="filterLight()">Light background</button>
+  <button onclick="filterDark()">Dark background</button>
+  <button onclick="filterTopPicks()">Top picks only</button>
+</div>
+
+<!-- Generated inline for single-file portability -->
+<script>
+// All 65 directions as structured data
+const DATA = [
+  // OPUS 4.7
+  {model:"OPUS 4.7", harness:"Claude Code CLI", score:"25", gold:true,
+   dirs:[
+    {name:"Pavilion",mood:"A two-Michelin tasting menu — every section earns its plate.",palette:["#F4EFE6","#FAF7F1","#1C1814","#C45A2D","#7A1F1F"],typo:"Anuphan+Söhne / Sarabun+Söhne / Söhne Mono",bg:"light",pick:false},
+    {name:"Newsroom",mood:"Bloomberg Businessweek meets Monocle — confident, dense, news-led.",palette:["#F1ECE2","#FFFFFF","#1A1A1A","#6B0F1A","#B8860B"],typo:"IBM Plex Serif Thai+IBM Plex Serif / IBM Plex Sans Thai+IBM Plex Sans",bg:"light",pick:false},
+    {name:"Spec Sheet",mood:"Hodinkee meets B&O owner's manual — every page is instrument documentation.",palette:["#0A0A0A","#141414","#E8E8E8","#00D4FF","#FF3B30"],typo:"Bai Jamjuree+JetBrains Mono / Anuphan+Inter / JetBrains Mono",bg:"dark",pick:true},
+    {name:"Slow Cinema",mood:"A24's Past Lives reframed as a publication — atmospheric, emotionally weighted.",palette:["#1A0F0A","#2A1B12","#F0EAD6","#D2691E","#C41E3A"],typo:"IBM Plex Serif Thai+Tiempos / Sarabun+Tiempos Text",bg:"dark",pick:false},
+    {name:"Receipt",mood:"Read.cv meets a thermal-printer receipt — flat, dense, zine-like.",palette:["#FFFFFF","#F8F5EE","#000000","#FFD800","#D70015"],typo:"Bai Jamjuree+IBM Plex Mono / Anuphan+Inter",bg:"light",pick:false}
+   ]},
+  // DeepSeek V4 Flash
+  {model:"DeepSeek V4 Flash", harness:"OpenCode CLI — Direct API", score:"24", gold:true,
+   dirs:[
+    {name:"Prime Cut",mood:"A candlelit steakhouse where the menu is written in data.",palette:["#1A0D06","#2C1810","#E8D5C4","#C4945A","#B84A3A"],typo:"Kanit+Playfair Display / Sarabun+Inter / JetBrains Mono",bg:"dark",pick:false},
+    {name:"Docket#",mood:"An advocate's annotated brief — red ink in the margin, every claim marked up.",palette:["#F5F0E8","#FFFFFF","#1C1C1C","#D43830","#A61A1A"],typo:"IBM Plex Sans Thai+IBM Plex Serif / Sarabun+IBM Plex Sans / IBM Plex Mono Thai",bg:"light",pick:true},
+    {name:"Yaowarat Code",mood:"Bangkok's oldest street typography refined into digital — characters collide.",palette:["#0D0D0D","#1A1A2E","#F0E6D0","#FF5533","#FFD700"],typo:"Bai Jamjuree+Unbounded / Prompt+Inter / Space Mono",bg:"dark",pick:false},
+    {name:"Char Line",mood:"The aftermath of fire — blackened, elemental, reduced to what matters.",palette:["#0A0806","#1C1612","#D9C8B8","#D47A3A","#B83333"],typo:"Prompt+Archivo / Noto Sans Thai+Inter / JetBrains Mono",bg:"dark",pick:false},
+    {name:"Exhibit A",mood:"A museum specimen display case — evidence pinned to the board with red string.",palette:["#F8F6F2","#FFFFFF","#1C1C1C","#4A7C70","#D43830"],typo:"Kanit ExtraLight+Playfair Display / Sarabun+DM Sans",bg:"light",pick:false}
+   ]},
+  // DeepSeek V4 GO max
+  {model:"DeepSeek V4 GO max", harness:"OpenCode CLI — OpenCode Go", score:"24", gold:true,
+   dirs:[
+    {name:"ถ่าน (Charcoal)",mood:"A private 10-seat counter at midnight — binchotan embers, bone china.",palette:["#1A1A17","#242420","#E5DDD0","#D4A040","#E0553D"],typo:"Kanit Bold+Space Grotesk / IBM Plex Sans Thai+IBM Plex Sans",bg:"dark",pick:false},
+    {name:"หน้าหนังสือพิมพ์ (Broad Sheet)",mood:"1950s Thai newspaper masthead — ink, rules, no apology for density.",palette:["#FCFAF5","#FFFFFF","#1C1C1A","#C83C23","#B71C1C"],typo:"Noto Serif Thai+Newsreader / Noto Serif Thai+Newsreader / Sarabun",bg:"light",pick:false},
+    {name:"ขาว-หมึก (White Ink)",mood:"A calligrapher's studio at dawn — washi paper, one ink stone, one red seal.",palette:["#F7F3ED","#FFFFFF","#121212","#CC2A1A","#8B1A1A"],typo:"Kanit Bold+Space Grotesk / Sarabun+Inter / Space Mono",bg:"light",pick:false},
+    {name:"ฟิล์ม (Celluloid)",mood:"35mm contact sheet from a Thai indie film — grain, halation, golden hour.",palette:["#0C0C09","#1A1A14","#DDD5C4","#E8A840","#E0553D"],typo:"Taviraj+Cinzel / Noto Sans Thai+Inter / DM Mono",bg:"dark",pick:false},
+    {name:"แกะสลัก (Engraved)",mood:"Information carved into warm limestone — like a 14th-century Sukhothai inscription.",palette:["#F0ECE4","#EBE5DB","#2B2620","#B8860B","#C03D2B"],typo:"Sarabun ExtraBold+Fraunces / Sarabun+Inter / Anuphan",bg:"light",pick:true}
+   ]},
+  // DeepSeek V4 Flash GO max (OpenCode Go)
+  {model:"DS V4 Flash GO max ⚡", harness:"OpenCode CLI — OpenCode Go", score:"20", gold:false,
+   dirs:[
+    {name:"Slaughterhouse Chic ⚠️",mood:"Clinical precision meets warm-blooded craft — a butcher's counter under museum lighting.",palette:["#0D0D0D","#1A1A1A","#E8E0D8","#C73B2A","#E8A317"],typo:"Prompt Black+Fraunces / IBM Plex Sans Thai Looped+Inter / JetBrains Mono",bg:"dark",pick:false},
+    {name:"The Dossier",mood:"You've been handed a classified folder on your own money — redacted, urgent, impossible to ignore.",palette:["#F5F0E8","#FFFFFF","#1A1A1A","#D6382B","#2B5C8A"],typo:"Sarabun Bold+EB Garamond / Anuphan+Source Serif / IBM Plex Mono",bg:"light",pick:false},
+    {name:"Ember",mood:"The glow of dying coals at golden hour — warm, patient, just hot enough to sear.",palette:["#1C1510","#2A2119","#E8D5C4","#FF6B35","#4AE0D0"],typo:"Bai Jamjuree+Playfair Display / Prompt+Inter / DM Mono",bg:"dark",pick:true},
+    {name:"Tabloid",mood:"Thai street-food energy meets Bloomberg Terminal — loud, dense, impossible to ignore.",palette:["#F7F3E8","#FFFFFF","#111111","#FFD600","#E1251B"],typo:"Chakra Petch+Titillium Web / Sarabun+Roboto Slab / JetBrains Mono",bg:"light",pick:false},
+    {name:"Immersion Tank",mood:"Reading inside a sensory deprivation chamber where only the numbers and the fire are real.",palette:["#000000","#111111","#F0F0E6","#FF3B30","#30D158"],typo:"Anuphan ExtraBold+FK Screamer / Noto Sans Thai+Inter / SF Mono",bg:"dark",pick:false}
+   ]},
+  // Sonnet 4.6 CC CLI
+  {model:"Sonnet 4.6", harness:"Claude Code CLI", score:"24", gold:true,
+   dirs:[
+    {name:"Deep Research",mood:"The analyst who prints the brief, marks it up, and posts the annotated scan.",palette:["#FDFCF8","#F5F2EB","#1A1A18","#2456C8","#D4480A"],typo:"Prompt+Fraunces / Sarabun+Source Serif 4 / Fira Code",bg:"light",pick:false},
+    {name:"Yakiniku Private",mood:"Private yakiniku room where the house cut costs more than your annual premium.",palette:["#0D0B0A","#1C1714","#E5DDD0","#C27832","#E8452A"],typo:"Anuphan+Neue Haas Grotesk / Noto Sans Thai+Neue Haas Grotesk",bg:"dark",pick:false},
+    {name:"Investment Grade",mood:"Goldman Sachs equity research, translated for the reader who signed without reading.",palette:["#F7F6F3","#FFFFFF","#141414","#1B3A6B","#B91C1C"],typo:"IBM Plex Sans Thai+IBM Plex Sans / IBM Plex Sans Thai+IBM Plex Sans / IBM Plex Mono",bg:"light",pick:true},
+    {name:"Bangkok Zine",mood:"Pratunam shophouse sign typography, curated by someone who studied at ECAL.",palette:["#1A1208","#2B1F0F","#F2E8D0","#E8B020","#E83020"],typo:"Bai Jamjuree+Barlow Condensed / Sarabun+DM Sans",bg:"dark",pick:false},
+    {name:"Cold Protocol",mood:"Mass spectrometry results and reverse-sear temperature logs — same methodology.",palette:["#F8F9FA","#FFFFFF","#1D2025","#00795C","#C81414"],typo:"Prompt+Inter / Noto Sans Thai+Inter / JetBrains Mono",bg:"light",pick:false}
+   ]},
+  // GLM 5.1
+  {model:"GLM 5.1", harness:"OpenCode CLI", score:"22", gold:false,
+   dirs:[
+    {name:"Smoke & Ledger",mood:"The calm after the grill dies down — charcoal silence, one amber ember still alive.",palette:["#141210","#1E1C19","#D8D0C4","#C87941","#E8533F"],typo:"Chonburi+Playfair Display / Sarabun+Source Serif 4 / IBM Plex Mono",bg:"dark",pick:false},
+    {name:"Broadside",mood:"The authoritative daily broadsheet — ink on paper, no hierarchy games.",palette:["#F5F0E8","#FFFFFF","#1A1A1A","#B8860B","#C41E3A"],typo:"Mitr+Oswald / Sarabun+Georgia Pro / Courier Prime",bg:"light",pick:false},
+    {name:"Certified",mood:"Every piece of content arrives stamped, graded, and sealed — USDA meets financial literacy.",palette:["#FAFAF8","#FFFFFF","#2D2D2D","#1B4D3E","#D4380D"],typo:"Kanit+DM Serif Display / Noto Sans Thai+Inter / JetBrains Mono",bg:"light",pick:false},
+    {name:"Hearth Cut",mood:"A private omakase counter at 9PM — ten seats, one focus, complete silence.",palette:["#0A0A0A","#161616","#E8E4DE","#A0845C","#E84545"],typo:"Bai Jamjuree+Space Grotesk / IBM Plex Sans Thai+IBM Plex Sans",bg:"dark",pick:true},
+    {name:"Temperature Grade",mood:"Budget spreadsheets and doneness charts sharing the same heat-map.",palette:["#F7F7F5","#FFFFFF","#1C1C1E","#3B7DD8","#E8482F"],typo:"Anuphan+Outfit / Sarabun+Source Sans 3 / Inter Tight+JetBrains Mono",bg:"light",pick:false}
+   ]},
+  // Gemini 3.1
+  {model:"Gemini 3.1", harness:"OpenCode CLI", score:"20", gold:false,
+   dirs:[
+    {name:"The Broadsheet Cut",mood:"Academic rigor and deep investigation served on a silver platter.",palette:["#F9F7F1","#FFFFFF","#1A1A1A","#722F37","#D32F2F"],typo:"Playfair Display+Noto Serif Thai / Lora+Sarabun / Roboto Mono",bg:"light",pick:true},
+    {name:"Ink & Iron",mood:"Unapologetic structural transparency — no fluff, just the raw material.",palette:["#0A0A0A","#171717","#E5E5E5","#FF5722","#FF0000"],typo:"Space Grotesk+Bai Jamjuree / Inter+IBM Plex Sans Thai",bg:"dark",pick:false},
+    {name:"Midnight Smoke",mood:"The hushed, focused intimacy of an exclusive chef's counter at midnight.",palette:["#121110","#1F1C1A","#D1C7BD","#B5651D","#E63946"],typo:"Cinzel+Charis SIL Thai / Source Sans Pro+Noto Sans Thai",bg:"dark",pick:false},
+    {name:"Precision Instrument",mood:"A perfectly calibrated tool for measuring both risk and temperature.",palette:["#F2F2F2","#FAFAFA","#2A2A2A","#4CAF50","#E53935"],typo:"Helvetica Now+Anuphan / Roboto+Prompt / SF Mono",bg:"light",pick:false},
+    {name:"Marbled Glass",mood:"Fluid, interconnected data layers that feel organic rather than rigid.",palette:["#E8ECEF","#FFFFFF","#333D45","#C97A7E","#B71C1C"],typo:"Ogg+IBM Plex Serif Thai / Switzer+Kanit / Chivo Mono",bg:"light",pick:false}
+   ]},
+  // Opus 4.6 Merlin
+  {model:"Opus 4.6", harness:"Merlin AI Webapp", score:"21", gold:false,
+   dirs:[
+    {name:"Charcoal Service",mood:"A private omakase counter where the chef explains every cut.",palette:["#1A1714","#2C2520","#E8E0D4","#C4873B","#D4513B"],typo:"Anuphan+Freight Display Pro / IBM Plex Sans Thai+IBM Plex Sans",bg:"dark",pick:false},
+    {name:"Morning Edition",mood:"A broadsheet financial daily that smells like espresso and woodsmoke.",palette:["#FAF6F0","#FFFFFF","#1C1917","#8B4513","#B91C1C"],typo:"Bai Jamjuree+Playfair Display / Sarabun+Source Serif 4",bg:"light",pick:false},
+    {name:"Concrete Set",mood:"A brutalist gallery where every wall is raw plaster.",palette:["#E7E5E0","#D4D0C8","#111111","#FF5C00","#FF5C00"],typo:"Prompt+Space Grotesk / Prompt+Space Grotesk / Space Mono",bg:"light",pick:false},
+    {name:"Slow Burn",mood:"A film still held two seconds too long — staring into the coals.",palette:["#0D0D0D","#1A1A1A","#C8C2B8","#E85D26","#F0C050"],typo:"Anuphan+Inter Tight / Noto Sans Thai+Inter / Fira Code",bg:"dark",pick:true},
+    {name:"Open Market",mood:"A Saturday morning at a premium Thai fresh market — organized chaos.",palette:["#FEFCF8","#FFFFFF","#292524","#16803C","#DC2626"],typo:"Bai Jamjuree+DM Sans / IBM Plex Sans Thai+DM Sans / DM Mono",bg:"light",pick:false}
+   ]},
+  // DeepSeek V4 Pro
+  {model:"DeepSeek V4 Pro", harness:"OpenCode CLI — Direct API", score:"19", gold:false,
+   dirs:[
+    {name:"Butcher's Ledger",mood:"Premium butcher's back-room ledger — warm darkness, ruled paper, anatomical precision.",palette:["#1C1A17","#2A2520","#D4C5B2","#D4943A","#E0553D"],typo:"IBM Plex Sans Thai ExtraLight / IBM Plex Sans Thai / JetBrains Mono",bg:"dark",pick:false},
+    {name:"Charcoal Glow",mood:"The hour after the grill is extinguished — cooling embers, content illuminated from within.",palette:["#151518","#1E1E22","#C4C4C9","#F27D3A","#FF4D2E"],typo:"Chakra Petch+Space Grotesk / Anuphan / Fira Code",bg:"dark",pick:false},
+    {name:"Rice Paper & Ink",mood:"A Bangkok literary quarterly printed on handmade mulberry paper — warm, textured, deliberate.",palette:["#F5F0E8","#FFFFFF","#2B2520","#CC3A2F","#1A7A4C"],typo:"Prompt+Cormorant Garamond / Sarabun / Noto Sans Thai UI",bg:"light",pick:true},
+    {name:"Raw Concrete & Golden Light",mood:"Tadao Ando's concrete washed in 5pm Bangkok light.",palette:["#F2EFE9","#FFFFFF","#2D2A26","#E8A84C","#D94436"],typo:"Bai Jamjuree+DM Sans / Noto Sans Thai / Recursive Mono",bg:"light",pick:false},
+    {name:"Evidence Tag",mood:"Forensic analyst's workspace — chain-of-custody precision, evidence laid bare.",palette:["#EBE8E3","#F7F5F2","#1A1D23","#F2C94C","#D9382E"],typo:"IBM Plex Sans Thai+IBM Plex Sans / IBM Plex Mono",bg:"light",pick:false}
+   ]},
+  // Sonnet 4.6 Merlin
+  {model:"Sonnet 4.6", harness:"Merlin AI Webapp", score:"19", gold:false,
+   dirs:[
+    {name:"Obsidian Counter",mood:"Private dining room where the sommelier also reads your policy documents.",palette:["#0E0E0E","#1A1917","#E8E2D9","#C8922A","#D95F3B"],typo:"Anuphan+Cormorant Garamond / IBM Plex Sans Thai+IBM Plex Sans",bg:"dark",pick:false},
+    {name:"Broadsheet Verdict",mood:"If The Economist and a Michelin-starred brasserie had a child raised in Bangkok.",palette:["#F5F0E8","#FFFFFF","#1C1C1C","#BF1A1A","#BF1A1A"],typo:"Bai Jamjuree+Playfair Display / Sarabun+Source Serif 4",bg:"light",pick:false},
+    {name:"Brutalist Ledger",mood:"A financial contract tattooed directly onto a concrete wall — and it smells like smoke.",palette:["#F2EFE9","#E8E3DA","#111111","#FF4D00","#FF4D00"],typo:"Prompt+Space Grotesk / Noto Sans Thai+Space Grotesk / Space Mono",bg:"light",pick:true},
+    {name:"Embers & Aperture",mood:"A long-exposure photograph taken inside a charcoal kiln that also has a spreadsheet.",palette:["#0B0906","#1D1410","#EDE4D5","#E8782A","#F5C842"],typo:"Anuphan+Neue Haas Grotesk / IBM Plex Sans Thai+IBM Plex Sans",bg:"dark",pick:false},
+    {name:"Material Intelligence",mood:"What if the Bloomberg Terminal had a hospitality upgrade and moved to Bangkok.",palette:["#F7F6F3","#FFFFFF","#18181B","#2563EB","#DC2626"],typo:"Bai Jamjuree+DM Sans / Sarabun+DM Sans / Berkeley Mono",bg:"light",pick:false}
+   ]},
+  // GPT-5.4
+  {model:"GPT-5.4", harness:"OpenCode CLI", score:"18", gold:false,
+   dirs:[
+    {name:"Private Dining Ledger",mood:"A reservation-only grill room where every menu note is a contract margin note.",palette:["#12110F","#1E1B17","#F2E9D8","#C88A3D","#E36A4A"],typo:"Bai Jamjuree+Canela / Sarabun+Inter / IBM Plex Mono",bg:"dark",pick:false},
+    {name:"Weekend Dossier",mood:"Thai weekend broadsheet meets buy-side memo meets cookbook margin.",palette:["#F6F1E8","#FFFCF7","#1B1A17","#2E6D63","#B85C38"],typo:"Noto Serif Thai+Tiempos / Sarabun+Source Serif 4 / IBM Plex Mono",bg:"light",pick:true},
+    {name:"Clause Block",mood:"A typographic wall of conviction where proof, pricing, and process hit harder than polish.",palette:["#E7E0D3","#D9D0C0","#111111","#005F73","#D1492E"],typo:"IBM Plex Sans Thai Looped+Space Grotesk / Anuphan+Inter",bg:"light",pick:false},
+    {name:"Heat Haze",mood:"Dark glass, soft glare — reading something consequential after midnight.",palette:["#0B0E12","#151A20","#E7E1D6","#93A57B","#D97A52"],typo:"Prompt+Söhne / Sarabun+Inter / IBM Plex Mono",bg:"dark",pick:false},
+    {name:"Measured Vitality",mood:"A daylight performance lab where clauses, macros, and temperatures are measurable inputs.",palette:["#F3F7F2","#FFFFFF","#132018","#6F8F72","#C96A3D"],typo:"Anuphan+Manrope / IBM Plex Sans Thai+Inter / IBM Plex Mono",bg:"light",pick:false}
+   ]},
+  // Kimi K2.6
+  {model:"Kimi K2.6", harness:"OpenCode CLI", score:"17", gold:false,
+   dirs:[
+    {name:"The Specimen",mood:"A forensics lab that smells like rosemary and charcoal.",palette:["#F4F4F0","#E5E5E5","#1A1A1A","#B91C1C","#047857"],typo:"Anuphan+Space Grotesk / Sarabun+Inter / IBM Plex Mono",bg:"light",pick:false},
+    {name:"Cinder & Ink",mood:"A private dining room where the chef explains the stock market between courses.",palette:["#0A0A0A","#171717","#F5F5F0","#D97706","#F3F4F6"],typo:"Bai Jamjuree+Playfair Display / Prompt+Source Serif 4 / SF Mono",bg:"dark",pick:true},
+    {name:"The Tenderizer",mood:"A heavy cleaver hitting a cutting board in a silent room.",palette:["#000000","#171717","#FFFFFF","#FACC15","#FEF08A"],typo:"Noto Sans Thai+Tasa Orbiter / Prompt+Neue Haas Grotesk",bg:"dark",pick:false},
+    {name:"Omakase",mood:"A chef's counter at 8 PM — every movement is deliberate.",palette:["#F9F7F2","#FAFAF9","#2D2D2D","#1E3A8A","#C2410C"],typo:"Sarabun+Tiempos Headline / Anuphan+Suisse Int'l / Pitch",bg:"light",pick:false},
+    {name:"Low & Slow",mood:"A smoker at dawn — quiet, patient, methodical.",palette:["#1C1917","#292524","#F5F5F4","#EA580C","#A8A29E"],typo:"Chakra Petch+Neue Montreal / IBM Plex Sans Thai+Inter",bg:"dark",pick:false}
+   ]},
+  // Qwen 3.5 Plus
+  {model:"Qwen 3.5 Plus", harness:"OpenCode CLI", score:"17", gold:false,
+   dirs:[
+    {name:"Charcoal & Ember",mood:"A premium teppanyaki counter at midnight — the food is the only decoration.",palette:["#1A1A1C","#262629","#E8E6E3","#C96842","#FF5A36"],typo:"Anuphan+Inter Tight / Bai Jamjuree+Source Sans Pro",bg:"dark",pick:true},
+    {name:"Newsprint & Steel",mood:"A financial broadsheet printed on recycled paper, laid on a stainless steel counter.",palette:["#F5F3EF","#FFFFFF","#2B2B2B","#4A6FA5","#C43838"],typo:"Prompt+Fraunces / Sarabun+Merriweather / JetBrains Mono",bg:"light",pick:false},
+    {name:"Thai Modernist",mood:"1970s Thai architecture photography — bold geometry, natural light, zero ornament.",palette:["#E8DCC8","#D4C4A8","#3D3428","#1B5E4E","#B85C3A"],typo:"Itim+Space Grotesk / Noto Sans Thai+Suisse Works / Recursive Mono",bg:"light",pick:false},
+    {name:"Laboratory Specimen",mood:"A pathology lab at a university hospital — everything labeled, beauty in precision.",palette:["#FAFAFA","#F0F2F5","#1C1C1E","#007AFF","#FF3B30"],typo:"Kanit+Satoshi / Anuphan+Instrument Sans / Geist Mono",bg:"light",pick:false},
+    {name:"Twilight Grill",mood:"Outdoor dining at 7pm — string lights, dark sky, the grill is the only bright thing.",palette:["#0D1117","#161B22","#C9D1D9","#F2A900","#FF7B72"],typo:"Charmonman+Cormorant Garamond / Noto Sans Thai+Figtree",bg:"dark",pick:false}
+   ]},
+  // MiniMax 2.7
+  {model:"MiniMax 2.7 ⚠️", harness:"OpenCode CLI", score:"17", gold:false,
+   dirs:[
+    {name:"Charred Ledger",mood:"Premium steakhouse wine cellar meets forensic accountant's desk.",palette:["#1A1814","#2A2620","#F5F0E8","#C4956A","#E63946"],typo:"Fraunces+Noto Sans Thai / IBM Plex Sans Thai / IBM Plex Mono",bg:"dark",pick:false},
+    {name:"Wet Ink Bleed",mood:"Thailand's finest financial broadsheet that also publishes a proper grill guide.",palette:["#FAF7F2","#FFFFFF","#2C2416","#B8541C","#C93C3C"],typo:"Cormorant Garamond+Anuphan / Sarabun / Space Mono",bg:"light",pick:false},
+    {name:"Forged Type",mood:"Industrial warehouse meets premium atelier — raw materials, flawless execution.",palette:["#0D0D0D","#1A1A1A","#E8E4DC","#FF6B35","#FF3B3B"],typo:"Bebas Neue+Noto Sans Thai / Prompt / JetBrains Mono",bg:"dark",pick:false},
+    {name:"Candlelight Noir ⚠️",mood:"Flashback — token bleed: 深夜 steakhouse where serious people eat serious meat.",palette:["#0F0E0C","#1C1A17","#D4C8B8","#D4A853","#8B2635"],typo:"DM Serif Display+Bai Jamjuree / Crimson Pro+Noto Sans Thai",bg:"dark",pick:false},
+    {name:"Paper Provenance",mood:"Legal artifact meets craft object — Thai government seals and rice-paper certificates.",palette:["#F4EFE6","#FAF7F2","#2B3225","#1B5E5E","#8B4C4C"],typo:"Libre Baskerville+IBM Plex Sans Thai / Courier Prime",bg:"light",pick:true}
+   ]}
+];
+
+function isDark(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return (r*0.299 + g*0.587 + b*0.114) < 86;
+}
+
+function renderSwatch(hex, label) {
+  const dark = isDark(hex);
+  return '<div class="swatch'+(dark?' dark-hex':'')+'" style="background:'+hex+'" title="'+label+': '+hex+'"><span class="hex">'+hex+'</span></div>';
+}
+
+function renderCard(d) {
+  const isDk = isDark(d.palette[0]);
+  const swatchesHTML = d.palette.map((h,i) => {
+    const labels = ['BG','Card','Text','Accent','Alert'];
+    return renderSwatch(h, labels[i]);
+  }).join('');
+  const previewHTML = '<div class="mini-preview" style="background:'+d.palette[0]+';color:'+d.palette[2]+'"><div class="preview-accent" style="background:'+d.palette[3]+'"></div><div class="preview-title" style="color:'+d.palette[2]+'">บทความตัวอย่าง</div><div class="preview-body">เน้นเนื้อๆ ไม่เอาน้ำ — ดูเนื้อ ไม่ดูหน้า</div></div>';
+  return '<div class="card'+(isDk?' dark':'')+(d.pick?' top-pick':'')+'">'
+    + '<div class="card-head">'
+    + '<div><h3>'+(d.pick?'<span class="top-badge">★ Top Pick</span> ':'')+d.name+'</h3>'
+    + '<div class="mood-line">'+d.mood+'</div></div></div>'
+    + '<div class="swatches">'+swatchesHTML+'</div>'
+    + '<div style="display:flex;align-items:center;gap:4px;font-size:0.55rem;text-transform:uppercase;color:#8A7E6B"><span>BG</span><span>Card</span><span>Text</span><span>Accent</span><span>Alert</span></div>'
+    + previewHTML
+    + '<div class="typo-row"><span class="typo-tag">'+d.typo+'</span></div>'
+    + '</div>';
+}
+
+function renderModel(m) {
+  const scoreClass = m.gold ? 'gold' : (m.score >= 22 ? 'silver' : '');
+  return '<div class="model"><div class="model-header">'
+    + '<h2>'+m.model+'</h2>'
+    + '<span class="score '+scoreClass+'">'+m.score+'/25</span>'
+    + '<span class="model-sub">'+m.harness+'</span>'
+    + '</div><div class="cards">'
+    + m.dirs.map(d => renderCard(d)).join('')
+    + '</div></div>';
+}
+
+function filterAll() { setFilter('all'); }
+function filterLight() { setFilter('light'); }
+function filterDark() { setFilter('dark'); }
+function filterTopPicks() { setFilter('top'); }
+
+function setFilter(mode) {
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filters button').forEach(b => {
+    if ((mode==='all' && b.textContent==='All')
+     || (mode==='light' && b.textContent.includes('Light'))
+     || (mode==='dark' && b.textContent.includes('Dark'))
+     || (mode==='top' && b.textContent.includes('Top'))) b.classList.add('active');
+  });
+  document.querySelectorAll('.card').forEach(c => {
+    const isDark = c.classList.contains('dark');
+    const isTop = c.querySelector('.top-badge') !== null;
+    if (mode === 'all') c.style.display = '';
+    else if (mode === 'light') c.style.display = !isDark ? '' : 'none';
+    else if (mode === 'dark') c.style.display = isDark ? '' : 'none';
+    else if (mode === 'top') c.style.display = isTop ? '' : 'none';
+  });
+  // Hide empty model sections
+  document.querySelectorAll('.model').forEach(m => {
+    const visibleCards = m.querySelectorAll('.card[style*="display: none"], .card:not([style])').length;
+    // check which are visible
+    const allCards = m.querySelectorAll('.card');
+    let anyVisible = false;
+    allCards.forEach(c => { if (c.style.display !== 'none') anyVisible = true; });
+    m.style.display = anyVisible ? '' : 'none';
+  });
+}
+
+// Copy hex on swatch click
+document.addEventListener('click', function(e) {
+  const hex = e.target.closest('.swatch')?.querySelector('.hex')?.textContent;
+  if (hex) {
+    navigator.clipboard.writeText(hex).then(() => {
+      const el = e.target.closest('.swatch').querySelector('.hex');
+      const orig = el.textContent;
+      el.textContent = 'Copied!';
+      setTimeout(() => el.textContent = orig, 800);
+    });
+  }
+});
+
+// Render all
+document.write(DATA.map(m => renderModel(m)).join(''));
+</script>
+
+<!-- Stats footer -->
+<div style="margin-top:2rem;padding:1rem;background:#FFFCF7;border:1px solid #E0D8C8;border-radius:10px;font-size:0.78rem;color:#6B6254;text-align:center">
+  14 models &middot; 70 directions &middot; 350 colors &middot; Click any swatch to copy hex &middot; <a href="https://beef.im" style="color:#B85C3A">beef.im</a>
+</div>
+
+</body>
+</html>

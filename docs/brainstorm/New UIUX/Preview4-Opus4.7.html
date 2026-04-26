@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — UI/UX Direction Preview 4 — DeepSeek Flash directions + wildcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700;800&family=Bai+Jamjuree:wght@400;600;700&family=Bebas+Neue&family=Chakra+Petch:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Kanit:ital,wght@0,200;0,400;0,700;1,200&family=Noto+Sans+Thai:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Prompt:wght@400;500;700;900&family=Sarabun:wght@400;500;700;800&family=Source+Serif+4:wght@400;500;700&family=Titillium+Web:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0c; color: #d4d4d8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; padding: 32px 16px 64px; min-height: 100vh; }
+
+  .page-header { max-width: 1280px; margin: 0 auto 40px; padding-bottom: 28px; border-bottom: 1px solid #27272a; }
+  .page-header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #fafafa; margin-bottom: 12px; }
+  .page-header h1 small { font-size: 16px; color: #a1a1aa; font-weight: 400; letter-spacing: 0; margin-left: 8px; }
+  .page-header p { color: #a1a1aa; font-size: 14.5px; line-height: 1.65; max-width: 820px; }
+  .page-header p + p { margin-top: 12px; }
+  .page-header .meta { margin-top: 16px; font-family: ui-monospace, monospace; font-size: 11.5px; color: #71717a; }
+
+  .overview { max-width: 1280px; margin: 0 auto 48px; background: #18181b; border: 1px solid #27272a; border-radius: 14px; padding: 20px 24px; }
+  .overview h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; font-family: ui-monospace, monospace; margin-bottom: 14px; }
+  .overview-row { display: grid; grid-template-columns: 240px 1fr 130px; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px dashed #27272a; }
+  .overview-row:last-child { border-bottom: none; }
+  .overview-name { font-size: 13.5px; color: #fafafa; font-weight: 500; }
+  .overview-name a { color: inherit; text-decoration: none; }
+  .overview-name a:hover { text-decoration: underline; }
+  .overview-name .pick { font-family: ui-monospace, monospace; font-size: 10px; color: #71717a; display: block; margin-bottom: 2px; letter-spacing: 0.08em; }
+  .overview-strip { display: flex; gap: 4px; height: 32px; border-radius: 6px; overflow: hidden; }
+  .overview-strip > div { flex: 1; }
+  .overview-source { font-family: ui-monospace, monospace; font-size: 10.5px; color: #a1a1aa; text-align: right; }
+
+  main { max-width: 1280px; margin: 0 auto; display: grid; gap: 56px; }
+
+  .direction { background: #18181b; border: 1px solid #27272a; border-radius: 18px; padding: 28px; }
+  .dir-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #27272a; }
+  .dir-num { font-family: ui-monospace, monospace; font-size: 11px; color: #71717a; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 8px; background: #27272a; border-radius: 4px; }
+  .dir-num.wild { background: #4a044e; color: #f0abfc; }
+  .dir-num.dossier { background: #422006; color: #fbbf24; }
+  .dir-num.tabloid { background: #422006; color: #fde047; }
+  .dir-num.exhibit { background: #134e4a; color: #5eead4; }
+  .dir-num.void { background: #0c0a09; color: #fca5a5; border: 1px solid #27272a; }
+  .dir-title { font-size: 26px; font-weight: 700; color: #fafafa; letter-spacing: -0.01em; }
+  .dir-source { font-family: ui-monospace, monospace; font-size: 11.5px; color: #a1a1aa; margin-left: auto; }
+  .dir-mood { width: 100%; margin-top: 6px; color: #d4d4d8; font-style: italic; font-size: 14px; line-height: 1.55; }
+
+  .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+  .swatch-color { height: 84px; }
+  .swatch-meta { background: #0a0a0c; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .swatch-role { font-family: ui-monospace, monospace; font-size: 9.5px; color: #71717a; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.3; }
+  .swatch-hex { font-family: ui-monospace, monospace; font-size: 11.5px; color: #fafafa; font-weight: 600; margin-top: 3px; }
+
+  .dir-body { display: grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: start; }
+  .dir-body.dual { grid-template-columns: 380px 380px 1fr; gap: 24px; }
+  @media (max-width: 1100px) { .dir-body.dual { grid-template-columns: 1fr; } }
+  @media (max-width: 880px) { .dir-body { grid-template-columns: 1fr; } .palette { grid-template-columns: repeat(3, 1fr); } .overview-row { grid-template-columns: 1fr; gap: 8px; } }
+
+  .mockup { border-radius: 12px; overflow: hidden; min-height: 540px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); position: relative; }
+  .mockup-frame { padding: 18px; position: relative; z-index: 2; }
+  .mockup-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; }
+
+  .notes h4 { font-family: ui-monospace, monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; margin-bottom: 8px; margin-top: 18px; }
+  .notes h4:first-child { margin-top: 0; }
+  .notes p { font-size: 13.5px; line-height: 1.65; color: #d4d4d8; margin-bottom: 6px; }
+  .notes p code { font-family: ui-monospace, monospace; font-size: 12px; background: #27272a; padding: 1px 5px; border-radius: 3px; color: #fbbf24; }
+  .notes .axes { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-top: 8px; font-family: ui-monospace, monospace; font-size: 11.5px; }
+  .notes .axes .label { color: #71717a; }
+  .notes .axes .value { color: #fafafa; text-align: right; }
+  .notes .tradeoff { background: #1c1917; border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #d4d4d8; margin-top: 6px; }
+  .notes .wildcard-note { background: #4a044e; border-left: 3px solid #f0abfc; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #fafafa; margin-top: 6px; }
+
+  /* =================================================================== */
+  /* DIRECTION 1 — THE DOSSIER                                            */
+  /* =================================================================== */
+  .mock-dossier {
+    background: #F5F0E8;
+    color: #1A1A1A;
+    font-family: 'Anuphan', 'Source Serif 4', serif;
+  }
+  .mock-dossier .mockup-nav { border-bottom: 2px solid #1A1A1A; }
+  .mock-dossier .nav-brand {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #1A1A1A;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+  }
+  .mock-dossier .nav-brand small {
+    display: block;
+    font-family: 'EB Garamond', serif;
+    font-size: 10px;
+    color: #D6382B;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    margin-top: 3px;
+    font-variant: small-caps;
+    text-transform: none;
+  }
+  .mock-dossier .nav-classified {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #FFFFFF;
+    background: #D6382B;
+    padding: 4px 10px;
+    letter-spacing: 0.18em;
+    transform: rotate(-2deg);
+    font-weight: 700;
+  }
+  .mock-dossier .ds-card {
+    background: #FFFFFF;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    box-shadow: 1px 2px 0 rgba(26, 26, 26, 0.15);
+  }
+  .mock-dossier .ds-section {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #2B5C8A;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .mock-dossier .ds-h {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+    color: #1A1A1A;
+  }
+  .mock-dossier .ds-redact {
+    display: inline-block;
+    background: #1A1A1A;
+    color: transparent;
+    user-select: none;
+    height: 14px;
+    line-height: 14px;
+    margin: 0 1px;
+    vertical-align: middle;
+  }
+  .mock-dossier .ds-body {
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #1A1A1A;
+    margin-bottom: 12px;
+  }
+  .mock-dossier .ds-eyes-only {
+    display: inline-block;
+    border: 2px solid #D6382B;
+    color: #D6382B;
+    padding: 5px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    transform: rotate(-3deg);
+    margin-top: 6px;
+  }
+  .mock-dossier .ds-meta {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #1A1A1A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #2B5C8A;
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 2 — TABLOID                                                */
+  /* =================================================================== */
+  .mock-tabloid {
+    background: #F7F3E8;
+    color: #111111;
+    font-family: 'Sarabun', 'Inter', sans-serif;
+  }
+  .mock-tabloid .mockup-nav {
+    border-bottom: 4px solid #111111;
+    padding-bottom: 8px;
+  }
+  .mock-tabloid .nav-brand {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: #111111;
+    letter-spacing: -0.025em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  .mock-tabloid .nav-brand small {
+    display: block;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 9px;
+    color: #E1251B;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    margin-top: 3px;
+  }
+  .mock-tabloid .nav-issue {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: #FFD600;
+    color: #111111;
+    padding: 4px 8px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .mock-tabloid .tb-headline {
+    margin: 12px 0 14px;
+    background: #FFD600;
+    padding: 10px 12px;
+    transform: rotate(-1deg);
+  }
+  .mock-tabloid .tb-headline-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #111111;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .mock-tabloid .tb-headline-h {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #111111;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .mock-tabloid .tb-card {
+    background: #FFFFFF;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border-left: 4px solid #E1251B;
+  }
+  .mock-tabloid .tb-section {
+    display: inline-block;
+    background: #E1251B;
+    color: #FFFFFF;
+    padding: 2px 7px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .mock-tabloid .tb-h {
+    font-family: 'Chakra Petch', 'Sarabun', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    letter-spacing: -0.015em;
+    color: #111111;
+  }
+  .mock-tabloid .tb-deck {
+    font-size: 12px;
+    line-height: 1.45;
+    color: #444444;
+  }
+  .mock-tabloid .tb-ticker {
+    background: #FFD600;
+    color: #111111;
+    padding: 8px 12px;
+    margin: 14px -18px -18px;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 2px solid #111111;
+    text-transform: uppercase;
+  }
+  .mock-tabloid .tb-ticker span {
+    display: inline-block;
+    animation: ticker 18s linear infinite;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 3 — EXHIBIT A                                              */
+  /* =================================================================== */
+  .mock-exhibit {
+    background: #F8F6F2;
+    color: #1C1C1C;
+    font-family: 'Sarabun', 'DM Sans', sans-serif;
+  }
+  .mock-exhibit .mockup-nav { border-bottom: 0.5px solid rgba(28, 28, 28, 0.3); }
+  .mock-exhibit .nav-brand {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+    font-size: 19px;
+    color: #1C1C1C;
+    letter-spacing: -0.005em;
+  }
+  .mock-exhibit .nav-brand small {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 11px;
+    color: #4A7C70;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .mock-exhibit .nav-acc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #4A7C70;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .mock-exhibit .ex-stage {
+    margin: 28px 0 14px;
+    text-align: center;
+    position: relative;
+    padding-top: 16px;
+  }
+  .mock-exhibit .ex-pin {
+    width: 10px;
+    height: 10px;
+    background: #D43830;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 3px rgba(212, 56, 48, 0.2);
+  }
+  .mock-exhibit .ex-string {
+    width: 1px;
+    height: 20px;
+    background-image: linear-gradient(to bottom, #D43830 0%, #D43830 50%, transparent 50%);
+    background-size: 1px 4px;
+    background-repeat: repeat-y;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .mock-exhibit .ex-card {
+    background: #FFFFFF;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(28, 28, 28, 0.08);
+    border: 1px solid rgba(28, 28, 28, 0.06);
+    position: relative;
+  }
+  .mock-exhibit .ex-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #4A7C70;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .mock-exhibit .ex-h {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+    font-size: 21px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+    color: #1C1C1C;
+    text-align: center;
+  }
+  .mock-exhibit .ex-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    color: #4A7C70;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .mock-exhibit .ex-caption {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    text-align: center;
+  }
+  .mock-exhibit .ex-meta {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 0.5px solid rgba(28, 28, 28, 0.15);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #4A7C70;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 4 — IMMERSION TANK                                         */
+  /* =================================================================== */
+  .mock-void {
+    background: #000000;
+    color: rgba(240, 240, 230, 0.85);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-void .mockup-nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 3;
+  }
+  .mock-void .nav-brand {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: rgba(240, 240, 230, 0.95);
+    letter-spacing: -0.02em;
+  }
+  .mock-void .nav-brand small {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10px;
+    color: #FF3B30;
+    letter-spacing: 0.3em;
+    margin-top: 3px;
+  }
+  .mock-void .nav-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #30D158;
+    letter-spacing: 0.12em;
+  }
+  .mock-void .nav-status::before {
+    content: '●';
+    margin-right: 6px;
+    animation: pulseDot 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  .mock-void .void-hero {
+    margin: 38px 0 28px;
+    padding: 22px;
+    background: #111111;
+    border: 1px solid rgba(255, 59, 48, 0.4);
+    box-shadow: 0 0 18px rgba(255, 59, 48, 0.18), 0 0 60px rgba(255, 59, 48, 0.08);
+    text-align: center;
+    animation: voidBreath 4s ease-in-out infinite;
+  }
+  @keyframes voidBreath {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.015); opacity: 0.95; }
+  }
+  .mock-void .void-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    color: #FF3B30;
+    letter-spacing: 0.3em;
+    margin-bottom: 10px;
+  }
+  .mock-void .void-h {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.025em;
+    color: rgba(240, 240, 230, 0.95);
+  }
+  .mock-void .void-lede {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(240, 240, 230, 0.6);
+    max-width: 280px;
+    margin: 0 auto 14px;
+  }
+  .mock-void .void-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: #FF3B30;
+    letter-spacing: -0.01em;
+    margin-top: 12px;
+  }
+  .mock-void .void-data small {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: rgba(255, 59, 48, 0.6);
+    letter-spacing: 0.2em;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .mock-void .void-card {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    opacity: 0.7;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.04);
+  }
+  .mock-void .void-card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: rgba(48, 209, 88, 0.7);
+    letter-spacing: 0.16em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .mock-void .void-card-h {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.3;
+    color: rgba(240, 240, 230, 0.85);
+  }
+
+  /* =================================================================== */
+  /* WILDCARD 1 — THE ABATTOIR ARCHIVE                                    */
+  /* =================================================================== */
+  .mock-archive {
+    background: linear-gradient(180deg, #E0F0F0 0%, #C8DCDC 100%);
+    color: #0A0F0F;
+    font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+    position: relative;
+  }
+  .mock-archive .mockup-nav {
+    border-bottom: 1px solid rgba(10, 15, 15, 0.15);
+  }
+  .mock-archive .nav-brand {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #0A0F0F;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .mock-archive .nav-brand small {
+    display: block;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-weight: 400;
+    font-size: 9px;
+    color: #557070;
+    letter-spacing: 0.2em;
+    margin-top: 2px;
+  }
+  .mock-archive .nav-temp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #557070;
+    letter-spacing: 0.1em;
+  }
+  .mock-archive .nav-temp::before {
+    content: '◌ ';
+    color: #4A8FA8;
+  }
+  .mock-archive .ar-tray {
+    background: linear-gradient(180deg, #F0F8F8 0%, #DDE8E8 100%);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(10, 15, 15, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(10, 15, 15, 0.08);
+    position: relative;
+  }
+  .mock-archive .ar-tray.warm {
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(232, 120, 42, 0.4) 0%, transparent 60%),
+      linear-gradient(135deg, #2A1610 0%, #1A0F08 50%, #0F0805 100%);
+    color: #F5E6D3;
+    border-color: #2A1610;
+  }
+  .mock-archive .ar-tray.warm .ar-tag { color: #E8782A; }
+  .mock-archive .ar-tray.warm .ar-h { color: #F5E6D3; }
+  .mock-archive .ar-tray.warm .ar-lede { color: rgba(245, 230, 211, 0.7); }
+  .mock-archive .ar-tray.warm .ar-meta { color: rgba(232, 120, 42, 0.7); border-top-color: rgba(232, 120, 42, 0.2); }
+  .mock-archive .ar-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: #557070;
+    letter-spacing: 0.16em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .mock-archive .ar-h {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+    color: #0A0F0F;
+  }
+  .mock-archive .ar-lede {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #2A3838;
+  }
+  .mock-archive .ar-meta {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(10, 15, 15, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: #557070;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* =================================================================== */
+  /* WILDCARD 2 — GARMENT LABEL (showing two seasonal palettes)          */
+  /* =================================================================== */
+  .mock-garment {
+    font-family: 'Inter', sans-serif;
+    position: relative;
+  }
+  .mock-garment.season-bottega {
+    background: #1B4332;
+    color: #95D5B2;
+  }
+  .mock-garment.season-margiela {
+    background: #FFFFFF;
+    color: #FFFFFF;
+  }
+  .mock-garment .gl-label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #111111;
+    padding: 6px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-family: 'EB Garamond', serif;
+    font-size: 8.5px;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+  }
+  .mock-garment .gl-label .brand {
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .mock-garment .gl-label .stitch {
+    border-top: 1px dashed #555;
+    margin-top: 3px;
+    padding-top: 3px;
+    font-style: italic;
+    font-size: 7.5px;
+  }
+  .mock-garment .gl-season-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 12px;
+    z-index: 5;
+  }
+  .mock-garment.season-bottega .gl-season-tag { color: #95D5B2; }
+  .mock-garment.season-margiela .gl-season-tag { color: #888; }
+  .mock-garment .gl-frame {
+    padding: 70px 24px 28px;
+    min-height: 540px;
+  }
+  .mock-garment .gl-eyebrow {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 11px;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+  .mock-garment .gl-h {
+    font-family: 'EB Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    letter-spacing: -0.025em;
+  }
+  .mock-garment.season-margiela .gl-h { color: #DDD; font-style: italic; }
+  .mock-garment .gl-lookbook {
+    aspect-ratio: 1 / 1;
+    margin: 16px 0 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-garment.season-bottega .gl-lookbook {
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(45, 90, 65, 0.4) 0%, transparent 70%),
+      linear-gradient(135deg, #2D6A4F 0%, #1B4332 60%, #081C15 100%);
+  }
+  .mock-garment.season-margiela .gl-lookbook {
+    background: linear-gradient(135deg, #F0F0F0 0%, #E8E8E8 100%);
+    border: 1px solid #DDD;
+  }
+  .mock-garment .gl-lookbook-tag {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    font-family: 'EB Garamond', serif;
+    font-size: 10px;
+    font-style: italic;
+    letter-spacing: 0.15em;
+  }
+  .mock-garment.season-bottega .gl-lookbook-tag { color: #95D5B2; }
+  .mock-garment.season-margiela .gl-lookbook-tag { color: #999; }
+  .mock-garment .gl-meta {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    font-style: italic;
+    border-top: 1px solid currentColor;
+    padding-top: 12px;
+    margin-top: 12px;
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  footer { max-width: 1280px; margin: 56px auto 0; padding: 24px 0; border-top: 1px solid #27272a; font-size: 12px; color: #71717a; line-height: 1.6; }
+  footer code { font-family: ui-monospace, monospace; font-size: 11px; color: #a1a1aa; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>beef.im — UI/UX Direction Preview <small>4 · DeepSeek Flash directions + wildcards</small></h1>
+  <p>Fourth and final preview. Pulls from the two DeepSeek V4 Flash files (<code>UI-Idea-Deepv4FlashHigh.md</code> via direct API, <code>UI-Idea-DeepV4FlashGOmax.md</code> via OpenCode Go subscription). Skips directions already covered in Previews 1–3 (Docket# and Yaowarat Code).</p>
+  <p>Includes both wildcards — <strong>The Abattoir Archive</strong> (cold storage / clinical container with content as the only warm thing) and <strong>Garment Label</strong> (no fixed palette — every visit randomly assigns a fashion-house seasonal palette). Wildcards get richer treatment per your note that they're the most interesting.</p>
+  <div class="meta">Source files · UI-Idea-Deepv4FlashHigh.md (Prime Cut / Char Line / Exhibit A / Abattoir Archive) · UI-Idea-DeepV4FlashGOmax.md (Slaughterhouse Chic / The Dossier / Ember / Tabloid / Immersion Tank / Garment Label) · Curated to the four most distinct + both wildcards. Open in Firefox/Chrome.</div>
+</header>
+
+<section class="overview">
+  <h2>Palette overview — six DeepSeek Flash directions</h2>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">DOSSIER</span>
+      <a href="#dossier">The Dossier</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F5F0E8"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#1A1A1A"></div>
+      <div style="background:#D6382B"></div>
+      <div style="background:#2B5C8A"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash GO</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">TABLOID</span>
+      <a href="#tabloid">Tabloid</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F7F3E8"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#111111"></div>
+      <div style="background:#FFD600"></div>
+      <div style="background:#E1251B"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash GO</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">EXHIBIT</span>
+      <a href="#exhibit">Exhibit A</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F8F6F2"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#1C1C1C"></div>
+      <div style="background:#4A7C70"></div>
+      <div style="background:#D43830"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash · direct API</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">VOID</span>
+      <a href="#void">Immersion Tank</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#000000"></div>
+      <div style="background:#111111"></div>
+      <div style="background:#F0F0E6"></div>
+      <div style="background:#FF3B30"></div>
+      <div style="background:#30D158"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash GO</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">WILDCARD 01</span>
+      <a href="#archive">The Abattoir Archive</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#E0F0F0"></div>
+      <div style="background:#C8DCDC"></div>
+      <div style="background:#0A0F0F"></div>
+      <div style="background:#557070"></div>
+      <div style="background:#E8782A"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash · direct API</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">WILDCARD 02</span>
+      <a href="#garment">Garment Label</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:linear-gradient(90deg, #1B4332 0%, #95D5B2 50%, #FFFFFF 100%)"></div>
+      <div style="background:linear-gradient(90deg, #FFFFFF 0%, #F0F0F0 100%)"></div>
+      <div style="background:#111111"></div>
+      <div style="background:linear-gradient(90deg, #95D5B2, #DDD)"></div>
+      <div style="background:#888888"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash GO</div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- THE DOSSIER                                                   -->
+<!-- ============================================================ -->
+<article class="direction" id="dossier">
+  <div class="dir-header">
+    <span class="dir-num dossier">DOSSIER</span>
+    <h2 class="dir-title">The Dossier</h2>
+    <span class="dir-source">DeepSeek V4 Flash · OpenCode Go</span>
+    <p class="dir-mood">"You've been handed a classified folder on your own money — redacted, urgent, and impossible to ignore."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F5F0E8"></div><div class="swatch-meta"><div class="swatch-role">Aged document</div><div class="swatch-hex">#F5F0E8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Interrogation white</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1A1A1A"></div><div class="swatch-meta"><div class="swatch-role">Typewriter ink</div><div class="swatch-hex">#1A1A1A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D6382B"></div><div class="swatch-meta"><div class="swatch-role">Redaction red</div><div class="swatch-hex">#D6382B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2B5C8A"></div><div class="swatch-meta"><div class="swatch-role">Bureaucratic blue</div><div class="swatch-hex">#2B5C8A</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-dossier">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF · IM · DOSSIER</small></div>
+          <span class="nav-classified">CLASSIFIED</span>
+        </div>
+        <div class="ds-card">
+          <div class="ds-section">EVIDENCE 04A · POLICY TEARDOWN</div>
+          <h3 class="ds-h">Unit-linked: ค่าธรรมเนียมที่ <span class="ds-redact">&nbsp;ตัวแทนไม่บอก&nbsp;</span></h3>
+          <p class="ds-body">เบี้ยปีที่ 1: <span class="ds-redact">&nbsp;ตัวเลขจริง&nbsp;</span> · COI ปีที่ 30: 128,400 บาท · ผลตอบแทน 30 ปี: <span class="ds-redact">&nbsp;เลขที่ presentation ลบทิ้ง&nbsp;</span></p>
+          <span class="ds-eyes-only">EYES ONLY</span>
+          <div class="ds-meta">
+            <span>FILE: AIA-UL-2024</span>
+            <span>11 MIN</span>
+          </div>
+        </div>
+        <div class="ds-card">
+          <div class="ds-section">EVIDENCE 09 · GRILL TECHNIQUE</div>
+          <h3 class="ds-h">Reverse-sear · กฎ 3 ข้อ ที่ครัวบ้านปฏิบัติได้</h3>
+          <p class="ds-body">ไฟแรงคือกับดัก · 54°C คือเส้นแบ่ง · พักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="ds-meta">
+            <span>FILE: RIBEYE-54C</span>
+            <span>6 MIN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The redaction motif is a <em>different signature</em> from Docket# (Pick 2 in Preview1). Docket# treats the brand as a <em>marked-up legal brief</em> (annotations in the margin). The Dossier treats the brand as a <em>declassified intelligence file</em> (redactions inside the body). Same forensic register, different theatrical hook.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>redaction bar</strong>. Insurance pieces redact what tactically matters most ("ค่าธรรมเนียมที่ <code>[REDACTED]</code>") to imply the brand has access to material the reader doesn't. For grill content, redactions become trade secrets ("the chef's <code>[REDACTED]</code> step"). Same gimmick, two registers.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Redactions can read as gimmicky if overused. Best as occasional emphasis, not on every paragraph. Also: the <code>EYES ONLY</code> stamp + classified vocabulary risk reading as conspiracy-theory tone — needs careful editorial discipline to land as forensic credibility rather than tinfoil.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Sarabun + Anuphan + EB Garamond free</span>
+        <span class="label">Animation budget</span><span class="value">Low · stamp-impact 200ms</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · aged document bg</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- TABLOID                                                       -->
+<!-- ============================================================ -->
+<article class="direction" id="tabloid">
+  <div class="dir-header">
+    <span class="dir-num tabloid">TABLOID</span>
+    <h2 class="dir-title">Tabloid</h2>
+    <span class="dir-source">DeepSeek V4 Flash · OpenCode Go</span>
+    <p class="dir-mood">"Thai street-food energy meets Bloomberg Terminal — loud, dense, and impossible to ignore."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F7F3E8"></div><div class="swatch-meta"><div class="swatch-role">Newsprint</div><div class="swatch-hex">#F7F3E8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Flash white</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#111111"></div><div class="swatch-meta"><div class="swatch-role">Headline black</div><div class="swatch-hex">#111111</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFD600"></div><div class="swatch-meta"><div class="swatch-role">Taxi yellow</div><div class="swatch-hex">#FFD600</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E1251B"></div><div class="swatch-meta"><div class="swatch-role">News-stand red</div><div class="swatch-hex">#E1251B</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-tabloid">
+      <div class="mockup-frame" style="padding-bottom:0;">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>เนื้อๆ ไม่มีน้ำ · BEEF.IM</small></div>
+          <span class="nav-issue">ฉบับ 0412</span>
+        </div>
+        <div class="tb-headline">
+          <div class="tb-headline-tag">★ BREAKING · POLICY ALERT ★</div>
+          <h3 class="tb-headline-h">Unit-linked AIA — ค่าธรรมเนียมโผล่ปีที่ 30 กิน เบี้ยทั้งหมด!</h3>
+        </div>
+        <div class="tb-card">
+          <span class="tb-section">SCANDAL</span>
+          <h4 class="tb-h">case ผมเจอเอง — Whole Life 8 หลัก ที่ผม "แนะให้ยกเลิก"</h4>
+          <p class="tb-deck">IRR 1.2% แต่ถูกขายเป็น "การลงทุน" — ลูกค้าเซ็นเพราะตัวแทนเป็น "พี่ที่รู้จักนาน"</p>
+        </div>
+        <div class="tb-card">
+          <span class="tb-section">FIRE</span>
+          <h4 class="tb-h">Reverse-sear ribeye 4" — ครัวบ้านทำได้!</h4>
+          <p class="tb-deck">ไม่ต้องมี Big Green Egg · กฎ 3 ข้อ · 54°C คือเส้นแบ่ง</p>
+        </div>
+        <div class="tb-ticker">
+          <span>★ AIA-UL ปีที่ 30 ค่า COI 128K ★ TERM 30Y เบี้ย 4.2K/ปี ★ RIBEYE 54°C 12MIN ★ AIA-MP-CI ปรับเบี้ยเงียบๆ ★ ผลตอบแทนกองทุนรวม +43% vs Unit-linked ★ ★ </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Insurance and finance are treated as <em>boring</em> in Thailand — Tabloid makes them feel <em>urgent, breaking, vital</em>. The taxi-yellow + news-stand red is the most aggressive color signaling in any direction across all 14 outputs. The live ticker (you can see it scrolling at the bottom of the mockup right now) is a genuinely fresh information-architecture component.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>persistent ticker</strong> at page bottom. Cycles policy alerts and recipe tips in one stream — no separation, no genre prejudice. <code>AIA-UL ปีที่ 30 COI 128K</code> immediately followed by <code>RIBEYE 54°C 12MIN</code>. Both treated as "today's signals."</p>
+
+      <h4>Compared to Bangkok Zine (Preview2)</h4>
+      <p>Both directions are Thai-vernacular and use yellow + red commercial energy. Bangkok Zine is <em>shophouse signage</em> (Pratunam, dense static). Tabloid is <em>newspaper front page</em> (Thai Rath / Khaosod, with breaking-news urgency). Same palette family, different cultural register: Bangkok Zine = neighborhood storefront, Tabloid = morning paper headlines.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Highest visual noise of any direction in any preview. Genuinely loud — risks alienating the calmer end of mass-affluent (the readers who chose beef.im specifically <em>because</em> it's not loud sales-y agent content). Best calibrated as energetic, not screaming. Also: the breaking-news framing must be matched by writing that earns it — clickbait headlines kill credibility fast.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Chakra Petch + Titillium Web free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · ticker scroll + pull-quote burst</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · newsprint bg, high-saturation accents</span>
+        <span class="label">Build complexity</span><span class="value">Medium · ticker + responsive density</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- EXHIBIT A                                                     -->
+<!-- ============================================================ -->
+<article class="direction" id="exhibit">
+  <div class="dir-header">
+    <span class="dir-num exhibit">EXHIBIT</span>
+    <h2 class="dir-title">Exhibit A</h2>
+    <span class="dir-source">DeepSeek V4 Flash · direct API</span>
+    <p class="dir-mood">"A museum specimen display case, white-walled and clinical — except the specimens are insurance policies and prime cuts, each pinned to the board with a red string leading to the annotated truth."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F8F6F2"></div><div class="swatch-meta"><div class="swatch-role">Gallery wall</div><div class="swatch-hex">#F8F6F2</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Specimen card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1C1C"></div><div class="swatch-meta"><div class="swatch-role">Label authority</div><div class="swatch-hex">#1C1C1C</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#4A7C70"></div><div class="swatch-meta"><div class="swatch-role">Patina copper</div><div class="swatch-hex">#4A7C70</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D43830"></div><div class="swatch-meta"><div class="swatch-role">Evidence red</div><div class="swatch-hex">#D43830</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-exhibit">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>Beef·im — Specimen Archive</small></div>
+          <div class="nav-acc">ACC No. 04.A</div>
+        </div>
+        <div class="ex-stage">
+          <div class="ex-pin"></div>
+          <div class="ex-string"></div>
+        </div>
+        <div class="ex-card" style="margin-top:-30px;padding-top:32px;">
+          <div class="ex-num">EXHIBIT 4·A</div>
+          <h3 class="ex-h">Unit-linked · COI escalation curve</h3>
+          <div class="ex-subtitle">Specimen of a contract designed to outlast its purchaser</div>
+          <p class="ex-caption">เบี้ยปีที่ 1 = 120,000 บาท · COI ปีที่ 30 (ประมาณการ) = 128,400 บาท. กราฟ exponential ที่ตัวแทนเลือกไม่แสดง.</p>
+          <div class="ex-meta">AIA-UL · 2,840 WORDS · 11 MIN</div>
+        </div>
+        <div class="ex-stage">
+          <div class="ex-pin"></div>
+          <div class="ex-string"></div>
+        </div>
+        <div class="ex-card" style="margin-top:-30px;padding-top:32px;">
+          <div class="ex-num">EXHIBIT 9·B</div>
+          <h3 class="ex-h">Reverse-sear · technique specimen</h3>
+          <div class="ex-subtitle">A method preserved for instruction</div>
+          <p class="ex-caption">Core 54°C · rest 10 min · sear total 90 sec across hot iron at 220°C.</p>
+          <div class="ex-meta">RIBEYE-54C · 1,420 WORDS · 6 MIN</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The forensic identity rendered as <em>museum curation</em>. Every article is "Exhibit A" in an ongoing case against bad insurance products. The grid says "we have receipts" before the reader reads a word. For cooking content, the specimen frame shifts from "evidence" to "specimen of excellence" — same visual system, different context, no conflict.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>red pin + dashed-line string</strong> linking each card to a small annotation label, plus the <strong>EXHIBIT N·X accession number</strong>. Same museum vocabulary applied to both — a Unit-linked teardown is "Exhibit 4·A" and a reverse-sear technique is "Exhibit 9·B." The numbering implies a curated collection that grows over time — a beef.im version of the Cooper Hewitt design archive.</p>
+
+      <h4>Compared to Docket# (Pick 2)</h4>
+      <p>Docket# is <em>legal-margin annotation</em> (red rule + numbered footnotes). Exhibit A is <em>museum specimen + accession number</em> (red pin + string + label). Both forensic, but Docket# is courtroom-active (you're inside the argument), Exhibit A is archive-cold (the argument has been adjudicated and now the evidence is preserved). For ongoing reader engagement, Docket# wins on dynamism. For brand permanence, Exhibit A wins on curatorial gravity.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">The teal-forest accent (#4A7C70) is unusual for finance — it's the patina of oxidized copper, the museum register. Could read as botanical or wellness rather than authoritative. Best when the writing carries the authority and the design simply preserves it.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Kanit + Sarabun + Playfair Display free</span>
+        <span class="label">Animation budget</span><span class="value">Low · evidence pulse on hover (700ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · gallery wall bg</span>
+        <span class="label">Build complexity</span><span class="value">Medium · pin + string SVG layout</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- IMMERSION TANK                                                -->
+<!-- ============================================================ -->
+<article class="direction" id="void">
+  <div class="dir-header">
+    <span class="dir-num void">VOID</span>
+    <h2 class="dir-title">Immersion Tank</h2>
+    <span class="dir-source">DeepSeek V4 Flash · OpenCode Go</span>
+    <p class="dir-mood">"Reading inside a sensory deprivation chamber where only the numbers and the fire are real."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-meta"><div class="swatch-role">Absolute black</div><div class="swatch-hex">#000000</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#111111"></div><div class="swatch-meta"><div class="swatch-role">One step from void</div><div class="swatch-hex">#111111</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F0F0E6"></div><div class="swatch-meta"><div class="swatch-role">Warm white 85%</div><div class="swatch-hex">#F0F0E6</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FF3B30"></div><div class="swatch-meta"><div class="swatch-role">Pulse red (action)</div><div class="swatch-hex">#FF3B30</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#30D158"></div><div class="swatch-meta"><div class="swatch-role">Monitor green (safe)</div><div class="swatch-hex">#30D158</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-void">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF·IM</small></div>
+          <span class="nav-status">LIVE</span>
+        </div>
+        <div class="void-hero">
+          <div class="void-eyebrow">⚠ POLICY ALERT</div>
+          <h2 class="void-h">ค่าธรรมเนียม COI ที่กินเบี้ยทั้งหมด ปีที่ 30</h2>
+          <p class="void-lede">Unit-linked คือสัญญาที่หักค่าใช้จ่ายจากกองทุนทุกเดือน — ตัวเลขจริง อยู่ข้างใน</p>
+          <div class="void-data">฿128,400<small>COI · YEAR 30 · PROJECTED</small></div>
+        </div>
+        <div class="void-card">
+          <div class="void-card-tag">RECIPE · ACTIVE</div>
+          <h4 class="void-card-h">Reverse-sear · 54°C</h4>
+        </div>
+        <div class="void-card">
+          <div class="void-card-tag">EXPLAINER · DORMANT</div>
+          <h4 class="void-card-h">Term ดีกว่า Whole Life</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Most extreme cinematic dark in any direction across all four previews. The black void eliminates genre clash — both insurance and recipe content exist as floating content islands with equal weight. <strong>The hero card in this mockup is actually breathing</strong> — 4-second pulse cycle, 1.0 → 1.015 scale + 100% → 95% opacity. Off-viewport cards rest at 70% opacity (you can see this in the mockup) and only come to full attention when centered.</p>
+
+      <h4>How this differs from Ember Theatre (Preview2)</h4>
+      <p>Ember Theatre: warm-dark palette + ember particles drifting up + single warm CTA. Cinematic gravity comes from <em>warmth</em>.<br>Immersion Tank: absolute black + monitor-green status + pulse-red urgent + hospital aesthetic. Cinematic gravity comes from <em>data isolation</em>.<br>Ember Theatre is theatrical (steakhouse). Immersion Tank is clinical (operating theater). Same dark register, very different emotional vector.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>single-object focus + breath pulse</strong>. Whatever block is in viewport center gets full opacity + slow breath. Everything else fades to 70%. Insurance pieces and recipe pieces rotate through this attention spotlight identically — no genre weighting. The data display (large monospace number with caption) renders both <code>฿128,400 COI</code> and <code>54°C CORE</code> in the same component.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Pure-black backgrounds get punished hardest in mobile sunlight — even worse than warm-dark. The hospital-monitor green/red signaling could read as alarming (medical-emergency rather than financial-emergency). Best for an audience that already trusts the brand and reads beef.im in evening / indoor contexts. Generous breathing room means lower content density — homepage surfaces fewer articles per scroll than any other direction.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Anuphan + Bebas Neue free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · breath pulse + scroll-locked focus</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very high · pure black bg</span>
+        <span class="label">Build complexity</span><span class="value">Medium · IntersectionObserver-based focus pulse</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- WILDCARD 1 — THE ABATTOIR ARCHIVE                             -->
+<!-- ============================================================ -->
+<article class="direction" id="archive">
+  <div class="dir-header">
+    <span class="dir-num wild">WILDCARD 01</span>
+    <h2 class="dir-title">The Abattoir Archive</h2>
+    <span class="dir-source">DeepSeek V4 Flash · direct API · wildcard</span>
+    <p class="dir-mood">"A digital cold-storage locker. The interface is monochromatic blue-white sterility. The cold is deliberate. Warmth comes only from the content itself — when a grill recipe opens, its photography is the only warm thing in the room."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#E0F0F0"></div><div class="swatch-meta"><div class="swatch-role">Cold storage</div><div class="swatch-hex">#E0F0F0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C8DCDC"></div><div class="swatch-meta"><div class="swatch-role">Tile blue</div><div class="swatch-hex">#C8DCDC</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0A0F0F"></div><div class="swatch-meta"><div class="swatch-role">Specimen black</div><div class="swatch-hex">#0A0F0F</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#557070"></div><div class="swatch-meta"><div class="swatch-role">Cold steel</div><div class="swatch-hex">#557070</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8782A"></div><div class="swatch-meta"><div class="swatch-role">Content warmth (only inside grill cards)</div><div class="swatch-hex">#E8782A</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-archive">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF · IM · ARCHIVE</small></div>
+          <span class="nav-temp">2°C · STABLE</span>
+        </div>
+        <div class="ar-tray">
+          <div class="ar-tag">SPECIMEN A · POLICY</div>
+          <h3 class="ar-h">Unit-linked · COI escalation</h3>
+          <p class="ar-lede">เปิดสัญญาให้ดูทีละหน้า · ตัวเลขจริง · 11 นาที</p>
+          <div class="ar-meta">FILE: AIA-UL · STORED 25 APR 26</div>
+        </div>
+        <div class="ar-tray warm">
+          <div class="ar-tag">SPECIMEN B · GRILL</div>
+          <h3 class="ar-h">Reverse-sear ribeye 4"</h3>
+          <p class="ar-lede">ไฟอ่อน · 54°C · พักเนื้อ 10 นาที — เนื้อ คือ ความร้อน</p>
+          <div class="ar-meta">FILE: RIBEYE-54C · STORED 25 APR 26</div>
+        </div>
+        <div class="ar-tray">
+          <div class="ar-tag">SPECIMEN C · EXPLAINER</div>
+          <h3 class="ar-h">Term ดีกว่า Whole Life — เกือบเสมอ</h3>
+          <p class="ar-lede">ค่าเบี้ย ÷ ผลตอบแทน · เปรียบเทียบ 5 บริษัท</p>
+          <div class="ar-meta">FILE: TERM-COMPARE · STORED 25 APR 26</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>The conceit (literally rendered in the mockup)</h4>
+      <div class="wildcard-note">Three trays in the cold-storage rack. Specimens A and C are insurance content — they live in the cold sterile container, blue-white tile palette. Specimen B is a grill recipe — and you can see it: the tray itself is dark, the ember-orange radial glow comes from the photography <em>inside</em> the tray. The interface stays cold; the content is the only warm thing in the room. The brand line <code>ดูเนื้อ ไม่ดูหน้า</code> becomes literal — don't judge by the cold container, judge by the substance inside.</div>
+
+      <h4>Why this is a wildcard worth ten minutes</h4>
+      <p>Most directions try to <em>unify</em> insurance and grill content under a single visual register. Abattoir Archive does the opposite — it builds a deliberately neutral, sterile container that <em>amplifies the contrast</em> between content types. Insurance feels institutional; grill feels alive. The gap is the experience.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>cold container itself</strong>. Both content types live in the same blue-white tray system, with the same tag/header/meta structure. The only difference is what the photography brings to the inside of each tray. The visual language refuses to perform the warmth — it makes the content perform it.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">High-concept directions live or die on consistent execution. If the photography on grill content is inconsistent (sometimes warm/glowing, sometimes flat product shots), the entire conceit collapses. Also: cold blue-white in Bangkok readers' visual culture has clinical/hospital associations that may not flatter a finance brand. Best calibrated subtly — too cold and it reads as morgue, too warm and the conceit dies.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Noto Sans Thai free</span>
+        <span class="label">Animation budget</span><span class="value">Very low · static cold-locker register</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · light blue-white bg</span>
+        <span class="label">Build complexity</span><span class="value">Low — but high photography discipline</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- WILDCARD 2 — GARMENT LABEL (dual-mockup)                      -->
+<!-- ============================================================ -->
+<article class="direction" id="garment">
+  <div class="dir-header">
+    <span class="dir-num wild">WILDCARD 02</span>
+    <h2 class="dir-title">Garment Label</h2>
+    <span class="dir-source">DeepSeek V4 Flash · OpenCode Go · wildcard</span>
+    <p class="dir-mood">"No fixed palette. Every visit randomly assigns one of 20+ 'season' palettes (SS26, FW26, Pre-Fall, etc.) drawn from actual fashion-house color cycles. The site is dressed differently every time you arrive."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg, #1B4332, #2D6A4F)"></div><div class="swatch-meta"><div class="swatch-role">Bottega SS26</div><div class="swatch-hex">#1B4332 · #95D5B2</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg, #FFFFFF, #F0F0F0)"></div><div class="swatch-meta"><div class="swatch-role">Margiela FW26</div><div class="swatch-hex">#FFFFFF · #DDD</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg, #6B0F1A, #C0392B)"></div><div class="swatch-meta"><div class="swatch-role">Ferragamo Pre-Fall</div><div class="swatch-hex">#6B0F1A · #C0392B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg, #2C3E50, #BDC3C7)"></div><div class="swatch-meta"><div class="swatch-role">The Row Resort</div><div class="swatch-hex">#2C3E50 · #BDC3C7</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg, #F4E4BC, #E8D5A3)"></div><div class="swatch-meta"><div class="swatch-role">Loro Piana SS26</div><div class="swatch-hex">#F4E4BC · #E8D5A3</div></div></div>
+  </div>
+  <p style="font-size:12px;color:#71717a;margin-top:-18px;margin-bottom:24px;font-family:ui-monospace,monospace;">↑ five examples of 20+ rotating seasonal palettes — actual rendering varies per visit</p>
+
+  <div class="dir-body dual">
+    <div class="mockup mock-garment season-bottega">
+      <div class="gl-label">
+        <span class="brand">BEEF.IM</span>
+        EST. 2025
+        <div class="stitch">MADE IN THAILAND</div>
+      </div>
+      <div class="gl-season-tag">SS26 / Bottega Verde</div>
+      <div class="gl-frame">
+        <div class="gl-eyebrow">policy teardown · no.04</div>
+        <h3 class="gl-h">Unit-linked. The contract designed to outlast its purchaser.</h3>
+        <div class="gl-lookbook">
+          <div class="gl-lookbook-tag">Look 04 — AIA-UL specimen</div>
+        </div>
+        <div class="gl-meta">
+          <span>11 min · ประกันเนื้อๆ</span>
+          <span>25.IV.MMXXVI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mockup mock-garment season-margiela">
+      <div class="gl-label">
+        <span class="brand">BEEF.IM</span>
+        EST. 2025
+        <div class="stitch">MADE IN THAILAND</div>
+      </div>
+      <div class="gl-season-tag">FW26 / Margiela Blanc</div>
+      <div class="gl-frame">
+        <div class="gl-eyebrow" style="color:#888;">grill technique · no.09</div>
+        <h3 class="gl-h" style="color:#444;">Reverse-sear. The method preserved for instruction.</h3>
+        <div class="gl-lookbook">
+          <div class="gl-lookbook-tag">Look 09 — Ribeye 54°C</div>
+        </div>
+        <div class="gl-meta" style="color:#999;border-top-color:#DDD;">
+          <span>6 min · ประกันเนื้อๆ</span>
+          <span>25.IV.MMXXVI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>The conceit (rendered as two side-by-side mockups)</h4>
+      <div class="wildcard-note">Same site, same content, two consecutive page loads. Left: this morning the season was "SS26 / Bottega Verde" — saturated forest green on green-cream. Right: this afternoon a refresh assigned "FW26 / Margiela Blanc" — a deliberately quiet all-white-on-near-white. Same brand mark, same garment-label tag in the corner, same lookbook-cropped hero image area, same EB Garamond italic typography. The visual identity is the <em>system</em>, not the colors.</div>
+
+      <h4>Why it's the most interesting wildcard</h4>
+      <p>Every other direction in every preview asks: "what should the brand look like?" Garment Label inverts the question to: "what if the brand's <em>look</em> isn't the brand at all — and the brand is the typographic system, the woven label, the lookbook crop discipline, the EB Garamond italic, the date-as-roman-numeral metadata?" If the woven-label tag and the typographic discipline are consistent, the seasonal palette becomes a fashion-house gesture rather than a brand identity. Beef.im as <em>label</em>, not as <em>color</em>.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>woven label tag</strong> in the top-left corner. Reads "BEEF.IM / EST. 2025 / MADE IN THAILAND" exactly like a garment care tag. Plus the <strong>look-N format</strong> — every article is "Look N" in the season's lookbook. Insurance teardowns become Look 04, recipes become Look 09. Same fashion vocabulary, two product categories.</p>
+
+      <h4>Why it won't ship (and why that's also interesting)</h4>
+      <p>Seasonal palette rotation destroys content consistency, breaks brand recognition for first-time visitors, breaks bookmark-and-return mental models, breaks SEO-image consistency, breaks paid-acquisition creative testing. Every reason against shipping it is correct.</p>
+
+      <h4>Why it might generate genuinely valuable buzz anyway</h4>
+      <div class="wildcard-note">A finance platform that looks like a Margiela lookbook, then looks like a Bottega campaign, then looks like Loro Piana — for the 0.5% of Thai fashion-savvy mass-affluent who notice and screenshot it, the brand becomes the most-shared finance site in their network within 48 hours. Insane PR. Terrible retention. The DeepSeek V4 Flash GO file flags this honestly: "It would never ship because seasonal palette rotation destroys content consistency and confuses mobile-retention patterns, but it would generate insane social-media buzz from design Twitter, Thai fashion accounts, and anyone who believes a finance platform should never look like Margiela."</div>
+
+      <h4>What's salvageable from this wildcard for a real ship</h4>
+      <p>The woven garment-label tag in the corner is genuinely buildable in any direction — works as a brand mark for any palette. The Look-N format is genuinely usable as an article numbering system. The lookbook-crop discipline (square / 4:3 hero, headless-style framing) carries over to Celluloid (Preview2). And the EB Garamond italic typographic register is genuinely Thai-mass-affluent-readable in editorial contexts. Take the system, drop the seasonal-rotation risk.</p>
+
+      <h4>Build cost (if shipped as wildcard)</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · EB Garamond + Inter free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · cloth-drape physics on nav</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Variable — depends on assigned season</span>
+        <span class="label">Build complexity</span><span class="value">Medium · 20+ palette themes + season switcher</span>
+        <span class="label">Brand-recognition risk</span><span class="value">Catastrophic by design</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer>
+  <p>Companion documents: <code>Analysis-Opus4.7.md</code> · <code>Preview-Opus4.7.html</code> (safe shortlist) · <code>Preview2-Opus4.7.html</code> (daring &amp; cinematic) · <code>Preview3-Opus4.7.html</code> (editorial, material &amp; synthesis) · <code>Preview4-Opus4.7.html</code> (this file — DeepSeek Flash directions + wildcards).</p>
+  <p style="margin-top:8px;">Across Preview1–4, you've now seen 24 directions in detail (out of the 70 directions across the 14 LLM proposals). The remaining ~46 directions are either lower-scoring, redundant with picks already shown, or convergent with the dark+ember cluster — all are documented in their source <code>UI-Idea-*.md</code> files for reference.</p>
+  <p style="margin-top:8px;">Both wildcards in this file are deliberately rendered with their full conceit visible: the Abattoir Archive shows the cold-tray container with one warm grill-content tray amidst sterile insurance trays; the Garment Label shows two side-by-side seasonal palettes (Bottega Verde and Margiela Blanc) so the rotation conceit is concrete, not just described. The Tabloid mockup also has its live-scrolling ticker animating at the bottom, and the Immersion Tank hero card is breathing on a 4-second pulse cycle — all CSS-only, all `prefers-reduced-motion` compliant.</p>
+</footer>
+
+</body>
+</html>

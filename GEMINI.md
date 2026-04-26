@@ -52,9 +52,9 @@ This department operates under the **Melkor OS** parent-shell architecture.
 ### Sovereign Stack
 | Component | Version |
 |-----------|---------|
-| **Framework** | Next.js 16.2.1 (App Router, Turbopack) |
-| **CMS** | Payload 3.80.0 (Embedded) |
-| **Database** | Neon Postgres |
+| **Framework** | Astro 4.x (Static, Zero-JS) |
+| **CMS** | Emdash (Git-backed Markdown CMS) |
+| **Database** | None (Git-tracked MDX Files) |
 | **Storage** | Cloudflare R2 (Sovereign Assets) |
 | **AI** | Mastra 1.x + Gemini 3 Flash |
 | **Embedding** | gemini-embedding-001 (3072 dims) |
@@ -64,6 +64,7 @@ This department operates under the **Melkor OS** parent-shell architecture.
 | **Structure** | **FLAT ROOT** (No `/src` folder) |
 | **Intake** | Obsidian (vault: `nerd/`) |
 | **Production** | Claude Code Skills (Mastra: non-core, exploratory only) |
+| **Prior Art** | `~/Projects/astro-nerd/` — Astro 6.1 port with Emdash migration notes |
 
 ---
 
@@ -82,7 +83,7 @@ Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /audi
 | **Write** | `/performer` CLI skill | Agent 2B |
 | **Audit (primary)** | `/auditor` CLI skill | Agent 2B |
 | **Audit (escalation)** | Gemini Gem #4 | **You (Gemini)** — regulatory web search |
-| **Publish** | `/publish` CLI skill → Payload CMS → Vercel | Agent 2B |
+| **Publish** | `/publish` CLI skill → Astro MDX in Repo → Vercel | Agent 2B |
 
 **Your unique roles:** Research (web-scale synthesis) + Escalation Audit (live regulatory verification).
 
@@ -151,7 +152,7 @@ git push origin main
 | /performer | Draft content (Agent 2A for rapid, Agent 2B `/performer` for flagship) |
 | /audit | Run `/auditor` CLI skill (primary) or Gemini Gem #4 (escalation for regulatory) |
 | /sync | Log current progress to SYSTEM_STATE.md |
-| /publish | Publish .md article to Payload CMS (auto-converts markdown → Lexical JSON) |
+| /publish | Convert .md to MDX article in content/ (auto-wraps with notebook components) |
 | /strategic | Log to MOS-level STRATEGIC_MEMORY_LOG.md |
 
 ---
@@ -176,6 +177,7 @@ git push origin main
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **v2.2** | Apr 26, 2026 | Strategic Pivot: Dropped Next.js/Payload/Neon. Migrating to Astro + Emdash + MDX for Zero-JS "Notebook" aesthetic. |
 | **v2.1** | Mar 29, 2026 | /publish skill: zero-touch .md → Payload CMS publishing. Mastra RAG confirmed non-core. .md is the standard (not .mdx). Strategic stack review: keep Payload + Next.js, Neon exit plan ready. |
 | v2.0 | Mar 25, 2026 | v6.0 pipeline: CLI Skills for production, Gemini reserved for Research + Escalation Audit. Stack updated (Next.js 16.2.1, Node 24, Tailwind v4.2, Payload 3.80.0). Obsidian intake layer. |
 | v1.8 | Mar 23, 2026 | Mastra Vector DB Migration + Claude Code Skills |

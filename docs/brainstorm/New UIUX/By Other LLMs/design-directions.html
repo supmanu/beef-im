@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ประกันเนื้อๆ — Design Directions</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;700&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Mono:wght@400;700&family=Anuphan:wght@300;400;500;600;700;800&family=Sarabun:wght@300;400;500;700&family=K2D:wght@300;400;700&family=Caveat:wght@400;700&family=Bai+Jamjuree:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   GLOBAL RESET & SHARED
+   ============================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{overflow-x:hidden}
+
+/* Section dividers */
+.section-divider{position:relative;width:100%;height:72px;display:flex;align-items:center;justify-content:center;background:#0A0A0A}
+.section-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#333}
+.section-divider span{position:relative;background:#0A0A0A;color:#00D4FF;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0 20px;z-index:1}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
+
+/* =============================================
+   DIRECTION 1: PROVENANCE
+   ============================================= */
+.dir1{--bg:#F5F0E8;--surface:#FFFCF7;--text:#1C1814;--accent-red:#B85C3A;--accent-navy:#1B3A6B;--accent-gold:#B8860B;--critical:#D43830;--border:rgba(175,165,145,0.25);--muted:#6B6254;--grid:rgba(39,32,23,0.06)}
+.dir1{background:linear-gradient(175deg,#F8F2E8 0%,#F5F0E8 40%,#EBE3D4 100%);color:var(--text);font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;font-size:18px;line-height:1.7;min-height:100vh;position:relative;overflow-x:clip}
+.dir1-label{text-align:center;padding:32px 20px 0;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--accent-gold);letter-spacing:0.15em;text-transform:uppercase}
+
+/* CSS grid texture */
+.dir1::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:36px 36px}
+
+/* Radial color washes */
+.dir1::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 600px 500px at 0% 0%,rgba(0,127,109,0.06),transparent),
+    radial-gradient(ellipse 600px 500px at 100% 0%,rgba(240,179,35,0.10),transparent)}
+
+.dir1 > *{position:relative;z-index:1}
+
+/* Hero */
+.dir1-hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;position:relative;overflow:hidden;contain:layout style paint}
+
+/* Sunburst */
+.dir1-sunburst{position:absolute;width:min(600px,80vw);height:min(600px,80vw);top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;opacity:0.5;z-index:0;pointer-events:none;
+  background:repeating-conic-gradient(from 12deg,rgba(184,92,58,0.10) 0deg 12deg,transparent 12deg 24deg);
+  /* Sunburst rotates at 32s linear infinite — uncomment for full implementation:
+  animation:sunburst-rotate 32s linear infinite; */
+}
+@keyframes sunburst-rotate{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@media(prefers-reduced-motion:no-preference){.dir1-sunburst{animation:sunburst-rotate 32s linear infinite}}
+
+.dir1-hero-content{position:relative;z-index:1}
+.dir1-hero h1{font-family:'Anuphan',sans-serif;font-weight:800;font-size:clamp(42px,8vw,96px);color:var(--text);letter-spacing:-0.01em;line-height:1.1;margin-bottom:16px}
+.dir1-hero .subhead{font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;font-size:clamp(16px,2.5vw,22px);color:var(--muted);max-width:640px;margin:0 auto 32px;line-height:1.5;font-weight:400}
+
+/* Search bar (hero) */
+.dir1-search{display:flex;align-items:center;gap:0;max-width:480px;margin:0 auto;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+.dir1-search input{flex:1;border:none;outline:none;padding:14px 18px;font-family:'IBM Plex Sans Thai',sans-serif;font-size:18px;background:transparent;color:var(--text)}
+.dir1-search input::placeholder{color:var(--muted);opacity:0.6}
+.dir1-search button{background:var(--accent-navy);color:#fff;border:none;padding:14px 24px;font-family:'IBM Plex Sans Thai',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:background 0.2s}
+.dir1-search button:hover{background:#152d52}
+
+/* Article card wrapper */
+.dir1-content{max-width:760px;margin:0 auto;padding:0 20px 60px}
+.dir1-card{background:var(--surface);border-radius:12px;border:1px solid var(--border);position:relative;overflow:visible;transition:box-shadow 0.3s ease}
+.dir1-card-top{overflow:hidden;border-radius:12px 12px 0 0}
+.dir1-card:hover{box-shadow:4px 4px 0 rgba(39,32,23,0.11),8px 8px 24px rgba(39,32,23,0.08)}
+
+/* Temperature bar */
+.dir1-temp-bar{height:4px;background:linear-gradient(90deg,#3B7DD8 0%,#F5A623 50%,#E8482F 100%);transition:height 0.3s ease}
+.dir1-card:hover .dir1-temp-bar{height:24px}
+.dir1-temp-label{font-family:'IBM Plex Sans Thai',sans-serif;font-size:13px;color:var(--critical);font-weight:600;padding:6px 18px 0;letter-spacing:0.01em}
+
+/* Rating badge */
+.dir1-badge{position:absolute;top:18px;right:18px;width:72px;height:24px;background:var(--accent-navy);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;display:flex;align-items:center;justify-content:center;border-radius:12px;box-shadow:3px 3px 0 rgba(39,32,23,0.11);letter-spacing:0.05em;z-index:2}
+/* Badge fills from grey to navy on viewport entry — hint:
+   .dir1-badge.in-view { background: var(--accent-navy); transition: background 0.6s; }
+   Start with background: #888; */
+
+/* Article card body */
+.dir1-card-body{padding:24px 18px 18px}
+.dir1-card h2{font-family:'Anuphan',sans-serif;font-weight:800;font-size:clamp(20px,3.5vw,28px);color:var(--text);line-height:1.35;margin-bottom:12px;padding-right:88px}
+.dir1-dek{font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;font-size:18px;color:#3d3830;line-height:1.6;margin-bottom:16px}
+
+/* Annotation margin (desktop) and inline chip (mobile) */
+.dir1-annotation-desktop{display:none}
+.dir1-annotation-mobile{display:inline-block;background:rgba(184,92,58,0.08);color:var(--accent-red);font-family:'IBM Plex Sans Thai',sans-serif;font-size:14px;font-weight:600;padding:6px 12px;border-radius:6px;border-left:3px solid var(--accent-red);margin-bottom:12px;line-height:1.4}
+@media(min-width:768px){
+  .dir1-annotation-desktop{display:flex;position:absolute;right:-220px;top:90px;width:200px;align-items:flex-start;gap:6px;font-family:'IBM Plex Sans Thai',sans-serif;font-size:13px;color:var(--accent-red);line-height:1.45}
+  .dir1-annotation-desktop .bracket{font-family:'IBM Plex Mono',monospace;font-size:28px;color:var(--accent-red);line-height:1;margin-top:-2px;font-weight:700}
+  .dir1-annotation-mobile{display:none}
+  .dir1-card{position:relative}
+  .dir1-card-body-wrapper{position:relative}
+}
+
+/* Metadata pills */
+.dir1-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dir1-meta-pill{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;padding:4px 10px;border-radius:6px;letter-spacing:0.04em;color:var(--accent-navy);background:rgba(27,58,107,0.06);border:1px solid rgba(27,58,107,0.12)}
+.dir1-meta-pill.readtime{color:var(--muted);background:transparent;border:1px solid var(--border)}
+/* Gold leaf section marker */
+.dir1-section-marker{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-gold);letter-spacing:0.12em;text-transform:uppercase;border-bottom:1px solid rgba(184,134,11,0.3);padding-bottom:4px;margin-bottom:18px;display:inline-block}
+
+/* Verdict stamp */
+.dir1-verdict{display:flex;justify-content:flex-end;padding:8px 18px 18px}
+.dir1-stamp{width:60px;height:60px;border:2px solid var(--accent-red);border-radius:50%;display:flex;align-items:center;justify-content:center;transform:rotate(-2deg);position:relative}
+.dir1-stamp-text{font-family:'Anuphan',sans-serif;font-weight:800;font-size:14px;color:var(--accent-red);letter-spacing:0.03em;text-align:center;line-height:1.1}
+/* SVG ink bleed filter applied via CSS filter */
+.dir1-stamp-svg{position:absolute;inset:-4px;width:68px;height:68px;pointer-events:none}
+.dir1-stamp-svg text{font-family:'Anuphan',sans-serif;font-weight:800;font-size:14px;fill:var(--accent-red);text-anchor:middle;dominant-baseline:central}
+
+/* Footer */
+.dir1-footer{text-align:center;padding:32px 20px 48px;font-size:13px;color:var(--muted);font-family:'IBM Plex Sans Thai',sans-serif}
+
+@media(min-width:768px){
+  .dir1-card-body{padding:32px 28px 20px}
+  .dir1-verdict{padding:8px 28px 28px}
+}
+
+/* =============================================
+   DIRECTION 2: THE LAB NOTEBOOK
+   ============================================= */
+.dir2{--bg:#F5F2EA;--surface:#FDFBF7;--text:#1C1814;--navy:#2B4A5E;--red:#CC3A2F;--highlight:rgba(255,237,100,0.45);--tape:rgba(245,240,220,0.65);--grid:rgba(175,165,145,0.18);--muted:#6B6254}
+.dir2{background:var(--bg);color:var(--text);font-family:'Sarabun',sans-serif;font-size:18px;line-height:1.7;min-height:100vh;position:relative;overflow-x:clip}
+.dir2-label{text-align:center;padding:32px 20px 0;font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:13px;color:var(--navy);letter-spacing:0.12em;text-transform:uppercase}
+
+/* Graph paper grid */
+.dir2-grid{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    repeating-linear-gradient(0deg,var(--grid) 0px,var(--grid) 1px,transparent 1px,transparent 24px),
+    repeating-linear-gradient(90deg,var(--grid) 0px,var(--grid) 1px,transparent 1px,transparent 24px)}
+
+/* Paper-fiber noise */
+.dir2-noise{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size:256px 256px}
+
+/* Soft radial aging */
+.dir2-vignette{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at center,transparent 60%,rgba(139,119,90,0.08) 100%)}
+
+.dir2 > *:not(.dir2-grid):not(.dir2-noise):not(.dir2-vignette){position:relative;z-index:1}
+
+/* Notebook page content */
+.dir2-page{max-width:760px;margin:0 auto;padding:40px 20px 60px}
+
+/* Red horizontal rules */
+.dir2-rule-thin{height:1px;background:var(--red);margin-bottom:12px;border:none}
+.dir2-rule-thick{height:1.5px;background:var(--red);margin:8px 0 24px;border:none}
+
+/* Handwritten site title & date */
+.dir2-handwrite{font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:14px;color:var(--navy);letter-spacing:0.02em}
+.dir2-date{font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:13px;color:var(--navy);margin-bottom:4px}
+
+/* Headline */
+.dir2-headline{font-family:'Anuphan',sans-serif;font-weight:800;font-size:clamp(36px,6vw,64px);color:var(--text);line-height:1.15;margin-bottom:8px;letter-spacing:-0.01em}
+
+/* CASE FILE circle in red pen */
+.dir2-casefile{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px}
+.dir2-casefile svg{width:28px;height:28px;flex-shrink:0}
+.dir2-casefile-text{font-family:'Anuphan',sans-serif;font-weight:700;font-size:13px;color:var(--red);letter-spacing:0.04em}
+
+/* Subhead */
+.dir2-subhead{font-family:'Sarabun',sans-serif;font-size:18px;color:#3d3830;max-width:600px;line-height:1.6;margin-bottom:32px}
+
+/* Article entry section */
+.dir2-entry{position:relative}
+.dir2-entry-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px;position:relative}
+
+/* Hand-drawn red circle (rating) */
+.dir2-rating{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+.dir2-rating svg{width:72px;height:72px}
+.dir2-rating-text{font-family:'Anuphan',sans-serif;font-weight:700;font-size:11px;fill:var(--red);text-anchor:middle}
+.dir2-rating-label{font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:12px;color:var(--navy);text-align:center;line-height:1.3;margin-top:2px}
+
+/* Article body (printed typeset) */
+.dir2-body{font-family:'Sarabun',sans-serif;font-size:18px;color:var(--text);line-height:1.75}
+.dir2-body .highlight{background:var(--highlight);padding:0 2px}
+
+/* Article title in entry */
+.dir2-article-title{font-family:'Anuphan',sans-serif;font-weight:700;font-size:22px;color:var(--text);line-height:1.4;margin-bottom:12px}
+
+/* Margin annotations (desktop) */
+.dir2-annotations{display:none}
+@media(min-width:768px){
+  .dir2-annotations{display:block;position:absolute;right:-220px;top:0;width:190px}
+  .dir2-note{font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:13px;color:var(--navy);line-height:1.45;margin-bottom:24px;transform:rotate(-1deg);padding-left:4px;border-left:2px dashed var(--red);padding-bottom:4px}
+  .dir2-note:nth-child(2){transform:rotate(0.5deg)}
+  .dir2-note:nth-child(3){transform:rotate(-1.5deg)}
+  .dir2-note .note-marker{font-family:'Caveat','K2D',cursive;font-size:15px;color:var(--red);display:block;margin-bottom:2px}
+}
+
+/* Taped-in scrap */
+.dir2-scrap{background:var(--surface);border:1px solid rgba(175,165,145,0.4);border-radius:3px;padding:20px 18px 16px;margin:24px 0;transform:rotate(-1.5deg);position:relative;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.dir2-scrap::before{content:'';position:absolute;top:-10px;left:20%;width:70px;height:22px;background:var(--tape);transform:rotate(2deg);box-shadow:0 2px 3px rgba(0,0,0,0.05)}
+.dir2-scrap-label{font-family:'Anuphan',sans-serif;font-weight:700;font-size:16px;color:var(--text);margin-bottom:12px}
+.dir2-scrap-table{width:100%;border-collapse:collapse}
+.dir2-scrap-table td{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:6px 8px;border-bottom:1px solid rgba(175,165,145,0.2)}
+.dir2-scrap-table td:first-child{color:var(--navy);font-weight:700;width:50%}
+.dir2-scrap-table td:last-child{color:var(--text);text-align:right}
+
+/* Hand-drawn thermometer */
+.dir2-therm{display:flex;align-items:flex-start;gap:12px;margin:20px 0}
+.dir2-therm svg{flex-shrink:0}
+
+/* Correction marks */
+.dir2-correction{margin:20px 0}
+.dir2-strikethrough{font-family:'Sarabun',sans-serif;font-size:18px;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-style:wavy;text-decoration-thickness:1.5px;color:#6B6254}
+.dir2-correction-note{font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:13px;color:var(--navy);margin-top:4px}
+
+/* Verdict stamp (hand-drawn circle) */
+.dir2-verdict{display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin-top:32px;padding-right:8px}
+.dir2-verdict svg{width:80px;height:80px}
+.dir2-signature{font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:13px;color:var(--navy);margin-top:2px;padding-right:4px}
+
+/* Ink blot */
+.dir2-inkblot{position:absolute;width:40px;height:36px;right:80px;top:45%;pointer-events:none;z-index:0;opacity:0.02;
+  background:radial-gradient(ellipse 18px 14px at 40% 45%,var(--navy) 0%,transparent 70%),
+             radial-gradient(ellipse 8px 12px at 55% 50%,var(--navy) 10%,transparent 70%),
+             radial-gradient(ellipse 4px 6px at 30% 55%,var(--navy) 0%,transparent 60%)}
+
+/* Footer (taped label) */
+.dir2-footer{display:flex;justify-content:center;padding:20px 0 48px}
+.dir2-footer-label{background:var(--surface);border:1px solid rgba(175,165,145,0.4);border-radius:3px;padding:8px 20px;font-family:'IBM Plex Sans Thai',sans-serif;font-size:12px;color:var(--muted);position:relative;transform:rotate(-0.5deg)}
+.dir2-footer-label::before{content:'';position:absolute;top:-8px;left:30%;width:50px;height:16px;background:var(--tape);transform:rotate(1.5deg)}
+
+@media(max-width:767px){
+  .dir2-page{padding:32px 16px 48px}
+  .dir2-scrap{transform:rotate(-1deg);padding:16px 12px 12px}
+  .dir2-scrap::before{left:15%;width:56px;height:18px}
+}
+
+/* =============================================
+   DIRECTION 3: SPEC SHEET
+   ============================================= */
+.dir3{--bg:#0A0A0A;--surface:#141414;--text:#E8E8E8;--cyan:#00D4FF;--red:#FF3B30;--cobalt:#2456C8;--hairline:#333;--muted:#666;--dim:#888}
+.dir3{background:var(--bg);color:var(--text);font-family:'Inter','Anuphan',sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+.dir3-label{text-align:center;padding:32px 20px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:0.15em;text-transform:uppercase}
+
+.dir3-inner{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* Hero panel */
+.dir3-hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;padding:60px 0}
+.dir3-hero h1{font-family:'Bai Jamjuree','Anuphan',sans-serif;font-weight:700;font-size:clamp(36px,7vw,80px);color:var(--text);letter-spacing:0.02em;line-height:1.1;margin-bottom:16px}
+.dir3-hero .cyan-rule{height:1px;background:var(--cyan);margin-bottom:20px;border:none}
+.dir3-hero .subhead{font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(16px,2.5vw,20px);color:var(--dim);max-width:560px;line-height:1.5;margin-bottom:40px}
+
+/* Spec card preamble in hero */
+.dir3-spec{margin-bottom:48px}
+.dir3-spec-row{display:flex;border-bottom:1px solid var(--hairline);padding:10px 0;align-items:baseline}
+.dir3-spec-key{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;min-width:140px;flex-shrink:0}
+.dir3-spec-val{font-family:'Inter',sans-serif;font-size:14px;color:var(--text)}
+.dir3-spec-val.grade{color:var(--red)}
+.dir3-spec-val.risk{color:var(--cyan)}
+
+/* Article card / content area */
+.dir3-content{padding-bottom:60px}
+
+/* Spec card component */
+.dir3-card{background:var(--surface);border-top:1px solid var(--cyan);padding:0;margin-bottom:32px}
+.dir3-card-header{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;padding:16px 20px 8px;border-bottom:1px solid var(--hairline)}
+.dir3-card .spec-rows{padding:0 20px 16px}
+.dir3-card .spec-row{display:flex;border-bottom:1px solid var(--hairline);padding:8px 0;align-items:baseline}
+.dir3-card .spec-key{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--dim);text-transform:uppercase;letter-spacing:0.06em;min-width:150px;flex-shrink:0}
+.dir3-card .spec-val{font-family:'Inter',sans-serif;font-size:14px;color:var(--text)}
+.dir3-card .spec-val.fail{color:var(--red);font-weight:600}
+
+/* Article headline */
+.dir3-article-title{font-family:'Bai Jamjuree','Anuphan',sans-serif;font-weight:700;font-size:22px;color:var(--text);line-height:1.4;margin:28px 0 14px}
+
+/* Article body */
+.dir3-body{font-family:'Inter','Anuphan',sans-serif;font-size:16px;color:#ccc;line-height:1.7}
+.dir3-body p{margin-bottom:16px}
+
+/* Pull quote */
+.dir3-pullquote{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--cyan);border-left:1px solid var(--cyan);padding:4px 16px;margin:24px 0;font-style:normal}
+
+/* Status indicator */
+.dir3-status{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--dim);text-transform:uppercase;letter-spacing:0.06em}
+.dir3-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dir3-dot.cyan{background:var(--cyan);transition:box-shadow 0.3s ease}
+.dir3-dot.red{background:var(--red)}
+.dir3-status:hover .dir3-dot.cyan{box-shadow:0 0 10px var(--cyan)}
+.dir3-status:hover .dir3-dot.red{box-shadow:0 0 10px var(--red)}
+
+/* Verdict instrument readout */
+.dir3-verdict-panel{display:inline-flex;flex-direction:column;border:1px solid var(--hairline);padding:12px 20px;margin-top:24px;border-left:1px solid var(--cyan)}
+.dir3-verdict-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.dir3-verdict-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--red);letter-spacing:0.04em}
+
+/* Table */
+.dir3-table{width:100%;border-collapse:collapse;margin:20px 0;font-family:'JetBrains Mono',monospace;font-size:12px}
+.dir3-table th{background:var(--surface);color:var(--cyan);font-weight:500;text-align:left;padding:8px 12px;border-bottom:1px solid var(--cyan);text-transform:uppercase;letter-spacing:0.06em}
+.dir3-table td{padding:8px 12px;border-bottom:1px solid var(--hairline);color:var(--dim)}
+.dir3-table tr{transition:border-left 0.2s}
+.dir3-table tr:hover{border-left:1px solid var(--cyan)}
+.dir3-table tr:nth-child(even) td{background:rgba(26,26,26,0.5)}
+
+/* Footer */
+.dir3-footer{text-align:center;padding:32px 20px 48px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+
+@media(min-width:768px){
+  .dir3-card .spec-row{flex-direction:row}
+  .dir3-card .spec-key{min-width:200px}
+}
+@media(max-width:767px){
+  .dir3-spec-row{flex-direction:column;gap:2px}
+  .dir3-card .spec-row{flex-direction:column;gap:2px}
+}
+
+/* Count-up animation for spec values */
+@keyframes count-pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.dir3-counting{animation:count-pulse 0.6s ease-out}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     DIRECTION 1: PROVENANCE
+     ================================================================ -->
+<section class="dir1">
+  <div class="dir1-label">DIRECTION 1: PROVENANCE</div>
+  <!-- Hero -->
+  <div class="dir1-hero">
+    <div class="dir1-sunburst" aria-hidden="true"></div>
+    <div class="dir1-hero-content">
+      <h1>ดูเนื้อ ไม่ดูหน้า</h1>
+      <p class="subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+      <div class="dir1-search">
+        <input type="text" placeholder="ค้นหาสัญญาหรือเนื้อ…">
+        <button>ค้นหา</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article card -->
+  <div class="dir1-content">
+    <div class="dir1-section-marker">§ CASE FILE</div>
+    <div class="dir1-card">
+      <div class="dir1-card-top">
+        <div class="dir1-temp-bar" role="presentation"></div>
+        <div class="dir1-temp-label" aria-label="ความเสี่ยงสูง">⚠ ความเสี่ยงสูง — อ่านก่อนเซ็น</div>
+      </div>
+
+      <!-- Rating badge -->
+      <div class="dir1-badge">UNDERWEIGHT</div>
+
+      <div class="dir1-card-body">
+        <div class="dir1-card-body-wrapper">
+          <h2>ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+
+          <!-- Annotation: desktop -->
+          <div class="dir1-annotation-desktop" aria-label="หมายเหตุ">
+            <span class="bracket">[</span>
+            <span>ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7 — อ่านก่อนเซ็นสัญญา</span>
+          </div>
+          <!-- Annotation: mobile -->
+          <div class="dir1-annotation-mobile">ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7 — อ่านก่อนเซ็นสัญญา</div>
+
+          <p class="dir1-dek">สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</p>
+
+          <div class="dir1-meta">
+            <span class="dir1-meta-pill">CASE FILE #031</span>
+            <span class="dir1-meta-pill readtime">8 นาที</span>
+            <span class="dir1-meta-pill">HOT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verdict stamp -->
+      <div class="dir1-verdict">
+        <div class="dir1-stamp" aria-label="ผลวิเคราะห์: ไม่ผ่าน">
+          <svg class="dir1-stamp-svg" viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="inkbleed1">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+                <feComponentTransfer in="blur" result="sharp">
+                  <feFuncA type="linear" slope="3" intercept="-0.3"/>
+                </feComponentTransfer>
+              </filter>
+            </defs>
+            <text x="34" y="34" filter="url(#inkbleed1)">ไม่ผ่าน</text>
+          </svg>
+          <span class="dir1-stamp-text" aria-hidden="true">ไม่ผ่าน</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="dir1-footer">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)</div>
+  </div>
+</section>
+
+<div class="section-divider"><span>DIRECTION 1: PROVENANCE</span></div>
+
+<!-- ================================================================
+     DIRECTION 2: THE LAB NOTEBOOK
+     ================================================================ -->
+<section class="dir2">
+  <div class="dir2-label">DIRECTION 2: THE LAB NOTEBOOK</div>
+  <div class="dir2-grid" aria-hidden="true"></div>
+  <div class="dir2-noise" aria-hidden="true"></div>
+  <div class="dir2-vignette" aria-hidden="true"></div>
+
+  <div class="dir2-page">
+    <!-- Top margin: red rule, site title, date -->
+    <div class="dir2-rule-thin" aria-hidden="true"></div>
+    <div class="dir2-handwrite">ประกันเนื้อๆ</div>
+    <div class="dir2-date">25 เมษายน 2026</div>
+    <div class="dir2-rule-thick" aria-hidden="true"></div>
+
+    <!-- Headline -->
+    <h1 class="dir2-headline">ดูเนื้อ ไม่ดูหน้า</h1>
+
+    <!-- CASE FILE red-pen circle -->
+    <div class="dir2-casefile">
+      <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14,3 C20,2.5 25,7 25.5,13.5 C26,19 22,24.5 16,25.5 C10,26.5 4,23 3,17 C2,11 5,5 10,3.5 C12,2.8 14,3 14,3 Z"
+          fill="none" stroke="var(--red)" stroke-width="1.8"/>
+        <text x="14" y="18" text-anchor="middle" font-family="Anuphan" font-weight="700" font-size="7" fill="var(--red)">#031</text>
+      </svg>
+      <span class="dir2-casefile-text">CASE FILE #031</span>
+    </div>
+
+    <p class="dir2-subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+
+    <!-- Article entry -->
+    <div class="dir2-entry">
+      <!-- Ink blot -->
+      <div class="dir2-inkblot" aria-hidden="true"></div>
+
+      <div class="dir2-entry-header">
+        <h2 class="dir2-article-title" style="max-width:70%">ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+
+        <!-- Hand-drawn rating circle -->
+        <div class="dir2-rating">
+          <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36,6 C46,5 56,11 60,22 C63,30 63,40 60,48 C56,57 48,64 38,65 C29,66 20,62 14,55 C9,49 6,41 7,33 C8,25 12,18 19,12 C26,8 32,6 36,6 Z"
+              fill="none" stroke="var(--red)" stroke-width="2"/>
+            <text x="36" y="38" text-anchor="middle" font-family="Anuphan" font-weight="700" font-size="9" fill="var(--red)">UNDER</text>
+            <text x="36" y="50" text-anchor="middle" font-family="Anuphan" font-weight="700" font-size="9" fill="var(--red)">WEIGHT</text>
+          </svg>
+          <div class="dir2-rating-label">เกรดต่ำ —<br>อ่านก่อนเซ็น</div>
+        </div>
+      </div>
+
+      <!-- Article body -->
+      <div class="dir2-body">
+        <p>สัญญานี้<span class="highlight">ขายดีที่สุดในไทย</span> แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</p>
+      </div>
+
+      <!-- Desktop annotations -->
+      <div class="dir2-annotations" aria-label="บันทึกด้วยลายมือ">
+        <div class="dir2-note">
+          <span class="note-marker">→</span>
+          สัญญานี้ขายดีที่สุดในไทย — แต่ไม่ใช่เพราะมันดี
+        </div>
+        <div class="dir2-note">
+          <span class="note-marker">→</span>
+          ข้อ 7.3 — ค่าเวนคืนใน 3 ปีแรก = 0 บาท
+        </div>
+        <div class="dir2-note">
+          <span class="note-marker">← อ่านก่อนตัดสินใจ</span>
+        </div>
+      </div>
+
+      <!-- Taped-in scrap -->
+      <div class="dir2-scrap">
+        <div class="dir2-scrap-label">Exhibit A — ตารางเปรียบเทียบค่าเบี้ย</div>
+        <table class="dir2-scrap-table">
+          <tr><td>เบี้ยประกันรายปี</td><td>฿48,000</td></tr>
+          <tr><td>ความคุ้มครอง</td><td>฿1,000,000</td></tr>
+          <tr><td>ระยะเวลาชำระเบี้ย</td><td>20 ปี</td></tr>
+          <tr><td>มูลค่าเวนคืนปีที่ 3</td><td>฿0</td></tr>
+        </table>
+      </div>
+
+      <!-- Hand-drawn thermometer -->
+      <div class="dir2-therm">
+        <svg viewBox="0 0 24 100" width="24" height="100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tube -->
+          <rect x="7" y="10" width="8" height="75" rx="4" fill="none" stroke="var(--navy)" stroke-width="1.2"/>
+          <!-- Bulb -->
+          <circle cx="11" cy="90" r="7" fill="none" stroke="var(--navy)" stroke-width="1.2"/>
+          <!-- Fill level (red) -->
+          <rect x="9" y="45" width="4" height="38" rx="2" fill="var(--red)" opacity="0.85"/>
+          <circle cx="11" cy="90" r="5" fill="var(--red)" opacity="0.85"/>
+          <!-- Tick marks -->
+          <line x1="15" y1="15" x2="17" y2="15" stroke="var(--navy)" stroke-width="0.8"/>
+          <line x1="15" y1="35" x2="17" y2="35" stroke="var(--navy)" stroke-width="0.8"/>
+          <line x1="15" y1="55" x2="17" y2="55" stroke="var(--navy)" stroke-width="0.8"/>
+          <line x1="15" y1="75" x2="17" y2="75" stroke="var(--navy)" stroke-width="0.8"/>
+        </svg>
+        <span class="dir2-handwrite" style="font-size:13px;margin-top:4px">ระดับความเสี่ยง: สูง — ค่าเวนคืนปีแรก = 0</span>
+      </div>
+
+      <!-- Correction marks -->
+      <div class="dir2-correction">
+        <div class="dir2-strikethrough">ค่าเบี้ยสูงเกินผลตอบแทน 60%</div>
+        <div class="dir2-correction-note">แก้ไข: 60% → 72% หลังตรวจสอบอีกครั้ง</div>
+      </div>
+
+      <!-- Verdict stamp -->
+      <div class="dir2-verdict">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40,5 C51,4 61,9 66,20 C70,30 70,42 66,52 C61,62 53,72 42,74 C32,75 22,72 14,64 C7,57 4,46 5,36 C6,27 11,18 19,11 C27,6 34,5 40,5 Z"
+            fill="none" stroke="var(--red)" stroke-width="2.4"/>
+          <text x="40" y="36" text-anchor="middle" font-family="Anuphan" font-weight="700" font-size="11" fill="var(--red)">✗</text>
+          <text x="40" y="50" text-anchor="middle" font-family="Anuphan" font-weight="700" font-size="10" fill="var(--red)">ไม่ผ่าน</text>
+        </svg>
+        <div class="dir2-signature">นาถ — 25/04/2026</div>
+      </div>
+
+    </div><!-- .dir2-entry -->
+
+    <!-- Footer -->
+    <div class="dir2-footer">
+      <div class="dir2-footer-label">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)</div>
+    </div>
+  </div><!-- .dir2-page -->
+</section>
+
+<div class="section-divider"><span>DIRECTION 2: THE LAB NOTEBOOK</span></div>
+
+<!-- ================================================================
+     DIRECTION 3: SPEC SHEET
+     ================================================================ -->
+<section class="dir3">
+  <div class="dir3-label">DIRECTION 3: SPEC SHEET</div>
+  <div class="dir3-inner">
+    <!-- Hero panel -->
+    <div class="dir3-hero">
+      <h1>ดูเนื้อ ไม่ดูหน้า</h1>
+      <div class="cyan-rule" aria-hidden="true"></div>
+      <p class="subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+
+      <!-- Spec card preamble -->
+      <div class="dir3-spec">
+        <div class="dir3-spec-row">
+          <span class="dir3-spec-key">TYPE</span>
+          <span class="dir3-spec-val">Insurance Contract Analysis</span>
+        </div>
+        <div class="dir3-spec-row">
+          <span class="dir3-spec-key">GRADE</span>
+          <span class="dir3-spec-val grade">UNDERWEIGHT</span>
+        </div>
+        <div class="dir3-spec-row">
+          <span class="dir3-spec-key">RISK</span>
+          <span class="dir3-spec-val risk">HIGH</span>
+        </div>
+        <div class="dir3-spec-row">
+          <span class="dir3-spec-key">READ TIME</span>
+          <span class="dir3-spec-val">8 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="dir3-content">
+      <!-- Article title -->
+      <h2 class="dir3-article-title">ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+
+      <!-- Spec card component -->
+      <div class="dir3-card">
+        <div class="dir3-card-header">SPECIFICATION</div>
+        <div class="spec-rows">
+          <div class="spec-row">
+            <span class="spec-key">PRODUCT</span>
+            <span class="spec-val">Whole Life 99/20</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">PREMIUM / YR</span>
+            <span class="spec-val" data-count="48000" data-prefix="฿">฿48,000</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">COVERAGE</span>
+            <span class="spec-val" data-count="1000000" data-prefix="฿">฿1,000,000</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">COVERAGE TYPE</span>
+            <span class="spec-val">Whole Life — Limited Pay</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">RISK GRADE</span>
+            <span class="spec-val">
+              <span class="dir3-status">
+                <span class="dir3-dot cyan" aria-hidden="true"></span>
+                UNDERWEIGHT
+              </span>
+            </span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">VERDICT</span>
+            <span class="spec-val fail">FAIL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article body -->
+      <div class="dir3-body">
+        <p>สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</p>
+
+        <div class="dir3-pullquote">
+          <span style="color:var(--cyan)">// CONSTRAINT</span><br>
+          ข้อ 7.3 — มูลค่าเวนคืนใน 3 ปีแรก = ฿0<br>
+          <span style="color:var(--cyan)">// IMPLICATION</span><br>
+          ผู้ถือกรมธรรม์ไม่มีทางเลือกในการออกจากสัญญาโดยไม่สูญเสียเงินทั้งหมด
+        </div>
+
+        <p>เมื่อเทียบสัญญานี้กับคู่แข่งในระดับราคาเดียวกัน — Whole Life 99/20 ให้ผลตอบแทนที่ต่ำกว่าอย่างมีนัยสำคัญ หลังหักค่าใช้จ่ายและค่าคอมมิชชั่น</p>
+      </div>
+
+      <!-- Data table -->
+      <table class="dir3-table">
+        <thead>
+          <tr><th>YEAR</th><th>PREMIUM PAID</th><th>SURRENDER VALUE</th><th>LOSS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>฿48,000</td><td style="color:var(--red)">฿0</td><td style="color:var(--red)">-100%</td></tr>
+          <tr><td>2</td><td>฿96,000</td><td style="color:var(--red)">฿0</td><td style="color:var(--red)">-100%</td></tr>
+          <tr><td>3</td><td>฿144,000</td><td>฿24,000</td><td style="color:var(--red)">-83%</td></tr>
+          <tr><td>5</td><td>฿240,000</td><td>฿92,000</td><td style="color:var(--red)">-62%</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Verdict instrument readout -->
+      <div class="dir3-verdict-panel">
+        <span class="dir3-verdict-label">VERDICT</span>
+        <span class="dir3-verdict-val">FAIL</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="dir3-footer">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)</div>
+  </div>
+</section>
+
+<!-- Count-up animation script for Direction 3 -->
+<script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els=document.querySelectorAll('[data-count]');
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const el=entry.target;
+      const target=parseInt(el.dataset.count);
+      const prefix=el.dataset.prefix||'';
+      const suffix=el.dataset.suffix||'';
+      const duration=600;
+      const start=performance.now();
+      function tick(now){
+        const elapsed=now-start;
+        const progress=Math.min(elapsed/duration,1);
+        const eased=1-Math.pow(1-progress,3);
+        const current=Math.round(target*eased);
+        el.textContent=prefix+current.toLocaleString()+suffix;
+        if(progress<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      observer.unobserve(el);
+    });
+  },{threshold:0.3});
+  els.forEach(el=>observer.observe(el));
+})();
+</script>
+
+</body>
+</html>

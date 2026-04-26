@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — UI/UX Direction Preview 5 — Cinematic Hero + Editorial Body Hybrids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Cinzel:wght@400;700;900&family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=Inter:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;700&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;700&family=Taviraj:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0c; color: #d4d4d8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; padding: 32px 16px 64px; min-height: 100vh; }
+
+  .page-header { max-width: 1280px; margin: 0 auto 40px; padding-bottom: 28px; border-bottom: 1px solid #27272a; }
+  .page-header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #fafafa; margin-bottom: 12px; }
+  .page-header h1 small { font-size: 16px; color: #a1a1aa; font-weight: 400; letter-spacing: 0; margin-left: 8px; }
+  .page-header p { color: #a1a1aa; font-size: 14.5px; line-height: 1.65; max-width: 820px; }
+  .page-header p + p { margin-top: 12px; }
+  .page-header .meta { margin-top: 16px; font-family: ui-monospace, monospace; font-size: 11.5px; color: #71717a; }
+  .thesis { margin-top: 18px; padding: 14px 16px; background: #1e1b4b; border-left: 3px solid #c4b5fd; border-radius: 4px; font-size: 13px; line-height: 1.65; color: #fafafa; max-width: 820px; }
+  .thesis strong { color: #c4b5fd; }
+
+  main { max-width: 1280px; margin: 0 auto; display: grid; gap: 56px; }
+
+  .direction { background: #18181b; border: 1px solid #27272a; border-radius: 18px; padding: 28px; }
+  .dir-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #27272a; }
+  .dir-num { font-family: ui-monospace, monospace; font-size: 11px; color: #fafafa; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 8px; background: #422006; border-radius: 4px; color: #fbbf24; }
+  .dir-num.b { background: #134e4a; color: #5eead4; }
+  .dir-num.c { background: #4a044e; color: #f0abfc; }
+  .dir-num.d { background: #14532d; color: #86efac; }
+  .dir-title { font-size: 26px; font-weight: 700; color: #fafafa; letter-spacing: -0.01em; }
+  .dir-formula { font-family: ui-monospace, monospace; font-size: 12px; color: #a1a1aa; margin-left: auto; }
+  .dir-mood { width: 100%; margin-top: 6px; color: #d4d4d8; font-style: italic; font-size: 14px; line-height: 1.55; }
+
+  .dir-body { display: grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 880px) { .dir-body { grid-template-columns: 1fr; } }
+
+  .mockup { border-radius: 12px; overflow: hidden; min-height: 760px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); position: relative; }
+  .mockup-hero { padding: 22px 18px; position: relative; min-height: 460px; overflow: hidden; }
+  .mockup-body { padding: 18px; position: relative; }
+  .mockup-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; }
+  .transition-tag { position: absolute; left: 50%; transform: translateX(-50%); top: -10px; font-family: ui-monospace, monospace; font-size: 9px; color: #71717a; background: #18181b; padding: 2px 10px; border-radius: 10px; letter-spacing: 0.12em; text-transform: uppercase; z-index: 5; }
+
+  .notes h4 { font-family: ui-monospace, monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; margin-bottom: 8px; margin-top: 18px; }
+  .notes h4:first-child { margin-top: 0; }
+  .notes p { font-size: 13.5px; line-height: 1.65; color: #d4d4d8; margin-bottom: 6px; }
+  .notes p code { font-family: ui-monospace, monospace; font-size: 12px; background: #27272a; padding: 1px 5px; border-radius: 3px; color: #fbbf24; }
+  .notes .hero-spec, .notes .body-spec { background: #1c1917; border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.6; color: #d4d4d8; margin-top: 6px; }
+  .notes .body-spec { border-left-color: #5eead4; }
+  .notes .axes { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-top: 8px; font-family: ui-monospace, monospace; font-size: 11.5px; }
+  .notes .axes .label { color: #71717a; }
+  .notes .axes .value { color: #fafafa; text-align: right; }
+  .notes .legacy-callout { background: #1e1b4b; border-left: 3px solid #c4b5fd; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.6; color: #fafafa; margin-top: 6px; }
+
+  /* =================================================================== */
+  /* SHARED — particle ember system                                       */
+  /* =================================================================== */
+  .embers { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+  .embers span { position: absolute; bottom: -10px; width: 3px; height: 3px; background: #E8782A; border-radius: 50%; box-shadow: 0 0 6px #E8782A, 0 0 12px rgba(232, 120, 42, 0.5); animation: emberDrift 6s infinite ease-in-out; opacity: 0; }
+  .embers span:nth-child(1) { left: 8%; animation-delay: 0s; }
+  .embers span:nth-child(2) { left: 18%; animation-delay: 1s; }
+  .embers span:nth-child(3) { left: 28%; animation-delay: 2.5s; width: 2px; height: 2px; }
+  .embers span:nth-child(4) { left: 38%; animation-delay: 0.5s; }
+  .embers span:nth-child(5) { left: 48%; animation-delay: 3s; }
+  .embers span:nth-child(6) { left: 58%; animation-delay: 1.5s; width: 2px; height: 2px; }
+  .embers span:nth-child(7) { left: 68%; animation-delay: 2s; }
+  .embers span:nth-child(8) { left: 78%; animation-delay: 4s; }
+  .embers span:nth-child(9) { left: 88%; animation-delay: 1s; }
+  .embers span:nth-child(10) { left: 14%; animation-delay: 3.5s; width: 2px; height: 2px; }
+  .embers span:nth-child(11) { left: 64%; animation-delay: 0.2s; }
+  .embers span:nth-child(12) { left: 84%; animation-delay: 2.8s; }
+  @keyframes emberDrift {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-340px) translateX(15px); opacity: 0; }
+  }
+
+  /* =================================================================== */
+  /* HYBRID A — Ember Theatre HERO + Investment Grade BODY                */
+  /* =================================================================== */
+  .hyb-a .mockup-hero {
+    background: #0B0906;
+    color: #EDE4D5;
+    font-family: 'Anuphan', 'Inter Tight', sans-serif;
+  }
+  .hyb-a .mockup-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: radial-gradient(ellipse at 50% 100%, rgba(232, 120, 42, 0.22) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hyb-a .hero-nav {
+    position: relative;
+    z-index: 4;
+    border-bottom: 1px solid rgba(232, 120, 42, 0.15);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hyb-a .hero-brand {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #EDE4D5;
+    letter-spacing: -0.005em;
+  }
+  .hyb-a .hero-brand small {
+    display: block;
+    font-family: 'Inter Tight', monospace;
+    font-size: 9px;
+    color: #E8782A;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    margin-top: 2px;
+  }
+  .hyb-a .hero-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.1em;
+  }
+  .hyb-a .hero-eyebrow {
+    font-family: 'Inter Tight', monospace;
+    font-size: 10.5px;
+    color: #E8782A;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 50px 0 16px;
+    text-align: center;
+    position: relative;
+    z-index: 4;
+  }
+  .hyb-a .hero-h {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 0 auto 20px;
+    max-width: 290px;
+    letter-spacing: -0.02em;
+    color: #EDE4D5;
+    text-align: center;
+    position: relative;
+    z-index: 4;
+  }
+  .hyb-a .hero-cta {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 11px 24px;
+    color: #E8782A;
+    border: 1px solid #E8782A;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 0 14px rgba(232, 120, 42, 0.4);
+    animation: emberPulse 4s infinite ease-in-out;
+    position: relative;
+    z-index: 4;
+  }
+  @keyframes emberPulse {
+    0%, 100% { box-shadow: 0 0 14px rgba(232, 120, 42, 0.4); }
+    50% { box-shadow: 0 0 32px rgba(232, 120, 42, 0.7); }
+  }
+  .hyb-a .hero-tempbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    z-index: 4;
+    opacity: 0.6;
+  }
+  .hyb-a .mockup-body {
+    background: #F7F6F3;
+    color: #141414;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .hyb-a .body-section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #525252;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .hyb-a .ig-card {
+    background: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .hyb-a .ig-badge {
+    display: inline-block;
+    padding: 4px 7px;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .hyb-a .ig-badge.red { background: #B91C1C; }
+  .hyb-a .ig-badge.navy { background: #1B3A6B; }
+  .hyb-a .ig-h {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .hyb-a .ig-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #737373;
+    margin-top: 6px;
+  }
+
+  /* =================================================================== */
+  /* HYBRID B — Cold-Open HERO + Weekend Dossier BODY                     */
+  /* =================================================================== */
+  .hyb-b .mockup-hero {
+    background:
+      linear-gradient(180deg, transparent 0%, transparent 50%, rgba(0,0,0,0.7) 100%),
+      radial-gradient(ellipse at 50% 30%, rgba(80, 60, 40, 0.4) 0%, transparent 60%),
+      linear-gradient(135deg, #2a1810 0%, #14100c 60%, #0a0805 100%);
+    color: #f0e8d8;
+    font-family: 'Noto Serif Thai', serif;
+    padding: 18px;
+    min-height: 480px;
+  }
+  .hyb-b .mockup-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 25% 35%, rgba(200, 180, 140, 0.06) 1px, transparent 2px),
+      radial-gradient(circle at 75% 65%, rgba(200, 180, 140, 0.05) 1px, transparent 2px);
+    background-size: 4px 4px, 5px 5px;
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .hyb-b .hero-nav {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 0.5px solid rgba(240, 232, 216, 0.2);
+    margin-bottom: 0;
+  }
+  .hyb-b .hero-brand {
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #f0e8d8;
+    letter-spacing: -0.005em;
+  }
+  .hyb-b .hero-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: rgba(240, 232, 216, 0.6);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .hyb-b .hero-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #B85C38;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .hyb-b .hero-title-card {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 24px;
+    z-index: 4;
+  }
+  .hyb-b .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: #B85C38;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hyb-b .hero-h {
+    font-family: 'Noto Serif Thai', serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.2;
+    color: #f0e8d8;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+    max-width: 280px;
+  }
+  .hyb-b .hero-byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(240, 232, 216, 0.7);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hyb-b .hero-rule {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #B85C38 30%, #B85C38 70%, transparent);
+    z-index: 4;
+    opacity: 0.6;
+  }
+  .hyb-b .mockup-body {
+    background: #F6F1E8;
+    color: #1B1A17;
+    font-family: 'Sarabun', 'Source Serif 4', serif;
+  }
+  .hyb-b .wd-card {
+    background: #FFFCF7;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1px solid #e8e0cc;
+  }
+  .hyb-b .wd-masthead {
+    display: flex;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #2E6D63;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid #c7b78f;
+    margin-bottom: 8px;
+  }
+  .hyb-b .wd-h {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .hyb-b .wd-lede {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #3a3933;
+  }
+
+  /* =================================================================== */
+  /* HYBRID C — Celluloid HERO + Provenance BODY                          */
+  /* =================================================================== */
+  .hyb-c .mockup-hero {
+    background: #0C0C09;
+    color: #DDD5C4;
+    font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+    padding: 18px;
+    min-height: 460px;
+    position: relative;
+  }
+  .hyb-c .mockup-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.018) 0.5px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255,255,255,0.022) 0.5px, transparent 1px),
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.018) 0.5px, transparent 1px);
+    background-size: 3px 3px, 4px 4px, 5px 5px;
+    pointer-events: none;
+    opacity: 0.55;
+    z-index: 1;
+  }
+  .hyb-c .hero-nav {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid #33332A;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+  .hyb-c .hero-brand {
+    font-family: 'Taviraj', serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #DDD5C4;
+    letter-spacing: 0.02em;
+  }
+  .hyb-c .hero-brand small {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: #E8A840;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .hyb-c .hero-reel {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.12em;
+  }
+  .hyb-c .hero-frame {
+    position: relative;
+    z-index: 3;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #2a2014 0%, #1a1410 60%, #0C0C09 100%);
+    border: 0.5px solid #33332A;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .hyb-c .hero-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 45%, #0C0C09 100%);
+    opacity: 0.85;
+  }
+  .hyb-c .hero-frame-label {
+    position: absolute;
+    bottom: 14px;
+    left: 16px;
+    right: 16px;
+    z-index: 5;
+  }
+  .hyb-c .hero-frame-scene {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: #E8A840;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .hyb-c .hero-frame-h {
+    font-family: 'Taviraj', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    color: #DDD5C4;
+    letter-spacing: -0.005em;
+  }
+  .hyb-c .hero-meta {
+    position: relative;
+    z-index: 4;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .hyb-c .mockup-body {
+    background:
+      linear-gradient(90deg, rgba(39, 32, 23, 0.06) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(39, 32, 23, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 18% 12%, rgba(0, 127, 109, 0.08), transparent 28rem),
+      radial-gradient(circle at 88% 18%, rgba(240, 179, 35, 0.12), transparent 24rem),
+      linear-gradient(135deg, #F8F2E8 0%, #F5F0E8 54%, #EBE3D4 100%);
+    background-size: 36px 36px, 36px 36px, auto, auto, auto;
+    color: #1C1814;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .hyb-c .mockup-body::before {
+    content: '';
+    position: absolute;
+    top: -25%;
+    right: -10%;
+    width: 220px;
+    height: 220px;
+    background: repeating-conic-gradient(from 12deg, rgba(184, 92, 58, 0.13) 0deg 12deg, transparent 12deg 24deg);
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 1;
+    animation: slow-turn 32s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes slow-turn { to { transform: rotate(1turn); } }
+  .hyb-c .pv-card {
+    background: #FFFCF7;
+    border: 1px solid rgba(28, 24, 20, 0.08);
+    box-shadow: 4px 4px 0 rgba(28, 24, 20, 0.10);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .hyb-c .pv-card-temp {
+    height: 3px;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    margin: -12px -14px 10px;
+    width: calc(100% + 28px);
+    position: relative;
+  }
+  .hyb-c .pv-card-temp::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 76%;
+    width: 2px;
+    height: 7px;
+    background: #1C1814;
+  }
+  .hyb-c .pv-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .hyb-c .pv-card-h {
+    font-family: 'Anuphan', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #1C1814;
+    flex: 1;
+    letter-spacing: -0.01em;
+  }
+  .hyb-c .pv-card-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 600;
+    padding: 3px 6px;
+    background: #B91C1C;
+    color: #FFFFFF;
+    letter-spacing: 0.12em;
+  }
+
+  /* =================================================================== */
+  /* HYBRID D — Custom beef.im signature HERO (body-agnostic)             */
+  /* =================================================================== */
+  .hyb-d .mockup-hero {
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(232, 120, 42, 0.20) 0%, transparent 65%),
+      linear-gradient(180deg, #0F0905 0%, #0B0805 100%);
+    color: #EDE4D5;
+    font-family: 'Anuphan', sans-serif;
+    padding: 22px 18px;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hyb-d .mockup-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -25%;
+    width: 320px;
+    height: 320px;
+    background: repeating-conic-gradient(from 12deg, rgba(232, 120, 42, 0.15) 0deg 12deg, transparent 12deg 24deg);
+    border-radius: 50%;
+    opacity: 0.55;
+    z-index: 1;
+    animation: slow-turn 32s linear infinite;
+    pointer-events: none;
+  }
+  .hyb-d .mockup-hero::after {
+    content: 'เนื้อ';
+    position: absolute;
+    left: -40px;
+    bottom: -90px;
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 800;
+    font-size: 320px;
+    line-height: 0.8;
+    color: rgba(232, 120, 42, 0.10);
+    letter-spacing: -0.05em;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hyb-d .hero-nav {
+    position: relative;
+    z-index: 5;
+    border-bottom: 1px solid rgba(232, 120, 42, 0.18);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hyb-d .hero-brand {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #EDE4D5;
+    letter-spacing: -0.01em;
+  }
+  .hyb-d .hero-brand small {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px;
+    color: #B8860B;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .hyb-d .hero-search {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.08em;
+  }
+  .hyb-d .hero-eyebrow {
+    font-family: 'Bricolage Grotesque', monospace;
+    font-size: 11px;
+    color: #B8860B;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 16px 0 14px;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+  }
+  .hyb-d .hero-h {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1.1;
+    margin: 0 auto 18px;
+    max-width: 290px;
+    letter-spacing: -0.025em;
+    color: #EDE4D5;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+  }
+  .hyb-d .hero-h .accent { color: #E8782A; }
+  .hyb-d .hero-cta-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 18px;
+    position: relative;
+    z-index: 5;
+  }
+  .hyb-d .hero-cta {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 9px 18px;
+    color: #E8782A;
+    border: 1px solid #E8782A;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 0 14px rgba(232, 120, 42, 0.4);
+    animation: emberPulse 4s infinite ease-in-out;
+  }
+  .hyb-d .hero-cta.ghost {
+    color: #B8860B;
+    border-color: rgba(184, 134, 11, 0.6);
+    box-shadow: none;
+    animation: none;
+  }
+  .hyb-d .hero-tempbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    z-index: 5;
+    opacity: 0.7;
+  }
+  .hyb-d .hero-tempbar::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 78%;
+    width: 2px;
+    height: 8px;
+    background: #EDE4D5;
+  }
+  .hyb-d .mockup-body {
+    background: #F7F6F3;
+    color: #141414;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .hyb-d .body-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #525252;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .hyb-d .body-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .hyb-d .body-card {
+    background: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    padding: 10px 12px;
+    box-shadow: 3px 3px 0 rgba(28, 24, 20, 0.08);
+  }
+  .hyb-d .body-card-badge {
+    display: inline-block;
+    padding: 3px 6px;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .hyb-d .body-card-badge.red { background: #B91C1C; }
+  .hyb-d .body-card-badge.navy { background: #1B3A6B; }
+  .hyb-d .body-card-h {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  footer { max-width: 1280px; margin: 56px auto 0; padding: 24px 0; border-top: 1px solid #27272a; font-size: 12px; color: #71717a; line-height: 1.6; }
+  footer code { font-family: ui-monospace, monospace; font-size: 11px; color: #a1a1aa; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>beef.im — UI/UX Direction Preview <small>5 · Cinematic Hero × Editorial Body Hybrids</small></h1>
+  <p>Fifth preview, addressing the gap none of the 14 LLM proposals filled: the legacy Nerd-with-Nart pattern of <strong>cinematic hero + editorial body</strong>. Every model in the original brainstorm interpreted "เน้นเนื้อๆ ไม่เอาน้ำ" as "no theatrical hero" — they all converged on uniform restraint. But the brand thesis ประกันเนื้อๆ deserves the contradiction enacted: a showoff hero (the contradiction made cinematic) followed by a substance body (the contradiction delivered).</p>
+  <p>Each mockup below shows BOTH layers in one frame — the cinematic hero on top, the editorial body beneath, with a subtle transition rule between them. Scroll past the mockup hero in your imagination; that's where the editorial register takes over.</p>
+  <div class="thesis"><strong>Pattern thesis.</strong> Hero and body don't have to share visual register. Legacy NWN proved this — EmberGlow particles + atmospheric mountain depth on the homepage, then editorial reading register everywhere else. The cinematic moment <em>earns</em> the editorial substance that follows. None of Picks 1–5 from Preview1 break — they just gain a detachable hero module.</div>
+  <div class="meta">Companion files · Preview-Opus4.7.html (safe shortlist) · Preview2-Opus4.7.html (cinematic full-site treatments) · Analysis-Opus4.7.md · Open in Firefox/Chrome for accurate Thai font rendering. Each mockup is ~760px tall to fit hero + body.</div>
+</header>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- HYBRID A — Ember Theatre HERO + Investment Grade BODY        -->
+<!-- ============================================================ -->
+<article class="direction" id="hybrid-a">
+  <div class="dir-header">
+    <span class="dir-num">HYBRID A</span>
+    <h2 class="dir-title">Ember Theatre Hero × Investment Grade Body</h2>
+    <span class="dir-formula">cinematic dark hero → light institutional body</span>
+    <p class="dir-mood">"The contradiction lives in the transition. Dark cinematic gravity drops you in. Light editorial substance keeps you reading."</p>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup hyb-a">
+      <div class="mockup-hero">
+        <div class="embers">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="hero-nav">
+          <div class="hero-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div>
+          <div class="hero-status">EVENING · APR 26</div>
+        </div>
+        <div class="hero-eyebrow">FEATURED · POLICY TEARDOWN</div>
+        <h2 class="hero-h">ค่าธรรมเนียมที่เผาเงินคุณช้าๆ</h2>
+        <a class="hero-cta">อ่านบทวิเคราะห์</a>
+        <div class="hero-tempbar"></div>
+      </div>
+      <div class="mockup-body">
+        <span class="transition-tag">↓ EDITORIAL BODY ↓</span>
+        <div class="body-section-tag">บทวิเคราะห์ล่าสุด</div>
+        <div class="ig-card">
+          <span class="ig-badge red">UNDERWEIGHT</span>
+          <h3 class="ig-h">Unit-linked: COI ปีที่ 30</h3>
+          <div class="ig-meta">AIA-UL · 2,840w · 11 MIN</div>
+        </div>
+        <div class="ig-card">
+          <span class="ig-badge navy">WELL MARBLED</span>
+          <h3 class="ig-h">Reverse-sear ribeye 4"</h3>
+          <div class="ig-meta">RIBEYE-54C · 1,420w · 6 MIN</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Hero spec (top half)</h4>
+      <div class="hero-spec">Warm-dark canvas (<code>#0B0906</code>) · 12 ember particles drifting up (visible animating right now) · single Anuphan ExtraBold Thai headline at 30px · pulsing CTA on a 4-second amber glow loop · temperature bar at the bottom edge as a teaser for what the body register uses. Reuses your existing <code>EmberGlow.tsx</code> particle physics directly — no new code needed for the particle system.</div>
+
+      <h4>Body spec (bottom half)</h4>
+      <div class="body-spec">Light cream <code>#F7F6F3</code> · IBM Plex Sans Thai everywhere · rating badges (<code>UNDERWEIGHT</code> red, <code>WELL MARBLED</code> navy) · clean institutional research register. The full Investment Grade system from Pick 1 of Preview1, unchanged.</div>
+
+      <h4>Why this hybrid lands</h4>
+      <p>The dark hero stages the contradiction: gravity, atmosphere, the brand insists on being taken seriously. The light body delivers on it: clean, scannable, every article gets a verdict. Reader's first impression is theatrical; reader's working impression is institutional. Both are true. The brand thesis <code>ประกันเนื้อๆ</code> = the dark mood is the <em>ประกัน</em> (gravity), the editorial body is the <em>เนื้อๆ</em> (substance).</p>
+
+      <h4>Direct lineage to legacy</h4>
+      <div class="legacy-callout">This is the closest direct port of the legacy Nerd-with-Nart pattern. EmberGlow particle physics already shipped at commit <code>3c8b871</code> — just retune the hero CSS, drop the editorial Investment Grade body beneath. The mountaineering theme retires; the cinematic-hero pattern survives.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Code reuse from current beef.im</span><span class="value">High · EmberGlow physics carry over directly</span>
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Anuphan + IBM Plex full family free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · particles + ember pulse (hero only)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Hero penalized · body fully readable</span>
+        <span class="label">Build complexity</span><span class="value">Low — both halves already specified</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- HYBRID B — Cold-Open HERO + Weekend Dossier BODY             -->
+<!-- ============================================================ -->
+<article class="direction" id="hybrid-b">
+  <div class="dir-header">
+    <span class="dir-num b">HYBRID B</span>
+    <h2 class="dir-title">Cold-Open Hero × Weekend Dossier Body</h2>
+    <span class="dir-formula">documentary title-card hero → editorial broadsheet body</span>
+    <p class="dir-mood">"Opens like the first scene of a documentary. Reads like the report it's based on."</p>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup hyb-b">
+      <div class="mockup-hero">
+        <div class="hero-nav">
+          <div class="hero-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div>
+          <div class="hero-date">SAT · 26 APR 26</div>
+        </div>
+        <div class="hero-title-card">
+          <div class="hero-eyebrow">CASE FILE 04 · POLICY DESK</div>
+          <h2 class="hero-h">ผมอ่านสัญญาให้คุณ — ทีละหน้า</h2>
+          <div class="hero-byline">โดย ณัฐพล · 2,840 WORDS</div>
+        </div>
+        <div class="hero-rule"></div>
+      </div>
+      <div class="mockup-body">
+        <span class="transition-tag">↓ EDITORIAL BODY ↓</span>
+        <div class="wd-card">
+          <div class="wd-masthead">
+            <span style="color:#B85C38;font-weight:600;">POLICY DESK</span>
+            <span>2,840w · 11 MIN</span>
+          </div>
+          <h3 class="wd-h">Unit-linked: ค่า COI ปีที่ 30</h3>
+          <p class="wd-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ</p>
+        </div>
+        <div class="wd-card">
+          <div class="wd-masthead">
+            <span style="color:#B85C38;font-weight:600;">FOOD DESK</span>
+            <span>1,420w · 6 MIN</span>
+          </div>
+          <h3 class="wd-h">Reverse-sear ribeye 4" — กฎ 3 ข้อ</h3>
+          <p class="wd-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Hero spec (top half)</h4>
+      <div class="hero-spec">Full-bleed atmospheric darkness (warm dark gradient simulating moody documentary still) · subtle film-grain noise overlay · Noto Serif Thai headline anchored low-left (the "title card" pin position) · persimmon-red eyebrow + byline · thin gold rule across the bottom signaling the cinematic frame. In production: this hero PINS for the first 80vh of scroll, with the headline rising 24px and byline fading in, before releasing into the body.</div>
+
+      <h4>Body spec (bottom half)</h4>
+      <div class="body-spec">Cream paper <code>#F6F1E8</code> · Sarabun + Noto Serif Thai · masthead block (POLICY DESK · 2,840w · 11 MIN) above every headline · the full Weekend Dossier system from Pick 3 of Preview1, unchanged.</div>
+
+      <h4>Why this hybrid lands</h4>
+      <p>The Slow Cinema cold-open is the most cinematic instinct in the entire 14-LLM bake-off — but applied to a whole site, it would punish mobile sunlight readability. Used <em>only as a hero</em> on the homepage, it earns its drama: visitor experiences the documentary opening, then drops into the dossier register that's actually built for sustained reading. Best for a brand that wants to feel like a serious publication AND signal that every story has weight.</p>
+
+      <h4>Direct lineage to legacy</h4>
+      <div class="legacy-callout">This is the legacy Nerd-with-Nart pattern with the cinematography updated. The mountain-summit hero becomes a documentary-still hero (atmospheric darkness with single warm anchor) instead of arctic snowstorm. Same emotional gravity, different visual lexicon. The body register inherits Weekend Dossier's editorial discipline — no atmospheric overlay carries past the hero release point.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Noto Serif Thai + Sarabun free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · scroll-locked title-card pin</span>
+        <span class="label">Hero photography</span><span class="value">Required · atmospheric document-still</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Hero only · body fully readable</span>
+        <span class="label">Build complexity</span><span class="value">Medium · scroll-pin + IntersectionObserver release</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- HYBRID C — Celluloid HERO + Provenance BODY                  -->
+<!-- ============================================================ -->
+<article class="direction" id="hybrid-c">
+  <div class="dir-header">
+    <span class="dir-num c">HYBRID C</span>
+    <h2 class="dir-title">Celluloid Hero × Provenance Body</h2>
+    <span class="dir-formula">35mm framed cinematic hero → cream-grid synthesis body</span>
+    <p class="dir-mood">"A held film frame opens the page. The instrument-grade publication catalogues what the frame promised."</p>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup hyb-c">
+      <div class="mockup-hero">
+        <div class="hero-nav">
+          <div class="hero-brand">ประกันเนื้อๆ<small>REEL · BEEF.IM</small></div>
+          <div class="hero-reel">REEL 04 · FRAME 12</div>
+        </div>
+        <div class="hero-frame">
+          <div class="hero-frame-label">
+            <div class="hero-frame-scene">SCENE 12 · POLICY TEARDOWN</div>
+            <h3 class="hero-frame-h">ค่าธรรมเนียมที่เผาเบี้ยทิ้งทุกปี</h3>
+          </div>
+        </div>
+        <div class="hero-meta">RUNTIME 11:00 · DOSSIER ARCHIVE</div>
+      </div>
+      <div class="mockup-body">
+        <span class="transition-tag">↓ EDITORIAL BODY ↓</span>
+        <div class="pv-card">
+          <div class="pv-card-temp"></div>
+          <div class="pv-card-row">
+            <h4 class="pv-card-h">Unit-linked: COI escalation</h4>
+            <span class="pv-card-badge">HIGH RISK</span>
+          </div>
+        </div>
+        <div class="pv-card">
+          <div class="pv-card-temp" style="background:linear-gradient(to right, #3B7DD8, #F5A623);"></div>
+          <div class="pv-card-row">
+            <h4 class="pv-card-h">Reverse-sear ribeye 4"</h4>
+            <span class="pv-card-badge" style="background:#1B3A6B;">MEDIUM RARE</span>
+          </div>
+        </div>
+        <div class="pv-card">
+          <div class="pv-card-temp" style="background:linear-gradient(to right, #3B7DD8 0%, #3B7DD8 30%, #F5A623 60%);"></div>
+          <div class="pv-card-row">
+            <h4 class="pv-card-h">Term ดีกว่า Whole Life</h4>
+            <span class="pv-card-badge" style="background:#005F73;">EXPLAINER</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Hero spec (top half)</h4>
+      <div class="hero-spec">Projection-booth dark <code>#0C0C09</code> · subtle film-grain noise (visible — pixel-grain texture overlay) · 16:9 framed image area with vignette + halation (the Celluloid signature) · Taviraj serif title at 22px in subtitle-cream · golden hour scene-tag accent · DM Mono runtime metadata. The cinematic frame discipline says: this isn't a banner, this is a <em>held shot</em>.</div>
+
+      <h4>Body spec (bottom half)</h4>
+      <div class="body-spec">Cream grid (5-layer CSS texture, visible) · slowly rotating persimmon sunburst top-right (32s per turn — you can see it rotating now) · Anuphan headlines · temperature bars on every card · rating badges + verdict colors. The full Provenance synthesis from Preview3, unchanged.</div>
+
+      <h4>Why this hybrid lands</h4>
+      <p>The most ambitious of the four. The film frame opens with curatorial gravity (this is a <em>held</em> moment, not a hero banner), then drops into the most information-dense system in any preview (rating badges + temperature bars + stamps + sunburst). Reader's first emotional read: this is a serious publication that respects time. Reader's working impression: every article is graded, every preview is scannable. The cinematic moment becomes the publication's signature opening sequence.</p>
+
+      <h4>Direct lineage to legacy</h4>
+      <div class="legacy-callout">Legacy NWN's mountain hero was full-bleed photography with atmospheric depth. Celluloid hero updates this to a 16:9 framed shot with vignette + grain — same "this matters, slow down" gravity, but with curatorial restraint added (the film-frame says: this image was chosen for this slot, it's not just decoration). Body inherits Provenance's full structural system — most rigorous content architecture in any preview.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Code reuse from current beef.im</span><span class="value">Medium · sunburst replaces some EmberGlow on home</span>
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Taviraj + Anuphan + IBM Plex + Bricolage free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · sunburst rotation + film-grain overlay</span>
+        <span class="label">Hero photography</span><span class="value">Required · 16:9 cinematic frame quality</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Hero only · body fully readable</span>
+        <span class="label">Build complexity</span><span class="value">Medium-High · most components per page</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- HYBRID D — Custom signature hero (body-agnostic)             -->
+<!-- ============================================================ -->
+<article class="direction" id="hybrid-d">
+  <div class="dir-header">
+    <span class="dir-num d">HYBRID D</span>
+    <h2 class="dir-title">beef.im Signature Hero × Any Body</h2>
+    <span class="dir-formula">brand-specific hero module → swap-in compatible with Picks 1–5</span>
+    <p class="dir-mood">"Build the hero once. Decide the body later. The cinematic moment is portable."</p>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup hyb-d">
+      <div class="mockup-hero">
+        <div class="embers">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="hero-nav">
+          <div class="hero-brand">ประกันเนื้อๆ<small>BEEF · IM</small></div>
+          <div class="hero-search">⌘K</div>
+        </div>
+        <div class="hero-eyebrow">เน้นเนื้อๆ ไม่เอาน้ำ</div>
+        <h2 class="hero-h">ดูเนื้อ <span class="accent">ไม่ดูหน้า</span></h2>
+        <div class="hero-cta-row">
+          <a class="hero-cta">บทวิเคราะห์</a>
+          <a class="hero-cta ghost">เริ่มอ่าน</a>
+        </div>
+        <div class="hero-tempbar"></div>
+      </div>
+      <div class="mockup-body">
+        <span class="transition-tag">↓ ANY EDITORIAL BODY ↓</span>
+        <div class="body-tag">[ swap-in compatible — example: Investment Grade body ]</div>
+        <div class="body-card-grid">
+          <div class="body-card">
+            <span class="body-card-badge red">HIGH RISK</span>
+            <h4 class="body-card-h">Unit-linked teardown</h4>
+          </div>
+          <div class="body-card">
+            <span class="body-card-badge navy">WELL MARBLED</span>
+            <h4 class="body-card-h">Reverse-sear ribeye</h4>
+          </div>
+          <div class="body-card">
+            <span class="body-card-badge" style="background:#005F73;color:#fff;">EXPLAINER</span>
+            <h4 class="body-card-h">Term vs Whole Life</h4>
+          </div>
+          <div class="body-card">
+            <span class="body-card-badge" style="background:#B8860B;color:#fff;">VERIFIED</span>
+            <h4 class="body-card-h">case AIA-MP-CI</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Hero spec (the brand-specific part)</h4>
+      <div class="hero-spec">All five cinematic techniques from across the bake-off, combined into ONE custom hero module:<br>
+        ① 12 ember particles drifting (animating now) — from <code>EmberGlow.tsx</code> reuse<br>
+        ② Slow conic-gradient sunburst top-right (rotating, 32s) — from Provenance<br>
+        ③ Massive Thai character "เนื้อ" at 320px set in Anuphan ExtraBold, bottom-left, 10% opacity — from Yaowarat Code's giant glyph marker, retuned for atmosphere not chaos<br>
+        ④ Master line ดูเนื้อ ไม่ดูหน้า rendered as the brand statement (not just a tagline) at 32px Anuphan ExtraBold with persimmon accent on ไม่ดูหน้า<br>
+        ⑤ Temperature bar at hero bottom edge as a teaser for the editorial system below + dual CTAs (one pulsing primary, one ghost secondary)<br>
+        Pure CSS, ~3 KB, zero image assets, GPU-composited, <code>prefers-reduced-motion</code> compliant. The brand mark is the hero — no photography required.</div>
+
+      <h4>Body — your choice</h4>
+      <div class="body-spec">This hero is <strong>body-agnostic</strong>. The example below uses Investment Grade (light cream + rating badges in 2-col grid), but the hero works equally for:<br>
+        — Pick 1 Investment Grade · Pick 2 Docket# · Pick 3 Weekend Dossier · Pick 4 Temperature Grade · Pick 5 Engraved · Swing alt Open Market<br>
+        Decide the editorial register based on voice (institutional vs. vernacular) without recompiling the hero.</div>
+
+      <h4>Why this is the most strategically flexible</h4>
+      <p>The other three hybrids couple a specific hero to a specific body. This one decouples them. Build the signature hero once — it becomes the brand's recognizable opening regardless of which editorial direction wins for the body. If you change your mind on the body register six months from now, the hero stays. If you A/B test two body registers (Investment Grade vs. Open Market), the hero stays. The cinematic moment becomes infrastructure, not a styling choice.</p>
+
+      <h4>Direct lineage to legacy</h4>
+      <div class="legacy-callout">This is the strongest evolution path from the legacy Nerd-with-Nart pattern. NWN had EmberGlow + Snowstorm as detachable atmospheric components. Hybrid D extends the principle: the entire <em>hero</em> becomes a detachable component, designed once and applied across whichever body direction ships. The brand thesis lives in the hero (<code>ดูเนื้อ ไม่ดูหน้า</code> + atmospheric depth + temperature teaser), the brand's content discipline lives in the body. Legacy code from <code>EmberGlow.tsx</code> at <code>3c8b871</code> drops directly into this hero unchanged.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Code reuse from current beef.im</span><span class="value">Highest of all four hybrids · EmberGlow + sunburst + temp bar all reusable</span>
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Anuphan + IBM Plex + Bricolage Grotesque free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · 12 particles + sunburst + ember pulse</span>
+        <span class="label">Hero photography</span><span class="value">None required · type-driven hero</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Hero penalized · body fully readable (any pick)</span>
+        <span class="label">Build complexity</span><span class="value">Medium · isolated component, decoupled from body decision</span>
+        <span class="label">Strategic flexibility</span><span class="value">Highest of all four hybrids</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer>
+  <p>Companion documents: <code>Analysis-Opus4.7.md</code> · <code>Preview-Opus4.7.html</code> · <code>Preview2-Opus4.7.html</code> · <code>Preview3-Opus4.7.html</code> · <code>Preview4-Opus4.7.html</code> · <code>Synthesis-Hybrid-Provenance.md</code>.</p>
+  <p style="margin-top:8px;">All four hybrid mockups have working CSS animations: ember particles drifting (Hybrids A and D), sunburst rotating at 32s per turn (Hybrid C and D), ember-pulse CTA glow (A and D). The <code>prefers-reduced-motion</code> system query disables all of them — production-ready as shown.</p>
+  <p style="margin-top:8px;">Decision sequence for the cinematic-hero direction: (1) decide whether the hero IS the brand signature (Hybrid D) or a moment-in-service-of-content (A, B, C); (2) if the latter, decide whether the body register is institutional (A/C) or editorial-restrained (B); (3) if Hybrid D, decide the body separately and swap as needed. The hero as <em>infrastructure</em> rather than <em>styling</em> is the strategic shift this preview proposes.</p>
+</footer>
+
+</body>
+</html>

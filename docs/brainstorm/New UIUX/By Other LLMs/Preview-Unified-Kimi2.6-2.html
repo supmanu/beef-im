@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — UI/UX Direction Preview · Unified Spectrum · Kimi K2.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700;800&family=Bai+Jamjuree:wght@400;600;700;800;900&family=Barlow+Condensed:wght@400;700;900&family=Bricolage+Grotesque:wght@400;700&family=Caveat:wght@400;700&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&family=Fraunces:ital,wght@0,400;0,700;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Serif:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=K2D:wght@300;400&family=Noto+Sans+Thai:wght@400;500;700&family=Prompt:wght@400;500;600;700;800;900&family=Sarabun:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0a0a0c;
+    color: #d4d4d8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+    min-height: 100vh;
+  }
+
+  /* ============ Header ============ */
+  .page-header {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #27272a;
+  }
+  .page-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fafafa;
+    margin-bottom: 12px;
+  }
+  .page-header h1 small {
+    font-size: 16px;
+    color: #a1a1aa;
+    font-weight: 400;
+    margin-left: 8px;
+  }
+  .page-header p {
+    color: #a1a1aa;
+    font-size: 14.5px;
+    line-height: 1.65;
+    max-width: 820px;
+  }
+  .page-header p + p { margin-top: 12px; }
+  .page-header .meta {
+    margin-top: 16px;
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    color: #71717a;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ Model divider ============ */
+  .model-divider {
+    max-width: 1280px;
+    margin: 56px auto 32px;
+    padding: 18px 28px;
+    background: #13131a;
+    border: 1px solid #27272a;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .model-divider::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fbbf24;
+    flex-shrink: 0;
+  }
+  .model-divider h2 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fafafa;
+    letter-spacing: 0.03em;
+  }
+  .model-divider .model-meta {
+    margin-left: auto;
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: #71717a;
+  }
+
+  /* ============ Quick comparison strip ============ */
+  .overview {
+    max-width: 1280px;
+    margin: 0 auto 48px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 14px;
+    padding: 20px 24px;
+  }
+  .overview h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #71717a;
+    font-family: ui-monospace, monospace;
+    margin-bottom: 14px;
+  }
+  .overview-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 110px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #27272a;
+  }
+  .overview-row:last-child { border-bottom: none; }
+  .overview-name { font-size: 13.5px; color: #fafafa; font-weight: 500; }
+  .overview-name a { color: inherit; text-decoration: none; }
+  .overview-name a:hover { color: #fafafa; text-decoration: underline; }
+  .overview-name .pick { font-family: ui-monospace, monospace; font-size: 10px; color: #71717a; display: block; margin-bottom: 2px; letter-spacing: 0.08em; }
+  .overview-strip { display: flex; gap: 4px; height: 32px; border-radius: 6px; overflow: hidden; }
+  .overview-strip > div { flex: 1; }
+  .overview-score { font-family: ui-monospace, monospace; font-size: 11px; color: #a1a1aa; text-align: right; }
+
+  /* ============ Direction card ============ */
+  main { max-width: 1280px; margin: 0 auto; display: grid; gap: 56px; }
+
+  .direction {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 18px;
+    padding: 28px;
+  }
+  .dir-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #27272a;
+  }
+  .dir-num {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 8px;
+    background: #27272a;
+    border-radius: 4px;
+  }
+  .dir-num.alt { background: #422006; color: #fbbf24; }
+  .dir-num.wild { background: #3b0764; color: #c084fc; }
+  .dir-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fafafa;
+    letter-spacing: -0.01em;
+  }
+  .dir-source {
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    color: #a1a1aa;
+    margin-left: auto;
+  }
+  .dir-mood {
+    width: 100%;
+    margin-top: 6px;
+    color: #d4d4d8;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ============ Palette ============ */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .swatch {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch-color { height: 84px; }
+  .swatch-meta {
+    background: #0a0a0c;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .swatch-role {
+    font-family: ui-monospace, monospace;
+    font-size: 9.5px;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+  .swatch-hex {
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+    color: #fafafa;
+    font-weight: 600;
+    margin-top: 3px;
+  }
+
+  /* ============ Body two-column ============ */
+  .dir-body {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .dir-body { grid-template-columns: 1fr; }
+    .palette { grid-template-columns: repeat(3, 1fr); }
+    .overview-row { grid-template-columns: 1fr; gap: 8px; }
+    .model-divider { flex-wrap: wrap; }
+    .model-divider .model-meta { margin-left: 0; width: 100%; }
+  }
+
+  /* ============ Mockup base ============ */
+  .mockup {
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 540px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .mockup-frame { padding: 18px; }
+  .mockup-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+  }
+  .mockup-card {
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .mockup-card:last-child { margin-bottom: 0; }
+  .mockup-h { line-height: 1.3; margin-bottom: 8px; }
+  .mockup-lede { font-size: 12.5px; line-height: 1.55; }
+  .mockup-meta-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .mockup-chip {
+    display: inline-block;
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+  }
+  .mockup-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* ============ Notes column ============ */
+  .notes h4 {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #71717a;
+    margin-bottom: 8px;
+    margin-top: 18px;
+  }
+  .notes h4:first-child { margin-top: 0; }
+  .notes p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #d4d4d8;
+    margin-bottom: 4px;
+  }
+  .notes p code {
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    background: #27272a;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #fbbf24;
+  }
+  .notes .axes {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 16px;
+    margin-top: 8px;
+    font-family: ui-monospace, monospace;
+    font-size: 11.5px;
+  }
+  .notes .axes .label { color: #71717a; }
+  .notes .axes .value { color: #fafafa; text-align: right; }
+  .notes .tradeoff {
+    background: #1c1917;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #d4d4d8;
+    margin-top: 6px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 1 — DEEP RESEARCH                                        */
+  /* =================================================================== */
+  .mock-deep-research {
+    background: #FDFCF8;
+    color: #1A1A18;
+    font-family: 'Sarabun', 'Source Serif 4', serif;
+  }
+  .mock-deep-research .mockup-nav {
+    border-bottom: 1px solid #e5e2db;
+  }
+  .mock-deep-research .nav-brand {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: #1A1A18;
+    letter-spacing: -0.01em;
+  }
+  .mock-deep-research .nav-brand small {
+    display: block;
+    font-family: 'Fira Code', monospace;
+    font-size: 9px;
+    color: #737373;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+  }
+  .mock-deep-research .nav-search {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: #525252;
+    padding: 5px 10px;
+    border: 1px solid #d4d0c8;
+    border-radius: 3px;
+    background: #F5F2EB;
+  }
+  .mock-deep-research .dr-card {
+    background: #F5F2EB;
+    border: 1px solid #e5e2db;
+    padding: 14px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mock-deep-research .dr-h {
+    font-family: 'Prompt', 'Fraunces', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+    color: #1A1A18;
+  }
+  .mock-deep-research .dr-lede {
+    font-family: 'Sarabun', 'Source Serif 4', serif;
+    font-size: 12.5px;
+    color: #3a3933;
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .mock-deep-research .dr-annotation {
+    position: absolute;
+    right: -12px;
+    top: 14px;
+    width: 90px;
+    font-family: 'Fira Code', monospace;
+    font-size: 9.5px;
+    color: #2456C8;
+    opacity: 0.65;
+    line-height: 1.45;
+    display: none; /* hidden in narrow mockup; shown via inline sim below */
+  }
+  .mock-deep-research .dr-inline-note {
+    font-family: 'Fira Code', monospace;
+    font-size: 10.5px;
+    color: #2456C8;
+    background: rgba(36,86,200,0.06);
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+  .mock-deep-research .dr-meta {
+    display: flex;
+    gap: 14px;
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: #737373;
+    padding-top: 10px;
+    border-top: 1px solid #e5e2db;
+    margin-top: 10px;
+  }
+  .mock-deep-research .dr-critical {
+    color: #D4480A;
+    font-weight: 600;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 2 — YAKINIKU PRIVATE                                     */
+  /* =================================================================== */
+  .mock-yakiniku {
+    background: #0D0B0A;
+    color: #E5DDD0;
+    font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+  }
+  .mock-yakiniku .mockup-nav {
+    border-bottom: 2px solid #C27832;
+  }
+  .mock-yakiniku .nav-brand {
+    font-family: 'Anuphan', 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+    color: #E5DDD0;
+    letter-spacing: -0.01em;
+  }
+  .mock-yakiniku .nav-brand small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #8a7e72;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    margin-top: 1px;
+  }
+  .mock-yakiniku .nav-menu {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8a7e72;
+    letter-spacing: 0.05em;
+  }
+  .mock-yakiniku .yk-card {
+    background: #1C1714;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mock-yakiniku .yk-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #C27832;
+  }
+  .mock-yakiniku .yk-h {
+    font-family: 'Anuphan', 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    color: #E5DDD0;
+  }
+  .mock-yakiniku .yk-lede {
+    font-size: 12.5px;
+    color: #b5a99a;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-yakiniku .yk-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8a7e72;
+    padding-top: 10px;
+    border-top: 1px solid #2a231e;
+  }
+  .mock-yakiniku .yk-critical {
+    color: #E8452A;
+    font-weight: 600;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 3 — INVESTMENT GRADE (Sonnet 4.6)                        */
+  /* =================================================================== */
+  .mock-sonnet-investment {
+    background: #F7F6F3;
+    color: #141414;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+  }
+  .mock-sonnet-investment .mockup-nav {
+    border-bottom: 1px solid #d4d4d8;
+  }
+  .mock-sonnet-investment .nav-brand {
+    font-weight: 700;
+    font-size: 16px;
+    color: #141414;
+  }
+  .mock-sonnet-investment .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #737373;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+  }
+  .mock-sonnet-investment .nav-search {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #525252;
+    padding: 5px 10px;
+    border: 1px solid #d4d4d8;
+    border-radius: 3px;
+  }
+  .mock-sonnet-investment .ig-card {
+    background: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .mock-sonnet-investment .ig-badge {
+    display: inline-block;
+    padding: 5px 8px;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .mock-sonnet-investment .ig-badge.underweight { background: #B91C1C; }
+  .mock-sonnet-investment .ig-badge.well-marbled { background: #1B3A6B; }
+  .mock-sonnet-investment .ig-h {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .mock-sonnet-investment .ig-lede {
+    font-size: 12.5px;
+    color: #525252;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-sonnet-investment .ig-meta {
+    display: flex;
+    gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #737373;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 4 — BANGKOK ZINE                                         */
+  /* =================================================================== */
+  .mock-bangkok-zine {
+    background: #1A1208;
+    color: #F2E8D0;
+    font-family: 'Sarabun', 'DM Sans', sans-serif;
+  }
+  .mock-bangkok-zine .mockup-nav {
+    border-bottom: 1px solid #3a2a18;
+    padding-bottom: 12px;
+  }
+  .mock-bangkok-zine .nav-brand {
+    font-family: 'Bai Jamjuree', 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: #F2E8D0;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .mock-bangkok-zine .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #8a7e72;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+  .mock-bangkok-zine .bz-card {
+    background: #2B1F0F;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mock-bangkok-zine .bz-sticker {
+    display: inline-block;
+    font-family: 'Bai Jamjuree', 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+  .mock-bangkok-zine .bz-sticker.yellow { background: #E8B020; color: #1A1208; transform: rotate(-2deg); }
+  .mock-bangkok-zine .bz-sticker.red { background: #E83020; color: #fff; transform: rotate(1.5deg); }
+  .mock-bangkok-zine .bz-h {
+    font-family: 'Bai Jamjuree', 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #F2E8D0;
+    letter-spacing: -0.01em;
+  }
+  .mock-bangkok-zine .bz-lede {
+    font-family: 'Sarabun', 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    color: #c7b89a;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-bangkok-zine .bz-meta {
+    display: flex;
+    gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #8a7e72;
+    padding-top: 10px;
+    border-top: 1px solid #3a2a18;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 5 — COLD PROTOCOL                                        */
+  /* =================================================================== */
+  .mock-cold-protocol {
+    background: #F8F9FA;
+    color: #1D2025;
+    font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+  }
+  .mock-cold-protocol .mockup-nav {
+    border-bottom: 1px solid #d4d4d8;
+  }
+  .mock-cold-protocol .nav-brand {
+    font-family: 'Prompt', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1D2025;
+    letter-spacing: -0.01em;
+  }
+  .mock-cold-protocol .nav-brand small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #71717a;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+  }
+  .mock-cold-protocol .nav-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #00795C;
+    letter-spacing: 0.05em;
+  }
+  .mock-cold-protocol .cp-card {
+    background: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    padding: 14px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mock-cold-protocol .cp-crosshair {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    color: #00795C;
+    opacity: 0.4;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1;
+  }
+  .mock-cold-protocol .cp-crosshair.tl { top: 4px; left: 4px; }
+  .mock-cold-protocol .cp-crosshair.tr { top: 4px; right: 4px; }
+  .mock-cold-protocol .cp-crosshair.bl { bottom: 4px; left: 4px; }
+  .mock-cold-protocol .cp-crosshair.br { bottom: 4px; right: 4px; }
+  .mock-cold-protocol .cp-h {
+    font-family: 'Prompt', 'Inter', sans-serif;
+    font-size: 16.5px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .mock-cold-protocol .cp-lede {
+    font-size: 12.5px;
+    color: #525252;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-cold-protocol .cp-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #00795C;
+    background: rgba(0,121,92,0.05);
+    padding: 8px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .mock-cold-protocol .cp-meta {
+    display: flex;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #737373;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .mock-cold-protocol .cp-critical {
+    color: #C81414;
+    font-weight: 600;
+  }
+
+  /* =================================================================== */
+  /* WILDCARD — LIVING TERMINAL                                         */
+  /* =================================================================== */
+  .mock-living-terminal {
+    background: #080a0c;
+    color: #00d26a;
+    font-family: 'IBM Plex Mono', 'IBM Plex Mono Thai', monospace;
+  }
+  .mock-living-terminal .mockup-nav {
+    border-bottom: 1px solid #1a2e1a;
+    padding-bottom: 12px;
+  }
+  .mock-living-terminal .nav-brand {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 14px;
+    color: #00d26a;
+    letter-spacing: 0.04em;
+  }
+  .mock-living-terminal .nav-brand small {
+    display: block;
+    font-size: 9px;
+    color: #00a854;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    margin-top: 1px;
+  }
+  .mock-living-terminal .nav-ticker {
+    font-size: 10px;
+    color: #00a854;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .mock-living-terminal .lt-card {
+    background: #0d1210;
+    border: 1px solid #1a2e1a;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .mock-living-terminal .lt-ticker {
+    font-size: 10px;
+    color: #00a854;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #1a2e1a;
+  }
+  .mock-living-terminal .lt-h {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    color: #00d26a;
+  }
+  .mock-living-terminal .lt-lede {
+    font-size: 11.5px;
+    color: #7adfa0;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-living-terminal .lt-spark {
+    height: 24px;
+    background: linear-gradient(to right, #00a854 0%, #00a854 30%, #00d26a 50%, #00a854 70%, #00a854 100%);
+    opacity: 0.25;
+    margin-bottom: 10px;
+    clip-path: polygon(0% 60%, 10% 50%, 20% 70%, 30% 40%, 40% 55%, 50% 30%, 60% 50%, 70% 45%, 80% 60%, 90% 35%, 100% 50%, 100% 100%, 0% 100%);
+  }
+  .mock-living-terminal .lt-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #00a854;
+    padding-top: 10px;
+    border-top: 1px solid #1a2e1a;
+  }
+  .mock-living-terminal .lt-red { color: #ff4d4f; }
+  .mock-living-terminal .lt-amber { color: #ffaa00; }
+
+  /* =================================================================== */
+  /* OPUS 4.7 — THE LAB NOTEBOOK                                        */
+  /* =================================================================== */
+  .mock-lab-notebook {
+    background:
+      linear-gradient(90deg, rgba(175, 165, 145, 0.18) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(175, 165, 145, 0.18) 1px, transparent 1px),
+      radial-gradient(ellipse at center, transparent 60%, rgba(180, 160, 130, 0.08) 100%),
+      linear-gradient(180deg, #F5F2EA 0%, #F3EFE5 100%);
+    background-size: 24px 24px, 24px 24px, auto, auto;
+    color: #1C1814;
+    font-family: 'Sarabun', 'Source Serif 4', serif;
+  }
+  .mock-lab-notebook .mockup-nav {
+    border-bottom: 1px solid rgba(175, 165, 145, 0.35);
+    padding-bottom: 12px;
+  }
+  .mock-lab-notebook .nav-brand {
+    font-family: 'Anuphan', 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: #1C1814;
+    letter-spacing: -0.01em;
+  }
+  .mock-lab-notebook .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #6a6358;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+  }
+  .mock-lab-notebook .ln-headline {
+    font-family: 'Anuphan', 'Bricolage Grotesque', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    color: #1C1814;
+  }
+  .mock-lab-notebook .ln-rule {
+    height: 1px;
+    background: #CC3A2F;
+    margin-bottom: 10px;
+  }
+  .mock-lab-notebook .ln-byline {
+    font-family: 'K2D', 'Caveat', cursive;
+    font-size: 13px;
+    color: #2B4A5E;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .mock-lab-notebook .ln-body {
+    font-family: 'Sarabun', 'Source Serif 4', serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #1C1814;
+    margin-bottom: 14px;
+  }
+  .mock-lab-notebook .ln-note {
+    font-family: 'K2D', 'Caveat', cursive;
+    font-size: 12px;
+    color: #2B4A5E;
+    background: rgba(43,74,94,0.06);
+    padding: 8px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    line-height: 1.45;
+  }
+  .mock-lab-notebook .ln-scrap {
+    background: #FDFBF7;
+    border: 1px solid rgba(175, 165, 145, 0.35);
+    padding: 12px;
+    margin-bottom: 14px;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .mock-lab-notebook .ln-scrap::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    width: 60px;
+    height: 14px;
+    background: rgba(245, 240, 220, 0.75);
+    transform: rotate(-2deg);
+    border: 1px solid rgba(180, 170, 140, 0.3);
+  }
+  .mock-lab-notebook .ln-verdict {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: 2px solid #CC3A2F;
+    border-radius: 50%;
+    color: #CC3A2F;
+    font-family: 'Anuphan', 'Caveat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    margin-left: auto;
+    margin-top: 10px;
+    transform: rotate(-3deg);
+  }
+  .mock-lab-notebook .ln-highlight {
+    background: rgba(255, 237, 100, 0.45);
+    padding: 1px 3px;
+    border-radius: 2px;
+  }
+
+  /* =================================================================== */
+  /* DEEPSEEK V4 PRO — PROVENANCE                                       */
+  /* =================================================================== */
+  .mock-provenance {
+    background:
+      linear-gradient(90deg, rgba(39, 32, 23, 0.06) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(39, 32, 23, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 18% 12%, rgba(0, 127, 109, 0.08), transparent 28rem),
+      radial-gradient(circle at 88% 18%, rgba(240, 179, 35, 0.12), transparent 24rem),
+      linear-gradient(135deg, #F8F2E8 0%, #F5F0E8 54%, #EBE3D4 100%);
+    background-size: 36px 36px, 36px 36px, auto, auto, auto;
+    color: #1C1814;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+  }
+  .mock-provenance .mockup-nav {
+    border-bottom: 1px solid rgba(39, 32, 23, 0.15);
+    padding-bottom: 12px;
+  }
+  .mock-provenance .nav-brand {
+    font-family: 'Anuphan', 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: #1C1814;
+    letter-spacing: -0.02em;
+  }
+  .mock-provenance .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #6a6358;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 1px;
+  }
+  .mock-provenance .pv-card {
+    background: #FFFCF7;
+    padding: 14px;
+    margin-bottom: 14px;
+    position: relative;
+    box-shadow: 3px 3px 0 rgba(39, 32, 23, 0.11);
+  }
+  .mock-provenance .pv-temp-bar {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    margin-bottom: 12px;
+    border-radius: 2px;
+  }
+  .mock-provenance .pv-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    padding: 4px 7px;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    background: #1B3A6B;
+    box-shadow: 2px 2px 0 rgba(39, 32, 23, 0.11);
+  }
+  .mock-provenance .pv-h {
+    font-family: 'Anuphan', 'Bricolage Grotesque', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    color: #1C1814;
+    letter-spacing: -0.01em;
+  }
+  .mock-provenance .pv-lede {
+    font-size: 12.5px;
+    color: #4a443a;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .mock-provenance .pv-meta {
+    display: flex;
+    gap: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #6a6358;
+    padding-top: 10px;
+    border-top: 1px solid rgba(39, 32, 23, 0.1);
+  }
+  .mock-provenance .pv-stamp {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 12px;
+    border: 1.5px solid #B85C3A;
+    color: #B85C3A;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transform: rotate(-1.5deg);
+  }
+
+  /* ============ Footer ============ */
+  footer {
+    max-width: 1280px;
+    margin: 56px auto 0;
+    padding: 24px 0;
+    border-top: 1px solid #27272a;
+    font-size: 12px;
+    color: #71717a;
+    line-height: 1.6;
+  }
+  footer code {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: #a1a1aa;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>beef.im — UI/UX Direction Preview <small>· Unified Spectrum · Kimi K2.6</small></h1>
+  <p>Compiled preview of all directions and wildcards from three source files. Each direction shows its exact palette plus a schematic mobile mockup (~360px viewport) using real beef.im content — an insurance teardown (Unit-linked/COI) and a grill recipe (Reverse-sear ribeye/54°C) — so you can judge whether the visual register actually carries both halves of the brand.</p>
+  <div class="meta">Source files: UI-Idea-Sonnet4.6.md · Exploration-Lab-Notebook.md · Synthesis-Hybrid-Provenance.md · Compiled by Kimi K2.6 · Open in Firefox/Chrome for accurate Thai font rendering</div>
+</header>
+
+<!-- ============ Quick comparison strip ============ -->
+<section class="overview">
+  <h2>Palette overview — all directions at a glance</h2>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Sonnet 4.6 · 01</span>
+      <a href="#deep-research">Deep Research</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#FDFCF8"></div>
+      <div style="background:#F5F2EB"></div>
+      <div style="background:#1A1A18"></div>
+      <div style="background:#2456C8"></div>
+      <div style="background:#D4480A"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Sonnet 4.6 · 02</span>
+      <a href="#yakiniku-private">Yakiniku Private</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#0D0B0A"></div>
+      <div style="background:#1C1714"></div>
+      <div style="background:#E5DDD0"></div>
+      <div style="background:#C27832"></div>
+      <div style="background:#E8452A"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Sonnet 4.6 · 03 · TOP PICK</span>
+      <a href="#investment-grade">Investment Grade</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F7F6F3"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#141414"></div>
+      <div style="background:#1B3A6B"></div>
+      <div style="background:#B91C1C"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Sonnet 4.6 · 04</span>
+      <a href="#bangkok-zine">Bangkok Zine</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#1A1208"></div>
+      <div style="background:#2B1F0F"></div>
+      <div style="background:#F2E8D0"></div>
+      <div style="background:#E8B020"></div>
+      <div style="background:#E83020"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Sonnet 4.6 · 05</span>
+      <a href="#cold-protocol">Cold Protocol</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F8F9FA"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#1D2025"></div>
+      <div style="background:#00795C"></div>
+      <div style="background:#C81414"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Sonnet 4.6 · WILDCARD</span>
+      <a href="#living-terminal">Living Terminal</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#080a0c"></div>
+      <div style="background:#0d1210"></div>
+      <div style="background:#00d26a"></div>
+      <div style="background:#00a854"></div>
+      <div style="background:#ff4d4f"></div>
+    </div>
+    <div class="overview-score">Sonnet 4.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">Opus 4.7 · Exploration</span>
+      <a href="#lab-notebook">The Lab Notebook</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F5F2EA"></div>
+      <div style="background:#FDFBF7"></div>
+      <div style="background:#1C1814"></div>
+      <div style="background:#2B4A5E"></div>
+      <div style="background:#CC3A2F"></div>
+    </div>
+    <div class="overview-score">Opus 4.7</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">DeepSeek V4 Pro · Synthesis</span>
+      <a href="#provenance">Provenance</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F5F0E8"></div>
+      <div style="background:#FFFCF7"></div>
+      <div style="background:#1C1814"></div>
+      <div style="background:#B85C3A"></div>
+      <div style="background:#1B3A6B"></div>
+    </div>
+    <div class="overview-score">DeepSeek V4 Pro</div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- MODEL DIVIDER: Sonnet 4.6                                      -->
+<!-- ============================================================ -->
+<div class="model-divider">
+  <h2>Sonnet 4.6 — 5 Directions + 1 Wildcard</h2>
+  <span class="model-meta">Source: UI-Idea-Sonnet4.6.md · Top pick: Direction 3</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- DIRECTION 1 — DEEP RESEARCH                                    -->
+<!-- ============================================================ -->
+<article class="direction" id="deep-research">
+  <div class="dir-header">
+    <span class="dir-num">DIR 01</span>
+    <h2 class="dir-title">Deep Research</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI</span>
+    <p class="dir-mood">"The analyst who prints the brief, marks it up in three colors, and then posts the annotated scan."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#FDFCF8"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#FDFCF8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F5F2EB"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#F5F2EB</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1A1A18"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#1A1A18</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2456C8"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#2456C8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D4480A"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#D4480A</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-deep-research">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · RESEARCH</small></div>
+          <div class="nav-search">⌘K</div>
+        </div>
+        <div class="dr-card">
+          <h3 class="dr-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="dr-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="dr-inline-note">Clause flag: ข้อ 3.2 "ตามดุลยพินิจบริษัท" เปิดช่องปฏิเสธเคลม · COI ปี 25+ ไม่มี cap</div>
+          <div class="dr-meta">
+            <span>AIA-UL-2024</span>
+            <span>—</span>
+            <span>2,840w · 11 min</span>
+          </div>
+        </div>
+        <div class="dr-card">
+          <h3 class="dr-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="dr-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="dr-inline-note">Temp note: Maillard window 140–180°C · Core temp 54°C = medium-rare · Rest 10 min minimum</div>
+          <div class="dr-meta">
+            <span>RIBEYE-54C</span>
+            <span>—</span>
+            <span>1,420w · 6 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Insurance contract forensics IS data journalism — the analyst and the investigative reporter hold the same job title. The annotation motif treats a policy teardown and a reverse-sear guide with identical analytical discipline, making the paradox visible at the structural level without a single steak photograph.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>margin annotation</strong>. Insurance gets policy-clause annotations (<code>ตามดุลยพินิจ</code> flags, COI cap warnings); recipe content gets temperature and timing notes. Same motif, same typographic treatment, both content types. On mobile, annotations collapse to inline cobalt chips.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">No other animation exists on the site beyond the count-up tables. The visual register is deliberately restrained — some readers may find it too academic, too cold. The annotation system demands consistent editorial discipline; sparse or shallow annotations break the illusion instantly.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · all free on Google Fonts</span>
+        <span class="label">Animation budget</span><span class="value">Low · single count-up per table (600ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · warm paper-white bg</span>
+        <span class="label">Build complexity</span><span class="value">Medium · margin annotations + outward-breaking tables</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- DIRECTION 2 — YAKINIKU PRIVATE                                 -->
+<!-- ============================================================ -->
+<article class="direction" id="yakiniku-private">
+  <div class="dir-header">
+    <span class="dir-num">DIR 02</span>
+    <h2 class="dir-title">Yakiniku Private</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI</span>
+    <p class="dir-mood">"The private yakiniku room where the house cut costs more than your annual premium — and both are worth analyzing before you commit."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#0D0B0A"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#0D0B0A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1714"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#1C1714</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E5DDD0"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#E5DDD0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C27832"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#C27832</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8452A"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#E8452A</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-yakiniku">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · PRIVATE</small></div>
+          <div class="nav-menu">เมนู</div>
+        </div>
+        <div class="yk-card">
+          <h3 class="yk-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="yk-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="yk-meta">
+            <span class="yk-critical">EMBER ALERT</span>
+            <span>AIA-UL · 2,840w</span>
+          </div>
+        </div>
+        <div class="yk-card">
+          <h3 class="yk-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="yk-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="yk-meta">
+            <span>COPPER GRADE</span>
+            <span>RIBEYE-54C · 1,420w</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The East Asian private counter reference earns something European fine dining cannot — premium without imperial register, which fits a Thai brand speaking to Thai mass affluent who have been inside both worlds. Copper means heat-worked metal AND heat-worked analysis; you can't fake either.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>copper rule</strong> — a 2px horizontal line in <code>#C27832</code> at the top of every content section, article card, and navigation group. It sits like the edge of a grill grate. All other hierarchy comes from type weight and opacity modulation. The copper rule brightens on hover via a cursor-tracking radial gradient.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Dark surfaces plus selective copper create premium, but the near-black background risks poor outdoor readability in Bangkok sunlight. The cursor-tracking radial gradient (160ms bloom, 400ms dim) requires careful performance tuning and may feel subtle to the point of invisibility on first visit.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$$$ · Neue Haas Grotesk is commercial (substitute: Space Grotesk)</span>
+        <span class="label">Animation budget</span><span class="value">Low · copper rule bloom on hover</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · near-black bg</span>
+        <span class="label">Build complexity</span><span class="value">Medium · cursor-tracking radial gradient</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- DIRECTION 3 — INVESTMENT GRADE                                 -->
+<!-- ============================================================ -->
+<article class="direction" id="investment-grade">
+  <div class="dir-header">
+    <span class="dir-num">DIR 03 · TOP PICK</span>
+    <h2 class="dir-title">Investment Grade</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI</span>
+    <p class="dir-mood">"Goldman Sachs equity research, translated for the reader who signed whole life without reading the prospectus."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F7F6F3"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F7F6F3</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#141414"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#141414</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1B3A6B"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#1B3A6B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B91C1C"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#B91C1C</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-sonnet-investment">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · RESEARCH</small></div>
+          <div class="nav-search">⌘K</div>
+        </div>
+        <div class="ig-card">
+          <span class="ig-badge underweight">UNDERWEIGHT</span>
+          <h3 class="ig-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="ig-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="ig-meta">
+            <span>AIA-UL-2024</span>
+            <span>—</span>
+            <span>2,840w · 11 min</span>
+          </div>
+        </div>
+        <div class="ig-card">
+          <span class="ig-badge well-marbled">WELL MARBLED</span>
+          <h3 class="ig-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="ig-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="ig-meta">
+            <span>RIBEYE-54C</span>
+            <span>—</span>
+            <span>1,420w · 6 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Rating badge is the cleanest dual-content unification in the bake-off. Same 72×24px IBM Plex Mono component carries <code>UNDERWEIGHT</code> for whole life and <code>WELL MARBLED</code> for ribeye. The brand thesis becomes self-evident to every reader — it doesn't need explanation.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>rating badge</strong>. Vocabulary tier: <code>OVERWEIGHT</code> · <code>NEUTRAL</code> · <code>UNDERWEIGHT</code> for insurance; <code>WELL MARBLED</code> · <code>LEAN</code> · <code>AVOID</code> for cuts. Same colors (navy / amber / red), same position, same rigor. The grill review and the policy teardown get equal analytical gravity.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">"The visual system protects nothing — it amplifies whatever the writing is. If the writing is hot, it becomes a weapon. If the writing is safe, it becomes a liability brochure." Corporate-insurance-company risk: if the voice slips into formal advisory register, the entire site reads like a KBank wealth management brochure.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex full family is free</span>
+        <span class="label">Animation budget</span><span class="value">Low · single 500ms badge fade</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · light bg</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- DIRECTION 4 — BANGKOK ZINE                                     -->
+<!-- ============================================================ -->
+<article class="direction" id="bangkok-zine">
+  <div class="dir-header">
+    <span class="dir-num">DIR 04</span>
+    <h2 class="dir-title">Bangkok Zine</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI</span>
+    <p class="dir-mood">"Pratunam shophouse sign typography, curated by someone who studied at ECAL and then came home."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#1A1208"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#1A1208</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2B1F0F"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#2B1F0F</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F2E8D0"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#F2E8D0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8B020"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#E8B020</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E83020"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#E83020</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-bangkok-zine">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · ตลาดสด</small></div>
+        </div>
+        <div class="bz-card">
+          <span class="bz-sticker yellow">วิเคราะห์แล้ว</span>
+          <h3 class="bz-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="bz-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="bz-meta">
+            <span>AIA-UL-2024</span>
+            <span>—</span>
+            <span>2,840w · 11 min</span>
+          </div>
+        </div>
+        <div class="bz-card">
+          <span class="bz-sticker red">ไม่ผ่าน</span>
+          <h3 class="bz-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="bz-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="bz-meta">
+            <span>RIBEYE-54C</span>
+            <span>—</span>
+            <span>1,420w · 6 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Thai mass affluent readers grew up inside this visual system — it is literally the typography of their neighborhood. Using it for insurance forensics inverts the expectation (high-rigor content in a commercial visual wrapper) which is the brand paradox enacted, not described. It is the only direction genuinely unavailable to any Western or non-Thai brand.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>sticker label</strong> — price stickers, food-cert stickers, launch stickers from Thai retail, applied as every content tag and badge. Slight rotation (2–4°, seeded by element ID), SVG clip-path with irregular edge. Insurance: <code>วิเคราะห์แล้ว</code>. Recipe: <code>ผ่านแล้ว</code>. Policy rejection: <code>ไม่ผ่าน</code> in red.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">The sticker motif risks feeling novelty-driven if not executed with absolute precision. The random rotation must feel physical, not buggy. At small sizes, the irregular SVG clip-path may lose detail. The commercial-yellow density can read as "cheap" rather than "street-credible" if the content quality doesn't match the visual energy.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · all free on Google Fonts</span>
+        <span class="label">Animation budget</span><span class="value">Low · slap-on sticker animation (200ms spring)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Medium · dark bg with cream text</span>
+        <span class="label">Build complexity</span><span class="value">Medium · SVG clip-path stickers, rotation seeding</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- DIRECTION 5 — COLD PROTOCOL                                    -->
+<!-- ============================================================ -->
+<article class="direction" id="cold-protocol">
+  <div class="dir-header">
+    <span class="dir-num">DIR 05</span>
+    <h2 class="dir-title">Cold Protocol</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI</span>
+    <p class="dir-mood">"Mass spectrometry results and reverse-sear temperature logs, same interface, same methodology, same confidence."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F8F9FA"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#F8F9FA</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1D2025"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#1D2025</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#00795C"></div><div class="swatch-meta"><div class="swatch-role">Accent</div><div class="swatch-hex">#00795C</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C81414"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#C81414</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-cold-protocol">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · PROTOCOL</small></div>
+          <div class="nav-id">LAB-001</div>
+        </div>
+        <div class="cp-card">
+          <div class="cp-crosshair tl">+</div>
+          <div class="cp-crosshair tr">+</div>
+          <div class="cp-crosshair bl">+</div>
+          <div class="cp-crosshair br">+</div>
+          <h3 class="cp-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="cp-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="cp-data">SPECIMEN: AIA-UL-2024 · COI_Y30: 128,400 THB · PREMIUM_Y30: 120,000 THB · DELTA: +7%</div>
+          <div class="cp-meta">
+            <span class="cp-critical">FLAGGED</span>
+            <span>2,840w · 11 min</span>
+          </div>
+        </div>
+        <div class="cp-card">
+          <div class="cp-crosshair tl">+</div>
+          <div class="cp-crosshair tr">+</div>
+          <div class="cp-crosshair bl">+</div>
+          <div class="cp-crosshair br">+</div>
+          <h3 class="cp-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="cp-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="cp-data">ASSAY: RIBEYE-54C · CORE_TEMP: 54°C · MAILLARD_WIN: 140-180°C · REST: 10 min · SPECIMEN_PASSED</div>
+          <div class="cp-meta">
+            <span>VERIFIED</span>
+            <span>1,420w · 6 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Insurance contracts are laboratory specimens — they have measurable properties, they can be tested, some are safe and some are toxic. The clinical visual language says "I ran the assay" before the first sentence, which earns trust from mass affluent readers who are tired of being sold at. The chemistry of browning is literally food science.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>grid registration marks</strong> — fine <code>+</code> crosshair markers at the corners of every data table and section boundary. References QC registration marks on analytical instruments. The same grid applied to a Maillard reaction temperature log is not a stretch — food science is a laboratory discipline.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">The clinical sterility can feel emotionally cold. A reader looking for warmth or personality may bounce. The scanner-line animation (800ms linear, once per table), while distinctive, could feel gimmicky if overused. The Prompt + Inter pairing is deliberately neutral — the type removes itself so the data can speak, which is the point but also the risk.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · all free on Google Fonts</span>
+        <span class="label">Animation budget</span><span class="value">Low · scanner line per table (800ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · clinical off-white bg</span>
+        <span class="label">Build complexity</span><span class="value">Medium · scanner line + row fade-in</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- WILDCARD — LIVING TERMINAL                                     -->
+<!-- ============================================================ -->
+<article class="direction" id="living-terminal">
+  <div class="dir-header">
+    <span class="dir-num wild">WILDCARD</span>
+    <h2 class="dir-title">Living Terminal</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI</span>
+    <p class="dir-mood">"What if the entire site renders like a live financial instrument — not retro CRT but the specific modernity of a Refinitiv Eikon or Bloomberg dark-mode terminal in 2026, rebuilt in Thai?"</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#080a0c"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#080a0c</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0d1210"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#0d1210</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#00d26a"></div><div class="swatch-meta"><div class="swatch-role">Primary text</div><div class="swatch-hex">#00d26a</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#00a854"></div><div class="swatch-meta"><div class="swatch-role">Secondary</div><div class="swatch-hex">#00a854</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#ff4d4f"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#ff4d4f</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-living-terminal">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">BEEF.IM<small>TERMINAL · BKK</small></div>
+          <div class="nav-ticker">$AIA-MP +0.4% · $RIBEYE-54C +1.2% · $TERM-5Y -0.1%</div>
+        </div>
+        <div class="lt-card">
+          <div class="lt-ticker">$AIA-MP-CI · BID 73 · ASK 27 · VOL 2,840</div>
+          <h3 class="lt-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="lt-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ</p>
+          <div class="lt-spark"></div>
+          <div class="lt-meta">
+            <span class="lt-red">SHORT</span>
+            <span>11 min read</span>
+          </div>
+        </div>
+        <div class="lt-card">
+          <div class="lt-ticker">$RIBEYE-54C · COMMODITY:BEEF · PORK:BELLY +0.8%</div>
+          <h3 class="lt-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="lt-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง</p>
+          <div class="lt-spark"></div>
+          <div class="lt-meta">
+            <span class="lt-amber">HOLD</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why this exists</h4>
+      <p>Every article slug is a ticker symbol: <code>$AIA-MP-CI</code>, <code>$RIBEYE-54C</code>. The homepage is a live scrolling tape of content tickers. Insurance products have bid/ask spreads expressed as reader confidence votes. Cooking content is listed under commodity categories <code>PORK:BELLY</code> and <code>BEEF:RIBEYE</code>. A small sparkline of reader engagement lives on every article page styled exactly like a price chart. The entire system is monospaced Thai — using IBM Plex Mono Thai for everything, including body copy.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>ticker symbol + sparkline</strong>. Everything gets a symbol, a price chart, and a sentiment vote. Insurance products trade like equities; recipes trade like commodities. The terminal interface doesn't distinguish — it just renders data.</p>
+
+      <h4>The honest verdict</h4>
+      <div class="tradeoff">It would alienate readers who have never opened a financial terminal, and it would absolutely make every Thai financial journalist share a screenshot to ask what is happening. Ship this in 2028 after the brand has enough credibility to survive the inevitable argument about whether it's genius or alienating. The answer is yes. Build complexity: very high. Monospace Thai body text is a genuinely insane typographic choice that somehow works because terminal operators read monospace all day.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex Mono is free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · ticker tape, sparklines</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · dark terminal bg in sunlight</span>
+        <span class="label">Build complexity</span><span class="value">High · monospace Thai body, live API, ticker tape</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- MODEL DIVIDER: Opus 4.7 Exploration                            -->
+<!-- ============================================================ -->
+<div class="model-divider">
+  <h2>Opus 4.7 — Lab Notebook Exploration</h2>
+  <span class="model-meta">Source: Exploration-Lab-Notebook.md · Deep dive of Opus 4.7 wildcard</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- THE LAB NOTEBOOK                                               -->
+<!-- ============================================================ -->
+<article class="direction" id="lab-notebook">
+  <div class="dir-header">
+    <span class="dir-num alt">EXPLORATION</span>
+    <h2 class="dir-title">The Lab Notebook</h2>
+    <span class="dir-source">Opus 4.7 · CC CLI · wildcard deep dive</span>
+    <p class="dir-mood">"You found someone's private research journal left open on a desk — graph paper, fountain-pen notes in the margins, red verdict circles, taped-in scraps, crossed-out mistakes, ink-blot stains."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F5F2EA"></div><div class="swatch-meta"><div class="swatch-role">Notebook cream</div><div class="swatch-hex">#F5F2EA</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FDFBF7"></div><div class="swatch-meta"><div class="swatch-role">Taped-in scrap</div><div class="swatch-hex">#FDFBF7</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1814"></div><div class="swatch-meta"><div class="swatch-role">Printed text</div><div class="swatch-hex">#1C1814</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2B4A5E"></div><div class="swatch-meta"><div class="swatch-role">Handwritten navy</div><div class="swatch-hex">#2B4A5E</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#CC3A2F"></div><div class="swatch-meta"><div class="swatch-role">Red pen / verdict</div><div class="swatch-hex">#CC3A2F</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-lab-notebook">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · NOTEBOOK</small></div>
+        </div>
+        <div class="ln-headline">CASE FILE #042</div>
+        <div class="ln-rule"></div>
+        <div class="ln-byline">25 APR 2026 · กรุงเทพ · ผู้สืบสวน: N.</div>
+        <div class="ln-scrap">
+          <div style="font-family:'Sarabun','Source Serif 4',serif; font-size:13px; line-height:1.7; color:#1C1814;">
+            <strong>Unit-linked:</strong> ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย
+            <br><br>
+            เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25
+          </div>
+        </div>
+        <div class="ln-note">ข้อนี้คือกับดัก — บริษัทประกันมักใช้คำว่า "ตามดุลยพินิจ" เพื่อเปิดช่องปฏิเสธเคลม</div>
+        <div class="ln-scrap">
+          <div style="font-family:'Sarabun','Source Serif 4',serif; font-size:13px; line-height:1.7; color:#1C1814;">
+            <strong>EXPERIMENT LOG #017</strong><br><br>
+            <span class="ln-highlight">Reverse-sear ribeye 4 นิ้ว</span> — กฎ 3 ข้อ<br><br>
+            ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง
+          </div>
+        </div>
+        <div class="ln-note">Maillard window 140-180°C · Core 54°C = medium-rare · Rest 10 min</div>
+        <div class="ln-verdict">✓<br>ผ่าน</div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>For a brand whose founding edge is <em>one person who actually reads contracts and then tells you what's wrong with them</em>, the Lab Notebook is a more honest UI than Spec Sheet. The crossed-out corrections are the credibility signal. The authenticator isn't the flawless spec sheet — it's the red-pen notes showing the work. Spec Sheet hides the person behind the instrument panel; the notebook makes the investigator visible.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>notebook page itself</strong> — same graph paper, same red pen, same fountain-pen navy annotations. Insurance content becomes "Case Files" with stamped headers; grill recipes become "Experiment Logs" with technique corrections. The format unifies via personal voice, not data format. Both get <code>&lt;Scrap&gt;</code> taped-in exhibits and <code>&lt;Verdict&gt;</code> red-pen circles.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Authors need to think in notebook components — placing <code>&lt;Note&gt;</code> components, adding <code>&lt;Verdict&gt;</code> tags, wrapping clauses in <code>&lt;Scrap&gt;</code>. More authoring overhead than any other direction. The notebook exposes weak content: the notes feel fake if the insights aren't real. Font load is heavy (10 files) and needs trimming to 6 max.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · K2D + Caveat + others free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · ink-bleed, circle draw, tape settle</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · cream bg</span>
+        <span class="label">Build complexity</span><span class="value">High · organic SVG components, margin annotations, MDX overhead</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- MODEL DIVIDER: DeepSeek V4 Pro Synthesis                       -->
+<!-- ============================================================ -->
+<div class="model-divider">
+  <h2>DeepSeek V4 Pro — Provenance Hybrid Synthesis</h2>
+  <span class="model-meta">Source: Synthesis-Hybrid-Provenance.md · Compiled from 14 model outputs + showcase</span>
+</div>
+
+<!-- ============================================================ -->
+<!-- PROVENANCE — THE ULTIMATE HYBRID                               -->
+<!-- ============================================================ -->
+<article class="direction" id="provenance">
+  <div class="dir-header">
+    <span class="dir-num alt">SYNTHESIS</span>
+    <h2 class="dir-title">Provenance</h2>
+    <span class="dir-source">DeepSeek V4 Pro · 14 inputs + showcase</span>
+    <p class="dir-mood">"A graded, annotated, stamped research publication printed on warm almanac paper — where insurance contract forensics and reverse-seared ribeye receive equal analytical gravity, in the same typeface, on the same grid."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F5F0E8"></div><div class="swatch-meta"><div class="swatch-role">Almanac cream</div><div class="swatch-hex">#F5F0E8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFCF7"></div><div class="swatch-meta"><div class="swatch-role">Lifted ivory</div><div class="swatch-hex">#FFFCF7</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1814"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#1C1814</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B85C3A"></div><div class="swatch-meta"><div class="swatch-role">Verdict red</div><div class="swatch-hex">#B85C3A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1B3A6B"></div><div class="swatch-meta"><div class="swatch-role">Institutional navy</div><div class="swatch-hex">#1B3A6B</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-provenance">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · PROVENANCE</small></div>
+        </div>
+        <div class="pv-card">
+          <div class="pv-temp-bar"></div>
+          <span class="pv-badge">UNDERWEIGHT</span>
+          <h3 class="pv-h">Unit-linked: ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย</h3>
+          <p class="pv-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนหลีกเลี่ยงคำถามเรื่อง charge ปีที่ 25</p>
+          <div class="pv-meta">
+            <span>AIA-UL-2024</span>
+            <span>—</span>
+            <span>2,840w · 11 min</span>
+          </div>
+          <span class="pv-stamp">ตราประทับ · ตรวจสอบแล้ว</span>
+        </div>
+        <div class="pv-card">
+          <div class="pv-temp-bar"></div>
+          <span class="pv-badge">WELL MARBLED</span>
+          <h3 class="pv-h">Reverse-sear ribeye 4 นิ้ว — กฎ 3 ข้อ</h3>
+          <p class="pv-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง และทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="pv-meta">
+            <span>RIBEYE-54C</span>
+            <span>—</span>
+            <span>1,420w · 6 min</span>
+          </div>
+          <span class="pv-stamp">ตราประทับ · ผ่านแล้ว</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Every component earns its place by solving a specific problem. The rating badge + temperature bar + stamp system makes the brand thesis self-evident before the first sentence. The paradox is <em>built into the structure, not described in the copy</em>. A first-time reader lands on the homepage, sees a temperature bar, a rating badge, and a stamped card — before reading a word, they understand: this publication grades things.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>rating badge + temperature bar</strong> duo. The badge: same component, same position, different labels — <code>OVERWEIGHT</code> for insurance, <code>WELL MARBLED</code> for meat. The temperature bar: same gradient <code>#3B7DD8 → #F5A623 → #E8482F</code> = insurance risk AND meat doneness. Scannable at a glance. Plus the <strong>stamp/chop</strong> system: verified articles get stamped; drafts don't. Trust is visible.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">No cinematic atmosphere — the dark+ember cluster's "premium steakhouse at midnight" mood is gone. This direction is warm daylight, not candlelight. Trades instant theatricality for 5-year durability and outdoor readability. Editorial discipline required: every article needs a rating, a temperature value, and a stamp-or-draft marker. Dense, not sparse — more elements per viewport than any single-model direction.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex + Anuphan + Bricolage free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · 4 disciplined animations (chisel, count-up, red-line, ink-bleed)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Low · cream bg + grid texture</span>
+        <span class="label">Build complexity</span><span class="value">Medium · sunburst, stamps, annotations, cursor-follow</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer>
+  <p>Source files: <code>UI-Idea-Sonnet4.6.md</code> · <code>Exploration-Lab-Notebook.md</code> · <code>Synthesis-Hybrid-Provenance.md</code></p>
+  <p style="margin-top:8px;">Compiled by <strong>Kimi K2.6</strong> · beef.im (ประกันเนื้อๆ) UI/UX Direction Preview · This file: <code>Preview-Unified-Kimi2.6-2.html</code></p>
+  <p style="margin-top:8px;">Mockups are intentionally schematic — they show the <em>typography stack</em>, <em>palette</em>, and <em>signature component</em> of each direction at a recognisable density. They are not pixel-perfect previews. Real design execution will refine spacing, hierarchy, and typographic detail beyond what static mockups can carry.</p>
+</footer>
+
+</body>
+</html>

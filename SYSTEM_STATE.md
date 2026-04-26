@@ -22,17 +22,20 @@
     *   **Cost-Optimized:** MiniMax M2.7 / GLM 5.0 (Agent 2C, untested for v6.0 pipeline)
     *   **Embedding:** `gemini-embedding-001` (3072 dims) — exploratory only (Mastra non-core)
 * **Identity Protocol:** Sovereign Universal (v1.9) - Mandatory File Read + Citation Trap Fix.
-* **Architecture:** Payload CMS + Neon Postgres (exit plan ready: Turso/SQLite/Supabase). Mastra RAG: non-core, exploratory.
+* **Architecture:** Astro + Emdash + MDX (Dropped Next.js, Payload, Neon). Mastra RAG: non-core, exploratory.
 * **Content Pipeline (v6.0):** Obsidian intake → Gemini Research (optional) → CLI Skills → /publish → Payload CMS.
 * **Claude Code Skills:** 7 skills deployed (`/seed`, `/architect`, `/performer`, `/hybrid`, `/auditor`, `/produce-article`, `/publish`).
-* **Publishing:** `/publish` converts .md → Lexical JSON → Payload CMS via Local API. Zero manual copy-paste.
-* **Content Format:** Standard markdown (.md) only. MDX not needed (Lexical JSON cannot store JSX).
+* **Publishing:** `/publish` converts .md → MDX components → Repo. Zero manual copy-paste.
+* **Content Format:** MDX (.mdx) for custom notebook components (MarginNote, ScrapCard).
 * **Obsidian:** Vault at `nerd/`, Dataview plugin, `_ops/` symlinks for operational browsing.
 * **Stack Strategy (Mar 29):** Keep Next.js + Payload (Ferrari, not Ford). Neon exit plan documented in `.claude/rules/deployment.md`. Cloudflare Pages feasible if DB moves to SQLite.
 * **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
 
 ## ✅ ACCOMPLISHMENTS
 *   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).** Drop "Nerd with Nart" before public launch. Public brand: beef.im (domain) + ประกันเนื้อๆ (Facebook). Repo stays `nerd-with-nart`. **Voice-dna v6.0 + constitution v5.0 recalibration: ✅ COMPLETE (Apr 24, 2026).** Agent instruction files (CLAUDE.md, AGENTS.md, SKILL.md, article-production-guide.md) footer/watermark rebranded. Brief: `docs/beef-im-rebrand-brief.md`.
+*   **[Architecture]** **Strategic Pivot to Astro + MDX (Apr 26, 2026).**
+    *   **Action:** Dropped Next.js, Payload CMS, and Neon Postgres.
+    *   **Rationale:** The "Notebook" rebrand (beef.im) requires complex structural components (Margin notes, scraps, corrections). Payload's Lexical JSON is too restrictive and complex for this. Astro + MDX natively supports complex markdown components with Zero-JS footprint, perfectly aligning with the "No Fluff" doctrine.
 *   **[Insurance Ops]** **AIA Client Onboarding Toolkit Deployed (Apr 22, 2026).**
     *   **Health Questions Preview (`Health_Questions_PREVIEW_Card.md`):** Compact bilingual EN/TH checklist for pre-meeting client prep. Sent via LINE before iPad sessions.
     *   **Medical History Checklist (`Medical_History_Checklist.md`):** Full 8-section self-assessment (symptoms, diagnosed conditions, surgeries, medications, family history, lifestyle, tests, declarations).

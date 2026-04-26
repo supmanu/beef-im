@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ประกันเนื้อๆ — 3 Visual Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;700;800&family=Bai+Jamjuree:wght@400;700&family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=K2D:wght@300;400&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;line-height:1.6;color:#1C1814;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ================================================================
+   SECTION DIVIDERS
+   ================================================================ */
+.section-divider{
+  background:#1C1814;
+  color:#F5F0E8;
+  text-align:center;
+  padding:1.5rem 1rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  border-top:4px solid #B8860B;
+  border-bottom:4px solid #B8860B;
+}
+
+/* ================================================================
+   DIRECTION 1: PROVENANCE
+   ================================================================ */
+.provenance{
+  --cream:#F5F0E8;
+  --cream-light:#F8F2E8;
+  --cream-dark:#EBE3D4;
+  --surface:#FFFCF7;
+  --ink:#1C1814;
+  --persimmon:#B85C3A;
+  --navy:#1B3A6B;
+  --gold:#B8860B;
+  --critical:#D43830;
+  --grid-line:rgba(39,32,23,0.06);
+  position:relative;
+  background:linear-gradient(135deg,#F8F2E8 0%,#F5F0E8 50%,#EBE3D4 100%);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Subtle grid texture */
+.provenance::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:36px 36px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Radial color washes */
+.provenance-wash-tl,
+.provenance-wash-tr{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+  z-index:0;
+}
+.provenance-wash-tl{
+  width:500px;height:500px;
+  top:-100px;left:-100px;
+  background:rgba(0,127,109,0.06);
+}
+.provenance-wash-tr{
+  width:400px;height:400px;
+  top:-50px;right:-50px;
+  background:rgba(240,179,35,0.10);
+}
+
+.provenance-inner{position:relative;z-index:1}
+
+/* Hero */
+.provenance-hero{
+  min-height:90vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:2rem 1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Sunburst */
+.provenance-sunburst{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:clamp(300px,60vw,800px);
+  height:clamp(300px,60vw,800px);
+  border-radius:50%;
+  background:repeating-conic-gradient(from 12deg,rgba(184,92,58,0.10) 0deg 12deg,transparent 12deg 24deg);
+  opacity:0.5;
+  z-index:0;
+}
+@media (prefers-reduced-motion:no-preference){
+  .provenance-sunburst{animation:provSunburstRotate 32s linear infinite}
+  @keyframes provSunburstRotate{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+}
+
+.provenance-hero-content{position:relative;z-index:1;max-width:800px}
+.provenance-domain{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.2em;
+  color:#6B6254;
+  margin-bottom:0.75rem;
+  text-transform:lowercase;
+}
+.provenance-hero h1{
+  font-family:'Anuphan',sans-serif;
+  font-weight:800;
+  font-size:clamp(2.2rem,6vw,4.5rem);
+  color:var(--ink);
+  line-height:1.15;
+  margin-bottom:1rem;
+}
+.provenance-hero-subhead{
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:clamp(16px,2.2vw,20px);
+  color:#4A4239;
+  max-width:600px;
+  margin:0 auto 2rem;
+  line-height:1.7;
+}
+
+/* Search bar */
+.provenance-search{
+  display:flex;
+  max-width:480px;
+  margin:0 auto;
+  border:1px solid rgba(175,165,145,0.4);
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--surface);
+  box-shadow:0 2px 8px rgba(39,32,23,0.06);
+}
+.provenance-search input{
+  flex:1;
+  border:none;
+  padding:0.9rem 1.2rem;
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:16px;
+  background:transparent;
+  outline:none;
+  color:var(--ink);
+}
+.provenance-search button{
+  border:none;
+  background:var(--navy);
+  color:#fff;
+  padding:0 1.5rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.05em;
+  cursor:pointer;
+}
+
+/* Article card */
+.provenance-card-section{padding:3rem 1.5rem 4rem}
+.provenance-card-container{max-width:720px;margin:0 auto}
+
+.provenance-card{
+  background:var(--surface);
+  border-radius:12px;
+  border:1px solid rgba(175,165,145,0.25);
+  overflow:hidden;
+  position:relative;
+  transition:transform 0.25s ease,box-shadow 0.25s ease;
+  box-shadow:4px 4px 0 rgba(39,32,23,0.08);
+}
+.provenance-card:hover{
+  transform:translateY(-2px);
+  box-shadow:6px 6px 0 rgba(39,32,23,0.11);
+}
+
+/* Temperature bar */
+.provenance-temp-bar{
+  height:4px;
+  width:100%;
+  background:linear-gradient(90deg,#3B7DD8,#F5A623,#E8482F);
+  transition:height 0.3s ease;
+}
+.provenance-card:hover .provenance-temp-bar{height:24px}
+.provenance-temp-label{
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:12px;
+  color:var(--persimmon);
+  padding:6px 20px 0;
+  opacity:0;
+  transition:opacity 0.25s ease;
+}
+.provenance-card:hover .provenance-temp-label{opacity:1}
+
+.provenance-card-body{padding:1.25rem 1.5rem 1.5rem;position:relative}
+
+/* Rating badge */
+.provenance-badge{
+  position:absolute;
+  top:1.25rem;right:1.5rem;
+  background:var(--navy);
+  color:#fff;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:5px 12px;
+  border-radius:999px;
+  box-shadow:3px 3px 0 rgba(39,32,23,0.11);
+  z-index:2;
+}
+@media (prefers-reduced-motion:no-preference){
+  .provenance-badge{animation:provBadgeFill 0.8s ease-out forwards}
+  @keyframes provBadgeFill{from{background:#999}to{background:var(--navy)}}
+}
+
+.provenance-card h2{
+  font-family:'Anuphan',sans-serif;
+  font-weight:800;
+  font-size:clamp(1.1rem,3vw,1.5rem);
+  color:var(--ink);
+  line-height:1.35;
+  margin-bottom:0.75rem;
+  padding-right:90px;
+}
+.provenance-card .dek{
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:clamp(15px,2vw,17px);
+  color:#4A4239;
+  line-height:1.7;
+  margin-bottom:1.25rem;
+}
+
+/* Metadata pills */
+.provenance-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  margin-bottom:1rem;
+}
+.provenance-pill{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  color:#6B6254;
+  background:rgba(175,165,145,0.12);
+  padding:4px 10px;
+  border-radius:4px;
+  letter-spacing:0.02em;
+}
+
+/* Annotation margin */
+.provenance-annotation-wrap{
+  display:flex;
+  gap:1.5rem;
+  align-items:flex-start;
+}
+.provenance-article-body{
+  flex:1;
+}
+.provenance-annotation{
+  display:none;
+  width:200px;
+  flex-shrink:0;
+}
+@media(min-width:768px){
+  .provenance-annotation{display:block}
+}
+.provenance-annotation-bracket{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:28px;
+  color:var(--persimmon);
+  line-height:1;
+  margin-bottom:0.25rem;
+}
+.provenance-annotation-text{
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:12px;
+  color:var(--persimmon);
+  line-height:1.6;
+  border-left:2px solid var(--persimmon);
+  padding-left:8px;
+}
+.provenance-annotation-mobile{
+  display:inline-block;
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:12px;
+  color:var(--persimmon);
+  background:rgba(184,92,58,0.08);
+  padding:4px 10px;
+  border-radius:4px;
+  margin-top:0.75rem;
+}
+@media(min-width:768px){
+  .provenance-annotation-mobile{display:none}
+}
+
+/* Verdict stamp */
+.provenance-verdict-area{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:1rem;
+  margin-top:1.5rem;
+  padding-top:1.25rem;
+  border-top:1px solid rgba(175,165,145,0.2);
+}
+.provenance-stamp-wrap{
+  position:relative;
+  width:60px;height:60px;
+  flex-shrink:0;
+}
+.provenance-stamp{
+  width:60px;height:60px;
+  border:2px solid var(--persimmon);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:rotate(-2deg);
+  position:relative;
+  z-index:1;
+}
+.provenance-stamp-blur{
+  position:absolute;
+  inset:-1px;
+  border:2px solid var(--persimmon);
+  border-radius:50%;
+  filter:blur(1.5px);
+  opacity:0.6;
+  z-index:0;
+}
+.provenance-stamp span{
+  font-family:'Anuphan',sans-serif;
+  font-weight:700;
+  font-size:13px;
+  color:var(--critical);
+}
+
+/* Footer */
+.provenance-footer{
+  text-align:center;
+  padding:2rem 1rem 3rem;
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:13px;
+  color:#6B6254;
+}
+
+/* ================================================================
+   DIRECTION 2: THE LAB NOTEBOOK
+   ================================================================ */
+.lab{
+  --notebook:#F5F2EA;
+  --notebook-dark:#E8E3D6;
+  --scrap:#FDFBF7;
+  --ink:#1C1814;
+  --pen:#2B4A5E;
+  --redpen:#CC3A2F;
+  --highlighter:rgba(255,237,100,0.45);
+  --tape:rgba(245,240,220,0.65);
+  --grid:rgba(175,165,145,0.18);
+  background:var(--notebook);
+  position:relative;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* Graph paper grid */
+.lab::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Paper-fiber noise via SVG data URI */
+.lab::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.4;
+}
+
+/* Aging gradient at edges */
+.lab-aging{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,transparent 40%,rgba(139,119,89,0.06) 100%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.lab-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 1.25rem}
+
+/* Notebook entry header */
+.lab-entry-header{padding-top:2.5rem;padding-bottom:1.5rem}
+.lab-red-rule{
+  width:100%;height:1px;background:var(--redpen);margin-bottom:0.75rem;
+}
+.lab-site-title{
+  font-family:'K2D','Sarabun',sans-serif;
+  font-weight:300;
+  font-size:15px;
+  color:var(--pen);
+  margin-bottom:0.25rem;
+}
+.lab-date{
+  font-family:'K2D','Sarabun',sans-serif;
+  font-weight:300;
+  font-size:13px;
+  color:var(--pen);
+  margin-bottom:0.75rem;
+}
+.lab-thick-rule{
+  width:100%;height:2px;background:var(--redpen);margin-bottom:1.5rem;
+}
+
+.lab-entry-header h1{
+  font-family:'Anuphan',sans-serif;
+  font-weight:800;
+  font-size:clamp(2rem,5.5vw,3.5rem);
+  color:var(--ink);
+  line-height:1.2;
+  margin-bottom:0.75rem;
+}
+
+.lab-case-circle-wrap{
+  display:inline-block;
+  margin-bottom:1rem;
+}
+.lab-case-circle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--redpen);
+  border-radius:50%;
+  width:80px;height:80px;
+  position:relative;
+}
+.lab-case-circle span{
+  font-family:'Anuphan',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  color:var(--redpen);
+  text-align:center;
+  line-height:1.3;
+}
+
+.lab-subhead{
+  font-family:'Sarabun',sans-serif;
+  font-size:clamp(16px,2.2vw,19px);
+  color:#3A3530;
+  line-height:1.7;
+  max-width:580px;
+}
+
+/* Article body area with margin notes */
+.lab-article-area{
+  display:flex;
+  gap:2rem;
+  padding-bottom:2rem;
+  position:relative;
+}
+.lab-article-main{flex:1;min-width:0}
+
+.lab-article-main h2{
+  font-family:'Anuphan',sans-serif;
+  font-weight:700;
+  font-size:clamp(1.1rem,2.8vw,1.4rem);
+  color:var(--ink);
+  margin-bottom:0.75rem;
+  line-height:1.35;
+}
+
+.lab-body-text{
+  font-family:'Sarabun',sans-serif;
+  font-size:18px;
+  color:var(--ink);
+  line-height:1.75;
+  margin-bottom:1.25rem;
+}
+
+/* Highlight */
+.lab-highlight{
+  background:var(--highlighter);
+  padding:1px 3px;
+}
+
+/* Correction mark */
+.lab-correction-original{
+  text-decoration:line-through;
+  text-decoration-style:wavy;
+  text-decoration-color:var(--redpen);
+  color:#8A7E72;
+}
+.lab-correction-note{
+  font-family:'K2D','Sarabun',sans-serif;
+  font-weight:300;
+  font-size:14px;
+  color:var(--pen);
+  margin-top:0.5rem;
+  display:block;
+}
+
+/* Margin notes */
+.lab-margin{
+  display:none;
+  width:220px;
+  flex-shrink:0;
+  padding-top:0.25rem;
+}
+@media(min-width:768px){
+  .lab-margin{display:block}
+}
+.lab-margin-note{
+  font-family:'K2D','Sarabun',sans-serif;
+  font-weight:300;
+  font-size:14px;
+  color:var(--pen);
+  line-height:1.6;
+  margin-bottom:1.5rem;
+  position:relative;
+  padding-left:12px;
+  border-left:1.5px dashed var(--redpen);
+}
+.lab-margin-note:nth-child(1){transform:rotate(-1deg)}
+.lab-margin-note:nth-child(2){transform:rotate(0.5deg)}
+.lab-margin-note:nth-child(3){transform:rotate(-0.5deg)}
+
+/* Taped-in scrap */
+.lab-scrap{
+  background:var(--scrap);
+  border:1px solid rgba(175,165,145,0.35);
+  border-radius:3px;
+  padding:1.5rem 1.25rem 1.25rem;
+  margin:2rem 0;
+  position:relative;
+  transform:rotate(-1.5deg);
+  box-shadow:2px 3px 10px rgba(0,0,0,0.05);
+}
+.lab-scrap-tape{
+  position:absolute;
+  top:-10px;left:50%;
+  transform:translateX(-50%) rotate(1deg);
+  width:120px;height:28px;
+  background:var(--tape);
+  box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  opacity:0.8;
+}
+.lab-scrap h3{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.05em;
+  color:var(--pen);
+  margin-bottom:0.75rem;
+}
+.lab-spec-table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+}
+.lab-spec-table td{
+  padding:6px 8px;
+  border-bottom:1px dashed rgba(175,165,145,0.3);
+  color:var(--ink);
+}
+.lab-spec-table td:first-child{color:var(--pen);width:40%}
+
+/* Hand-drawn thermometer */
+.lab-thermometer-wrap{
+  display:flex;
+  align-items:flex-start;
+  gap:0.75rem;
+  margin:1.5rem 0;
+}
+.lab-thermometer{
+  width:14px;
+  height:120px;
+  border:2px solid var(--pen);
+  border-radius:8px;
+  position:relative;
+  background:transparent;
+  flex-shrink:0;
+}
+.lab-thermometer-fill{
+  position:absolute;
+  bottom:3px;left:3px;right:3px;
+  height:85%;
+  background:var(--redpen);
+  border-radius:4px;
+  opacity:0.85;
+}
+.lab-thermometer-ticks{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height:120px;
+  padding:2px 0;
+}
+.lab-tick{
+  width:8px;height:1px;background:var(--pen);
+}
+.lab-thermometer-label{
+  font-family:'K2D','Sarabun',sans-serif;
+  font-weight:300;
+  font-size:14px;
+  color:var(--pen);
+  line-height:1.5;
+  align-self:center;
+}
+
+/* Verdict circle at footer */
+.lab-verdict-area{
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  gap:1rem;
+  padding:1.5rem 0 2.5rem;
+  flex-wrap:wrap;
+}
+.lab-verdict-circle-wrap{position:relative}
+.lab-verdict-circle{
+  width:90px;height:90px;
+  border:3px solid var(--redpen);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:rotate(-3deg);
+}
+.lab-verdict-circle svg{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  overflow:visible;
+}
+.lab-verdict-circle span{
+  font-family:'Anuphan',sans-serif;
+  font-weight:700;
+  font-size:16px;
+  color:var(--redpen);
+  position:relative;
+  z-index:1;
+}
+.lab-verdict-signature{
+  font-family:'K2D','Sarabun',sans-serif;
+  font-weight:300;
+  font-size:13px;
+  color:var(--pen);
+  text-align:right;
+  line-height:1.5;
+}
+
+/* Ink blot */
+.lab-ink-blot{
+  position:absolute;
+  width:60px;height:50px;
+  border-radius:40% 60% 50% 50% / 50% 40% 60% 50%;
+  background:radial-gradient(ellipse at 40% 40%,rgba(43,74,94,0.04),transparent 70%);
+  top:20%;left:8%;
+  pointer-events:none;
+  z-index:0;
+}
+@media (prefers-reduced-motion:no-preference){
+  .lab-ink-blot{animation:inkAppear 2s ease-out forwards}
+  @keyframes inkAppear{from{opacity:0}to{opacity:1}}
+}
+
+/* Lab footer */
+.lab-footer{
+  padding:2rem 1rem 3rem;
+  text-align:center;
+}
+.lab-footer-card{
+  display:inline-block;
+  background:var(--scrap);
+  border:1px solid rgba(175,165,145,0.25);
+  padding:10px 20px;
+  position:relative;
+  transform:rotate(-0.5deg);
+  box-shadow:1px 2px 6px rgba(0,0,0,0.04);
+}
+.lab-footer-tape{
+  position:absolute;
+  top:-8px;left:10px;
+  width:50px;height:18px;
+  background:var(--tape);
+  box-shadow:0 1px 2px rgba(0,0,0,0.06);
+  opacity:0.8;
+}
+.lab-footer-card span{
+  font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+  font-size:12px;
+  color:#6B6254;
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .lab-body-text{animation:labInkSettle 1.2s ease-out}
+  @keyframes labInkSettle{from{filter:blur(2px);opacity:0.6}to{filter:blur(0);opacity:1}}
+  .lab-case-circle{animation:labCircleDraw 1s ease-out forwards}
+  @keyframes labCircleDraw{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+}
+
+/* ================================================================
+   DIRECTION 3: SPEC SHEET
+   ================================================================ */
+.spec{
+  --bg:#0A0A0A;
+  --surface:#141414;
+  --text:#E8E8E8;
+  --cyan:#00D4FF;
+  --critical:#FF3B30;
+  --cobalt:#2456C8;
+  --hairline:#333333;
+  --muted:#888888;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:'Anuphan','Inter',sans-serif;
+}
+
+.spec-inner{max-width:800px;margin:0 auto;padding:0 1.25rem}
+
+/* Hero panel */
+.spec-hero{
+  min-height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:3rem 0;
+}
+.spec-hero h1{
+  font-family:'Bai Jamjuree',sans-serif;
+  font-weight:700;
+  font-size:clamp(2.2rem,6vw,4rem);
+  color:var(--text);
+  letter-spacing:0.02em;
+  line-height:1.15;
+  margin-bottom:1.25rem;
+}
+.spec-cyan-rule{
+  width:100%;height:1px;
+  background:var(--cyan);
+  margin-bottom:1.25rem;
+  opacity:0.6;
+}
+.spec-hero-subhead{
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  font-size:clamp(15px,2.2vw,18px);
+  color:#AAAAAA;
+  line-height:1.7;
+  max-width:560px;
+  margin-bottom:2.5rem;
+}
+
+/* Spec preamble table */
+.spec-preamble{
+  width:100%;
+  max-width:520px;
+  border-collapse:collapse;
+  margin-bottom:2rem;
+}
+.spec-preamble td{
+  padding:10px 12px;
+  border-bottom:1px solid var(--hairline);
+  font-size:14px;
+}
+.spec-preamble td:first-child{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  width:35%;
+}
+.spec-preamble td:last-child{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+}
+
+/* Spec card */
+.spec-card{
+  background:var(--surface);
+  border-top:1px solid var(--cyan);
+  border-radius:0 0 4px 4px;
+  margin-bottom:2.5rem;
+  overflow:hidden;
+}
+.spec-card-table{
+  width:100%;
+  border-collapse:collapse;
+}
+.spec-card-table td{
+  padding:12px 16px;
+  border-bottom:1px solid var(--hairline);
+  font-size:14px;
+}
+.spec-card-table td:first-child{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  width:40%;
+}
+.spec-card-table td:last-child{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+}
+@media(max-width:480px){
+  .spec-card-table td:first-child{width:auto}
+  .spec-card-table td:last-child{text-align:right}
+}
+
+/* Status indicator */
+.spec-status-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.spec-status-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--cyan);
+  flex-shrink:0;
+}
+.spec-status-dot:hover{
+  box-shadow:0 0 0 10px rgba(0,212,255,0);
+  transition:box-shadow 0.6s ease-out;
+}
+@media (prefers-reduced-motion:no-preference){
+  .spec-status-dot:hover{animation:specPulse 0.6s ease-out}
+  @keyframes specPulse{0%{box-shadow:0 0 0 0 rgba(0,212,255,0.4)}100%{box-shadow:0 0 0 10px rgba(0,212,255,0)}}
+}
+.spec-status-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  color:var(--text);
+}
+
+/* Article body */
+.spec-article{padding-bottom:2rem}
+.spec-article h2{
+  font-family:'Bai Jamjuree',sans-serif;
+  font-weight:700;
+  font-size:clamp(1.1rem,2.8vw,1.4rem);
+  color:var(--text);
+  margin-bottom:1rem;
+  line-height:1.35;
+}
+.spec-article p{
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  color:#CCCCCC;
+  margin-bottom:1.25rem;
+}
+.spec-pullquote{
+  font-family:'JetBrains Mono',monospace;
+  font-size:15px;
+  color:var(--cyan);
+  border-left:2px solid var(--cyan);
+  padding-left:16px;
+  margin:1.5rem 0;
+  line-height:1.6;
+}
+
+/* Data table */
+.spec-data-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:1.5rem 0;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+}
+.spec-data-table thead th{
+  background:var(--cyan);
+  color:var(--bg);
+  padding:10px 12px;
+  text-align:left;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.spec-data-table td{
+  padding:10px 12px;
+  border-bottom:1px solid var(--hairline);
+  color:#CCCCCC;
+}
+.spec-data-table tr:nth-child(even) td{background:#1A1A1A}
+.spec-data-table tr:hover td{
+  border-left:1px solid var(--cyan);
+  padding-left:11px;
+}
+@media (prefers-reduced-motion:no-preference){
+  .spec-data-table tr:hover td{transition:border-left 0.2s ease,padding-left 0.2s ease}
+}
+
+/* Verdict readout */
+.spec-verdict-area{
+  display:flex;
+  justify-content:flex-end;
+  padding:1.5rem 0 2.5rem;
+}
+.spec-verdict-panel{
+  border:1px solid var(--cyan);
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.spec-verdict-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--cyan);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+.spec-verdict-value{
+  font-family:'JetBrains Mono',monospace;
+  font-size:16px;
+  font-weight:700;
+  color:var(--critical);
+}
+
+/* Footer */
+.spec-footer{
+  text-align:center;
+  padding:2rem 1rem 3rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:#666666;
+}
+
+/* Data count animation hint */
+[data-count]{
+  font-variant-numeric:tabular-nums;
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     DIRECTION 1: PROVENANCE
+     ================================================================ -->
+<section class="provenance" aria-label="Direction 1: Provenance">
+  <div class="provenance-wash-tl"></div>
+  <div class="provenance-wash-tr"></div>
+  <div class="provenance-inner">
+
+    <!-- Hero -->
+    <div class="provenance-hero">
+      <div class="provenance-sunburst" aria-hidden="true"></div>
+      <div class="provenance-hero-content">
+        <div class="provenance-domain">beef.im</div>
+        <h1>ประกันเนื้อๆ</h1>
+        <p class="provenance-hero-subhead">ดูเนื้อ ไม่ดูหน้า<br>วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+        <div class="provenance-search">
+          <input type="text" placeholder="ค้นหาบทวิเคราะห์..." aria-label="ค้นหาบทวิเคราะห์">
+          <button type="button">ค้นหา</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article card -->
+    <div class="provenance-card-section">
+      <div class="provenance-card-container">
+        <article class="provenance-card">
+          <div class="provenance-temp-bar" aria-hidden="true"></div>
+          <div class="provenance-temp-label">ความเสี่ยงสูง — อ่านก่อนเซ็น</div>
+          <div class="provenance-card-body">
+            <span class="provenance-badge">UNDERWEIGHT</span>
+            <h2>ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+            <p class="dek">สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</p>
+            <div class="provenance-meta">
+              <span class="provenance-pill">25 เมษายน 2026</span>
+              <span class="provenance-pill">8 นาที</span>
+              <span class="provenance-pill">CASE FILE #031</span>
+            </div>
+            <div class="provenance-annotation-wrap">
+              <div class="provenance-article-body">
+                <p style="font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;font-size:16px;color:#3A3530;line-height:1.7;margin-bottom:1rem">
+                  บทวิเคราะห์นี้แกะรอยสัญญาประกันชีวิตแบบ Whole Life ที่มียอดขายสูงสุดในตลาดไทย โดยเปรียบเทียบค่าเบี้ยจริงกับมูลค่าเงินคืนที่ได้รับ รวมถึงข้อจำกัดที่ผู้ขายไม่ได้บอก
+                </p>
+                <p style="font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;font-size:16px;color:#3A3530;line-height:1.7">
+                  หลังจากอ่านสัญญาทั้งหมด 23 หน้า พบว่าข้อ 7.3 ระบุการเวนคืนกรมธรรม์ใน 3 ปีแรกไม่ได้รับเงินคืนใดๆ ซึ่งเป็นข้อมูลสำคัญที่ควรทราบก่อนตัดสินใจ
+                </p>
+                <span class="provenance-annotation-mobile">ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7 — อ่านก่อนเซ็นสัญญา</span>
+              </div>
+              <aside class="provenance-annotation" aria-label="หมายเหตุสำคัญ">
+                <div class="provenance-annotation-bracket">[</div>
+                <div class="provenance-annotation-text">ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7 — อ่านก่อนเซ็นสัญญา</div>
+              </aside>
+            </div>
+            <div class="provenance-verdict-area">
+              <div class="provenance-stamp-wrap">
+                <div class="provenance-stamp-blur" aria-hidden="true"></div>
+                <div class="provenance-stamp" aria-label="ผลวิเคราะห์: ไม่ผ่าน">
+                  <span>ไม่ผ่าน</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="provenance-footer">
+      📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+    </footer>
+  </div>
+</section>
+
+<div class="section-divider" aria-hidden="true">Direction 2: The Lab Notebook</div>
+
+<!-- ================================================================
+     DIRECTION 2: THE LAB NOTEBOOK
+     ================================================================ -->
+<section class="lab" aria-label="Direction 2: The Lab Notebook">
+  <div class="lab-aging" aria-hidden="true"></div>
+  <div class="lab-ink-blot" aria-hidden="true"></div>
+  <div class="lab-inner">
+
+    <!-- Notebook entry header (replaces hero) -->
+    <header class="lab-entry-header">
+      <div class="lab-red-rule"></div>
+      <div class="lab-site-title">ประกันเนื้อๆ</div>
+      <div class="lab-date">25 เมษายน 2026</div>
+      <div class="lab-thick-rule"></div>
+      <h1>ดูเนื้อ ไม่ดูหน้า</h1>
+      <div class="lab-case-circle-wrap">
+        <div class="lab-case-circle">
+          <span>CASE<br>FILE<br>#031</span>
+        </div>
+      </div>
+      <p class="lab-subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+    </header>
+
+    <!-- Article with margin notes -->
+    <div class="lab-article-area">
+      <div class="lab-article-main">
+        <h2>ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+        <p class="lab-body-text">
+          สัญญานี้ขายดีที่สุดในไทย <span class="lab-highlight">แต่เมื่ออ่านเงื่อนไขจริง</span> — ค่าเบี้ยสูงเกินผลตอบแทน <span class="lab-correction-original">60%</span> และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7
+        </p>
+        <span class="lab-correction-note">แก้ไข: 60% → 72% หลังตรวจสอบอีกครั้ง</span>
+
+        <!-- Taped-in scrap -->
+        <div class="lab-scrap">
+          <div class="lab-scrap-tape" aria-hidden="true"></div>
+          <h3>Exhibit A — ตารางเปรียบเทียบค่าเบี้ย</h3>
+          <table class="lab-spec-table">
+            <tr><td>ค่าเบี้ยรายปี</td><td>฿48,000</td></tr>
+            <tr><td>ระยะชำระ</td><td>20 ปี</td></tr>
+            <tr><td>มูลค่าเงินคืนปีที่ 10</td><td>฿180,000</td></tr>
+            <tr><td>ขาดทุนสะสม</td><td>72%</td></tr>
+          </table>
+        </div>
+
+        <!-- Hand-drawn thermometer -->
+        <div class="lab-thermometer-wrap">
+          <div class="lab-thermometer" aria-hidden="true">
+            <div class="lab-thermometer-fill"></div>
+          </div>
+          <div class="lab-thermometer-ticks" aria-hidden="true">
+            <div class="lab-tick"></div>
+            <div class="lab-tick"></div>
+            <div class="lab-tick"></div>
+            <div class="lab-tick"></div>
+            <div class="lab-tick"></div>
+          </div>
+          <div class="lab-thermometer-label">ระดับความเสี่ยง: สูง<br>HOT / ความเสี่ยงสูง</div>
+        </div>
+
+        <!-- Rating verdict circle -->
+        <div style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0;flex-wrap:wrap">
+          <svg width="110" height="60" viewBox="0 0 110 60" aria-label="UNDERWEIGHT verdict">
+            <path d="M55,5 C85,2 105,18 105,35 C105,52 80,58 55,55 C30,58 5,52 5,35 C5,18 25,2 55,5" fill="none" stroke="#CC3A2F" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="55" y="32" text-anchor="middle" fill="#CC3A2F" font-family="Anuphan, sans-serif" font-size="11" font-weight="700">UNDER</text>
+            <text x="55" y="46" text-anchor="middle" fill="#CC3A2F" font-family="Anuphan, sans-serif" font-size="11" font-weight="700">WEIGHT</text>
+          </svg>
+          <div style="font-family:'K2D','Sarabun',sans-serif;font-weight:300;font-size:14px;color:#2B4A5E;transform:rotate(-1deg)">
+            เกรดต่ำ — อ่านก่อนเซ็น
+          </div>
+        </div>
+
+        <p class="lab-body-text">
+          อ่านย่อหน้า 2 ก่อนตัดสินใจ — สัญญานี้มีเงื่อนไขการเวนคืนที่เข้มงวดในช่วง 5 ปีแรก และค่าธรรมเนียมการจัดการที่ไม่ได้แจ้งให้ทราบอย่างชัดเจนในหน้าแรก
+        </p>
+
+        <!-- Verdict stamp at footer -->
+        <div class="lab-verdict-area">
+          <div class="lab-verdict-signature">
+            นาถ — 25/04/2026
+          </div>
+          <div class="lab-verdict-circle-wrap">
+            <svg width="90" height="90" viewBox="0 0 90 90" aria-hidden="true">
+              <path d="M45,5 C70,2 85,20 85,42 C85,65 68,82 45,85 C22,82 5,65 5,42 C5,20 20,2 45,5" fill="none" stroke="#CC3A2F" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="lab-verdict-circle">
+              <span>✗ ไม่ผ่าน</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Margin notes -->
+      <aside class="lab-margin" aria-label="บันทึกข้างกระดาษ">
+        <div class="lab-margin-note">
+          สัญญานี้ขายดีที่สุดในไทย — แต่ไม่ใช่เพราะมันดี
+        </div>
+        <div class="lab-margin-note">
+          ข้อ 7.3 — ค่าเวนคืนใน 3 ปีแรก = 0 บาท
+        </div>
+        <div class="lab-margin-note" style="display:flex;align-items:center;gap:6px">
+          <span>อ่านย่อหน้า 2 ก่อนตัดสินใจ</span>
+          <svg width="24" height="12" viewBox="0 0 24 12" aria-hidden="true">
+            <path d="M24,6 L8,6 M12,2 L8,6 L12,10" fill="none" stroke="#2B4A5E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="lab-footer">
+      <div class="lab-footer-card">
+        <div class="lab-footer-tape" aria-hidden="true"></div>
+        <span>📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<div class="section-divider" aria-hidden="true" style="border-color:#00D4FF">Direction 3: Spec Sheet</div>
+
+<!-- ================================================================
+     DIRECTION 3: SPEC SHEET
+     ================================================================ -->
+<section class="spec" aria-label="Direction 3: Spec Sheet">
+  <div class="spec-inner">
+
+    <!-- Hero panel -->
+    <div class="spec-hero">
+      <h1>ดูเนื้อ ไม่ดูหน้า</h1>
+      <div class="spec-cyan-rule"></div>
+      <p class="spec-hero-subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+      <table class="spec-preamble">
+        <tr><td>Type</td><td>Insurance Contract Analysis</td></tr>
+        <tr><td>Grade</td><td>UNDERWEIGHT</td></tr>
+        <tr><td>Risk</td><td>HIGH</td></tr>
+        <tr><td>Read Time</td><td>8 min</td></tr>
+      </table>
+    </div>
+
+    <!-- Spec card -->
+    <div class="spec-card">
+      <table class="spec-card-table">
+        <tr><td>Product</td><td>Whole Life 99/20</td></tr>
+        <tr><td>Premium Range</td><td>฿48,000 / ปี</td></tr>
+        <tr><td>Coverage Type</td><td>ประกันชีวิตตลอดชีพ</td></tr>
+        <tr><td>Risk Grade</td>
+          <td>
+            <div class="spec-status-wrap">
+              <span class="spec-status-dot" aria-hidden="true"></span>
+              <span class="spec-status-text">UNDERWEIGHT</span>
+            </div>
+          </td>
+        </tr>
+        <tr><td>Temperature</td><td>HOT / ความเสี่ยงสูง</td></tr>
+        <tr><td>Verdict</td><td style="color:#FF3B30;font-weight:700">FAIL — ไม่ผ่าน</td></tr>
+      </table>
+    </div>
+
+    <!-- Article content -->
+    <article class="spec-article">
+      <h2>ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+      <p>
+        สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน <span data-count="72">72%</span> และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7
+      </p>
+      <div class="spec-pullquote">
+        ข้อ 7.3 — ค่าเวนคืนใน 3 ปีแรก = 0 บาท
+      </div>
+      <p>
+        บทวิเคราะห์นี้แกะรอยสัญญาประกันชีวิตแบบ Whole Life ที่มียอดขายสูงสุดในตลาดไทย โดยเปรียบเทียบค่าเบี้ยจริงกับมูลค่าเงินคืนที่ได้รับ รวมถึงข้อจำกัดที่ผู้ขายไม่ได้บอก
+      </p>
+
+      <!-- Data table -->
+      <table class="spec-data-table">
+        <thead>
+          <tr><th>Parameter</th><th>Value</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ค่าเบี้ยรายปี</td><td>฿48,000</td><td><span style="color:#00D4FF">●</span> ACTIVE</td></tr>
+          <tr><td>ระยะชำระ</td><td>20 ปี</td><td><span style="color:#00D4FF">●</span> ACTIVE</td></tr>
+          <tr><td>ขาดทุนสะสม</td><td><span data-count="72">72%</span></td><td><span style="color:#FF3B30">●</span> CRITICAL</td></tr>
+          <tr><td>มูลค่าเงินคืนปีที่ 10</td><td>฿180,000</td><td><span style="color:#FF3B30">●</span> LOW</td></tr>
+          <tr><td>การเวนคืนปี 1-3</td><td>0 บาท</td><td><span style="color:#FF3B30">●</span> LOCKED</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        หลังจากอ่านสัญญาทั้งหมด 23 หน้า พบว่าข้อ 7.3 ระบุการเวนคืนกรมธรรม์ใน 3 ปีแรกไม่ได้รับเงินคืนใดๆ ซึ่งเป็นข้อมูลสำคัญที่ควรทราบก่อนตัดสินใจ
+      </p>
+
+      <!-- Verdict readout -->
+      <div class="spec-verdict-area">
+        <div class="spec-verdict-panel">
+          <span class="spec-verdict-label">Verdict</span>
+          <span class="spec-verdict-value">FAIL — ไม่ผ่าน</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="spec-footer">
+      📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+    </footer>
+  </div>
+</section>
+
+</body>
+</html>

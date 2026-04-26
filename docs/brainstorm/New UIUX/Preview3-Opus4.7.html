@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — UI/UX Direction Preview 3 — Editorial, Material & Synthesis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700;800&family=Bai+Jamjuree:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=IBM+Plex+Sans+Thai+Looped:wght@400;500;700&family=IBM+Plex+Serif:wght@400;500;700&family=Inter:wght@400;500;700&family=Itim&family=Kanit:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Sarabun:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0c; color: #d4d4d8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; padding: 32px 16px 64px; min-height: 100vh; }
+
+  .page-header { max-width: 1280px; margin: 0 auto 40px; padding-bottom: 28px; border-bottom: 1px solid #27272a; }
+  .page-header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #fafafa; margin-bottom: 12px; }
+  .page-header h1 small { font-size: 16px; color: #a1a1aa; font-weight: 400; letter-spacing: 0; margin-left: 8px; }
+  .page-header p { color: #a1a1aa; font-size: 14.5px; line-height: 1.65; max-width: 820px; }
+  .page-header p + p { margin-top: 12px; }
+  .page-header .meta { margin-top: 16px; font-family: ui-monospace, monospace; font-size: 11.5px; color: #71717a; }
+  .page-header .correction { margin-top: 14px; padding: 12px 14px; background: #1e1b4b; border-left: 3px solid #c4b5fd; border-radius: 4px; font-size: 12.5px; color: #d4d4d8; line-height: 1.55; }
+
+  .overview { max-width: 1280px; margin: 0 auto 48px; background: #18181b; border: 1px solid #27272a; border-radius: 14px; padding: 20px 24px; }
+  .overview h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; font-family: ui-monospace, monospace; margin-bottom: 14px; }
+  .overview-row { display: grid; grid-template-columns: 240px 1fr 130px; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px dashed #27272a; }
+  .overview-row:last-child { border-bottom: none; }
+  .overview-name { font-size: 13.5px; color: #fafafa; font-weight: 500; }
+  .overview-name a { color: inherit; text-decoration: none; }
+  .overview-name a:hover { text-decoration: underline; }
+  .overview-name .pick { font-family: ui-monospace, monospace; font-size: 10px; color: #71717a; display: block; margin-bottom: 2px; letter-spacing: 0.08em; }
+  .overview-strip { display: flex; gap: 4px; height: 32px; border-radius: 6px; overflow: hidden; }
+  .overview-strip > div { flex: 1; }
+  .overview-source { font-family: ui-monospace, monospace; font-size: 10.5px; color: #a1a1aa; text-align: right; }
+
+  main { max-width: 1280px; margin: 0 auto; display: grid; gap: 56px; }
+
+  .direction { background: #18181b; border: 1px solid #27272a; border-radius: 18px; padding: 28px; }
+  .dir-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #27272a; }
+  .dir-num { font-family: ui-monospace, monospace; font-size: 11px; color: #71717a; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 8px; background: #27272a; border-radius: 4px; }
+  .dir-num.material { background: #422006; color: #fbbf24; }
+  .dir-num.editorial { background: #134e4a; color: #5eead4; }
+  .dir-num.forensic { background: #450a0a; color: #fca5a5; }
+  .dir-num.synthesis { background: #4a044e; color: #f0abfc; }
+  .dir-title { font-size: 26px; font-weight: 700; color: #fafafa; letter-spacing: -0.01em; }
+  .dir-source { font-family: ui-monospace, monospace; font-size: 11.5px; color: #a1a1aa; margin-left: auto; }
+  .dir-mood { width: 100%; margin-top: 6px; color: #d4d4d8; font-style: italic; font-size: 14px; line-height: 1.55; }
+
+  .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+  .swatch-color { height: 84px; }
+  .swatch-meta { background: #0a0a0c; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .swatch-role { font-family: ui-monospace, monospace; font-size: 9.5px; color: #71717a; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.3; }
+  .swatch-hex { font-family: ui-monospace, monospace; font-size: 11.5px; color: #fafafa; font-weight: 600; margin-top: 3px; }
+
+  .dir-body { display: grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 880px) { .dir-body { grid-template-columns: 1fr; } .palette { grid-template-columns: repeat(3, 1fr); } .overview-row { grid-template-columns: 1fr; gap: 8px; } }
+
+  .mockup { border-radius: 12px; overflow: hidden; min-height: 540px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); position: relative; }
+  .mockup-frame { padding: 18px; position: relative; z-index: 2; }
+  .mockup-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; }
+
+  .notes h4 { font-family: ui-monospace, monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; margin-bottom: 8px; margin-top: 18px; }
+  .notes h4:first-child { margin-top: 0; }
+  .notes p { font-size: 13.5px; line-height: 1.65; color: #d4d4d8; margin-bottom: 6px; }
+  .notes p code { font-family: ui-monospace, monospace; font-size: 12px; background: #27272a; padding: 1px 5px; border-radius: 3px; color: #fbbf24; }
+  .notes .axes { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-top: 8px; font-family: ui-monospace, monospace; font-size: 11.5px; }
+  .notes .axes .label { color: #71717a; }
+  .notes .axes .value { color: #fafafa; text-align: right; }
+  .notes .tradeoff { background: #1c1917; border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #d4d4d8; margin-top: 6px; }
+  .notes .synthesis-note { background: #4a044e; border-left: 3px solid #f0abfc; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #fafafa; margin-top: 6px; }
+  .notes .convergence { background: #134e4a; border-left: 3px solid #5eead4; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #d4d4d8; margin-top: 6px; }
+
+  /* =================================================================== */
+  /* DIRECTION 1 — MARBLED LAYERS (Marbled Glass × The Marbling)         */
+  /* =================================================================== */
+  .mock-marbled {
+    background: #E8ECEF;
+    color: #333D45;
+    font-family: 'Kanit', 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-marbled::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 600px 80px at 20% 35%, rgba(201, 122, 126, 0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 500px 60px at 80% 65%, rgba(201, 122, 126, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .mock-marbled .vein-svg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.35;
+  }
+  .mock-marbled .mockup-nav { border-bottom: 1px solid rgba(51, 61, 69, 0.15); position: relative; z-index: 3; }
+  .mock-marbled .nav-brand {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 500;
+    font-size: 19px;
+    color: #333D45;
+    letter-spacing: -0.005em;
+  }
+  .mock-marbled .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #C97A7E;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .mock-marbled .nav-meta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5d6970; letter-spacing: 0.1em; }
+  .mock-marbled .ml-stack { position: relative; z-index: 3; margin-top: 12px; }
+  .mock-marbled .ml-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 16px rgba(51, 61, 69, 0.08);
+  }
+  .mock-marbled .ml-card.layer-2 {
+    margin-left: 12px;
+    margin-top: -6px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+  .mock-marbled .ml-card.layer-3 {
+    margin-left: 24px;
+    margin-top: -6px;
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .mock-marbled .ml-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #C97A7E;
+    letter-spacing: 0.14em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .mock-marbled .ml-h {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+    color: #333D45;
+  }
+  .mock-marbled .ml-lede {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #5d6970;
+  }
+  .mock-marbled .ml-meta {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(51, 61, 69, 0.1);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #B71C1C;
+    letter-spacing: 0.08em;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 2 — THAI MODERNIST                                         */
+  /* =================================================================== */
+  .mock-modernist {
+    background: #E8DCC8;
+    color: #3D3428;
+    font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+    position: relative;
+  }
+  .mock-modernist::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(135deg, transparent 0, transparent 2px, rgba(61, 52, 40, 0.025) 2px, rgba(61, 52, 40, 0.025) 3px);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .mock-modernist .mockup-nav { border-bottom: 8px solid #1B5E4E; position: relative; z-index: 2; }
+  .mock-modernist .nav-brand {
+    font-family: 'Itim', cursive;
+    font-weight: 400;
+    font-size: 22px;
+    color: #3D3428;
+    letter-spacing: -0.005em;
+    line-height: 1;
+  }
+  .mock-modernist .nav-brand small {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    color: #1B5E4E;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .mock-modernist .nav-section {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #B85C3A;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .mock-modernist .tm-card {
+    background: #D4C4A8;
+    border: 6px solid #1B5E4E;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .mock-modernist .tm-card.lead {
+    border-left: 6px solid #B85C3A;
+    border-top: 6px solid #B85C3A;
+    border-right: 6px solid #1B5E4E;
+    border-bottom: 6px solid #1B5E4E;
+  }
+  .mock-modernist .tm-tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    color: #1B5E4E;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .mock-modernist .tm-tag.terra { color: #B85C3A; }
+  .mock-modernist .tm-h {
+    font-family: 'Itim', 'Noto Sans Thai', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+    color: #3D3428;
+  }
+  .mock-modernist .tm-lede {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #5a4f3e;
+    margin-bottom: 12px;
+  }
+  .mock-modernist .tm-meta {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    color: #1B5E4E;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 3 — PAVILION                                               */
+  /* =================================================================== */
+  .mock-pavilion {
+    background: #F4EFE6;
+    color: #1C1814;
+    font-family: 'Sarabun', 'Inter', sans-serif;
+  }
+  .mock-pavilion .mockup-nav { border-bottom: 0.5px solid rgba(28, 24, 20, 0.2); }
+  .mock-pavilion .nav-brand {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #1C1814;
+    letter-spacing: -0.01em;
+  }
+  .mock-pavilion .nav-brand small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: #C45A2D;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .mock-pavilion .nav-roman {
+    font-family: 'Inter', serif;
+    font-size: 13px;
+    color: #1C1814;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+  .mock-pavilion .pv-course {
+    margin: 28px 0 14px;
+    text-align: center;
+  }
+  .mock-pavilion .pv-rule {
+    height: 0.5px;
+    background: #1C1814;
+    width: 60%;
+    margin: 0 auto 16px;
+  }
+  .mock-pavilion .pv-numeral {
+    font-family: 'Inter', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    color: #C45A2D;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .mock-pavilion .pv-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: #1C1814;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .mock-pavilion .pv-card {
+    background: #FAF7F1;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+  }
+  .mock-pavilion .pv-h {
+    font-family: 'Anuphan', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+    color: #1C1814;
+    text-align: center;
+  }
+  .mock-pavilion .pv-lede {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #4a423c;
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto 14px;
+  }
+  .mock-pavilion .pv-meta {
+    font-family: 'Inter', monospace;
+    font-size: 10px;
+    color: #7a6f64;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 4 — NEWSROOM                                               */
+  /* =================================================================== */
+  .mock-newsroom {
+    background: #F1ECE2;
+    color: #1A1A1A;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+  }
+  .mock-newsroom .mockup-nav { border-bottom: 2px solid #1A1A1A; padding-bottom: 14px; }
+  .mock-newsroom .nav-brand {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1A1A;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .mock-newsroom .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #6B0F1A;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .mock-newsroom .nav-issue {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #B8860B;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .mock-newsroom .nr-card { background: #FFFFFF; padding: 14px 16px; margin-bottom: 14px; }
+  .mock-newsroom .nr-masthead {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #1A1A1A;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid #1A1A1A;
+    margin-bottom: 10px;
+  }
+  .mock-newsroom .nr-masthead .section { color: #6B0F1A; font-weight: 600; }
+  .mock-newsroom .nr-h {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.012em;
+    color: #1A1A1A;
+  }
+  .mock-newsroom .nr-byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #6B0F1A;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .mock-newsroom .nr-byline-rule {
+    height: 0.5px;
+    background: #1A1A1A;
+    width: 100%;
+    margin: 6px 0 10px;
+  }
+  .mock-newsroom .nr-lede {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #1A1A1A;
+  }
+  .mock-newsroom .nr-pullquote {
+    margin: 12px 0 4px;
+    padding: 10px 14px;
+    border-left: 3px solid #B8860B;
+    font-family: 'IBM Plex Serif', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #1A1A1A;
+    background: #FAF6EC;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 5 — CLAUSE BLOCK                                           */
+  /* =================================================================== */
+  .mock-clause {
+    background: #E7E0D3;
+    color: #111111;
+    font-family: 'Anuphan', 'Inter', sans-serif;
+  }
+  .mock-clause .mockup-nav { border-bottom: 4px solid #111111; padding-bottom: 14px; }
+  .mock-clause .nav-brand {
+    font-family: 'IBM Plex Sans Thai Looped', 'IBM Plex Sans Thai', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #111111;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .mock-clause .nav-brand small {
+    display: block;
+    font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+    font-size: 9px;
+    color: #005F73;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .mock-clause .nav-stamp {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 10px;
+    color: #D1492E;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 2px solid #D1492E;
+    padding: 4px 8px;
+  }
+  .mock-clause .cb-block {
+    background: #D9D0C0;
+    margin-bottom: 18px;
+    border-top: 3px solid #111111;
+    padding: 14px 16px 0;
+    position: relative;
+  }
+  .mock-clause .cb-index {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    margin-bottom: 6px;
+  }
+  .mock-clause .cb-index .accent { color: #005F73; }
+  .mock-clause .cb-section-tag {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 10px;
+    color: #005F73;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .mock-clause .cb-h {
+    font-family: 'IBM Plex Sans Thai Looped', 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: -0.025em;
+    color: #111111;
+  }
+  .mock-clause .cb-deck {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #2a2520;
+    margin-bottom: 14px;
+  }
+  .mock-clause .cb-meta-strip {
+    background: #111111;
+    color: #E7E0D3;
+    margin: 0 -16px;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Grotesk', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .mock-clause .cb-meta-strip .accent-amber { color: #D1492E; font-weight: 700; }
+  .mock-clause .cb-rule {
+    height: 1px;
+    background: #111111;
+    width: 100%;
+    margin-top: -1px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 6 — PROVENANCE (synthesis hybrid — most elaborate)         */
+  /* =================================================================== */
+  .mock-provenance {
+    background:
+      linear-gradient(90deg, rgba(39, 32, 23, 0.06) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(39, 32, 23, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at 18% 12%, rgba(0, 127, 109, 0.08), transparent 28rem),
+      radial-gradient(circle at 88% 18%, rgba(240, 179, 35, 0.12), transparent 24rem),
+      linear-gradient(135deg, #F8F2E8 0%, #F5F0E8 54%, #EBE3D4 100%);
+    background-size: 36px 36px, 36px 36px, auto, auto, auto;
+    color: #1C1814;
+    font-family: 'IBM Plex Sans Thai', 'IBM Plex Sans', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-provenance::before {
+    content: '';
+    position: absolute;
+    top: -25%;
+    right: -10%;
+    width: 280px;
+    height: 280px;
+    background: repeating-conic-gradient(from 12deg, rgba(184, 92, 58, 0.13) 0deg 12deg, transparent 12deg 24deg);
+    border-radius: 50%;
+    opacity: 0.55;
+    z-index: 1;
+    animation: slow-turn 32s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes slow-turn { to { transform: rotate(1turn); } }
+  @media (prefers-reduced-motion: reduce) { .mock-provenance::before { animation: none; } }
+
+  .mock-provenance .mockup-nav { border-bottom: 0.5px solid rgba(28, 24, 20, 0.2); position: relative; z-index: 3; }
+  .mock-provenance .nav-brand {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1C1814;
+    letter-spacing: -0.015em;
+  }
+  .mock-provenance .nav-brand small {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px;
+    color: #B85C3A;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .mock-provenance .nav-search {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #1B3A6B;
+    padding: 5px 9px;
+    background: #FFFCF7;
+    border: 1px solid rgba(28, 24, 20, 0.15);
+    letter-spacing: 0.08em;
+  }
+  .mock-provenance .pv-hero {
+    margin: 12px 0 18px;
+    padding: 18px 16px;
+    background: #FFFCF7;
+    border: 1px solid rgba(28, 24, 20, 0.08);
+    box-shadow: 8px 8px 0 rgba(28, 24, 20, 0.12);
+    position: relative;
+    z-index: 2;
+  }
+  .mock-provenance .pv-temp-bar {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    margin: -18px -16px 14px;
+    width: calc(100% + 32px);
+    position: relative;
+  }
+  .mock-provenance .pv-temp-bar::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 78%;
+    width: 2px;
+    height: 8px;
+    background: #1C1814;
+  }
+  .mock-provenance .pv-badge {
+    position: absolute;
+    top: 22px;
+    right: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 4px 8px;
+    background: #1B3A6B;
+    color: #FFFFFF;
+    letter-spacing: 0.12em;
+    box-shadow: 3px 3px 0 rgba(28, 24, 20, 0.11);
+  }
+  .mock-provenance .pv-badge.red { background: #D43830; }
+  .mock-provenance .pv-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #B85C3A;
+    letter-spacing: 0.16em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .mock-provenance .pv-h {
+    font-family: 'Anuphan', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    color: #1C1814;
+    max-width: 250px;
+  }
+  .mock-provenance .pv-lede {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #4a423c;
+    margin-bottom: 14px;
+  }
+  .mock-provenance .pv-stamp-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid rgba(28, 24, 20, 0.1);
+  }
+  .mock-provenance .pv-stamp {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #B85C3A;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: #B85C3A;
+    text-align: center;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    transform: rotate(-3deg);
+    text-transform: uppercase;
+  }
+  .mock-provenance .pv-stamp-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #4a423c;
+    letter-spacing: 0.08em;
+    text-align: right;
+    line-height: 1.4;
+  }
+  .mock-provenance .pv-stamp-meta .gold {
+    color: #B8860B;
+    font-weight: 600;
+  }
+  .mock-provenance .pv-card {
+    background: #FFFCF7;
+    border: 1px solid rgba(28, 24, 20, 0.08);
+    box-shadow: 4px 4px 0 rgba(28, 24, 20, 0.10);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  .mock-provenance .pv-card-temp {
+    height: 3px;
+    background: linear-gradient(to right, #3B7DD8, #F5A623, #E8482F);
+    margin: -12px -14px 10px;
+    width: calc(100% + 28px);
+    position: relative;
+  }
+  .mock-provenance .pv-card-temp.cool::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 12%;
+    width: 2px;
+    height: 7px;
+    background: #1C1814;
+  }
+  .mock-provenance .pv-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .mock-provenance .pv-card-h {
+    font-family: 'Anuphan', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #1C1814;
+    flex: 1;
+    letter-spacing: -0.01em;
+  }
+  .mock-provenance .pv-card-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 600;
+    padding: 3px 6px;
+    background: #1B3A6B;
+    color: #FFFFFF;
+    letter-spacing: 0.12em;
+  }
+
+  footer { max-width: 1280px; margin: 56px auto 0; padding: 24px 0; border-top: 1px solid #27272a; font-size: 12px; color: #71717a; line-height: 1.6; }
+  footer code { font-family: ui-monospace, monospace; font-size: 11px; color: #a1a1aa; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>beef.im — UI/UX Direction Preview <small>3 · Editorial, Material &amp; Synthesis</small></h1>
+  <p>Third companion preview. Where Preview1 was the safe shortlist (light, editorial, defensible) and Preview2 was the daring &amp; cinematic batch (Bangkok-vernacular and atmospheric), Preview3 covers material-luxury (Marbled Layers, Thai Modernist), restrained editorial (Pavilion, Newsroom), and a brutalist forensic pick (Clause Block) — closing with the convergence-of-everything synthesis from DeepSeek V4 Pro (Provenance).</p>
+  <p>Each direction here was either undervalued in the original bake-off ranking, or deserves a closer look against the shortlist before any final decision.</p>
+  <div class="correction"><strong>Attribution correction (2026-04-26).</strong> Verified by <code>grep</code> against source file content. The correct mapping for the three confused models: Pavilion, Newsroom, Spec Sheet, Slow Cinema, Receipt + Hand-Drawn Lab Notebook wildcard are all from <code>UI-Idea-OPUS4.7.md</code> (Opus 4.7 directions). Private Dining Ledger / Weekend Dossier / Clause Block / Heat Haze / Measured Vitality + Thermal Cartography wildcard are from <code>UI-Idea-GPT5.4.md</code> (GPT-5.4 directions). Broadsheet Cut / Ink & Iron / Midnight Smoke / Precision Instrument / Marbled Glass + Receipt wildcard are from <code>UI-Idea-Gemini3.1.md</code> (Gemini 3.1 directions). A circular three-way mix-up in the original parallel Read caused this to be miscalled in earlier passes; this preview now uses the correct attribution.</div>
+  <div class="meta">Source analysis · Analysis-Opus4.7.md · Synthesis source · Synthesis-Hybrid-Provenance.md · Open in Firefox/Chrome for accurate Thai font rendering</div>
+</header>
+
+<section class="overview">
+  <h2>Palette overview — six editorial, material &amp; synthesis directions</h2>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">MATERIAL 01</span>
+      <a href="#marbled">Marbled Layers <small style="color:#fbbf24;font-family:ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;">[HYBRID]</small></a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#E8ECEF"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#333D45"></div>
+      <div style="background:#C97A7E"></div>
+      <div style="background:#B71C1C"></div>
+    </div>
+    <div class="overview-source">Gemini 3.1 × Kimi K2.6</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">MATERIAL 02</span>
+      <a href="#modernist">Thai Modernist</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#E8DCC8"></div>
+      <div style="background:#D4C4A8"></div>
+      <div style="background:#3D3428"></div>
+      <div style="background:#1B5E4E"></div>
+      <div style="background:#B85C3A"></div>
+    </div>
+    <div class="overview-source">Qwen 3.5 Plus</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">EDITORIAL 01</span>
+      <a href="#pavilion">Pavilion</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F4EFE6"></div>
+      <div style="background:#FAF7F1"></div>
+      <div style="background:#1C1814"></div>
+      <div style="background:#C45A2D"></div>
+      <div style="background:#7A1F1F"></div>
+    </div>
+    <div class="overview-source">Opus 4.7</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">EDITORIAL 02</span>
+      <a href="#newsroom">Newsroom</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F1ECE2"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#1A1A1A"></div>
+      <div style="background:#6B0F1A"></div>
+      <div style="background:#B8860B"></div>
+    </div>
+    <div class="overview-source">Opus 4.7</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">FORENSIC</span>
+      <a href="#clause">Clause Block</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#E7E0D3"></div>
+      <div style="background:#D9D0C0"></div>
+      <div style="background:#111111"></div>
+      <div style="background:#005F73"></div>
+      <div style="background:#D1492E"></div>
+    </div>
+    <div class="overview-source">GPT-5.4</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">SYNTHESIS</span>
+      <a href="#provenance">Provenance <small style="color:#f0abfc;font-family:ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;">[ULTIMATE HYBRID]</small></a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F5F0E8"></div>
+      <div style="background:#FFFCF7"></div>
+      <div style="background:#1C1814"></div>
+      <div style="background:linear-gradient(90deg, #B85C3A 0%, #1B3A6B 50%, #B8860B 100%)"></div>
+      <div style="background:#D43830"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Pro synthesis</div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- MATERIAL 01 — MARBLED LAYERS (hybrid)                         -->
+<!-- ============================================================ -->
+<article class="direction" id="marbled">
+  <div class="dir-header">
+    <span class="dir-num material">MATERIAL 01 · HYBRID</span>
+    <h2 class="dir-title">Marbled Layers</h2>
+    <span class="dir-source">Marbled Glass (Gemini 3.1) × The Marbling (Kimi K2.6 wildcard)</span>
+    <p class="dir-mood">"Translucent strata mimicking the legal layers of a contract AND the organic fat marbling in premium wagyu — a single visual metaphor that operates in two domains."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#E8ECEF"></div><div class="swatch-meta"><div class="swatch-role">Cool slate</div><div class="swatch-hex">#E8ECEF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Translucent</div><div class="swatch-hex">rgba(255,255,255,0.72)</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#333D45"></div><div class="swatch-meta"><div class="swatch-role">Deep steel</div><div class="swatch-hex">#333D45</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C97A7E"></div><div class="swatch-meta"><div class="swatch-role">Cured meat pink</div><div class="swatch-hex">#C97A7E</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B71C1C"></div><div class="swatch-meta"><div class="swatch-role">Deep alert</div><div class="swatch-hex">#B71C1C</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-marbled">
+      <svg class="vein-svg" viewBox="0 0 400 600" preserveAspectRatio="none">
+        <path d="M0,180 Q 100,200 200,170 T 400,200" stroke="#C97A7E" stroke-width="0.8" fill="none" opacity="0.6"/>
+        <path d="M-20,260 Q 80,240 180,280 T 420,250" stroke="#C97A7E" stroke-width="0.6" fill="none" opacity="0.5"/>
+        <path d="M0,360 Q 120,380 240,360 T 400,380" stroke="#C97A7E" stroke-width="0.7" fill="none" opacity="0.55"/>
+        <path d="M-20,440 Q 100,420 200,450 T 400,440" stroke="#C97A7E" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <path d="M0,520 Q 120,540 240,510 T 400,540" stroke="#C97A7E" stroke-width="0.6" fill="none" opacity="0.5"/>
+      </svg>
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · STRATA</small></div>
+          <div class="nav-meta">VOL 04</div>
+        </div>
+        <div class="ml-stack">
+          <div class="ml-card">
+            <span class="ml-tag">POLICY · LAYER 01</span>
+            <h3 class="ml-h">Unit-linked: ค่าธรรมเนียมที่หาย</h3>
+            <p class="ml-lede">ตัวเลขปีแรกถูก — แต่สัญญาคือชั้นซ้อนชั้น เปิดให้ดูทุกหน้า</p>
+            <div class="ml-meta">⚠ HIGH RISK · 11 MIN READ</div>
+          </div>
+          <div class="ml-card layer-2">
+            <span class="ml-tag">LAYER 02 · ANNOTATIONS</span>
+            <h3 class="ml-h">COI compounding curve</h3>
+            <p class="ml-lede">ปีที่ 30 ค่า COI กิน เบี้ยทั้งหมด — กราฟพิสูจน์</p>
+          </div>
+          <div class="ml-card layer-3">
+            <span class="ml-tag">LAYER 03 · VERDICT</span>
+            <h3 class="ml-h">RECOMMENDATION: REPLACE</h3>
+            <p class="ml-lede">เปรียบเทียบ Term + Mutual Fund · ผลตอบแทน +43%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why this hybrid</h4>
+      <p>Gemini 3.1's Marbled Glass has the <em>visual structure</em> (translucent stacking layers, backdrop-filter blur) but lacked a sharp signature element. Kimi's Marbling wildcard has the <em>signature element</em> (SVG fat-veins running through content) but stood alone as a wildcard, not a complete system. Combined: translucent layered cards with cured-meat-pink SVG marbling running across the page connecting them. The metaphor lands twice — the layers are both legal contract pages AND wagyu fat strata.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>layer stack</strong> itself. Insurance pieces stack as: Policy text → Annotation overlay → Verdict. Recipe pieces stack as: Cut spec → Method overlay → Doneness verdict. Same three-layer structural rhythm, same translucent glass, same pink veins connecting layers.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Backdrop-filter blur is GPU-expensive on mobile — needs careful testing on budget Android. SVG marbling decoration may read as "decorative noise" rather than meaningful visualization for first-time readers. Cool-slate background is the only direction in any preview that uses a cool-tone bg — could feel less warm/Thai than the rest. Best for desktop-first reading, mobile is the harder win.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex Serif + Kanit free (Ogg sub)</span>
+        <span class="label">Animation budget</span><span class="value">High · parallax depth blur on scroll</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Medium · light bg, low-saturation pink</span>
+        <span class="label">Build complexity</span><span class="value">High · backdrop-filter + SVG paths</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- MATERIAL 02 — THAI MODERNIST                                  -->
+<!-- ============================================================ -->
+<article class="direction" id="modernist">
+  <div class="dir-header">
+    <span class="dir-num material">MATERIAL 02</span>
+    <h2 class="dir-title">Thai Modernist</h2>
+    <span class="dir-source">Qwen 3.5 Plus · score 17</span>
+    <p class="dir-mood">"1970s Thai architecture photography — bold geometry, natural light, local materials, zero ornament."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#E8DCC8"></div><div class="swatch-meta"><div class="swatch-role">Sand plaster</div><div class="swatch-hex">#E8DCC8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D4C4A8"></div><div class="swatch-meta"><div class="swatch-role">Raw concrete</div><div class="swatch-hex">#D4C4A8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#3D3428"></div><div class="swatch-meta"><div class="swatch-role">Teak wood</div><div class="swatch-hex">#3D3428</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1B5E4E"></div><div class="swatch-meta"><div class="swatch-role">Patina green</div><div class="swatch-hex">#1B5E4E</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B85C3A"></div><div class="swatch-meta"><div class="swatch-role">Terracotta</div><div class="swatch-hex">#B85C3A</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-modernist">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div>
+          <div class="nav-section">PROJECT 04</div>
+        </div>
+        <div class="tm-card lead">
+          <span class="tm-tag terra">FEATURED · POLICY</span>
+          <h3 class="tm-h">Unit-linked · ค่าธรรมเนียมแบบโครงสร้าง</h3>
+          <p class="tm-lede">เปิดสัญญาให้ดูเหมือนแปลนอาคาร — เห็นทุกชั้น ทุกคาน เห็นเหตุผลที่มันยังตั้งอยู่ได้</p>
+          <div class="tm-meta">AIA-UL-2024 · 11 MIN</div>
+        </div>
+        <div class="tm-card">
+          <span class="tm-tag">RECIPE · TECHNIQUE</span>
+          <h3 class="tm-h">Reverse-sear · กฎ 3 ข้อ</h3>
+          <p class="tm-lede">เนื้อ 4 นิ้ว · 54°C · พักเนื้อ 10 นาที — ทุกขั้นวัดได้</p>
+          <div class="tm-meta">RIBEYE-54C · 6 MIN</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Thai modernism is inherently local but globally legible — exactly what beef.im is. The geometry signals rigor; the warmth signals humanity. Sand plaster background + thick patina-green frames = architectural signage register that treats both insurance and recipes as <em>projects</em> to be documented.</p>
+
+      <h4>Why it scored low in the bake-off (17)</h4>
+      <div class="convergence">Qwen scored a 17 overall because Thai-typography reasoning was thinner than top-tier outputs and the writing was less rigorous on mobile/sunlight constraints. But Thai Modernist itself is a genuinely undervalued direction — it owns territory no other model proposed (1970s Thai architecture) and the framed-viewport motif is structurally distinctive. The score reflects the proposal's depth, not the direction's potential. Worth re-considering on its own merits.</div>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>thick-bordered frame</strong> (6–8px patina green or terracotta border). Both content types live <em>inside</em> framed viewports — like looking through architectural openings. Featured pieces get terracotta + green dual-border (mixed materials). Standard pieces get pure green.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Itim is a friendly-display Thai font — for some readers it may signal "casual blog" rather than "serious analysis." Could trade out for Anuphan Bold to keep the modernist feel without the playfulness. Sand plaster bg is genuinely original but may read as "unfinished" or "missing background image" on first impression.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Itim + Noto Sans Thai + Space Grotesk free</span>
+        <span class="label">Animation budget</span><span class="value">Low · slide-and-lock 4px + border highlight</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · warm sand bg</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- EDITORIAL 01 — PAVILION                                       -->
+<!-- ============================================================ -->
+<article class="direction" id="pavilion">
+  <div class="dir-header">
+    <span class="dir-num editorial">EDITORIAL 01</span>
+    <h2 class="dir-title">Pavilion</h2>
+    <span class="dir-source">Opus 4.7 · CC CLI · score 22</span>
+    <p class="dir-mood">"A two-Michelin tasting menu rendered as a website — every section earns its plate."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F4EFE6"></div><div class="swatch-meta"><div class="swatch-role">Warm cream</div><div class="swatch-hex">#F4EFE6</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FAF7F1"></div><div class="swatch-meta"><div class="swatch-role">Lifted ivory</div><div class="swatch-hex">#FAF7F1</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1814"></div><div class="swatch-meta"><div class="swatch-role">Warm ink</div><div class="swatch-hex">#1C1814</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#C45A2D"></div><div class="swatch-meta"><div class="swatch-role">Smoked persimmon</div><div class="swatch-hex">#C45A2D</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#7A1F1F"></div><div class="swatch-meta"><div class="swatch-role">Vintage burgundy</div><div class="swatch-hex">#7A1F1F</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-pavilion">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · A LA CARTE</small></div>
+          <div class="nav-roman">IV · MMXXVI</div>
+        </div>
+        <div class="pv-course">
+          <div class="pv-rule"></div>
+          <div class="pv-numeral">I</div>
+          <div class="pv-label">FIRST · POLICY</div>
+        </div>
+        <div class="pv-card">
+          <h3 class="pv-h">Unit-linked: ค่าธรรมเนียมที่หาย</h3>
+          <p class="pv-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่เคยบอกคุณ</p>
+          <div class="pv-meta">2,840 WORDS · 11 MIN</div>
+        </div>
+        <div class="pv-course">
+          <div class="pv-rule"></div>
+          <div class="pv-numeral">II</div>
+          <div class="pv-label">SECOND · GRILL</div>
+        </div>
+        <div class="pv-card">
+          <h3 class="pv-h">Reverse-sear · กฎ 3 ข้อ</h3>
+          <p class="pv-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง</p>
+          <div class="pv-meta">1,420 WORDS · 6 MIN</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Quiet luxury says "I take this seriously" without insurance-corporate stiffness. The tasting-menu discipline honors substance (the meat half), and the warm cream paper honors the editorial gravity (the analyst half). Same restaurant pours the Burgundy and grills the wagyu next door.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>numbered course marker</strong> (Roman numeral + hairline rule + small-caps section label). Every article is "Course N" — insurance pieces are first courses, recipe pieces are mains, explainers are amuse-bouche. The format treats the entire site as one coherent menu, regardless of what's being served.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Quietest direction in any of the three previews. Almost too restrained for the brand's "casual register / firepower content" thesis — Pavilion reads as ceremonial, beef.im wants to read as direct. Best when you want gravitas without theatre, but loses the brand's edge. Generous whitespace also means very low information density per viewport — fewer articles surfaced per scroll than any other direction.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Anuphan + Sarabun (Söhne sub Inter)</span>
+        <span class="label">Animation budget</span><span class="value">Very low · single hairline rule extend (1200ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · warm cream bg</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- EDITORIAL 02 — NEWSROOM                                       -->
+<!-- ============================================================ -->
+<article class="direction" id="newsroom">
+  <div class="dir-header">
+    <span class="dir-num editorial">EDITORIAL 02</span>
+    <h2 class="dir-title">Newsroom</h2>
+    <span class="dir-source">Opus 4.7 · CC CLI · score 22</span>
+    <p class="dir-mood">"Bloomberg Businessweek meets Monocle — confident, dense, news-led, no apologies."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F1ECE2"></div><div class="swatch-meta"><div class="swatch-role">Bone newsprint</div><div class="swatch-hex">#F1ECE2</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-meta"><div class="swatch-role">Pure white inset</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1A1A1A"></div><div class="swatch-meta"><div class="swatch-role">Charcoal</div><div class="swatch-hex">#1A1A1A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#6B0F1A"></div><div class="swatch-meta"><div class="swatch-role">Oxblood</div><div class="swatch-hex">#6B0F1A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B8860B"></div><div class="swatch-meta"><div class="swatch-role">Mustard alert</div><div class="swatch-hex">#B8860B</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-newsroom">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · DAILY</small></div>
+          <div class="nav-issue">No. 0412</div>
+        </div>
+        <div class="nr-card">
+          <div class="nr-masthead">
+            <span class="section">POLICY</span>
+            <span>25 APR 26</span>
+            <span>2,840w</span>
+            <span>11 MIN</span>
+          </div>
+          <h3 class="nr-h">Unit-linked: ค่าธรรมเนียมที่ presentation ไม่เคยบอกคุณ</h3>
+          <div class="nr-byline">โดย ณัฐพล · ANALYST DESK</div>
+          <div class="nr-byline-rule"></div>
+          <p class="nr-lede">เบี้ยปีแรกถูกกว่า Term ครึ่งหนึ่ง — แต่ปีที่ 30 ค่า Cost of Insurance มากกว่าเบี้ยทั้งหมดที่จ่าย</p>
+          <div class="nr-pullquote">"ตัวแทนรู้ตั้งแต่วันแรกที่ขายให้คุณ"</div>
+        </div>
+        <div class="nr-card">
+          <div class="nr-masthead">
+            <span class="section">FOOD</span>
+            <span>25 APR 26</span>
+            <span>1,420w</span>
+            <span>6 MIN</span>
+          </div>
+          <h3 class="nr-h">Reverse-sear ribeye · กฎ 3 ข้อ</h3>
+          <div class="nr-byline">โดย ณัฐพล · FOOD DESK</div>
+          <div class="nr-byline-rule"></div>
+          <p class="nr-lede">ไฟแรงคือกับดัก · 54°C คือเส้นแบ่ง · พักเนื้อสำคัญกว่าการย่าง</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Treats insurance forensics as journalism — which is what they actually are — and the masthead discipline gives recipe content equal legitimacy as a "Food desk" piece. Bloomberg covers gold; the Sunday section covers Negroni-glazed short ribs; neither feels misplaced.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>masthead block</strong> (section · date · word count · read time) above every headline, plus the <strong>desk attribution</strong> (POLICY DESK / FOOD DESK / ANALYST DESK). Same publishing infrastructure for both content types — just different desks filing the story. The pullquote in oxblood works for both a contract teardown insight and a chef's note.</p>
+
+      <h4>Newsroom vs. Weekend Dossier (Pick 3 from Preview1)</h4>
+      <div class="convergence">Both directions converge on the editorial-broadsheet thesis. The difference: Weekend Dossier is <strong>annotation-led</strong> (sidenotes/footnotes carry the depth, FT Weekend reference). Newsroom is <strong>masthead-led</strong> (the section/desk attribution carries the seriousness, Bloomberg reference). Weekend Dossier feels like a Saturday read; Newsroom feels like a Tuesday morning briefing. Choose Newsroom if the publishing cadence is rapid (multiple stories per week); choose Weekend Dossier if the cadence is fewer / longer pieces.</div>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Multi-column dense layout requires good content discipline — every article needs a section, byline, masthead metadata. CMS overhead. The IBM Plex Serif Thai Loop face is excellent but tilts the brand toward "broadsheet seriousness" which may underperform the casual-register thesis. Bloomberg-DNA risks reading as "established institution" when the brand wants to read as "trusted independent."</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex full family free</span>
+        <span class="label">Animation budget</span><span class="value">Very low · single hairline draw under byline</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · bone newsprint bg</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- FORENSIC — CLAUSE BLOCK                                       -->
+<!-- ============================================================ -->
+<article class="direction" id="clause">
+  <div class="dir-header">
+    <span class="dir-num forensic">FORENSIC</span>
+    <h2 class="dir-title">Clause Block</h2>
+    <span class="dir-source">GPT-5.4 · score 25</span>
+    <p class="dir-mood">"A typographic wall of conviction where proof, pricing, and process hit harder than polish."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#E7E0D3"></div><div class="swatch-meta"><div class="swatch-role">Warm concrete</div><div class="swatch-hex">#E7E0D3</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D9D0C0"></div><div class="swatch-meta"><div class="swatch-role">Deeper concrete</div><div class="swatch-hex">#D9D0C0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#111111"></div><div class="swatch-meta"><div class="swatch-role">Stark black</div><div class="swatch-hex">#111111</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#005F73"></div><div class="swatch-meta"><div class="swatch-role">Deep teal</div><div class="swatch-hex">#005F73</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D1492E"></div><div class="swatch-meta"><div class="swatch-role">Critical signal</div><div class="swatch-hex">#D1492E</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-clause">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · DOSSIER</small></div>
+          <div class="nav-stamp">FILE 04</div>
+        </div>
+        <div class="cb-block">
+          <div class="cb-index">01<span class="accent">.</span></div>
+          <div class="cb-section-tag">POLICY · TEARDOWN</div>
+          <h3 class="cb-h">Unit-linked: ค่าธรรมเนียมที่หาย</h3>
+          <p class="cb-deck">ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย — เปิดสัญญาให้ดูทีละหน้า ตัวเลขที่ presentation ไม่บอก</p>
+          <div class="cb-meta-strip">
+            <span>AIA-UL · 2,840w</span>
+            <span class="accent-amber">⚠ HIGH RISK</span>
+            <span>11 MIN</span>
+          </div>
+          <div class="cb-rule"></div>
+        </div>
+        <div class="cb-block">
+          <div class="cb-index">02<span class="accent">.</span></div>
+          <div class="cb-section-tag">RECIPE · TECHNIQUE</div>
+          <h3 class="cb-h">Reverse-sear · กฎ 3 ข้อ</h3>
+          <p class="cb-deck">ไฟแรงคือกับดัก · 54°C คือเส้นแบ่ง · พักเนื้อสำคัญกว่าการย่าง</p>
+          <div class="cb-meta-strip">
+            <span>RIBEYE-54C · 1,420w</span>
+            <span>MEDIUM RARE</span>
+            <span>6 MIN</span>
+          </div>
+          <div class="cb-rule"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The most honest translation of <code>เน้นเนื้อๆ ไม่เอาน้ำ</code> at the layout level — refuses fluff in the structure, not just in the copy. The cooking side becomes procedural and technical rather than cozy, which keeps the whole brand singular. Concrete-warm bg keeps it tactile, not Brutalist-cold.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>oversized index numeral + black metadata strip</strong>. Every article is filed (01., 02., 03.) regardless of category. The black metadata strip beneath each block is the "filed" stamp — locks the article into the dossier with `HIGH RISK` or `MEDIUM RARE` warnings rendered identically. The structure is the argument: same format = same rigor.</p>
+
+      <h4>Why this is the forensic pick</h4>
+      <p>Three forensic candidates were viable: Brutalist Ledger (Sonnet 4.6 / Merlin), Evidence Tag (Deepv4Pro), and Clause Block. Clause Block wins because:</p>
+      <p>1. Warm concrete bg is more readable in Bangkok daylight than Brutalist Ledger's stark white<br>2. The IBM Plex Sans Thai Looped + Space Grotesk pairing is more legible at body sizes than Evidence Tag's IBM Plex Sans<br>3. Row-slam reveal (filing-drawer animation) is more memorable as brand shorthand than Brutalist Ledger's hard-cut hover</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Highest density per viewport of any direction in any preview. Information-dense by design — readers expecting calm whitespace will bounce. The black metadata strip is bold; if writing isn't bold to match, the design will outshout the copy. Best for an established voice that can carry hard-edged framing without softening.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex Sans Thai Looped + Anuphan free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · row-slam reveal per card (160ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · concrete-warm bg</span>
+        <span class="label">Build complexity</span><span class="value">Low–Medium</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- SYNTHESIS — PROVENANCE                                        -->
+<!-- ============================================================ -->
+<article class="direction" id="provenance">
+  <div class="dir-header">
+    <span class="dir-num synthesis">SYNTHESIS · ULTIMATE HYBRID</span>
+    <h2 class="dir-title">Provenance</h2>
+    <span class="dir-source">DeepSeek V4 Pro · synthesis from 14 outputs + DeepSeek V4 showcase</span>
+    <p class="dir-mood">"A graded, annotated, stamped research publication printed on warm almanac paper — where insurance contract forensics and reverse-seared ribeye receive equal analytical gravity, in the same typeface, on the same grid."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F5F0E8"></div><div class="swatch-meta"><div class="swatch-role">Warm almanac</div><div class="swatch-hex">#F5F0E8</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFCF7"></div><div class="swatch-meta"><div class="swatch-role">Lifted ivory</div><div class="swatch-hex">#FFFCF7</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1C1814"></div><div class="swatch-meta"><div class="swatch-role">Letterpress ink</div><div class="swatch-hex">#1C1814</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#B85C3A"></div><div class="swatch-meta"><div class="swatch-role">Verdict (persimmon)</div><div class="swatch-hex">#B85C3A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1B3A6B"></div><div class="swatch-meta"><div class="swatch-role">Institutional navy</div><div class="swatch-hex">#1B3A6B</div></div></div>
+  </div>
+  <div class="palette" style="margin-top:-18px;">
+    <div class="swatch"><div class="swatch-color" style="background:#B8860B"></div><div class="swatch-meta"><div class="swatch-role">Gold leaf</div><div class="swatch-hex">#B8860B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D43830"></div><div class="swatch-meta"><div class="swatch-role">Critical red</div><div class="swatch-hex">#D43830</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:linear-gradient(to right, #3B7DD8, #F5A623, #E8482F)"></div><div class="swatch-meta"><div class="swatch-role">Temp gradient</div><div class="swatch-hex">3B7DD8 → E8482F</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:rgba(0, 127, 109, 0.4)"></div><div class="swatch-meta"><div class="swatch-role">Green wash</div><div class="swatch-hex">rgba(0,127,109,0.08)</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:rgba(240, 179, 35, 0.5)"></div><div class="swatch-meta"><div class="swatch-role">Amber wash</div><div class="swatch-hex">rgba(240,179,35,0.12)</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-provenance">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · ARCHIVE</small></div>
+          <div class="nav-search">⌘K SEARCH</div>
+        </div>
+        <div class="pv-hero">
+          <div class="pv-temp-bar"></div>
+          <span class="pv-badge red">HIGH RISK</span>
+          <div class="pv-eyebrow">FEATURED · POLICY TEARDOWN</div>
+          <h2 class="pv-h">ค่าธรรมเนียมที่เผาเงินคุณช้าๆ</h2>
+          <p class="pv-lede">Unit-linked คือสัญญาที่หักค่าใช้จ่ายจากกองทุนทุกเดือน — ปีที่ 30 อาจกินเบี้ยทั้งหมด</p>
+          <div class="pv-stamp-row">
+            <div class="pv-stamp">VER<br>4.A</div>
+            <div class="pv-stamp-meta">
+              AIA-UL · 2,840w<br>
+              <span class="gold">VERIFIED · 25 APR 26</span>
+            </div>
+          </div>
+        </div>
+        <div class="pv-card">
+          <div class="pv-card-temp cool"></div>
+          <div class="pv-card-row">
+            <h4 class="pv-card-h">Reverse-sear ribeye 4"</h4>
+            <span class="pv-card-badge">MEDIUM RARE</span>
+          </div>
+        </div>
+        <div class="pv-card">
+          <div class="pv-card-temp"></div>
+          <div class="pv-card-row">
+            <h4 class="pv-card-h">Term ดีกว่า Whole Life — เกือบเสมอ</h4>
+            <span class="pv-card-badge" style="background:#005F73;">EXPLAINER</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>What this synthesis is</h4>
+      <div class="synthesis-note">DeepSeek V4 Pro's compilation of every convergent idea across all 14 outputs, executed as a single unified system. Five components from five different models: rating badge (Investment Grade), margin annotation (Docket# + Deep Research), stamp/chop (Rice Paper & Ink + Certified), temperature bar (Temperature Grade), gold-leaf accent (Engraved). Plus a 5-layer CSS background and rotating sunburst hero from a separate DeepSeek V4 catalog showcase the user flagged as visually appealing. Full spec at <code>Synthesis-Hybrid-Provenance.md</code>.</div>
+
+      <h4>Five signature components, all visible in the mockup</h4>
+      <p>1. <strong>Rating badge</strong> top-right of hero card (`HIGH RISK` red, with hard-offset shadow)<br>2. <strong>Temperature bar</strong> at top of every card (gradient blue → amber → red, with position marker)<br>3. <strong>Stamp/chop</strong> at hero footer (rotated `VER 4.A` certification mark in persimmon)<br>4. <strong>Hard-offset shadow</strong> 8px×8px (hero) and 4px×4px (cards) — physical document weight<br>5. <strong>Rotating sunburst</strong> top-right, very faint persimmon — the page is breathing (you can see it actually rotating in this mockup)</p>
+
+      <h4>Plus the 5-layer CSS background</h4>
+      <p>The cream grid texture you see is real — vertical + horizontal grid lines (36px), forest-green radial wash top-left, amber radial wash top-right, diagonal cream gradient base. Zero image assets. ~2 KB of CSS. This is the page the content sits on across the entire site.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>Three at once: rating badge unifies via <em>verdict</em>, temperature bar unifies via <em>scannable preview</em>, stamp unifies via <em>verification</em>. Reader doesn't need to know what's being graded — the system handles it. <code>HIGH RISK</code> works for an Aegon whole life. `MEDIUM RARE` works for a 54°C ribeye. Same architecture.</p>
+
+      <h4>Why this scored highest in DeepSeek's synthesis</h4>
+      <div class="convergence">It steals the strongest single component from each of the highest-ranked directions in the bake-off and combines them into a single system that solves every problem the brand has identified — without any one component being the brand's only signature. The risk is the opposite of every single-direction proposal: instead of "what if the one big idea doesn't land," it's "what if seven small ideas all land at once but feel busy together." DeepSeek's own honest flag is in the file: "Dense, not sparse... bets that information density is the luxury for a mass-affluent reader who wants substance — clean whitespace is for readers who want to be impressed by restraint."</div>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Highest editorial overhead of any direction in any preview. Every article needs: rating, temperature value, stamp/draft marker, spec data for the preamble. Slows publication. The reward is a site that feels like a publication, not a blog. Also: information density may overwhelm first-time readers who arrive without context — the system rewards repeat readers who learn what each signal means. No EmberGlow particles in this hero (sunburst replaces them) — moves the cinematic component away from the homepage and over to /manifesto and article footers.</div>
+
+      <h4>Build cost (DeepSeek's own estimate)</h4>
+      <div class="axes">
+        <span class="label">Total estimate</span><span class="value">3 days · solo Next.js dev</span>
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · IBM Plex full + Anuphan + Bricolage Grotesque free</span>
+        <span class="label">Code reuse from current beef.im</span><span class="value">Medium · sunburst replaces EmberGlow on home</span>
+        <span class="label">Build complexity</span><span class="value">Medium · 5 components × mobile responsive</span>
+      </div>
+
+      <h4>Where this fits in the decision tree</h4>
+      <p>If you've decided on the <strong>institutional + verdict-led</strong> register (Pick 1: Investment Grade), Provenance is the natural extension — adds the temperature bar, stamps, margin annotations, and a sunburst hero on top of the rating badge foundation. It's "Investment Grade with everything turned on." If you've decided on the <strong>vernacular + scannable</strong> register (Open Market), Provenance is too dense — go simpler. If you've decided on the <strong>cinematic atmospheric</strong> register (Ember Theatre from Preview2), Provenance is incompatible — it sacrifices atmosphere for substance signaling.</p>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer>
+  <p>Companion documents: <code>Analysis-Opus4.7.md</code> · <code>Preview-Opus4.7.html</code> (safe shortlist) · <code>Preview2-Opus4.7.html</code> (daring &amp; cinematic) · <code>Synthesis-Hybrid-Provenance.md</code> (DeepSeek V4 Pro's compilation, full spec).</p>
+  <p style="margin-top:8px;">Provenance is the only direction in any of the three previews where you can see the actual production background CSS rendering live — the cream grid, both color washes (forest-green top-left, amber top-right), and the slowly-rotating persimmon sunburst (it's spinning right now at 32s per rotation, in compliance with prefers-reduced-motion). All other mockups schematize.</p>
+  <p style="margin-top:8px;">Across Preview1 + Preview2 + Preview3, you've now seen 18 directions in detail — selected from the 65 directions across the 13 LLM proposals. The remaining 47 directions are documented in their source <code>UI-Idea-*.md</code> files but are either lower-scoring, redundant with picks already shown, or convergent with the dark+ember cluster (which is well-represented by Ember Theatre in Preview2).</p>
+</footer>
+
+</body>
+</html>

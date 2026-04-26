@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beef.im — UI/UX Direction Preview 2 — Daring & Cinematic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700;800&family=Bai+Jamjuree:wght@400;600;700;800&family=Barlow+Condensed:wght@400;700;900&family=Caveat:wght@400;500;700&family=Cinzel:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Fraunces:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&family=Inter:wght@400;500;700&family=Inter+Tight:wght@400;500;700&family=Kalam:wght@400;700&family=Noto+Sans+Thai:wght@400;500;700&family=Prompt:wght@400;500;600;700;900&family=Sarabun:wght@400;500;600;700;800&family=Taviraj:wght@400;500;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0a0a0c;
+    color: #d4d4d8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    padding: 32px 16px 64px;
+    min-height: 100vh;
+  }
+
+  .page-header { max-width: 1280px; margin: 0 auto 40px; padding-bottom: 28px; border-bottom: 1px solid #27272a; }
+  .page-header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: #fafafa; margin-bottom: 12px; }
+  .page-header h1 small { font-size: 16px; color: #a1a1aa; font-weight: 400; letter-spacing: 0; margin-left: 8px; }
+  .page-header p { color: #a1a1aa; font-size: 14.5px; line-height: 1.65; max-width: 820px; }
+  .page-header p + p { margin-top: 12px; }
+  .page-header .meta { margin-top: 16px; font-family: ui-monospace, monospace; font-size: 11.5px; color: #71717a; }
+
+  .overview { max-width: 1280px; margin: 0 auto 48px; background: #18181b; border: 1px solid #27272a; border-radius: 14px; padding: 20px 24px; }
+  .overview h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; font-family: ui-monospace, monospace; margin-bottom: 14px; }
+  .overview-row { display: grid; grid-template-columns: 220px 1fr 130px; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px dashed #27272a; }
+  .overview-row:last-child { border-bottom: none; }
+  .overview-name { font-size: 13.5px; color: #fafafa; font-weight: 500; }
+  .overview-name a { color: inherit; text-decoration: none; }
+  .overview-name a:hover { text-decoration: underline; }
+  .overview-name .pick { font-family: ui-monospace, monospace; font-size: 10px; color: #71717a; display: block; margin-bottom: 2px; letter-spacing: 0.08em; }
+  .overview-strip { display: flex; gap: 4px; height: 32px; border-radius: 6px; overflow: hidden; }
+  .overview-strip > div { flex: 1; }
+  .overview-source { font-family: ui-monospace, monospace; font-size: 10.5px; color: #a1a1aa; text-align: right; }
+
+  main { max-width: 1280px; margin: 0 auto; display: grid; gap: 56px; }
+
+  .direction { background: #18181b; border: 1px solid #27272a; border-radius: 18px; padding: 28px; }
+  .dir-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #27272a; }
+  .dir-num { font-family: ui-monospace, monospace; font-size: 11px; color: #71717a; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 8px; background: #27272a; border-radius: 4px; }
+  .dir-num.bold { background: #422006; color: #fbbf24; }
+  .dir-num.cinematic { background: #1e1b4b; color: #c4b5fd; }
+  .dir-num.hybrid { background: #14532d; color: #86efac; }
+  .dir-title { font-size: 26px; font-weight: 700; color: #fafafa; letter-spacing: -0.01em; }
+  .dir-source { font-family: ui-monospace, monospace; font-size: 11.5px; color: #a1a1aa; margin-left: auto; }
+  .dir-mood { width: 100%; margin-top: 6px; color: #d4d4d8; font-style: italic; font-size: 14px; line-height: 1.55; }
+
+  .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+  .swatch-color { height: 84px; }
+  .swatch-meta { background: #0a0a0c; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .swatch-role { font-family: ui-monospace, monospace; font-size: 9.5px; color: #71717a; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.3; }
+  .swatch-hex { font-family: ui-monospace, monospace; font-size: 11.5px; color: #fafafa; font-weight: 600; margin-top: 3px; }
+
+  .dir-body { display: grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 880px) { .dir-body { grid-template-columns: 1fr; } .palette { grid-template-columns: repeat(3, 1fr); } .overview-row { grid-template-columns: 1fr; gap: 8px; } }
+
+  .mockup { border-radius: 12px; overflow: hidden; min-height: 540px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); position: relative; }
+  .mockup-frame { padding: 18px; position: relative; z-index: 2; }
+  .mockup-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; }
+
+  .notes h4 { font-family: ui-monospace, monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; margin-bottom: 8px; margin-top: 18px; }
+  .notes h4:first-child { margin-top: 0; }
+  .notes p { font-size: 13.5px; line-height: 1.65; color: #d4d4d8; margin-bottom: 6px; }
+  .notes p code { font-family: ui-monospace, monospace; font-size: 12px; background: #27272a; padding: 1px 5px; border-radius: 3px; color: #fbbf24; }
+  .notes .axes { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-top: 8px; font-family: ui-monospace, monospace; font-size: 11.5px; }
+  .notes .axes .label { color: #71717a; }
+  .notes .axes .value { color: #fafafa; text-align: right; }
+  .notes .tradeoff { background: #1c1917; border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #d4d4d8; margin-top: 6px; }
+  .notes .legacy-note { background: #1e1b4b; border-left: 3px solid #c4b5fd; padding: 10px 12px; border-radius: 4px; font-size: 12.5px; line-height: 1.55; color: #d4d4d8; margin-top: 6px; }
+
+  /* =================================================================== */
+  /* DIRECTION 1 — YAOWARAT CODE                                          */
+  /* =================================================================== */
+  .mock-yaowarat {
+    background: #0D0D0D;
+    color: #F0E6D0;
+    font-family: 'Prompt', 'Inter', sans-serif;
+    overflow: hidden;
+  }
+  .mock-yaowarat .mockup-nav { border-bottom: 1px solid #2a2a44; }
+  .mock-yaowarat .nav-brand {
+    font-family: 'Bai Jamjuree', 'Unbounded', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #FF5533;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+  .mock-yaowarat .nav-brand small {
+    display: block;
+    font-family: 'Unbounded', monospace;
+    font-size: 9px;
+    color: #FFD700;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    margin-top: 2px;
+  }
+  .mock-yaowarat .nav-section {
+    font-family: 'Unbounded', monospace;
+    font-size: 10px;
+    color: #F0E6D0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .mock-yaowarat .yc-glyph-marker {
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 96px;
+    font-weight: 800;
+    color: #FF5533;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    margin: 8px 0 0 0;
+    opacity: 0.85;
+  }
+  .mock-yaowarat .yc-card {
+    margin-top: -24px;
+    margin-left: 60px;
+    background: #1A1A2E;
+    padding: 16px;
+    border-left: 3px solid #FF5533;
+    position: relative;
+    z-index: 3;
+  }
+  .mock-yaowarat .yc-tag {
+    display: inline-block;
+    font-family: 'Unbounded', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: #FFD700;
+    color: #0D0D0D;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .mock-yaowarat .yc-h {
+    font-family: 'Bai Jamjuree', 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.025em;
+    color: #F0E6D0;
+  }
+  .mock-yaowarat .yc-h .neon { color: #FF5533; }
+  .mock-yaowarat .yc-lede {
+    font-family: 'Prompt', sans-serif;
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #c4baa0;
+    margin-bottom: 10px;
+  }
+  .mock-yaowarat .yc-meta {
+    font-family: 'Unbounded', monospace;
+    font-size: 9.5px;
+    color: #FFD700;
+    letter-spacing: 0.08em;
+  }
+  .mock-yaowarat .yc-collision {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px dashed #2a2a44;
+  }
+  .mock-yaowarat .yc-collision-title {
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #F0E6D0;
+    position: relative;
+    margin-left: 32px;
+  }
+  .mock-yaowarat .yc-collision-title::before {
+    content: 'เน';
+    position: absolute;
+    left: -36px;
+    top: -8px;
+    font-size: 56px;
+    font-weight: 800;
+    color: #FF5533;
+    opacity: 0.4;
+    line-height: 0.85;
+  }
+  .mock-yaowarat .yc-collision-meta {
+    font-family: 'Prompt', sans-serif;
+    font-size: 11.5px;
+    color: #c4baa0;
+    margin-top: 6px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 2 — BANGKOK ZINE                                           */
+  /* =================================================================== */
+  .mock-zine {
+    background: #1A1208;
+    color: #F2E8D0;
+    font-family: 'Sarabun', 'DM Sans', sans-serif;
+  }
+  .mock-zine .mockup-nav { border-bottom: 2px solid #4a3818; }
+  .mock-zine .nav-brand {
+    font-family: 'Bai Jamjuree', 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #E8B020;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .mock-zine .nav-brand small {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    color: #F2E8D0;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .mock-zine .nav-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    padding: 4px 10px;
+    background: #E83020;
+    color: #FFFFFF;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+  }
+  .mock-zine .zine-card {
+    background: #2B1F0F;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .mock-zine .zine-sticker {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 12px;
+    padding: 5px 11px;
+    background: #E8B020;
+    color: #1A1208;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    transform: rotate(3deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    z-index: 5;
+  }
+  .mock-zine .zine-sticker.red { background: #E83020; color: #FFFFFF; transform: rotate(-2deg); }
+  .mock-zine .zine-section {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    color: #E83020;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .mock-zine .zine-h {
+    font-family: 'Bai Jamjuree', 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.025em;
+    color: #F2E8D0;
+  }
+  .mock-zine .zine-lede {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #c2b89a;
+  }
+  .mock-zine .zine-meta {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #4a3818;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #E8B020;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 3 — HAND-DRAWN LAB NOTEBOOK                                */
+  /* =================================================================== */
+  .mock-notebook {
+    background: #F5EFE0;
+    background-image:
+      linear-gradient(to right, rgba(72, 87, 110, 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(72, 87, 110, 0.18) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: #2b2724;
+    font-family: 'Sarabun', sans-serif;
+    position: relative;
+  }
+  .mock-notebook::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 38px;
+    width: 1px;
+    background: rgba(193, 39, 45, 0.4);
+    z-index: 1;
+  }
+  .mock-notebook .mockup-nav {
+    border-bottom: 1.5px dashed rgba(43, 39, 36, 0.4);
+    align-items: flex-start;
+  }
+  .mock-notebook .nav-brand {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 28px;
+    color: #2b2724;
+    line-height: 1;
+    transform: rotate(-1deg);
+  }
+  .mock-notebook .nav-brand small {
+    display: block;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 10px;
+    color: #6b5d50;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    text-transform: uppercase;
+    transform: rotate(0);
+  }
+  .mock-notebook .nav-stamp {
+    font-family: 'Caveat', cursive;
+    font-size: 13px;
+    color: #c1272d;
+    border: 2px solid #c1272d;
+    padding: 4px 10px 2px;
+    transform: rotate(4deg);
+    line-height: 1;
+    border-radius: 4px;
+  }
+  .mock-notebook .nb-case {
+    font-family: 'Caveat', cursive;
+    font-size: 19px;
+    color: #c1272d;
+    margin: 20px 0 6px;
+    font-weight: 700;
+  }
+  .mock-notebook .nb-case .underline { border-bottom: 2px solid #c1272d; padding-bottom: 1px; }
+  .mock-notebook .nb-card {
+    background: #FFFCF2;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    box-shadow: 1px 2px 0 rgba(43,39,36,0.15), 0 4px 12px rgba(0,0,0,0.08);
+    transform: rotate(-0.4deg);
+    position: relative;
+    z-index: 2;
+  }
+  .mock-notebook .nb-card.tilt-r { transform: rotate(0.6deg); margin-left: 12px; }
+  .mock-notebook .nb-tape {
+    position: absolute;
+    top: -8px;
+    left: 30%;
+    width: 40%;
+    height: 16px;
+    background: rgba(245, 222, 122, 0.7);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transform: rotate(-2deg);
+  }
+  .mock-notebook .nb-h {
+    font-family: 'Sarabun', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    color: #2b2724;
+  }
+  .mock-notebook .nb-body {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #4a4039;
+  }
+  .mock-notebook .nb-annotation {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: #c1272d;
+    line-height: 1.2;
+    margin-top: 10px;
+    transform: rotate(-1.5deg);
+    padding-left: 14px;
+  }
+  .mock-notebook .nb-annotation::before { content: '→ '; }
+  .mock-notebook .nb-arrow {
+    margin: 4px 0 4px 32px;
+    color: #c1272d;
+    transform: rotate(-2deg);
+  }
+  .mock-notebook .nb-tag {
+    display: inline-block;
+    font-family: 'Caveat', cursive;
+    font-size: 14px;
+    color: #1e3a8a;
+    padding: 2px 8px;
+    border: 1.5px solid #1e3a8a;
+    border-radius: 50%;
+    transform: rotate(-3deg);
+    margin-right: 8px;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 4 — EMBER THEATRE (Slow Burn × Embers & Aperture)         */
+  /* =================================================================== */
+  .mock-ember {
+    background: #0B0906;
+    color: #EDE4D5;
+    font-family: 'Anuphan', 'Inter Tight', sans-serif;
+    overflow: hidden;
+  }
+  .mock-ember::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 60%;
+    background: radial-gradient(ellipse at 50% 100%, rgba(232, 120, 42, 0.18) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .mock-ember .embers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .mock-ember .embers span {
+    position: absolute;
+    bottom: -10px;
+    width: 3px;
+    height: 3px;
+    background: #E8782A;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #E8782A, 0 0 12px rgba(232, 120, 42, 0.5);
+    animation: emberDrift 6s infinite ease-in-out;
+    opacity: 0;
+  }
+  .mock-ember .embers span:nth-child(1) { left: 8%; animation-delay: 0s; }
+  .mock-ember .embers span:nth-child(2) { left: 18%; animation-delay: 1s; }
+  .mock-ember .embers span:nth-child(3) { left: 28%; animation-delay: 2.5s; width: 2px; height: 2px; }
+  .mock-ember .embers span:nth-child(4) { left: 38%; animation-delay: 0.5s; }
+  .mock-ember .embers span:nth-child(5) { left: 48%; animation-delay: 3s; }
+  .mock-ember .embers span:nth-child(6) { left: 58%; animation-delay: 1.5s; width: 2px; height: 2px; }
+  .mock-ember .embers span:nth-child(7) { left: 68%; animation-delay: 2s; }
+  .mock-ember .embers span:nth-child(8) { left: 78%; animation-delay: 4s; }
+  .mock-ember .embers span:nth-child(9) { left: 88%; animation-delay: 1s; }
+  .mock-ember .embers span:nth-child(10) { left: 14%; animation-delay: 3.5s; width: 2px; height: 2px; }
+  .mock-ember .embers span:nth-child(11) { left: 64%; animation-delay: 0.2s; }
+  .mock-ember .embers span:nth-child(12) { left: 84%; animation-delay: 2.8s; }
+  @keyframes emberDrift {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-340px) translateX(15px); opacity: 0; }
+  }
+  .mock-ember .mockup-nav { border-bottom: 1px solid #2a201a; position: relative; z-index: 3; }
+  .mock-ember .nav-brand {
+    font-family: 'Anuphan', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #EDE4D5;
+    letter-spacing: -0.01em;
+  }
+  .mock-ember .nav-brand small {
+    display: block;
+    font-family: 'Inter Tight', monospace;
+    font-size: 9px;
+    color: #E8782A;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    margin-top: 2px;
+  }
+  .mock-ember .nav-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.08em;
+  }
+  .mock-ember .ember-feature {
+    text-align: center;
+    margin: 32px 0 28px;
+    position: relative;
+    z-index: 3;
+  }
+  .mock-ember .ember-eyebrow {
+    font-family: 'Inter Tight', monospace;
+    font-size: 10.5px;
+    color: #E8782A;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .mock-ember .ember-h {
+    font-family: 'Anuphan', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 auto 14px;
+    max-width: 280px;
+    letter-spacing: -0.015em;
+    color: #EDE4D5;
+  }
+  .mock-ember .ember-lede {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #b3a799;
+    max-width: 260px;
+    margin: 0 auto 20px;
+  }
+  .mock-ember .ember-cta {
+    display: inline-block;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 20px;
+    color: #E8782A;
+    border: 1px solid #E8782A;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 12px rgba(232, 120, 42, 0.35);
+    animation: emberPulse 4s infinite ease-in-out;
+  }
+  @keyframes emberPulse {
+    0%, 100% { box-shadow: 0 0 12px rgba(232, 120, 42, 0.35); }
+    50% { box-shadow: 0 0 28px rgba(232, 120, 42, 0.6); }
+  }
+  .mock-ember .ember-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #2a201a 30%, #2a201a 70%, transparent);
+    margin: 0 0 22px;
+    position: relative;
+    z-index: 3;
+  }
+  .mock-ember .ember-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    position: relative;
+    z-index: 3;
+  }
+  .mock-ember .ember-meta-card { padding: 0; }
+  .mock-ember .ember-meta-tag {
+    font-family: 'Inter Tight', monospace;
+    font-size: 9.5px;
+    color: #856b54;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .mock-ember .ember-meta-h {
+    font-family: 'Anuphan', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #EDE4D5;
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 5 — ฟิล์ม / CELLULOID                                      */
+  /* =================================================================== */
+  .mock-celluloid {
+    background: #0C0C09;
+    color: #DDD5C4;
+    font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+    position: relative;
+  }
+  .mock-celluloid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.015) 0.5px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255,255,255,0.02) 0.5px, transparent 1px),
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.015) 0.5px, transparent 1px);
+    background-size: 3px 3px, 4px 4px, 5px 5px;
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .mock-celluloid .mockup-nav { border-bottom: 0.5px solid #33332A; position: relative; z-index: 2; }
+  .mock-celluloid .nav-brand {
+    font-family: 'Taviraj', 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #DDD5C4;
+    letter-spacing: 0.02em;
+  }
+  .mock-celluloid .nav-brand small {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: #E8A840;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .mock-celluloid .nav-reel {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.1em;
+  }
+  .mock-celluloid .reel-frame {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #2a2014 0%, #1a1410 60%, #0C0C09 100%);
+    border: 0.5px solid #33332A;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-celluloid .reel-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, #0C0C09 100%);
+    opacity: 0.85;
+  }
+  .mock-celluloid .reel-frame .frame-label {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    right: 14px;
+    z-index: 2;
+    color: #DDD5C4;
+  }
+  .mock-celluloid .frame-label .scene {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: #E8A840;
+    letter-spacing: 0.18em;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .mock-celluloid .frame-label .frame-title {
+    font-family: 'Taviraj', serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: #DDD5C4;
+  }
+  .mock-celluloid .reel-body {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b8b09e;
+    margin-bottom: 14px;
+    padding: 0 4px;
+    position: relative;
+    z-index: 2;
+  }
+  .mock-celluloid .reel-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #E8A840;
+    letter-spacing: 0.12em;
+    padding: 0 4px;
+    text-transform: uppercase;
+  }
+  .mock-celluloid .intermission {
+    height: 60px;
+    margin: 22px 0;
+    position: relative;
+    border-top: 0.5px solid #33332A;
+    border-bottom: 0.5px solid #33332A;
+  }
+  .mock-celluloid .intermission::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #E8A840;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(232, 168, 64, 0.6);
+  }
+
+  /* =================================================================== */
+  /* DIRECTION 6 — HEAT HAZE                                              */
+  /* =================================================================== */
+  .mock-haze {
+    background: #0B0E12;
+    color: #E7E1D6;
+    font-family: 'Sarabun', 'Inter', sans-serif;
+    position: relative;
+  }
+  .mock-haze::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 25% 30%, rgba(147, 165, 123, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 75% 70%, rgba(217, 122, 82, 0.07) 0%, transparent 45%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .mock-haze .mockup-nav { border-bottom: 1px solid #1c2128; position: relative; z-index: 2; }
+  .mock-haze .nav-brand {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #E7E1D6;
+    letter-spacing: -0.01em;
+  }
+  .mock-haze .nav-brand small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #93A57B;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .mock-haze .nav-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #856b54;
+    letter-spacing: 0.1em;
+  }
+  .mock-haze .haze-card {
+    background: #151A20;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #1c2128;
+  }
+  .mock-haze .haze-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(147, 165, 123, 0.08) 45%, rgba(147, 165, 123, 0.12) 50%, rgba(147, 165, 123, 0.08) 55%, transparent 100%);
+    transform: skewX(-14deg);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .mock-haze .haze-card > * { position: relative; z-index: 2; }
+  .mock-haze .haze-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    color: #93A57B;
+    letter-spacing: 0.16em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .mock-haze .haze-h {
+    font-family: 'Prompt', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+    color: #E7E1D6;
+  }
+  .mock-haze .haze-lede {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #9ca39a;
+    margin-bottom: 12px;
+  }
+  .mock-haze .haze-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid #1c2128;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #6a6f6c;
+    letter-spacing: 0.08em;
+  }
+  .mock-haze .haze-meta .accent { color: #D97A52; }
+
+  footer { max-width: 1280px; margin: 56px auto 0; padding: 24px 0; border-top: 1px solid #27272a; font-size: 12px; color: #71717a; line-height: 1.6; }
+  footer code { font-family: ui-monospace, monospace; font-size: 11px; color: #a1a1aa; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>beef.im — UI/UX Direction Preview <small>2 · Daring & Cinematic</small></h1>
+  <p>Companion to Preview-Opus4.7.html. The first preview covered the safe-and-defensible shortlist (light backgrounds, editorial registers). This second preview covers the riskier and more atmospheric directions: three Bangkok-vernacular daring picks (Yaowarat Code, Bangkok Zine, Hand-Drawn Lab Notebook) and three immersive cinematic picks (Ember Theatre, Celluloid, Heat Haze).</p>
+  <p>The cinematic three are deliberate analogs to the legacy Nerd-with-Nart mountaineer feel — atmospheric darkness, particle physics, single-light-source gravity — translated into beef.im's brand register. <strong>Ember Theatre is a hybrid</strong> combining Slow Burn (Opus 4.6 / Merlin) and Embers & Aperture (Sonnet 4.6 / Merlin) — closest visual cousin to the legacy EmberGlow / Snowstorm experience.</p>
+  <div class="meta">Source analysis · Analysis-Opus4.7.md · Inputs: 13 LLM proposals in this folder · Open in Firefox/Chrome for accurate Thai font rendering · Mockups simulate ~360px portrait viewport</div>
+</header>
+
+<section class="overview">
+  <h2>Palette overview — six daring &amp; cinematic directions</h2>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">DARING 01</span>
+      <a href="#yaowarat">Yaowarat Code</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#0D0D0D"></div>
+      <div style="background:#1A1A2E"></div>
+      <div style="background:#F0E6D0"></div>
+      <div style="background:#FF5533"></div>
+      <div style="background:#FFD700"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 Flash</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">DARING 02</span>
+      <a href="#zine">Bangkok Zine</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#1A1208"></div>
+      <div style="background:#2B1F0F"></div>
+      <div style="background:#F2E8D0"></div>
+      <div style="background:#E8B020"></div>
+      <div style="background:#E83020"></div>
+    </div>
+    <div class="overview-source">Sonnet 4.6 / CC CLI</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">DARING 03</span>
+      <a href="#notebook">Hand-Drawn Lab Notebook</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#F5EFE0"></div>
+      <div style="background:#FFFCF2"></div>
+      <div style="background:#2b2724"></div>
+      <div style="background:#c1272d"></div>
+      <div style="background:#1e3a8a"></div>
+    </div>
+    <div class="overview-source">Opus 4.7 wildcard / refined</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">CINEMATIC 01</span>
+      <a href="#ember">Ember Theatre <small style="color:#86efac;font-family:ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;">[HYBRID]</small></a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#0B0906"></div>
+      <div style="background:#1D1410"></div>
+      <div style="background:#EDE4D5"></div>
+      <div style="background:#E8782A"></div>
+      <div style="background:#F5C842"></div>
+    </div>
+    <div class="overview-source">Slow Burn × Embers &amp; Aperture</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">CINEMATIC 02</span>
+      <a href="#celluloid">ฟิล์ม / Celluloid</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#0C0C09"></div>
+      <div style="background:#1A1A14"></div>
+      <div style="background:#DDD5C4"></div>
+      <div style="background:#E8A840"></div>
+      <div style="background:#E0553D"></div>
+    </div>
+    <div class="overview-source">DeepSeek V4 GO max</div>
+  </div>
+
+  <div class="overview-row">
+    <div class="overview-name">
+      <span class="pick">CINEMATIC 03</span>
+      <a href="#haze">Heat Haze</a>
+    </div>
+    <div class="overview-strip">
+      <div style="background:#0B0E12"></div>
+      <div style="background:#151A20"></div>
+      <div style="background:#E7E1D6"></div>
+      <div style="background:#93A57B"></div>
+      <div style="background:#D97A52"></div>
+    </div>
+    <div class="overview-source">GPT-5.4</div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- DARING 01 — YAOWARAT CODE                                     -->
+<!-- ============================================================ -->
+<article class="direction" id="yaowarat">
+  <div class="dir-header">
+    <span class="dir-num bold">DARING 01</span>
+    <h2 class="dir-title">Yaowarat Code</h2>
+    <span class="dir-source">DeepSeek V4 Flash · direct API · score 24</span>
+    <p class="dir-mood">"The typographic chaos of Bangkok's oldest street, refined into digital — characters collide, signs overlap, and the reader navigates the page like they navigate a market: by trusting the signal in the noise."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#0D0D0D"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#0D0D0D</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1A1A2E"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#1A1A2E</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F0E6D0"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#F0E6D0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FF5533"></div><div class="swatch-meta"><div class="swatch-role">Accent (neon)</div><div class="swatch-hex">#FF5533</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFD700"></div><div class="swatch-meta"><div class="swatch-role">Critical (taxi gold)</div><div class="swatch-hex">#FFD700</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-yaowarat">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · YAOWARAT</small></div>
+          <div class="nav-section">SEC. ก</div>
+        </div>
+        <div class="yc-glyph-marker">ก</div>
+        <div class="yc-card">
+          <span class="yc-tag">วิเคราะห์</span>
+          <h3 class="yc-h">Unit-linked: <span class="neon">เปิดทุกหน้า</span> ที่ตัวแทนหลีก</h3>
+          <p class="yc-lede">ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย — และตัวแทนรู้ตั้งแต่วันแรกที่ขายให้คุณ</p>
+          <div class="yc-meta">AIA-UL · 2,840w · 11 MIN</div>
+        </div>
+        <div class="yc-collision">
+          <h4 class="yc-collision-title">Reverse-sear · กฎ 3 ข้อ</h4>
+          <div class="yc-collision-meta">RIBEYE 4" · 54°C · 6 MIN READ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The energy of Yaowarat — dense, layered, unmistakably Thai — matches the "post what you want" editorial policy. Contract forensics gain the energy of a street vendor shouting "this is the real price." The layout itself says "we don't follow the grid everyone else uses."</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>giant Thai character glyph-marker</strong> as section divider (ก, ข, ค...) plus aggressive offset typography. Sections aren't categorized — they're stamped with the alphabet. Insurance and recipes both inherit the same chaotic-but-deliberate signage logic.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Highest first-impression risk. Mass-affluent 35+ readers expecting calm-credible may bounce on first viewport. Best for established readers who already trust the voice — paid acquisition would underperform until the brand is known. Aggressive scale Thai requires QA on Android budget devices.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Bai Jamjuree + Unbounded free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · character drift parallax</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · dark + neon</span>
+        <span class="label">Build complexity</span><span class="value">Medium–High · asymmetric grid</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- DARING 02 — BANGKOK ZINE                                      -->
+<!-- ============================================================ -->
+<article class="direction" id="zine">
+  <div class="dir-header">
+    <span class="dir-num bold">DARING 02</span>
+    <h2 class="dir-title">Bangkok Zine</h2>
+    <span class="dir-source">Sonnet 4.6 · CC CLI · score 24</span>
+    <p class="dir-mood">"Pratunam shophouse sign typography, curated by someone who studied at ECAL and then came home."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#1A1208"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#1A1208</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2B1F0F"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#2B1F0F</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F2E8D0"></div><div class="swatch-meta"><div class="swatch-role">Body (newsprint)</div><div class="swatch-hex">#F2E8D0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8B020"></div><div class="swatch-meta"><div class="swatch-role">Accent (sticker)</div><div class="swatch-hex">#E8B020</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E83020"></div><div class="swatch-meta"><div class="swatch-role">Critical (urgent)</div><div class="swatch-hex">#E83020</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-zine">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div>
+          <span class="nav-tag">ฉบับ 04</span>
+        </div>
+        <div class="zine-card">
+          <span class="zine-sticker">วิเคราะห์แล้ว</span>
+          <div class="zine-section">POLICY / TEARDOWN</div>
+          <h3 class="zine-h">Unit-linked: หน้าที่หายไป จาก presentation</h3>
+          <p class="zine-lede">ค่า COI ปีที่ 30 มากกว่าเบี้ยที่จ่าย — และนี่คือเหตุผลที่ตัวแทนเปลี่ยนเรื่องเร็ว ทุกครั้งที่คุณถาม</p>
+          <div class="zine-meta">
+            <span>AIA-UL · 2,840w</span>
+            <span>11 MIN</span>
+          </div>
+        </div>
+        <div class="zine-card">
+          <span class="zine-sticker red">ไม่ผ่าน</span>
+          <div class="zine-section">REVIEW / WHOLE LIFE</div>
+          <h3 class="zine-h">Whole Life ราคา 8 หลัก ที่ผมแนะให้คนยกเลิก</h3>
+          <p class="zine-lede">case study — ทำไม IRR 1.2% แล้วยังถูกขายเป็น "การลงทุน"</p>
+          <div class="zine-meta">
+            <span>CASE-007 · 1,640w</span>
+            <span>7 MIN</span>
+          </div>
+        </div>
+        <div class="zine-card">
+          <span class="zine-sticker">เนื้อแน่น</span>
+          <div class="zine-section">GRILL / TECHNIQUE</div>
+          <h3 class="zine-h">Reverse-sear ribeye 4" — ครัวบ้านทำได้</h3>
+          <p class="zine-lede">ไม่ต้องมีเตา Big Green Egg · มีตะแกรงกับเทอร์โมมิเตอร์ก็พอ</p>
+          <div class="zine-meta">
+            <span>RIBEYE-54C · 1,420w</span>
+            <span>6 MIN</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>Thai mass-affluent readers grew up inside this visual system — it is literally the typography of their neighborhood. Using it for insurance forensics inverts the expectation (high-rigor content in a commercial visual wrapper) which is the brand paradox enacted, not described.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>tilted sticker label</strong>. <code>วิเคราะห์แล้ว</code> (analyzed) for insurance teardowns, <code>เนื้อแน่น</code> (substantial) for cooking, <code>ไม่ผ่าน</code> (fail) for products to avoid. Same sticker mechanic, randomized rotation per element, slap-on animation. Yellow on positive, red on critical.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">The dark warm brown background is unusual for finance content — could read as nightlife/restaurant rather than authoritative. Mitigated by the bold sticker authority and dense Bai Jamjuree headlines, but new visitors may need a moment to recalibrate. The only direction in this set genuinely unavailable to any Western brand.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Bai Jamjuree + Barlow Condensed free</span>
+        <span class="label">Animation budget</span><span class="value">Low · sticker slap (200ms)</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · dark warm bg</span>
+        <span class="label">Build complexity</span><span class="value">Low–Medium</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- DARING 03 — HAND-DRAWN LAB NOTEBOOK                           -->
+<!-- ============================================================ -->
+<article class="direction" id="notebook">
+  <div class="dir-header">
+    <span class="dir-num bold">DARING 03</span>
+    <h2 class="dir-title">Hand-Drawn Lab Notebook</h2>
+    <span class="dir-source">Opus 4.7 wildcard · refined for production</span>
+    <p class="dir-mood">"One obsessive autodidact's leather-bound research journal — handwritten Thai annotations in the margins, scanned graph-paper page background, taped-in scraps of policy clauses, hand-drawn arrows pointing between unrelated ideas."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#F5EFE0"></div><div class="swatch-meta"><div class="swatch-role">Bg (graph paper)</div><div class="swatch-hex">#F5EFE0</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFCF2"></div><div class="swatch-meta"><div class="swatch-role">Surface (taped card)</div><div class="swatch-hex">#FFFCF2</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#2b2724"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#2b2724</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#c1272d"></div><div class="swatch-meta"><div class="swatch-role">Red ink (annotation)</div><div class="swatch-hex">#c1272d</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1e3a8a"></div><div class="swatch-meta"><div class="swatch-role">Blue ink (callout)</div><div class="swatch-hex">#1e3a8a</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-notebook">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>FIELD NOTES · BEEF.IM</small></div>
+          <span class="nav-stamp">VOL. 04</span>
+        </div>
+        <div class="nb-case"><span class="underline">Case File 12 — AIA Multi-Pay</span></div>
+        <div class="nb-card">
+          <div class="nb-tape"></div>
+          <h4 class="nb-h">Unit-linked: COI escalation curve</h4>
+          <p class="nb-body">เบี้ยปี 1 · 120,000 บาท · COI ปีที่ 30 ประมาณการ 128,400 บาท</p>
+          <p class="nb-annotation">ตรงนี้ดูดีๆ — agent ไม่เคยพูด</p>
+        </div>
+        <svg class="nb-arrow" width="80" height="32" viewBox="0 0 80 32" fill="none">
+          <path d="M5 8 Q 30 28, 60 14" stroke="#c1272d" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M52 9 L 62 14 L 54 22" stroke="#c1272d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <div class="nb-card tilt-r">
+          <h4 class="nb-h"><span class="nb-tag">A</span>Reverse-sear · same logic</h4>
+          <p class="nb-body">การให้ความร้อนช้า = COI compounding · ไฟแรงทันที = sunk cost</p>
+          <p class="nb-annotation">analogy holds</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>How this Opus 4.7 wildcard becomes buildable</h4>
+      <p>The original concept was beautiful but the typography rights minefield (a true handwritten Thai font) made it un-shippable as written. The refined approach uses what's actually on Google Fonts: <code>Caveat</code> for Latin handwriting, <code>Sarabun</code> for "official" body content. Thai annotations stay in Sarabun italic + red color so they read as marginal even without a true handwriting Thai face. Graph paper is pure CSS (repeating linear-gradient at 22px), no image asset.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>case file</strong>. Every article is "Case File N." Insurance pieces are forensic case files (policy under examination); cooking pieces are technique experiments (the autodidact testing reverse-sear at three temps). Same notebook, same hand. Hand-drawn SVG arrows (one per article) connect related cases across the page.</p>
+
+      <h4>Why this might land for beef.im specifically</h4>
+      <p>The brand's founding story IS this — one person diagnosing bad unit-linked policies, doing the work others won't. The lab notebook aesthetic literally renders that story as the interface. The casual handwritten register also matches the rebrand thesis (remove the handbrake, casual wrapper / firepower content) better than any other direction in either preview.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">High execution risk on consistency. Asymmetry must be perceived as <em>intentional craft</em> rather than <em>broken layout</em> — every rotation, every taped edge, every arrow needs deliberate hand. Easy to look amateur. Demands a designer with strong art-direction sense, not just CSS skills. Search-engine indexing of handwritten content is fine (the body content is normal HTML), but the visual register may signal "blog hobby" to first-time readers expecting institutional credibility.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Caveat + Sarabun free</span>
+        <span class="label">Animation budget</span><span class="value">Low · static layout, occasional arrows</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">Very low · cream paper bg</span>
+        <span class="label">Build complexity</span><span class="value">High · per-article art direction</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- CINEMATIC 01 — EMBER THEATRE (HYBRID)                         -->
+<!-- ============================================================ -->
+<article class="direction" id="ember">
+  <div class="dir-header">
+    <span class="dir-num hybrid">CINEMATIC 01 · HYBRID</span>
+    <h2 class="dir-title">Ember Theatre</h2>
+    <span class="dir-source">Slow Burn (Opus 4.6 / Merlin) × Embers &amp; Aperture (Sonnet 4.6 / Merlin)</span>
+    <p class="dir-mood">"A film still held two seconds too long — the scene where the protagonist stares into the coals and understands something. The legacy Nerd-with-Nart cinematic gravity, translated from peak-summit to grill-room."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#0B0906"></div><div class="swatch-meta"><div class="swatch-role">Background</div><div class="swatch-hex">#0B0906</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1D1410"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#1D1410</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#EDE4D5"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#EDE4D5</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8782A"></div><div class="swatch-meta"><div class="swatch-role">Live coal (single)</div><div class="swatch-hex">#E8782A</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F5C842"></div><div class="swatch-meta"><div class="swatch-role">Flare (warning)</div><div class="swatch-hex">#F5C842</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-ember">
+      <div class="embers">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM</small></div>
+          <div class="nav-status">EVENING · APR 25</div>
+        </div>
+        <div class="ember-feature">
+          <div class="ember-eyebrow">FEATURED · POLICY TEARDOWN</div>
+          <h2 class="ember-h">ค่าธรรมเนียมที่เขาไม่อยากให้คุณเห็น</h2>
+          <p class="ember-lede">Unit-linked คือสัญญาที่เผาเงินคุณช้าๆ — เปิดทีละหน้า ดูตัวเลขจริง</p>
+          <a class="ember-cta">อ่านบทวิเคราะห์</a>
+        </div>
+        <div class="ember-divider"></div>
+        <div class="ember-meta">
+          <div class="ember-meta-card">
+            <div class="ember-meta-tag">RECIPE</div>
+            <div class="ember-meta-h">Reverse-sear ribeye 4" · กฎ 3 ข้อ</div>
+          </div>
+          <div class="ember-meta-card">
+            <div class="ember-meta-tag">EXPLAINER</div>
+            <div class="ember-meta-h">Term ดีกว่า Whole Life — เกือบทุกครั้ง</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why this hybrid</h4>
+      <p>Two cinematic directions in the bake-off scored similarly but solved different problems. Slow Burn nailed the <em>restraint</em> (single glowing element per page, A24/Stripe Press refs); Embers &amp; Aperture nailed the <em>physics</em> (12 SVG ember particles drifting up on page-load). Combined, they reproduce the legacy Nerd-with-Nart cinematic feel (atmospheric particles + one focal element + deep gravity) in beef.im's brand palette.</p>
+
+      <h4>Direct lineage to the legacy site</h4>
+      <div class="legacy-note">The current Snowstorm.tsx (manifesto page) and the new EmberGlow.tsx (homepage, 180 particles, Mar 2026 rewrite) both implement particle physics. Ember Theatre is the design <em>system</em> that those components were always reaching for — but rendered as a complete brand register, not just a hero background bolted onto an editorial layout.</div>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>single glowing element</strong> per viewport. The featured CTA, the active nav marker, one breathing ember somewhere — exactly one. Insurance pieces get a glowing "อ่านบทวิเคราะห์" CTA; recipe pieces get a glowing temperature readout. Same restraint principle, two contexts. The single ember enforces hierarchy — your eye knows where to go.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Mobile sunlight is the genuine risk — dark cinematic palettes get punished hard outdoors. Mitigation: respect <code>prefers-color-scheme</code> AND add an explicit light-mode toggle in the header (Slow Burn's own recommendation). Also: cinematic restraint means lower content density per scroll — the homepage will surface fewer articles per viewport than Open Market or Investment Grade. Acceptable if the goal is authority over discoverability.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Anuphan + Inter Tight free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · 12-particle drift + ember pulse</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · mitigated by light-mode toggle</span>
+        <span class="label">Build complexity</span><span class="value">Medium · particles already exist in EmberGlow.tsx</span>
+        <span class="label">Code reuse from legacy</span><span class="value">High · EmberGlow physics carry over</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- CINEMATIC 02 — ฟิล์ม / CELLULOID                              -->
+<!-- ============================================================ -->
+<article class="direction" id="celluloid">
+  <div class="dir-header">
+    <span class="dir-num cinematic">CINEMATIC 02</span>
+    <h2 class="dir-title">ฟิล์ม / Celluloid</h2>
+    <span class="dir-source">DeepSeek V4 GO max · OpenCode Go · score 24</span>
+    <p class="dir-mood">"A 35mm contact sheet from a Thai indie film — grain, halation, golden hour, subtitles, and the patience to hold a frame for ten seconds."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#0C0C09"></div><div class="swatch-meta"><div class="swatch-role">Bg (projection)</div><div class="swatch-hex">#0C0C09</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1A1A14"></div><div class="swatch-meta"><div class="swatch-role">Frame surface</div><div class="swatch-hex">#1A1A14</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#DDD5C4"></div><div class="swatch-meta"><div class="swatch-role">Body (subtitle)</div><div class="swatch-hex">#DDD5C4</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E8A840"></div><div class="swatch-meta"><div class="swatch-role">Golden hour</div><div class="swatch-hex">#E8A840</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E0553D"></div><div class="swatch-meta"><div class="swatch-role">Red clip</div><div class="swatch-hex">#E0553D</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-celluloid">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>REEL · BEEF.IM</small></div>
+          <div class="nav-reel">REEL 04 · FRAME 12</div>
+        </div>
+        <div class="reel-frame">
+          <div class="frame-label">
+            <div class="scene">SCENE 12 · POLICY TEARDOWN</div>
+            <h3 class="frame-title">ค่าธรรมเนียมที่เผาเบี้ยทิ้งทุกปี</h3>
+          </div>
+        </div>
+        <p class="reel-body">เปิดสัญญาให้ดูทีละหน้า · ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนเปลี่ยนเรื่องเร็ว</p>
+        <div class="reel-meta">RUNTIME 11:00 · POLICY DESK</div>
+        <div class="intermission"></div>
+        <div class="reel-frame">
+          <div class="frame-label">
+            <div class="scene">SCENE 13 · GRILL TECHNIQUE</div>
+            <h3 class="frame-title">Reverse-sear · กฎ 3 ข้อ</h3>
+          </div>
+        </div>
+        <p class="reel-body">ทำไมไฟแรงเป็นกับดัก · ทำไม 54°C คือเส้นแบ่ง · ทำไมการพักเนื้อสำคัญกว่าการย่าง</p>
+        <div class="reel-meta">RUNTIME 06:00 · FOOD DESK</div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>The cinema frame transforms both insurance analysis and cooking into acts of careful observation — watching the details unfold. Recipe photography gains atmospheric weight without food-blogger gloss; premium tables feel like something worth slowing down to study. The intermission band between sections (60px solid black with single golden dot) gives readers a visual exhale between arguments — no other direction has this exact pacing tool.</p>
+
+      <h4>Direct lineage to legacy cinematic</h4>
+      <div class="legacy-note">Closest in <em>spirit</em> to the legacy Nerd-with-Nart's slow-cinema mountain hero — but instead of arctic peak photography, the framing is Thai-indie-film palette (Apichatpong Weerasethakul references). The 4:3 frame discipline replaces the legacy full-bleed hero with something more curatorial — every image is a held frame, not just a backdrop.</div>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>4:3 framed image</strong> + <strong>scene tag</strong>. Insurance teardowns get scene labels like <code>SCENE 12 · POLICY TEARDOWN</code>, recipes get <code>SCENE 13 · GRILL TECHNIQUE</code>. Both treated as held frames in the same reel. The "REEL · FRAME" runtime metadata replaces conventional word-count + read-time labels.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Photography becomes load-bearing. The 4:3 frame demands consistently-shot images — both insurance teardown stills (annotated contract scans, etc.) and grill photography must hold the cinematic register. If image quality dips, the entire frame discipline falls apart. Higher production cost per article. Also: vignette + grain layered over content reduces text legibility in mobile sunlight without careful contrast management.</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Taviraj + Cinzel free</span>
+        <span class="label">Animation budget</span><span class="value">Medium · film-grain dissolve on transitions</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · dark + vignette</span>
+        <span class="label">Build complexity</span><span class="value">Medium · 4:3 image discipline</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- ============================================================ -->
+<!-- CINEMATIC 03 — HEAT HAZE                                      -->
+<!-- ============================================================ -->
+<article class="direction" id="haze">
+  <div class="dir-header">
+    <span class="dir-num cinematic">CINEMATIC 03</span>
+    <h2 class="dir-title">Heat Haze</h2>
+    <span class="dir-source">GPT-5.4 · score 25</span>
+    <p class="dir-mood">"Dark glass, soft glare, and the feeling of reading something consequential after midnight."</p>
+  </div>
+
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#0B0E12"></div><div class="swatch-meta"><div class="swatch-role">Dark glass</div><div class="swatch-hex">#0B0E12</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#151A20"></div><div class="swatch-meta"><div class="swatch-role">Surface / card</div><div class="swatch-hex">#151A20</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#E7E1D6"></div><div class="swatch-meta"><div class="swatch-role">Body text</div><div class="swatch-hex">#E7E1D6</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#93A57B"></div><div class="swatch-meta"><div class="swatch-role">Sage refraction</div><div class="swatch-hex">#93A57B</div></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#D97A52"></div><div class="swatch-meta"><div class="swatch-role">Warm signal</div><div class="swatch-hex">#D97A52</div></div></div>
+  </div>
+
+  <div class="dir-body">
+    <div class="mockup mock-haze">
+      <div class="mockup-frame">
+        <div class="mockup-nav">
+          <div class="nav-brand">ประกันเนื้อๆ<small>BEEF.IM · NIGHT READ</small></div>
+          <div class="nav-time">23:42</div>
+        </div>
+        <div class="haze-card">
+          <div class="haze-tag">POLICY · TEARDOWN</div>
+          <h3 class="haze-h">Unit-linked: ค่า COI ปีที่ 30</h3>
+          <p class="haze-lede">เปิดสัญญาให้ดูทีละหน้า — ตัวเลขที่ presentation ไม่บอกคุณ และเหตุผลที่ตัวแทนเปลี่ยนเรื่องเร็ว</p>
+          <div class="haze-meta">
+            <span>AIA-UL · 2,840w</span>
+            <span class="accent">11 MIN READ</span>
+          </div>
+        </div>
+        <div class="haze-card">
+          <div class="haze-tag">RECIPE · TECHNIQUE</div>
+          <h3 class="haze-h">Reverse-sear · กฎ 3 ข้อ</h3>
+          <p class="haze-lede">ทำไมไฟแรงเป็นกับดัก ทำไม 54°C คือเส้นแบ่ง</p>
+          <div class="haze-meta">
+            <span>RIBEYE-54C · 1,420w</span>
+            <span class="accent">6 MIN READ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h4>Why ship</h4>
+      <p>It gives the site emotional charge and seriousness without sliding into macho finance or food-blog theatrics. The atmosphere nods to heat, patience, and scrutiny all at once — exactly the register of late-night-read, when most beef.im content is actually consumed. Sage-green refraction accent is unusual for finance content (almost everyone defaults to blue/red/amber) — quietly ownable.</p>
+
+      <h4>Cinematic effect built from CSS only</h4>
+      <p>The <strong>refraction sweep</strong> — a translucent diagonal band passes across each card on viewport entry (480ms), briefly increasing local contrast. Implemented as a CSS pseudo-element with a skewed gradient, runs once per card, fully disabled under <code>prefers-reduced-motion</code>. The effect in this static mockup is rendered as a hint (you can see the diagonal light band on each card) — production version would animate it.</p>
+
+      <h4>Component that bridges insurance + meat</h4>
+      <p>The <strong>refraction sweep + sage tag</strong>. Both content types use identical card chrome — only the tag label changes (<code>POLICY · TEARDOWN</code> vs. <code>RECIPE · TECHNIQUE</code>). The refraction effect is the visual signature; the tag system carries the editorial classification.</p>
+
+      <h4>Trade-off</h4>
+      <div class="tradeoff">Less aggressively ownable than Ember Theatre or Celluloid — refraction sweep is subtle enough that it may not register as the brand's signature visual. Best for an audience that wants atmosphere without theatrics. The dark glass register also reads more "tech product" than "publication" — could pull the brand toward a SaaS register if not balanced by editorial typography choices (Prompt is the right anchor).</div>
+
+      <h4>Build cost</h4>
+      <div class="axes">
+        <span class="label">Custom typeface licensing</span><span class="value">$0 · Prompt + IBM Plex Mono free (Söhne sub)</span>
+        <span class="label">Animation budget</span><span class="value">Low–Medium · refraction sweep per card</span>
+        <span class="label">Mobile sunlight risk</span><span class="value">High · dark glass</span>
+        <span class="label">Build complexity</span><span class="value">Low</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer>
+  <p>Companion document: <code>Analysis-Opus4.7.md</code> · Conservative shortlist preview: <code>Preview-Opus4.7.html</code> (light backgrounds, editorial registers).</p>
+  <p style="margin-top:8px;">Mockups are intentionally schematic. They show the <em>typography stack</em>, <em>palette</em>, <em>signature component</em>, and (where relevant) a working CSS demonstration of the direction's signature animation — particles drift on Ember Theatre, refraction band visible on Heat Haze, ember pulse on the featured CTA. Production design will refine spacing, hierarchy, and interaction beyond what static mockups can carry.</p>
+  <p style="margin-top:8px;">Cinematic legacy note: the Ember Theatre direction is the closest analog to the legacy Nerd-with-Nart hero experience (Snowstorm + EmberGlow particles + atmospheric darkness). The <code>EmberGlow.tsx</code> component shipped at <code>3c8b871</code> already implements the particle physics — Ember Theatre would extend that single hero motif into a complete design system rather than a backdrop.</p>
+</footer>
+
+</body>
+</html>

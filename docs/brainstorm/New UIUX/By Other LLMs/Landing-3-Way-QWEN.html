@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ประกันเนื้อๆ — Landing Page Directions</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;700&family=Bai+Jamjuree:wght@400;700&family=Caveat:wght@400;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Thai:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=K2D:wght@300;400;700&family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       GLOBAL RESET & BASE
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      line-height: 1.6;
+      color: #1C1814;
+    }
+    
+    .direction-label {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #1C1814;
+      color: #E8E8E8;
+    }
+    
+    .divider {
+      height: 4px;
+      background: linear-gradient(90deg, #1C1814 0%, #6B6254 50%, #1C1814 100%);
+    }
+    
+    /* ============================================
+       DIRECTION 1: PROVENANCE
+    ============================================ */
+    .provenance {
+      --bg-cream: #F5F0E8;
+      --surface-ivory: #FFFCF7;
+      --text-near-black: #1C1814;
+      --accent-persimmon: #B85C3A;
+      --accent-navy: #1B3A6B;
+      --accent-gold: #B8860B;
+      --critical-red: #D43830;
+      --footer-grey: #6B6254;
+      
+      min-height: 100vh;
+      background: linear-gradient(135deg, #F8F2E8 0%, #F5F0E8 50%, #EBE3D4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Grid texture overlay */
+    .provenance::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(39,32,23,0.06) 36px),
+        repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(39,32,23,0.06) 36px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Radial color washes */
+    .provenance::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(0,127,109,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(240,179,35,0.10) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .provenance .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+    }
+    
+    /* Sunburst background */
+    .provenance .sunburst {
+      position: absolute;
+      width: 80vmax;
+      height: 80vmax;
+      background: repeating-conic-gradient(from 12deg, rgba(184,92,58,0.10) 0deg 12deg, transparent 12deg 24deg);
+      border-radius: 50%;
+      clip-path: circle(50% at 50% 50%);
+      opacity: 0.5;
+      animation: sunburst-rotate 32s linear infinite;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .provenance .sunburst {
+        animation: sunburst-rotate 32s linear infinite;
+      }
+    }
+    
+    @keyframes sunburst-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .provenance .site-name {
+      font-family: 'Anuphan', sans-serif;
+      font-size: 1.25rem;
+      color: var(--accent-navy);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .provenance .domain {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent-persimmon);
+      margin-bottom: 2rem;
+    }
+    
+    .provenance .headline {
+      font-family: 'Anuphan', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--text-near-black);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    
+    .provenance .subhead {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--footer-grey);
+      max-width: 600px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    
+    .provenance .search-bar {
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+      background: var(--surface-ivory);
+      border: 1px solid rgba(175,165,145,0.25);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 4px 12px rgba(39,32,23,0.08);
+    }
+    
+    .provenance .search-bar input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 1rem;
+      color: var(--text-near-black);
+      outline: none;
+    }
+    
+    .provenance .search-bar input::placeholder {
+      color: rgba(107,98,84,0.6);
+    }
+    
+    .provenance .search-bar button {
+      background: var(--accent-navy);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .provenance .search-bar button:hover {
+      background: var(--accent-persimmon);
+    }
+    
+    .provenance .content-area {
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .provenance .article-card {
+      background: var(--surface-ivory);
+      border: 1px solid rgba(175,165,145,0.25);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(39,32,23,0.08);
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
+    }
+    
+    .provenance .article-card:hover {
+      box-shadow: 8px 8px 0 rgba(39,32,23,0.11);
+      transform: translate(-2px, -2px);
+    }
+    
+    /* Temperature bar */
+    .provenance .temperature-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #3B7DD8 0%, #F5A623 50%, #E8482F 100%);
+      border-radius: 2px;
+      margin-bottom: 0.75rem;
+      transition: height 0.3s;
+    }
+    
+    .provenance .article-card:hover .temperature-bar {
+      height: 24px;
+    }
+    
+    .provenance .temperature-label {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 0.75rem;
+      color: var(--critical-red);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Rating badge */
+    .provenance .rating-badge {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: var(--accent-navy);
+      color: white;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.375rem 0.75rem;
+      border-radius: 12px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      box-shadow: 3px 3px 0 rgba(39,32,23,0.11);
+      animation: badge-fill 0.6s ease-out;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .provenance .rating-badge {
+        animation: badge-fill 0.6s ease-out;
+      }
+    }
+    
+    @keyframes badge-fill {
+      from { 
+        background: #888888;
+        opacity: 0;
+      }
+      to { 
+        background: var(--accent-navy);
+        opacity: 1;
+      }
+    }
+    
+    .provenance .category-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .provenance .article-title {
+      font-family: 'Anuphan', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-near-black);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    
+    .provenance .article-dek {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 1.125rem;
+      color: var(--footer-grey);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .provenance .metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .provenance .metadata-pill {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--footer-grey);
+      background: rgba(184,92,58,0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+    }
+    
+    /* Annotation margin */
+    .provenance .annotation-margin {
+      display: none;
+      position: absolute;
+      right: -180px;
+      top: 8rem;
+      width: 160px;
+    }
+    
+    .provenance .annotation-bracket {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 3rem;
+      color: var(--accent-persimmon);
+      line-height: 1;
+    }
+    
+    .provenance .annotation-text {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 0.75rem;
+      color: var(--critical-red);
+      line-height: 1.4;
+    }
+    
+    @media (min-width: 1024px) {
+      .provenance .annotation-margin {
+        display: block;
+      }
+    }
+    
+    .provenance .annotation-inline {
+      display: inline-block;
+      background: rgba(212,56,48,0.1);
+      border-left: 3px solid var(--critical-red);
+      padding: 0.5rem 0.75rem;
+      margin: 1rem 0;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 0.875rem;
+      color: var(--critical-red);
+    }
+    
+    @media (min-width: 1024px) {
+      .provenance .annotation-inline {
+        display: none;
+      }
+    }
+    
+    /* Verdict stamp */
+    .provenance .verdict-stamp {
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--accent-persimmon);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Anuphan', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--critical-red);
+      transform: rotate(-2deg);
+      margin: 2rem auto 0;
+      position: relative;
+    }
+    
+    .provenance .verdict-stamp::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border: 2px solid var(--accent-persimmon);
+      border-radius: 50%;
+      filter: blur(1.5px);
+      opacity: 0.3;
+    }
+    
+    .provenance .footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 0.875rem;
+      color: var(--footer-grey);
+      border-top: 1px solid rgba(107,98,84,0.2);
+    }
+    
+    /* ============================================
+       DIRECTION 2: THE LAB NOTEBOOK
+    ============================================ */
+    .lab-notebook {
+      --bg-notebook: #F5F2EA;
+      --grid-color: rgba(175,165,145,0.18);
+      --surface-scraps: #FDFBF7;
+      --text-ink: #1C1814;
+      --handwritten-navy: #2B4A5E;
+      --red-pen: #CC3A2F;
+      --highlighter: rgba(255,237,100,0.45);
+      --masking-tape: rgba(245,240,220,0.65);
+      
+      min-height: 100vh;
+      background: var(--bg-notebook);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Graph paper grid */
+    .lab-notebook::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 23px, var(--grid-color) 24px),
+        repeating-linear-gradient(90deg, transparent, transparent 23px, var(--grid-color) 24px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Paper fiber noise */
+    .lab-notebook::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Aging gradient */
+    .lab-notebook .aging-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(107,98,84,0.15) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Ink blot */
+    .lab-notebook .ink-blot {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      background: radial-gradient(ellipse at 40% 50%, var(--handwritten-navy) 0%, transparent 70%);
+      border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+      opacity: 0;
+      top: 60%;
+      right: 15%;
+      transform: rotate(15deg);
+      z-index: 0;
+      animation: ink-appear 2s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .lab-notebook .ink-blot {
+        animation: ink-appear 2s ease-out forwards;
+        animation-delay: 0.5s;
+      }
+    }
+    
+    @keyframes ink-appear {
+      to { opacity: 0.02; }
+    }
+    
+    .lab-notebook .content-wrapper {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    /* Top margin rules */
+    .lab-notebook .top-margin {
+      padding-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .lab-notebook .red-rule-thin {
+      height: 1px;
+      background: var(--red-pen);
+      margin: 1rem 0;
+    }
+    
+    .lab-notebook .red-rule-thick {
+      height: 2px;
+      background: var(--red-pen);
+      margin: 1.5rem 0;
+    }
+    
+    .lab-notebook .site-handwritten {
+      font-family: 'K2D', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--handwritten-navy);
+      margin-bottom: 0.25rem;
+    }
+    
+    .lab-notebook .date-handwritten {
+      font-family: 'K2D', sans-serif;
+      font-weight: 300;
+      font-size: 0.875rem;
+      color: var(--handwritten-navy);
+      margin-bottom: 1rem;
+    }
+    
+    .lab-notebook .headline {
+      font-family: 'Anuphan', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--text-ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    
+    .lab-notebook .case-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      position: relative;
+      margin: 1rem 0;
+    }
+    
+    .lab-notebook .case-circle svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .lab-notebook .case-circle-path {
+      fill: none;
+      stroke: var(--red-pen);
+      stroke-width: 2.5;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: circle-draw 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .lab-notebook .case-circle-path {
+        animation: circle-draw 1.2s ease-out forwards;
+        animation-delay: 0.3s;
+      }
+    }
+    
+    @keyframes circle-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    
+    .lab-notebook .case-circle-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--red-pen);
+      text-align: center;
+      line-height: 1.4;
+    }
+    
+    .lab-notebook .subhead {
+      font-family: 'Sarabun', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text-ink);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    
+    /* Article entry */
+    .lab-notebook .article-entry {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    @media (min-width: 768px) {
+      .lab-notebook .article-entry {
+        grid-template-columns: 1fr 25%;
+      }
+    }
+    
+    .lab-notebook .article-body {
+      background: var(--surface-scraps);
+      padding: 1.5rem;
+      border: 1px solid rgba(175,165,145,0.2);
+      position: relative;
+    }
+    
+    .lab-notebook .article-title {
+      font-family: 'Anuphan', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      color: var(--text-ink);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    
+    .lab-notebook .article-dek {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 1.125rem;
+      color: var(--text-ink);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+    
+    .lab-notebook .highlighted {
+      background: var(--highlighter);
+      padding: 0 2px;
+    }
+    
+    .lab-notebook .correction {
+      text-decoration: line-through;
+      text-decoration-style: wavy;
+      text-decoration-color: var(--red-pen);
+      text-decoration-thickness: 2px;
+    }
+    
+    .lab-notebook .correction-note {
+      font-family: 'K2D', sans-serif;
+      font-size: 0.875rem;
+      color: var(--handwritten-navy);
+      margin-top: 0.5rem;
+      display: inline-block;
+      transform: rotate(-1deg);
+    }
+    
+    .lab-notebook .metadata-handwritten {
+      font-family: 'K2D', sans-serif;
+      font-size: 0.875rem;
+      color: var(--handwritten-navy);
+      margin-bottom: 1rem;
+    }
+    
+    /* Annotations margin */
+    .lab-notebook .annotations {
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .lab-notebook .annotations {
+        display: flex;
+      }
+    }
+    
+    .lab-notebook .annotation-note {
+      font-family: 'K2D', sans-serif;
+      font-size: 0.875rem;
+      color: var(--handwritten-navy);
+      line-height: 1.5;
+      transform: rotate(var(--rotation, -1deg));
+      position: relative;
+    }
+    
+    .lab-notebook .annotation-note::before {
+      content: '→';
+      color: var(--red-pen);
+      margin-right: 0.5rem;
+    }
+    
+    /* Taped-in scrap */
+    .lab-notebook .scrap {
+      background: var(--surface-scraps);
+      border: 1px solid rgba(175,165,145,0.25);
+      padding: 1.25rem;
+      margin: 2rem 0;
+      transform: rotate(-1.5deg);
+      position: relative;
+      animation: scrap-settle 0.6s ease-out;
+      animation-delay: 0.5s;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .lab-notebook .scrap {
+        animation: scrap-settle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation-delay: 0.5s;
+      }
+    }
+    
+    @keyframes scrap-settle {
+      from {
+        opacity: 0;
+        transform: rotate(-1.5deg) translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(-1.5deg) translateY(0);
+      }
+    }
+    
+    .lab-notebook .scrap::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%) rotate(0.5deg);
+      width: 120px;
+      height: 24px;
+      background: var(--masking-tape);
+      box-shadow: 0 2px 4px rgba(39,32,23,0.15);
+    }
+    
+    .lab-notebook .scrap-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--handwritten-navy);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+    
+    .lab-notebook .scrap-table {
+      width: 100%;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-ink);
+      border-collapse: collapse;
+    }
+    
+    .lab-notebook .scrap-table td {
+      padding: 0.375rem 0;
+      border-bottom: 1px solid rgba(175,165,145,0.15);
+    }
+    
+    /* Thermometer */
+    .lab-notebook .thermometer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .lab-notebook .thermometer-svg {
+      width: 24px;
+      height: 100px;
+    }
+    
+    .lab-notebook .thermometer-label {
+      font-family: 'K2D', sans-serif;
+      font-size: 0.875rem;
+      color: var(--handwritten-navy);
+      transform: rotate(-2deg);
+    }
+    
+    /* Verdict circle */
+    .lab-notebook .verdict-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      position: relative;
+      margin: 2rem 0 1rem;
+    }
+    
+    .lab-notebook .verdict-circle svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .lab-notebook .verdict-circle-path {
+      fill: none;
+      stroke: var(--red-pen);
+      stroke-width: 3;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      animation: verdict-draw 1s ease-out forwards;
+      animation-delay: 0.8s;
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+      .lab-notebook .verdict-circle-path {
+        animation: verdict-draw 1s ease-out forwards;
+        animation-delay: 0.8s;
+      }
+    }
+    
+    @keyframes verdict-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    
+    .lab-notebook .verdict-text {
+      font-family: 'Anuphan', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--red-pen);
+    }
+    
+    .lab-notebook .signature {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--handwritten-navy);
+      margin-top: 0.5rem;
+    }
+    
+    /* Footer label */
+    .lab-notebook .footer-label {
+      display: inline-block;
+      background: var(--surface-scraps);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(175,165,145,0.2);
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-ink);
+      position: relative;
+    }
+    
+    .lab-notebook .footer-label::before,
+    .lab-notebook .footer-label::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      width: 40px;
+      height: 16px;
+      background: var(--masking-tape);
+      box-shadow: 0 1px 2px rgba(39,32,23,0.1);
+    }
+    
+    .lab-notebook .footer-label::before {
+      left: 10%;
+      transform: rotate(-2deg);
+    }
+    
+    .lab-notebook .footer-label::after {
+      right: 10%;
+      transform: rotate(2deg);
+    }
+    
+    .lab-notebook .footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(175,165,145,0.2);
+    }
+    
+    /* ============================================
+       DIRECTION 3: SPEC SHEET
+    ============================================ */
+    .spec-sheet {
+      --bg-black: #0A0A0A;
+      --surface-card: #141414;
+      --surface-lighter: #1A1A1A;
+      --text-white: #E8E8E8;
+      --text-muted: #888888;
+      --text-grey: #666666;
+      --accent-cyan: #00D4FF;
+      --accent-cobalt: #2456C8;
+      --critical-red: #FF3B30;
+      --hairline: #333333;
+      
+      min-height: 100vh;
+      background: var(--bg-black);
+      color: var(--text-white);
+      position: relative;
+    }
+    
+    .spec-sheet .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .spec-sheet .site-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .spec-sheet .domain {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+    
+    .spec-sheet .headline {
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--text-white);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+    
+    .spec-sheet .cyan-rule {
+      width: 100%;
+      max-width: 300px;
+      height: 1px;
+      background: var(--accent-cyan);
+      margin: 1rem auto 2rem;
+    }
+    
+    .spec-sheet .subhead {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text-white);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+    
+    .spec-sheet .spec-preamble {
+      background: var(--surface-card);
+      border-top: 1px solid var(--accent-cyan);
+      padding: 1.5rem 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .spec-sheet .spec-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    
+    .spec-sheet .spec-row:last-child {
+      border-bottom: none;
+    }
+    
+    .spec-sheet .spec-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .spec-sheet .spec-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-white);
+      text-align: right;
+    }
+    
+    .spec-sheet .content-area {
+      padding: 4rem 2rem;
+    }
+    
+    .spec-sheet .article-card {
+      background: var(--surface-card);
+      border-top: 1px solid var(--accent-cyan);
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .spec-sheet .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .spec-sheet .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      transition: box-shadow 0.6s;
+    }
+    
+    .spec-sheet .status-dot:hover {
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+    
+    .spec-sheet .status-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+    }
+    
+    .spec-sheet .article-title {
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--text-white);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    
+    .spec-sheet .article-dek {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text-white);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .spec-sheet .pull-quote {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent-cyan);
+      border-left: 2px solid var(--accent-cyan);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .spec-sheet .metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .spec-sheet .metadata-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--surface-lighter);
+      padding: 0.25rem 0.75rem;
+      border-radius: 2px;
+    }
+    
+    .spec-sheet .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+    }
+    
+    .spec-sheet .data-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--accent-cyan);
+    }
+    
+    .spec-sheet .data-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--text-white);
+    }
+    
+    .spec-sheet .data-table tr:hover td {
+      background: var(--surface-lighter);
+      border-left: 1px solid var(--accent-cyan);
+    }
+    
+    .spec-sheet .data-table tr:nth-child(even) td {
+      background: var(--surface-lighter);
+    }
+    
+    .spec-sheet .data-table tr:nth-child(even):hover td {
+      background: #202020;
+    }
+    
+    /* Verdict readout */
+    .spec-sheet .verdict-readout {
+      display: inline-flex;
+      flex-direction: column;
+      border: 1px solid var(--accent-cyan);
+      padding: 1rem 1.5rem;
+      margin-top: 2rem;
+      min-width: 150px;
+    }
+    
+    .spec-sheet .verdict-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    
+    .spec-sheet .verdict-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      color: var(--critical-red);
+      font-weight: 700;
+    }
+    
+    .spec-sheet .footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--hairline);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-grey);
+    }
+    
+    /* Data count animation */
+    @media (prefers-reduced-motion: no-preference) {
+      .spec-sheet .data-value {
+        animation: count-up 0.6s ease-out forwards;
+      }
+    }
+    
+    @keyframes count-up {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .spec-sheet .spec-preamble,
+      .spec-sheet .spec-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .spec-sheet .spec-value {
+        text-align: left;
+      }
+      
+      .spec-sheet .data-table {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ============================================
+       DIRECTION 1: PROVENANCE
+  ============================================ -->
+  <section class="provenance">
+    <div class="hero">
+      <div class="sunburst"></div>
+      <div class="site-name">ประกันเนื้อๆ</div>
+      <div class="domain">beef.im</div>
+      <h1 class="headline">ดูเนื้อ ไม่ดูหน้า</h1>
+      <p class="subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+      <div class="search-bar">
+        <input type="text" placeholder="ค้นหาสัญญาประกัน หรือบทความ...">
+        <button>ค้นหา</button>
+      </div>
+    </div>
+    
+    <div class="content-area">
+      <div class="article-card">
+        <div class="temperature-bar"></div>
+        <p class="temperature-label">ความเสี่ยงสูง — อ่านก่อนเซ็น</p>
+        
+        <div class="rating-badge">UNDERWEIGHT</div>
+        
+        <p class="category-tag">CASE FILE #031</p>
+        
+        <h2 class="article-title">ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+        
+        <p class="article-dek">สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</p>
+        
+        <div class="metadata">
+          <span class="metadata-pill">25 เมษายน 2026</span>
+          <span class="metadata-pill">8 นาที</span>
+        </div>
+        
+        <div class="annotation-inline">
+          ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7 — อ่านก่อนเซ็นสัญญา
+        </div>
+        
+        <div class="annotation-margin">
+          <div class="annotation-bracket">[</div>
+          <div class="annotation-text">ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7 — อ่านก่อนเซ็นสัญญา</div>
+        </div>
+        
+        <div class="verdict-stamp">ไม่ผ่าน</div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+    </footer>
+  </section>
+  
+  <div class="direction-label">DIRECTION 1: PROVENANCE</div>
+  <div class="divider"></div>
+  
+  <!-- ============================================
+       DIRECTION 2: THE LAB NOTEBOOK
+  ============================================ -->
+  <section class="lab-notebook">
+    <div class="aging-overlay"></div>
+    <div class="ink-blot"></div>
+    
+    <div class="content-wrapper">
+      <div class="top-margin">
+        <div class="red-rule-thin"></div>
+        <div class="site-handwritten">ประกันเนื้อๆ</div>
+        <div class="date-handwritten">25 เมษายน 2026</div>
+        <div class="red-rule-thick"></div>
+        
+        <h1 class="headline">ดูเนื้อ ไม่ดูหน้า</h1>
+        
+        <div class="case-circle">
+          <svg viewBox="0 0 140 140">
+            <path class="case-circle-path" d="M70 10 C95 10, 120 30, 130 55 C140 80, 130 110, 105 125 C80 140, 45 135, 25 115 C5 95, 5 55, 25 30 C40 15, 55 10, 70 10 Z" style="stroke-dasharray: 400; stroke-dashoffset: 400;"/>
+          </svg>
+          <div class="case-circle-text">CASE FILE<br>#031</div>
+        </div>
+        
+        <p class="subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+      </div>
+      
+      <div class="article-entry">
+        <div class="article-body">
+          <div class="metadata-handwritten">
+            8 นาที · 25 เมษายน 2026
+          </div>
+          
+          <h2 class="article-title">ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+          
+          <p class="article-dek">
+            สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 
+            <span class="correction">60%</span>
+            <span class="correction-note">แก้ไข: 60% → 72% หลังตรวจสอบอีกครั้ง</span>
+            และ<span class="highlighted">ข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</span>
+          </p>
+          
+          <div class="scrap">
+            <div class="scrap-title">Exhibit A — ตารางเปรียบเทียบค่าเบี้ย</div>
+            <table class="scrap-table">
+              <tr>
+                <td>ปีที่ 1-3</td>
+                <td>ค่าเวนคืน = 0 บาท</td>
+              </tr>
+              <tr>
+                <td>ปีที่ 4-7</td>
+                <td>ค่าเวนคืน &lt; 30% เบี้ยรวม</td>
+              </tr>
+              <tr>
+                <td>ปีที่ 8+</td>
+                <td>ค่าเวนคืน ≈ 50-60% เบี้ยรวม</td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="thermometer">
+            <svg class="thermometer-svg" viewBox="0 0 24 100">
+              <rect x="4" y="10" width="16" height="80" rx="8" fill="none" stroke="#CC3A2F" stroke-width="2"/>
+              <rect x="6" y="82" width="12" height="8" rx="2" fill="#CC3A2F"/>
+              <rect x="6" y="20" width="12" height="60" fill="#CC3A2F" opacity="0.7"/>
+              <line x1="4" y1="25" x2="8" y2="25" stroke="#2B4A5E" stroke-width="1"/>
+              <line x1="4" y1="40" x2="8" y2="40" stroke="#2B4A5E" stroke-width="1"/>
+              <line x1="4" y1="55" x2="8" y2="55" stroke="#2B4A5E" stroke-width="1"/>
+              <line x1="4" y1="70" x2="8" y2="70" stroke="#2B4A5E" stroke-width="1"/>
+            </svg>
+            <div class="thermometer-label">ระดับความเสี่ยง: สูง</div>
+          </div>
+          
+          <div class="verdict-circle">
+            <svg viewBox="0 0 100 100">
+              <path class="verdict-circle-path" d="M50 8 C68 8, 85 22, 90 40 C95 58, 88 78, 72 88 C56 98, 35 95, 22 82 C9 69, 5 48, 12 30 C19 15, 32 8, 50 8 Z" style="stroke-dasharray: 300; stroke-dashoffset: 300;"/>
+            </svg>
+            <div class="verdict-text">✗ ไม่ผ่าน</div>
+          </div>
+          
+          <div class="signature">นาถ — 25/04/2026</div>
+        </div>
+        
+        <div class="annotations">
+          <div class="annotation-note" style="--rotation: -2deg;">
+            สัญญานี้ขายดีที่สุดในไทย — แต่ไม่ใช่เพราะมันดี
+          </div>
+          <div class="annotation-note" style="--rotation: 1deg;">
+            ข้อ 7.3 — ค่าเวนคืนใน 3 ปีแรก = 0 บาท
+          </div>
+          <div class="annotation-note" style="--rotation: -1deg;">
+            อ่านย่อหน้า 2 ก่อนตัดสินใจ
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <div class="footer-label">
+        📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+      </div>
+    </footer>
+  </section>
+  
+  <div class="direction-label">DIRECTION 2: THE LAB NOTEBOOK</div>
+  <div class="divider"></div>
+  
+  <!-- ============================================
+       DIRECTION 3: SPEC SHEET
+  ============================================ -->
+  <section class="spec-sheet">
+    <div class="hero">
+      <div class="site-name">ประกันเนื้อๆ</div>
+      <div class="domain">beef.im</div>
+      
+      <h1 class="headline">ดูเนื้อ ไม่ดูหน้า</h1>
+      <div class="cyan-rule"></div>
+      
+      <p class="subhead">วิเคราะห์สัญญาประกันและเนื้อวากิวด้วยมาตรฐานเดียวกัน — ไม่มีน้ำ ไม่มีเซลล์</p>
+      
+      <div class="spec-preamble">
+        <div class="spec-row">
+          <span class="spec-key">TYPE</span>
+          <span class="spec-value">Insurance Contract Analysis</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">GRADE</span>
+          <span class="spec-value">UNDERWEIGHT</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">RISK</span>
+          <span class="spec-value">HIGH</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">READ TIME</span>
+          <span class="spec-value">8 min</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="content-area">
+      <div class="article-card">
+        <div class="status-indicator">
+          <div class="status-dot"></div>
+          <span class="status-label">UNDERWEIGHT</span>
+        </div>
+        
+        <h2 class="article-title">ทำไม Whole Life 99/20 ถึงได้เกรด C — แกะสัญญาทีละข้อ</h2>
+        
+        <p class="article-dek">สัญญานี้ขายดีที่สุดในไทย แต่เมื่ออ่านเงื่อนไขจริง — ค่าเบี้ยสูงเกินผลตอบแทน 60% และข้อจำกัดการเวนคืนซ่อนอยู่ในหน้า 7</p>
+        
+        <div class="metadata">
+          <span class="metadata-pill">25 เมษายน 2026</span>
+          <span class="metadata-pill">CASE FILE #031</span>
+          <span class="metadata-pill">8 นาที</span>
+        </div>
+        
+        <div class="pull-quote">
+          ข้อ 7.3 — ค่าเวนคืนใน 3 ปีแรก = 0 บาท
+        </div>
+        
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+              <th>Threshold</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Premium/Year</td>
+              <td class="data-value" data-count="48000">48,000</td>
+              <td>&lt; 36,000</td>
+            </tr>
+            <tr>
+              <td>Surrender Value (Y3)</td>
+              <td class="data-value" data-count="0">0</td>
+              <td>&gt; 20%</td>
+            </tr>
+            <tr>
+              <td>IRR (20Y)</td>
+              <td class="data-value" data-count="1.8">1.8%</td>
+              <td>&gt; 3.5%</td>
+            </tr>
+            <tr>
+              <td>Hidden Clauses</td>
+              <td class="data-value" data-count="7">7</td>
+              <td>&lt; 3</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="verdict-readout">
+          <span class="verdict-label">VERDICT</span>
+          <span class="verdict-value">FAIL</span>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)
+    </footer>
+  </section>
+  
+  <div class="direction-label">DIRECTION 3: SPEC SHEET</div>
+  
+</body>
+</html>
