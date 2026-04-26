@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Parchment background -->
+  <rect width="32" height="32" fill="#F0EADC"/>
+  <!-- Red sealing-wax circle -->
+  <circle cx="16" cy="16" r="12" fill="none" stroke="#CC3A2F" stroke-width="1.5"/>
+  <!-- ป Thai letter as brand mark -->
+  <text x="16" y="21" text-anchor="middle" font-family="serif" font-weight="700" font-size="14" fill="#CC3A2F">ป</text>
+</svg>
