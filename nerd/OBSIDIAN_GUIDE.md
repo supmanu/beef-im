@@ -1,8 +1,8 @@
 # Obsidian + Content Pipeline Guide
 
 **Created:** March 24, 2026
-**Updated:** April 22, 2026 (blueprint persistence, draft persistence, legacy `input/` migrated to `nerd/output/blueprints/`)
-**Purpose:** How to use Obsidian as the intake layer for the Nerd with Nart content production system
+**Updated:** April 27, 2026 — **Astro/MDX pivot.** Site is now beef.im (live on Cloudflare Pages from `src/content/*.mdx`). `/publish` writes MDX directly into the live content collection. No Payload, no Vercel, no `--draft` flag. New `_ops/published` symlink points at the live MDX. Old `_ops/content` symlink removed (broken — pointed at the now-archived Payload `content/`).
+**Purpose:** How to use Obsidian as the intake layer for the beef.im content production system
 
 ---
 
@@ -27,9 +27,10 @@ BEFORE:
   📱 Facebook → 🧠 Your memory → 🤖 Gemini Gem → ✍️ Claude → ⚖️ Gemini Gem
                   ↑ everything lost here
 
-AFTER (v6.0 + /publish):
-  📱 Facebook → 📥 Obsidian Seed → 📊 Dashboard → 🤖 /architect → ✍️ /performer → ⚖️ /auditor → 📤 /publish
-                  ↑ captured, tagged, tracked       ↑ CLI Skills, one terminal session              ↑ direct to Payload
+AFTER (v6.0 + /publish, post-Astro pivot Apr 26 2026):
+  📱 Facebook → 📥 Obsidian Seed → 📊 Dashboard → 🤖 /architect → ✍️ /performer → ⚖️ /auditor → 📤 /publish → 🚢 git push
+                  ↑ captured, tagged, tracked       ↑ CLI Skills, one terminal session              ↑ writes .mdx into     ↑ Cloudflare Pages
+                                                                                                     src/content/{cat}/      auto-deploys
   Alternative:
   📱 Facebook → 💻 /seed [dump] → auto-creates seed file in Obsidian
 ```
@@ -45,8 +46,10 @@ AFTER (v6.0 + /publish):
 | `nerd/output/drafts/` | Performer output | Hand-save chat output here with `--<model>.md` suffix when bake-off testing |
 | `nerd/content-catalog.md` | Content index | Map of existing files (⚠️ may be stale — last scan Mar 24) |
 | `nerd/dashboard.md` | Dataview dashboard | Live pipeline visibility |
-| `nerd/_ops/` | Symlinks | Browse docs, content, rules, skills from vault |
+| `nerd/_ops/` | Symlinks | Browse docs, **published MDX**, rules, skills, legacy from vault |
+| `nerd/_ops/published/` | **Live MDX** | Symlinked → `src/content/` — what's on beef.im right now |
 | `.claude/skills/seed/` | CLI skill | `/seed [dump]` — captures seed from terminal |
+| `.claude/skills/publish/` | CLI skill | `/publish [draft.md]` — writes MDX into `src/content/<category>/` |
 
 ### Why `nerd/` as Vault (Not `nerd-with-nart/`)
 
@@ -152,7 +155,7 @@ Open `dashboard.md` in Obsidian. You'll see:
 - **Ready:** Seeds with paradox + data, ready for the pipeline
 - **Gap Analysis:** Which pillars have too few ideas
 
-### Promoting a Seed to Production (v6.0)
+### Promoting a Seed to Production (v6.0 + Astro/MDX, Apr 27 2026)
 
 When a seed is ready:
 
@@ -164,23 +167,50 @@ When a seed is ready:
    - `/auditor nerd/output/drafts/<slug>.md` → 6-point compliance check
 4. Model choice is length-tiered — Qwen3.6 Plus for S/A, Kimi K2.6 for B/C. See [`.claude/rules/thai-model-routing.md`](../.claude/rules/thai-model-routing.md).
 5. If regulatory-sensitive: escalate audit to Gemini Gem #4
-6. Save approved article as `.md` with publish frontmatter (title, slug, category, date, coverImage)
-7. Publish to Payload: `/publish nerd/output/<article-slug>.md` (or `--draft` to preview first)
-8. Update seed: `status: published`, add `published_date` and `article_slug`
+6. Add the **publish frontmatter** to the top of the audited draft (see [`.claude/skills/publish/SKILL.md`](../.claude/skills/publish/SKILL.md) — required: `title`, `category`, `date`, `lede`, `temperature`, `footerType`)
+7. Promote the draft into the live content collection: `/publish nerd/output/drafts/<slug>.md` — writes `src/content/<category>/<filename>.mdx` (no DB, no upload, no draft mode)
+8. Sprinkle notebook components in the body if the article warrants them (see §"Notebook Components" below)
+9. Deploy: `git add src/content/ && git commit -m "feat: publish <title>" && git push origin main` — Cloudflare Pages auto-deploys to https://beef.im/<category>/<filename> in ~30s
+10. Update seed: `status: published`, add `published_date` and `article_slug` (= the filename you used)
 
-**Pipeline artifact chain** (see [article-production-guide.md](../docs/article-production-guide.md) §Pipeline Artifact Persistence):
+**Pipeline artifact chain:**
 
 ```
-nerd/seeds/2026-04-21-topic.md
+nerd/seeds/2026-04-27-topic.md
     ↓  /architect auto-saves
-nerd/output/blueprints/2026-04-21-topic.md
+nerd/output/blueprints/2026-04-27-topic.md
     ↓  /performer output (hand-save)
-nerd/output/drafts/2026-04-21-topic.md  (or --<model>.md for bake-offs)
-    ↓  /auditor approves, frontmatter added
-nerd/output/2026-04-21-topic.md
+nerd/output/drafts/2026-04-27-topic.md  (or --<model>.md for bake-offs)
+    ↓  /auditor approves, publish frontmatter added
+nerd/output/drafts/2026-04-27-topic.md  (audited)
     ↓  /publish
-Payload CMS
+src/content/<category>/<filename>.mdx   ← live file, also visible in nerd/_ops/published/
+    ↓  git push origin main
+https://beef.im/<category>/<filename>   ← live in ~30s via Cloudflare Pages
 ```
+
+### Notebook Components (Inside .mdx Body)
+
+The five MDX components are **globally injected** by `src/pages/[...slug].astro` — no
+`import` lines needed in your `.mdx`. Just drop the tags into the body:
+
+| Tag | Purpose |
+|---|---|
+| `<Highlight>…</Highlight>` | Yellow inline highlight |
+| `<MarginNote>…</MarginNote>` | Right-side post-it (navy italic) |
+| `<MarginNote position="left" caution>…</MarginNote>` | Left-side red ⚠ caution note |
+| `<ScrapCard label="…">…</ScrapCard>` | Tilted white paper exhibit (great wrapper for tables) |
+| `<CorrectionBlock strike="…" fix="…" />` | Strikethrough belief + corrected truth (self-closing) |
+| `<VerdictSeal line1="…" line2="…" />` | Red sealing-wax circle stamp (self-closing) |
+
+**Live examples to crib from** (open in Obsidian via `_ops/published/`):
+- `_ops/published/case/unit-linked-coi.mdx` — uses all five
+- `_ops/published/experiment/ribeye-reverse-sear.mdx` — `cooking` footer variant
+- `_ops/published/field-note/moo-sam-chan-tod-nam-pla.mdx` — short field-note format
+
+> **Mockup warning:** the four current articles (as of Apr 27) are mockup content
+> for visual validation, not 100% accurate brand-voice copy. They'll be replaced as
+> real audited drafts come through the pipeline.
 
 ### The Complete Status Flow
 
@@ -255,13 +285,16 @@ The `_ops/` folder in your vault contains symlinks to project files outside `ner
 
 ```
 nerd/_ops/
-├── claude-rules  → .claude/rules/    (22 tactical pattern files)
-├── claude-skills → .claude/skills/   (6 skill folders)
-├── content       → content/          (articles, drafts, viral)
-└── docs          → docs/             (guides, handovers, constitution)
+├── claude-rules  → .claude/rules/         (22 tactical pattern files)
+├── claude-skills → .claude/skills/        (skill folders incl. /publish, /seed)
+├── docs          → docs/                  (guides, deployment plan, brainstorm)
+├── published     → src/content/           (LIVE MDX on beef.im)
+└── legacy        → _archive/nextjs-legacy/ (frozen old Payload site, reference)
 ```
 
-**Note (Apr 22, 2026):** The legacy `input/` folder (4 pre-v6.0 plain-text blueprints from Dec 2025) has been migrated to `nerd/output/blueprints/legacy-*.md` with retrospective frontmatter. `input/` folder and its `_ops/input` symlink removed — all blueprints now live under the v6.0 single source of truth.
+**Notes:**
+- The Apr 22 v6.0 cleanup migrated the legacy `input/` blueprints into `nerd/output/blueprints/legacy-*.md`.
+- The Apr 27 Astro pivot replaced the broken `_ops/content → ../../content` symlink (the Payload `content/` folder was archived) with `_ops/published → ../../src/content` (live MDX) and added `_ops/legacy → ../../_archive/nextjs-legacy` (read-only reference for the old site).
 
 **Why symlinks?** Keeps the vault focused on content (no `node_modules/` pollution) while giving you read access to operational files through Obsidian's nice UI.
 
@@ -318,16 +351,16 @@ Open `nerd/content-catalog.md` to see everything you already have.
 │  KNOWLEDGE                     PUBLISHING                    │
 │  ─────────                     ──────────                    │
 │                                                              │
-│  📚 nerd/pillars/ (22 files)    🌐 Payload CMS               │
-│  📚 nerd/agents/ (instructions)  🌐 Vercel (auto-deploy)     │
-│  📚 nerd/references/brochures/   🌐 nerdwithnart.com          │
+│  📚 nerd/pillars/ (22 files)    📝 src/content/*.mdx (live)  │
+│  📚 nerd/agents/ (instructions)  🚢 git push → Cloudflare    │
+│  📚 nerd/references/brochures/   🌐 https://beef.im           │
 │  📋 nerd/content-catalog.md                                  │
 │                                                              │
 │  BROWSING (Obsidian)                                         │
 │  ───────                                                     │
 │  📁 _ops/docs          (project documentation)               │
-│  📁 _ops/input         (raw blueprints)                      │
-│  📁 _ops/content       (articles, drafts)                    │
+│  📁 _ops/published     (LIVE MDX on beef.im)                 │
+│  📁 _ops/legacy        (archived Payload site, reference)    │
 │  📁 _ops/claude-rules  (tactical patterns)                   │
 │  📁 _ops/claude-skills (skill definitions)                   │
 │                                                              │
@@ -343,7 +376,8 @@ Open `nerd/content-catalog.md` to see everything you already have.
 | **Gemini Deep Research** | Multi-source web research | Deep dives requiring investigative research |
 | **Gemini Gem #4** | Escalation audit (regulatory web search) | When article makes regulatory claims you're unsure about |
 | **NotebookLM** | Multi-document forensic extraction | Occasional — bulk PDF processing |
-| **Payload CMS** | Publishing platform | When posting final articles |
+| **`/publish` skill** | Promotes audited draft → `src/content/<category>/<filename>.mdx` | When the draft is audit-passed and ready to ship |
+| **`git push origin main`** | Triggers Cloudflare Pages deploy | After `/publish` writes the file |
 
 ### Key Principle
 
@@ -400,8 +434,10 @@ Open Graph View (Ctrl+G) to see connections between your files. Filter by folder
 
 ### When You Publish an Article
 
-1. Update the seed: `status: published`, add `published_date` and `article_slug`
-2. (Optional) Move the final article file to `content/articles/` if it's not there already
+1. Run `/publish nerd/output/drafts/<slug>.md` — writes `src/content/<category>/<filename>.mdx`
+2. `git add src/content/ && git commit -m "feat: publish <title>" && git push origin main`
+3. Wait ~30s for Cloudflare Pages to deploy. Verify at `https://beef.im/<category>/<filename>`.
+4. Update the seed: `status: published`, add `published_date` and `article_slug` (= the filename you used)
 
 ---
 
@@ -416,5 +452,6 @@ Open Graph View (Ctrl+G) to see connections between your files. Filter by folder
 | `nerd/CHEATSHEET.md` | One-page quick reference (print this) |
 | `nerd/OBSIDIAN_GUIDE.md` | This file |
 | `nerd/pillars/master-index.md` | Content system architecture (v6.0) |
-| `nerd/_ops/` | Symlinks to docs, input, content, rules, skills |
+| `nerd/_ops/` | Symlinks to docs, published, legacy, rules, skills |
 | `.claude/skills/seed/` | `/seed` CLI skill for terminal capture |
+| `.claude/skills/publish/` | `/publish` CLI skill — writes MDX into the live content collection |

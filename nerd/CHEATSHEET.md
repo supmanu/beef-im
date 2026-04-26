@@ -1,11 +1,15 @@
 # Content Pipeline Cheat Sheet
 
+> **As of Apr 27, 2026** — beef.im is live on Cloudflare Pages, sourced from
+> `src/content/*.mdx` in this repo. Pushing to `origin/main` (= `supmanu/beef-im`)
+> auto-deploys. There is no Payload, no Vercel, no `--draft` flag any more.
+
 ---
 
 ## Setup (One Time)
 
 ```bash
-# 1. Install Obsidian (already done)
+# 1. Install Obsidian (already done if you were here pre-pivot)
 sudo nixos-rebuild switch --flake ~/Melkor-OS/nixos#melkor
 
 # 2. Open vault
@@ -37,7 +41,7 @@ That's it. The skill auto-generates filename, date, and pillar.
 
 ```
 1. Obsidian → seeds/ folder → Ctrl+N (new file)
-2. Name: 2026-03-25-ci-waiting-period
+2. Name: 2026-04-27-ci-waiting-period
 3. Ctrl+P → "Insert template" → _template.md
 4. created: field auto-fills with today's date
 5. Fill in pillar, paste raw material below
@@ -83,36 +87,179 @@ seed ──→ researching ──→ ready ──→ in-production ──→ pub
    /hybrid [topic] [mode]            ← one-shot (skip split)
 
 4. If regulatory-sensitive: escalate audit to Gemini Gem #4
-5. Save approved output as .md file with publish frontmatter (see below)
-6. Publish directly to Payload CMS:
+5. Save approved draft as nerd/output/drafts/<slug>.md with the publish frontmatter (below)
+6. Promote to live site:
 
-   /publish nerd/output/article-slug.md          ← publish immediately
-   /publish nerd/output/article-slug.md --draft   ← save as draft first
+   /publish nerd/output/drafts/<slug>.md
+   /publish nerd/output/drafts/<slug>.md --filename=custom-slug   (optional override)
 
-7. Update seed frontmatter:
+   This writes src/content/<category>/<filename>.mdx — no DB, no upload.
+
+7. Commit + push to deploy:
+
+   git add src/content/ && git commit -m "feat: publish <title>" && git push origin main
+
+   Cloudflare Pages auto-deploys in ~30 seconds. URL: https://beef.im/<category>/<filename>
+
+8. Update seed frontmatter:
    status: published
-   published_date: 2026-04-01
-   article_slug: premium-holiday-trap
+   published_date: 2026-04-27
+   article_slug: <filename>
 ```
 
 ---
 
 ## Publish Frontmatter (for /publish)
 
-Add this block to the top of any approved article before running `/publish`:
+Add this block to the top of any approved draft before running `/publish`:
 
 ```yaml
 ---
-title: "ทำไมประกันชีวิตแบบ Term ถึงดีกว่าที่คุณคิด"
-slug: "term-insurance-paradox"
-category: health
-publishedDate: 2026-03-29
-excerpt: "ประโยคสรุปสั้น ๆ ที่ดึงดูดผู้อ่าน"
-coverImage: https://assets.nerdwithnart.com/nwn-assets/og-background.jpg
+title: "Unit-linked: กับดักค่าธรรมเนียม ที่ตัวแทนไม่บอก"
+category: case            # case | experiment | field-note
+date: 2026-04-25
+lede: "COI ปีที่ 30 = 128,400 บาท — exponential curve ที่หายไป"
+temperature: risk         # risk | medium | low
+footerType: analysis      # analysis | cooking
 ---
 ```
 
-**Categories:** `health` | `wealth` | `legacy` | `perspective`
+**No `slug:` field.** Astro 6 derives the URL slug from the filename.
+The skill picks the filename — pass `--filename=…` to override.
+
+**Optional but useful:**
+```yaml
+author: "ณัฐพล"          # default if omitted
+readTime: "11 MIN"
+wordCount: 2840
+code: "AIA-UL"           # masthead ref code
+sidenote: "..."          # margin post-it on homepage TOC
+latest: true             # marks the LatestStamp (one article at a time)
+```
+
+**Categories → folder:**
+| `category:` | Lives in | Display masthead |
+|---|---|---|
+| `case` | `src/content/case/` | CASE FILE |
+| `experiment` | `src/content/experiment/` | EXPERIMENT LOG |
+| `field-note` | `src/content/field-note/` | FIELD NOTE |
+
+**`footerType` →** `analysis` = 📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im) · `cooking` = 🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)
+
+---
+
+## Notebook Components (Use Inside .mdx Body)
+
+No imports needed — all five are globally injected by the dynamic article route.
+You can edit these by hand in any text editor — no AI required.
+
+| Tag | Looks like | Use it when… |
+|---|---|---|
+| `<Highlight>คำสำคัญ</Highlight>` | Yellow inline highlight | The reader needs to lock onto a key phrase mid-sentence |
+| `<MarginNote>คำอธิบายเสริม</MarginNote>` | Right-side post-it (navy italic) | You want to add a side comment without breaking the main flow |
+| `<MarginNote position="left" caution>คำเตือน ⚠</MarginNote>` | Left-side red ⚠ caution note | A warning the reader must not miss |
+| `<ScrapCard label="EXHIBIT A · COI SCHEDULE">…ตาราง…</ScrapCard>` | Tilted white-paper exhibit card with tape | Wraps a markdown table to make it look like a piece of evidence |
+| `<CorrectionBlock strike="ความเชื่อผิด" fix="ความจริง" />` | Strikethrough belief + corrected truth (self-closing) | The Paradox reveal — myth vs. reality |
+| `<VerdictSeal line1="ตรวจสอบ" line2="ก่อนเซ็น" />` | Red sealing-wax circle stamp (self-closing) | The article's verdict, usually at the end |
+
+### Concrete example — plain → decorated
+
+**Before** (plain Markdown):
+
+```mdx
+เวลาตัวแทนขาย Unit-linked สิ่งที่คุณเห็นคือกราฟผลตอบแทนสมมติ 7-8% ต่อปี
+สิ่งที่คุณไม่เห็นคือค่าใช้จ่ายที่หักจากกองทุนทุกเดือน
+
+| รายการ | มูลค่า |
+|---|---|
+| เบี้ยรายปี | ฿120,000 |
+| COI ปีที่ 30 | ฿128,400 |
+```
+
+**After** (with toys):
+
+```mdx
+เวลาตัวแทนขาย Unit-linked สิ่งที่คุณเห็นคือกราฟผลตอบแทนสมมติ 7-8% ต่อปี
+สิ่งที่คุณไม่เห็นคือ <Highlight>ค่าใช้จ่ายที่หักจากกองทุนทุกเดือน</Highlight>
+
+<MarginNote>กับดักที่พบบ่อย — ตัวแทนมักบอกว่า "เบี้ยเท่าเดิม" ซึ่งจริงแค่ครึ่งเดียว</MarginNote>
+
+<ScrapCard label="EXHIBIT A · AIA-UL COI SCHEDULE">
+
+| รายการ | มูลค่า |
+|---|---|
+| เบี้ยรายปี | ฿120,000 |
+| COI ปีที่ 30 | ฿128,400 |
+
+</ScrapCard>
+
+<CorrectionBlock
+  strike='ความเชื่อผิด: "Unit-linked ดีกว่า Term เพราะเอาเงินคืนได้"'
+  fix="ความจริง: เงินที่คุณ 'ได้คืน' คือเงินที่คุณจ่ายเข้าไป — ลบด้วยค่าธรรมเนียม"
+/>
+
+<VerdictSeal line1="ตรวจสอบ" line2="ก่อนเซ็น" />
+```
+
+Same article, totally different visual register. **Every tag is optional** — sprinkle only where they earn their place.
+
+### Editing workflow when adding tags by hand
+
+1. **Write the Thai prose first** in Obsidian, plain Markdown — focus on the words.
+2. **Re-read and sprinkle tags** where they add visual punch:
+   - One `<VerdictSeal>` at the end (mandatory for `case` and `experiment` articles)
+   - One `<CorrectionBlock>` at the Paradox reveal point (your brand law: every article needs a Paradox)
+   - 1–3 `<MarginNote>` for side commentary
+   - 2–5 `<Highlight>` for key phrase emphasis
+   - `<ScrapCard>` around any data table
+3. **Preview locally** (optional) — `npm run dev`, then open `http://localhost:4321/case/<filename>` to see how it looks before pushing.
+4. **Push to deploy** — `git add src/content/ && git commit -m "..." && git push origin main`. Cloudflare Pages auto-deploys in ~30s.
+
+### Three things to know
+
+- **Tags are case-sensitive.** `<highlight>` won't work — capital `H`. Same for the others.
+- **`<ScrapCard>` needs blank lines** above and below the markdown table inside it (MDX quirk — the parser needs to switch back into Markdown mode to render the table). The other tags don't need this.
+- **Obsidian shows tags as plain text** — there's no live preview of how they'll render. The site is the preview. Use `npm run dev` for local, or just push and check beef.im.
+
+### When to edit by hand vs use AI
+
+**Edit by hand when:**
+- The AI draft is 95% there and you just want to add one `<MarginNote>` or move a `<Highlight>`
+- You're writing a short field-note (cooking, observations) and don't want to re-architect through `/architect → /performer`
+- You're touching up live mockup articles before they're real
+- You spot a typo or want to swap a `<Highlight>` for stronger emphasis
+
+**Use AI (`/architect → /performer → /auditor`) when:**
+- Long-form `case` articles (1500w+) — needs Paradox structure
+- Anything regulatory-sensitive (auditor pass mandatory)
+- A topic you haven't framed yet — you need a Blueprint first
+- Bake-off testing across models (Qwen / Kimi / Sonnet)
+
+**Use AI (`/decorate` skill) when:** you have a plain audited draft and want the toys auto-sprinkled. Wraps every table in `<ScrapCard>`, adds `<VerdictSeal>` at the end, promotes existing `**bold**` to `<Highlight>`, and proposes `<CorrectionBlock>` at the Paradox + 1–3 `<MarginNote>` candidates. **Always shows a diff preview before writing** — you stay in control. After it runs, you manually polish anything you don't like.
+
+```
+/decorate nerd/output/drafts/<slug>.md            # full pass with diff preview
+/decorate src/content/case/<file>.mdx --light     # mechanical only (tables + VerdictSeal + bold→Highlight)
+/decorate <file> --dry-run                         # show what it would do, don't write
+```
+
+**Use AI (`/publish` skill) when:** promoting any audited draft into the live `src/content/` collection. The skill handles filename derivation, frontmatter validation, content-compliance checks (drug names, Whole Life framing) — manually copying files skips all that.
+
+**Typical full pipeline:**
+```
+/architect → /performer → /auditor → /decorate → /publish → git push
+```
+
+### Live examples to crib from
+
+Open these in Obsidian via `_ops/published/` and copy-paste tag patterns:
+
+| File | What to learn from it |
+|---|---|
+| `_ops/published/case/unit-linked-coi.mdx` | Uses all five components — full reference |
+| `_ops/published/case/ci-rider-36-vs-108.mdx` | Long comparison structure with multiple `<ScrapCard>` tables |
+| `_ops/published/experiment/ribeye-reverse-sear.mdx` | `cooking` footer variant + casual register |
+| `_ops/published/field-note/moo-sam-chan-tod-nam-pla.mdx` | Short field-note format — minimal decoration |
 
 ---
 
@@ -125,41 +272,21 @@ Open `dashboard.md` in Obsidian → see live tables:
 
 ---
 
-## Browse Operational Files
+## Browse Operational Files (`_ops/` symlinks)
 
-The `_ops/` folder in your vault contains symlinks to project files outside `nerd/`:
+The `_ops/` folder in your vault links into the rest of the repo:
 
 | Folder | What's Inside |
 |--------|---------------|
-| `_ops/docs` | Production guides, handovers, technical docs |
-| `_ops/input` | Raw blueprints (.txt) ready for pipeline |
-| `_ops/content` | Articles, drafts, test outputs |
+| `_ops/published` | **Live `src/content/` — the .mdx files on beef.im right now** |
+| `_ops/docs` | Production guides, deployment plan, brainstorm |
 | `_ops/claude-rules` | Tactical patterns, project status |
-| `_ops/claude-skills` | Skill definitions (architect, performer, etc.) |
+| `_ops/claude-skills` | Skill definitions (architect, performer, publish, etc.) |
+| `_ops/legacy` | `_archive/nextjs-legacy/` — old Payload site, frozen for reference |
 
 ---
 
-## Quick Wins Right Now
-
-**3 articles ready to publish (in content-catalog.md):**
-
-| Article | File |
-|---------|------|
-| กับดัก "พักเบี้ย" | `content/articles/premium-holiday-trap.md` |
-| 2083: ปีที่ประกันภัยไทยตาย | `content/articles/insurance-extinction-2083.md` |
-| ศึกเชิงโครงสร้าง | `content/test-articles/structure-war-final.md` |
-
-**3 unused blueprints → feed to `/produce-article`:**
-
-| Blueprint | File |
-|-----------|------|
-| เบาหวานกับประกัน | `input/diabetes-blueprint.txt` |
-| วิกฤตประกันวัยเกษียณ | `input/senior-crisis-blueprint.txt` |
-| Multi-Pay ปะทะ ProCare | `input/aia-war-blueprint.txt` |
-
----
-
-## Frontmatter Quick Reference
+## Frontmatter Quick Reference (Seed)
 
 ```yaml
 ---
@@ -171,9 +298,9 @@ source: "facebook URL or note"  # where you found it
 brochure: "aia-multi-pay-ci"    # linked brochure file
 archetype: uncomfortable-truth  # uncomfortable-truth|hidden-cost|simple-swap
 mode: B                         # S|A|B|C
-created: 2026-03-24             # auto-filled by template {{date}}
+created: 2026-04-27             # auto-filled by template {{date}}
 published_date:                 # fill after publishing
-article_slug: ""                # URL slug
+article_slug: ""                # filename of the .mdx in src/content/
 ---
 ```
 
@@ -185,13 +312,12 @@ article_slug: ""                # URL slug
 |-----------|------------|
 | `seeds/_template.md` | Template with auto-date (insert via Ctrl+P) |
 | `dashboard.md` | See pipeline status |
-| `content-catalog.md` | Find existing content |
 | `OBSIDIAN_GUIDE.md` | Full documentation |
-| `pillars/master-index.md` | Content system architecture (v6.0) |
+| `pillars/master-index.md` | Content system architecture |
 | `pillars/voice-dna.md` | Check brand voice |
-| `pillars/content-engine.md` | Check article modes |
-| `_ops/` | Browse docs, rules, skills, content |
-| `_ops/claude-skills/publish/` | `/publish` skill docs |
+| `pillars/constitution.md` | Brand laws (footer, banned terms) |
+| `_ops/published/` | **Live MDX articles on beef.im — copy patterns from here** |
+| `_ops/claude-skills/publish/SKILL.md` | `/publish` skill spec |
 
 ---
 
@@ -205,3 +331,18 @@ article_slug: ""                # URL slug
 | `Ctrl+Shift+F` | Search all files |
 | `Ctrl+G` | Graph view |
 | `[[filename]]` | Link to another file |
+
+---
+
+## Content Compliance — Don't Ship These
+
+Before `git push`, verify the draft has none of these:
+
+- ❌ Specific drug names (Metformin, Glimepiride, Atorvastatin) — use "ยา" or drug class
+- ❌ Dosage numbers — doctor's decision
+- ❌ Diagnostic verdicts — frame as indicator, close with "ปรึกษาแพทย์"
+- ❌ Whole Life framed as "bad investment" / IRR comparison — WL is wealth-transfer + protection, NOT investment. UL is the legitimate target for cost-of-insurance forensics.
+- ❌ "เนิร์ดกับนาถ" anywhere — retired brand, use "ประกันเนื้อๆ (beef.im)"
+- ⚠️ English terms not in Thai-First Handshake (Thai leads, English in parens)
+
+Full rules: `_ops/claude-rules/content-compliance-boundaries.md`

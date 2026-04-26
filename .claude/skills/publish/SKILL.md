@@ -1,12 +1,15 @@
 # Skill: /publish
 
 Promotes an audited Thai draft into the live Astro content collection as MDX.
-No CMS, no DB, no Lexical conversion. One command → file written → git takes over.
+No CMS, no DB, no Lexical conversion. One command → file written → `git push` →
+Cloudflare Pages auto-deploys.
 
-> **Pivot note (Apr 26, 2026):** The legacy version of this skill upserted into Payload via
-> the Local API. After the Astro/MDX pivot, the source of truth is `src/content/` on disk.
-> Publishing = writing a properly-shaped `.mdx` file to the right folder. Deploy is a separate
-> `git push` step (handled out-of-band by Cloudflare Pages once that's wired).
+> **As-built note (Apr 27, 2026):** Stack is Astro 6.1.9 + Content Layer API + MDX.
+> Schema lives at `src/content.config.ts` (repo-level inside `src/`, NOT inside `src/content/`).
+> Notebook components (`Highlight`, `MarginNote`, `ScrapCard`, `CorrectionBlock`,
+> `VerdictSeal`) are **globally injected** by `src/pages/[...slug].astro` via
+> `<Content components={mdxComponents} />` — `.mdx` files use them directly with **zero
+> import statements**. This skill respects that.
 
 ---
 
@@ -14,14 +17,19 @@ No CMS, no DB, no Lexical conversion. One command → file written → git takes
 
 ```
 /publish <path-to-draft.md>
-/publish <path-to-draft.md> --slug=custom-slug
+/publish <path-to-draft.md> --filename=custom-slug
 ```
 
 **Examples:**
 ```
 /publish nerd/output/drafts/2026-04-21-no-insurance-5-traps-kimi2.6.md
-/publish nerd/output/drafts/unit-linked-trap.md --slug=unit-linked
+/publish nerd/output/drafts/unit-linked-trap.md --filename=unit-linked-coi
 ```
+
+The `--filename` flag overrides the derived slug. By default the skill derives a
+filename from the draft's `title` field (Thai-romanised + lowercase + hyphens) or
+from the source filename (stripping any leading `YYYY-MM-DD-` and `-modelname`
+suffix).
 
 ---
 
@@ -33,13 +41,17 @@ The draft must start with this block. Anything missing → stop and ask the user
 ---
 title: "Unit-linked: กับดักค่าธรรมเนียม ที่ตัวแทนไม่บอก"
 category: case            # case | experiment | field-note
-slug: "unit-linked-trap"
 date: 2026-04-25
 lede: "COI ปีที่ 30 = 128,400 บาท — exponential curve ที่หายไปจาก presentation ทุกครั้ง"
 temperature: risk         # risk | medium | low
 footerType: analysis      # analysis | cooking
 ---
 ```
+
+> **No `slug:` field.** Astro 6 derives the slug from the filename via `entry.id`.
+> The file is written to `src/content/<category>/<filename>.mdx` and the live URL is
+> `/<category>/<filename>`. The skill picks the filename — don't pass slug in
+> frontmatter, it'll be silently ignored.
 
 **Optional but encouraged:**
 
@@ -50,7 +62,6 @@ wordCount: 2840
 code: "AIA-UL"            # short ref code shown in masthead
 sidenote: "ตัวอย่าง AIA Multi-Pay CI ปี 2024 — COI เพิ่ม 8% ต่อปีหลังอายุ 50"
 latest: true              # marks the LatestStamp on the homepage TOC
----
 ```
 
 **Field reference:**
@@ -59,7 +70,6 @@ latest: true              # marks the LatestStamp on the homepage TOC
 |---|---|---|
 | `title` | Yes | Full Thai article title |
 | `category` | Yes | `case` / `experiment` / `field-note` — drives target folder |
-| `slug` | Yes | URL slug, lowercase + hyphens, unique within category |
 | `date` | Yes | `YYYY-MM-DD` |
 | `lede` | Yes | 1–2 sentences shown on the homepage TOC entry |
 | `temperature` | Yes | `risk` / `medium` / `low` — drives the `<TemperatureBar>` colour |
@@ -78,21 +88,18 @@ latest: true              # marks the LatestStamp on the homepage TOC
 1. Read the file path from your command.
 2. Parse the YAML frontmatter; verify every required field is present.
 3. Resolve the target folder from `category`:
-   - `case` → `src/content/case/<slug>.mdx`
-   - `experiment` → `src/content/experiment/<slug>.mdx`
-   - `field-note` → `src/content/field-note/<slug>.mdx`
-4. If the target file already exists → confirm with the user before overwriting.
-5. Scan the body for usage of any of the five MDX components below and **inject only the
-   imports that are actually referenced** (no unused imports — keeps the file lean):
-   - `<MarginNote …>` → `import MarginNote from '../../components/mdx/MarginNote.astro';`
-   - `<ScrapCard …>` → `import ScrapCard from '../../components/mdx/ScrapCard.astro';`
-   - `<CorrectionBlock …>` → `import CorrectionBlock from '../../components/mdx/CorrectionBlock.astro';`
-   - `<VerdictSeal …>` → `import VerdictSeal from '../../components/mdx/VerdictSeal.astro';`
-   - `<Highlight>…</Highlight>` → `import Highlight from '../../components/mdx/Highlight.astro';`
-6. Write the assembled `.mdx` file (frontmatter, blank line, imports, blank line, body) using
-   the Write tool.
-7. Report: target path, slug, category, predicted URL (`/<category>/<slug>`), and a one-line
-   diff summary (NEW / OVERWRITE).
+   - `case` → `src/content/case/<filename>.mdx`
+   - `experiment` → `src/content/experiment/<filename>.mdx`
+   - `field-note` → `src/content/field-note/<filename>.mdx`
+4. Resolve the filename: `--filename` flag if given, else derived from `title` or
+   the source filename (strip `YYYY-MM-DD-` prefix and any `-modelname` suffix
+   like `-kimi2.6`, `-glm5.1`, `-qwen3.6`). Filename must match `^[a-z0-9-]+$`.
+5. If the target file already exists → confirm with the user before overwriting.
+6. Run draft hygiene checks (see below).
+7. Write the assembled `.mdx` file (frontmatter + blank line + body, **no
+   imports**) using the Write tool.
+8. Report: target path, category, filename-derived slug, predicted URL
+   (`/<category>/<filename>`), and a one-line diff summary (NEW / OVERWRITE).
 
 ---
 
@@ -100,26 +107,61 @@ latest: true              # marks the LatestStamp on the homepage TOC
 
 ```mdx
 ---
-title: "..."
-category: case
-slug: "unit-linked-trap"
+title: "Unit-linked: กับดักค่าธรรมเนียม ที่ตัวแทนไม่บอกคุณ"
+lede: "COI ปีที่ 30 = 128,400 บาท — exponential curve ที่หายไป"
+sidenote: "ตัวอย่าง AIA Multi-Pay CI ปี 2024"
 date: 2026-04-25
-lede: "..."
+category: case
 temperature: risk
-footerType: analysis
-author: "ณัฐพล"
-readTime: "11 MIN"
-wordCount: 2840
 code: "AIA-UL"
-sidenote: "..."
+wordCount: 2840
+readTime: "11 MIN"
+author: "ณัฐพล"
 latest: true
+footerType: analysis
 ---
-import MarginNote from '../../components/mdx/MarginNote.astro';
-import ScrapCard from '../../components/mdx/ScrapCard.astro';
-import Highlight from '../../components/mdx/Highlight.astro';
 
-…article body in Thai markdown, with <MarginNote>, <ScrapCard>, <Highlight> etc. inline…
+เวลาตัวแทนขาย Unit-linked สิ่งที่คุณเห็นคือกราฟผลตอบแทน...
+
+<MarginNote>กับดักที่พบบ่อยที่สุด — ตัวแทนมักบอกว่า "เบี้ยเท่าเดิม"</MarginNote>
+
+<ScrapCard label="EXHIBIT A · AIA-UL COI SCHEDULE">
+
+| รายการ | มูลค่า |
+|---|---|
+| เบี้ยรายปี | ฿120,000 |
+| COI ปีที่ 30 | ฿128,400 |
+
+</ScrapCard>
+
+<CorrectionBlock
+  strike='ความเชื่อผิด: "Unit-linked ดีกว่า Term เพราะเอาเงินคืนได้"'
+  fix="ความจริง: เงินที่คุณ 'ได้คืน' คือเงินที่คุณจ่ายเข้าไป — ลบด้วยค่าธรรมเนียม"
+/>
+
+<VerdictSeal line1="ตรวจสอบ" line2="ก่อนเซ็น" />
 ```
+
+**No `import …` lines.** All five components (`Highlight`, `MarginNote`,
+`ScrapCard`, `CorrectionBlock`, `VerdictSeal`) are globally injected by
+`src/pages/[...slug].astro` and resolve automatically inside any `.mdx` file in
+the three content collections.
+
+---
+
+## Available Notebook Components
+
+Drop these into the body anywhere — they render as designed in
+`docs/brainstorm/New UIUX/Prototype-Definitive-v1.html`:
+
+| Component | Use | Example |
+|---|---|---|
+| `<Highlight>…</Highlight>` | Yellow inline highlight | `<Highlight>ค่าใช้จ่ายรายเดือน</Highlight>` |
+| `<MarginNote>…</MarginNote>` | Right-side post-it (default) | `<MarginNote>กับดักที่พบบ่อย</MarginNote>` |
+| `<MarginNote position="left" caution>…</MarginNote>` | Left-side red ⚠ caution note | warns the reader |
+| `<ScrapCard label="…">…</ScrapCard>` | Tilted white paper exhibit (great for tables) | wraps a markdown table |
+| `<CorrectionBlock strike="…" fix="…" />` | Strikethrough belief + corrected truth | self-closing |
+| `<VerdictSeal line1="…" line2="…" />` | Red sealing-wax circle stamp | self-closing |
 
 ---
 
@@ -132,48 +174,68 @@ Before writing the file, the skill confirms:
 - [ ] `category` is one of the three allowed values
 - [ ] `temperature` is one of `risk` / `medium` / `low`
 - [ ] `footerType` is one of `analysis` / `cooking`
-- [ ] `slug` is `^[a-z0-9-]+$`
-- [ ] No specific drug names in body (`Metformin`, `Glimepiride`, `Atorvastatin`, …) — see
-  `.claude/rules/content-compliance-boundaries.md`. If detected, surface to user before writing.
-- [ ] Every English term in the body follows Thai-First Handshake (Thai leads, English in
-  parens) — soft warning, not a block.
+- [ ] Resolved filename matches `^[a-z0-9-]+$`
+- [ ] Body contains **no specific drug names** (`Metformin`, `Glimepiride`,
+  `Atorvastatin`, …) — see
+  [`.claude/rules/content-compliance-boundaries.md`](../../rules/content-compliance-boundaries.md).
+  If detected, surface to user before writing.
+- [ ] Body does **not** frame Whole Life as an investment / IRR comparison —
+  see `memory/feedback_whole_life_framing.md`. Whole Life = wealth-transfer +
+  protection. Unit-linked is the legitimate target for cost-of-insurance
+  forensics. If the draft frames WL as a "bad investment", stop and surface
+  to the user — this is the canonical LLM hallucination.
+- [ ] Every English term in the body follows Thai-First Handshake (Thai leads,
+  English in parens) — soft warning, not a block.
 
-If any block-level check fails, stop and surface to the user. Do not write a half-broken MDX
-file into the content collection.
+If any block-level check fails, stop and surface to the user. Do not write a
+half-broken MDX file into the live content collection.
 
 ---
 
 ## What This Skill Does NOT Do
 
-- **No git operations.** The skill writes the file. The user (or a separate `/save` step)
-  commits and pushes. Cloudflare Pages handles deploy on push.
-- **No image upload.** R2 uploads are handled separately. Reference images via their
-  `https://assets.beef.im/...` URL in the markdown body.
+- **No git operations.** The skill writes the file. The user (or a separate
+  `/save` step) commits and pushes. Cloudflare Pages handles deploy on push to
+  `origin/main` (= `git@github.com:supmanu/beef-im.git`).
+- **No image upload.** R2 uploads are handled separately. Reference images via
+  their `https://assets.beef.im/...` URL in the markdown body.
 - **No HTML/Lexical conversion.** MDX is the source format end-to-end.
-- **No category creation.** The three categories are fixed: `case`, `experiment`,
-  `field-note`. Adding a fourth requires a content collection schema change.
+- **No category creation.** The three categories are fixed: `case`,
+  `experiment`, `field-note`. Adding a fourth requires a content collection
+  schema change in `src/content.config.ts`.
+- **No import injection.** Components are globally injected by the dynamic
+  route. Don't write `import` lines.
 
 ---
 
 ## Troubleshooting
 
-**"Slug already exists in this category"** → Use `--slug=...` to override, or rename in the
-frontmatter, or delete the existing file first if you really mean to replace it.
+**"Filename already exists in this category"** → Use `--filename=...` to
+override, or delete the existing file first if you really mean to replace it.
 
-**"Component imported but src/components/mdx/X.astro does not exist"** → Phases 3–6 of the
-Astro scaffold haven't landed all five components yet. Verify which exist with
-`ls src/components/mdx/` and ask the user before forcing the import.
+**"Component used but doesn't render in the live preview"** → Check that the
+component name is one of the five listed above (case-sensitive). If you need a
+new component, it has to be added to `src/components/mdx/` AND registered in the
+`mdxComponents` object in `src/pages/[...slug].astro` first — that's a code
+change, not a content change.
 
-**"No frontmatter found"** → File must start with `---` on line 1. No blank lines, no BOM,
-no Obsidian properties block.
+**"No frontmatter found"** → File must start with `---` on line 1. No blank
+lines, no BOM, no Obsidian properties block.
 
-**Drug name flagged** → Strip the specific drug, swap for "ยา" or the drug class, re-run.
+**Drug name flagged** → Strip the specific drug, swap for "ยา" or the drug
+class, re-run.
+
+**Whole Life "bad investment" framing flagged** → Reframe around wealth
+transfer / tax-free death benefit / lifetime protection, OR redirect the
+critical energy to Unit-linked (where it belongs).
 
 ---
 
 ## Related
 
-- [.claude/rules/content-compliance-boundaries.md](../../rules/content-compliance-boundaries.md) — what to strip from health drafts
-- [.claude/rules/paradox-architecture.md](../../rules/paradox-architecture.md) — every article needs a Paradox before it gets here
-- [docs/beef-im-astro-deployment-plan.md](../../../docs/beef-im-astro-deployment-plan.md) — full Astro pivot plan
-- [docs/brainstorm/New UIUX/PRODUCTION-NOTES.md](../../../docs/brainstorm/New%20UIUX/PRODUCTION-NOTES.md) — MDX article example, component contract
+- [`.claude/rules/content-compliance-boundaries.md`](../../rules/content-compliance-boundaries.md) — what to strip from health drafts
+- [`.claude/rules/paradox-architecture.md`](../../rules/paradox-architecture.md) — every article needs a Paradox before it gets here
+- `memory/feedback_whole_life_framing.md` — Whole Life positioning rule
+- [`docs/beef-im-astro-deployment-plan.md`](../../../docs/beef-im-astro-deployment-plan.md) — as-built architecture + clean-slate runbook
+- [`src/content.config.ts`](../../../src/content.config.ts) — Zod schema this skill writes against
+- [`src/pages/[...slug].astro`](../../../src/pages/[...slug].astro) — global MDX component injection
