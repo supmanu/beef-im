@@ -35,8 +35,10 @@
 *   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).** Drop "Nerd with Nart" before public launch. Public brand: beef.im (domain) + ประกันเนื้อๆ (Facebook). Repo stays `nerd-with-nart`. **Voice-dna v6.0 + constitution v5.0 recalibration: ✅ COMPLETE (Apr 24, 2026).** Agent instruction files (CLAUDE.md, AGENTS.md, SKILL.md, article-production-guide.md) footer/watermark rebranded. Brief: `docs/beef-im-rebrand-brief.md`.
 *   **[Architecture]** **Strategic Pivot to Astro 6.1+ & MDX (Apr 26, 2026).**
     *   **Action:** Dropped Next.js, Payload CMS, and Neon Postgres in favor of Astro 6.1.9, Tailwind v4, and Content Layer API.
-    *   **Rationale:** The "Notebook" rebrand (beef.im) requires complex structural components (Margin notes, scraps, corrections). Payload's Lexical JSON is too restrictive and complex for this. Astro + MDX natively supports complex markdown components with Zero-JS footprint, perfectly aligning with the "No Fluff" doctrine.
-    *   **Phase 4 Note:** React Interactive Tools (Calculators) have been deleted from the launch critical path to guarantee a pristine, zero-JS static bundle. Can be restored from `_archive/nextjs-legacy/` later.
+    *   **Repository Swap:** Primary `origin` now points to `supmanu/beef-im`. Legacy repo preserved as `legacy` remote.
+    *   **Deployment:** Cloudflare Pages project `beef-im` active (Option B: Git-connected).
+    *   **Rationale:** The "Notebook" rebrand (beef.im) requires complex structural components. Astro + MDX natively supports these with zero-JS footprint.
+    *   **Phase 4 Note:** React Interactive Tools (Calculators) archived to `_archive/nextjs-legacy/` for launch.
 *   **[Insurance Ops]** **AIA Client Onboarding Toolkit Deployed (Apr 22, 2026).**
     *   **Health Questions Preview (`Health_Questions_PREVIEW_Card.md`):** Compact bilingual EN/TH checklist for pre-meeting client prep. Sent via LINE before iPad sessions.
     *   **Medical History Checklist (`Medical_History_Checklist.md`):** Full 8-section self-assessment (symptoms, diagnosed conditions, surgeries, medications, family history, lifestyle, tests, declarations).

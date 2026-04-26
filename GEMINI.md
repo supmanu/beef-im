@@ -63,10 +63,10 @@ This department operates under the **Melkor OS** parent-shell architecture.
 | **Node** | 24 LTS (nixpkgs, system-managed) |
 | **Styling** | Tailwind CSS v4 (CSS-first config) |
 | **Structure** | `src/` (Astro convention) — flat-root rule retired Apr 26 |
-| **Hosting** | Cloudflare Pages (target) — Vercel retired with Next.js |
-| **Intake** | Obsidian (vault: `nerd/`) |
-| **Legacy** | `_archive/nextjs-legacy/` — Next.js 16 + Payload 3.80 + Neon (preserved for calculator port + reference) |
-| **Prior Art** | `~/Projects/astro-nerd/` — Astro 6.1 port (95–97% visual parity validated Apr 6) |
+| **Hosting** | Cloudflare Pages (active: `beef-im`) | Vercel retired with Next.js |
+| **Intake** | Obsidian (vault: `nerd/`) | |
+| **Legacy** | `_archive/nextjs-legacy/` — Next.js 16 + Payload 3.80 + Neon | preserved for reference |
+| **Repository** | `supmanu/beef-im` (Primary) | `supmanu/nerd-with-nart-prod` (Legacy Mirror) |
 
 ---
 
