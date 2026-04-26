@@ -1,0 +1,28 @@
+
+> beef-im@0.1.0 build
+> astro build
+
+23:37:38 [types] Generated 512ms
+23:37:38 [build] output: "static"
+23:37:38 [build] directory: /home/supmanu/Melkor-OS/departments/nerd-with-nart/dist/
+23:37:38 [build] Collecting build info...
+23:37:38 [build] ✓ Completed in 539ms.
+23:37:38 [build] Building static entrypoints...
+"AnimatePresence" is imported from external module "motion/react" but never used in "src/components/tools/IRRTruthTeller.tsx".
+"AlertTriangle" and "TrendingUp" are imported from external module "lucide-react" but never used in "src/components/tools/IRRTruthTeller.tsx".
+23:37:39 [vite] ✓ built in 730ms
+23:37:39 [build] ✓ Completed in 753ms.
+
+ building client (vite) 
+23:37:39 [vite] transforming...
+23:37:39 [vite] ✓ 1969 modules transformed.
+23:37:39 [ERROR] [vite] x Build failed in 664ms
+[vite]: Rollup failed to resolve import "react-is" from "/home/supmanu/Melkor-OS/departments/nerd-with-nart/node_modules/recharts/es6/util/ReactUtils.js".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`
+  Stack trace:
+    at viteWarn (file:///home/supmanu/Melkor-OS/departments/nerd-with-nart/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:65855:17)
+    at onRollupWarning (file:///home/supmanu/Melkor-OS/departments/nerd-with-nart/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:65885:5)
+    at file:///home/supmanu/Melkor-OS/departments/nerd-with-nart/node_modules/rollup/dist/es/shared/node-entry.js:21397:13
+    at ModuleLoader.handleInvalidResolvedId (file:///home/supmanu/Melkor-OS/departments/nerd-with-nart/node_modules/rollup/dist/es/shared/node-entry.js:22122:26)
