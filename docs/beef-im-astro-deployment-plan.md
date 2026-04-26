@@ -1,58 +1,284 @@
-# beef.im Astro Scaffold Initialization
+# beef.im — Astro Migration Runbook
 
-> **Stack pivot:** Next.js / Payload / Neon → Astro 6.x / MDX / Cloudflare Pages
+> **Stack:** Astro 6.1.9 / Tailwind v4 / MDX / Cloudflare Pages
 > **Decision date:** Apr 26, 2026
-> **Updated:** Apr 26, 2026 — handoff-ready for Antigravity (Gemini 3.1 Pro)
+> **Completed:** Apr 27, 2026
 > **Reference:** [PRODUCTION-NOTES.md](./brainstorm/New%20UIUX/PRODUCTION-NOTES.md) · [Prototype-Definitive-v1.html](./brainstorm/New%20UIUX/Prototype-Definitive-v1.html)
 
-This plan transitions the `beef.im` repository from the legacy Next.js/Payload codebase to a clean Astro + MDX architecture. All open questions are resolved — this document is ready for execution.
+This document serves two purposes:
+1. **Historical record** — exactly what was done, what broke, how it was fixed.
+2. **Clean-slate runbook** — if the Astro installation is nuked, this is the step-by-step to restore it from zero as quickly as possible.
 
 ---
 
-## Confirmed Decisions
+## Final Architecture (as-built)
 
-| Question | Decision | Rationale |
+| Layer | Technology | Notes |
 |---|---|---|
-| Legacy code cleanup | **Archive** to `_archive/nextjs-legacy/` (not `rm -rf`) | Calculator components, hero effects, CSV pricing data, and pricing engine logic will be ported to Astro Islands — keep on disk for grep access |
-| Emdash for launch | **Skip** (Path 2: MDX-only) | Obsidian → CLI pipeline is established. Add Emdash post-launch if mobile editing becomes a priority. |
-| Directory layout | **`src/` (Astro standard)** — NOT flat root | Prior flat-root rule was Payload+Vercel-specific. Astro convention is `src/`; cleaner coexistence with `nerd/`, `_archive/`, `docs/` at repo root. |
-| Existing `content/` directory | **Archive with Payload** | Root `content/` (articles, drafts, test, viral) is Payload data; would collide with Astro's `src/content/` collections |
+| **Framework** | Astro 6.1.9 | Static output, zero-JS by default |
+| **Styling** | Tailwind v4 (CSS-first via `@tailwindcss/vite`) | No `tailwind.config.js` — tokens defined in `@theme {}` in `global.css` |
+| **MDX** | `@astrojs/mdx` v5 | Articles live in `src/content/{case,experiment,field-note}/` |
+| **Content API** | Astro 6 Content Layer (glob loader) | Config at `src/content.config.ts` (NOT `src/content/config.ts`) |
+| **React** | `@astrojs/react` v5 + React 19 | Kept in deps for future calculator islands |
+| **Sitemap** | `@astrojs/sitemap` v3.7 | Working in v6 (was broken in v4 due to `reduce` bug) |
+| **Fonts** | Fontsource (npm packages) | Self-hosted via npm, no Google Fonts CDN calls |
+| **Hosting** | Cloudflare Pages (`beef-im` project) | Git-connected to `supmanu/beef-im` on `main` |
+| **Build output** | `dist/` | Static HTML, CSS, assets |
+| **Repository** | `supmanu/beef-im` (primary) | `supmanu/nerd-with-nart-prod` = legacy, frozen |
+
+### Directory Tree (as-built)
+
+```
+beef.im/
+├── astro.config.mjs             ← Vite-plugin tailwind (NOT @astrojs/tailwind)
+├── tsconfig.json
+├── package.json
+├── wrangler.toml                ← Cloudflare Pages: name=beef-im, dist=dist/
+│
+├── public/
+│   └── favicon.svg              ← Thai ป lettermark on parchment/red circle
+│
+├── src/
+│   ├── content.config.ts        ← ⚠️ MUST be here, NOT src/content/config.ts
+│   ├── env.d.ts
+│   │
+│   ├── layouts/
+│   │   ├── BaseLayout.astro     ← Fontsource imports, global.css, OG meta, favicon
+│   │   └── ArticleLayout.astro  ← article-nav, nb-article-body, slot, Footer
+│   │
+│   ├── pages/
+│   │   ├── index.astro          ← Hero + homepage notebook entries
+│   │   └── [...slug].astro      ← Dynamic routing — uses entry.id (NOT entry.slug)
+│   │
+│   ├── components/
+│   │   ├── Hero.astro
+│   │   ├── HeroSketch.astro     ← COI escalation SVG (CSS-drawn)
+│   │   ├── Navbar.astro
+│   │   ├── NotebookEntry.astro
+│   │   ├── Footer.astro
+│   │   ├── TemperatureBar.astro
+│   │   ├── LatestStamp.astro
+│   │   └── mdx/                 ← Used inside .mdx files
+│   │       ├── Highlight.astro
+│   │       ├── MarginNote.astro
+│   │       ├── ScrapCard.astro
+│   │       ├── CorrectionBlock.astro
+│   │       └── VerdictSeal.astro
+│   │
+│   ├── content/
+│   │   ├── case/               ← .mdx articles
+│   │   ├── experiment/
+│   │   └── field-note/
+│   │
+│   └── styles/
+│       └── global.css          ← ALL component CSS lives here (not in <style> tags)
+│
+├── nerd/                       ← Content vault (pillars, agents, seeds) — DO NOT TOUCH
+├── docs/                       ← This file + brainstorm prototypes
+├── _archive/
+│   └── nextjs-legacy/          ← Frozen Next.js/Payload codebase
+└── .claude/, CLAUDE.md, GEMINI.md, AGENTS.md
+```
 
 ---
 
-## Phase 1 — Legacy Archive
+## What Happened — Historical Record
 
-Move the following to `_archive/nextjs-legacy/` (preserve, do not delete):
+### Phase 1 — Legacy Archive (✅ DONE)
+Moved the entire Next.js/Payload codebase to `_archive/nextjs-legacy/`:
+- `app/`, `components/`, `collections/`, `content/` (Payload data), `hooks/`, `lib/`, `payload-config/`, `mastra/`
+- `next.config.mjs`, `next-env.d.ts`, `postcss.config.js`, old `package.json`
 
-**Directories:**
-- `app/` — Next.js app-router pages
-- `collections/` — Payload collection schemas
-- `components/` — old React components (HomeContent, Navbar, ArticleContent, etc.)
-- `content/` — Payload content data (`articles/`, `_draft_archive/`, `test-articles/`, `viral-articles/`)
-- `hooks/`, `lib/`, `payload-config/` — Payload glue code
-- `.next/`, `node_modules/` — build artefacts (regenerate after pivot)
-- `mastra/` — archived embeddings infra (per project-status.md, Apr 21)
-
-**Files:**
-- `next.config.mjs`, `next-env.d.ts`, `postcss.config.js`
-- `package.json`, `package-lock.json` (will be regenerated)
-- `eslint.config.mjs`
-- `tsconfig.json` (will be regenerated for Astro)
-
-**Keep at root (unchanged):**
-- `nerd/` — content vault (pillars, agents, seeds, references)
-- `docs/` — deployment plan, brainstorm, payload/nextjs/typescript reference docs
-- `.claude/`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md` — agent context
-- `.git`, `.gitignore`, `.env`, `.gitattributes`, `.npmrc`, `.nvmrc`
-- `_archive/` — existing archive structure (legacy goes inside it)
+**One commit:** `chore: archive legacy Next.js/Payload codebase to _archive/nextjs-legacy/`
 
 ---
 
-## Phase 2 — Astro Foundation
+### Phase 2 — Astro Foundation (✅ DONE)
 
-Inject the scaffolding cleanly without using the interactive `npm create astro` CLI.
+Scaffolded manually (no interactive CLI). The plan originally specified Astro v4 — **this was corrected before execution** when a version audit revealed upstream was at Astro 6.1.9.
 
-### `package.json` (NEW)
+**Key difference from the original plan:**
+
+| Original plan | As-built |
+|---|---|
+| `astro@^4.x` | `astro@^6.1.9` |
+| `@astrojs/mdx@^3.x` | `@astrojs/mdx@^5.x` |
+| `@astrojs/react@^3.x` | `@astrojs/react@^5.x` |
+| `@astrojs/sitemap@^3.x` | `@astrojs/sitemap@^3.7` |
+| `@astrojs/tailwind` integration | `@tailwindcss/vite` Vite plugin (Tailwind v4 CSS-first) |
+| `tailwind.config.js` with `theme.extend` | `@theme {}` block inside `global.css` |
+
+**`astro.config.mjs` (actual):**
+```js
+import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
+
+export default defineConfig({
+  site: 'https://beef.im',
+  srcDir: './src',
+  publicDir: './public',
+  integrations: [mdx(), react(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+```
+
+> **Why `@tailwindcss/vite` and not `@astrojs/tailwind`?**
+> Tailwind v4 dropped the PostCSS-based integration. The official path for Astro + Tailwind v4 is the Vite plugin. `@astrojs/tailwind` only works with Tailwind v3.
+
+**`global.css` header (actual):**
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F0EADC;
+  /* ... all design tokens ... */
+  --font-display: "Anuphan", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  /* etc. */
+}
+```
+
+---
+
+### Phase 3 — Directory Structure (✅ DONE)
+Built `src/layouts/`, `src/pages/`, `src/components/`, `src/content/`, `src/styles/`. Stub MDX files added to each collection to prove routing.
+
+---
+
+### Phase 4 — React Islands (⏸ DEFERRED)
+The COI, IRR, and Premium calculators were **intentionally removed** from the launch critical path. They were deleted:
+- `src/components/tools/COICalculator.tsx`
+- `src/components/tools/IRRTruthTeller.tsx`
+- `src/components/tools/PremiumCalculator.tsx`
+- `src/data/calculator/main_policies.csv`, `riders.csv`
+- `src/pages/tools/` (all tool pages)
+- `/tools` link removed from `Navbar.astro`
+
+**Rationale:** Keeps the initial bundle zero-JS and static. Calculators can be restored from `_archive/nextjs-legacy/` when needed.
+
+---
+
+### Phase 5 — CSS Migration (✅ DONE)
+
+The original plan said to put component CSS into inline `<style>` blocks inside each `.astro` component. **This was changed during execution.**
+
+**What actually works:** All CSS lives in `src/styles/global.css`. The components use plain class names that match the prototype — no scoped styles. This is simpler and avoids Astro's CSS scoping hash mangling the class names.
+
+The full prototype CSS (`Prototype-Definitive-v1.html` lines 11–321) was ported as-is into `global.css` after the `@theme {}` and `@keyframes` blocks:
+- Hero section (`.hero`, `.hero-nav`, `.hero-watermark`, `.hero-sketch`, etc.)
+- Homepage entries (`.nb-entry`, `.nb-entry-masthead`, `.nb-entry-h`, `.nb-entry-lede`, `.nb-entry-sidenote`, `.nb-entry-temp`, etc.)
+- Article body (`.article-nav`, `.nb-article-body`, `.nb-article-wrap`, `.nb-h`, `.nb-p`, `.nb-note`, `.nb-scrap`, `.nb-correction`, `.nb-verdict`, etc.)
+
+---
+
+### Phase 6 — Self-Host Fonts (✅ DONE — via Fontsource, not manual woff2)
+
+The original plan said: download woff2 files → `public/fonts/` → manual `@font-face`.
+
+**What was done instead:** npm Fontsource packages. Cleaner, version-locked, no manual download.
+
+**Packages installed:**
+```
+@fontsource/anuphan (400, 500, 700)
+@fontsource/ibm-plex-mono (400, 500, 600)
+@fontsource/k2d (300, 400, 300-italic, 400-italic)
+@fontsource/noto-serif-thai (400, 700)
+@fontsource/sarabun (400, 500, 700)
+```
+
+**Import location:** `BaseLayout.astro` frontmatter (top of file).
+
+---
+
+### Bugs Fixed & Gotchas
+
+#### ❌ Bug 1: `LegacyContentConfigError` — Wrong config file location
+
+**Error:**
+```
+[LegacyContentConfigError] Found legacy content config file in "src/content/config.ts".
+Please move this file to "src/content.config.ts"
+```
+
+**Root cause:** Astro 6 requires the content collection config at `src/content.config.ts` (repo root of `src/`). In Astro 4, it was `src/content/config.ts`.
+
+**Fix:**
+```bash
+mv src/content/config.ts src/content.config.ts
+```
+
+---
+
+#### ❌ Bug 2: Sitemap `_routes.reduce is not a function`
+
+**Error:** `Cannot read properties of undefined (reading 'reduce') at astro:build:done`
+
+**Root cause:** `@astrojs/sitemap` v3.x was incompatible with Astro 4.x. The version mismatch caused a runtime crash.
+
+**Fix:** Upgrading to Astro 6.1.9 + `@astrojs/sitemap` v3.7 resolved it completely. The sitemap now generates `sitemap-0.xml` and `sitemap-index.xml` cleanly.
+
+---
+
+#### ❌ Bug 3: Dynamic routes using deprecated `entry.slug`
+
+**Error:** No hard error — but wrong URL generation at runtime.
+
+**Root cause:** Astro 5+ Content Layer API changed `entry.slug` → `entry.id`.
+
+**Files fixed:**
+- `src/pages/[...slug].astro` — changed `entry.slug` → `entry.id`, and `await entry.render()` → `const { Content } = await render(entry)`
+- `src/pages/index.astro` — changed `slug={entry.slug}` → `slug={entry.id}` in `<NotebookEntry>`
+
+---
+
+#### ❌ Bug 4: Pages rendered with no styles (all black / unstyled)
+
+**Symptom:** After the upgrade, the dev server served the pages but they were almost entirely unstyled (dark background, tiny text, no parchment design visible).
+
+**Root cause:** The component CSS from `Prototype-Definitive-v1.html` was never in `global.css`. The components had the correct HTML class names, but the matching CSS rules were missing entirely.
+
+**Fix:** Appended the full prototype CSS (Hero, Homepage, Article body sections) to `src/styles/global.css`. After this single edit, the pages immediately rendered as a 1:1 visual match with the prototype.
+
+---
+
+#### ❌ Bug 5: Astro v4 plan used wrong Tailwind integration
+
+**Root cause:** The original scaffolding plan was written when Tailwind v3 + `@astrojs/tailwind` was standard. Tailwind v4 changed the integration model entirely.
+
+**Fix:** Replace `@astrojs/tailwind` with `@tailwindcss/vite` as a Vite plugin, and replace `tailwind.config.js` with `@theme {}` in `global.css`.
+
+---
+
+## Clean-Slate Rebuild Runbook
+
+> Use this if you nuke the installation and need to restore from zero.
+> Time estimate: **~45 minutes** if following this exactly.
+
+### Prerequisites
+
+- Node 24 (system-managed via nixpkgs)
+- `nerd/`, `docs/`, `_archive/`, `.claude/`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md` intact (not touched by Astro)
+- `git` configured with `origin` pointing to `supmanu/beef-im`
+
+---
+
+### Step 1 — Clear Astro artefacts
+
+```bash
+rm -rf src/ public/ dist/ node_modules/ package.json package-lock.json \
+       astro.config.mjs tsconfig.json wrangler.toml src/content.config.ts
+```
+
+Do NOT delete: `nerd/`, `docs/`, `_archive/`, `.claude/`, `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, `.env`, `.gitignore`, `.git`
+
+---
+
+### Step 2 — Create `package.json`
 
 ```json
 {
@@ -67,24 +293,30 @@ Inject the scaffolding cleanly without using the interactive `npm create astro` 
   },
   "dependencies": {
     "astro": "^6.1.9",
-    "@astrojs/mdx": "^5.x",
-    "@tailwindcss/vite": "^4.x",
-    "@astrojs/sitemap": "^3.7",
-    "@astrojs/react": "^5.x",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "tailwindcss": "^4.x"
+    "@astrojs/mdx": "^5.0.0",
+    "@astrojs/react": "^5.0.0",
+    "@astrojs/sitemap": "^3.7.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@fontsource/anuphan": "*",
+    "@fontsource/ibm-plex-mono": "*",
+    "@fontsource/k2d": "*",
+    "@fontsource/noto-serif-thai": "*",
+    "@fontsource/sarabun": "*"
   }
 }
 ```
 
-> React + `@astrojs/react` are required because Phase 4 ports the legacy COI / IRR / Premium calculators as React Islands.
+---
 
-### `astro.config.mjs` (NEW)
+### Step 3 — Create config files
 
+**`astro.config.mjs`:**
 ```js
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
@@ -93,14 +325,14 @@ export default defineConfig({
   site: 'https://beef.im',
   srcDir: './src',
   publicDir: './public',
-  integrations: [tailwind(), mdx(), sitemap(), react()],
+  integrations: [mdx(), react(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
 ```
 
-### `tsconfig.json` (NEW)
-
-Extend Astro's strict preset:
-
+**`tsconfig.json`:**
 ```json
 {
   "extends": "astro/tsconfigs/strict",
@@ -111,199 +343,334 @@ Extend Astro's strict preset:
 }
 ```
 
-### `tailwind.config.js` (NEW)
-
-Pull design tokens (`--cream`, `--ink`, `--red`, `--burn`, `--teal`, `--gold`, `--grid-line`) from `Prototype-Definitive-v1.html` `:root` block into the Tailwind theme.
-
----
-
-## Phase 3 — Directory Structure
-
-```
-beef.im/
-├── astro.config.mjs
-├── tailwind.config.js
-├── tsconfig.json
-├── package.json
-│
-├── public/
-│   ├── fonts/                      ← Self-hosted woff2 (Anuphan, Sarabun, IBM Plex Mono, K2D)
-│   └── favicon.svg
-│
-├── src/
-│   ├── layouts/
-│   │   ├── BaseLayout.astro        ← <html>, fonts, global CSS, SEO defaults
-│   │   ├── ArticleLayout.astro     ← Notebook grid + article nav + footer
-│   │   └── ToolLayout.astro        ← Layout for interactive tool pages
-│   │
-│   ├── pages/
-│   │   ├── index.astro             ← Hero + Notebook TOC
-│   │   ├── about.astro
-│   │   ├── tools/
-│   │   │   ├── index.astro
-│   │   │   ├── coi-calculator.astro
-│   │   │   ├── irr-truth-teller.astro
-│   │   │   └── premium-calculator.astro
-│   │   └── [...slug].astro         ← Dynamic article pages from src/content/
-│   │
-│   ├── content/
-│   │   ├── config.ts               ← Astro Content Collections schema
-│   │   ├── case/                   ← CASE FILE articles (.mdx)
-│   │   ├── experiment/             ← EXPERIMENT LOG articles (.mdx)
-│   │   └── field-note/             ← FIELD NOTE articles (.mdx)
-│   │
-│   ├── components/
-│   │   ├── Hero.astro              ← Full hero (zero JS)
-│   │   ├── HeroSketch.astro        ← COI escalation SVG (CSS-animated)
-│   │   ├── Navbar.astro            ← Sticky nav + mobile hamburger
-│   │   ├── NotebookEntry.astro     ← TOC entry (masthead/headline/lede/sidenote)
-│   │   ├── Footer.astro            ← Site-wide footer with dual watermark
-│   │   ├── TemperatureBar.astro    ← risk/medium/low gradient bar
-│   │   ├── LatestStamp.astro       ← "ล่าสุด" sealing-wax stamp
-│   │   │
-│   │   ├── mdx/                    ← Used inside .mdx article files
-│   │   │   ├── Highlight.astro
-│   │   │   ├── MarginNote.astro
-│   │   │   ├── ScrapCard.astro
-│   │   │   ├── CorrectionBlock.astro
-│   │   │   └── VerdictSeal.astro
-│   │   │
-│   │   └── tools/                  ← React Islands
-│   │       ├── COICalculator.tsx
-│   │       ├── IRRTruthTeller.tsx
-│   │       └── PremiumCalculator.tsx
-│   │
-│   ├── data/
-│   │   └── calculator/
-│   │       ├── main_policies.csv   ← Ported from astro-nerd (504 rows, 3 plans)
-│   │       └── riders.csv          ← Ported from astro-nerd (53 rows)
-│   │
-│   └── styles/
-│       └── global.css              ← Design tokens, notebook-grid utility, all CSS
-│
-├── nerd/                           ← Content vault (unchanged)
-├── docs/                           ← Deployment plan, brainstorm, reference docs
-├── _archive/
-│   └── nextjs-legacy/              ← Archived Next.js/Payload codebase
-├── .claude/                        ← Agent rules
-├── CLAUDE.md, GEMINI.md, AGENTS.md
-└── .env, .gitignore, .nvmrc
+**`wrangler.toml`:**
+```toml
+name = "beef-im"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-01-01"
 ```
 
 ---
 
-## Phase 4 — Port Interactive Tools (React Islands)
+### Step 4 — Install dependencies
 
-Reference: PRODUCTION-NOTES.md §"React Islands — Confirmed Working Patterns".
+```bash
+npm install
+```
 
-Copy these files from `~/Projects/astro-nerd/src/`:
-- `components/COICalculator.tsx` — TMO 2017 mortality + recharts
-- `data/calculator/main_policies.csv`, `riders.csv` — pricing data
+---
 
-Port from `_archive/nextjs-legacy/components/` (search by name):
-- `PremiumCalculator.tsx` — port the full Sovereign Pricing Engine logic (placeholder in astro-nerd)
-- `IRRTruthTeller.tsx`
+### Step 5 — Create directory structure
 
-Each tool page wraps the island:
+```bash
+mkdir -p src/layouts src/pages src/components/mdx \
+         src/content/case src/content/experiment src/content/field-note \
+         src/styles public
+```
+
+---
+
+### Step 6 — Create `src/env.d.ts`
+
+```ts
+/// <reference path="../.astro/types.d.ts" />
+/// <reference types="astro/client" />
+```
+
+---
+
+### Step 7 — Create `src/content.config.ts`
+
+> ⚠️ CRITICAL: File MUST be at `src/content.config.ts`, NOT `src/content/config.ts`.
+
+```ts
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const articleSchema = z.object({
+  title: z.string(),
+  lede: z.string(),
+  sidenote: z.string().optional(),
+  date: z.coerce.date(),
+  category: z.enum(['case', 'experiment', 'field-note']),
+  temperature: z.enum(['risk', 'medium', 'low']).optional(),
+  code: z.string().optional(),
+  wordCount: z.number().optional(),
+  readTime: z.string().optional(),
+  latest: z.boolean().optional(),
+  footerType: z.enum(['analysis', 'cooking']).default('analysis'),
+});
+
+const caseCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/case' }),
+  schema: articleSchema,
+});
+const experimentCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/experiment' }),
+  schema: articleSchema,
+});
+const fieldNoteCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/field-note' }),
+  schema: articleSchema,
+});
+
+export const collections = {
+  case: caseCollection,
+  experiment: experimentCollection,
+  'field-note': fieldNoteCollection,
+};
+```
+
+---
+
+### Step 8 — Create layouts
+
+**`src/layouts/BaseLayout.astro`:**
+```astro
+---
+import '@fontsource/anuphan/400.css';
+import '@fontsource/anuphan/500.css';
+import '@fontsource/anuphan/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
+import '@fontsource/k2d/300.css';
+import '@fontsource/k2d/400.css';
+import '@fontsource/k2d/300-italic.css';
+import '@fontsource/k2d/400-italic.css';
+import '@fontsource/noto-serif-thai/400.css';
+import '@fontsource/noto-serif-thai/700.css';
+import '@fontsource/sarabun/400.css';
+import '@fontsource/sarabun/500.css';
+import '@fontsource/sarabun/700.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'ประกันเนื้อๆ — BEEF · IM · JOURNAL' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="th_TH">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <slot />
+</body>
+</html>
+```
+
+**`src/layouts/ArticleLayout.astro`:**
+```astro
+---
+import BaseLayout from './BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  category: string;
+  date: string;
+  footerType: 'analysis' | 'cooking';
+}
+
+const { title, description, category, date, footerType } = Astro.props;
+const categoryMap: Record<string, string> = {
+  'case': 'CASE FILE',
+  'experiment': 'EXPERIMENT LOG',
+  'field-note': 'FIELD NOTE'
+};
+const displayCategory = categoryMap[category] || category.toUpperCase();
+---
+<BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description}>
+  <section class="article-view active" id="article">
+    <nav class="article-nav">
+      <a href="/" class="article-nav-back">← กลับหน้าหลัก</a>
+      <span class="article-nav-stamp">{displayCategory}</span>
+      <span class="article-nav-date">{date}</span>
+    </nav>
+    <div class="nb-article-body">
+      <div class="nb-article-wrap">
+        <slot />
+        <Footer type={footerType} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+```
+
+---
+
+### Step 9 — Create `src/pages/[...slug].astro`
 
 ```astro
 ---
-import ToolLayout from '../../layouts/ToolLayout.astro';
-import COICalculator from '../../components/tools/COICalculator.tsx';
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('case');
+  const experiments = await getCollection('experiment');
+  const fieldNotes = await getCollection('field-note');
+
+  return [
+    ...cases.map(entry => ({ params: { slug: `case/${entry.id}` }, props: { entry, category: 'case' } })),
+    ...experiments.map(entry => ({ params: { slug: `experiment/${entry.id}` }, props: { entry, category: 'experiment' } })),
+    ...fieldNotes.map(entry => ({ params: { slug: `field-note/${entry.id}` }, props: { entry, category: 'field-note' } })),
+  ];
+}
+
+const { entry, category } = Astro.props;
+const { Content } = await render(entry);
+const dateStr = entry.data.date.toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
-<ToolLayout title="เครื่องคำนวณ COI">
-  <COICalculator client:load />
-</ToolLayout>
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.lede}
+  category={category}
+  date={dateStr}
+  footerType={entry.data.footerType}
+>
+  <Content />
+</ArticleLayout>
 ```
 
-**CSV import pattern** (build-time, no API needed):
+---
 
-```ts
-import policiesCSV from '../../data/calculator/main_policies.csv?raw';
+### Step 10 — Create `src/styles/global.css`
+
+Copy the full CSS from the current `src/styles/global.css` in the repo. The key sections are:
+1. `@import "tailwindcss";` — must be first line
+2. `@theme { ... }` — all design tokens
+3. `@layer base { ... }` — html/body base styles
+4. `@layer utilities { ... }` — `.bg-grid-notebook`, `.bg-notebook-paper`
+5. All `@keyframes` (wmFade, burstFade, burstRotate, ruleDraw, typeIn, inkSettle, sketchAppear, sketchDraw, sketchDot, downFloat, tapeSettle, verdictDraw)
+6. Full Hero CSS (`.hero` → `.hero-down`)
+7. Full Homepage CSS (`.homepage` → `.nb-home-footer`)
+8. Full Article body CSS (`.article-nav` → `.nb-watermark`)
+9. Reduced-motion overrides
+
+> **Shortcut:** The current `global.css` is the source of truth. Just copy it verbatim.
+
+---
+
+### Step 11 — Create components
+
+Copy all `.astro` components from the current repo:
+- `src/components/Hero.astro`
+- `src/components/HeroSketch.astro`
+- `src/components/Navbar.astro`
+- `src/components/NotebookEntry.astro`
+- `src/components/Footer.astro`
+- `src/components/TemperatureBar.astro`
+- `src/components/LatestStamp.astro`
+- `src/components/mdx/Highlight.astro`
+- `src/components/mdx/MarginNote.astro`
+- `src/components/mdx/ScrapCard.astro`
+- `src/components/mdx/CorrectionBlock.astro`
+- `src/components/mdx/VerdictSeal.astro`
+
+---
+
+### Step 12 — Create `src/pages/index.astro`
+
+Copy from the current repo. Key API notes:
+- Uses `entry.id` (not `entry.slug`) when passing to `<NotebookEntry>`
+- Sorts all collections by `entry.data.date` descending
+
+---
+
+### Step 13 — Create `public/favicon.svg`
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" fill="#F0EADC"/>
+  <circle cx="16" cy="16" r="12" fill="none" stroke="#CC3A2F" stroke-width="1.5"/>
+  <text x="16" y="21" text-anchor="middle" font-family="serif" font-weight="700" font-size="14" fill="#CC3A2F">ป</text>
+</svg>
 ```
 
-**Cross-island communication:** native `CustomEvent`, NOT React Context (validated in astro-nerd).
+---
+
+### Step 14 — Add stub content
+
+Add at least one `.mdx` file per collection (required for the build to work with stub routes):
+
+`src/content/case/stub-case.mdx`:
+```mdx
+---
+title: "Stub Case"
+lede: "This is a stub case file."
+date: 2026-04-26
+category: case
+temperature: risk
+latest: true
+footerType: analysis
+---
+
+Stub case content.
+```
+
+(Repeat for `experiment/stub-experiment.mdx` and `field-note/stub-field-note.mdx`)
 
 ---
 
-## Phase 5 — Migrate Definitive Prototype CSS
+### Step 15 — Verify build
 
-Extract the prototype CSS into the Astro project:
-
-1. **Design tokens** (`:root` block from Prototype-Definitive-v1.html lines ~10-40) → `src/styles/global.css` `@layer base`
-2. **Tailwind tokens** (matching CSS vars) → `tailwind.config.js` `theme.extend.colors`
-3. **Component CSS** (per-section) → inline `<style>` in matching `.astro` component
-4. **Notebook grid utility** → `src/styles/global.css` (used in 4 places)
-5. **Animations** (`inkSettle`, `ruleDraw`, `typeIn`, infinite sunburst rotation) → keyframes in `global.css`
-6. **Reduced-motion support** — `@media(prefers-reduced-motion:reduce)` block already in prototype, copy as-is
-
-Sizing reference (mobile / tablet / desktop) is in PRODUCTION-NOTES.md §"Sizing Reference Table".
-
----
-
-## Phase 6 — Self-Host Fonts
-
-Per PRODUCTION-NOTES.md §"Font Issues & Loading Strategy":
-
-1. Download woff2 files for Anuphan, Sarabun, IBM Plex Mono, K2D (italic 300 only), Noto Serif Thai → `public/fonts/`
-2. Subset to Thai + Latin Basic (~40% size reduction)
-3. `<link rel="preload">` Anuphan + IBM Plex Mono in `BaseLayout.astro`
-4. Drop unused weights — see PRODUCTION-NOTES §"Font Conflict: K2D Italic vs K2D Regular"
-
----
-
-## Verification Plan
-
-### Automated
 ```bash
-npm install                  # Resolve dependencies
-npm run build                # Verify Astro builds from src/
-npm run preview              # Smoke-test the output
+npm run build     # Must exit 0
+npm run dev       # Visit http://localhost:4321 — parchment hero + notebook entries
 ```
 
-### Manual
-- `npm run dev` → http://localhost:4321 should serve the Hero + empty Notebook TOC
-- Each MDX article in `src/content/case/`, `src/content/experiment/`, `src/content/field-note/` should resolve at `/case/[slug]`, `/experiment/[slug]`, `/field-note/[slug]`
-- `/tools/coi-calculator` should hydrate the React island and accept input
-- Lighthouse score: target Performance ≥ 95, Accessibility ≥ 95 (zero-JS pages should hit 100)
-
-### Visual Audit
-Compare against `Prototype-Definitive-v1.html` at three breakpoints:
-- Mobile (<768px) — 360px viewport
-- Tablet (768-1199px) — 900px viewport
-- Desktop (1200px+) — 1440px viewport
-
-Per PRODUCTION-NOTES.md sizing tables.
+**Success criteria:**
+- Hero renders with parchment background, watermark กlyph, COI sketch
+- Homepage shows notebook entries with category stamps
+- Article routes (`/case/stub-case`) render with article nav and content
+- Sitemap generates `dist/sitemap-index.xml`
 
 ---
 
-## Out of Scope for This Phase
+### Step 16 — Commit and push
 
-These will be handled in follow-up tasks (NOT by Antigravity in this phase):
-
-- `/publish` CLI skill rewrite (Obsidian seed → MDX with frontmatter) — Claude Code task
-- Auditor pipeline integration with new MDX format — Claude Code task
-- Cloudflare Pages deployment config (`wrangler.toml`, R2 binding for media uploads if needed) — separate phase
-- Emdash CMS integration (deferred — see Confirmed Decisions)
-- Real article content seeding — content team
+```bash
+git add .
+git commit -m "feat(astro): clean-slate rebuild — Astro 6.1.9 + Tailwind v4 + Content Layer API"
+git push origin main    # origin = supmanu/beef-im → triggers Cloudflare Pages CI
+```
 
 ---
 
-## Handoff Notes for Antigravity
+## Deployment (Cloudflare Pages)
 
-- **Source of truth for design:** `docs/brainstorm/New UIUX/Prototype-Definitive-v1.html`
-- **Source of truth for sizing/fonts/architecture:** `docs/brainstorm/New UIUX/PRODUCTION-NOTES.md`
-- **Source of truth for React Island patterns:** `~/Projects/astro-nerd/EMDASH_MIGRATION.md`
-- **Reusable assets:** `~/Projects/astro-nerd/src/components/COICalculator.tsx`, `~/Projects/astro-nerd/src/data/calculator/*.csv`
-- **Brand laws** (read before any text content): `nerd/pillars/voice-dna.md`, `nerd/pillars/constitution.md`
-- **Do NOT modify:** `nerd/`, `docs/`, `.claude/`, `_archive/` (after the legacy archive move)
-- **One commit per phase** — Phase 1 archive should be its own commit before Phase 2 scaffolding
+**Project name:** `beef-im`
+**Repo:** `supmanu/beef-im` (Git-connected, branch: `main`)
+**Build command:** `npm run build`
+**Build output:** `dist`
 
-When done, report:
-1. Build passing (`npm run build` exit 0)
-2. Dev server running (`npm run dev` shows localhost:4321)
-3. Three sample MDX articles render
-4. One calculator page hydrates
-5. Visual diff against prototype at three breakpoints
+Every `git push origin main` auto-deploys via Cloudflare's CI.
 
-Then handoff back to Claude Code for `/publish` skill rewrite + Auditor integration.
+**Custom domain:** Go to CF Dashboard → Pages → `beef-im` → Custom Domains → Add `beef.im`. Cloudflare manages DNS automatically if `beef.im` is already proxied through CF.
+
+---
+
+## Pending (Out of Scope for Initial Launch)
+
+| Task | Owner | Notes |
+|---|---|---|
+| Wire `beef.im` custom domain in CF dashboard | User | One-click in CF → Pages → Custom Domains |
+| Rewrite `/publish` CLI skill | Claude Code | Obsidian seed → MDX with correct frontmatter + notebook components |
+| Auditor pipeline integration | Claude Code | New MDX format target |
+| React calculator islands | Claude Code | Restore from `_archive/nextjs-legacy/` — COI, IRR, Premium |
+| Emdash CMS | Deferred | Post-launch only if mobile editing becomes priority |
+| Real article content seeding | Human | Run `/publish` skill on actual Obsidian seeds |
