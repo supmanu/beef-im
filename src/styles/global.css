@@ -272,7 +272,17 @@
 .article-nav-back:hover { color: #CC3A2F; }
 .article-nav-stamp { font-family: var(--font-display); font-weight: 700; font-size: 9.5px; color: #A84030; letter-spacing: 0.15em; text-transform: uppercase; }
 .article-nav-date { font-family: var(--font-mono); font-size: 9px; color: #2E6D63; letter-spacing: 0.12em; margin-left: auto; text-transform: uppercase; font-weight: 500; }
+/* Article View - Full height cream background */
+body.article-page {
+  background-color: var(--color-cream);
+}
+.article-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .nb-article-body {
+  flex: 1;
   background:
     linear-gradient(90deg, rgba(120,100,75,0.11) 1px, transparent 1px),
     linear-gradient(180deg, rgba(120,100,75,0.11) 1px, transparent 1px),

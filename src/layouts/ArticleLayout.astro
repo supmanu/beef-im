@@ -19,7 +19,7 @@ const categoryMap: Record<string, string> = {
 };
 const displayCategory = categoryMap[category] || category.toUpperCase();
 ---
-<BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description}>
+<BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description} bodyClass="article-page">
   <section class="article-view active" id="article">
     <nav class="article-nav">
       <a href="/" class="article-nav-back">← กลับหน้าหลัก</a>

@@ -18,8 +18,9 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  bodyClass?: string;
 }
-const { title, description = 'ประกันเนื้อๆ — BEEF · IM · JOURNAL' } = Astro.props;
+const { title, description = 'ประกันเนื้อๆ — BEEF · IM · JOURNAL', bodyClass = '' } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="th">
@@ -35,7 +36,7 @@ const { title, description = 'ประกันเนื้อๆ — BEEF · I
   <meta property="og:locale" content="th_TH">
   <meta name="twitter:card" content="summary">
 </head>
-<body>
+<body class={bodyClass}>
   <slot />
 </body>
 </html>
