@@ -332,7 +332,7 @@ body.article-page {
 .nb-verdict-circle svg { width: 100%; height: 100%; }
 .nb-verdict-circle .cp { fill: none; stroke: #CC3A2F; stroke-width: 2; stroke-dasharray: 195; stroke-dashoffset: 195; animation: verdictDraw 800ms 300ms ease-in-out forwards; }
 @keyframes verdictDraw { 0% { stroke-dashoffset: 195; } 65% { stroke-dashoffset: 18; } 82% { stroke-dashoffset: 6; } 92% { stroke-dashoffset: 2; } 100% { stroke-dashoffset: 0; } }
-.nb-verdict-label { font-family: var(--font-hand); font-weight: 300; font-style: italic; font-size: 9px; color: #2B4A5E; text-align: right; line-height: 1.4; max-width: 120px; opacity: 0.8; }
+.nb-verdict-label { font-family: var(--font-hand); font-weight: 300; font-style: italic; font-size: 8.5px; color: #2B4A5E; text-align: right; line-height: 1.35; max-width: 180px; opacity: 0.6; }
 .nb-page-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(199,183,143,0.45); display: flex; justify-content: space-between; align-items: flex-end; }
 .nb-page-footer-left { font-family: var(--font-hand); font-weight: 300; font-style: italic; font-size: 11px; color: #2B4A5E; line-height: 1.5; }
 .nb-page-footer-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
