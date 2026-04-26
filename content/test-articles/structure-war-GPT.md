@@ -1,1 +1,0 @@
-(article omitted for brevity)
