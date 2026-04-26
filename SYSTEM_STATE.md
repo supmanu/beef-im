@@ -13,32 +13,25 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: v6.0 CLI-FIRST PIPELINE + /PUBLISH
-* **Last Updated:** Apr 23, 2026 (beef.im rebrand decision locked — pre-launch)
+## 🟢 CURRENT STATUS: v6.1 ASTRO-NATIVE (Apr 27, 2026)
+* **Last Updated:** Apr 27, 2026 (Astro migration & visual parity LOCKED)
 * **Model Stack:**
-    *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (CLI Skills pipeline, deep code)
-    *   **Research:** Gemini 3 Pro (Deep Research — irreplaceable for web synthesis)
-    *   **Routine/Speed:** Gemini 3 Flash (embeddings, quick tasks)
-    *   **Cost-Optimized:** MiniMax M2.7 / GLM 5.0 (Agent 2C, untested for v6.0 pipeline)
-    *   **Embedding:** `gemini-embedding-001` (3072 dims) — exploratory only (Mastra non-core)
-* **Identity Protocol:** Sovereign Universal (v1.9) - Mandatory File Read + Citation Trap Fix.
-* **Architecture:** Astro + Emdash + MDX (Dropped Next.js, Payload, Neon). Mastra RAG: non-core, exploratory.
-* **Content Pipeline (v6.0):** Obsidian intake → Gemini Research (optional) → CLI Skills → /publish → Payload CMS.
-* **Claude Code Skills:** 7 skills deployed (`/seed`, `/architect`, `/performer`, `/hybrid`, `/auditor`, `/produce-article`, `/publish`).
-* **Publishing:** `/publish` converts .md → MDX components → Repo. Zero manual copy-paste.
-* **Content Format:** MDX (.mdx) for custom notebook components (MarginNote, ScrapCard).
-* **Obsidian:** Vault at `nerd/`, Dataview plugin, `_ops/` symlinks for operational browsing.
-* **Stack Strategy (Mar 29):** Keep Next.js + Payload (Ferrari, not Ford). Neon exit plan documented in `.claude/rules/deployment.md`. Cloudflare Pages feasible if DB moves to SQLite.
-* **Reference:** `nerd/pillars/master-index.md` (v6.0), `docs/article-production-guide.md`
+    *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (Code & Production)
+    *   **Research:** Gemini 3 Pro (Deep Research & UI Verification — Irreplaceable)
+    *   **Routine:** Gemini 3 Flash
+* **Architecture:** Astro 6.1.9 + Tailwind v4 + MDX + Content Layer.
+* **UI State:** "Notebook" aesthetic fully implemented. 100% parity with Definitive Prototype.
+* **Deployment:** Cloudflare Pages (`beef-im`) active. Primary repo: `supmanu/beef-im`.
 
 ## ✅ ACCOMPLISHMENTS
-*   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).** Drop "Nerd with Nart" before public launch. Public brand: beef.im (domain) + ประกันเนื้อๆ (Facebook). Repo stays `nerd-with-nart`. **Voice-dna v6.0 + constitution v5.0 recalibration: ✅ COMPLETE (Apr 24, 2026).** Agent instruction files (CLAUDE.md, AGENTS.md, SKILL.md, article-production-guide.md) footer/watermark rebranded. Brief: `docs/beef-im-rebrand-brief.md`.
-*   **[Architecture]** **Strategic Pivot to Astro 6.1+ & MDX (Apr 26, 2026).**
-    *   **Action:** Dropped Next.js, Payload CMS, and Neon Postgres in favor of Astro 6.1.9, Tailwind v4, and Content Layer API.
-    *   **Repository Swap:** Primary `origin` now points to `supmanu/beef-im`. Legacy repo preserved as `legacy` remote.
-    *   **Deployment:** Cloudflare Pages project `beef-im` active (Option B: Git-connected).
-    *   **Rationale:** The "Notebook" rebrand (beef.im) requires complex structural components. Astro + MDX natively supports these with zero-JS footprint.
-    *   **Phase 4 Note:** React Interactive Tools (Calculators) archived to `_archive/nextjs-legacy/` for launch.
+*   **[Architecture]** **Strategic Pivot to Astro 6.1+ & MDX (Apr 26-27, 2026).**
+    *   **Action:** Full migration from Next.js to Astro 6.1.9. Dropped Payload/Neon for Git-based MDX Content Layer.
+    *   **MDX Suite:** Custom components (`<Highlight>`, `<MarginNote>`, `<ScrapCard>`, `<CorrectionBlock>`, `<VerdictSeal>`) implemented with auto-injection.
+    *   **Visual Parity:** 100% matched `Prototype-Definitive-v1.html`. Fixed background bleed, MDX paragraph wrapper bugs, and typography drifts.
+    *   **Dynamic Hero:** Implemented truly dynamic client-side date in Hero section (MON · 27 APR 26).
+    *   **Refinement:** "ภรรยาบอกว่า..." verdict label tuned to 10px / 0.8 opacity / Navy (fixed the "hidden bug" where MDX forced 15px/Black).
+    *   **Deployment:** Cloudflare Pages build pipeline verified.
+*   **[Brand]** **Rebranded to beef.im (Apr 23, 2026).**
 *   **[Insurance Ops]** **AIA Client Onboarding Toolkit Deployed (Apr 22, 2026).**
     *   **Health Questions Preview (`Health_Questions_PREVIEW_Card.md`):** Compact bilingual EN/TH checklist for pre-meeting client prep. Sent via LINE before iPad sessions.
     *   **Medical History Checklist (`Medical_History_Checklist.md`):** Full 8-section self-assessment (symptoms, diagnosed conditions, surgeries, medications, family history, lifestyle, tests, declarations).
