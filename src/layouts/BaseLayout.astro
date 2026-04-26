@@ -1,4 +1,19 @@
 ---
+import '@fontsource/anuphan/400.css';
+import '@fontsource/anuphan/500.css';
+import '@fontsource/anuphan/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
+import '@fontsource/k2d/300.css';
+import '@fontsource/k2d/400.css';
+import '@fontsource/k2d/300-italic.css';
+import '@fontsource/k2d/400-italic.css';
+import '@fontsource/noto-serif-thai/400.css';
+import '@fontsource/noto-serif-thai/700.css';
+import '@fontsource/sarabun/400.css';
+import '@fontsource/sarabun/500.css';
+import '@fontsource/sarabun/700.css';
 import '../styles/global.css';
 interface Props {
   title: string;
@@ -13,9 +28,7 @@ const { title, description = 'ประกันเนื้อๆ — BEEF · I
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   <meta name="description" content={description}>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=K2D:ital,wght@1,300&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <slot />
