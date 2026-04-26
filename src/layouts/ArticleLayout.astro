@@ -8,9 +8,12 @@ interface Props {
   category: string;
   date: string;
   footerType: 'analysis' | 'cooking';
+  author: string;
+  code?: string;
+  sidenote?: string;
 }
 
-const { title, description, category, date, footerType } = Astro.props;
+const { title, description, category, date, footerType, author, code, sidenote } = Astro.props;
 
 const categoryMap: Record<string, string> = {
   'case': 'CASE FILE',
@@ -18,6 +21,10 @@ const categoryMap: Record<string, string> = {
   'field-note': 'FIELD NOTE'
 };
 const displayCategory = categoryMap[category] || category.toUpperCase();
+
+// Mock page number or extra info based on category
+const pageNum = category === 'case' ? 'หน้า 04' : (category === 'experiment' ? 'หน้า 09' : 'หน้า 01');
+const footerStamp = category === 'case' ? '⚠ HIGH' : (category === 'experiment' ? '🔥 MED RARE' : '🔥 MED WELL');
 ---
 <BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description} bodyClass="article-page">
   <section class="article-view active" id="article">
@@ -29,6 +36,22 @@ const displayCategory = categoryMap[category] || category.toUpperCase();
     <div class="nb-article-body">
       <div class="nb-article-wrap">
         <slot />
+        
+        <div class="nb-page-footer">
+          <div class="nb-page-footer-left">
+            {date} · {author} {sidenote ? `· ${sidenote}` : ''}
+            <br />
+            สมุดบันทึกการสำรวจ · เล่ม 1
+          </div>
+          <div class="nb-page-footer-right">
+            <svg viewBox="0 0 100 100">
+              <ellipse cx="50" cy="50" rx="44" ry="42" transform="rotate(-2 50 50)"/>
+              <text x="50" y="50">{footerStamp}</text>
+            </svg>
+            <div class="nb-page-num">{code ? `ID ${code}` : pageNum}</div>
+          </div>
+        </div>
+
         <Footer type={footerType} />
       </div>
     </div>

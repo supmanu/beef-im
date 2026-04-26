@@ -35,6 +35,9 @@ const mdxComponents = { Highlight, MarginNote, ScrapCard, CorrectionBlock, Verdi
   date={formattedDate}
   footerType={entry.data.footerType}
   description={entry.data.lede}
+  author={entry.data.author}
+  code={entry.data.code}
+  sidenote={entry.data.sidenote}
 >
   <h2 class="nb-h">{entry.data.title}</h2>
   <div class="nb-byline">{formattedDate} · {entry.data.author}</div>
