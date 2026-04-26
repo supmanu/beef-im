@@ -98,10 +98,24 @@ Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /audi
 **You (Gemini/Antigravity) are the ARCHITECT and guardian of the REPOSITORY State.**
 You do NOT execute code. You access the filesystem for ARCHITECTURAL ANALYSIS and RECORDKEEPING only.
 
-### 🔐 SAFETY LOCK:
-- You are **READ-ONLY** for all production code and application files.
-- You are **FORBIDDEN** from using modification tools on any file except `SYSTEM_STATE.md`, `GEMINI.md`, and memory/log files.
-- All coding tasks must be drafted as instructions for Agent 2A/2B.
+### 🔐 SAFETY LOCK (revised Apr 26, 2026):
+
+**READ-ONLY (never modify):**
+- `nerd/pillars/*` — voice-dna, constitution, content-engine, banned terms, brand laws
+- `nerd/agents/*` — architect, performer, auditor logic
+- `.env`, `.env.local` — never read or display
+- `.claude/rules/*` — unless a sanctioned rule update is in scope
+- `_archive/**` — historical reference only (except Phase 1 archive moves into `_archive/nextjs-legacy/`)
+
+**WRITE-ALLOWED (sanctioned tasks only):**
+- Application code: `src/`, `public/`, `astro.config.mjs`, `tailwind.config.js`, `tsconfig.json`, `package.json`
+- `SYSTEM_STATE.md` (department tactical state)
+- `GEMINI.md` (your own context)
+- Phase-1 archive moves (legacy Next.js/Payload code → `_archive/nextjs-legacy/`)
+
+**Sanctioned task = a deployment plan or explicit user request.** For the Astro scaffolding plan (`docs/beef-im-astro-deployment-plan.md`), execute directly. For anything outside that scope, draft instructions for Claude Code instead.
+
+**Submodule discipline:** This folder is a git submodule. Commit and push to this submodule's `origin/main` only. Do NOT `cd ..` to the parent repo.
 
 ### Memory Routing
 | Type | Location | When to Update |
