@@ -1,1 +1,118 @@
 @import "tailwindcss";
+
+@theme {
+  --color-cream: #F0EADC;
+  --color-cream-card: #F8F2E4;
+  --color-cream-deep: #E3DAC3;
+  --color-ink: #1B1A17;
+  --color-red: #CC3A2F;
+  --color-red-stamp: #A84030;
+  --color-navy: #2B4A5E;
+  --color-burn: #B85C38;
+  --color-teal: #2E6D63;
+  --color-gold: #C7B78F;
+  --color-highlight: #F4EED8;
+  --color-grid-line: rgba(120, 100, 75, 0.11);
+
+  --font-thai: "Sarabun", sans-serif;
+  --font-serif: "Noto Serif Thai", serif;
+  --font-display: "Anuphan", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-hand: "K2D", sans-serif;
+}
+
+/* Base styles to match prototype */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-thai text-ink leading-relaxed;
+    background-color: #0a0a0c;
+  }
+}
+
+/* Notebook Grid Utility */
+@layer utilities {
+  .bg-grid-notebook {
+    background:
+      linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(180deg, var(--color-grid-line) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
+  }
+  
+  .bg-notebook-paper {
+    background-image: 
+      linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(180deg, var(--color-grid-line) 1px, transparent 1px),
+      radial-gradient(ellipse at center, transparent 60%, rgba(120,100,75,0.06) 100%),
+      linear-gradient(180deg, var(--color-cream-deep) 0%, var(--color-cream-deep) 100%);
+    background-size: 24px 24px, 24px 24px, auto, auto;
+  }
+}
+
+/* Animations from Prototype */
+@keyframes wmFade {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes burstFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes burstRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ruleDraw {
+  0% { width: 0; opacity: 0; }
+  60% { opacity: 1; }
+  100% { width: 60px; opacity: 0.85; }
+}
+
+@keyframes typeIn {
+  0% { width: 0; }
+  80% { border-right-color: var(--color-burn); }
+  100% { width: 100%; border-right-color: transparent; }
+}
+
+@keyframes inkSettle {
+  0% { filter: blur(4px); opacity: 0; transform: translateY(4px); }
+  50% { filter: blur(2px); opacity: 0.6; }
+  100% { filter: blur(0); opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sketchAppear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes sketchDraw {
+  0% { stroke-dashoffset: 240; }
+  60% { stroke-dashoffset: 36; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes sketchDot {
+  0% { opacity: 0; r: 0; }
+  60% { opacity: 1; r: 5; }
+  100% { opacity: 1; r: 3.5; }
+}
+
+@keyframes downFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(6px); opacity: 0.75; }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
