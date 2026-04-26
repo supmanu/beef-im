@@ -1,0 +1,10 @@
+---
+interface Props {
+  type: 'analysis' | 'cooking';
+}
+const { type } = Astro.props;
+const watermarkText = type === 'analysis' ? '📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)' : '🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)';
+---
+<div class="nb-watermark">
+  {watermarkText} · #ประกันเนื้อๆ
+</div>

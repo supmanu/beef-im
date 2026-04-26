@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const caseEntries = await getCollection('case');
+  const expEntries = await getCollection('experiment');
+  const fieldEntries = await getCollection('field-note');
+  
+  const allEntries = [...caseEntries, ...expEntries, ...fieldEntries];
+  
+  return allEntries.map(entry => ({
+    params: { slug: `${entry.data.category}/${entry.slug}` },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Format date
+const d = new Date(entry.data.date);
+const formattedDate = `${d.getDate()} ${d.toLocaleString('th-TH', { month: 'short' })} ${d.getFullYear()}`;
+---
+<ArticleLayout 
+  title={entry.data.title}
+  category={entry.data.category}
+  date={formattedDate}
+  footerType={entry.data.footerType}
+  description={entry.data.lede}
+>
+  <h2 class="nb-h">{entry.data.title}</h2>
+  <div class="nb-byline">{formattedDate} · {entry.data.author}</div>
+  <div class="nb-rule-red"></div>
+  <div class="nb-p">
+    <Content />
+  </div>
+</ArticleLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+<BaseLayout title={`${title} | ประกันเนื้อๆ เครื่องมือ`}>
+  <section class="article-view active">
+    <nav class="article-nav">
+      <a href="/tools" class="article-nav-back">← กลับหน้าเครื่องมือ</a>
+      <span class="article-nav-stamp">TOOL</span>
+    </nav>
+    <div class="nb-article-body">
+      <div class="nb-article-wrap">
+        <h2 class="nb-h">{title}</h2>
+        <div class="nb-rule-red"></div>
+        <slot />
+        <Footer type="analysis" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

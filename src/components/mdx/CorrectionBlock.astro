@@ -1,0 +1,11 @@
+---
+interface Props {
+  strike: string;
+  fix: string;
+}
+const { strike, fix } = Astro.props;
+---
+<div class="nb-correction">
+  <div class="strike">{strike}</div>
+  <div class="fix">{fix}</div>
+</div>

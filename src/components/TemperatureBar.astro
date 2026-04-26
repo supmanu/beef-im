@@ -1,0 +1,7 @@
+---
+interface Props {
+  type: 'risk' | 'medium' | 'low';
+}
+const { type } = Astro.props;
+---
+<div class={`nb-entry-temp ${type}`}></div>

@@ -1,0 +1,10 @@
+---
+interface Props {
+  position?: 'left' | 'right';
+  caution?: boolean;
+}
+const { position = 'right', caution = false } = Astro.props;
+---
+<div class={`nb-note ${position} ${caution ? 'caution' : ''}`}>
+  {caution && '⚠ '}<slot />
+</div>

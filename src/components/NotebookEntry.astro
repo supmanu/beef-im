@@ -1,0 +1,45 @@
+---
+import TemperatureBar from './TemperatureBar.astro';
+import LatestStamp from './LatestStamp.astro';
+
+interface Props {
+  slug: string;
+  category: string;
+  title: string;
+  lede: string;
+  sidenote?: string;
+  temperature: 'risk' | 'medium' | 'low';
+  code?: string;
+  wordCount?: number;
+  readTime?: string;
+  latest?: boolean;
+  index: number;
+}
+const { slug, category, title, lede, sidenote, temperature, code, wordCount, readTime, latest, index } = Astro.props;
+
+const numStr = String(index).padStart(2, '0') + '.';
+const categoryMap: Record<string, string> = {
+  'case': 'CASE FILE',
+  'experiment': 'EXPERIMENT LOG',
+  'field-note': 'FIELD NOTE'
+};
+const displayCategory = categoryMap[category] || category.toUpperCase();
+
+const metaParts = [];
+if (code) metaParts.push(code);
+if (wordCount) metaParts.push(`${wordCount}w`);
+if (readTime) metaParts.push(readTime);
+const metaStr = metaParts.join(' · ');
+---
+<a href={`/${category}/${slug}`} class="nb-entry block no-underline">
+  <span class="nb-entry-num">{numStr}</span>
+  {latest && <LatestStamp />}
+  <div class="nb-entry-masthead">
+    <span>{displayCategory}</span>
+    {metaStr && <span class="meta">{metaStr}</span>}
+  </div>
+  <h3 class="nb-entry-h">{title}</h3>
+  <p class="nb-entry-lede">{lede}</p>
+  {sidenote && <div class="nb-entry-sidenote">{sidenote}</div>}
+  <TemperatureBar type={temperature} />
+</a>

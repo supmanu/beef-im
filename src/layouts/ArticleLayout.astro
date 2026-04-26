@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  category: string;
+  date: string;
+  footerType: 'analysis' | 'cooking';
+}
+
+const { title, description, category, date, footerType } = Astro.props;
+
+const categoryMap: Record<string, string> = {
+  'case': 'CASE FILE',
+  'experiment': 'EXPERIMENT LOG',
+  'field-note': 'FIELD NOTE'
+};
+const displayCategory = categoryMap[category] || category.toUpperCase();
+---
+<BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description}>
+  <section class="article-view active" id="article">
+    <nav class="article-nav">
+      <a href="/" class="article-nav-back">← กลับหน้าหลัก</a>
+      <span class="article-nav-stamp">{displayCategory}</span>
+      <span class="article-nav-date">{date}</span>
+    </nav>
+    <div class="nb-article-body">
+      <div class="nb-article-wrap">
+        <slot />
+        <Footer type={footerType} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

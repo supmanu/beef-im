@@ -1,12 +1,44 @@
 ---
-// Basic scaffold to pass build
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import NotebookEntry from '../components/NotebookEntry.astro';
+import { getCollection } from 'astro:content';
+
+const caseEntries = await getCollection('case');
+const expEntries = await getCollection('experiment');
+const fieldEntries = await getCollection('field-note');
+
+const allEntries = [...caseEntries, ...expEntries, ...fieldEntries].sort((a, b) => {
+  return b.data.date.valueOf() - a.data.date.valueOf();
+});
 ---
-<html lang="th">
-  <head>
-    <meta charset="utf-8" />
-    <title>beef.im</title>
-  </head>
-  <body>
-    <h1>beef.im Astro Scaffold</h1>
-  </body>
-</html>
+<BaseLayout title="ประกันเนื้อๆ — BEEF · IM · JOURNAL">
+  <Hero />
+  <section class="homepage" id="homepage">
+    <div class="hp-container">
+      <div class="hp-header">
+        <span class="hp-header-left">สมุดบันทึกการสำรวจ</span>
+        <span class="hp-header-right">EXPEDITION LOG</span>
+      </div>
+      <div class="hp-header-rule"></div>
+
+      {allEntries.map((entry, i) => (
+        <NotebookEntry 
+          index={allEntries.length - i}
+          slug={entry.slug}
+          category={entry.data.category}
+          title={entry.data.title}
+          lede={entry.data.lede}
+          sidenote={entry.data.sidenote}
+          temperature={entry.data.temperature}
+          code={entry.data.code}
+          wordCount={entry.data.wordCount}
+          readTime={entry.data.readTime}
+          latest={entry.data.latest}
+        />
+      ))}
+
+      <div class="nb-home-footer">— จบเล่ม —</div>
+    </div>
+  </section>
+</BaseLayout>
