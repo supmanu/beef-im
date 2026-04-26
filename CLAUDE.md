@@ -88,6 +88,7 @@ Claude (Sonnet/Opus) is a scalpel — use it for high-value operations only.
 | Content seeds | `nerd/seeds/` |
 | Article drafts | `nerd/output/drafts/` |
 | Blueprints | `nerd/output/blueprints/` |
+| Published articles (post-pivot) | `src/content/case/`, `src/content/experiment/`, `src/content/field-note/` (`.mdx`) |
 | Insurance proposals | `~/Documents/KKP - AIA/Proposals/[Client Name]/` |
 | Knowledge library | `nerd/references/brochures/library/` (Layer 3 — primary) |
 | PDFs | `nerd/references/brochures/pdfs/` (Layer 2 — forensic fallback only) |
@@ -109,18 +110,23 @@ Claude (Sonnet/Opus) is a scalpel — use it for high-value operations only.
 
 ---
 
-## Sovereign Stack
+## Sovereign Stack (post-pivot, Apr 26, 2026)
 
 | Component | Stack |
 |-----------|-------|
-| Framework | Next.js 16 (App Router, Turbopack) |
-| CMS | Payload CMS (embedded) |
-| Database | Neon (Postgres) |
-| AI | Mastra 1.x + Gemini 3 Flash (embeddings) |
-| Hosting | Vercel |
+| Framework | **Astro 4.x** (static, zero-JS by default) |
+| Interactive | React 19 inside Astro Islands (`client:load` / `client:visible`) — calculators only |
+| CMS | **Git** — MDX in `src/content/` (Emdash deferred) |
+| Database | **None** |
+| AI | Claude Code CLI Skills (Mastra ARCHIVED Apr 21) |
+| Hosting | **Cloudflare Pages** (target) |
 | Node | 24 LTS (NixOS system-managed) |
 | Styling | Tailwind CSS v4 |
-| Content | CLI Skills pipeline |
+| Structure | `src/` (Astro convention) — flat-root rule retired |
+| Content | CLI Skills pipeline → MDX |
+| Legacy | `_archive/nextjs-legacy/` — Next.js 16 + Payload 3.80 + Neon (preserved for calculator port + reference) |
+
+**Active scaffolding plan:** [docs/beef-im-astro-deployment-plan.md](docs/beef-im-astro-deployment-plan.md) — handoff-ready for Antigravity (Gemini 3.1 Pro).
 
 ---
 
@@ -132,7 +138,8 @@ Claude (Sonnet/Opus) is a scalpel — use it for high-value operations only.
 | `nerd/pillars/voice-dna.md` | HIGH |
 | `nerd/pillars/constitution.md` | HIGH |
 | `nerd/agents/nart-avatar.ts` | HIGH |
-| `payload.config.ts` | HIGH |
+| `astro.config.mjs` | HIGH (post-pivot) |
+| `_archive/nextjs-legacy/payload.config.ts` | ARCHIVED — read-only reference |
 | `.env` / `.env.local` | FORBIDDEN — never read or display |
 
 ### Destructive Commands (require confirmation)
@@ -167,6 +174,7 @@ git commit -m "chore: update nerd-with-nart pointer" && git push
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **v4.1** | Apr 26, 2026 | Astro/MDX pivot: stack table updated (Astro 4.x, Git CMS, no DB, Cloudflare Pages, `src/` structure); Protected Files swap (`astro.config.mjs` HIGH, `payload.config.ts` archived); File Locations adds `src/content/{case,experiment,field-note}/` for published MDX. Active scaffolding plan: `docs/beef-im-astro-deployment-plan.md`. |
 | **v4.0** | Apr 24, 2026 | Rewrite: aligned with AGENTS.md structure, dropped v3.0 legacy (retired STRATEGIC_MEMORY_LOG, Gemini CTO, Cherry Studio, Hygraph, Agent 2B/2C references), added DeepSeek V4 Pro to model routing |
 | v3.0 | Mar 25, 2026 | v6.0 pipeline: CLI Skills replace Gemini Gems, Obsidian intake, stack update |
 | v2.x | Dec 2025 – Jan 2026 | Token Conservation Protocol, MOS migration, Strategic Locks |

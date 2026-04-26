@@ -1,7 +1,7 @@
-# 🧠 NERD WITH NART: SOVEREIGN BRAIN v2.0
+# 🧠 NERD WITH NART: SOVEREIGN BRAIN v2.2
 # Hierarchical context for Antigravity Agent (Gemini 3 Series)
 # Architecture: Melkor OS v1.0 (Department 01)
-# Updated: Mar 29, 2026 (v6.0 + /publish skill, Mastra non-core, .md-only pipeline)
+# Updated: Apr 26, 2026 — Astro/MDX pivot. Active scaffolding plan: docs/beef-im-astro-deployment-plan.md
 
 ---
 
@@ -11,17 +11,19 @@ This department operates under the **Melkor OS** parent-shell architecture.
 
 ### Memory Hierarchy
 ```
-../../memory/STRATEGIC_MEMORY_LOG.md   ← MOS-LEVEL (Authority)
+../../docs/wiki/                       ← FLEET-LEVEL (NixOS, Stow, Niri, agents)
 ./SYSTEM_STATE.md                      ← DEPARTMENT-LEVEL (Tactical)
+./.claude/rules/                       ← Department rules (auto-loaded)
 ```
+
+`../../memory/STRATEGIC_MEMORY_LOG.md` was retired Apr 17, 2026 (tombstone only). Strategic decisions now live in `../../CLAUDE.md` version history + the fleet wiki.
 
 ### MOS References
 | Resource | Path |
 |----------|------|
-| Master Manifest | `../../product.md` |
-| Global Roadmap | `../../plan.md` |
-| Strategic Memory | `../../memory/STRATEGIC_MEMORY_LOG.md` |
-| Submodule SOP | `../../memory/sop-submodule-sync.md` |
+| Fleet CTO context | `../../CLAUDE.md` |
+| Fleet wiki | `../../docs/wiki/` (index, log, current-status) |
+| Submodule sync | See `./CLAUDE.md` § Submodule Save Protocol |
 
 ---
 
@@ -49,30 +51,30 @@ This department operates under the **Melkor OS** parent-shell architecture.
 | **Agent 2B** | Claude Code CLI | Claude Sonnet 4.6 / Opus 4.6 | Deep Code + CLI Skills |
 | **Agent 2C** | CLINE Extension | MiniMax M2.7 | Cost-Optimized Routine |
 
-### Sovereign Stack
+### Sovereign Stack (post-pivot, Apr 26, 2026)
 | Component | Version |
 |-----------|---------|
-| **Framework** | Astro 4.x (Static, Zero-JS) |
-| **CMS** | Emdash (Git-backed Markdown CMS) |
-| **Database** | None (Git-tracked MDX Files) |
-| **Storage** | Cloudflare R2 (Sovereign Assets) |
-| **AI** | Mastra 1.x + Gemini 3 Flash |
-| **Embedding** | gemini-embedding-001 (3072 dims) |
+| **Framework** | Astro 4.x (Static, Zero-JS by default) |
+| **Interactive** | React 19 inside Astro Islands (`client:load` / `client:visible`) — calculators only |
+| **CMS** | Git (MDX in `src/content/`) — Emdash deferred to post-launch |
+| **Database** | None |
+| **Storage** | Cloudflare R2 (`beef-assets` bucket, sovereign) |
+| **AI** | Claude Code CLI Skills (production) — Mastra ARCHIVED Apr 21 |
 | **Node** | 24 LTS (nixpkgs, system-managed) |
-| **React** | 19.2.4 |
-| **Styling** | Tailwind CSS v4.2 (CSS-first config) |
-| **Structure** | **FLAT ROOT** (No `/src` folder) |
+| **Styling** | Tailwind CSS v4 (CSS-first config) |
+| **Structure** | `src/` (Astro convention) — flat-root rule retired Apr 26 |
+| **Hosting** | Cloudflare Pages (target) — Vercel retired with Next.js |
 | **Intake** | Obsidian (vault: `nerd/`) |
-| **Production** | Claude Code Skills (Mastra: non-core, exploratory only) |
-| **Prior Art** | `~/Projects/astro-nerd/` — Astro 6.1 port with Emdash migration notes |
+| **Legacy** | `_archive/nextjs-legacy/` — Next.js 16 + Payload 3.80 + Neon (preserved for calculator port + reference) |
+| **Prior Art** | `~/Projects/astro-nerd/` — Astro 6.1 port (95–97% visual parity validated Apr 6) |
 
 ---
 
-## 🔁 CONTENT PIPELINE (v6.0 — CLI-First)
+## 🔁 CONTENT PIPELINE (v6.0 — CLI-First, Astro/MDX target)
 
 ```
-Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /auditor → /publish → Payload CMS
-                   (when needed)         (blueprint)  (write)      (comply)   (auto)
+Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /auditor → /publish → src/content/*.mdx
+                   (when needed)         (blueprint)  (write)      (comply)   (auto)      → Cloudflare Pages
 ```
 
 | Step | Tool | Who |
@@ -83,7 +85,7 @@ Obsidian seeds/ → Gemini Deep Research → /architect → /performer → /audi
 | **Write** | `/performer` CLI skill | Agent 2B |
 | **Audit (primary)** | `/auditor` CLI skill | Agent 2B |
 | **Audit (escalation)** | Gemini Gem #4 | **You (Gemini)** — regulatory web search |
-| **Publish** | `/publish` CLI skill → Astro MDX in Repo → Vercel | Agent 2B |
+| **Publish** | `/publish` CLI skill → MDX with frontmatter + notebook components → Cloudflare Pages | Agent 2B (skill needs rewrite for MDX target — see deployment plan §"Out of Scope") |
 
 **Your unique roles:** Research (web-scale synthesis) + Escalation Audit (live regulatory verification).
 
@@ -104,9 +106,11 @@ You do NOT execute code. You access the filesystem for ARCHITECTURAL ANALYSIS an
 ### Memory Routing
 | Type | Location | When to Update |
 |------|----------|----------------|
-| **Strategic** | `../../memory/STRATEGIC_MEMORY_LOG.md` | Irreversible decisions, architecture changes |
+| **Fleet** | `../../docs/wiki/<topic>.md` + `../../CLAUDE.md` version history | Cross-department or NixOS/infra decisions |
 | **Tactical** | `./SYSTEM_STATE.md` | Department state, phase updates, accomplishments |
 | **Patterns** | `./.claude/rules/*.md` | Coding patterns, standards, SOPs |
+
+`STRATEGIC_MEMORY_LOG.md` retired Apr 17, 2026 — do NOT write to it.
 
 ---
 
@@ -114,7 +118,7 @@ You do NOT execute code. You access the filesystem for ARCHITECTURAL ANALYSIS an
 
 1. **ANALYZE:** Scan the session for new patterns, decisions, or fixes.
 2. **ROUTE DECISION:**
-   - Is this a **strategic/cross-department** decision? → Update `../../memory/STRATEGIC_MEMORY_LOG.md`
+   - Is this a **fleet/cross-department** decision? → Update `../../docs/wiki/<topic>.md` + bump `../../CLAUDE.md` version history
    - Is this a **tactical/department-specific** state? → Update `./SYSTEM_STATE.md`
 3. **UPDATE RULES:**
    - If a new coding pattern emerged, create/edit `.claude/rules/[topic].md`
@@ -152,8 +156,8 @@ git push origin main
 | /performer | Draft content (Agent 2A for rapid, Agent 2B `/performer` for flagship) |
 | /audit | Run `/auditor` CLI skill (primary) or Gemini Gem #4 (escalation for regulatory) |
 | /sync | Log current progress to SYSTEM_STATE.md |
-| /publish | Convert .md to MDX article in content/ (auto-wraps with notebook components) |
-| /strategic | Log to MOS-level STRATEGIC_MEMORY_LOG.md |
+| /publish | Convert .md to MDX article in `src/content/{case,experiment,field-note}/` (auto-wraps with notebook components: MarginNote, ScrapCard, CorrectionBlock, VerdictSeal, Highlight) |
+| /strategic | DEPRECATED — STRATEGIC_MEMORY_LOG retired Apr 17, 2026. Use fleet wiki + CLAUDE.md version history instead. |
 
 ---
 
@@ -177,6 +181,7 @@ git push origin main
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **v2.3** | Apr 26, 2026 | Astro pivot scaffolding plan ready (`docs/beef-im-astro-deployment-plan.md`). Stack table updated: `src/` (not flat root), Cloudflare Pages (not Vercel), Mastra archived removed from active stack. Memory routing: STRATEGIC_MEMORY_LOG retired references purged; routes to fleet wiki + CLAUDE.md instead. /strategic command deprecated. /publish path updated to `src/content/{case,experiment,field-note}/`. |
 | **v2.2** | Apr 26, 2026 | Strategic Pivot: Dropped Next.js/Payload/Neon. Migrating to Astro + Emdash + MDX for Zero-JS "Notebook" aesthetic. |
 | **v2.1** | Mar 29, 2026 | /publish skill: zero-touch .md → Payload CMS publishing. Mastra RAG confirmed non-core. .md is the standard (not .mdx). Strategic stack review: keep Payload + Next.js, Neon exit plan ready. |
 | v2.0 | Mar 25, 2026 | v6.0 pipeline: CLI Skills for production, Gemini reserved for Research + Escalation Audit. Stack updated (Next.js 16.2.1, Node 24, Tailwind v4.2, Payload 3.80.0). Obsidian intake layer. |

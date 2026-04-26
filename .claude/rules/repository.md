@@ -16,12 +16,15 @@
 - `/nerd/agents/`: Logic definitions for Architect, Performer, and Auditor.
 - `/nerd/research/`: Deep Research data and transcripts.
 - `.claude/rules/`: Tactical coding and operational patterns.
-- `app/`, `components/`, `lib/`: Direct root access (FLAT structure).
+- `src/`: Astro application code (`pages/`, `layouts/`, `components/`, `content/`, `data/`, `styles/`).
+- `public/`: Static assets served as-is (fonts, favicon).
+- `_archive/nextjs-legacy/`: Archived Next.js/Payload codebase (Apr 2026 pivot — preserved for reference).
 
-## Project Architecture (Flat Root)
-- **Rule:** The project uses a **FLAT ROOT** structure.
-- **Constraint:** NO `/src` folder allowed. All application code lives in root-level directories (`/app`, `/components`, `/lib`, etc.).
-- **Reasoning:** Simplified resolution for Payload 3.0 and Vercel edge alignments.
+## Project Architecture (Astro `src/`)
+- **Rule:** Application code lives under `src/` (Astro convention).
+- **Layout:** `src/pages/` · `src/layouts/` · `src/components/` · `src/content/` · `src/data/` · `src/styles/`. Root: `public/`, `nerd/`, `docs/`, `_archive/`, `.claude/`.
+- **Reasoning:** Astro's standard layout. The prior `flat root` rule was Payload+Vercel-specific (Mar 2026); retired Apr 26, 2026 with the Astro pivot.
+- **Reference:** Stack pivot decision recorded in `docs/beef-im-astro-deployment-plan.md`.
 
 ## The "Save" Protocol
 - Triggered by "save" or "log" commands.
