@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "case",
+        "experiment",
+        "field-note"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lede": {
+      "type": "string"
+    },
+    "temperature": {
+      "type": "string",
+      "enum": [
+        "risk",
+        "medium",
+        "low"
+      ]
+    },
+    "footerType": {
+      "type": "string",
+      "enum": [
+        "analysis",
+        "cooking"
+      ]
+    },
+    "author": {
+      "default": "ณัฐพล",
+      "type": "string"
+    },
+    "readTime": {
+      "type": "string"
+    },
+    "wordCount": {
+      "type": "number"
+    },
+    "code": {
+      "type": "string"
+    },
+    "sidenote": {
+      "type": "string"
+    },
+    "latest": {
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "date",
+    "lede",
+    "temperature",
+    "footerType"
+  ]
+}

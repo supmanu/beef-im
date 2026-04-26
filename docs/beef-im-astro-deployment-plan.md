@@ -1,6 +1,6 @@
 # beef.im Astro Scaffold Initialization
 
-> **Stack pivot:** Next.js / Payload / Neon → Astro 4.x / MDX / Cloudflare Pages
+> **Stack pivot:** Next.js / Payload / Neon → Astro 6.x / MDX / Cloudflare Pages
 > **Decision date:** Apr 26, 2026
 > **Updated:** Apr 26, 2026 — handoff-ready for Antigravity (Gemini 3.1 Pro)
 > **Reference:** [PRODUCTION-NOTES.md](./brainstorm/New%20UIUX/PRODUCTION-NOTES.md) · [Prototype-Definitive-v1.html](./brainstorm/New%20UIUX/Prototype-Definitive-v1.html)
@@ -66,11 +66,11 @@ Inject the scaffolding cleanly without using the interactive `npm create astro` 
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.x",
-    "@astrojs/mdx": "^3.x",
-    "@astrojs/tailwind": "^5.x",
-    "@astrojs/sitemap": "^3.x",
-    "@astrojs/react": "^3.x",
+    "astro": "^6.1.9",
+    "@astrojs/mdx": "^5.x",
+    "@tailwindcss/vite": "^4.x",
+    "@astrojs/sitemap": "^3.7",
+    "@astrojs/react": "^5.x",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.x"

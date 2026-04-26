@@ -25,7 +25,7 @@ const allEntries = [...caseEntries, ...expEntries, ...fieldEntries].sort((a, b) 
       {allEntries.map((entry, i) => (
         <NotebookEntry 
           index={allEntries.length - i}
-          slug={entry.slug}
+          slug={entry.id}
           category={entry.data.category}
           title={entry.data.title}
           lede={entry.data.lede}
