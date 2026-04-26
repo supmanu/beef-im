@@ -1,6 +1,10 @@
 ---
+const now = new Date();
+const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+const formattedDate = `${days[now.getDay()]} · ${now.getDate().toString().padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear().toString().slice(-2)}`;
 ---
 <nav class="hero-nav">
   <div class="hero-brand">ประกันเนื้อๆ<small>BEEF · IM · JOURNAL</small></div>
-  <div class="hero-nav-right">SAT · 26 APR 26</div>
+  <div class="hero-nav-right">{formattedDate}</div>
 </nav>
