@@ -131,6 +131,23 @@
     linear-gradient(180deg, #F3EDDF 0%, #EFE9D8 50%, #EFE8D5 100%);
   background-size: 24px 24px, 24px 24px, auto, auto;
   color: #1B1A17; font-family: var(--font-display);
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+
+/* =====================================================================
+   PAGE OPENING — Notebook cover flip
+   ===================================================================== */
+.hero.is-opening {
+  pointer-events: none;
+  transform: perspective(1500px) rotateY(-160deg);
+  opacity: 0;
+  transition:
+    transform 0.85s cubic-bezier(0.645, 0.045, 0.355, 1.000),
+    opacity 0.3s ease 0.55s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.is-opening { transform: none !important; opacity: 0; transition: opacity 0.15s ease !important; }
 }
 .hero::before {
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2;

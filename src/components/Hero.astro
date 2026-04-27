@@ -23,3 +23,45 @@ import Navbar from './Navbar.astro';
     <svg width="14" height="16" viewBox="0 0 14 16"><line x1="7" y1="0" x2="7" y2="10"/><line x1="3" y1="6" x2="7" y2="10"/><line x1="11" y1="6" x2="7" y2="10"/></svg>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    function openNotebook(e) {
+      e.preventDefault();
+      var hero = document.getElementById('hero');
+      var homepage = document.getElementById('homepage');
+      if (!hero || !homepage) return;
+
+      // Reduced motion: skip animation, just scroll
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        homepage.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Lift hero out of flow so homepage content is visible beneath
+      hero.style.position = 'fixed';
+      hero.style.inset = '0';
+      hero.style.zIndex = '50';
+
+      // Double rAF: ensure fixed-position paint completes before transform fires
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          hero.classList.add('is-opening');
+        });
+      });
+
+      // After flip completes: hide hero, snap viewport to homepage
+      hero.addEventListener('transitionend', function done(evt) {
+        if (evt.propertyName !== 'transform') return;
+        hero.removeEventListener('transitionend', done);
+        hero.style.display = 'none';
+        homepage.scrollIntoView({ behavior: 'instant' });
+      });
+    }
+
+    var cta = document.querySelector('.hero-cta');
+    var down = document.querySelector('.hero-down');
+    if (cta) cta.addEventListener('click', openNotebook);
+    if (down) down.addEventListener('click', openNotebook);
+  });
+</script>
