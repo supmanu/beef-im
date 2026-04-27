@@ -13,15 +13,15 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: v6.3 SEO + ANIMATION POLISH (Apr 28, 2026)
-* **Last Updated:** Apr 28, 2026 (Flip animation removed → ink-settle reveal; SEO & accessibility fixes)
+## 🟢 CURRENT STATUS: v6.4 PERFORMANCE PASS (Apr 28, 2026)
+* **Last Updated:** Apr 28, 2026 (deployment pipeline fixed, Lighthouse 99/100, cache headers)
 * **Model Stack:**
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (Code & Production)
     *   **Research:** Gemini 3 Pro (Deep Research & UI Verification — Irreplaceable)
     *   **Routine:** Gemini 3 Flash
 * **Architecture:** Astro 6.1.9 + Tailwind v4 + MDX + Content Layer.
-* **UI State:** "Notebook" aesthetic fully implemented. Typography legibility pass complete. Ink-settle reveal active (IntersectionObserver cascade on homepage entries).
-* **Deployment:** Cloudflare Pages (`beef-im`) active. Primary repo: `supmanu/beef-im`.
+* **UI State:** "Notebook" aesthetic fully implemented. Ink-settle reveal active (IntersectionObserver cascade). Real-world LCP 0.79s desktop.
+* **Deployment:** Cloudflare Pages (`beef-im`) active. Auto-deploy on push to `supmanu/beef-im` main. `dist/` excluded from git (fixed Apr 28).
 
 ## ✅ ACCOMPLISHMENTS
 *   **[Architecture]** **Strategic Pivot to Astro 6.1+ & MDX (Apr 26-27, 2026).**
