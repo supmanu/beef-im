@@ -60,12 +60,24 @@ import Navbar from './Navbar.astro';
         });
       });
 
-      // After flip: hide hero, snap viewport to homepage
+      // After flip: scroll first (hero still fixed+invisible), then reset to normal flow
       hero.addEventListener('transitionend', function done(evt) {
         if (evt.propertyName !== 'transform') return;
         hero.removeEventListener('transitionend', done);
-        hero.style.display = 'none';
+
+        // Scroll while hero is still fixed+invisible — no flash
         homepage.scrollIntoView({ behavior: 'instant' });
+
+        // Next frame: hero is off-screen, safely reset to normal document flow
+        requestAnimationFrame(function () {
+          hero.style.transition = 'none';       // freeze — prevent reverse-animate
+          hero.classList.remove('is-opening');
+          hero.style.position = '';
+          hero.style.inset = '';
+          hero.style.zIndex = '';
+          void hero.offsetHeight;               // force reflow
+          hero.style.transition = '';           // restore for future plays
+        });
       });
     }
 
