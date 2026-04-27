@@ -293,7 +293,7 @@ body.article-page {
 }
 .nb-article-wrap { max-width: 580px; margin: 0 auto; position: relative; }
 @media (min-width: 768px) { .nb-article-wrap { max-width: 620px; } .nb-article-body { padding: 32px 24px 56px; } }
-@media (min-width: 1200px) { .nb-article-wrap { max-width: 660px; } }
+@media (min-width: 1200px) { .nb-article-wrap { max-width: 660px; } .nb-article-wrap p { font-size: 16px; } }
 .nb-h { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.2; letter-spacing: -0.015em; margin-bottom: 8px; color: #1B1A17; }
 @media (min-width: 768px) { .nb-h { font-size: 34px; } }
 .nb-byline { font-family: var(--font-hand); font-weight: 300; font-style: italic; font-size: 13px; color: #2B4A5E; margin-bottom: 6px; }
@@ -337,9 +337,9 @@ body.article-page {
 .nb-page-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(199,183,143,0.45); display: flex; justify-content: space-between; align-items: flex-end; }
 .nb-page-footer-left { font-family: var(--font-hand); font-weight: 300; font-style: italic; font-size: 11px; color: #2B4A5E; line-height: 1.5; }
 .nb-page-footer-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.nb-page-footer-right svg { width: 42px; height: 42px; }
+.nb-page-footer-right svg { width: 48px; height: 48px; }
 .nb-page-footer-right ellipse { fill: none; stroke: var(--color-red); stroke-width: 1.5; opacity: 0.6; }
-.nb-page-footer-right text { font-family: var(--font-display); font-weight: 700; font-size: 8px; fill: var(--color-red); text-anchor: middle; dominant-baseline: central; opacity: 0.7; }
+.nb-page-footer-right text { font-family: var(--font-display); font-weight: 700; font-size: 10px; fill: var(--color-red); text-anchor: middle; dominant-baseline: central; opacity: 0.7; }
 .nb-page-num { font-family: var(--font-mono); font-size: 9px; color: #1B1A17; opacity: 0.4; letter-spacing: 0.1em; }
 .nb-watermark { margin-top: 20px; padding-top: 12px; border-top: 1px solid rgba(199,183,143,0.4); font-size: 10.5px; color: rgba(27,26,23,0.42); text-align: center; letter-spacing: -0.005em; }
 
