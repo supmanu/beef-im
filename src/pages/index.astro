@@ -53,12 +53,12 @@ const allEntries = [...caseEntries, ...expEntries, ...fieldEntries].sort((a, b) 
     var rule   = container.querySelector('.hp-header-rule');
     var entries = Array.from(container.querySelectorAll('.nb-entry'));
 
-    // Entries already in viewport get a cascading stagger starting at 160ms.
-    // Entries that appear later on scroll get no delay (0ms default).
+    // Batch all rect reads before any writes to avoid forced reflow.
     var vh = window.innerHeight;
+    var tops = entries.map(function (entry) { return entry.getBoundingClientRect().top; });
     var slot = 0;
-    entries.forEach(function (entry) {
-      if (entry.getBoundingClientRect().top < vh && slot < 5) {
+    entries.forEach(function (entry, i) {
+      if (tops[i] < vh && slot < 5) {
         entry.style.animationDelay = (160 + slot * 80) + 'ms';
         slot++;
       }
