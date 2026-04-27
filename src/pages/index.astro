@@ -41,4 +41,42 @@ const allEntries = [...caseEntries, ...expEntries, ...fieldEntries].sort((a, b) 
       <div class="nb-home-footer">— จบเล่ม —</div>
     </div>
   </section>
+
+<script is:inline>
+  function initReveal() {
+    var container = document.querySelector('.hp-container');
+    if (!container || container.dataset.inkInit) return;
+    container.dataset.inkInit = '1';
+    container.classList.add('js-ink-init');
+
+    var header = container.querySelector('.hp-header');
+    var rule   = container.querySelector('.hp-header-rule');
+    var entries = Array.from(container.querySelectorAll('.nb-entry'));
+
+    // Entries already in viewport get a cascading stagger starting at 160ms.
+    // Entries that appear later on scroll get no delay (0ms default).
+    var vh = window.innerHeight;
+    var slot = 0;
+    entries.forEach(function (entry) {
+      if (entry.getBoundingClientRect().top < vh && slot < 5) {
+        entry.style.animationDelay = (160 + slot * 80) + 'ms';
+        slot++;
+      }
+    });
+
+    var obs = new IntersectionObserver(function (changes) {
+      changes.forEach(function (c) {
+        if (c.isIntersecting) {
+          c.target.classList.add('ink-visible');
+          obs.unobserve(c.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    [header, rule].concat(entries).forEach(function (el) { if (el) obs.observe(el); });
+  }
+
+  document.addEventListener('DOMContentLoaded', initReveal);
+  document.addEventListener('astro:page-load', initReveal);
+</script>
 </BaseLayout>

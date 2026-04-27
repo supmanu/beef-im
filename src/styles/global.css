@@ -15,7 +15,6 @@
   --color-grid-line: rgba(120, 100, 75, 0.11);
 
   --font-thai: "Sarabun", sans-serif;
-  --font-serif: "Noto Serif Thai", serif;
   --font-display: "Anuphan", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
   --font-hand: "K2D", sans-serif;
@@ -131,24 +130,8 @@
     linear-gradient(180deg, #F3EDDF 0%, #EFE9D8 50%, #EFE8D5 100%);
   background-size: 24px 24px, 24px 24px, auto, auto;
   color: #1B1A17; font-family: var(--font-display);
-  transform-origin: left center;
-  backface-visibility: hidden;
 }
 
-/* =====================================================================
-   PAGE OPENING — Notebook cover flip
-   ===================================================================== */
-.hero.is-opening {
-  pointer-events: none;
-  transform: perspective(1500px) rotateY(-160deg);
-  opacity: 0;
-  transition:
-    transform 1.4s cubic-bezier(0.645, 0.045, 0.355, 1.000),
-    opacity 0.4s ease 0.95s;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero.is-opening { transform: none !important; opacity: 0; transition: opacity 0.15s ease !important; }
-}
 .hero::before {
   content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2;
   background:
@@ -224,11 +207,6 @@
 .hero-sketch .sk-axis-label { font-family: var(--font-mono); font-size: 6px; fill: rgba(27,26,23,0.55); opacity: 0; animation: sketchAppear 400ms 4.8s ease-out both; }
 @media (max-width: 767px) { .hero-sketch { right: 14px; bottom: 120px; width: 96px; height: 74px; } }
 
-/* Down indicator */
-.hero-down { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 5; animation: inkSettle 600ms 3s both; }
-.hero-down span { display: block; font-family: var(--font-mono); font-size: 10.5px; color: rgba(27,26,23,0.58); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
-.hero-down svg { display: block; margin: 0 auto; animation: downFloat 2s ease-in-out infinite; }
-.hero-down svg line { stroke: rgba(27,26,23,0.65); stroke-width: 1.8; stroke-linecap: round; }
 
 /* =====================================================================
    HOMEPAGE — Flat-list notebook entries
@@ -249,6 +227,14 @@
 .hp-header-left { font-family: var(--font-display); font-size: 11px; color: #1B1A17; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; }
 .hp-header-right { font-family: var(--font-mono); font-size: 9px; color: #2E6D63; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
 .hp-header-rule { height: 1px; background: #C7B78F; opacity: 0.55; margin-bottom: 28px; }
+
+/* Ink-settle reveal — hidden until JS activates (no-JS: always visible) */
+.js-ink-init .hp-header,
+.js-ink-init .hp-header-rule,
+.js-ink-init .nb-entry { opacity: 0; }
+.hp-header.ink-visible { animation: inkSettle 400ms both; }
+.hp-header-rule.ink-visible { animation: inkSettle 350ms 80ms both; }
+.nb-entry.ink-visible { animation: inkSettle 500ms both; }
 
 /* Entry row */
 .nb-entry { position: relative; padding: 22px 0 22px 40px; border-bottom: 1px solid rgba(199,183,143,0.45); cursor: pointer; transition: background 200ms ease; }
@@ -366,7 +352,7 @@ body.article-page {
   .hero-sunburst { animation: none; opacity: 1; }
   .hero-rule { animation: none; width: 60px; opacity: 0.85; }
   .hero-eyebrow span { animation: none; width: auto; border-right-color: transparent; }
-  .hero-h, .hero-sub, .hero-cta, .hero-down svg { animation: none; }
+  .hero-h, .hero-sub, .hero-cta { animation: none; }
   .hero-sketch { animation: none; opacity: 1; }
   .hero-sketch .sk-line.draw { animation: none; stroke-dashoffset: 0; }
   .hero-sketch .sk-point { animation: none; opacity: 1; }

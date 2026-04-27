@@ -9,8 +9,6 @@ import '@fontsource/k2d/300.css';
 import '@fontsource/k2d/400.css';
 import '@fontsource/k2d/300-italic.css';
 import '@fontsource/k2d/400-italic.css';
-import '@fontsource/noto-serif-thai/400.css';
-import '@fontsource/noto-serif-thai/700.css';
 import '@fontsource/sarabun/400.css';
 import '@fontsource/sarabun/500.css';
 import '@fontsource/sarabun/700.css';
@@ -27,6 +25,9 @@ const { title, description = 'ประกันเนื้อๆ — BEEF · I
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Preload LCP font (Thai subset, 700 weight — hero heading) -->
+  <!-- Note: update hash if @fontsource/anuphan package version changes -->
+  <link rel="preload" href="/_astro/anuphan-thai-700-normal.rOsLv-jZ.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -37,6 +38,8 @@ const { title, description = 'ประกันเนื้อๆ — BEEF · I
   <meta name="twitter:card" content="summary">
 </head>
 <body class={bodyClass}>
-  <slot />
+  <main>
+    <slot />
+  </main>
 </body>
 </html>

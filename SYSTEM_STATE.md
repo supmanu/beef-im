@@ -13,14 +13,14 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: v6.2 TYPOGRAPHY + ANIMATION (Apr 27, 2026)
-* **Last Updated:** Apr 27, 2026 (Typography legibility pass + Notebook flip animation)
+## 🟢 CURRENT STATUS: v6.3 SEO + ANIMATION POLISH (Apr 28, 2026)
+* **Last Updated:** Apr 28, 2026 (Flip animation removed → ink-settle reveal; SEO & accessibility fixes)
 * **Model Stack:**
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (Code & Production)
     *   **Research:** Gemini 3 Pro (Deep Research & UI Verification — Irreplaceable)
     *   **Routine:** Gemini 3 Flash
 * **Architecture:** Astro 6.1.9 + Tailwind v4 + MDX + Content Layer.
-* **UI State:** "Notebook" aesthetic fully implemented. Typography legibility pass complete. Signature page-opening flip animation live.
+* **UI State:** "Notebook" aesthetic fully implemented. Typography legibility pass complete. Ink-settle reveal active (IntersectionObserver cascade on homepage entries).
 * **Deployment:** Cloudflare Pages (`beef-im`) active. Primary repo: `supmanu/beef-im`.
 
 ## ✅ ACCOMPLISHMENTS
@@ -160,27 +160,22 @@
 
 ## 🎨 UI/UX ENHANCEMENTS
 
-*   **[Typography + Animation Sprint]** beef.im Legibility Pass + Notebook Flip (Apr 27, 2026).
-    *   **Audit:** Full comparative UI/UX audit vs. legacy nerdwithnart.com. Identified 5 priority fixes.
-    *   **Typography fixes (global.css):**
-        *   Article H1: 24→28px mobile, 28→34px tablet (authority on first impression)
-        *   Homepage lede: 13→14px (Thai script breathing room)
-        *   Verdict label: 10→12px, opacity 0.8→0.85 (was stacking 4 legibility penalties)
-        *   Article nav back: 10→12px + 8px 10px padding (44px touch target)
-        *   Body text: 16px at ≥1200px desktop breakpoint
-        *   VerdictSeal text: 10→11px (SVG inline)
-        *   Footer stamp circle: 42→48px, text 8→10px, opacity 0.7→0.85
-    *   **Hero refinements:** CTA button warm black (#2B2420) + border-radius 3px + warm border (removed SaaS-style hard square). Hero sub margin-bottom 32→22px (balance gravity).
-    *   **Signature Animation — Notebook Cover Flip:**
-        *   Click "เปิดสมุดบันทึก", down-arrow, or scroll-down triggers hero flip.
-        *   `rotateY(0 → -160deg)` on `transform-origin: left center` (spine). `perspective(1500px)`.
-        *   `backface-visibility: hidden` — no back-face artifact past edge-on.
-        *   1.4s `cubic-bezier(0.645, 0.045, 0.355, 1.000)` — real book-turn timing.
-        *   Opacity fade starts at 0.95s (page past edge-on). Total: transform 1.4s + opacity 0.4s.
-        *   Double-rAF: fixed-position paint completes before transform fires.
-        *   After flip: hero reset to normal document flow (invisible) → scroll to homepage → restore. Scroll-up reveals hero; animation replays on next trigger.
-        *   `prefers-reduced-motion`: instant hide + smooth scroll only.
-    *   **Commits:** 10 commits, `53d1f69` → `861b92c` on `supmanu/beef-im` main.
+*   **[SEO + Animation Polish]** beef.im Animation Replacement + SEO/Accessibility Fixes (Apr 28, 2026).
+    *   **Flip animation REMOVED** — full-viewport `rotateY(-160deg)` at 1.4s caused vestibular-visual conflict (motion sickness). Same root cause as FPS sensitivity. Scroll hijack (preventDefault) compounded the effect. Decision: no viewport-filling 3D transforms on this site.
+    *   **Ink-settle reveal (replacement):** Homepage entries fade+blur-in via IntersectionObserver cascade. Uses existing `inkSettle` keyframe (`blur(4px→0) + opacity(0→1) + translateY(4px→0)`). Header settles first (0ms/80ms), first visible cards stagger at 160/240/320…ms, below-fold cards reveal on scroll. Double event listener (`DOMContentLoaded` + `astro:page-load`) for View Transitions readiness. Guard: `container.dataset.inkInit` prevents double-init.
+    *   **SEO fixes:**
+        *   `public/robots.txt` created — was serving HTML to crawlers (100 errors in PageSpeed).
+        *   `Sitemap: https://beef.im/sitemap-index.xml` — wired to existing `@astrojs/sitemap` integration.
+    *   **Accessibility fixes:**
+        *   `h3` → `h2` in `NotebookEntry.astro` — heading order was `h1` → `h3` (skipped level).
+        *   `<main>` landmark added to `BaseLayout.astro` — screen reader navigation.
+    *   **Font cleanup:**
+        *   Removed `@fontsource/noto-serif-thai` (400+700) — `--font-serif` variable was declared but never applied to any element. Dead CSS imports.
+        *   Added `<link rel="preload">` for `anuphan-thai-700-normal.rOsLv-jZ.woff2` — LCP font. Moves Thai heading font fetch to parallel with HTML parse. **Update hash if `@fontsource/anuphan` package version changes.**
+    *   **Favicon:** Changed from custom `ป`-in-circle SVG to 🥩 emoji SVG. Readable at 16px tab size; on-brand for beef.im.
+    *   **Typography Sprint (Apr 27, prev session):**
+        *   Article H1: 24→28px mobile, 28→34px tablet. Homepage lede: 13→14px. Verdict label: 10→12px, opacity 0.8→0.85. Article nav back: 10→12px. Body text: 16px at ≥1200px. Footer stamp: 42→48px circle.
+        *   Hero CTA button: warm black (#2B2420) + border-radius 3px + warm border.
 *   **[Visual Refinement Sprint]** Site-Wide Typography & Asset Sovereignty (Mar 22, 2026).
     *   **Scope:** 11 commits across 2 sessions covering all pages (Home, Articles, Tools, Contact, Manifesto).
     *   **Typography Standard:** `tracking-wider` locked as site-wide standard for all uppercase labels/badges. Replaced all `tracking-widest`, `tracking-[0.2em]`, `tracking-[0.3em]` instances.
