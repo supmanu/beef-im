@@ -13,14 +13,14 @@
 4.  **Restore:** Save the updated file BACK to `_archive/legacy_pillars/`.
 *   **Do NOT** leave config files in the active `nerd/pillars/` folder.
 
-## 🟢 CURRENT STATUS: v6.1 ASTRO-NATIVE (Apr 27, 2026)
-* **Last Updated:** Apr 27, 2026 (Astro migration & visual parity LOCKED)
+## 🟢 CURRENT STATUS: v6.2 TYPOGRAPHY + ANIMATION (Apr 27, 2026)
+* **Last Updated:** Apr 27, 2026 (Typography legibility pass + Notebook flip animation)
 * **Model Stack:**
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (Code & Production)
     *   **Research:** Gemini 3 Pro (Deep Research & UI Verification — Irreplaceable)
     *   **Routine:** Gemini 3 Flash
 * **Architecture:** Astro 6.1.9 + Tailwind v4 + MDX + Content Layer.
-* **UI State:** "Notebook" aesthetic fully implemented. 100% parity with Definitive Prototype.
+* **UI State:** "Notebook" aesthetic fully implemented. Typography legibility pass complete. Signature page-opening flip animation live.
 * **Deployment:** Cloudflare Pages (`beef-im`) active. Primary repo: `supmanu/beef-im`.
 
 ## ✅ ACCOMPLISHMENTS
@@ -159,6 +159,28 @@
 10. **Hierarchy Law:** Layer 2 (PDF Vault) is **Forensic Fallback ONLY**. Primary production MUST use Layer 3 (Markdown/Vector).
 
 ## 🎨 UI/UX ENHANCEMENTS
+
+*   **[Typography + Animation Sprint]** beef.im Legibility Pass + Notebook Flip (Apr 27, 2026).
+    *   **Audit:** Full comparative UI/UX audit vs. legacy nerdwithnart.com. Identified 5 priority fixes.
+    *   **Typography fixes (global.css):**
+        *   Article H1: 24→28px mobile, 28→34px tablet (authority on first impression)
+        *   Homepage lede: 13→14px (Thai script breathing room)
+        *   Verdict label: 10→12px, opacity 0.8→0.85 (was stacking 4 legibility penalties)
+        *   Article nav back: 10→12px + 8px 10px padding (44px touch target)
+        *   Body text: 16px at ≥1200px desktop breakpoint
+        *   VerdictSeal text: 10→11px (SVG inline)
+        *   Footer stamp circle: 42→48px, text 8→10px, opacity 0.7→0.85
+    *   **Hero refinements:** CTA button warm black (#2B2420) + border-radius 3px + warm border (removed SaaS-style hard square). Hero sub margin-bottom 32→22px (balance gravity).
+    *   **Signature Animation — Notebook Cover Flip:**
+        *   Click "เปิดสมุดบันทึก", down-arrow, or scroll-down triggers hero flip.
+        *   `rotateY(0 → -160deg)` on `transform-origin: left center` (spine). `perspective(1500px)`.
+        *   `backface-visibility: hidden` — no back-face artifact past edge-on.
+        *   1.4s `cubic-bezier(0.645, 0.045, 0.355, 1.000)` — real book-turn timing.
+        *   Opacity fade starts at 0.95s (page past edge-on). Total: transform 1.4s + opacity 0.4s.
+        *   Double-rAF: fixed-position paint completes before transform fires.
+        *   After flip: hero reset to normal document flow (invisible) → scroll to homepage → restore. Scroll-up reveals hero; animation replays on next trigger.
+        *   `prefers-reduced-motion`: instant hide + smooth scroll only.
+    *   **Commits:** 10 commits, `53d1f69` → `861b92c` on `supmanu/beef-im` main.
 *   **[Visual Refinement Sprint]** Site-Wide Typography & Asset Sovereignty (Mar 22, 2026).
     *   **Scope:** 11 commits across 2 sessions covering all pages (Home, Articles, Tools, Contact, Manifesto).
     *   **Typography Standard:** `tracking-wider` locked as site-wide standard for all uppercase labels/badges. Replaced all `tracking-widest`, `tracking-[0.2em]`, `tracking-[0.3em]` instances.
