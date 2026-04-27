@@ -86,6 +86,11 @@ import Navbar from './Navbar.astro';
           requestAnimationFrame(function () {
             hero.style.opacity = '';
             hero.style.transition = '';
+            // Reset guard + re-attach scroll triggers so animation is replayable
+            isOpening = false;
+            window.addEventListener('wheel', onWheel, { passive: false });
+            window.addEventListener('touchstart', onTouchStart, { passive: true });
+            window.addEventListener('touchmove', onTouchMove, { passive: true });
           });
         });
       });
