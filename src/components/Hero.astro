@@ -60,23 +60,33 @@ import Navbar from './Navbar.astro';
         });
       });
 
-      // After flip: scroll first (hero still fixed+invisible), then reset to normal flow
+      // After flip: reset hero to normal flow while keeping it invisible,
+      // THEN scroll — so the scroll offset accounts for hero's 100vh height.
       hero.addEventListener('transitionend', function done(evt) {
         if (evt.propertyName !== 'transform') return;
         hero.removeEventListener('transitionend', done);
 
-        // Scroll while hero is still fixed+invisible — no flash
-        homepage.scrollIntoView({ behavior: 'instant' });
-
-        // Next frame: hero is off-screen, safely reset to normal document flow
         requestAnimationFrame(function () {
-          hero.style.transition = 'none';       // freeze — prevent reverse-animate
+          // 1. Freeze transitions to prevent reverse-animate
+          hero.style.transition = 'none';
+          // 2. Pin opacity=0 via inline style so hero stays invisible
+          hero.style.opacity = '0';
+          // 3. Clear is-opening (removes transform) — opacity held by inline style
           hero.classList.remove('is-opening');
+          // 4. Return hero to normal document flow (position: relative)
           hero.style.position = '';
           hero.style.inset = '';
           hero.style.zIndex = '';
-          void hero.offsetHeight;               // force reflow
-          hero.style.transition = '';           // restore for future plays
+          // 5. Force reflow — hero now occupies its 100vh in the layout
+          void hero.offsetHeight;
+          // 6. Scroll to homepage — correct offset now that hero is in flow
+          homepage.scrollIntoView({ behavior: 'instant' });
+
+          // 7. Restore hero visibility above the fold (no flash — it's off-screen)
+          requestAnimationFrame(function () {
+            hero.style.opacity = '';
+            hero.style.transition = '';
+          });
         });
       });
     }
