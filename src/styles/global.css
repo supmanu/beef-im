@@ -247,6 +247,7 @@
 .nb-entry:first-of-type .nb-latest-stamp { top: -6px; }
 .nb-entry-masthead { display: flex; gap: 14px; align-items: baseline; font-family: var(--font-display); font-weight: 700; font-size: 9.5px; color: #A84030; text-transform: uppercase; letter-spacing: 0.14em; padding-bottom: 6px; border-bottom: 1px solid rgba(204,58,47,0.15); margin-bottom: 8px; }
 .nb-entry-masthead .meta { font-family: var(--font-mono); font-weight: 500; color: rgba(27,26,23,0.45); letter-spacing: 0.1em; font-size: 8.5px; margin-left: auto; }
+.nb-entry-masthead.has-stamp .meta { padding-right: 54px; }
 .nb-entry-h { font-family: var(--font-display); font-weight: 800; font-size: 18px; line-height: 1.28; color: #1B1A17; letter-spacing: -0.012em; margin-bottom: 8px; }
 @media (min-width: 768px) { .nb-entry-h { font-size: 19.5px; } }
 .nb-entry-lede { font-family: var(--font-thai); font-size: 14px; line-height: 1.65; color: #3a3933; margin-bottom: 10px; display: inline; transition: background 0.2s; }

@@ -34,7 +34,7 @@ const metaStr = metaParts.join(' · ');
 <a href={`/${category}/${slug}`} class="nb-entry block no-underline">
   <span class="nb-entry-num">{numStr}</span>
   {latest && <LatestStamp />}
-  <div class="nb-entry-masthead">
+  <div class={`nb-entry-masthead${latest ? ' has-stamp' : ''}`}>
     <span>{displayCategory}</span>
     {metaStr && <span class="meta">{metaStr}</span>}
   </div>

@@ -33,16 +33,16 @@ Obsidian seeds/ → (Gemini Deep Research when needed) → /architect → /perfo
 
 One-shot: `/produce-article [topic] [mode]` · Quick: `/hybrid [topic] S`
 
-`/publish` skill needs rewrite: emit MDX with notebook-component imports + frontmatter (title, category, slug, date, lede, sidenote, temperature, footerType) instead of Payload Lexical JSON. Tracked under Next Objectives.
+`/publish` and `/decorate` skills are Astro-MDX aware and shipping as of Apr 27, 2026 — emit MDX with frontmatter + globally-injected notebook components (no `import` lines, resolved by `src/pages/[...slug].astro`). See `.claude/skills/publish/SKILL.md` + `.claude/skills/decorate/SKILL.md`.
 
 ---
 
 ## Next Objectives
 
-1. **Astro scaffold execution** — handoff plan ready at [docs/beef-im-astro-deployment-plan.md](../../docs/beef-im-astro-deployment-plan.md); Antigravity (Gemini 3.1 Pro) executes Phases 1–6
-2. **`/publish` skill rewrite** — Obsidian seed → MDX with frontmatter + notebook component imports (Claude Code task)
+1. **First real article batch** — write 3–5 production articles using `/performer` → `/decorate` → `/publish` to validate pipeline end-to-end
+2. **Visual brand guideline draft** — `docs/beef-im-visual-system.md` codifying global.css palette, type scale, motion principles, MDX component vocabulary
 3. **Auditor pipeline integration** — verify Thai content compliance checks survive the MDX pivot
-4. **Cloudflare Pages deployment config** — `wrangler.toml`, R2 binding (separate phase, post-scaffold)
+4. **Calculator port** — React Islands for COI/IRR calculators inside ToolLayout (currently empty)
 5. **Visual audit** — diff against `Prototype-Definitive-v1.html` at mobile / tablet / desktop breakpoints
 
 ---
