@@ -144,13 +144,13 @@
   font-family: var(--font-display); font-weight: 800;
   font-size: clamp(200px, 32vw, 360px);
   line-height: 0.82; letter-spacing: -0.05em;
-  color: rgba(168,64,48,0.065);
+  color: rgba(204,58,47,0.059);
   opacity: 0; animation: wmFade 1800ms 200ms ease-out both;
 }
 .hero-sunburst {
   position: absolute; top: -164px; right: -187px;
   width: 560px; height: 560px; z-index: 0; pointer-events: none;
-  background: repeating-conic-gradient(from 18deg, rgba(184,92,56,0.059) 0deg 12deg, transparent 12deg 24deg);
+  background: repeating-conic-gradient(from 18deg, rgba(204,58,47,0.059) 0deg 12deg, transparent 12deg 24deg);
   border-radius: 50%; opacity: 0;
   animation: burstFade 2200ms 1400ms ease-out both, burstRotate 59s linear infinite 3600ms;
 }
