@@ -1,0 +1,477 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="404 — หน้านี้หายไปจากสมุดบันทึก | ประกันเนื้อๆ">
+  <section class="nf-page">
+    <div class="nf-grid-bg" aria-hidden="true"></div>
+
+    <div class="nf-stamp" aria-hidden="true">
+      <span>404</span>
+      <small>หน้านี้หายไป</small>
+    </div>
+
+    <header class="nf-header">
+      <h1 class="nf-logo">
+        ประกัน<span class="accent">เนื้อๆ</span>
+      </h1>
+      <p class="nf-subtitle" id="nfSubtitle"></p>
+    </header>
+
+    <div class="nf-fact-card" id="nfFactCard">
+      <div class="nf-fact-eyebrow">เกร็ดเนื้อ · BEEF FACT</div>
+      <div class="nf-fact-text" id="nfFactText">กำลังคัดเนื้อข้อมูล...</div>
+      <div class="nf-fact-source" id="nfFactSource"></div>
+    </div>
+
+    <div class="nf-category-grid">
+      <button class="nf-cat" data-cat="prime" type="button">
+        <svg class="nf-cat-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 50L80 50M50 20L50 80" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="30" cy="30" r="4" fill="currentColor"/>
+          <circle cx="70" cy="30" r="4" fill="currentColor"/>
+          <circle cx="30" cy="70" r="4" fill="currentColor"/>
+          <circle cx="70" cy="70" r="4" fill="currentColor"/>
+        </svg>
+        <h3>เนื้อชั้นเยี่ยม</h3>
+        <p>Prime Cuts · เนื้อพรีเมียมและการเลือก</p>
+      </button>
+
+      <button class="nf-cat" data-cat="science" type="button">
+        <svg class="nf-cat-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 80L80 80" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+          <path d="M30 30L30 70M50 20L50 70M70 35L70 70" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <h3>ศาสตร์การย่าง</h3>
+        <p>Science &amp; Grill · เคมีของสเต๊กที่ดี</p>
+      </button>
+
+      <button class="nf-cat" data-cat="history" type="button">
+        <svg class="nf-cat-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="22" y="22" width="56" height="56" stroke="currentColor" stroke-width="3"/>
+          <rect x="36" y="36" width="28" height="28" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <h3>ตำนานเนื้อ</h3>
+        <p>Beef Lore · ประวัติและวัฒนธรรม</p>
+      </button>
+
+      <button class="nf-cat" data-cat="health" type="button">
+        <svg class="nf-cat-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M22 56L40 74L78 36" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>สุขภาพ &amp; เนื้อ</h3>
+        <p>Health &amp; Beef · คุณค่าทางโภชนาการ</p>
+      </button>
+    </div>
+
+    <button class="nf-cta" id="nfCta" type="button">คัดเนื้อข้อมูลใหม่</button>
+
+    <a href="/" class="nf-back">← กลับไปที่ สมุดบันทึก</a>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Page background — cream parchment + graph-paper grid (matches hero/homepage) */
+  .nf-page {
+    position: relative;
+    min-height: 100vh;
+    padding: 48px 16px 64px;
+    color: #1B1A17;
+    font-family: var(--font-thai);
+    overflow: hidden;
+  }
+  .nf-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(90deg, rgba(120,100,75,0.11) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(120,100,75,0.11) 1px, transparent 1px),
+      radial-gradient(ellipse at 50% 32%, rgba(255,245,225,0.45) 0%, transparent 55%),
+      linear-gradient(180deg, #F3EDDF 0%, #EFE9D8 50%, #EFE8D5 100%);
+    background-size: 24px 24px, 24px 24px, auto, auto;
+    pointer-events: none;
+  }
+
+  /* Diagonal red verdict-style stamp top-right */
+  .nf-stamp {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    z-index: 4;
+    transform: rotate(-6deg);
+    border: 2px solid rgba(204,58,47,0.55);
+    padding: 8px 18px;
+    background: rgba(244,238,216,0.7);
+    text-align: center;
+    box-shadow: 1px 1px 3px rgba(28,24,20,0.08);
+    opacity: 0.92;
+  }
+  .nf-stamp span {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 28px;
+    color: #CC3A2F;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .nf-stamp small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: #A84030;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  @media (min-width: 768px) {
+    .nf-stamp { top: 36px; right: 36px; padding: 10px 22px; }
+    .nf-stamp span { font-size: 34px; }
+    .nf-stamp small { font-size: 9px; }
+  }
+
+  .nf-header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+    margin: 32px auto 36px;
+  }
+  .nf-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0 0 12px;
+    color: #1B1A17;
+  }
+  .nf-logo .accent { color: #CC3A2F; }
+  @media (min-width: 768px) { .nf-logo { font-size: 56px; } }
+  @media (min-width: 1200px) { .nf-logo { font-size: 64px; } }
+
+  .nf-subtitle {
+    font-family: var(--font-hand);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    color: #2B4A5E;
+    margin: 0;
+    min-height: 1.6em;
+    opacity: 0.92;
+  }
+  .nf-subtitle::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: #B85C38;
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: nfBlink 0.7s infinite;
+  }
+  @keyframes nfBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @media (min-width: 768px) { .nf-subtitle { font-size: 17px; } }
+
+  /* Fact card — tilted scrap-paper style */
+  .nf-fact-card {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto 36px;
+    padding: 24px 22px 22px;
+    background: #F8F2E4;
+    border: 1px solid rgba(120,100,75,0.18);
+    box-shadow: 1px 2px 6px rgba(28,24,20,0.07);
+    transform: rotate(-0.4deg);
+  }
+  .nf-fact-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 4px; height: 100%;
+    background: #CC3A2F;
+    opacity: 0.7;
+  }
+  .nf-fact-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    color: #B85C38;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .nf-fact-text {
+    font-family: var(--font-thai);
+    font-size: 17px;
+    line-height: 1.55;
+    color: #1B1A17;
+    margin-bottom: 12px;
+    min-height: 2.5em;
+  }
+  .nf-fact-source {
+    font-family: var(--font-hand);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 12px;
+    color: #2B4A5E;
+    opacity: 0.85;
+  }
+  .nf-fact-text.nf-fade {
+    animation: nfFadeIn 0.6s ease-out forwards;
+  }
+  @keyframes nfFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Category grid — notebook scrap cards */
+  .nf-category-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 680px;
+    margin: 0 auto 32px;
+  }
+  @media (min-width: 768px) {
+    .nf-category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  }
+
+  .nf-cat {
+    background: #F8F2E4;
+    border: 1px solid rgba(120,100,75,0.18);
+    border-top: 3px solid #B85C38;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+    color: #B85C38;
+    font: inherit;
+    box-shadow: 1px 1px 3px rgba(28,24,20,0.05);
+  }
+  .nf-cat:hover, .nf-cat:focus-visible {
+    transform: translateY(-2px) rotate(-0.3deg);
+    background: rgba(244,238,216,0.85);
+    border-top-color: #CC3A2F;
+    color: #CC3A2F;
+    outline: none;
+  }
+  .nf-cat-icon {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 8px;
+    display: block;
+  }
+  .nf-cat h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    color: #1B1A17;
+    margin: 0 0 4px;
+    letter-spacing: -0.005em;
+  }
+  .nf-cat p {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    color: rgba(27,26,23,0.6);
+    margin: 0;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    min-height: 2.4em;
+  }
+
+  /* CTA button — match hero CTA */
+  .nf-cta {
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: 0 auto 20px;
+    padding: 13px 32px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    color: #F0EADC;
+    background: #2B2420;
+    border: 1px solid rgba(168,92,56,0.35);
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: background 0.25s;
+  }
+  .nf-cta:hover, .nf-cta:focus-visible {
+    background: #CC3A2F;
+    outline: none;
+  }
+  @media (min-width: 768px) {
+    .nf-cta { font-size: 15px; padding: 14px 36px; }
+  }
+
+  .nf-back {
+    position: relative;
+    z-index: 2;
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(27,26,23,0.55);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nf-back:hover { color: #CC3A2F; }
+</style>
+
+<script>
+  type Fact = { text: string; source: string };
+
+  const facts: Record<string, Fact[]> = {
+    prime: [
+      { text: "Ribeye มาจากซี่โครงที่ 6–12 — ส่วนที่ marbling เยอะที่สุดของวัว", source: "USDA Beef Cuts Guide" },
+      { text: "Ribeye ที่ marbling ดีต้องมีไขมันแทรกอย่างน้อย 30% ของเนื้อทั้งชิ้น", source: "Steak Science Journal" },
+      { text: "USDA Prime คือเกรดสูงสุด — มี marbling abundant กระจายทั่วชิ้นเนื้อ", source: "USDA Grading Standards" },
+      { text: "Wagyu A5 ของญี่ปุ่นมี Beef Marbling Score (BMS) 8–12 จากระดับ 12 — สูงสุดในโลก", source: "Japan Meat Grading Association" },
+    ],
+    science: [
+      { text: "Maillard reaction สร้างกลิ่น-รสกว่า 500 ชนิดเมื่อย่างเนื้อที่อุณหภูมิ 150°C ขึ้นไป", source: "Food Chemistry Journal" },
+      { text: "เกลือทำลาย muscle protein เร็วขึ้น 3 เท่าที่อุณหภูมิห้องเทียบกับในตู้เย็น", source: "Molecular Gastronomy" },
+      { text: "Medium-rare ที่สมบูรณ์แบบ = อุณหภูมิแกนกลาง 54–57°C (129–135°F)", source: "Thermal Food Science" },
+      { text: "พักเนื้อ 5 นาทีหลังย่าง — น้ำในเนื้อกระจายกลับสู่กล้ามเนื้อแทนที่จะไหลออกบนจาน", source: "Serious Eats — The Food Lab" },
+    ],
+    history: [
+      { text: "สูตรเนื้อที่เก่าแก่ที่สุดในโลกอยู่บนแผ่นจารึก cuneiform บาบิโลน — อายุ 4,000 ปี", source: "Yale Babylonian Collection" },
+      { text: "คำว่า 'steak' มาจากภาษา Norse 'steik' ในศตวรรษที่ 15 แปลว่า 'ย่าง'", source: "Linguistic Food History" },
+      { text: "ร้านสเต๊กแห่งแรกของโลกเปิดที่ลอนดอนปี 1691 — The Beef Steak Club", source: "Culinary History Records" },
+      { text: "วัวพันธุ์ Kobe ของญี่ปุ่นเดิมเป็นวัวลากเกวียน — กล้ามเนื้อที่ใช้แรงทำให้ไขมันแทรกเยอะ", source: "Hyogo Beef Marketing Council" },
+    ],
+    health: [
+      { text: "เนื้อกินหญ้า (grass-fed) มี omega-3 มากกว่าเนื้อกินอาหารเม็ด 5 เท่า — สัดส่วน omega-3:6 ที่ 2:1", source: "Nutrition Journal" },
+      { text: "เนื้อวัวมี amino acid ครบทั้ง 9 ชนิดที่ร่างกายสร้างเองไม่ได้", source: "Human Nutrition Standards" },
+      { text: "ไขมันใน Wagyu มีสัดส่วน monounsaturated สูงกว่า saturated — คล้ายกับน้ำมันมะกอก", source: "Health & Nutrition Journal" },
+      { text: "เนื้อแดง 100 กรัม ให้ธาตุเหล็ก heme iron ที่ร่างกายดูดซึมได้ดีกว่าเหล็กจากพืช 2–3 เท่า", source: "American Journal of Clinical Nutrition" },
+    ],
+    general: [
+      { text: "Dry-aging นาน 28 วันขึ้นไป — collagen แตกเป็น gelatin ทำให้เนื้อนุ่มและเข้มข้น", source: "Culinary Institute of America" },
+      { text: "สเต๊กที่แพงที่สุดในโลก — Wagyu ribeye ที่ดูไบ ราคา $3,000 ต่อจาน", source: "Guinness World Records" },
+      { text: "คนอเมริกันเฉลี่ยกินเนื้อวัว 25 กิโลกรัมต่อปี — ไทยอยู่ที่ประมาณ 2 กิโลกรัม", source: "USDA + OECD Consumption Data" },
+      { text: "Brisket อร่อยที่สุดที่ 95°C — collagen เริ่มละลายเป็น gelatin ที่อุณหภูมินี้", source: "Texas BBQ Science Lab" },
+    ],
+  };
+
+  const phrases = [
+    "เนื้อสุก ๆ ดิบ ๆ พร้อมข้อมูลรสเด็ด",
+    "Seared facts, rare insights",
+    "ที่ที่คนรักเนื้อมาเคี้ยวข้อมูล",
+    "Aged to perfection — like our facts",
+    "Prime cuts of knowledge",
+  ];
+
+  const allFacts = Object.values(facts).flat();
+  const factText = document.getElementById('nfFactText');
+  const factSource = document.getElementById('nfFactSource');
+  const subtitle = document.getElementById('nfSubtitle');
+
+  function showFact(fact: Fact) {
+    if (!factText || !factSource) return;
+    factText.classList.remove('nf-fade');
+    void (factText as HTMLElement).offsetWidth;
+    factText.classList.add('nf-fade');
+    factText.textContent = fact.text;
+    factSource.textContent = `Source: ${fact.source}`;
+  }
+
+  function showRandom() {
+    const f = allFacts[Math.floor(Math.random() * allFacts.length)];
+    showFact(f);
+  }
+
+  function showCategory(cat: string) {
+    const list = facts[cat];
+    if (!list || !list.length) return;
+    showFact(list[Math.floor(Math.random() * list.length)]);
+  }
+
+  // Wire categories
+  document.querySelectorAll<HTMLButtonElement>('.nf-cat').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      if (cat) showCategory(cat);
+    });
+  });
+
+  // Wire CTA
+  document.getElementById('nfCta')?.addEventListener('click', showRandom);
+
+  // First fact + auto-rotate
+  showRandom();
+  let rotateTimer: number | undefined;
+  function startRotate() {
+    rotateTimer = window.setInterval(showRandom, 8000);
+  }
+  function stopRotate() {
+    if (rotateTimer) { window.clearInterval(rotateTimer); rotateTimer = undefined; }
+  }
+  startRotate();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopRotate(); else if (!rotateTimer) startRotate();
+  });
+
+  // Typewriter subtitle
+  if (subtitle) {
+    const TYPING_SPEED = 90;
+    const DELETING_SPEED = 45;
+    const PAUSE = 1800;
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+    let raf: number | undefined;
+    let last = 0;
+    let acc = 0;
+
+    function tick(ts: number) {
+      if (document.hidden) { raf = undefined; return; }
+      if (!last) last = ts;
+      acc += ts - last;
+      last = ts;
+      const text = phrases[phraseIdx];
+      const speed = deleting ? DELETING_SPEED : TYPING_SPEED;
+      if (acc >= speed) {
+        acc = 0;
+        if (deleting) {
+          subtitle!.textContent = text.substring(0, charIdx--);
+          if (charIdx < 0) {
+            deleting = false;
+            phraseIdx = (phraseIdx + 1) % phrases.length;
+            charIdx = 0;
+            window.setTimeout(() => { last = 0; raf = requestAnimationFrame(tick); }, PAUSE);
+            return;
+          }
+        } else {
+          subtitle!.textContent = text.substring(0, charIdx++);
+          if (charIdx > text.length) {
+            deleting = true;
+            window.setTimeout(() => { last = 0; raf = requestAnimationFrame(tick); }, PAUSE);
+            return;
+          }
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = undefined;
+      } else if (!raf) {
+        last = 0;
+        raf = requestAnimationFrame(tick);
+      }
+    });
+  }
+</script>
