@@ -56,12 +56,6 @@
   100% { opacity: 1; }
 }
 
-@keyframes wmPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.025); }
-  100% { transform: scale(1); }
-}
-
 @keyframes burstFade {
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -151,7 +145,7 @@
   font-size: clamp(200px, 32vw, 360px);
   line-height: 0.82; letter-spacing: -0.05em;
   color: rgba(168,64,48,0.065);
-  opacity: 0; animation: wmFade 1800ms 200ms ease-out both, wmPulse 8s 2.4s ease-in-out infinite;
+  opacity: 0; animation: wmFade 1800ms 200ms ease-out both;
 }
 .hero-sunburst {
   position: absolute; top: -164px; right: -187px;
