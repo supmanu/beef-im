@@ -5,7 +5,7 @@ const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', '
 const formattedDate = `${days[now.getDay()]} · ${now.getDate().toString().padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear().toString().slice(-2)}`;
 ---
 <nav class="hero-nav">
-  <div class="hero-brand">ประกันเนื้อๆ<small>BEEF · IM · JOURNAL</small></div>
+  <a href="/" class="hero-brand" style="text-decoration:none;color:inherit;">ประกันเนื้อๆ<small>BEEF · IM · JOURNAL</small></a>
   <div class="hero-nav-right" id="hero-date-display">{formattedDate}</div>
 </nav>
 
