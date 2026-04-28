@@ -194,7 +194,7 @@ When in doubt:
 - **Better to under-decorate than over-decorate.** A clean article with 2 `<Highlight>` + 1 `<VerdictSeal>` reads better than one with 8 `<Highlight>` and 5 `<MarginNote>` competing for attention.
 - **Numerical anchors > rhetorical phrases** for `<Highlight>`. Concrete data is what readers remember.
 - **Paradox is mandatory in `case` articles, optional in `field-note`, encouraged in `experiment`.** If the article has no paradox AND it's a `case`, decorate but warn the user that the structural problem is upstream.
-- **Cooking articles (`footerType: cooking`)** get a lighter hand: skip `<CorrectionBlock>` (cooking isn't adversarial), skip caution MarginNote unless there's a real safety issue (raw chicken temps, etc.).
+- **Meat / cooking articles (`footerType: meat`)** get a lighter hand: skip `<CorrectionBlock>` (beef facts and cooking aren't adversarial), skip caution MarginNote unless there's a real safety issue (raw chicken temps, etc.).
 
 ---
 

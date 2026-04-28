@@ -32,7 +32,7 @@
       "type": "string",
       "enum": [
         "analysis",
-        "cooking"
+        "meat"
       ]
     },
     "author": {

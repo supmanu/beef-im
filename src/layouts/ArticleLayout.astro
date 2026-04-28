@@ -7,7 +7,7 @@ interface Props {
   description?: string;
   category: string;
   date: string;
-  footerType: 'analysis' | 'cooking';
+  footerType: 'analysis' | 'meat';
   author: string;
   code?: string;
   sidenote?: string;
@@ -41,7 +41,7 @@ const footerStamp = category === 'case' ? '⚠ HIGH' : (category === 'experiment
           <div class="nb-page-footer-left">
             {date} · {author}
             <br />
-            สมุดบันทึกการสำรวจ · เล่ม 1
+            สมุดบันทึก · เล่ม 1
           </div>
           <div class="nb-page-footer-right">
             <svg viewBox="0 0 100 100">

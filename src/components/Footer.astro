@@ -1,6 +1,6 @@
 ---
 interface Props {
-  type: 'analysis' | 'cooking';
+  type: 'analysis' | 'meat';
 }
 const { type } = Astro.props;
 const watermarkText = type === 'analysis' ? '📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)' : '🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)';

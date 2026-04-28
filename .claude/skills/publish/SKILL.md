@@ -44,7 +44,7 @@ category: case            # case | experiment | field-note
 date: 2026-04-25
 lede: "COI ปีที่ 30 = 128,400 บาท — exponential curve ที่หายไปจาก presentation ทุกครั้ง"
 temperature: risk         # risk | medium | low
-footerType: analysis      # analysis | cooking
+footerType: analysis      # analysis | meat
 ---
 ```
 
@@ -73,7 +73,7 @@ latest: true              # marks the LatestStamp on the homepage TOC
 | `date` | Yes | `YYYY-MM-DD` |
 | `lede` | Yes | 1–2 sentences shown on the homepage TOC entry |
 | `temperature` | Yes | `risk` / `medium` / `low` — drives the `<TemperatureBar>` colour |
-| `footerType` | Yes | `analysis` (📊 บทวิเคราะห์โดย: ประกันเนื้อๆ) / `cooking` (🔥 คัดเนื้อโดย: ประกันเนื้อๆ) |
+| `footerType` | Yes | `analysis` (📊 บทวิเคราะห์โดย: ประกันเนื้อๆ) / `meat` (🔥 คัดเนื้อโดย: ประกันเนื้อๆ) |
 | `author` | No | Defaults to "ณัฐพล" |
 | `readTime` | No | Display only, e.g. `"11 MIN"` |
 | `wordCount` | No | Display only, integer |
@@ -173,7 +173,7 @@ Before writing the file, the skill confirms:
 - [ ] All required fields present
 - [ ] `category` is one of the three allowed values
 - [ ] `temperature` is one of `risk` / `medium` / `low`
-- [ ] `footerType` is one of `analysis` / `cooking`
+- [ ] `footerType` is one of `analysis` / `meat`
 - [ ] Resolved filename matches `^[a-z0-9-]+$`
 - [ ] Body contains **no specific drug names** (`Metformin`, `Glimepiride`,
   `Atorvastatin`, …) — see
