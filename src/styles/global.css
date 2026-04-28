@@ -150,7 +150,7 @@
 .hero-sunburst {
   position: absolute; top: -164px; right: -187px;
   width: 560px; height: 560px; z-index: 0; pointer-events: none;
-  background: repeating-conic-gradient(from 18deg, rgba(184,92,56,0.045) 0deg 12deg, transparent 12deg 24deg);
+  background: repeating-conic-gradient(from 18deg, rgba(184,92,56,0.059) 0deg 12deg, transparent 12deg 24deg);
   border-radius: 50%; opacity: 0;
   animation: burstFade 2200ms 1400ms ease-out both, burstRotate 59s linear infinite 3600ms;
 }
