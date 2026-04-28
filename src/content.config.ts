@@ -7,7 +7,7 @@ const articleSchema = z.object({
   date: z.date(),
   lede: z.string(),
   temperature: z.enum(['risk', 'medium', 'low']),
-  footerType: z.enum(['analysis', 'meat']),
+  footerType: z.enum(['analysis', 'beef']),
   author: z.string().optional().default('ณัฐพล'),
   readTime: z.string().optional(),
   wordCount: z.number().optional(),

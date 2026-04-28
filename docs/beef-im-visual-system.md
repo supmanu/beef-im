@@ -141,7 +141,7 @@ Decoration philosophy: **better to under-decorate than over-decorate.** Two `<Hi
 Per `nerd/pillars/constitution.md` Article VII, dual-emoji footer differentiates content type:
 
 - **Finance/insurance:** `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)` (frontmatter `footerType: analysis`)
-- **Beef/meat (facts, science, technique, recipes):** `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` (frontmatter `footerType: meat`)
+- **Beef (facts, science, technique, recipes):** `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` (frontmatter `footerType: beef`)
 
 Inline brand attribution mid-article is **banned** — applies the brand law "เน้นเนื้อๆ ไม่เอาน้ำ" to the brand itself. Footer is enough; first-person ผม voice is not attribution and stays.
 

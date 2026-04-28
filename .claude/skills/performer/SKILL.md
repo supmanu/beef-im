@@ -63,7 +63,7 @@ $ARGUMENTS
 - [ ] Watermark count matches mode? (S=1, A=3, B=4, C=5)
 - [ ] Thai-First ratio >= 85%?
 - [ ] Correct spelling: นาถ (not นาท)?
-- [ ] Footer matches constitution.md Article VII: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)` (finance) / `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` (meat)
+- [ ] Footer matches constitution.md Article VII: `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)` (finance) / `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)` (beef)
 - [ ] No "พี่" (Pi) self-reference?
 - [ ] No internal Bridge IDs (#009, #0XX)?
 

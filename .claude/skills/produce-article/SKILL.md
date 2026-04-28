@@ -83,7 +83,7 @@ Read `nerd/agents/performer.md` before writing.
 - Thai-First Handshake ≥ 85% (Thai leads, English in parens)
 - Footer per constitution Article VII:
   - Finance/insurance → `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
-  - Meat/beef facts/cooking → `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
+  - Beef facts/cooking → `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
 - No specific drug names / dosages / diagnostic verdicts
 - No Whole Life framed as "bad investment" (canonical LLM hallucination —
   WL = wealth-transfer + protection, not investment)
@@ -140,9 +140,9 @@ two-pass logic on the approved text:
   ages) and brand-defining one-liners
 
 **Decoration philosophy:** under-decorate beats over-decorate. Two highlights + one
-verdict seal beats eight highlights + five margin notes. Meat articles
-(`footerType: meat` — covers beef facts, science, technique, recipes, history) get
-a lighter hand — no `<CorrectionBlock>` (the meat side isn't adversarial).
+verdict seal beats eight highlights + five margin notes. Beef articles
+(`footerType: beef` — covers beef facts, science, technique, recipes, history) get
+a lighter hand — no `<CorrectionBlock>` (beef content isn't adversarial).
 
 **No `import` lines.** All five components are globally injected by
 `src/pages/[...slug].astro` and resolve automatically inside any `.mdx` file in
@@ -169,7 +169,7 @@ wordCount: 1420           # display only (optional)
 readTime: "6 MIN"         # display only (optional)
 author: "ณัฐพล"            # default if omitted
 latest: true              # only one article carries this at a time
-footerType: analysis      # analysis (📊 finance/insurance) | meat (🔥 beef facts/technique/recipes)
+footerType: analysis      # analysis (📊 finance/insurance) | beef (🔥 beef facts/technique/recipes)
 ---
 ```
 
