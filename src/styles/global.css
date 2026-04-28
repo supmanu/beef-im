@@ -152,7 +152,7 @@
   width: 560px; height: 560px; z-index: 0; pointer-events: none;
   background: repeating-conic-gradient(from 18deg, rgba(184,92,56,0.045) 0deg 12deg, transparent 12deg 24deg);
   border-radius: 50%; opacity: 0;
-  animation: burstFade 2200ms 1400ms ease-out both, burstRotate 95s linear infinite 3600ms;
+  animation: burstFade 2200ms 1400ms ease-out both, burstRotate 59s linear infinite 3600ms;
 }
 @media (max-width: 767px) {
   .hero-watermark { bottom: -20px; left: -12px; font-size: clamp(170px, 46vw, 260px); }
