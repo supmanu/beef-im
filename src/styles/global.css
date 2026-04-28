@@ -52,8 +52,14 @@
 
 /* Animations from Prototype */
 @keyframes wmFade {
-  0% { opacity: 0; transform: translateY(14px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes wmPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+  100% { transform: scale(1); }
 }
 
 @keyframes burstFade {
@@ -139,13 +145,13 @@
     linear-gradient(to right, rgba(120,100,75,0.06) 0%, transparent 5%, transparent 95%, rgba(120,100,75,0.06) 100%);
 }
 .hero-watermark {
-  position: absolute; bottom: -44px; left: -22px; z-index: 0;
+  position: absolute; bottom: -14px; left: -22px; z-index: 0;
   pointer-events: none; user-select: none;
   font-family: var(--font-display); font-weight: 800;
   font-size: clamp(200px, 32vw, 360px);
   line-height: 0.82; letter-spacing: -0.05em;
   color: rgba(168,64,48,0.065);
-  opacity: 0; animation: wmFade 1800ms 200ms ease-out both;
+  opacity: 0; animation: wmFade 1800ms 200ms ease-out both, wmPulse 8s 2.4s ease-in-out infinite;
 }
 .hero-sunburst {
   position: absolute; top: -164px; right: -187px;
@@ -155,7 +161,7 @@
   animation: burstFade 2200ms 1400ms ease-out both, burstRotate 59s linear infinite 3600ms;
 }
 @media (max-width: 767px) {
-  .hero-watermark { bottom: -20px; left: -12px; font-size: clamp(170px, 46vw, 260px); }
+  .hero-watermark { bottom: -8px; left: -12px; font-size: clamp(170px, 46vw, 260px); }
   .hero-sunburst { top: -92px; right: -115px; width: 320px; height: 320px; }
 }
 
@@ -349,7 +355,7 @@ body.article-page {
 
 /* Reduced motion — component overrides */
 @media (prefers-reduced-motion: reduce) {
-  .hero-watermark { animation: none; opacity: 1; }
+  .hero-watermark { animation: none; opacity: 1; transform: none; }
   .hero-sunburst { animation: none; opacity: 1; }
   .hero-rule { animation: none; width: 60px; opacity: 0.85; }
   .hero-eyebrow span { animation: none; width: auto; border-right-color: transparent; }
