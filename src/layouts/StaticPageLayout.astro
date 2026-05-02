@@ -1,0 +1,148 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+<BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description} bodyClass="static-page">
+  <div class="sp-wrap">
+    <nav class="sp-nav">
+      <a href="/" class="sp-brand">
+        ประกันเนื้อๆ
+        <small>BEEF · IM</small>
+      </a>
+      <a href="/#journal" class="sp-back">← สมุดบันทึก</a>
+    </nav>
+    <article class="sp-content">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+.sp-wrap {
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(120,100,75,0.11) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(120,100,75,0.11) 1px, transparent 1px),
+    linear-gradient(180deg, #F0EADC 0%, #EDE7D8 100%);
+  background-size: 24px 24px, 24px 24px, auto;
+  color: #1B1A17;
+}
+.sp-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px 16px;
+  border-bottom: 1px solid rgba(120,100,75,0.14);
+  background: rgba(240,234,220,0.92);
+  backdrop-filter: blur(4px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.sp-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: #1B1A17;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.sp-brand small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: rgba(27,26,23,0.42);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.sp-back {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #B85C38;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+}
+.sp-back:hover { text-decoration: underline; }
+
+.sp-content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* Typography for static pages */
+.sp-content :global(h1) {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 5vw, 40px);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  color: #1B1A17;
+}
+.sp-content :global(.sp-eyebrow) {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #B85C38;
+  margin-bottom: 20px;
+  display: block;
+}
+.sp-content :global(h2) {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  margin: 40px 0 14px;
+  color: #1B1A17;
+}
+.sp-content :global(p) {
+  font-family: var(--font-thai);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: #2A2724;
+}
+.sp-content :global(hr.sp-rule) {
+  border: none;
+  border-top: 1.5px solid #CC3A2F;
+  width: 48px;
+  margin: 36px 0;
+  opacity: 0.7;
+}
+.sp-content :global(.sp-filter-list) {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sp-content :global(.sp-filter-list li) {
+  font-family: var(--font-thai);
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2A2724;
+  padding-left: 20px;
+  position: relative;
+}
+.sp-content :global(.sp-filter-list li::before) {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #B85C38;
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 767px) {
+  .sp-content { padding: 32px 18px 64px; }
+}
+</style>

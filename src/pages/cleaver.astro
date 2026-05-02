@@ -1,0 +1,105 @@
+---
+import StaticPageLayout from '../layouts/StaticPageLayout.astro';
+import { cleaverTerms, groupByLetter } from '../data/cleaver';
+
+const grouped = groupByLetter(cleaverTerms);
+const letters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'th'));
+---
+<StaticPageLayout
+  title="คำนิยาม"
+  description="พจนานุกรมประกัน + เนื้อ — คำศัพท์จากทั้งสองโลก เรียงตามตัวอักษร ไม่แยกเรื่อง"
+>
+  <span class="sp-eyebrow">THE CLEAVER</span>
+  <h1>คำนิยาม</h1>
+  <hr class="sp-rule" />
+
+  <p>
+    คำศัพท์จากสองโลก — ประกันและเนื้อ — เรียงตัวอักษรปนกัน
+    เพราะ COI กับ Maillard reaction ใช้ตรรกะเดียวกัน:
+    เข้าใจกลไก แล้วจึงตัดสินใจได้ถูกต้อง
+  </p>
+
+  <div class="cl-glossary">
+    {letters.map(letter => (
+      <section class="cl-letter-group">
+        <div class="cl-letter-header">{letter}</div>
+        {grouped[letter].map(term => (
+          <div class="cl-term-row">
+            <div class="cl-term">
+              {term.term}
+              <span class={`cl-pillar cl-pillar--${term.pillar}`}>
+                {term.pillar === 'insurance' ? '📊' : '🔥'}
+              </span>
+            </div>
+            <div class="cl-gloss">
+              {term.gloss}
+              {term.articleSlug && (
+                <a href={`/${term.articleSlug}/`} class="cl-link" aria-label={`บทความแรกที่ใช้คำนี้`}>→</a>
+              )}
+            </div>
+          </div>
+        ))}
+      </section>
+    ))}
+  </div>
+</StaticPageLayout>
+
+<style>
+.cl-glossary {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.cl-letter-group { margin-bottom: 8px; }
+.cl-letter-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: rgba(27,26,23,0.35);
+  text-transform: uppercase;
+  padding: 16px 0 6px;
+  border-top: 1px solid rgba(120,100,75,0.15);
+}
+.cl-term-row {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(120,100,75,0.08);
+  align-items: start;
+}
+.cl-term {
+  font-family: var(--font-thai);
+  font-weight: 500;
+  font-size: 14px;
+  color: #1B1A17;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cl-pillar { font-size: 11px; opacity: 0.7; }
+.cl-gloss {
+  font-family: var(--font-thai);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3A3530;
+}
+.cl-link {
+  margin-left: 6px;
+  color: #B85C38;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  opacity: 0.7;
+}
+.cl-link:hover { opacity: 1; }
+
+@media (max-width: 600px) {
+  .cl-term-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+</style>
