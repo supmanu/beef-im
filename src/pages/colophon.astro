@@ -1,0 +1,68 @@
+---
+import StaticPageLayout from '../layouts/StaticPageLayout.astro';
+---
+<StaticPageLayout
+  title="วิธีสร้าง"
+  description="วิธีที่ beef.im ถูกสร้างขึ้น — stack, typography, แรงบันดาลใจ"
+>
+  <span class="sp-eyebrow">COLOPHON</span>
+  <h1>วิธีสร้าง</h1>
+  <hr class="sp-rule" />
+
+  <h2>Stack</h2>
+  <p>
+    <strong>Framework:</strong> Astro 6.x — static, zero JavaScript โดย default<br />
+    <strong>Interactive:</strong> React 19 ใน Astro Islands (<code>client:load</code>) สำหรับเครื่องคิดเลข<br />
+    <strong>Content:</strong> MDX files ใน <code>src/content/</code> — Git คือ CMS<br />
+    <strong>Styling:</strong> Tailwind CSS v4 (CSS-first)<br />
+    <strong>Search:</strong> Pagefind — ทำงาน client-side จาก static index<br />
+    <strong>Hosting:</strong> Cloudflare Pages<br />
+    <strong>Assets:</strong> Cloudflare R2 (<code>beef-assets</code> bucket)
+  </p>
+
+  <h2>Typography</h2>
+  <p>
+    <strong>Anuphan</strong> — display headlines, Thai, brand wordmark<br />
+    <strong>Sarabun</strong> — body Thai prose<br />
+    <strong>IBM Plex Mono</strong> — labels, technical, dates, badges<br />
+    ทุก font โหลดจาก <a href="https://fontsource.org" class="co-link">Fontsource</a> — self-hosted, zero Google Fonts
+  </p>
+
+  <h2>Visual reference</h2>
+  <p>
+    ความรู้สึก "สมุดบันทึกมือเขียน" ได้รับแรงบันดาลใจจาก
+    <a href="https://pixila.com" class="co-link">Pixila</a> (polygon transition, animated underlines) และ
+    <a href="https://thorgaldesign.com" class="co-link">Thorgal Design</a> (ink-settle entry, SVG stroke reveals)
+    ทั้งสองไซต์พิสูจน์ว่า effect ที่มีน้ำหนักทำได้ด้วย pure CSS ไม่ต้องพึ่ง library
+  </p>
+
+  <h2>Zero-JS policy</h2>
+  <p>
+    บทความทุกชิ้นใช้ JavaScript เป็นศูนย์ — ยกเว้น IntersectionObserver
+    เล็กๆ สำหรับ ink-settle reveal ที่หน้าหลัก
+    เครื่องคิดเลขใช้ React Islands (<code>client:load</code>) แยกเฉพาะหน้า tools
+    <code>/search/</code> เป็นหน้าเดียวที่โหลด Pagefind bundle
+  </p>
+
+  <h2>Accessibility</h2>
+  <p>
+    ทุก animation มี <code>prefers-reduced-motion</code> override
+    ที่ตัด animation ลง 0.01ms SVG illustrations มี <code>aria-hidden="true"</code>
+    ทุก interactive element มี focus state ที่มองเห็นได้
+  </p>
+</StaticPageLayout>
+
+<style>
+.co-link {
+  color: #B85C38;
+  text-decoration: none;
+}
+.co-link:hover { text-decoration: underline; }
+code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(120,100,75,0.1);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>

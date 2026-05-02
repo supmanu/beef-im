@@ -1,0 +1,91 @@
+---
+interface Props {
+  watermarkType?: 'analysis' | 'beef' | 'note';
+}
+const { watermarkType } = Astro.props;
+
+const watermarkText = watermarkType === 'beef' ? '🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)'
+                    : watermarkType === 'note'  ? '📝 บันทึกโดย: ประกันเนื้อๆ (beef.im)'
+                    :                             '📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)';
+
+const navLinks = [
+  { href: '/manifesto/',   label: 'แถลงการณ์' },
+  { href: '/methods/',     label: 'วิธีสืบสวน' },
+  { href: '/cleaver/',     label: 'คำนิยาม' },
+  { href: '/corrections/', label: 'แก้ไข' },
+  { href: '/contact/',     label: 'ติดต่อ' },
+  { href: '/colophon/',    label: 'วิธีสร้าง' },
+  { href: '/search/',      label: 'ค้นหา' },
+  { href: '/rss.xml',      label: 'RSS' },
+];
+---
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-watermark">{watermarkText} · #ประกันเนื้อๆ</div>
+    <nav class="site-footer-nav" aria-label="Site navigation">
+      {navLinks.map((link, i) => (
+        <>
+          <a href={link.href} class="sf-link">{link.label}</a>
+          {i < navLinks.length - 1 && <span class="sf-sep" aria-hidden="true">·</span>}
+        </>
+      ))}
+    </nav>
+    <div class="site-footer-tagline">เน้นเนื้อๆ ไม่เอาน้ำ ©2026</div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: #EDE7D7;
+  border-top: 1px solid rgba(120, 100, 75, 0.18);
+  padding: 28px 18px 24px;
+}
+.site-footer-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.site-footer-watermark {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(27, 26, 23, 0.5);
+  letter-spacing: 0.04em;
+}
+.site-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 11px;
+}
+.sf-link {
+  color: #B85C38;
+  text-decoration: none;
+  position: relative;
+  padding: 0 2px;
+}
+.sf-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 2px;
+  width: 0;
+  height: 1px;
+  background: #B85C38;
+  transition: width 300ms ease;
+}
+.sf-link:hover::after { width: calc(100% - 4px); }
+.sf-sep {
+  color: rgba(27, 26, 23, 0.25);
+  padding: 0 4px;
+}
+.site-footer-tagline {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(27, 26, 23, 0.38);
+  letter-spacing: 0.06em;
+}
+</style>
