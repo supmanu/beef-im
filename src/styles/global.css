@@ -213,8 +213,8 @@ img.nb-photo, .nb-content img {
 .hero-grid {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(120,100,75,0.18) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(120,100,75,0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,100,75,0.11) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(120,100,75,0.11) 1px, transparent 1px),
     radial-gradient(ellipse at 50% 28%, rgba(255,245,225,0.45) 0%, transparent 55%),
     linear-gradient(180deg, #F3EDDF 0%, #EFE9D8 50%, #EFE8D5 100%);
   background-size: 24px 24px, 24px 24px, auto, auto;
