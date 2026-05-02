@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Animatable custom property for clip-path interpolation (Phase 2 page-tear) */
+@property --ink-spread {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 100%;
+}
+
 @theme {
   --color-cream: #F0EADC;
   --color-cream-card: #F8F2E4;
@@ -17,7 +24,23 @@
   --font-thai: "Sarabun", sans-serif;
   --font-display: "Anuphan", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
-  --font-hand: "K2D", sans-serif;
+  --font-hand: "Sarabun", sans-serif;
+}
+
+/* Font-metric fallbacks — kills CLS during web font load */
+@font-face {
+  font-family: "Anuphan-fallback";
+  src: local("Noto Sans Thai");
+  size-adjust: 103.2%;
+  ascent-override: 95%;
+  descent-override: 25%;
+}
+@font-face {
+  font-family: "Sarabun-fallback";
+  src: local("Noto Sans Thai");
+  size-adjust: 106.1%;
+  ascent-override: 92%;
+  descent-override: 28%;
 }
 
 /* Base styles to match prototype */
@@ -49,6 +72,36 @@
     background-size: 24px 24px, 24px 24px, auto, auto;
   }
 }
+
+/* Noise overlay — paper grain (inline SVG feTurbulence, no external file) */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9998;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+}
+
+/* Mix-blend multiply on photographs — auto-harmonize to parchment */
+img.nb-photo, .nb-content img {
+  mix-blend-mode: multiply;
+}
+
+/* Animated link underlines (Pixila steal) */
+.nb-link {
+  position: relative;
+  text-decoration: none;
+}
+.nb-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 1px;
+  background: currentColor;
+  transition: width 300ms ease;
+}
+.nb-link:hover::after { width: 100%; }
 
 /* Animations from Prototype */
 @keyframes wmFade {
@@ -360,4 +413,6 @@ body.article-page {
   .hero-sketch .sk-label, .hero-sketch .sk-axis-label { animation: none; opacity: 1; }
   .nb-verdict-circle .cp { animation: none; stroke-dashoffset: 0 !important; }
   .nb-scrap { animation: none; }
+  body::after { display: none; }
+  .hero-flourish path { animation: none; stroke-dashoffset: 0; }
 }

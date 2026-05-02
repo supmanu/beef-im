@@ -9,6 +9,17 @@ const formattedDate = `${days[now.getDay()]} · ${now.getDate().toString().padSt
   <div class="hero-nav-right" id="hero-date-display">{formattedDate}</div>
 </nav>
 
+<style>
+@keyframes brand-cut {
+  0%, 100% { clip-path: inset(0); }
+  50%       { clip-path: inset(0 0 0 120px); }
+  50.1%     { clip-path: inset(100% 0 0); }
+}
+.hero-brand:hover {
+  animation: brand-cut 0.8s ease-in-out;
+}
+</style>
+
 <script is:inline>
   function updateHeroDate() {
     const now = new Date();
