@@ -21,10 +21,10 @@
   --color-highlight: #F4EED8;
   --color-grid-line: rgba(120, 100, 75, 0.11);
 
-  --font-thai: "Sarabun", sans-serif;
-  --font-display: "Anuphan", sans-serif;
+  --font-thai: "Sarabun", "Sarabun-fallback", sans-serif;
+  --font-display: "Anuphan", "Anuphan-fallback", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
-  --font-hand: "K2D", sans-serif;
+  --font-hand: "K2D", "K2D-fallback", sans-serif;
 }
 
 /* Font-metric fallbacks — kills CLS during web font load */
