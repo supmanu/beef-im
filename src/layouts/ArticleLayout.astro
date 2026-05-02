@@ -5,41 +5,48 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
-  category: string;
+  collection: string;
+  format?: string;
   date: string;
-  footerType: 'analysis' | 'beef';
-  author: string;
+  footerType: 'analysis' | 'beef' | 'note';
   code?: string;
   sidenote?: string;
 }
 
-const { title, description, category, date, footerType, author, code, sidenote } = Astro.props;
+const { title, description, collection, format, date, footerType, code, sidenote } = Astro.props;
 
-const categoryMap: Record<string, string> = {
-  'case': 'CASE FILE',
-  'experiment': 'EXPERIMENT LOG',
-  'field-note': 'FIELD NOTE'
+// format frontmatter wins; fall back to collection-derived label
+const collectionBadgeMap: Record<string, string> = {
+  insurance: 'CASE FILE',
+  meat: 'EXPERIMENT LOG',
+  note: 'บันทึก',
 };
-const displayCategory = categoryMap[category] || category.toUpperCase();
+const displayBadge = format ?? collectionBadgeMap[collection] ?? collection.toUpperCase();
 
-// Mock page number or extra info based on category
-const pageNum = category === 'case' ? 'หน้า 04' : (category === 'experiment' ? 'หน้า 09' : 'หน้า 01');
-const footerStamp = category === 'case' ? '⚠ HIGH' : (category === 'experiment' ? '🔥 MED RARE' : '🔥 MED WELL');
+// Footer stamp per collection
+const footerStampMap: Record<string, string> = {
+  insurance: '⚠ HIGH',
+  meat: '🔥 MED RARE',
+  note: '📝 NOTE',
+};
+const footerStamp = footerStampMap[collection] ?? '📝';
+
+const pageNum = code ? `ID ${code}` : 'หน้า 01';
 ---
 <BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description} bodyClass="article-page">
   <section class="article-view active" id="article">
     <nav class="article-nav">
       <a href="/#journal" class="article-nav-back">← กลับหน้าหลัก</a>
-      <span class="article-nav-stamp">{displayCategory}</span>
+      <span class="article-nav-stamp">{displayBadge}</span>
       <span class="article-nav-date">{date}</span>
     </nav>
     <div class="nb-article-body">
       <div class="nb-article-wrap">
         <slot />
-        
+
         <div class="nb-page-footer">
           <div class="nb-page-footer-left">
-            {date} · {author}
+            {date}
             <br />
             สมุดบันทึก · เล่ม 1
           </div>
@@ -48,7 +55,7 @@ const footerStamp = category === 'case' ? '⚠ HIGH' : (category === 'experiment
               <ellipse cx="50" cy="50" rx="44" ry="42" transform="rotate(-2 50 50)"/>
               <text x="50" y="50">{footerStamp}</text>
             </svg>
-            <div class="nb-page-num">{code ? `ID ${code}` : pageNum}</div>
+            <div class="nb-page-num">{pageNum}</div>
           </div>
         </div>
 

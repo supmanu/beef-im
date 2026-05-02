@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lede": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "temperature": {
+      "type": "string",
+      "enum": [
+        "risk",
+        "medium",
+        "low"
+      ]
+    },
+    "readTime": {
+      "type": "string"
+    },
+    "wordCount": {
+      "type": "number"
+    },
+    "code": {
+      "type": "string"
+    },
+    "sidenote": {
+      "type": "string"
+    },
+    "latest": {
+      "type": "boolean"
+    },
+    "soulmate": {
+      "type": "string"
+    },
+    "references": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "date",
+    "lede"
+  ]
+}

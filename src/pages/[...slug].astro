@@ -8,14 +8,13 @@ import CorrectionBlock from '../components/mdx/CorrectionBlock.astro';
 import VerdictSeal from '../components/mdx/VerdictSeal.astro';
 
 export async function getStaticPaths() {
-  const caseEntries = await getCollection('case');
-  const expEntries = await getCollection('experiment');
-  const fieldEntries = await getCollection('field-note');
-
-  const allEntries = [...caseEntries, ...expEntries, ...fieldEntries];
+  const collectionNames = ['insurance', 'meat', 'note'] as const;
+  const allEntries = (
+    await Promise.all(collectionNames.map(c => getCollection(c)))
+  ).flat();
 
   return allEntries.map(entry => ({
-    params: { slug: `${entry.data.category}/${entry.id}` },
+    params: { slug: `${entry.collection}/${entry.id}` },
     props: { entry },
   }));
 }
@@ -26,21 +25,26 @@ const { Content } = await render(entry);
 const d = new Date(entry.data.date);
 const formattedDate = `${d.getDate()} ${d.toLocaleString('th-TH', { month: 'short' })} ${d.getFullYear()}`;
 
+// footerType derived from collection — not in frontmatter
+const footerType = entry.collection === 'insurance' ? 'analysis'
+                 : entry.collection === 'meat'      ? 'beef'
+                 : 'note';
+
 // MDX components auto-injected — no imports needed inside .mdx files
 const mdxComponents = { Highlight, MarginNote, ScrapCard, CorrectionBlock, VerdictSeal };
 ---
 <ArticleLayout
   title={entry.data.title}
-  category={entry.data.category}
+  collection={entry.collection}
+  format={entry.data.format}
   date={formattedDate}
-  footerType={entry.data.footerType}
+  footerType={footerType}
   description={entry.data.lede}
-  author={entry.data.author}
   code={entry.data.code}
   sidenote={entry.data.sidenote}
 >
   <h2 class="nb-h">{entry.data.title}</h2>
-  <div class="nb-byline">{formattedDate} · {entry.data.author}</div>
+  <div class="nb-byline">{formattedDate}</div>
   <div class="nb-rule-red"></div>
   <Content components={mdxComponents} />
 </ArticleLayout>
