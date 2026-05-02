@@ -16,8 +16,9 @@
       const gl = canvas.getContext('webgl', { antialias: false, alpha: true });
       if (!gl) {} else {
         const resize = () => {
-          canvas.width  = window.innerWidth;
-          canvas.height = window.innerHeight;
+          const hero = canvas.parentElement;
+          canvas.width  = hero ? hero.offsetWidth  : window.innerWidth;
+          canvas.height = hero ? hero.offsetHeight : window.innerHeight;
           gl.viewport(0, 0, canvas.width, canvas.height);
         };
         resize();
@@ -55,11 +56,10 @@
           void main(){
             vec2 uv = gl_FragCoord.xy / u_res;
             float n = snoise(uv * 2.5 + vec2(u_time * 0.04));
-            vec3 paper  = vec3(0.941, 0.917, 0.863);
+            /* Warmth-only overlay — very low alpha so the CSS grid lines survive */
             vec3 warmth = vec3(0.984, 0.953, 0.882);
-            vec3 color = mix(paper, warmth, n * 0.5 + 0.5);
-            float alpha = 0.45 + n * 0.05;
-            gl_FragColor = vec4(color, alpha);
+            float alpha = 0.07 + n * 0.03;
+            gl_FragColor = vec4(warmth, alpha);
           }
         `;
 
@@ -106,9 +106,9 @@
 
 <style>
   #hero-warmth {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 1;
     pointer-events: none;
     width: 100%;
     height: 100%;

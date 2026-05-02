@@ -1,6 +1,5 @@
 ---
 import HeroSketch from './HeroSketch.astro';
-import HeroCanvas from './HeroCanvas.astro';
 import Navbar from './Navbar.astro';
 ---
 <!-- Session-aware: skip animations for returning visitors within same session -->
@@ -31,7 +30,6 @@ import Navbar from './Navbar.astro';
   </div>
 
   <HeroSketch />
-  <HeroCanvas />
 
 </section>
 
@@ -64,15 +62,26 @@ import Navbar from './Navbar.astro';
 :global(.hero--instant) .hero-watermark,
 :global(.hero--instant) .hero-sunburst,
 :global(.hero--instant) .hero-rule,
-:global(.hero--instant) .hero-eyebrow span,
 :global(.hero--instant) .hero-h,
 :global(.hero--instant) .hero-sub,
-:global(.hero--instant) .hero-cta,
-:global(.hero--instant) .hero-sketch {
+:global(.hero--instant) .hero-cta {
+  animation: none;
+  opacity: 1;
+}
+/* Typewriter override — needs width reset separately */
+:global(.hero--instant) .hero-eyebrow span {
   animation: none;
   opacity: 1;
   width: auto;
   border-right-color: transparent;
+}
+/* SVG sketch override — needs stroke-dashoffset separately */
+:global(.hero--instant) .hero-sketch {
+  animation: none;
+  opacity: 1;
+}
+:global(.hero--instant) .hero-sketch .sk-line.draw {
+  animation: none;
   stroke-dashoffset: 0;
 }
 </style>
