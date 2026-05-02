@@ -176,7 +176,7 @@ img.nb-photo, .nb-content img {
     calc(50% - var(--ink-spread) * 0.30)  calc(50% + var(--ink-spread) * 0.50),
     calc(50% - var(--ink-spread) * 0.55)  calc(50% + var(--ink-spread) * 0.20)
   );
-  animation: page-tear-in 0.7s ease-out both;
+  animation: page-tear-in 0.85s ease-out both;
   will-change: clip-path;
 }
 @media (prefers-reduced-motion: reduce) {
