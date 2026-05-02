@@ -850,5 +850,5 @@ Ship Phase 0 + 1 + 1b on Monday. If the WebGL hero feels right after a week of l
 | §7.1 curated-cases count | Plan asks 3-5 per pillar; `curated.ts` has 2. Content-gated — only 4 articles exist site-wide. |
 | §7.3 keyframe direction | Sonnet 4.6 reversed the plan's `100% → 0%` to `0% → 100%`. Plan was wrong (would have been a hide animation). Implementation is the correct reveal. |
 
-**Paused (revisit later):**
-- [ ] **RSS feed UX** — `/rss.xml` endpoint generates a valid feed but renders as raw XML in browsers (no XSL stylesheet, no HTML landing page). Comment added at top of `src/pages/rss.xml.ts`. Fix options for next session: (1) add `<?xml-stylesheet?>` declaration + XSL template, or (2) build a separate `/feed/` HTML page that links to the XML. Either is ~30 minutes.
+**Completed in same session:**
+- [x] **RSS feed styled** — `public/rss-style.xsl` brand-matched XSL template + `stylesheet: '/rss-style.xsl'` wired into `rss.xml.ts`. Browsers now render `/rss.xml` as a styled HTML page (cream parchment, graph grid, Anuphan headings, brand wordmark in sticky nav, items list with date/title/lede). Feed-reader semantics unchanged — XSL is browser-only. Fonts loaded via Google Fonts CDN since XSL can't reference Astro's hashed self-hosted font filenames.
