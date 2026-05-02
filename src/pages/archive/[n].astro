@@ -1,0 +1,146 @@
+---
+import StaticPageLayout from '../../layouts/StaticPageLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const VOLUME_SIZE = 24;
+  const allEntries = [
+    ...(await getCollection('insurance')),
+    ...(await getCollection('meat')),
+    ...(await getCollection('note')),
+  ].sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+
+  const paths = [];
+  for (let i = 0; i < allEntries.length; i += VOLUME_SIZE) {
+    const vol = allEntries.slice(i, i + VOLUME_SIZE);
+    paths.push({ params: { n: String(Math.floor(i / VOLUME_SIZE) + 1) }, props: { entries: vol } });
+  }
+  // Always generate at least volume 1 even with no articles
+  if (paths.length === 0) {
+    paths.push({ params: { n: '1' }, props: { entries: [] } });
+  }
+  return paths;
+}
+
+const { n } = Astro.params;
+const { entries } = Astro.props;
+
+// Within each volume, display newest-first
+const sorted = [...entries].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const collectionLabels: Record<string, string> = {
+  insurance: '📊 ประกัน',
+  meat: '🔥 เนื้อ',
+  note: '📝 บันทึก',
+};
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<StaticPageLayout
+  title={`เล่มที่ ${n} — ประกันเนื้อๆ`}
+  description={`บันทึกเล่มที่ ${n} ของ ประกันเนื้อๆ`}
+>
+  <div class="sp-body">
+    <div class="arch-header">
+      <a href="/archive" class="arch-back">← คลังเล่ม</a>
+      <h1 class="arch-title">เล่มที่ {n}</h1>
+      <p class="arch-sub">{sorted.length} บันทึก</p>
+    </div>
+
+    <div class="archive-wrap">
+      <!-- Radio filter buttons — CSS :has() drives visibility, zero JS -->
+      <div class="arch-filter" role="group" aria-label="กรองตามหมวด">
+        <label class="arch-filter-btn">
+          <input type="radio" name="pillar-filter" value="all" checked />
+          <span>ทั้งหมด</span>
+        </label>
+        <label class="arch-filter-btn">
+          <input type="radio" name="pillar-filter" value="insurance" />
+          <span>📊 ประกัน</span>
+        </label>
+        <label class="arch-filter-btn">
+          <input type="radio" name="pillar-filter" value="meat" />
+          <span>🔥 เนื้อ</span>
+        </label>
+        <label class="arch-filter-btn">
+          <input type="radio" name="pillar-filter" value="note" />
+          <span>📝 บันทึก</span>
+        </label>
+      </div>
+
+      <ul class="archive-list" role="list">
+        {sorted.map((entry, i) => (
+          <li class="arch-entry" data-pillar={entry.collection}>
+            <span class="arch-entry-num">{String(sorted.length - i).padStart(2, '0')}</span>
+            <a class="arch-entry-link" href={`/${entry.collection}/${entry.id}`}>
+              <span class="arch-entry-badge">{collectionLabels[entry.collection]}</span>
+              <span class="arch-entry-title">{entry.data.title}</span>
+            </a>
+            <span class="arch-entry-date">{formatDate(entry.data.date)}</span>
+          </li>
+        ))}
+        {sorted.length === 0 && (
+          <li class="arch-empty">ยังไม่มีบันทึกในเล่มนี้</li>
+        )}
+      </ul>
+    </div>
+
+  </div>
+</StaticPageLayout>
+
+<style>
+.sp-body { max-width: 600px; margin: 0 auto; padding: 0 18px 72px; }
+@media (min-width: 768px) { .sp-body { padding: 0 24px 80px; } }
+
+.arch-header { padding: 40px 0 24px; border-bottom: 1px solid rgba(120,100,75,0.14); margin-bottom: 24px; }
+.arch-back { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B85C38; text-decoration: none; display: block; margin-bottom: 10px; }
+.arch-back:hover { text-decoration: underline; }
+.arch-title { font-family: var(--font-display); font-weight: 800; font-size: 26px; letter-spacing: -0.02em; color: #1B1A17; margin-bottom: 4px; }
+.arch-sub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(27,26,23,0.45); margin: 0; }
+
+/* Filter strip */
+.arch-filter {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 20px;
+}
+.arch-filter-btn { display: flex; align-items: center; cursor: pointer; }
+.arch-filter-btn input { position: absolute; opacity: 0; width: 0; height: 0; }
+.arch-filter-btn span {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 5px 10px;
+  border: 1px solid rgba(120,100,75,0.22); border-radius: 2px;
+  color: rgba(27,26,23,0.55); transition: all 0.12s;
+}
+.arch-filter-btn input:checked + span {
+  background: #1B1A17; color: #F0EADC; border-color: #1B1A17;
+}
+
+/* Archive list */
+.archive-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+
+.arch-entry {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: baseline; gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(120,100,75,0.09);
+}
+.arch-entry-num { font-family: var(--font-mono); font-size: 9px; color: rgba(27,26,23,0.28); letter-spacing: 0.06em; }
+.arch-entry-link { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: inherit; }
+.arch-entry-link:hover .arch-entry-title { text-decoration: underline; }
+.arch-entry-badge { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(27,26,23,0.40); }
+.arch-entry-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #1B1A17; line-height: 1.3; }
+.arch-entry-date { font-family: var(--font-mono); font-size: 8.5px; color: rgba(27,26,23,0.38); white-space: nowrap; }
+
+.arch-empty { font-family: var(--font-mono); font-size: 12px; color: rgba(27,26,23,0.38); letter-spacing: 0.06em; padding: 32px 0; }
+
+/* CSS-only pillar filter — zero JS */
+.archive-wrap:has(input[value="insurance"]:checked) .arch-entry:not([data-pillar="insurance"]) { display: none; }
+.archive-wrap:has(input[value="meat"]:checked)      .arch-entry:not([data-pillar="meat"])      { display: none; }
+.archive-wrap:has(input[value="note"]:checked)      .arch-entry:not([data-pillar="note"])      { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-entry { transition: none; }
+}
+</style>

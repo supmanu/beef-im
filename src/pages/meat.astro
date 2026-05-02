@@ -1,0 +1,115 @@
+---
+import StaticPageLayout from '../layouts/StaticPageLayout.astro';
+import MascotCleaver from '../components/MascotCleaver.astro';
+import NotebookEntry from '../components/NotebookEntry.astro';
+import { getCollection } from 'astro:content';
+import { curatedMeat, bridgeMeatToInsurance } from '../data/curated';
+
+const allMeat = await getCollection('meat');
+const recent = allMeat
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+
+const curatedSlugs = new Set(curatedMeat.map(e => e.slug));
+const recentNotCurated = recent.filter(e => !curatedSlugs.has(e.id));
+---
+<StaticPageLayout title="🔥 เนื้อ — ประกันเนื้อๆ" description="วิทยาศาสตร์การตัดเนื้อ เทคนิคการปรุง ข้อมูลที่ทำให้เนื้อออกมาถูกต้องทุกครั้ง">
+  <div class="hub-wrap">
+
+    <header class="hub-header hub-meat">
+      <div class="hub-header-inner">
+        <div class="hub-mascot"><MascotCleaver /></div>
+        <div class="hub-header-text">
+          <h1 class="hub-title">🔥 เนื้อๆ</h1>
+          <p class="hub-lede">วิทยาศาสตร์การตัดเนื้อ เทคนิคการปรุง<br/>ข้อมูลที่ทำให้เนื้อออกมาถูกต้องทุกครั้ง</p>
+        </div>
+      </div>
+      <svg class="hub-rule" viewBox="0 0 400 8" aria-hidden="true">
+        <line class="hub-rule-line" x1="0" y1="4" x2="400" y2="4"
+          stroke-dasharray="400" stroke-dashoffset="400" />
+      </svg>
+    </header>
+
+    <section class="hub-section">
+      <h2 class="hub-section-head">เนื้อเด่น</h2>
+      <div class="hub-entries">
+        {curatedMeat.map((item, i) => (
+          <NotebookEntry
+            index={i + 1}
+            slug={item.slug}
+            collection={item.collection}
+            title={item.title}
+            lede={item.lede}
+          />
+        ))}
+      </div>
+    </section>
+
+    {recentNotCurated.length > 0 && (
+      <section class="hub-section">
+        <h2 class="hub-section-head">ล่าสุด</h2>
+        <div class="hub-entries">
+          {recentNotCurated.map((entry, i) => (
+            <NotebookEntry
+              index={curatedMeat.length + i + 1}
+              slug={entry.id}
+              collection={entry.collection}
+              format={entry.data.format}
+              title={entry.data.title}
+              lede={entry.data.lede}
+              temperature={entry.data.temperature}
+              code={entry.data.code}
+              wordCount={entry.data.wordCount}
+              readTime={entry.data.readTime}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <div class="hub-bridge">
+      <span class="hub-bridge-label">ดูสัญญาจริงๆ</span>
+      <a class="hub-bridge-link" href={`/insurance/${bridgeMeatToInsurance.slug}`}>
+        {bridgeMeatToInsurance.title} →
+      </a>
+    </div>
+
+  </div>
+</StaticPageLayout>
+
+<style>
+.hub-wrap { max-width: 600px; margin: 0 auto; padding: 0 18px 72px; }
+@media (min-width: 768px) { .hub-wrap { padding: 0 24px 80px; } }
+
+.hub-header { padding: 40px 0 0; }
+.hub-header-inner { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 24px; }
+.hub-mascot { flex-shrink: 0; padding-top: 6px; }
+.hub-header-text { flex: 1; }
+.hub-title { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 10px; color: #1B1A17; }
+@media (min-width: 768px) { .hub-title { font-size: 34px; } }
+.hub-lede { font-family: var(--font-thai); font-size: 14px; line-height: 1.7; color: rgba(27,26,23,0.72); margin: 0; }
+
+.hub-rule { display: block; width: 100%; height: 8px; margin-bottom: 36px; }
+.hub-rule-line { stroke: #C2451F; stroke-width: 1; stroke-linecap: round; animation: hub-rule-draw 0.8s 1.2s ease-out forwards; }
+@keyframes hub-rule-draw { to { stroke-dashoffset: 0; } }
+
+.hub-meat .hub-title { color: #C2451F; }
+
+.hub-section { margin-bottom: 40px; }
+.hub-section-head {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: #C2451F; margin-bottom: 16px;
+  padding-bottom: 6px; border-bottom: 1px solid rgba(194,69,31,0.18);
+}
+
+.hub-entries { display: flex; flex-direction: column; }
+
+.hub-bridge {
+  margin-top: 48px; padding-top: 20px;
+  border-top: 1px solid rgba(120,100,75,0.16);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.hub-bridge-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(27,26,23,0.42); }
+.hub-bridge-link { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: #1E3A5F; text-decoration: none; }
+.hub-bridge-link:hover { text-decoration: underline; }
+</style>

@@ -159,6 +159,30 @@ img.nb-photo, .nb-content img {
   50% { transform: translateY(6px); opacity: 0.75; }
 }
 
+/* Page-tear reveal — fires once per session on first article navigation */
+@keyframes page-tear-in {
+  from { --ink-spread: 0%; }
+  to   { --ink-spread: 100%; }
+}
+.nb-page-reveal {
+  clip-path: polygon(
+    calc(50% - var(--ink-spread) * 0.55)  calc(50% - var(--ink-spread) * 0.50),
+    calc(50% - var(--ink-spread) * 0.20)  calc(50% - var(--ink-spread) * 0.42),
+    calc(50% + var(--ink-spread) * 0.18)  calc(50% - var(--ink-spread) * 0.55),
+    calc(50% + var(--ink-spread) * 0.55)  calc(50% - var(--ink-spread) * 0.30),
+    calc(50% + var(--ink-spread) * 0.50)  calc(50% + var(--ink-spread) * 0.10),
+    calc(50% + var(--ink-spread) * 0.55)  calc(50% + var(--ink-spread) * 0.50),
+    calc(50% + var(--ink-spread) * 0.10)  calc(50% + var(--ink-spread) * 0.55),
+    calc(50% - var(--ink-spread) * 0.30)  calc(50% + var(--ink-spread) * 0.50),
+    calc(50% - var(--ink-spread) * 0.55)  calc(50% + var(--ink-spread) * 0.20)
+  );
+  animation: page-tear-in 0.7s ease-out both;
+  will-change: clip-path;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nb-page-reveal { animation: none; clip-path: none; }
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

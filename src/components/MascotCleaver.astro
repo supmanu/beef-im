@@ -1,0 +1,53 @@
+---
+// Line-drawn cleaver mascot — meat hub.
+// Draws once per session (session key: bf-hub-meat), static on return.
+---
+<div class="mascot-wrap" id="mascot-cleaver" aria-hidden="true">
+  <svg viewBox="0 0 80 60" width="80" height="60" xmlns="http://www.w3.org/2000/svg">
+    <!-- Blade body -->
+    <path class="mc-line draw" style="animation-delay:0s;animation-duration:0.55s"
+      d="M5,10 L57,5 L63,51 L5,55 Z"
+      stroke-dasharray="222" stroke-dashoffset="222" />
+    <!-- Handle block -->
+    <path class="mc-line draw" style="animation-delay:0.55s;animation-duration:0.25s"
+      d="M57,5 L74,5 Q77,5 77,8 L77,48 Q77,51 74,51 L63,51"
+      stroke-dasharray="90" stroke-dashoffset="90" />
+    <!-- Rivets -->
+    <circle class="mc-line draw" style="animation-delay:0.80s;animation-duration:0.10s"
+      cx="66" cy="18" r="2.5" stroke-dasharray="20" stroke-dashoffset="20" />
+    <circle class="mc-line draw" style="animation-delay:0.90s;animation-duration:0.10s"
+      cx="66" cy="28" r="2.5" stroke-dasharray="20" stroke-dashoffset="20" />
+    <circle class="mc-line draw" style="animation-delay:1.00s;animation-duration:0.10s"
+      cx="66" cy="38" r="2.5" stroke-dasharray="20" stroke-dashoffset="20" />
+  </svg>
+</div>
+
+<script is:inline>
+  (function () {
+    if (sessionStorage.getItem('bf-hub-meat')) {
+      var el = document.getElementById('mascot-cleaver');
+      if (el) el.classList.add('mascot--instant');
+    } else {
+      requestAnimationFrame(function () {
+        sessionStorage.setItem('bf-hub-meat', '1');
+      });
+    }
+  })();
+</script>
+
+<style>
+  .mascot-wrap { display: inline-block; color: #C2451F; }
+  .mc-line {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @keyframes mc-draw { to { stroke-dashoffset: 0; } }
+  .mc-line.draw { animation: mc-draw linear both; }
+  .mascot--instant .mc-line.draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+</style>
