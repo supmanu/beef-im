@@ -3,16 +3,14 @@ import StaticPageLayout from '../layouts/StaticPageLayout.astro';
 ---
 <StaticPageLayout
   title="ติดต่อ"
-  description="ช่องทางติดต่อ beef.im — LINE และ email เท่านั้น"
+  description="ส่งอีเมลมาตรงๆ — beef.im"
 >
   <span class="sp-eyebrow">CONTACT</span>
   <h1>ติดต่อ</h1>
   <hr class="sp-rule" />
 
   <p>
-    <strong>LINE:</strong> <code>@beefim</code>
-    <br />
-    <strong>Email:</strong> <a href="mailto:supmanu@gmail.com" class="contact-link">supmanu@gmail.com</a>
+    <strong>Email:</strong> <a href="mailto:hi@beef.im" class="contact-link">hi@beef.im</a>
   </p>
 
   <p>
@@ -29,7 +27,7 @@ import StaticPageLayout from '../layouts/StaticPageLayout.astro';
 
 <style>
 .contact-link {
-  color: #B85C38;
+  color: var(--color-burn);
   text-decoration: none;
 }
 .contact-link:hover { text-decoration: underline; }
@@ -44,11 +42,4 @@ import StaticPageLayout from '../layouts/StaticPageLayout.astro';
   margin-top: 32px;
 }
 .status-dot { font-size: 10px; }
-code {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  background: rgba(120,100,75,0.1);
-  padding: 1px 6px;
-  border-radius: 3px;
-}
 </style>
