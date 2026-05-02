@@ -830,3 +830,25 @@ Ship Phase 0 + 1 + 1b on Monday. If the WebGL hero feels right after a week of l
 - `@fontsource/noto-serif-thai` installed but unused (cleanup candidate)
 
 **Model note:** DeepSeek V4 Pro performed adequately for CSS/HTML/Astro tweaking — no hallucinated imports, no syntax errors across 7 commits. Routing table note: DeepSeek V4 Pro is viable for beef.im component/stylesheet iteration..
+
+---
+
+## 17. Post-evaluation cleanup (2026-05-03, Opus 4.7 → Sonnet 4.6 follow-up)
+
+**Trigger:** Opus 4.7 audited Phase 2 + DeepSeek's polish session. Found three remaining gaps. User approved fixes; Sonnet 4.6 executed.
+
+**Completed:**
+- [x] Color-token sweep finished — 18 hardcoded `#B85C38` across 11 files (DeepSeek's commit `8b21d64` only touched `global.css`) routed through `var(--color-burn)`. Fixes the home-vs-static hue split. Files: `SiteFooter.astro`, `StaticPageLayout.astro`, `404.astro`, `archive/{index,[n]}.astro`, `cleaver.astro`, `colophon.astro`, `corrections.astro`, `methods.astro`, `search.astro`. Commit `8c10b87`.
+- [x] Font fallback stacks wired — `Sarabun-fallback`, `Anuphan-fallback`, `K2D-fallback` `@font-face` declarations were orphaned. Now active in `--font-thai`, `--font-display`, `--font-hand` stacks for CLS reduction.
+- [x] View Transitions API fallback added — 4-line `::view-transition-{new,old}(root)` block from §7.3, missing in Phase 2 implementation. No-op until Astro `<ViewTransitions />` is enabled, but ready.
+- [x] Sub-page brand wordmark parity — `.sp-brand` (in `StaticPageLayout.astro` + duplicated inline in `search.astro`) was 16px static `BEEF · IM`. Now matches HOME HERO: 16/20/22px responsive, full `BEEF · IM · JOURNAL` label, color-shift + fountain-pen underline hover (same as `.hero-brand`).
+
+**Plan deviations not corrected (intentional):**
+| Section | Reason kept as-is |
+|---------|-------------------|
+| §7.3 page-tear timing | Currently fires on every navigation, not first-per-session. Deferred to A/B once content density grows. |
+| §7.1 curated-cases count | Plan asks 3-5 per pillar; `curated.ts` has 2. Content-gated — only 4 articles exist site-wide. |
+| §7.3 keyframe direction | Sonnet 4.6 reversed the plan's `100% → 0%` to `0% → 100%`. Plan was wrong (would have been a hide animation). Implementation is the correct reveal. |
+
+**Paused (revisit later):**
+- [ ] **RSS feed UX** — `/rss.xml` endpoint generates a valid feed but renders as raw XML in browsers (no XSL stylesheet, no HTML landing page). Comment added at top of `src/pages/rss.xml.ts`. Fix options for next session: (1) add `<?xml-stylesheet?>` declaration + XSL template, or (2) build a separate `/feed/` HTML page that links to the XML. Either is ~30 minutes.

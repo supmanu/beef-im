@@ -186,8 +186,13 @@ img.nb-photo, .nb-content img {
   animation: page-tear-in 0.85s ease-out both;
   will-change: clip-path;
 }
+/* View Transitions API fallback — engaged only if Astro's <ViewTransitions /> is enabled */
+::view-transition-new(root) { animation: page-tear-in 0.5s ease-out forwards; }
+::view-transition-old(root) { animation: none; opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .nb-page-reveal { animation: none; clip-path: none; }
+  ::view-transition-new(root),
+  ::view-transition-old(root) { animation: none; }
 }
 
 /* Reduced Motion Override */

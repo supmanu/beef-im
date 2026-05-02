@@ -10,10 +10,7 @@ const { title, description } = Astro.props;
 <BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description} bodyClass="static-page">
   <div class="sp-wrap">
     <nav class="sp-nav">
-      <a href="/" class="sp-brand">
-        ประกันเนื้อๆ
-        <small>BEEF · IM</small>
-      </a>
+      <a href="/" class="sp-brand">ประกันเนื้อๆ<small>BEEF · IM · JOURNAL</small></a>
       <a href="/#journal" class="sp-back">← สมุดบันทึก</a>
     </nav>
     <article class="sp-content">
@@ -52,6 +49,8 @@ const { title, description } = Astro.props;
   color: #1B1A17;
   text-decoration: none;
   line-height: 1.2;
+  position: relative;
+  transition: color 0.35s ease;
 }
 .sp-brand small {
   display: block;
@@ -61,6 +60,26 @@ const { title, description } = Astro.props;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-top: 1px;
+}
+.sp-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #CC3A2F;
+  transition: width 0.4s ease;
+}
+.sp-brand:hover { color: var(--color-burn); }
+.sp-brand:hover::after { width: 100%; }
+@media (min-width: 768px) {
+  .sp-brand { font-size: 20px; }
+  .sp-brand small { font-size: 9.5px; margin-top: 2px; }
+}
+@media (min-width: 1200px) {
+  .sp-brand { font-size: 22px; }
+  .sp-brand small { font-size: 10px; letter-spacing: 0.24em; }
 }
 .sp-back {
   font-family: var(--font-mono);
