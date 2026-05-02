@@ -10,14 +10,25 @@ const formattedDate = `${days[now.getDay()]} · ${now.getDate().toString().padSt
 </nav>
 
 <style>
-@keyframes brand-cut {
-  0%   { clip-path: inset(0); }
-  40%  { clip-path: inset(0 0 0 68%); }
-  60%  { clip-path: inset(0 0 0 68%); }
-  100% { clip-path: inset(0); }
+.hero-brand {
+  transition: color 0.35s ease;
+  position: relative;
+}
+.hero-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-burn);
+  transition: width 0.4s ease;
 }
 .hero-brand:hover {
-  animation: brand-cut 1.4s ease-in-out;
+  color: var(--color-burn);
+}
+.hero-brand:hover::after {
+  width: 100%;
 }
 </style>
 
