@@ -1,9 +1,11 @@
 ---
 interface Props {
-  type: 'analysis' | 'beef';
+  type: 'analysis' | 'beef' | 'note';
 }
 const { type } = Astro.props;
-const watermarkText = type === 'analysis' ? '📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)' : '🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)';
+const watermarkText = type === 'analysis' ? '📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)'
+                    : type === 'beef'     ? '🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)'
+                    :                       '📝 บันทึกโดย: ประกันเนื้อๆ (beef.im)';
 ---
 <div class="nb-watermark">
   {watermarkText} · #ประกันเนื้อๆ

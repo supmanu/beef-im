@@ -4,11 +4,11 @@ import Hero from '../components/Hero.astro';
 import NotebookEntry from '../components/NotebookEntry.astro';
 import { getCollection } from 'astro:content';
 
-const caseEntries = await getCollection('case');
-const expEntries = await getCollection('experiment');
-const fieldEntries = await getCollection('field-note');
+const insuranceEntries = await getCollection('insurance');
+const meatEntries      = await getCollection('meat');
+const noteEntries      = await getCollection('note');
 
-const allEntries = [...caseEntries, ...expEntries, ...fieldEntries].sort((a, b) => {
+const allEntries = [...insuranceEntries, ...meatEntries, ...noteEntries].sort((a, b) => {
   return b.data.date.valueOf() - a.data.date.valueOf();
 });
 ---
@@ -23,10 +23,11 @@ const allEntries = [...caseEntries, ...expEntries, ...fieldEntries].sort((a, b) 
       <div class="hp-header-rule"></div>
 
       {allEntries.map((entry, i) => (
-        <NotebookEntry 
+        <NotebookEntry
           index={allEntries.length - i}
           slug={entry.id}
-          category={entry.data.category}
+          collection={entry.collection}
+          format={entry.data.format}
           title={entry.data.title}
           lede={entry.data.lede}
           sidenote={entry.data.sidenote}

@@ -4,26 +4,29 @@ import LatestStamp from './LatestStamp.astro';
 
 interface Props {
   slug: string;
-  category: string;
+  collection: string;
+  format?: string;
   title: string;
   lede: string;
   sidenote?: string;
-  temperature: 'risk' | 'medium' | 'low';
+  temperature?: 'risk' | 'medium' | 'low';
   code?: string;
   wordCount?: number;
   readTime?: string;
   latest?: boolean;
   index: number;
 }
-const { slug, category, title, lede, sidenote, temperature, code, wordCount, readTime, latest, index } = Astro.props;
+const { slug, collection, format, title, lede, sidenote, temperature, code, wordCount, readTime, latest, index } = Astro.props;
 
 const numStr = String(index).padStart(2, '0') + '.';
-const categoryMap: Record<string, string> = {
-  'case': 'CASE FILE',
-  'experiment': 'EXPERIMENT LOG',
-  'field-note': 'FIELD NOTE'
+
+// format frontmatter wins; fall back to collection-derived label
+const collectionBadgeMap: Record<string, string> = {
+  insurance: 'CASE FILE',
+  meat: 'EXPERIMENT LOG',
+  note: 'บันทึก',
 };
-const displayCategory = categoryMap[category] || category.toUpperCase();
+const displayBadge = format ?? collectionBadgeMap[collection] ?? collection.toUpperCase();
 
 const metaParts = [];
 if (code) metaParts.push(code);
@@ -31,15 +34,15 @@ if (wordCount) metaParts.push(`${wordCount}w`);
 if (readTime) metaParts.push(readTime);
 const metaStr = metaParts.join(' · ');
 ---
-<a href={`/${category}/${slug}`} class="nb-entry block no-underline">
+<a href={`/${collection}/${slug}`} class="nb-entry block no-underline">
   <span class="nb-entry-num">{numStr}</span>
   {latest && <LatestStamp />}
   <div class={`nb-entry-masthead${latest ? ' has-stamp' : ''}`}>
-    <span>{displayCategory}</span>
+    <span>{displayBadge}</span>
     {metaStr && <span class="meta">{metaStr}</span>}
   </div>
   <h2 class="nb-entry-h">{title}</h2>
   <p class="nb-entry-lede">{lede}</p>
   {sidenote && <div class="nb-entry-sidenote">{sidenote}</div>}
-  <TemperatureBar type={temperature} />
+  {temperature && <TemperatureBar type={temperature} />}
 </a>
