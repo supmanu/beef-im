@@ -1,0 +1,91 @@
+---
+import StaticPageLayout from '../../layouts/StaticPageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const VOLUME_SIZE = 24;
+
+const allEntries = [
+  ...(await getCollection('insurance')),
+  ...(await getCollection('meat')),
+  ...(await getCollection('note')),
+].sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf()); // oldest first
+
+// Chunk into volumes of 24
+const volumes: typeof allEntries[] = [];
+for (let i = 0; i < allEntries.length; i += VOLUME_SIZE) {
+  volumes.push(allEntries.slice(i, i + VOLUME_SIZE));
+}
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('th-TH', { year: 'numeric', month: 'short' });
+---
+<StaticPageLayout title="คลังเล่ม — ประกันเนื้อๆ" description="บันทึกทุกเล่มของ ประกันเนื้อๆ">
+  <div class="sp-body">
+    <div class="arch-header">
+      <h1 class="arch-title">คลังเล่ม</h1>
+      <p class="arch-sub">ARCHIVE · {allEntries.length} บันทึก · {volumes.length} เล่ม</p>
+    </div>
+
+    <div class="arch-shelf">
+      {volumes.map((vol, i) => {
+        const n = i + 1;
+        const first = vol[0].data.date;
+        const last  = vol[vol.length - 1].data.date;
+        const collections = [...new Set(vol.map(e => e.collection))];
+        return (
+          <a href={`/archive/${n}`} class="arch-volume">
+            <span class="arch-vol-num">เล่มที่ {n}</span>
+            <span class="arch-vol-range">
+              {formatDate(first)} — {formatDate(last)}
+            </span>
+            <span class="arch-vol-count">{vol.length} บันทึก</span>
+            <span class="arch-vol-pillars">
+              {collections.includes('insurance') && <span class="pill ins">📊</span>}
+              {collections.includes('meat')      && <span class="pill meat">🔥</span>}
+              {collections.includes('note')      && <span class="pill note">📝</span>}
+            </span>
+            <span class="arch-vol-arrow">→</span>
+          </a>
+        );
+      })}
+
+      {volumes.length === 0 && (
+        <p class="arch-empty">ยังไม่มีบันทึก — กำลังมา</p>
+      )}
+    </div>
+  </div>
+</StaticPageLayout>
+
+<style>
+.sp-body { max-width: 600px; margin: 0 auto; padding: 0 18px 72px; }
+@media (min-width: 768px) { .sp-body { padding: 0 24px 80px; } }
+
+.arch-header { padding: 40px 0 28px; border-bottom: 1px solid rgba(120,100,75,0.14); margin-bottom: 28px; }
+.arch-title { font-family: var(--font-display); font-weight: 800; font-size: 26px; letter-spacing: -0.02em; color: #1B1A17; margin-bottom: 6px; }
+.arch-sub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(27,26,23,0.45); margin: 0; }
+
+.arch-shelf { display: flex; flex-direction: column; gap: 2px; }
+
+.arch-volume {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto auto auto;
+  align-items: center; gap: 8px 14px;
+  padding: 14px 12px; border-radius: 2px;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+}
+.arch-volume:hover { background: rgba(120,100,75,0.06); }
+@media (max-width: 479px) {
+  .arch-volume { grid-template-columns: 4rem 1fr auto auto; }
+  .arch-vol-range { display: none; }
+}
+
+.arch-vol-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.10em; color: #B85C38; font-weight: 600; }
+.arch-vol-range { font-family: var(--font-mono); font-size: 9px; color: rgba(27,26,23,0.45); letter-spacing: 0.05em; }
+.arch-vol-count { font-family: var(--font-mono); font-size: 9px; color: rgba(27,26,23,0.55); white-space: nowrap; }
+.arch-vol-pillars { display: flex; gap: 4px; }
+.pill { font-size: 11px; }
+.arch-vol-arrow { font-family: var(--font-mono); font-size: 11px; color: rgba(27,26,23,0.30); }
+
+.arch-empty { font-family: var(--font-mono); font-size: 12px; color: rgba(27,26,23,0.38); letter-spacing: 0.06em; padding: 32px 0; }
+</style>

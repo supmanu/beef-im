@@ -1,0 +1,67 @@
+---
+import StaticPageLayout from '../layouts/StaticPageLayout.astro';
+import NotebookEntry from '../components/NotebookEntry.astro';
+import { getCollection } from 'astro:content';
+
+const allNotes = await getCollection('note');
+const sorted = allNotes.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<StaticPageLayout title="📝 บันทึก — ประกันเนื้อๆ" description="เขียนในสิ่งที่ไม่ใช่ประกันและไม่ใช่เนื้อ — พื้นที่สำหรับทุกอย่างที่อยากพูด">
+  <div class="hub-wrap">
+
+    <header class="hub-header hub-note">
+      <h1 class="hub-title">📝 บันทึก</h1>
+      <p class="hub-lede">เขียนในสิ่งที่ไม่ใช่ประกันและไม่ใช่เนื้อ<br/>พื้นที่สำหรับทุกอย่างที่อยากพูด</p>
+      <svg class="hub-rule" viewBox="0 0 400 8" aria-hidden="true">
+        <line class="hub-rule-line" x1="0" y1="4" x2="400" y2="4"
+          stroke-dasharray="400" stroke-dashoffset="400" />
+      </svg>
+    </header>
+
+    {sorted.length === 0 ? (
+      <div class="hub-empty">
+        <p>ยังไม่มีบันทึก — กำลังมา</p>
+      </div>
+    ) : (
+      <div class="hub-entries">
+        {sorted.map((entry, i) => (
+          <NotebookEntry
+            index={sorted.length - i}
+            slug={entry.id}
+            collection={entry.collection}
+            format={entry.data.format}
+            title={entry.data.title}
+            lede={entry.data.lede}
+            temperature={entry.data.temperature}
+            code={entry.data.code}
+            wordCount={entry.data.wordCount}
+            readTime={entry.data.readTime}
+          />
+        ))}
+      </div>
+    )}
+
+  </div>
+</StaticPageLayout>
+
+<style>
+.hub-wrap { max-width: 600px; margin: 0 auto; padding: 0 18px 72px; }
+@media (min-width: 768px) { .hub-wrap { padding: 0 24px 80px; } }
+
+.hub-header { padding: 40px 0 0; margin-bottom: 8px; }
+.hub-title { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 10px; color: #2A2826; }
+@media (min-width: 768px) { .hub-title { font-size: 34px; } }
+.hub-lede { font-family: var(--font-thai); font-size: 14px; line-height: 1.7; color: rgba(27,26,23,0.72); margin: 0 0 20px; }
+
+.hub-rule { display: block; width: 100%; height: 8px; margin-bottom: 36px; }
+.hub-rule-line { stroke: #2A2826; stroke-width: 1; stroke-linecap: round; animation: hub-rule-draw 0.8s 0.4s ease-out forwards; }
+@keyframes hub-rule-draw { to { stroke-dashoffset: 0; } }
+
+.hub-entries { display: flex; flex-direction: column; }
+
+.hub-empty {
+  padding: 48px 0;
+  font-family: var(--font-mono); font-size: 12px;
+  color: rgba(27,26,23,0.38); letter-spacing: 0.06em;
+}
+</style>

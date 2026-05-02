@@ -1,0 +1,60 @@
+---
+// Line-drawn clipboard mascot — insurance hub.
+// Draws once per session (session key: bf-hub-ins), static on return.
+---
+<div class="mascot-wrap" id="mascot-clipboard" aria-hidden="true">
+  <svg viewBox="0 0 60 80" width="60" height="80" xmlns="http://www.w3.org/2000/svg">
+    <!-- Board body with folded top-right corner -->
+    <path class="mc-line draw" style="animation-delay:0s;animation-duration:0.55s"
+      d="M6,18 L46,18 L54,26 L54,75 Q54,77 52,77 L8,77 Q6,77 6,75 Z"
+      stroke-dasharray="240" stroke-dashoffset="240" />
+    <!-- Fold crease -->
+    <path class="mc-line draw" style="animation-delay:0.55s;animation-duration:0.15s"
+      d="M46,18 L46,26 L54,26"
+      stroke-dasharray="20" stroke-dashoffset="20" />
+    <!-- Clip holder -->
+    <rect class="mc-line draw" style="animation-delay:0.70s;animation-duration:0.20s"
+      x="18" y="9" width="24" height="12" rx="3"
+      stroke-dasharray="80" stroke-dashoffset="80" />
+    <!-- Content lines -->
+    <line class="mc-line draw" style="animation-delay:0.90s;animation-duration:0.10s"
+      x1="12" y1="36" x2="48" y2="36" stroke-dasharray="40" stroke-dashoffset="40" />
+    <line class="mc-line draw" style="animation-delay:1.00s;animation-duration:0.10s"
+      x1="12" y1="47" x2="48" y2="47" stroke-dasharray="40" stroke-dashoffset="40" />
+    <line class="mc-line draw" style="animation-delay:1.10s;animation-duration:0.10s"
+      x1="12" y1="58" x2="40" y2="58" stroke-dasharray="30" stroke-dashoffset="30" />
+    <line class="mc-line draw" style="animation-delay:1.20s;animation-duration:0.10s"
+      x1="12" y1="69" x2="36" y2="69" stroke-dasharray="26" stroke-dashoffset="26" />
+  </svg>
+</div>
+
+<script is:inline>
+  (function () {
+    if (sessionStorage.getItem('bf-hub-ins')) {
+      var el = document.getElementById('mascot-clipboard');
+      if (el) el.classList.add('mascot--instant');
+    } else {
+      // Set flag after a paint so the animation runs first
+      requestAnimationFrame(function () {
+        sessionStorage.setItem('bf-hub-ins', '1');
+      });
+    }
+  })();
+</script>
+
+<style>
+  .mascot-wrap { display: inline-block; color: #1E3A5F; }
+  .mc-line {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @keyframes mc-draw { to { stroke-dashoffset: 0; } }
+  .mc-line.draw { animation: mc-draw linear both; }
+  .mascot--instant .mc-line.draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+</style>
