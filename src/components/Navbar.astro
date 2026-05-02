@@ -11,12 +11,13 @@ const formattedDate = `${days[now.getDay()]} · ${now.getDate().toString().padSt
 
 <style>
 @keyframes brand-cut {
-  0%, 100% { clip-path: inset(0); }
-  50%       { clip-path: inset(0 0 0 120px); }
-  50.1%     { clip-path: inset(100% 0 0); }
+  0%   { clip-path: inset(0); }
+  40%  { clip-path: inset(0 0 0 68%); }
+  60%  { clip-path: inset(0 0 0 68%); }
+  100% { clip-path: inset(0); }
 }
 .hero-brand:hover {
-  animation: brand-cut 0.8s ease-in-out;
+  animation: brand-cut 1.4s ease-in-out;
 }
 </style>
 

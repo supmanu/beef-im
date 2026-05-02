@@ -3,15 +3,6 @@ import HeroCanvas from './HeroCanvas.astro';
 import HeroSketch from './HeroSketch.astro';
 import Navbar from './Navbar.astro';
 ---
-<!-- Session-aware: skip animations for returning visitors within same session -->
-<script is:inline>
-  if (sessionStorage.getItem('bf-hero-seen')) {
-    document.documentElement.classList.add('hero--instant');
-  } else {
-    sessionStorage.setItem('bf-hero-seen', '1');
-  }
-</script>
-
 <section class="hero" id="hero">
   <div class="hero-grid" aria-hidden="true"></div>
   <HeroCanvas />
@@ -24,7 +15,7 @@ import Navbar from './Navbar.astro';
     <div class="hero-rule-container"><div class="hero-rule"></div></div>
     <div class="hero-eyebrow"><span>CASE FILE № 04 · POLICY TEARDOWN</span></div>
     <h1 class="hero-h">ดูเนื้อ <span class="accent">ไม่ดูหน้า</span></h1>
-    <!-- Fountain-pen flourish — draws once on first visit, static on return -->
+    <!-- Fountain-pen flourish — draws on every visit -->
     <svg class="hero-flourish" viewBox="0 0 360 24" aria-hidden="true">
       <path d="M2 16 C 60 4, 120 24, 180 12 C 240 0, 300 22, 358 8" />
     </svg>
@@ -56,35 +47,5 @@ import Navbar from './Navbar.astro';
 @keyframes pen-draw {
   to { stroke-dashoffset: 0; }
 }
-/* Returning visitors: flourish already drawn */
-:global(.hero--instant) .hero-flourish path {
-  stroke-dashoffset: 0;
-  animation: none;
-}
-/* Returning visitors: skip all hero entry animations */
-:global(.hero--instant) .hero-watermark,
-:global(.hero--instant) .hero-sunburst,
-:global(.hero--instant) .hero-rule,
-:global(.hero--instant) .hero-h,
-:global(.hero--instant) .hero-sub,
-:global(.hero--instant) .hero-cta {
-  animation: none;
-  opacity: 1;
-}
-/* Typewriter override — needs width reset separately */
-:global(.hero--instant) .hero-eyebrow span {
-  animation: none;
-  opacity: 1;
-  width: auto;
-  border-right-color: transparent;
-}
-/* SVG sketch override — needs stroke-dashoffset separately */
-:global(.hero--instant) .hero-sketch {
-  animation: none;
-  opacity: 1;
-}
-:global(.hero--instant) .hero-sketch .sk-line.draw {
-  animation: none;
-  stroke-dashoffset: 0;
-}
+
 </style>
