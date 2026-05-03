@@ -155,6 +155,7 @@ Preloads:
 | **7 (optional)** | Scope font imports to Thai/Latin subsets | 15 min | ⏸ DEFERRED — `unicode-range` means browsers only fetch needed subsets on demand; actual bandwidth impact minimal. Revisit post-launch. |
 | **8 (defer)** | 404 page rAF optimization | Later | ⏸ DEFERRED — isolated to 404 page, negligible for real traffic. |
 | **9 (defer)** | Article-nav backdrop-filter | Accept | ✅ ACCEPTED — well-optimized in modern browsers, minor paint cost only on article pages. |
+| **10 (cosmetic)** | Hero heading reveal timing | 30 sec | ✅ DONE — (2026-05-03). `.hero-h` animation-delay: 0.2s → 0.8s. Restores staged reveal (rule → eyebrow → heading → sub → CTA). Eyebrow types for 0.2s before heading ink reveal begins.
 
 ---
 
