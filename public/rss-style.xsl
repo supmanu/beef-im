@@ -143,9 +143,26 @@
           .footer {
             margin-top: 56px; padding-top: 16px;
             border-top: 1px solid rgba(120,100,75,0.18);
+            display: flex; flex-direction: column; gap: 10px;
+          }
+          .footer-watermark {
             font-family: "IBM Plex Mono", monospace; font-size: 10px;
-            color: rgba(27,26,23,0.42); letter-spacing: 0.04em;
-            text-align: center;
+            color: rgba(27,26,23,0.65); letter-spacing: 0.04em;
+          }
+          .footer-nav {
+            display: flex; flex-wrap: wrap; gap: 4px 0; align-items: center;
+            font-family: "Anuphan", "Noto Sans Thai", sans-serif; font-size: 11px;
+          }
+          .footer-link {
+            color: #B33D1A; text-decoration: none; padding: 0 2px;
+          }
+          .footer-link:hover { text-decoration: underline; }
+          .footer-sep {
+            color: rgba(27,26,23,0.25); padding: 0 4px;
+          }
+          .footer-tagline {
+            font-family: "IBM Plex Mono", monospace; font-size: 10px;
+            color: rgba(27,26,23,0.65); letter-spacing: 0.06em;
           }
         </style>
       </head>
@@ -189,7 +206,18 @@
           </ul>
 
           <div class="footer">
-            เน้นเนื้อๆ ไม่เอาน้ำ ©2026
+            <div class="footer-watermark">📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im) · #ประกันเนื้อๆ</div>
+            <nav class="footer-nav">
+              <a href="/manifesto/"   class="footer-link">แถลงการณ์</a><span class="footer-sep">·</span>
+              <a href="/methods/"     class="footer-link">วิธีสืบสวน</a><span class="footer-sep">·</span>
+              <a href="/cleaver/"     class="footer-link">คำนิยาม</a><span class="footer-sep">·</span>
+              <a href="/corrections/" class="footer-link">แก้ไข</a><span class="footer-sep">·</span>
+              <a href="/contact/"     class="footer-link">ติดต่อ</a><span class="footer-sep">·</span>
+              <a href="/colophon/"    class="footer-link">วิธีสร้าง</a><span class="footer-sep">·</span>
+              <a href="/search/"      class="footer-link">ค้นหา</a><span class="footer-sep">·</span>
+              <a href="/rss.xml"      class="footer-link">RSS</a>
+            </nav>
+            <div class="footer-tagline">เน้นเนื้อๆ ไม่เอาน้ำ ©2026</div>
           </div>
         </main>
       </body>
