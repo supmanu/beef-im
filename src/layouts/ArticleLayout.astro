@@ -34,10 +34,6 @@ const footerStamp = footerStampMap[collection] ?? '📝';
 const pageNum = code ? `ID ${code}` : 'หน้า 01';
 ---
 <BaseLayout title={`${title} | ประกันเนื้อๆ`} description={description} bodyClass="article-page">
-<!-- Page-tear reveal — fires on every article navigation -->
-<script is:inline>
-(function(){var m=document.querySelector('main');if(m){m.classList.add('nb-page-reveal');m.addEventListener('animationend',function(){m.classList.remove('nb-page-reveal');},{once:true});}})();
-</script>
   <section class="article-view active" id="article">
     <nav class="article-nav">
       <a href="/#journal" class="article-nav-back">← กลับหน้าหลัก</a>

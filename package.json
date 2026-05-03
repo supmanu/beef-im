@@ -16,7 +16,6 @@
     "@fontsource/anuphan": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@fontsource/k2d": "^5.2.8",
-    "@fontsource/noto-serif-thai": "^5.2.7",
     "@fontsource/sarabun": "^5.2.8",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.1.9",
