@@ -145,8 +145,8 @@ img.nb-photo, .nb-content img {
 }
 
 @keyframes heroReveal {
-  0%   { filter: blur(5px); transform: translateY(5px); }
-  100% { filter: blur(0);   transform: translateY(0); }
+  0%   { filter: blur(5px); opacity: 0; transform: translateY(5px); }
+  100% { filter: blur(0);   opacity: 1; transform: translateY(0); }
 }
 
 @keyframes sketchAppear {
