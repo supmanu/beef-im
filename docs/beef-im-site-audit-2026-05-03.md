@@ -160,7 +160,7 @@ Preloads:
 
 ## 8. Overall Verdict
 
-**The site is in excellent shape.** The WebGL removal and noto-serif-thai cleanup were the two biggest wins — both are confirmed complete. The remaining issues are all low-to-medium priority refinements, none impact Core Web Vitals at current content volume.
+**The site is in excellent shape.** The WebGL removal and noto-serif-thai cleanup were the two biggest wins — both are confirmed complete. All actionable issues are either fixed or correctly deferred.
 
 The site ships zero JS on article pages, near-zero JS on the homepage, and all visual atmosphere is CSS-driven. This is a strong foundation for scaling content.
 
@@ -168,17 +168,37 @@ The site ships zero JS on article pages, near-zero JS on the homepage, and all v
 
 ## 9. Phase 2 — Lighthouse Report Correlation (2026-05-03)
 
-**Source:** PageSpeed Insights run at May 3, 2026 10:35 PM GMT+7  
+### Pre-fix (10:34 PM)
 **Score:** Performance 96 · Accessibility 100 · Best Practices 100 · SEO 100  
 **Metrics:** FCP 1.8s · LCP 1.8s · TBT 0ms · CLS 0.001 · SI 4.1s
 
+### Post-fix (11:28 PM) — commit `1cbf485`
+**Score:** Performance 99 · Accessibility 100 · Best Practices 100 · SEO 100  
+**Metrics:** FCP 1.7s · LCP 1.8s · TBT 0ms · CLS 0.003 · SI 2.6s
+
+### Improvements
+
+| Metric | Before | After | Delta |
+|--------|--------|-------|-------|
+| Performance | 96 | **99** | +3 |
+| FCP | 1.8s | 1.7s | −0.1s |
+| Speed Index | 4.1s | **2.6s** | −1.5s (36%) |
+| Critical path latency | 868ms | **461ms** | −407ms |
+| Forced reflow | 298ms | **GONE** | ✅ |
+
 ### Lighthouse Findings → Code Mapping
 
-| Lighthouse Flag | Root Cause | Fix Applied |
+| Lighthouse Flag | Before | After |
 |---|---|---|
-| Render blocking CSS (1,470ms est savings) | Single CSS bundle (`BaseLayout.xxx.css`, 25KB gzipped) is `rel="stylesheet"` in `<head>` | ⏸ Deferred — proper fix needs build-time critical CSS extraction. 25KB downloads in ~300ms on slow 4G; diminishing returns at 96. |
-| Forced reflow (298ms) | `initReveal` in `index.astro` wrote `dataset.inkInit` before `getBoundingClientRect()` | ✅ Fixed — moved write after all geometry reads (see section 2.1) |
-| Network dependency tree (868ms critical path) | 13 font files in cascade after CSS | ✅ Partially addressed — added preload for sarabun body font (see section 3). Font subset scoping deferred (unicode-range does on-demand loading). |
+| Render blocking CSS (1,470ms est savings) | Flagged | ⏸ Still flagged — needs build-time critical CSS extraction. Diminishing returns at 99. |
+| Forced reflow (298ms) | Flagged at `beef.im:17:22`, `:26:20` | ✅ Gone — no longer in audit |
+| Network dependency tree (868ms critical path) | 13 font files in cascade | Reduced to 461ms — sarabun preload broke the longest chain |
+| Avoid non-composited animations | Not shown (masked by forced reflow) | 13 animated elements — `stroke-dashoffset`, `filter: blur()`, `width`. Intentional hero atmosphere, fire-once, disabled via `prefers-reduced-motion`. Acceptable. |
+| Long main-thread task | Not shown | 1 task, 188ms — `initReveal` IO setup. Under 200ms threshold. |
+| Layout shift culprits | Not shown | CLS 0.003 from `.hero-content` (0.002) + `typeIn` eyebrow animation (0.000×3). Well below 0.1 threshold. |
+
+### LCP Breakdown (post-fix)
+The real bottleneck is now visible: **Element render delay = 1,230ms** on `.hero-h`. The browser has the font and CSS ready but takes 1.2s to paint the heading through the `heroReveal` animation's `filter: blur(5px)`. Without this animation, LCP would be near-instantaneous. This is a deliberate brand choice — the blur-to-sharp ink reveal IS the visual identity.
 
 ### CSS Async Swap — Attempt & Revert
 
@@ -189,3 +209,7 @@ The `?url` import pattern (`import globalCssUrl from '../styles/global.css?url'`
 3. **Two `<link rel="stylesheet">` tags** in the final output — one from `?url` (async) and one from fontsource imports (blocking) — negate the benefit.
 
 **Correct approach for the future:** Use a Vite plugin (e.g., `vite-plugin-critical`) or Astro integration that extracts above-the-fold CSS at build time and inlines it into `<style>`, while deferring the rest. This requires Tailwind-aware CSS splitting, which adds complexity.
+
+### Verdict
+
+**Performance 99 with zero JS article pages, 0ms TBT, and near-zero CLS.** The only remaining Lighthouse flag (CSS render-blocking) is a 25KB file downloading in 300ms on slow 4G — fixing it for the last point would require significant build-tool investment (critical CSS extraction) with diminishing returns. The site is production-ready at scale.
