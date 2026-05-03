@@ -155,7 +155,7 @@ Preloads:
 | **7 (optional)** | Scope font imports to Thai/Latin subsets | 15 min | ⏸ DEFERRED — `unicode-range` means browsers only fetch needed subsets on demand; actual bandwidth impact minimal. Revisit post-launch. |
 | **8 (defer)** | 404 page rAF optimization | Later | ⏸ DEFERRED — isolated to 404 page, negligible for real traffic. |
 | **9 (defer)** | Article-nav backdrop-filter | Accept | ✅ ACCEPTED — well-optimized in modern browsers, minor paint cost only on article pages. |
-| **10 (cosmetic)** | Hero heading reveal timing | 30 sec | ✅ DONE — (2026-05-03). `.hero-h` animation-delay: 0.2s → 0.8s. Restores staged reveal (rule → eyebrow → heading → sub → CTA). Eyebrow types for 0.2s before heading ink reveal begins.
+| **10 (cosmetic)** | Hero heading reveal timing | 30 sec | ✅ DONE — commits `5ac46ae` → `45b4771` (2026-05-03). `.hero-h` animation-delay: 0.2s → 0.8s → **1.4s**. Restores dramatic stagger: rule (0.2s) → eyebrow types (0.6s) → heading ink reveal (1.4s) → sub/CTA (1.8s/2.2s). Cost: SI 2.6s → ~3.0s. |
 
 ---
 
@@ -173,9 +173,13 @@ The site ships zero JS on article pages, near-zero JS on the homepage, and all v
 **Score:** Performance 96 · Accessibility 100 · Best Practices 100 · SEO 100  
 **Metrics:** FCP 1.8s · LCP 1.8s · TBT 0ms · CLS 0.001 · SI 4.1s
 
-### Post-fix (11:28 PM) — commit `1cbf485`
+### Post-fix (11:28 PM) — commits `1cbf485`·`1de47d6`
 **Score:** Performance 99 · Accessibility 100 · Best Practices 100 · SEO 100  
 **Metrics:** FCP 1.7s · LCP 1.8s · TBT 0ms · CLS 0.003 · SI 2.6s
+
+### Current state (post cosmetic tweak — commits `5ac46ae`·`45b4771`)
+**Estimated:** Performance ~97-98 · SI ~3.0-3.2s  
+The hero heading delay bump (0.2s → 1.4s) trades ~2 Lighthouse points for dramatic pacing. Re-run PageSpeed to confirm. LCP should remain at 1.8s (heading renders at blurry 0% keyframe state at 1.4s delay — still within LCP window).
 
 ### Improvements
 
@@ -210,6 +214,20 @@ The `?url` import pattern (`import globalCssUrl from '../styles/global.css?url'`
 3. **Two `<link rel="stylesheet">` tags** in the final output — one from `?url` (async) and one from fontsource imports (blocking) — negate the benefit.
 
 **Correct approach for the future:** Use a Vite plugin (e.g., `vite-plugin-critical`) or Astro integration that extracts above-the-fold CSS at build time and inlines it into `<style>`, while deferring the rest. This requires Tailwind-aware CSS splitting, which adds complexity.
+
+### Post-deploy Cosmetic Tweak (commits `5ac46ae`, `45b4771`)
+
+Bumped `.hero-h` animation-delay from 0.2s to 1.4s to restore the dramatic staged reveal. Previously the heading appeared blurry at the same moment as the rule (0.2s), before the eyebrow even started typing. The new sequence:
+
+| Time | Element | Animation |
+|------|---------|-----------|
+| 0.2s | `.hero-rule` | Red line draws |
+| 0.6s | `.hero-eyebrow span` | "CASE FILE №04..." types out (1.2s) |
+| 1.4s | `.hero-h` | "ดูเนื้อ ไม่ดูหน้า" ink reveal (0.9s, blur→sharp) |
+| 1.8s | `.hero-sub` | Settles |
+| 2.2s | `.hero-cta` | Settles |
+
+**Tradeoff:** Speed Index rises from 2.6s to ~3.0-3.2s. Performance score likely 97-98 (down 1-2 from 99). This is intentional — the blur-to-sharp ink reveal IS the brand's visual identity, and the dramatic pacing is worth more than 2 Lighthouse points.
 
 ### Verdict
 
