@@ -28,6 +28,9 @@ const { title, description = 'ประกันเนื้อๆ — BEEF · I
   <!-- Preload LCP font (Thai subset, 700 weight — hero heading) -->
   <!-- Note: update hash if @fontsource/anuphan package version changes -->
   <link rel="preload" href="/_astro/anuphan-thai-700-normal.rOsLv-jZ.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <!-- Preload body font (Thai subset, 400 weight) — breaks longest chain in font cascade -->
+  <!-- Note: update hash if @fontsource/sarabun package version changes -->
+  <link rel="preload" href="/_astro/sarabun-thai-400-normal.C2DaJlKK.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
