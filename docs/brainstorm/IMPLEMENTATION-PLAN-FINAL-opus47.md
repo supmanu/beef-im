@@ -892,9 +892,23 @@ no longer reads — silently breaking the deploy.
 - `format: string` (free-form, optional — replaces enum-style category badge)
 - `footerType` is **never** in frontmatter — derived in `[...slug].astro`
 
+**Live MDX cleanup (post-§18):**
+- [x] `src/content/insurance/unit-linked-coi.mdx`,
+      `src/content/insurance/ci-rider-36-vs-108.mdx`,
+      `src/content/meat/ribeye-reverse-sear.mdx`,
+      `src/content/meat/moo-sam-chan-tod-nam-pla.mdx` — vestigial `category:`
+      and `footerType:` stripped, replaced with `collection:` + free-form
+      `format:` badge (`CASE FILE`, `EXPERIMENT LOG`, `FIELD NOTE`).
+      Closes the §18 leftover. Commit `ce05261`.
+
+**`public/_redirects` removed:**
+- [x] Phase-0 migration 301s (4 specific + 3 glob) deleted. The pre-pivot
+      URLs (`/case/*`, `/experiment/*`, `/field-note/*`) were never publicly
+      shared — site has only been seen by author during build. Standard
+      "keep migration 301s for 12 months" guidance does not apply when
+      there is no audience to redirect. File deleted entirely (Cloudflare
+      Pages tolerates absence).
+
 **Not touched (intentional):**
 - `nerd/content-catalog.md` — full rescan needed when real content lands;
   current entries are pre-pivot legacy mockups.
-- Live MDX files in `src/content/insurance/` and `src/content/meat/` still
-  carry stale `category:` and `footerType:` lines. Harmless (Zod ignores
-  unknown fields), but candidates for cleanup the next time they're edited.
