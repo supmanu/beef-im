@@ -142,11 +142,11 @@
 
           .footer {
             margin-top: 56px; padding-top: 16px;
-            border-top: 1px solid rgba(120,100,75,0.18);
+            border-top: 1px solid rgba(120,100,75,0.28);
             display: flex; flex-direction: column; gap: 10px;
           }
           .footer-watermark {
-            font-family: "IBM Plex Mono", monospace; font-size: 10px;
+            font-family: "Sarabun", "Noto Sans Thai", sans-serif; font-size: 10px;
             color: rgba(27,26,23,0.65); letter-spacing: 0.04em;
           }
           .footer-nav {
@@ -161,8 +161,8 @@
             color: rgba(27,26,23,0.25); padding: 0 4px;
           }
           .footer-tagline {
-            font-family: "IBM Plex Mono", monospace; font-size: 10px;
-            color: rgba(27,26,23,0.65); letter-spacing: 0.06em;
+            font-family: "Sarabun", "Noto Sans Thai", sans-serif; font-size: 10px;
+            color: rgba(27,26,23,0.65); letter-spacing: 0.04em;
           }
         </style>
       </head>
