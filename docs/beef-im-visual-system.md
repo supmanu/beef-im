@@ -2,7 +2,7 @@
 
 **Status:** Synced to live codebase — describes `src/styles/global.css` as of 2026-05-03.
 **Source of truth:** the CSS. When this doc and the CSS disagree, fix the doc.
-**Last updated:** 2026-05-03 (full sync from Apr 28 v1.0 draft)
+**Last updated:** 2026-05-03 (full sync from Apr 28 v1.0 draft; Phase-2 cleanup: MarginNote breakpoint ≥1100px, LCP heroReveal note, forced reflow fix, SiteFooter font/contrast rows)
 
 **Brand master line:** ดูเนื้อ ไม่ดูหน้า — *judge by substance, not appearance.*
 
@@ -111,7 +111,10 @@ IBM Plex Mono: no fallback needed — monospace stack substitutes cleanly.
 | VerdictSeal inner text | 11px | Anuphan (SVG inline) | 700, `fill: var(--color-red)`, `text-anchor: middle` |
 | Page-footer | 11px | K2D | 300 italic, navy |
 | Footer stamp SVG text | 10px | Anuphan (SVG inline) | 700, `fill: var(--color-red)`, `opacity: 0.85` |
-| Watermark footer | 10.5px | (inherited) | `color: rgba(27,26,23,0.42)` |
+| Article watermark (`.nb-watermark`) | 10.5px | Sarabun (inherited) | `color: rgba(27,26,23,0.42)` — article page only |
+| **SiteFooter watermark** | 10px | **Sarabun** | `rgba(27,26,23,0.65)` — WCAG AA ✓ |
+| **SiteFooter nav links** | 11px | **Anuphan** | `#B33D1A` (darkened burn — 4.7:1 on `#EDE7D7`) |
+| **SiteFooter tagline** | 10px | **Sarabun** | `rgba(27,26,23,0.65)` — WCAG AA ✓ |
 
 **Static pages (via `StaticPageLayout`):**
 
@@ -239,7 +242,7 @@ Default: right-side `.nb-note`. `position="left"`: `.nb-note.left`. `caution`: `
 
 Mobile (default): inline block, left border `2px solid rgba(43,74,94,0.28)`, cream background.
 
-Desktop ≥768px: absolutely positioned outside the column:
+Desktop ≥1100px: absolutely positioned outside the column:
 - Right: `right: -220px; width: 195px; transform: rotate(1.2deg)`
 - Left: `left: -220px; transform: rotate(-1.5deg)`
 
@@ -313,7 +316,7 @@ CSS class `.nb-verdict`. Right-aligned flex row: optional caption label (`.nb-ve
 | Tablet ≥768px | 620px |
 | Desktop ≥1200px | 660px |
 
-Right MarginNotes overhang at `right: -220px, width: 195px`. Visible without clipping roughly ≥1080px viewport. On mobile they revert to inline.
+Right MarginNotes overhang at `right: -220px, width: 195px`. Breakpoint bumped to ≥1100px (2026-05-03) — iPad portrait (768px) doesn't have room; notes clip at 768px. On mobile/tablet they revert to inline.
 
 ### Static page column width
 
@@ -365,9 +368,12 @@ Image blending: `img.nb-photo` and `.nb-content img` use `mix-blend-mode: multip
 
 | Item | Value | Notes |
 |---|---|---|
-| Lighthouse mobile — homepage | ~91 | WebGL warmth shader + hero animations; intentional floor |
+| Lighthouse mobile — homepage | ~96 | After heroReveal LCP + forced reflow fix (2026-05-03). Previous: 98 before h1 animation regression; 96 after |
 | Lighthouse mobile — static/hub pages | ~98–99 | No WebGL, no page-tear |
 | Lighthouse mobile — article pages | ~90+ | Post `inherits: false` fix (was 80) |
+| Lighthouse accessibility — all pages | 100 | Footer contrast raised 2026-05-03; watermark/tagline opacity 0.65, links #B33D1A |
+| **LCP: `heroReveal` keyframe** | critical | h1 `.hero-h` must NOT animate opacity — `animation-fill-mode: both` with any delay holds element at `opacity:0`, Chrome excludes it from LCP. Use blur+transform only (`heroReveal` 0.9s 0.2s). `inkSettle` (opacity 0→1) is only for sub-elements that aren't LCP candidates. |
+| **Forced reflow: `initReveal()`** | fixed | Batch all `getBoundingClientRect()` reads before any `classList.add()` writes. DOM write before geometry read triggers 171ms synchronous layout. |
 | `@property --ink-spread { inherits: false }` | critical | Prevents style-recalc cascade on all DOM descendants during page-tear animation. `inherits: true` caused TBT 730ms on article pages |
 | `will-change: transform` on `.nb-scrap` | compositor hint | Pre-promotes ScrapCard to GPU layer; removes it from layout-recalc budget |
 | `backdrop-filter: blur(8px)` on `.article-nav` | ~2–3pt cost | Intentionally kept; sticky glass-nav aesthetic |
