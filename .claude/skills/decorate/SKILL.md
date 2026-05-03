@@ -8,7 +8,7 @@ based on article content). Always shows a diff preview before writing. You can
 manually edit the result afterwards.
 
 > **Pairs with `/publish`.** Run `/decorate` on an audited draft, then `/publish`
-> it. Or run `/decorate` directly on a live `src/content/<category>/<file>.mdx`
+> it. Or run `/decorate` directly on a live `src/content/<collection>/<file>.mdx`
 > to add toys to an existing article. Same logic, same diff preview.
 
 ---
@@ -25,15 +25,15 @@ manually edit the result afterwards.
 **Examples:**
 ```
 /decorate nerd/output/drafts/unit-linked-trap.md
-/decorate src/content/case/unit-linked-coi.mdx --light
-/decorate src/content/field-note/moo-sam-chan-tod-nam-pla.mdx --dry-run
+/decorate src/content/insurance/unit-linked-coi.mdx --light
+/decorate src/content/meat/moo-sam-chan-tod-nam-pla.mdx --dry-run
 ```
 
 ---
 
 ## What I Will Do When You Run /decorate
 
-1. **Read the file** and parse the YAML frontmatter (need `category` for VerdictSeal defaults).
+1. **Read the file** and parse the YAML frontmatter (need `collection` for VerdictSeal defaults — use the frontmatter field if present, else infer from file path under `src/content/<collection>/`).
 2. **Skip if already decorated** — if the file already has `<VerdictSeal`, `<CorrectionBlock`, or 3+ other tags, run in `--light` mode by default and ask before adding more.
 3. **Run the passes** (see below) — produce a candidate decorated body.
 4. **Show a unified diff** of every change with a one-line rationale per change.
@@ -60,15 +60,15 @@ For every standalone markdown table (lines starting with `|` followed by `|---|`
 
 ### B. Add `<VerdictSeal>` if missing
 
-If the article's `category` is `case` or `experiment` AND there is no `<VerdictSeal` anywhere in the file:
+If the article's `collection` is `insurance` or `meat` AND there is no `<VerdictSeal` anywhere in the file:
 
 - Append at the end of the body (after a blank line)
-- Default text by category:
-  - `case` → `<VerdictSeal line1="ตรวจสอบ" line2="ก่อนเซ็น" />`
-  - `experiment` → `<VerdictSeal line1="ทดลอง" line2="ก่อนเชื่อ" />`
+- Default text by collection:
+  - `insurance` → `<VerdictSeal line1="ตรวจสอบ" line2="ก่อนเซ็น" />`
+  - `meat` → `<VerdictSeal line1="ทดลอง" line2="ก่อนเชื่อ" />`
 - Prompt the user to override the default lines (one input, two short Thai phrases)
 
-`field-note` articles **do not** get an auto-VerdictSeal — they're observational, not adjudicating.
+`note` articles **do not** get an auto-VerdictSeal — they're observational/personal, not adjudicating. Same rule for `meat` articles tagged `format: "FIELD NOTE"` or `format: "OBSERVATION"` — skip the auto-seal but warn the user one paragraph above the end if they want to add one manually.
 
 ### C. Promote `**bold Thai phrases**` to `<Highlight>`
 
@@ -140,7 +140,7 @@ Cap at 5 per article. Highlight inflation kills the highlight.
 Before writing, the skill shows:
 
 ```
-=== /decorate proposed changes for src/content/case/unit-linked-coi.mdx ===
+=== /decorate proposed changes for src/content/insurance/unit-linked-coi.mdx ===
 
 [Mechanical] +1 ScrapCard wrap (around table at line 22, label derived from heading "AIA-UL COI SCHEDULE")
 [Mechanical] +1 VerdictSeal at end (default: ตรวจสอบ / ก่อนเซ็น — type new lines or press Enter to accept)
@@ -181,7 +181,7 @@ Total: +9 tags. Apply? [y/N/edit]
 Before running either pass, verify:
 
 - [ ] File exists and is readable
-- [ ] Frontmatter parses; `category` field is one of `case`/`experiment`/`field-note` (else: skip the VerdictSeal step, warn user)
+- [ ] Frontmatter parses; resolve `collection` from frontmatter or file path. Must be one of `insurance`/`meat`/`note` (else: skip the VerdictSeal step, warn user)
 - [ ] File is `.md` or `.mdx` (else: refuse — this skill is MDX-aware only)
 - [ ] No `<` characters that look like broken/half-typed component tags (e.g. `< Highlight`, `<MarginNote `) — flag for manual fix first
 
@@ -193,8 +193,9 @@ When in doubt:
 
 - **Better to under-decorate than over-decorate.** A clean article with 2 `<Highlight>` + 1 `<VerdictSeal>` reads better than one with 8 `<Highlight>` and 5 `<MarginNote>` competing for attention.
 - **Numerical anchors > rhetorical phrases** for `<Highlight>`. Concrete data is what readers remember.
-- **Paradox is mandatory in `case` articles, optional in `field-note`, encouraged in `experiment`.** If the article has no paradox AND it's a `case`, decorate but warn the user that the structural problem is upstream.
-- **Beef articles (`footerType: beef`)** get a lighter hand: skip `<CorrectionBlock>` (beef facts and cooking aren't adversarial), skip caution MarginNote unless there's a real safety issue (raw chicken temps, etc.).
+- **Paradox is mandatory in `insurance` articles, optional in `note`, encouraged in `meat`.** If the article has no paradox AND it's `insurance`, decorate but warn the user that the structural problem is upstream.
+- **`meat` articles** get a lighter hand: skip `<CorrectionBlock>` unless the prose explicitly inverts a cooking belief, skip caution MarginNote unless there's a real safety issue (raw chicken temps, undercooked pork, etc.).
+- **`note` articles** are author-personal and unmoderated. Run mechanical only by default; semantic pass is opt-in via `--semantic-only` or full `/decorate <file>`. Don't propose `<CorrectionBlock>` — the FUCK-IT pillar isn't structured around a Paradox by design.
 
 ---
 
@@ -216,4 +217,4 @@ When in doubt:
 - [`.claude/rules/paradox-architecture.md`](../../rules/paradox-architecture.md) — why `<CorrectionBlock>` is mandatory at the Paradox reveal
 - [`.claude/rules/content-compliance-boundaries.md`](../../rules/content-compliance-boundaries.md) — decoration doesn't bypass the drug-name / Whole Life rules; if those flag, fix the prose first
 - `nerd/CHEATSHEET.md` §"Notebook Components" — manual reference for the same five tags
-- Live examples: `nerd/_ops/published/case/unit-linked-coi.mdx` (uses all five — good calibration target for the semantic pass)
+- Live examples: `nerd/_ops/published/insurance/unit-linked-coi.mdx` (uses all five — good calibration target for the semantic pass)

@@ -1,8 +1,11 @@
 # Content Pipeline Cheat Sheet
 
-> **As of Apr 27, 2026** — beef.im is live on Cloudflare Pages, sourced from
+> **As of May 3, 2026** — beef.im is live on Cloudflare Pages, sourced from
 > `src/content/*.mdx` in this repo. Pushing to `origin/main` (= `supmanu/beef-im`)
-> auto-deploys. There is no Payload, no Vercel, no `--draft` flag any more.
+> auto-deploys. There is no Payload, no Vercel, no `--draft` flag.
+>
+> **Taxonomy (Phase-0 pivot, May 2):** three collections — `insurance`, `meat`,
+> `note`. The pre-pivot `case` / `experiment` / `field-note` enum is gone.
 
 ---
 
@@ -93,13 +96,13 @@ seed ──→ researching ──→ ready ──→ in-production ──→ pub
    /publish nerd/output/drafts/<slug>.md
    /publish nerd/output/drafts/<slug>.md --filename=custom-slug   (optional override)
 
-   This writes src/content/<category>/<filename>.mdx — no DB, no upload.
+   This writes src/content/<collection>/<filename>.mdx — no DB, no upload.
 
 7. Commit + push to deploy:
 
    git add src/content/ && git commit -m "feat: publish <title>" && git push origin main
 
-   Cloudflare Pages auto-deploys in ~30 seconds. URL: https://beef.im/<category>/<filename>
+   Cloudflare Pages auto-deploys in ~30 seconds. URL: https://beef.im/<collection>/<filename>
 
 8. Update seed frontmatter:
    status: published
@@ -116,19 +119,26 @@ Add this block to the top of any approved draft before running `/publish`:
 ```yaml
 ---
 title: "Unit-linked: กับดักค่าธรรมเนียม ที่ตัวแทนไม่บอก"
-category: case            # case | experiment | field-note
+collection: insurance     # insurance | meat | note  ← drives folder + watermark
 date: 2026-04-25
 lede: "COI ปีที่ 30 = 128,400 บาท — exponential curve ที่หายไป"
-temperature: risk         # risk | medium | low
-footerType: analysis      # analysis | cooking
 ---
 ```
+
+**Required:** `title`, `collection`, `date`, `lede`.
 
 **No `slug:` field.** Astro 6 derives the URL slug from the filename.
 The skill picks the filename — pass `--filename=…` to override.
 
+**No `footerType:` field.** Auto-derived from collection (`insurance`→📊,
+`meat`→🔥, `note`→📝).
+
+**No `category:` field.** That's the pre-pivot taxonomy — use `collection:`.
+
 **Optional but useful:**
 ```yaml
+format: "CASE FILE"      # free-form badge: CASE FILE / EXPERIMENT LOG / FIELD NOTE / RECIPE / บันทึก / omit
+temperature: risk        # risk | medium | low — drives <TemperatureBar> colour
 author: "ณัฐพล"          # default if omitted
 readTime: "11 MIN"
 wordCount: 2840
@@ -137,14 +147,17 @@ sidenote: "..."          # margin post-it on homepage TOC
 latest: true             # marks the LatestStamp (one article at a time)
 ```
 
-**Categories → folder:**
-| `category:` | Lives in | Display masthead |
-|---|---|---|
-| `case` | `src/content/case/` | CASE FILE |
-| `experiment` | `src/content/experiment/` | EXPERIMENT LOG |
-| `field-note` | `src/content/field-note/` | FIELD NOTE |
+**Collections → folder + watermark + URL:**
+| `collection:` | Lives in | Watermark | URL prefix |
+|---|---|---|---|
+| `insurance` | `src/content/insurance/` | 📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im) | `/insurance/<slug>/` |
+| `meat` | `src/content/meat/` | 🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im) | `/meat/<slug>/` |
+| `note` | `src/content/note/` | 📝 บันทึกโดย: ประกันเนื้อๆ (beef.im) | `/note/<slug>/` |
 
-**`footerType` →** `analysis` = 📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im) · `cooking` = 🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)
+**`format` is free-form** — author owns the editorial badge. Use whatever
+fits the article: `CASE FILE`, `EXPERIMENT LOG`, `FIELD NOTE`, `RECIPE`,
+`OBSERVATION`, `บันทึก`, or omit entirely. The collection determines URL +
+watermark; the `format` badge is just the top-left label.
 
 ---
 
@@ -207,12 +220,12 @@ Same article, totally different visual register. **Every tag is optional** — s
 
 1. **Write the Thai prose first** in Obsidian, plain Markdown — focus on the words.
 2. **Re-read and sprinkle tags** where they add visual punch:
-   - One `<VerdictSeal>` at the end (mandatory for `case` and `experiment` articles)
+   - One `<VerdictSeal>` at the end (mandatory for `insurance` and `meat` articles; skip for `note`)
    - One `<CorrectionBlock>` at the Paradox reveal point (your brand law: every article needs a Paradox)
    - 1–3 `<MarginNote>` for side commentary
    - 2–5 `<Highlight>` for key phrase emphasis
    - `<ScrapCard>` around any data table
-3. **Preview locally** (optional) — `npm run dev`, then open `http://localhost:4321/case/<filename>` to see how it looks before pushing.
+3. **Preview locally** (optional) — `npm run dev`, then open `http://localhost:4321/<collection>/<filename>` to see how it looks before pushing.
 4. **Push to deploy** — `git add src/content/ && git commit -m "..." && git push origin main`. Cloudflare Pages auto-deploys in ~30s.
 
 ### Three things to know
@@ -225,12 +238,12 @@ Same article, totally different visual register. **Every tag is optional** — s
 
 **Edit by hand when:**
 - The AI draft is 95% there and you just want to add one `<MarginNote>` or move a `<Highlight>`
-- You're writing a short field-note (cooking, observations) and don't want to re-architect through `/architect → /performer`
+- You're writing a short observational piece (a `note`, a cooking field-note in `meat`) and don't want to re-architect through `/architect → /performer`
 - You're touching up live mockup articles before they're real
 - You spot a typo or want to swap a `<Highlight>` for stronger emphasis
 
 **Use AI (`/architect → /performer → /auditor`) when:**
-- Long-form `case` articles (1500w+) — needs Paradox structure
+- Long-form `insurance` articles (1500w+) — needs Paradox structure
 - Anything regulatory-sensitive (auditor pass mandatory)
 - A topic you haven't framed yet — you need a Blueprint first
 - Bake-off testing across models (Qwen / Kimi / Sonnet)
@@ -239,7 +252,7 @@ Same article, totally different visual register. **Every tag is optional** — s
 
 ```
 /decorate nerd/output/drafts/<slug>.md            # full pass with diff preview
-/decorate src/content/case/<file>.mdx --light     # mechanical only (tables + VerdictSeal + bold→Highlight)
+/decorate src/content/insurance/<file>.mdx --light     # mechanical only (tables + VerdictSeal + bold→Highlight)
 /decorate <file> --dry-run                         # show what it would do, don't write
 ```
 
@@ -256,10 +269,10 @@ Open these in Obsidian via `_ops/published/` and copy-paste tag patterns:
 
 | File | What to learn from it |
 |---|---|
-| `_ops/published/case/unit-linked-coi.mdx` | Uses all five components — full reference |
-| `_ops/published/case/ci-rider-36-vs-108.mdx` | Long comparison structure with multiple `<ScrapCard>` tables |
-| `_ops/published/experiment/ribeye-reverse-sear.mdx` | `cooking` footer variant + casual register |
-| `_ops/published/field-note/moo-sam-chan-tod-nam-pla.mdx` | Short field-note format — minimal decoration |
+| `_ops/published/insurance/unit-linked-coi.mdx` | Uses all five components — full reference |
+| `_ops/published/insurance/ci-rider-36-vs-108.mdx` | Long comparison structure with multiple `<ScrapCard>` tables |
+| `_ops/published/meat/ribeye-reverse-sear.mdx` | `meat` watermark (🔥) + casual experiment-log register (try `format: "EXPERIMENT LOG"`) |
+| `_ops/published/meat/moo-sam-chan-tod-nam-pla.mdx` | Short field-note-style decoration — minimal toys (try `format: "FIELD NOTE"`) |
 
 ---
 

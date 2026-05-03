@@ -852,3 +852,49 @@ Ship Phase 0 + 1 + 1b on Monday. If the WebGL hero feels right after a week of l
 
 **Completed in same session:**
 - [x] **RSS feed styled** — `public/rss-style.xsl` brand-matched XSL template + `stylesheet: '/rss-style.xsl'` wired into `rss.xml.ts`. Browsers now render `/rss.xml` as a styled HTML page (cream parchment, graph grid, Anuphan headings, brand wordmark in sticky nav, items list with date/title/lede). Feed-reader semantics unchanged — XSL is browser-only. Fonts loaded via Google Fonts CDN since XSL can't reference Astro's hashed self-hosted font filenames.
+
+---
+
+## 18. Pre-content-creation taxonomy sync (2026-05-03)
+
+**Trigger:** User about to start writing real content. Pre-pivot taxonomy
+(`category: case|experiment|field-note` + `footerType: analysis|cooking`) was
+still embedded in 5 skills + 2 Obsidian guides. If a writer followed those
+specs, `/publish` would write to `src/content/case/` etc. — folders Astro
+no longer reads — silently breaking the deploy.
+
+**Synced to current schema:**
+- [x] `.claude/skills/publish/SKILL.md` — full rewrite. Frontmatter spec now
+      requires `collection: insurance|meat|note` (plus `title`/`date`/`lede`).
+      `footerType` removed (auto-derived from collection at render time by
+      `[...slug].astro`). `category` removed (vestigial). Added `format`
+      (free-form badge) as optional. Hygiene check warns + strips legacy
+      `category`/`footerType` if present in incoming drafts.
+- [x] `.claude/skills/decorate/SKILL.md` — VerdictSeal defaults keyed off
+      `collection`: `insurance` → `ตรวจสอบ / ก่อนเซ็น`, `meat` → `ทดลอง / ก่อนเชื่อ`,
+      `note` → no auto-seal (observational/personal). `meat` articles tagged
+      `format: "FIELD NOTE"` or `"OBSERVATION"` also skip auto-seal.
+- [x] `.claude/skills/produce-article/SKILL.md` — Step 5 frontmatter block,
+      collections table, output format, decoration philosophy all migrated.
+      Footer mapping now: `insurance`→📊, `meat`→🔥, `note`→📝.
+- [x] `.claude/skills/seed/SKILL.md` — verified clean, no taxonomy refs.
+- [x] `nerd/CHEATSHEET.md` — Publish Frontmatter section, collections table,
+      live-examples paths, "When to edit by hand vs use AI" section all
+      migrated. Header note documents the Phase-0 pivot.
+- [x] `nerd/OBSIDIAN_GUIDE.md` — header updated with taxonomy-pivot note.
+      Pipeline artifact chain, "When You Publish" steps, live-examples paths,
+      tool-roles table all reference `<collection>` instead of `<category>`.
+
+**Field-name conventions confirmed:**
+- `collection: insurance | meat | note` (skill input → folder selection;
+  written through to MDX as a self-documenting hint, though Astro derives
+  the runtime collection from folder location regardless)
+- `format: string` (free-form, optional — replaces enum-style category badge)
+- `footerType` is **never** in frontmatter — derived in `[...slug].astro`
+
+**Not touched (intentional):**
+- `nerd/content-catalog.md` — full rescan needed when real content lands;
+  current entries are pre-pivot legacy mockups.
+- Live MDX files in `src/content/insurance/` and `src/content/meat/` still
+  carry stale `category:` and `footerType:` lines. Harmless (Zod ignores
+  unknown fields), but candidates for cleanup the next time they're edited.

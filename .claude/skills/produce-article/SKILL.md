@@ -32,7 +32,7 @@ Step 2: PERFORMER  → Thai prose draft (voice + brand law applied)
 Step 3: AUDITOR    → 6-point compliance verdict + Forensic Reconstruction if needed
 Step 4: DECORATE   → Add notebook MDX components (Highlight, MarginNote, ScrapCard,
                      CorrectionBlock, VerdictSeal) with diff preview
-Step 5: PUBLISH    → Write to src/content/<category>/<slug>.mdx
+Step 5: PUBLISH    → Write to src/content/<collection>/<slug>.mdx
 ```
 
 ---
@@ -81,9 +81,10 @@ Read `nerd/agents/performer.md` before writing.
 - NHES VII stats (not NHES 6)
 - Watermark count matches mode (S=1, A=3, B=4, C=5)
 - Thai-First Handshake ≥ 85% (Thai leads, English in parens)
-- Footer per constitution Article VII:
-  - Finance/insurance → `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
-  - Beef facts/cooking → `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
+- Footer per constitution Article VII (auto-derived from collection at render time):
+  - `insurance` → `📊 บทวิเคราะห์โดย: ประกันเนื้อๆ (beef.im)`
+  - `meat` → `🔥 คัดเนื้อโดย: ประกันเนื้อๆ (beef.im)`
+  - `note` → `📝 บันทึกโดย: ประกันเนื้อๆ (beef.im)`
 - No specific drug names / dosages / diagnostic verdicts
 - No Whole Life framed as "bad investment" (canonical LLM hallucination —
   WL = wealth-transfer + protection, not investment)
@@ -127,9 +128,9 @@ two-pass logic on the approved text:
 
 ### Pass 1 — Mechanical (always safe)
 - Wrap every markdown table in `<ScrapCard label="EXHIBIT N · …">`
-- Append `<VerdictSeal line1="…" line2="…" />` if category is `case` or `experiment`
-  and no seal exists yet (default for `case`: ตรวจสอบ / ก่อนเซ็น; for `experiment`:
-  ทดลอง / ก่อนเชื่อ)
+- Append `<VerdictSeal line1="…" line2="…" />` if collection is `insurance` or `meat`
+  and no seal exists yet (default for `insurance`: ตรวจสอบ / ก่อนเซ็น; for `meat`:
+  ทดลอง / ก่อนเชื่อ). Skip auto-seal for `note` — observational/personal pillar.
 - Promote pure-Thai `**bold**` to `<Highlight>…</Highlight>`
 
 ### Pass 2 — Semantic (judgment calls, max one per article)
@@ -140,9 +141,11 @@ two-pass logic on the approved text:
   ages) and brand-defining one-liners
 
 **Decoration philosophy:** under-decorate beats over-decorate. Two highlights + one
-verdict seal beats eight highlights + five margin notes. Beef articles
-(`footerType: beef` — covers beef facts, science, technique, recipes, history) get
-a lighter hand — no `<CorrectionBlock>` (beef content isn't adversarial).
+verdict seal beats eight highlights + five margin notes. `meat` articles (covers
+beef facts, science, technique, recipes, history) get a lighter hand — usually no
+`<CorrectionBlock>` (cooking content isn't adversarial unless the article explicitly
+inverts a belief). `note` articles are author-personal and FUCK-IT mode — apply
+mechanical pass only by default.
 
 **No `import` lines.** All five components are globally injected by
 `src/pages/[...slug].astro` and resolve automatically inside any `.mdx` file in
@@ -159,24 +162,33 @@ Compose the final MDX file with this frontmatter:
 ```yaml
 ---
 title: "Full Thai title"
-lede: "1–2 sentence homepage TOC summary"
-sidenote: "Optional margin note shown on the homepage entry"
+collection: insurance     # insurance | meat | note  ← drives target folder + watermark
 date: YYYY-MM-DD
-category: case            # case | experiment | field-note
-temperature: risk         # risk | medium | low — drives <TemperatureBar> colour
+lede: "1–2 sentence homepage TOC summary"
+format: "CASE FILE"       # free-form badge label rendered top-left (optional)
+temperature: risk         # risk | medium | low — drives <TemperatureBar> colour (optional)
+sidenote: "Optional margin note shown on the homepage entry"
 code: "AIA-UL"            # short ref code shown next to the masthead (optional)
 wordCount: 1420           # display only (optional)
 readTime: "6 MIN"         # display only (optional)
 author: "ณัฐพล"            # default if omitted
 latest: true              # only one article carries this at a time
-footerType: analysis      # analysis (📊 finance/insurance) | beef (🔥 beef facts/technique/recipes)
 ---
 ```
 
-**Categories (drives target folder + URL):**
-- `case` → `src/content/case/<slug>.mdx` → live at `/case/<slug>`
-- `experiment` → `src/content/experiment/<slug>.mdx` → `/experiment/<slug>`
-- `field-note` → `src/content/field-note/<slug>.mdx` → `/field-note/<slug>`
+> **No `footerType:` field.** Auto-derived from the collection folder by
+> `src/pages/[...slug].astro` (`insurance`→📊, `meat`→🔥, `note`→📝).
+>
+> **No `category:` field.** That was the pre-pivot taxonomy. Use `collection:` instead.
+
+**Collections (drives target folder + URL + watermark):**
+- `insurance` → `src/content/insurance/<slug>.mdx` → live at `/insurance/<slug>`
+- `meat` → `src/content/meat/<slug>.mdx` → `/meat/<slug>`
+- `note` → `src/content/note/<slug>.mdx` → `/note/<slug>`
+
+**`format` is free-form.** Use whatever fits: `CASE FILE`, `EXPERIMENT LOG`,
+`FIELD NOTE`, `RECIPE`, `OBSERVATION`, `บันทึก`, or omit. Editorial badge
+only — has no functional effect.
 
 **Slug derivation:** Romanise the Thai title to lowercase + hyphens, or use
 `--filename=<slug>` flag to override. Filename must match `^[a-z0-9-]+$`.
@@ -217,11 +229,11 @@ STEP 4: DECORATE DIFF
 ═══════════════════════════════════════
 STEP 5: PUBLISH
 ═══════════════════════════════════════
-File: src/content/<category>/<slug>.mdx
-URL:  /<category>/<slug>
+File: src/content/<collection>/<slug>.mdx
+URL:  /<collection>/<slug>
 Status: NEW / OVERWRITE
 Frontmatter:
-  title, category, date, temperature, footerType, latest, ...
+  title, collection, date, lede, format, temperature, latest, ...
 ```
 
 After Step 5 the file is on disk. Cloudflare Pages auto-deploys on push to
@@ -236,9 +248,10 @@ protocol in `CLAUDE.md`.
 - **No git commit / push.** User commits after reviewing the file.
 - **No image upload to R2.** Reference assets by their `https://assets.beef.im/...`
   URL — uploads are a separate step.
-- **No category creation.** The three categories are fixed in the content
-  collection schema (`src/content.config.ts`). Adding a fourth requires a code
-  change.
+- **No collection creation.** The three collections are fixed in
+  `src/content.config.ts`: `insurance`, `meat`, `note`. Adding a fourth
+  requires a code change in the schema + the dynamic route's `collectionNames`
+  array + the footerType derivation.
 - **No HTML/Lexical conversion.** MDX is the source format end-to-end. Payload
   and Lexical are archived (`_archive/nextjs-legacy/`).
 - **No skipping the auditor.** If you want a quick draft without compliance

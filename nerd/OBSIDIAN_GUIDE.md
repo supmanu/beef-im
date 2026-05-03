@@ -1,7 +1,8 @@
 # Obsidian + Content Pipeline Guide
 
 **Created:** March 24, 2026
-**Updated:** April 27, 2026 — **Astro/MDX pivot.** Site is now beef.im (live on Cloudflare Pages from `src/content/*.mdx`). `/publish` writes MDX directly into the live content collection. No Payload, no Vercel, no `--draft` flag. New `_ops/published` symlink points at the live MDX. Old `_ops/content` symlink removed (broken — pointed at the now-archived Payload `content/`).
+**Updated:** May 3, 2026 — **Taxonomy pivot.** Three collections: `insurance`, `meat`, `note` (replacing the pre-pivot `case` / `experiment` / `field-note`). The optional `format` frontmatter field (free-form badge: `CASE FILE`, `EXPERIMENT LOG`, `FIELD NOTE`, `RECIPE`, etc.) carries the editorial register. `footerType` is now auto-derived from the collection — don't put it in frontmatter.
+**Earlier:** April 27, 2026 — Astro/MDX pivot. Site is beef.im (live on Cloudflare Pages from `src/content/*.mdx`). `/publish` writes MDX directly. No Payload, no Vercel, no `--draft` flag.
 **Purpose:** How to use Obsidian as the intake layer for the beef.im content production system
 
 ---
@@ -47,9 +48,9 @@ AFTER (v6.0 + /publish, post-Astro pivot Apr 26 2026):
 | `nerd/content-catalog.md` | Content index | Map of existing files (⚠️ may be stale — last scan Mar 24) |
 | `nerd/dashboard.md` | Dataview dashboard | Live pipeline visibility |
 | `nerd/_ops/` | Symlinks | Browse docs, **published MDX**, rules, skills, legacy from vault |
-| `nerd/_ops/published/` | **Live MDX** | Symlinked → `src/content/` — what's on beef.im right now |
+| `nerd/_ops/published/` | **Live MDX** | Symlinked → `src/content/` — what's on beef.im right now (folders: `insurance/`, `meat/`, `note/`) |
 | `.claude/skills/seed/` | CLI skill | `/seed [dump]` — captures seed from terminal |
-| `.claude/skills/publish/` | CLI skill | `/publish [draft.md]` — writes MDX into `src/content/<category>/` |
+| `.claude/skills/publish/` | CLI skill | `/publish [draft.md]` — writes MDX into `src/content/<collection>/` |
 
 ### Why `nerd/` as Vault (Not `nerd-with-nart/`)
 
@@ -167,27 +168,29 @@ When a seed is ready:
    - `/auditor nerd/output/drafts/<slug>.md` → 6-point compliance check
 4. Model choice is length-tiered — Qwen3.6 Plus for S/A, Kimi K2.6 for B/C. See [`.claude/rules/thai-model-routing.md`](../.claude/rules/thai-model-routing.md).
 5. If regulatory-sensitive: escalate audit to Gemini Gem #4
-6. Add the **publish frontmatter** to the top of the audited draft (see [`.claude/skills/publish/SKILL.md`](../.claude/skills/publish/SKILL.md) — required: `title`, `category`, `date`, `lede`, `temperature`, `footerType`)
-7. Promote the draft into the live content collection: `/publish nerd/output/drafts/<slug>.md` — writes `src/content/<category>/<filename>.mdx` (no DB, no upload, no draft mode)
+6. Add the **publish frontmatter** to the top of the audited draft (see [`.claude/skills/publish/SKILL.md`](../.claude/skills/publish/SKILL.md) — required: `title`, `collection` (insurance/meat/note), `date`, `lede`)
+7. Promote the draft into the live content collection: `/publish nerd/output/drafts/<slug>.md` — writes `src/content/<collection>/<filename>.mdx` (no DB, no upload, no draft mode)
 8. Sprinkle notebook components in the body if the article warrants them (see §"Notebook Components" below)
-9. Deploy: `git add src/content/ && git commit -m "feat: publish <title>" && git push origin main` — Cloudflare Pages auto-deploys to https://beef.im/<category>/<filename> in ~30s
+9. Deploy: `git add src/content/ && git commit -m "feat: publish <title>" && git push origin main` — Cloudflare Pages auto-deploys to https://beef.im/<collection>/<filename> in ~30s
 10. Update seed: `status: published`, add `published_date` and `article_slug` (= the filename you used)
 
 **Pipeline artifact chain:**
 
 ```
-nerd/seeds/2026-04-27-topic.md
+nerd/seeds/2026-05-03-topic.md
     ↓  /architect auto-saves
-nerd/output/blueprints/2026-04-27-topic.md
+nerd/output/blueprints/2026-05-03-topic.md
     ↓  /performer output (hand-save)
-nerd/output/drafts/2026-04-27-topic.md  (or --<model>.md for bake-offs)
+nerd/output/drafts/2026-05-03-topic.md  (or --<model>.md for bake-offs)
     ↓  /auditor approves, publish frontmatter added
-nerd/output/drafts/2026-04-27-topic.md  (audited)
+nerd/output/drafts/2026-05-03-topic.md  (audited)
     ↓  /publish
-src/content/<category>/<filename>.mdx   ← live file, also visible in nerd/_ops/published/
+src/content/<collection>/<filename>.mdx   ← live file, also visible in nerd/_ops/published/
     ↓  git push origin main
-https://beef.im/<category>/<filename>   ← live in ~30s via Cloudflare Pages
+https://beef.im/<collection>/<filename>   ← live in ~30s via Cloudflare Pages
 ```
+
+`<collection>` is one of `insurance`, `meat`, `note`.
 
 ### Notebook Components (Inside .mdx Body)
 
@@ -204,9 +207,9 @@ The five MDX components are **globally injected** by `src/pages/[...slug].astro`
 | `<VerdictSeal line1="…" line2="…" />` | Red sealing-wax circle stamp (self-closing) |
 
 **Live examples to crib from** (open in Obsidian via `_ops/published/`):
-- `_ops/published/case/unit-linked-coi.mdx` — uses all five
-- `_ops/published/experiment/ribeye-reverse-sear.mdx` — `cooking` footer variant
-- `_ops/published/field-note/moo-sam-chan-tod-nam-pla.mdx` — short field-note format
+- `_ops/published/insurance/unit-linked-coi.mdx` — uses all five
+- `_ops/published/meat/ribeye-reverse-sear.mdx` — `meat` collection (🔥 watermark)
+- `_ops/published/meat/moo-sam-chan-tod-nam-pla.mdx` — short field-note-style decoration
 
 > **Mockup warning:** the four current articles (as of Apr 27) are mockup content
 > for visual validation, not 100% accurate brand-voice copy. They'll be replaced as
@@ -376,7 +379,7 @@ Open `nerd/content-catalog.md` to see everything you already have.
 | **Gemini Deep Research** | Multi-source web research | Deep dives requiring investigative research |
 | **Gemini Gem #4** | Escalation audit (regulatory web search) | When article makes regulatory claims you're unsure about |
 | **NotebookLM** | Multi-document forensic extraction | Occasional — bulk PDF processing |
-| **`/publish` skill** | Promotes audited draft → `src/content/<category>/<filename>.mdx` | When the draft is audit-passed and ready to ship |
+| **`/publish` skill** | Promotes audited draft → `src/content/<collection>/<filename>.mdx` | When the draft is audit-passed and ready to ship |
 | **`git push origin main`** | Triggers Cloudflare Pages deploy | After `/publish` writes the file |
 
 ### Key Principle
@@ -434,9 +437,9 @@ Open Graph View (Ctrl+G) to see connections between your files. Filter by folder
 
 ### When You Publish an Article
 
-1. Run `/publish nerd/output/drafts/<slug>.md` — writes `src/content/<category>/<filename>.mdx`
+1. Run `/publish nerd/output/drafts/<slug>.md` — writes `src/content/<collection>/<filename>.mdx`
 2. `git add src/content/ && git commit -m "feat: publish <title>" && git push origin main`
-3. Wait ~30s for Cloudflare Pages to deploy. Verify at `https://beef.im/<category>/<filename>`.
+3. Wait ~30s for Cloudflare Pages to deploy. Verify at `https://beef.im/<collection>/<filename>`.
 4. Update the seed: `status: published`, add `published_date` and `article_slug` (= the filename you used)
 
 ---
