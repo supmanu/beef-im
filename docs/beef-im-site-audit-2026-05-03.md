@@ -7,6 +7,8 @@
 
 ## 1. What's Confirmed Fixed
 
+**Pre-session baseline:** `60ca069` — use this to revert if needed.
+
 | Item | Status |
 |---|---|
 | WebGL warmth shader (`HeroCanvas.astro`) | Removed — file deleted, import stripped from `Hero.astro` |
