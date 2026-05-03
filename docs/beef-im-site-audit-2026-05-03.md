@@ -1,5 +1,6 @@
 # beef.im Site Audit — 2026-05-03
-**Auditor:** DeepSeek V4 Pro GO  
+**Auditor (Phase 1–2):** DeepSeek V4 Pro GO  
+**Auditor (Phase 3):** Kimi K2.6 (OpenCode GO)  
 **Scope:** Full codebase evaluation of the beef.im Astro website  
 **Status:** Complete. All actionable issues fixed or deferred. Final Performance 99.
 
@@ -25,7 +26,8 @@
 | Sarabun body font preload | `src/layouts/BaseLayout.astro:31-33` | Added `<link rel="preload">` for `sarabun-thai-400-normal.C2DaJlKK.woff2` — breaks longest chain in font cascade |
 | CSS async swap (attempted, reverted) | `src/layouts/BaseLayout.astro:14` | Tried `?url` import + `rel="preload" onload` pattern to make CSS non-render-blocking. Reverted — `?url` bypasses Astro's CSS minification/deduplication (141KB unminified vs 25KB gzipped). Requires build-time critical CSS extraction. |
 
-### Phase 3 Fixes (2026-05-04 — commits `660adaf` → `b9235fc`)
+### Phase 3 Fixes (2026-05-04 — commits `660adaf` → `b9235fc`)  
+**Auditor:** Kimi K2.6 (OpenCode GO)
 
 | Item | File | Change |
 |---|---|---|
@@ -258,7 +260,8 @@ Bumped `.hero-h` animation-delay from 0.2s to 1.4s to restore the dramatic stage
 
 **Tradeoff:** Speed Index rises from 2.6s to ~3.0-3.2s. Performance score likely 97-98 (down 1-2 from 99). This is intentional — the blur-to-sharp ink reveal IS the brand's visual identity, and the dramatic pacing is worth more than 2 Lighthouse points.
 
-### Phase 3 — Hero Reveal Fixes (2026-05-04)
+### Phase 3 — Hero Reveal Fixes (2026-05-04)  
+**Auditor:** Kimi K2.6 (OpenCode GO)
 
 #### Latent Bug: `filter: blur(5px)` Does Not Hide Thai Text (commit `660adaf`)
 
@@ -294,7 +297,8 @@ A +0.4s delay shift (heading 1.4s→1.8s, sub 1.8s→2.2s, CTA 2.2s→2.6s) was 
 
 The heading still appears at 1.4s (while eyebrow is still typing — intentional overlap), but the blur→sharp transition takes 1.2s instead of 0.9s for a more luxurious ink-spreading feel.
 
-### Phase 3 — Lighthouse Report (2026-05-04, 1:03 AM)
+### Phase 3 — Lighthouse Report (2026-05-04, 1:03 AM)  
+**Auditor:** Kimi K2.6 (OpenCode GO)
 
 **Score:** Performance 99 · Accessibility 100 · Best Practices 100 · SEO 100  
 **Metrics:** FCP 1.2s · LCP 1.9s · TBT 0ms · CLS 0.001 · SI 1.2s
