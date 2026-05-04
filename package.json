@@ -17,7 +17,7 @@
     "@fontsource/k2d": "^5.2.8",
     "@fontsource/sarabun": "^5.2.8",
     "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.1.9",
+    "astro": "^6.2.1",
     "pagefind": "^1.5.2",
     "tailwindcss": "^4.x"
   }

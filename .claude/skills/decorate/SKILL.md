@@ -1,3 +1,11 @@
+---
+name: decorate
+description: "Adds notebook MDX components (Highlight, MarginNote, ScrapCard, CorrectionBlock, VerdictSeal) to a Markdown draft or live src/content/*.mdx article. Mechanical pass (safe — wraps tables, adds verdict seal, upgrades bold) + semantic pass (proposes Paradox/aside/highlight tags). Always shows diff preview before writing."
+disable-model-invocation: true
+argument-hint: "[path-to-file] [--light | --semantic-only | --dry-run | --auto]"
+allowed-tools: Read, Edit, Write, Glob, Grep, Bash
+---
+
 # Skill: /decorate
 
 Adds notebook components (`<Highlight>`, `<MarginNote>`, `<ScrapCard>`,

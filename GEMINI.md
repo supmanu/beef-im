@@ -54,7 +54,7 @@ This department operates under the **Melkor OS** parent-shell architecture.
 ### Sovereign Stack (post-pivot, Apr 26, 2026)
 | Component | Version |
 |-----------|---------|
-| **Framework** | Astro 4.x (Static, Zero-JS by default) |
+| **Framework** | Astro 6.2+ (currently 6.2.1 latest stable; static, zero-JS by default) |
 | **Interactive** | React 19 inside Astro Islands (`client:load` / `client:visible`) — calculators only |
 | **CMS** | Git (MDX in `src/content/`) — Emdash deferred to post-launch |
 | **Database** | None |

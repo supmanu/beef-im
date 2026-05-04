@@ -1,10 +1,18 @@
+---
+name: publish
+description: "Promotes an audited Thai draft into the live Astro content collection as MDX (src/content/insurance|meat|note/*.mdx). Validates frontmatter, derives slug, writes the file, optionally git-commits. No CMS, no DB — Cloudflare Pages auto-deploys on push."
+disable-model-invocation: true
+argument-hint: "[path-to-draft.md] [--filename=custom-slug]"
+allowed-tools: Read, Write, Glob, Grep, Bash
+---
+
 # Skill: /publish
 
 Promotes an audited Thai draft into the live Astro content collection as MDX.
 No CMS, no DB, no Lexical conversion. One command → file written → `git push` →
 Cloudflare Pages auto-deploys.
 
-> **As-built note (May 3, 2026):** Stack is Astro 6.1.9 + Content Layer API + MDX.
+> **As-built note (May 4, 2026):** Stack is Astro 6.2.1 + Content Layer API + MDX.
 > Schema lives at `src/content.config.ts` (repo-level inside `src/`, NOT inside `src/content/`).
 > Three collections, all sharing the same schema: `insurance`, `meat`, `note`.
 > Notebook components (`Highlight`, `MarginNote`, `ScrapCard`, `CorrectionBlock`,

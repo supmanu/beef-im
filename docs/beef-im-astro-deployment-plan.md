@@ -1,6 +1,6 @@
 # beef.im — Astro Migration Runbook
 
-> **Stack:** Astro 6.1.9 / Tailwind v4 / MDX / Cloudflare Pages
+> **Stack:** Astro 6.2.1 / Tailwind v4 / MDX / Cloudflare Pages
 > **Decision date:** Apr 26, 2026
 > **Completed:** Apr 27, 2026
 > **Reference:** [PRODUCTION-NOTES.md](./brainstorm/New%20UIUX/PRODUCTION-NOTES.md) · [Prototype-Definitive-v1.html](./brainstorm/New%20UIUX/Prototype-Definitive-v1.html)
@@ -15,7 +15,7 @@ This document serves two purposes:
 
 | Layer | Technology | Notes |
 |---|---|---|
-| **Framework** | Astro 6.1.9 | Static output, zero-JS by default |
+| **Framework** | Astro 6.2.1 | Static output, zero-JS by default |
 | **Styling** | Tailwind v4 (CSS-first via `@tailwindcss/vite`) | No `tailwind.config.js` — tokens defined in `@theme {}` in `global.css` |
 | **MDX** | `@astrojs/mdx` v5 | Articles live in `src/content/{case,experiment,field-note}/` |
 | **Content API** | Astro 6 Content Layer (glob loader) | Config at `src/content.config.ts` (NOT `src/content/config.ts`) |
@@ -292,7 +292,7 @@ Do NOT delete: `nerd/`, `docs/`, `_archive/`, `.claude/`, `CLAUDE.md`, `GEMINI.m
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.9",
+    "astro": "^6.2.1",
     "@astrojs/mdx": "^5.0.0",
     "@astrojs/react": "^5.0.0",
     "@astrojs/sitemap": "^3.7.0",

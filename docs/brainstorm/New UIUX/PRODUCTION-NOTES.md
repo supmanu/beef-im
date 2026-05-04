@@ -1,6 +1,6 @@
 # beef.im Definitive Scaffolding — Production Notes
 > Base: `Prototype-Definitive-v1.html` (forked from GLM-5.1)
-> Stack: **Astro 4.x + Emdash CMS + MDX** (Pivoted from Next.js/Payload/Neon — Apr 26, 2026)
+> Stack: **Astro 6.2+ + Git CMS + MDX** (Pivoted from Next.js/Payload/Neon — Apr 26, 2026; version uncapped May 4, 2026; Emdash deferred to post-launch)
 > Created: 26 Apr 2026
 
 ---

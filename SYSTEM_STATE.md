@@ -19,7 +19,7 @@
     *   **Premium:** Claude Sonnet 4.6 / Opus 4.6 (Code & Production)
     *   **Research:** Gemini 3 Pro (Deep Research & UI Verification — Irreplaceable)
     *   **Routine:** Gemini 3 Flash
-* **Architecture:** Astro 6.1.9 + Tailwind v4 + MDX + Content Layer.
+* **Architecture:** Astro 6.2.1 + Tailwind v4 + MDX + Content Layer.
 * **UI State:** "Notebook" aesthetic fully implemented. Ink-settle reveal active (IntersectionObserver cascade). Real-world LCP 0.79s desktop.
 * **Deployment:** Cloudflare Pages (`beef-im`) active. Auto-deploy on push to `supmanu/beef-im` main. `dist/` excluded from git (fixed Apr 28).
 

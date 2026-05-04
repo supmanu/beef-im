@@ -10,7 +10,7 @@
 
 | Layer | Value |
 |-------|-------|
-| Framework | **Astro 4.x** (static, zero-JS by default) |
+| Framework | **Astro 6.2+** (currently 6.2.1 latest stable; static, zero-JS by default) |
 | Interactive | React 19 inside Astro Islands (`client:load` / `client:visible`) — calculators only |
 | CMS | **Git** — MDX in `src/content/` (Emdash deferred to post-launch) |
 | Database | **None** |
@@ -64,6 +64,6 @@ Phase I–V completion logs (Dec 2025) and the Sovereign Migration decision trai
 - Mastra RAG soft-pause (Apr 21, 2026) — Method 2 archived in article-production-guide v1.4; production is CLI Skills only. `nerd_brain` table + agents preserved for potential revival.
 - Flagship Mode B bake-off (Apr 22, 2026) — 6-model shared-blueprint test. **Kimi K2.6 wins longform** (Naval pacing + mechanism depth); Qwen regressed on token integrity at length; GLM-5.1 cleaned up (anomaly, re-test). Routing now length-tiered: Qwen for S/A, Kimi for B/C. See [thai-model-routing.md](./thai-model-routing.md) §3.
 - **Rebrand to beef.im (Apr 23, 2026)** — Drop "Nerd with Nart" before public launch. Public brand is beef.im (domain) + ประกันเนื้อๆ (Facebook display name). Repo/folder stays `nerd-with-nart` — internal only. Voice-dna + constitution recalibration pending (Opus 4.7 task). Full decision record: [docs/beef-im-rebrand-brief.md](../../docs/beef-im-rebrand-brief.md).
-- **Stack pivot to Astro/MDX (Apr 26, 2026)** — Drop Next.js 16 / Payload 3.80 / Neon for Astro 4.x + MDX + Cloudflare Pages. Trigger: Definitive notebook prototype (`docs/brainstorm/New UIUX/Prototype-Definitive-v1.html`) requires `<MarginNote>`, `<ScrapCard>`, `<CorrectionBlock>`, `<VerdictSeal>` components — MDX-native, painful in Lexical. Validated by `~/Projects/astro-nerd/` prototype (95–97% visual parity, Apr 6). Calculators port as React Islands. Legacy preserved at `_archive/nextjs-legacy/`. Flat-root rule retired. Full plan: [docs/beef-im-astro-deployment-plan.md](../../docs/beef-im-astro-deployment-plan.md).
+- **Stack pivot to Astro/MDX (Apr 26, 2026)** — Drop Next.js 16 / Payload 3.80 / Neon for Astro 6.2+ + MDX + Cloudflare Pages. (Plan originally locked Astro 4.x; corrected May 4, 2026 to track latest stable — Astro 6.2.1 currently installed.) Trigger: Definitive notebook prototype (`docs/brainstorm/New UIUX/Prototype-Definitive-v1.html`) requires `<MarginNote>`, `<ScrapCard>`, `<CorrectionBlock>`, `<VerdictSeal>` components — MDX-native, painful in Lexical. Validated by `~/Projects/astro-nerd/` prototype (95–97% visual parity, Apr 6). Calculators port as React Islands. Legacy preserved at `_archive/nextjs-legacy/`. Flat-root rule retired. Full plan: [docs/beef-im-astro-deployment-plan.md](../../docs/beef-im-astro-deployment-plan.md).
 - Lexical Intelligence Suite (tables / code / intelligence boxes) → [docs/payload.md](../../docs/payload.md)
 - Type-mismatch emergency fix → [docs/typescript-patterns.md](../../docs/typescript-patterns.md)
