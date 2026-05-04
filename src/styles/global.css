@@ -283,7 +283,7 @@ img.nb-photo, .nb-content img {
 .hero-h { font-family: var(--font-display); font-weight: 800; font-size: 36px; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 12px; animation: heroReveal 1.2s 1.4s both; }
 @media (min-width: 768px) { .hero-h { font-size: 52px; margin-bottom: 14px; } }
 @media (min-width: 1200px) { .hero-h { font-size: 58px; letter-spacing: -0.03em; } }
-@media (min-width: 1440px) { .hero-h { font-size: 70px; } }
+@media (min-width: 1440px) { .hero-h { font-size: 65px; } }
 .hero-h .accent { color: #CC3A2F; }
 .hero-sub { font-family: var(--font-hand); font-weight: 300; font-style: italic; font-size: 15px; color: #2B4A5E; margin-bottom: 22px; animation: inkSettle 800ms 1.8s both; }
 @media (min-width: 768px) { .hero-sub { font-size: 17px; margin-bottom: 26px; } }
